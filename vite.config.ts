@@ -4,12 +4,13 @@ import path from "node:path";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
-  base: "/HostelEnglish/",
+  // base: "/HostelEnglish/", // Comentado temporalmente para desarrollo
   plugins: [
     react(),
     VitePWA({
-      registerType: "autoUpdate",
+      registerType: "prompt", // Cambiado a 'prompt' para depuración
       outDir: "dist",
+      devOptions: { enabled: true }, // Habilitar PWA en desarrollo
       manifest: {
         name: "HostelEnglish PWA",
         short_name: "HostelEnglish",
@@ -17,17 +18,17 @@ export default defineConfig({
         theme_color: "#ffffff",
         icons: [
           {
-            src: "pwa-192x192.png",
+            src: "icons/pwa-192x192.png",
             sizes: "192x192",
             type: "image/png",
           },
           {
-            src: "pwa-512x512.png",
+            src: "icons/pwa-512x512.png",
             sizes: "512x512",
             type: "image/png",
           },
           {
-            src: "pwa-512x512.png",
+            src: "icons/pwa-512x512.png",
             sizes: "512x512",
             type: "image/png",
             purpose: "any maskable",
@@ -36,6 +37,8 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,json,webmanifest}"],
+        // Asegurarse de que el Service Worker se genere correctamente
+        // swDest: 'dist/sw.js', // Esto es por defecto, no es necesario especificarlo
       },
     }),
   ],

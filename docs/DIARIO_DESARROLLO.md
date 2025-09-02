@@ -44,6 +44,48 @@
 - Se crearon archivos placeholder para los iconos PWA (`pwa-192x192.png`, `pwa-512x512.png`) en el directorio `public`. **PENDIENTE: Reemplazar con imágenes reales.**
 - Se registró el Service Worker en `src/main.tsx` para iniciar el proceso de cacheo y funcionalidad offline.
 
+## Día 6 – Inicialización de Repositorio Git
+- Se inicializó un repositorio Git local en el directorio del proyecto.
+- Se realizó el primer commit con la configuración inicial del proyecto y los cambios de PWA.
+
+## Día 7 – Migración de Persistencia a IndexedDB
+- Se creó el directorio `src/db`.
+- Se implementó `src/db/index.ts` para gestionar la base de datos IndexedDB utilizando la librería `idb`.
+- Se configuró una única object store (`appState`) en IndexedDB para almacenar el estado persistente de la aplicación.
+- Se modificó `src/store/useAppStore.ts` para integrar el middleware `persist` de Zustand con el almacenamiento personalizado de IndexedDB.
+- Se ajustaron las funciones `getItem`, `setItem` y `removeItem` del `storage` personalizado para serializar y deserializar el estado completo del store de Zustand y guardarlo/cargarlo en la object store `appState` de IndexedDB.
+
+## Día 8 – Implementación y Estructuración del Módulo Frases
+- Se crearon los directorios `src/components` y `src/hooks` para organizar los componentes y hooks del proyecto.
+- Se implementaron los componentes `PhraseCard.tsx` y `BottomNav.tsx` en `src/components`.
+- Se implementaron los hooks `useSpeech.ts` y `useAudio.ts` en `src/hooks`.
+- Se modificó `src/pages/Frases.tsx` para integrar la lógica de carga de frases, búsqueda, filtrado, reproducción de audio (TTS y archivos) y la funcionalidad de marcar frases como estudiadas, utilizando los nuevos componentes y hooks, así como el estado global de Zustand.
+
+## Día 9 – Corrección de Configuración PWA y Estructura de Iconos
+- Se identificaron y corrigieron los problemas de registro del Service Worker (MIME type incorrecto) y los errores 404 de los iconos PWA.
+- Se añadió `devOptions: { enabled: true }` al plugin `VitePWA` en `vite.config.ts` para asegurar la generación del Service Worker en desarrollo.
+- Se movieron los archivos placeholder de los iconos (`pwa-192x192.png`, `pwa-512x512.png`) al subdirectorio `public/icons`.
+- Se actualizaron las rutas de los iconos en el `manifest` dentro de `vite.config.ts` para que apunten correctamente a `icons/pwa-192x192.png` y `icons/pwa-512x512.png`.
+
+## Día 10 – Implementación Inicial del Módulo Conversaciones
+- Se implementó el componente `ConversationList.tsx` en `src/components` para mostrar la lista de conversaciones.
+- Se modificó `src/pages/Conversaciones.tsx` para integrar `ConversationList` y manejar la selección de conversaciones, mostrando una vista de detalle/interacción básica.
+
+## Día 11 – Corrección de Registro de Service Worker y Manifest
+- Se modificó `vite.config.ts` para cambiar `registerType` a `"prompt"` y asegurar la configuración adecuada de `workbox`.
+- Se eliminó el bloque de registro manual del Service Worker en `src/main.tsx`, dejando que `vite-plugin-pwa` se encargue de la inyección del script de registro.
+- Se eliminó el `manifest.json` estático en `public/` para evitar conflictos con el manifest generado dinámicamente.
+- Se actualizó la referencia al manifest en `index.html` para que apunte a `/HostelEnglish/manifest.webmanifest`.
+
+## Día 12 – Implementación del Enrutamiento de la Aplicación
+- Se implementó `src/router/AppRouter.tsx` para definir las rutas de la aplicación utilizando `react-router-dom`.
+- Se configuró el `basename` en el `Router` para `/HostelEnglish/` para el despliegue en GitHub Pages.
+- Se definieron rutas para `Home`, `Frases`, `Conversaciones`, y placeholders para `Progreso`, `Flashcards`, `Quiz`, `Estudio`, `Examen` y `Dashboard`.
+
+## Día 13 – Corrección de Errores de Desarrollo y Estructura de Páginas
+- Se crearon los componentes de página faltantes (`Progreso.tsx`, `Flashcards.tsx`, `Quiz.tsx`, `Estudio.tsx`, `Examen.tsx`, `Dashboard.tsx`) en `src/pages` para resolver errores de importación en el enrutamiento.
+- Se comentó temporalmente la propiedad `base` en `vite.config.ts` y se eliminó el `basename` del `Router` en `src/router/AppRouter.tsx` para solucionar problemas de Service Worker y manifest en el entorno de desarrollo.
+
 ---
 
 ## Próximos pasos
