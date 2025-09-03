@@ -1,1 +1,62 @@
-[]
+[
+  {
+    "id": 1,
+    "es": "Hola, ¿cómo puedo ayudarte?",
+    "en": "Hello, how can I help you?",
+    "categoria": "Saludos"
+  },
+  {
+    "id": 2,
+    "es": "¿Tienes una reserva?",
+    "en": "Do you have a reservation?",
+    "categoria": "Reservas"
+  },
+  {
+    "id": 3,
+    "es": "Aquí está la llave de tu habitación.",
+    "en": "Here is your room key.",
+    "categoria": "Check-in"
+  },
+  {
+    "id": 4,
+    "es": "El desayuno se sirve de 7 a 10 de la mañana.",
+    "en": "Breakfast is served from 7 to 10 AM.",
+    "categoria": "Servicios"
+  },
+  {
+    "id": 5,
+    "es": "¿Necesitas ayuda con tu equipaje?",
+    "en": "Do you need help with your luggage?",
+    "categoria": "Servicios"
+  },
+  {
+    "id": 6,
+    "es": "Disfruta de tu estancia.",
+    "en": "Enjoy your stay.",
+    "categoria": "Despedidas"
+  },
+  {
+    "id": 7,
+    "es": "¿A qué hora es el check-out?",
+    "en": "What time is check-out?",
+    "categoria": "Check-out"
+  },
+  {
+    "id": 8,
+    "es": "La contraseña del Wi-Fi es 'HostelEnglish'.",
+    "en": "The Wi-Fi password is 'HostelEnglish'.",
+    "categoria": "Servicios"
+  },
+  {
+    "id": 9,
+    "es": "¿Hay algún restaurante cerca?",
+    "en": "Is there a restaurant nearby?",
+    "categoria": "Información local"
+  },
+  {
+    "id": 10,
+    "es": "Gracias por tu visita.",
+    "en": "Thank you for your visit.",
+    "categoria": "Despedidas"
+  }
+]

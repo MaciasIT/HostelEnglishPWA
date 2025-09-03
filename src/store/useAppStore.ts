@@ -26,6 +26,8 @@ type Conversation = {
 type State = {
   frases: Phrase[];
   conversations: Conversation[];
+  frasesLoaded: boolean;
+  conversationsLoaded: boolean;
   loadFrases: () => Promise<void>;
   loadConversations: () => Promise<void>;
   progress: Record<string, boolean>; // { phraseId: true/false (estudiada) }
@@ -43,32 +45,34 @@ export const useAppStore = create<State & Actions>()(
     (set, get) => ({
       frases: [],
       conversations: [],
+      frasesLoaded: false,
+      conversationsLoaded: false,
       progress: {},
       prefs: { theme: "light", audioSpeed: 1 },
       loadFrases: async () => {
         try {
           const res = await fetch("/data/hostelenglish_dataset_clean.json");
           const data = await res.json();
-          set({ frases: data });
+          set({ frases: data, frasesLoaded: true });
         } catch (e) {
           console.warn(
             "No se pudo cargar el dataset de frases. Usa /public/data para colocarlo.",
             e
           );
-          set({ frases: [] });
+          set({ frases: [], frasesLoaded: true });
         }
       },
       loadConversations: async () => {
         try {
           const res = await fetch("/data/conversations_extended_v4.json");
           const data = await res.json();
-          set({ conversations: data });
+          set({ conversations: data, conversationsLoaded: true });
         } catch (e) {
           console.warn(
             "No se pudo cargar el dataset de conversaciones. Asegúrate de que 'public/data/conversations_extended_v4.json' existe.",
             e
           );
-          set({ conversations: [] });
+          set({ conversations: [], conversationsLoaded: true });
         }
       },
       togglePhraseStudied: (phraseId: string) => {

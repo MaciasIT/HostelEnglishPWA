@@ -97,6 +97,21 @@
 - Se corrigió la importación de `useAudio` en `src/pages/Frases.tsx` para usar el *named import*.
 - Se integraron todos los iconos de navegación en `src/components/BottomNav.tsx`.
 
+## Día 15 – Implementación y Depuración del Módulo de Flashcards
+- Se implementó el componente `Flashcard.tsx` para la visualización individual de las flashcards, incluyendo la lógica de volteo.
+- Se implementó la página `Flashcards.tsx` para gestionar la lógica del módulo:
+    - Carga de frases desde el dataset global (`hostelenglish_dataset_clean.json`).
+    - Filtrado de flashcards por categoría.
+    - Navegación entre flashcards (anterior, siguiente, aleatorio).
+    - Integración de la reproducción de audio (TTS y archivos).
+- **Problemas encontrados y soluciones/decisiones:**
+    - **Problemas persistentes con el Service Worker y el manifest:** A pesar de múltiples intentos de limpieza de caché y deshabilitación del plugin PWA en desarrollo, el Service Worker (`workbox-99d8380f.js`) continuaba activo y causando errores `Failed to fetch`. Se realizó una limpieza extrema de la caché del navegador y se decidió mantener el plugin PWA deshabilitado en desarrollo por el momento para evitar interferencias.
+    - **Flashcard volteada incorrectamente y botones de audio faltantes:** Inicialmente, la flashcard se mostraba volteada y los botones de audio no eran visibles o estaban mal posicionados. Se corrigió el CSS en `Flashcard.tsx` ajustando `z-index` y la visibilidad de las caras frontal y trasera para asegurar un volteo correcto y la visibilidad de ambos botones de audio (`Reproducir EN` y `Reproducir ES`).
+    - **Texto al revés al voltear:** Al voltear la flashcard, el texto en la cara trasera aparecía invertido. Se solucionó aplicando una rotación inversa (`rotateY(-180deg)`) al contenido dentro de la cara trasera en `Flashcard.tsx`.
+    - **Botones de navegación no funcionaban:** Los botones "Anterior", "Aleatorio" y "Siguiente" no respondían a los clics. Se ajustó el `z-index` en `Flashcards.tsx` para asegurar que los botones estuvieran por encima de la flashcard y recibieran los eventos de clic.
+    - **Audio con `SpeechSynthesisErrorEvent: "interrupted"`:** El audio de la síntesis de voz presentaba errores de interrupción. Se verificó que el código ya incluía la cancelación de síntesis anterior. Se concluyó que este es un comportamiento común de la API de síntesis de voz del navegador y no un error en nuestro código. Se decidió aceptar este comportamiento por ahora y documentarlo, priorizando la funcionalidad principal del módulo.
+- **Estado actual del módulo:** El módulo de Flashcards está completamente funcional en cuanto a visualización, interacción y navegación. El audio funciona, aunque con el comportamiento de interrupción del navegador.
+
 ---
 
 ## Próximos pasos
