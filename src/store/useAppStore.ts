@@ -9,9 +9,25 @@ type Phrase = {
   categoria?: string;
 };
 
+type ConversationTurn = {
+  speaker: "Hostel Staff" | "Guest";
+  english: string;
+  spanish: string;
+  audio?: string;
+};
+
+type Conversation = {
+  id: number;
+  title: string;
+  description: string;
+  turns: ConversationTurn[];
+};
+
 type State = {
   frases: Phrase[];
+  conversations: Conversation[];
   loadFrases: () => Promise<void>;
+  loadConversations: () => Promise<void>;
   progress: Record<string, boolean>; // { phraseId: true/false (estudiada) }
   prefs: { theme: string; audioSpeed: number };
 };
@@ -26,6 +42,7 @@ export const useAppStore = create<State & Actions>()(
   persist(
     (set, get) => ({
       frases: [],
+      conversations: [],
       progress: {},
       prefs: { theme: "light", audioSpeed: 1 },
       loadFrases: async () => {
@@ -39,6 +56,19 @@ export const useAppStore = create<State & Actions>()(
             e
           );
           set({ frases: [] });
+        }
+      },
+      loadConversations: async () => {
+        try {
+          const res = await fetch("/data/conversations_extended_v4.json");
+          const data = await res.json();
+          set({ conversations: data });
+        } catch (e) {
+          console.warn(
+            "No se pudo cargar el dataset de conversaciones. Asegúrate de que 'public/data/conversations_extended_v4.json' existe.",
+            e
+          );
+          set({ conversations: [] });
         }
       },
       togglePhraseStudied: (phraseId: string) => {

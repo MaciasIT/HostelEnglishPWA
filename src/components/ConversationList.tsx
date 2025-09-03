@@ -1,47 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+
+type ConversationTurn = {
+  speaker: "Hostel Staff" | "Guest";
+  english: string;
+  spanish: string;
+  audio?: string;
+};
 
 type Conversation = {
-  id: string;
+  id: number;
   title: string;
-  scenario: string;
-  phrases: { role: string; text: string; audio?: string }[];
+  description: string;
+  turns: ConversationTurn[];
 };
 
 interface ConversationListProps {
+  conversations: Conversation[];
   onSelectConversation: (conversation: Conversation) => void;
 }
 
-const ConversationList: React.FC<ConversationListProps> = ({ onSelectConversation }) => {
-  const [conversations, setConversations] = useState<Conversation[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const loadConversations = async () => {
-      try {
-        const res = await fetch('/data/conversations_extended_v4.json');
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        const data: Conversation[] = await res.json();
-        setConversations(data);
-      } catch (e: any) {
-        setError(e.message);
-        console.error("Error loading conversations:", e);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadConversations();
-  }, []);
-
-  if (loading) {
-    return <div className="text-center text-gray-500 dark:text-gray-400">Cargando conversaciones...</div>;
-  }
-
-  if (error) {
-    return <div className="text-center text-red-500 dark:text-red-400">Error al cargar las conversaciones: {error}</div>;
+const ConversationList: React.FC<ConversationListProps> = ({ conversations, onSelectConversation }) => {
+  if (conversations.length === 0) {
+    return <div className="text-center text-gray-500 dark:text-gray-400">No hay conversaciones disponibles.</div>;
   }
 
   return (
@@ -53,7 +33,7 @@ const ConversationList: React.FC<ConversationListProps> = ({ onSelectConversatio
           onClick={() => onSelectConversation(conv)}
         >
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{conv.title}</h2>
-          <p className="text-gray-600 dark:text-gray-300">{conv.scenario}</p>
+          <p className="text-gray-600 dark:text-gray-300">{conv.description}</p>
         </div>
       ))}
     </div>

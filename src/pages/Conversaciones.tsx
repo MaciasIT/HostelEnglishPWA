@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
 import ConversationList from '@/components/ConversationList';
-import BottomNav from '@/components/BottomNav';
+import ConversationDetail from '@/components/ConversationDetail';
+import { useAppStore } from '@/store/useAppStore';
+
+type ConversationTurn = {
+  speaker: "Hostel Staff" | "Guest";
+  english: string;
+  spanish: string;
+  audio?: string;
+};
 
 type Conversation = {
-  id: string;
+  id: number;
   title: string;
-  scenario: string;
-  phrases: { role: string; text: string; audio?: string }[];
+  description: string;
+  turns: ConversationTurn[];
 };
 
 export default function Conversaciones() {
+  const conversations = useAppStore((state) => state.conversations);
   const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
 
   const handleSelectConversation = (conversation: Conversation) => {
@@ -21,29 +30,15 @@ export default function Conversaciones() {
   };
 
   if (selectedConversation) {
-    // Aquí iría la pantalla de configuración y la conversación interactiva
     return (
-      <div className="p-4 pb-20">
-        <button
-          onClick={handleBackToList}
-          className="mb-4 px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md text-gray-800 dark:text-white"
-        >
-          ← Volver a la lista
-        </button>
-        <h1 className="text-2xl font-bold mb-4">{selectedConversation.title}</h1>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">{selectedConversation.scenario}</p>
-        {/* Placeholder para la lógica de configuración y conversación */}
-        <p className="text-center text-gray-500 dark:text-gray-400">Lógica de conversación en construcción...</p>
-        <BottomNav />
-      </div>
+      <ConversationDetail conversation={selectedConversation} onBack={handleBackToList} />
     );
   }
 
   return (
     <div className="p-4 pb-20">
       <h1 className="text-2xl font-bold mb-4">Conversaciones</h1>
-      <ConversationList onSelectConversation={handleSelectConversation} />
-      <BottomNav />
+      <ConversationList conversations={conversations} onSelectConversation={handleSelectConversation} />
     </div>
   );
 }

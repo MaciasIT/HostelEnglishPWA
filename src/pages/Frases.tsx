@@ -3,7 +3,7 @@ import { useAppStore } from '@/store/useAppStore';
 import PhraseCard from '@/components/PhraseCard';
 import BottomNav from '@/components/BottomNav';
 import useSpeech from '@/hooks/useSpeech';
-import useAudio from '@/hooks/useAudio';
+import { useAudio } from '@/hooks/useAudio';
 
 export default function Frases() {
   const { frases, loadFrases, progress, togglePhraseStudied } = useAppStore();

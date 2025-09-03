@@ -19,8 +19,13 @@ const BottomNav: React.FC = () => {
     <nav className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 shadow-lg flex justify-around py-2">
       <NavItem to="/" icon="🏠" label="Inicio" />
       <NavItem to="/frases" icon="🗣️" label="Frases" />
+      <NavItem to="/conversaciones" icon="💬" label="Conversaciones" />
+      <NavItem to="/flashcards" icon="🧠" label="Flashcards" />
+      <NavItem to="/quiz" icon="❓" label="Quiz" />
+      <NavItem to="/estudio" icon="📚" label="Estudio" />
+      <NavItem to="/examen" icon="📝" label="Examen" />
       <NavItem to="/progreso" icon="📈" label="Progreso" />
-      {/* Añadir más elementos de navegación según sea necesario */}
+      <NavItem to="/dashboard" icon="📊" label="Dashboard" />
     </nav>
   );
 };

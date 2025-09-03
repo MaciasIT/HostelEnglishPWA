@@ -86,6 +86,17 @@
 - Se crearon los componentes de página faltantes (`Progreso.tsx`, `Flashcards.tsx`, `Quiz.tsx`, `Estudio.tsx`, `Examen.tsx`, `Dashboard.tsx`) en `src/pages` para resolver errores de importación en el enrutamiento.
 - Se comentó temporalmente la propiedad `base` en `vite.config.ts` y se eliminó el `basename` del `Router` en `src/router/AppRouter.tsx` para solucionar problemas de Service Worker y manifest en el entorno de desarrollo.
 
+## Día 14 – Implementación del Módulo de Conversaciones y Correcciones Finales
+- Se añadió el estado `conversations` y la acción `loadConversations` en `src/store/useAppStore.ts` para cargar los datos de las conversaciones.
+- Se creó `src/components/AppInitializer.tsx` para llamar a `loadFrases` y `loadConversations` al inicio de la aplicación.
+- Se modificó `src/main.tsx` para usar `AppInitializer`.
+- Se actualizó `src/pages/Conversaciones.tsx` para obtener las conversaciones del estado global y renderizar `ConversationList` o `ConversationDetail`.
+- Se modificó `src/components/ConversationList.tsx` para recibir las conversaciones como prop y eliminar su lógica de carga interna.
+- Se creó `src/components/ConversationDetail.tsx` para mostrar los turnos de una conversación y reproducir el audio (con fallback a TTS).
+- Se actualizó `src/hooks/useAudio.ts` para incluir `audioSpeed`, fallback a TTS y cambiar a un *named export*.
+- Se corrigió la importación de `useAudio` en `src/pages/Frases.tsx` para usar el *named import*.
+- Se integraron todos los iconos de navegación en `src/components/BottomNav.tsx`.
+
 ---
 
 ## Próximos pasos

@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
+import useSpeech from './useSpeech'; // Importar useSpeech
 
 interface UseAudioResult {
-  playAudio: (url: string) => void;
+  playAudio: (url: string, speed?: number, useTTSFallback?: boolean) => void;
   stopAudio: () => void;
   playing: boolean;
 }
 
-const useAudio = (): UseAudioResult => {
+export function useAudio(): UseAudioResult { // Cambiado a named export
   const [audio] = useState(new Audio());
   const [playing, setPlaying] = useState(false);
+  const { speak, cancel: cancelSpeech } = useSpeech(); // Usar useSpeech para TTS
 
   useEffect(() => {
     const handlePlay = () => setPlaying(true);
@@ -23,14 +25,27 @@ const useAudio = (): UseAudioResult => {
       audio.removeEventListener('play', handlePlay);
       audio.removeEventListener('pause', handlePause);
       audio.removeEventListener('ended', handleEnded);
+      cancelSpeech(); // Cancelar cualquier síntesis de voz pendiente al desmontar
     };
-  }, [audio]);
+  }, [audio, cancelSpeech]);
 
-  const playAudio = (url: string) => {
-    if (audio.src !== url) {
+  const playAudio = (url: string, speed: number = 1, useTTSFallback: boolean = false) => {
+    stopAudio(); // Detener cualquier audio o TTS anterior
+    cancelSpeech();
+
+    audio.playbackRate = speed;
+
+    if (url && !useTTSFallback) {
       audio.src = url;
+      audio.play().catch(e => {
+        console.warn("Error playing audio from URL, falling back to TTS:", e);
+        if (useTTSFallback) {
+          speak(url, 'en-US'); // Si falla el audio, intenta TTS con el texto de la URL
+        }
+      });
+    } else if (useTTSFallback) {
+      speak(url, 'en-US'); // Si se fuerza TTS o no hay URL, usa TTS
     }
-    audio.play().catch(e => console.error("Error playing audio:", e));
   };
 
   const stopAudio = () => {
@@ -39,6 +54,4 @@ const useAudio = (): UseAudioResult => {
   };
 
   return { playAudio, stopAudio, playing };
-};
-
-export default useAudio;
+}
