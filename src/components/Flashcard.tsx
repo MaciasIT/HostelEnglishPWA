@@ -41,27 +41,27 @@ const Flashcard: React.FC<FlashcardProps> = ({ phrase }) => {
       style={{ transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
     >
       {/* Front of the card */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-white dark:bg-gray-800 rounded-lg backface-hidden p-4" style={{ zIndex: isFlipped ? 0 : 1 }}>
-        <p className="text-2xl font-bold text-gray-900 dark:text-white text-center">
+      <div className="absolute inset-0 flex flex-col items-center justify-center bg-primary rounded-lg backface-hidden p-4" style={{ zIndex: isFlipped ? 0 : 1 }}>
+        <p className="text-2xl font-bold text-white text-center">
           {phrase.en}
         </p>
         <button
           onClick={(e) => { e.stopPropagation(); handlePlayAudio('en'); }}
-          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          className="mt-4 px-4 py-2 bg-white/20 text-white rounded-md hover:bg-white/30"
         >
           Reproducir EN
         </button>
       </div>
 
       {/* Back of the card */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-white dark:bg-gray-800 rounded-lg backface-hidden p-4 rotateY-180" style={{ zIndex: isFlipped ? 1 : 0 }}>
+      <div className="absolute inset-0 flex flex-col items-center justify-center bg-accent rounded-lg backface-hidden p-4 rotateY-180" style={{ zIndex: isFlipped ? 1 : 0 }}>
         <div style={{ transform: 'rotateY(-180deg)' }}>
-          <p className="text-2xl font-bold text-gray-900 dark:text-white text-center">
+          <p className="text-2xl font-bold text-white text-center">
             {phrase.es}
           </p>
           <button
             onClick={(e) => { e.stopPropagation(); handlePlayAudio('es'); }}
-            className="mt-4 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+            className="mt-4 px-4 py-2 bg-white/20 text-white rounded-md hover:bg-white/30"
           >
             Reproducir ES
           </button>

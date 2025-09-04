@@ -92,13 +92,13 @@ export default function Flashcards() {
         </button>
         <button
           onClick={handleShuffle}
-          className="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600"
+          className="px-4 py-2 bg-accent text-white rounded-md hover:bg-accent-dark"
         >
           Aleatorio
         </button>
         <button
           onClick={handleNext}
-          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark"
         >
           Siguiente
         </button>

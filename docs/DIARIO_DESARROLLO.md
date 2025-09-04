@@ -97,20 +97,39 @@
 - Se corrigió la importación de `useAudio` en `src/pages/Frases.tsx` para usar el *named import*.
 - Se integraron todos los iconos de navegación en `src/components/BottomNav.tsx`.
 
-## Día 15 – Implementación y Depuración del Módulo de Flashcards
-- Se implementó el componente `Flashcard.tsx` para la visualización individual de las flashcards, incluyendo la lógica de volteo.
-- Se implementó la página `Flashcards.tsx` para gestionar la lógica del módulo:
-    - Carga de frases desde el dataset global (`hostelenglish_dataset_clean.json`).
-    - Filtrado de flashcards por categoría.
-    - Navegación entre flashcards (anterior, siguiente, aleatorio).
-    - Integración de la reproducción de audio (TTS y archivos).
-- **Problemas encontrados y soluciones/decisiones:**
-    - **Problemas persistentes con el Service Worker y el manifest:** A pesar de múltiples intentos de limpieza de caché y deshabilitación del plugin PWA en desarrollo, el Service Worker (`workbox-99d8380f.js`) continuaba activo y causando errores `Failed to fetch`. Se realizó una limpieza extrema de la caché del navegador y se decidió mantener el plugin PWA deshabilitado en desarrollo por el momento para evitar interferencias.
-    - **Flashcard volteada incorrectamente y botones de audio faltantes:** Inicialmente, la flashcard se mostraba volteada y los botones de audio no eran visibles o estaban mal posicionados. Se corrigió el CSS en `Flashcard.tsx` ajustando `z-index` y la visibilidad de las caras frontal y trasera para asegurar un volteo correcto y la visibilidad de ambos botones de audio (`Reproducir EN` y `Reproducir ES`).
-    - **Texto al revés al voltear:** Al voltear la flashcard, el texto en la cara trasera aparecía invertido. Se solucionó aplicando una rotación inversa (`rotateY(-180deg)`) al contenido dentro de la cara trasera en `Flashcard.tsx`.
-    - **Botones de navegación no funcionaban:** Los botones "Anterior", "Aleatorio" y "Siguiente" no respondían a los clics. Se ajustó el `z-index` en `Flashcards.tsx` para asegurar que los botones estuvieran por encima de la flashcard y recibieran los eventos de clic.
-    - **Audio con `SpeechSynthesisErrorEvent: "interrupted"`:** El audio de la síntesis de voz presentaba errores de interrupción. Se verificó que el código ya incluía la cancelación de síntesis anterior. Se concluyó que este es un comportamiento común de la API de síntesis de voz del navegador y no un error en nuestro código. Se decidió aceptar este comportamiento por ahora y documentarlo, priorizando la funcionalidad principal del módulo.
-- **Estado actual del módulo:** El módulo de Flashcards está completamente funcional en cuanto a visualización, interacción y navegación. El audio funciona, aunque con el comportamiento de interrupción del navegador.
+## Día 15 – Corrección de Datasets y Refactorización de Categorías
+- Se corrigió la ruta del dataset de frases en `useAppStore.ts` para apuntar al archivo definitivo `hostelenglish_dataset_clean.json`.
+- Se refactorizó `useAppStore.ts` para unificar la recolección de categorías de los datasets de frases y conversaciones en un único estado `categories`.
+- Se actualizaron las páginas `Frases.tsx`, `Flashcards.tsx` y `Conversaciones.tsx` para consumir la lista de categorías unificada desde el estado global y permitir el filtrado.
+- Se corrigió un error en `ConversationDetail.tsx` donde no se mostraban los textos del diálogo debido a una discrepancia en los nombres de las propiedades (`turns` vs `dialogue` y `en`/`es` vs `english`/`spanish`).
+
+---
+
+## Plan de Refactorización y Mejoras
+
+A continuación se detalla el plan para las próximas sesiones de desarrollo, enfocado en alinear la PWA con la visión de diseño de la aplicación original y mejorar la funcionalidad de los módulos existentes.
+
+### 1. Refactorización de Estilos y Colores
+- **Objetivo:** Unificar la paleta de colores de la aplicación para usar el azul y naranja como colores primario y de acento, respectivamente.
+- **Acciones:**
+    -   Definir los colores personalizados (`primary`, `accent`, etc.) en `tailwind.config.js`.
+    -   Revisar todos los componentes (`BottomNav`, `Flashcards`, `Conversaciones`, etc.) y reemplazar las clases de color existentes por las nuevas clases estandarizadas.
+
+### 2. Implementación de la Nueva Página de Inicio
+- **Objetivo:** Recrear la página de inicio de la aplicación original.
+- **Acciones:**
+    -   Modificar `src/pages/Home.tsx` para que coincida con el diseño de la captura de pantalla, incluyendo la sección "hero" (azul) y la sección de características (naranja).
+    -   Añadir el logo, textos y botones correspondientes.
+
+### 3. Mejoras en el Módulo de Conversaciones
+- **Objetivo:** Añadir funcionalidades clave para mejorar la experiencia de aprendizaje interactivo.
+- **Acciones:**
+    -   **Selección de Rol:**
+        -   Añadir un menú desplegable en `ConversationDetail.tsx` para que el usuario pueda seleccionar su rol.
+        -   Implementar la lógica para ocultar los textos del rol seleccionado, mostrando un placeholder como "Tu turno...".
+    -   **Reproducción Completa:**
+        -   Añadir un botón "Reproducir todo" en `ConversationDetail.tsx`.
+        -   Implementar la lógica para reproducir secuencialmente todos los turnos de la conversación.
 
 ---
 

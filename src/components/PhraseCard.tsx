@@ -14,20 +14,20 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
   onPlayAudio,
 }) => {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 mb-4">
+    <div className="bg-accent/20 dark:bg-accent/30 rounded-lg shadow-md p-4 mb-4">
       <p className="text-gray-900 dark:text-white text-lg font-semibold mb-2">{phrase.es}</p>
       <p className="text-gray-600 dark:text-gray-300 text-md mb-4">{phrase.en}</p>
       <div className="flex justify-between items-center">
         <div>
           <button
             onClick={() => onPlayAudio('es', phrase.audioEs)}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md mr-2"
+            className="bg-primary hover:bg-primary-dark text-white px-3 py-1 rounded-md mr-2"
           >
             Audio ES
           </button>
           <button
             onClick={() => onPlayAudio('en', phrase.audioEn)}
-            className="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-md"
+            className="bg-primary hover:bg-primary-dark text-white px-3 py-1 rounded-md"
           >
             Audio EN
           </button>

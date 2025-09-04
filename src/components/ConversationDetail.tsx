@@ -67,7 +67,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
           return (
             <div
               key={index}
-              className={`p-4 rounded-lg shadow-md ${isMyTurn ? "bg-yellow-100 dark:bg-yellow-900" : (turn.speaker === conversation.participants[0] ? "bg-blue-100 dark:bg-blue-900" : "bg-green-100 dark:bg-green-900")}`}
+              className={`p-4 rounded-lg shadow-md ${isMyTurn ? "bg-yellow-100 dark:bg-yellow-900" : (turn.speaker === conversation.participants[0] ? "bg-primary/10" : "bg-gray-100 dark:bg-gray-800")}`}
             >
               <p className="font-semibold mb-1">{turn.speaker}:</p>
               {isMyTurn ? (
@@ -78,7 +78,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
                   <p className="text-gray-700 dark:text-gray-300 text-sm italic">{turn.es}</p>
                   <button
                     onClick={() => handlePlayTurn(turn)}
-                    className="mt-3 px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                    className="mt-3 px-3 py-1 bg-primary text-white rounded-md hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
                   >
                     Reproducir
                   </button>
