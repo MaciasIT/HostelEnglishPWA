@@ -3,7 +3,7 @@ import { useAppStore } from '@/store/useAppStore';
 import Flashcard from '@/components/Flashcard';
 
 export default function Flashcards() {
-  const { frases, loadFrases, frasesLoaded } = useAppStore();
+  const { frases, loadFrases, frasesLoaded, categories } = useAppStore();
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState('all');
 
@@ -13,13 +13,13 @@ export default function Flashcards() {
     }
   }, [frasesLoaded, loadFrases]);
 
-  const categories = useMemo(() => {
-    return ['all', ...new Set(frases.map(f => f.categoria).filter(Boolean) as string[])];
-  }, [frases]);
+  const displayCategories = ['all', ...categories];
 
   const filteredFrases = useMemo(() => {
     return frases.filter(phrase => {
-      return selectedCategory === 'all' || phrase.categoria === selectedCategory;
+      const hasText = phrase.es && phrase.en;
+      const matchesCategory = selectedCategory === 'all' || phrase.categoria === selectedCategory;
+      return hasText && matchesCategory;
     });
   }, [frases, selectedCategory]);
 
@@ -72,7 +72,7 @@ export default function Flashcards() {
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}
       >
-        {categories.map(category => (
+        {displayCategories.map(category => (
           <option key={category} value={category}>
             {category === 'all' ? 'Todas las categorías' : category}
           </option>

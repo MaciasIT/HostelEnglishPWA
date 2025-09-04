@@ -6,7 +6,7 @@ import useSpeech from '@/hooks/useSpeech';
 import { useAudio } from '@/hooks/useAudio';
 
 export default function Frases() {
-  const { frases, loadFrases, progress, togglePhraseStudied } = useAppStore();
+  const { frases, loadFrases, progress, togglePhraseStudied, categories } = useAppStore();
   const { speak, supported: speechSupported } = useSpeech();
   const { playAudio } = useAudio();
 
@@ -19,11 +19,13 @@ export default function Frases() {
     }
   }, [frases.length, loadFrases]);
 
-  const categories = ['all', ...new Set(frases.map(f => f.categoria).filter(Boolean) as string[])];
+  const displayCategories = ['all', ...categories];
 
   const filteredFrases = frases.filter(phrase => {
-    const matchesSearch = phrase.es.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          phrase.en.toLowerCase().includes(searchTerm.toLowerCase());
+    const phraseEs = phrase.es || '';
+    const phraseEn = phrase.en || '';
+    const matchesSearch = phraseEs.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                          phraseEn.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesCategory = selectedCategory === 'all' || phrase.categoria === selectedCategory;
     return matchesSearch && matchesCategory;
   });
@@ -56,7 +58,7 @@ export default function Frases() {
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}
       >
-        {categories.map(category => (
+        {displayCategories.map(category => (
           <option key={category} value={category}>
             {category === 'all' ? 'Todas las categorías' : category}
           </option>

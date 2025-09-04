@@ -20,17 +20,19 @@ type Conversation = {
   id: number;
   title: string;
   description: string;
-  turns: ConversationTurn[];
+  dialogue: ConversationTurn[]; // Cambiado de turns a dialogue
+  categoria?: string;
 };
 
 type State = {
   frases: Phrase[];
   conversations: Conversation[];
+  categories: string[];
   frasesLoaded: boolean;
   conversationsLoaded: boolean;
   loadFrases: () => Promise<void>;
   loadConversations: () => Promise<void>;
-  progress: Record<string, boolean>; // { phraseId: true/false (estudiada) }
+  progress: Record<string, boolean>;
   prefs: { theme: string; audioSpeed: number };
 };
 
@@ -45,6 +47,7 @@ export const useAppStore = create<State & Actions>()(
     (set, get) => ({
       frases: [],
       conversations: [],
+      categories: [],
       frasesLoaded: false,
       conversationsLoaded: false,
       progress: {},
@@ -53,12 +56,16 @@ export const useAppStore = create<State & Actions>()(
         try {
           const res = await fetch("/data/hostelenglish_dataset_clean.json");
           const data = await res.json();
-          set({ frases: data, frasesLoaded: true });
+          const frases = data.phrases || [];
+          set({ frases, frasesLoaded: true });
+          
+          const currentCategories = get().categories;
+          const newCategories = frases.map(f => f.categoria).filter(Boolean) as string[];
+          const allCategories = [...new Set([...currentCategories, ...newCategories])];
+          set({ categories: allCategories });
+
         } catch (e) {
-          console.warn(
-            "No se pudo cargar el dataset de frases. Usa /public/data para colocarlo.",
-            e
-          );
+          console.warn("No se pudo cargar el dataset de frases.", e);
           set({ frases: [], frasesLoaded: true });
         }
       },
@@ -66,12 +73,16 @@ export const useAppStore = create<State & Actions>()(
         try {
           const res = await fetch("/data/conversations_extended_v4.json");
           const data = await res.json();
-          set({ conversations: data, conversationsLoaded: true });
+          const conversations = data.conversations || [];
+          set({ conversations, conversationsLoaded: true });
+
+          const currentCategories = get().categories;
+          const newCategories = conversations.map(c => c.categoria).filter(Boolean) as string[];
+          const allCategories = [...new Set([...currentCategories, ...newCategories])];
+          set({ categories: allCategories });
+
         } catch (e) {
-          console.warn(
-            "No se pudo cargar el dataset de conversaciones. Asegúrate de que 'public/data/conversations_extended_v4.json' existe.",
-            e
-          );
+          console.warn("No se pudo cargar el dataset de conversaciones.", e);
           set({ conversations: [], conversationsLoaded: true });
         }
       },
@@ -95,23 +106,19 @@ export const useAppStore = create<State & Actions>()(
       },
     }),
     {
-      name: "hostelenglish-storage", // nombre para el almacenamiento
+      name: "hostelenglish-storage",
       storage: createJSONStorage(() => ({
         getItem: async (name) => {
-          console.log("Getting item from IDB:", name);
           const value = await get(name);
           return value ? JSON.stringify(value) : null;
         },
         setItem: async (name, value) => {
-          console.log("Setting item to IDB:", name, value);
           await set(name, JSON.parse(value));
         },
         removeItem: async (name) => {
-          console.log("Removing item from IDB:", name);
           await del(name);
         },
       })),
-      // Opcional: especificar qué partes del estado persistir
       partialize: (state) => ({
         progress: state.progress,
         prefs: state.prefs,

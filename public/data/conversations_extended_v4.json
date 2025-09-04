@@ -1,1 +1,3910 @@
-[]
+{
+  "conversations": [
+    {
+      "id": "conv1",
+      "title": "Haciendo el check-in en el hotel",
+      "scenario": "Un cliente llega al mostrador de recepción para registrarse.",
+      "categoria": "Recepción",
+      "participants": [
+        "Recepcionista",
+        "Huésped"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Recepcionista",
+          "es": "Buenas tardes, bienvenido al Grand Palace Hotel. ¿En qué puedo ayudarle?",
+          "en": "Good afternoon, welcome to the Grand Palace Hotel. How can I help you?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Hola, tengo una reserva a nombre de García.",
+          "en": "Hello, I have a reservation under the name of Garcia."
+        },
+        {
+          "speaker": "Recepcionista",
+          "es": "Un momento, por favor... Sí, aquí está. Una habitación doble para tres noches. ¿Es correcto?",
+          "en": "One moment, please... Yes, here it is. A double room for three nights. Is that correct?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Sí, es correcto.",
+          "en": "Yes, that's correct."
+        },
+        {
+          "speaker": "Recepcionista",
+          "es": "Perfecto. ¿Podría darme su pasaporte y una tarjeta de crédito, por favor?",
+          "en": "Perfect. Could I have your passport and a credit card, please?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Claro, aquí tiene.",
+          "en": "Of course, here you are."
+        },
+        {
+          "speaker": "Recepcionista",
+          "es": "Gracias. Por favor, rellene este formulario de registro. El desayuno se sirve de 7 a 10 de la mañana en el restaurante del primer piso.",
+          "en": "Thank you. Please fill out this registration form. Breakfast is served from 7 to 10 a.m. in the first-floor restaurant."
+        },
+        {
+          "speaker": "Recepcionista",
+          "es": "Aquí tiene la llave de su habitación. Es la 405, en el cuarto piso. El ascensor está al final del pasillo a la derecha. ¡Disfrute de su estancia!",
+          "en": "Here is your room key. It's room 405, on the fourth floor. The elevator is at the end of the hall to your right. Enjoy your stay!"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Muchas gracias.",
+          "en": "Thank you very much."
+        }
+      ]
+    },
+    {
+      "id": "conv2",
+      "title": "Alergias y restricciones dietéticas en el restaurante",
+      "scenario": "Un cliente informa de una alergia alimentaria y el camarero gestiona opciones seguras.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Camarero/a",
+        "Cliente"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Disculpe, tengo una alergia alimentaria. ¿Tienen algún plato sin gluten?",
+          "en": "Excuse me, I have a food allergy. Do you have any dishes that are gluten-free?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Claro, señor/señora. ¿Tiene alguna alergia o restricción dietética? Permítame revisar el menú.",
+          "en": "Certainly, Sir/Madam. Do you have any food allergies or dietary restrictions? Let me check the menu for you."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Este plato es sin gluten, ¿le gustaría probarlo?",
+          "en": "This dish is gluten-free, would you like to try it?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, perfecto. ¿Qué lleva esta ensalada?",
+          "en": "Yes, that would be great. What are the ingredients in this salad?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Contiene lechugas mixtas, tomate, pepino y una vinagreta ligera. Voy a confirmarlo con el chef para asegurar que no lleve frutos secos.",
+          "en": "It contains mixed greens, tomatoes, cucumber, and a light vinaigrette. Let me double-check with the chef to ensure it is nut-free."
+        }
+      ]
+    },
+    {
+      "id": "conv3",
+      "title": "Recomendando y describiendo platos",
+      "scenario": "El camarero sugiere especialidades y explica la preparación y guarniciones.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Camarero/a",
+        "Cliente"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Camarero/a",
+          "es": "Buenas noches, ¿están listos para ordenar o desean unos minutos más?",
+          "en": "Good evening, are you ready to order or would you like a few more minutes?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Nuestra especialidad son las tapas y la paella. Puedo recomendar la paella de marisco; es muy popular.",
+          "en": "Our specialty is tapas and paella. I can recommend our seafood paella; it's very popular."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "¡Suena bien! ¿Cómo se prepara el atún rojo?",
+          "en": "That sounds good! How is the ahi tuna prepared?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Está sellado y se sirve con salsa ponzu. 'Sellado' significa que el pescado se cocina solo por fuera.",
+          "en": "It is seared and served with a ponzu sauce. 'Seared' means that the fish is cooked just on the outside."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "¿Con qué viene el plato?",
+          "en": "What does the dish come with?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Se sirve con arroz y verduras al vapor.",
+          "en": "It is served with rice and steamed vegetables."
+        }
+      ]
+    },
+    {
+      "id": "conv4",
+      "title": "Check-in: información de servicios y horarios",
+      "scenario": "Variación del check-in donde se informa de horarios de desayuno y se ofrece ayuda.",
+      "categoria": "Recepción",
+      "participants": [
+        "Recepcionista",
+        "Huésped"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Recepcionista",
+          "es": "¡Buenas tardes! Bienvenido al hotel. ¿Cómo puedo ayudarle hoy?",
+          "en": "Good afternoon! Welcome to the hotel. How can I assist you today?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Tengo una reserva a nombre de García.",
+          "en": "I have a reservation under the name Garcia."
+        },
+        {
+          "speaker": "Recepcionista",
+          "es": "Perfecto, ¿podría ver su identificación, por favor?",
+          "en": "Perfect, could I see your ID, please?"
+        },
+        {
+          "speaker": "Recepcionista",
+          "es": "El desayuno se sirve de 6 a 9 a. m. en el comedor. Si tiene cualquier duda, pregúntenos.",
+          "en": "Breakfast is served from 6 to 9 a.m. in the dining area. If you have any questions, feel free to ask."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Gracias, hasta luego.",
+          "en": "Thank you! See you later."
+        }
+      ]
+    },
+    {
+      "id": "conv5",
+      "title": "Check-out y pago de la estancia",
+      "scenario": "El huésped realiza la salida; se explica la factura y el método de pago.",
+      "categoria": "Recepción",
+      "participants": [
+        "Recepcionista",
+        "Huésped"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Recepcionista",
+          "es": "¿Cómo ha sido su estancia con nosotros?",
+          "en": "How was your stay with us?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Excelente, gracias.",
+          "en": "It was excellent, thank you."
+        },
+        {
+          "speaker": "Recepcionista",
+          "es": "¿Podría darme su apellido y número de habitación para registrar la salida?",
+          "en": "Could I have your last name and room number for check-out, please?"
+        },
+        {
+          "speaker": "Recepcionista",
+          "es": "La factura final incluye los cargos de la habitación y servicios adicionales. Su total es [cantidad]. ¿Cómo desea pagar?",
+          "en": "Your final bill includes the room charges and any additional services you’ve used. Your total is [amount]. How will you be paying for this, please?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Pagaré con tarjeta de crédito.",
+          "en": "I'll pay with my credit card."
+        },
+        {
+          "speaker": "Recepcionista",
+          "es": "Gracias y esperamos verle pronto de nuevo. ¡Que tenga un buen viaje!",
+          "en": "Thank you and hope to see you again soon. Have a safe journey!"
+        }
+      ]
+    },
+    {
+      "id": "conv6",
+      "title": "Gestión de quejas: comida fría y cobro incorrecto",
+      "scenario": "El cliente inicia la queja y el camarero ofrece soluciones y revisa la cuenta.",
+      "categoria": "Quejas",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Disculpe, me gustaría presentar una queja. La comida está fría.",
+          "en": "Excuse me, I'd like to make a complaint, please. The food is cold."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Lo siento mucho por las molestias, permítame arreglar esto por usted. Puedo imaginar lo frustrante que es esta situación.",
+          "en": "I'm so sorry for the inconvenience, let me fix this for you. I can imagine how frustrating this situation must be for you."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Además, creo que me ha cobrado de más.",
+          "en": "Also, I think you've overcharged me."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Acepte mis disculpas. Veré qué puedo hacer. Se lo cambiaré y revisaré la cuenta ahora mismo.",
+          "en": "My apologies. I'll see what I can do. I'll change it for you and let me double-check the bill right away."
+        }
+      ]
+    },
+    {
+      "id": "conv7",
+      "title": "Llegada al restaurante y asignación de mesa",
+      "scenario": "El cliente llega sin reserva y acepta esperar por una mesa.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Camarero/a",
+        "Cliente"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Camarero/a",
+          "es": "¡Buenas tardes! ¿En qué puedo ayudarle?",
+          "en": "Good afternoon! How can I assist you?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Buenas tardes, una mesa para dos, por favor.",
+          "en": "Good afternoon, a table for two, please."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "¿Tiene una reserva?",
+          "en": "Do you have a reservation?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "No, no tenemos reserva, pero no nos importa esperar.",
+          "en": "No, we don't have a reservation, but we don't mind waiting."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Permítame comprobar si hay una mesa disponible... Sí, tenemos una mesa. Por aquí, por favor.",
+          "en": "Let me check if we have a table available... Yes, we have a table available. Right this way, please."
+        }
+      ]
+    },
+    {
+      "id": "conv8",
+      "title": "En el bar: pedir bebida y preferencias",
+      "scenario": "El cliente pide la carta de bebidas y especifica sin hielo.",
+      "categoria": "Bar",
+      "participants": [
+        "Bartender/a",
+        "Cliente"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Bartender/a",
+          "es": "Bienvenido/a, ¿cómo está?",
+          "en": "Welcome, how are you?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Bien, gracias. ¿Puedo ver el menú de bebidas, por favor?",
+          "en": "Fine, thanks. Can I see the drink menu, please?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Aquí está nuestro menú. Le doy un par de minutos.",
+          "en": "Here's our menu. I'll give you a couple of minutes."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "¿Está listo para ordenar?",
+          "en": "Are you ready to order?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí. Me gustaría una copa de vino blanco. Sin hielo, por favor.",
+          "en": "Yes. I'd like a glass of white wine. No ice, please."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Excelente elección. Vuelvo enseguida con su copa.",
+          "en": "A fine choice. I'll be right back with your glass."
+        }
+      ]
+    },
+    {
+      "id": "conv9",
+      "title": "Reserva telefónica en restaurante (hora y preferencias)",
+      "scenario": "Un cliente llama para reservar mesa indicando hora, número de personas y preferencia de terraza/interior.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Buenas tardes, ¿puedo hacer una reserva para esta noche?",
+          "en": "Good afternoon, may I make a reservation for tonight?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Por supuesto, ¿para cuántas personas sería la mesa?",
+          "en": "Of course, for how many people would the table be?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Para cuatro personas, por favor.",
+          "en": "For four people, please."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Perfecto, ¿a qué hora desean venir?",
+          "en": "Perfect, what time would you like to come?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "A las 21:00.",
+          "en": "At 9 p.m."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Anotado. ¿Prefieren terraza o interior?",
+          "en": "Noted. Do you prefer the terrace or indoors?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Terraza, si es posible.",
+          "en": "The terrace, if possible."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Hecho. Les esperamos a las 21:00 en la terraza. Gracias.",
+          "en": "Done. We’ll see you at 9 p.m. on the terrace. Thank you."
+        }
+      ]
+    },
+    {
+      "id": "conv10",
+      "title": "Llegada al restaurante con reserva",
+      "scenario": "El cliente llega con reserva y el camarero confirma datos y acompaña a la mesa.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Buenas noches, tenemos una reserva a nombre de López.",
+          "en": "Good evening, we have a reservation under the name López."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Un momento, por favor... Sí, mesa para cuatro a las 21:00. ¿Es correcto?",
+          "en": "One moment, please... Yes, a table for four at 9 p.m. Is that correct?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, correcto.",
+          "en": "Yes, that’s correct."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Perfecto, síganme, por favor.",
+          "en": "Perfect, please follow me."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "¿Podría ser una mesa cerca de la ventana?",
+          "en": "Could we have a table near the window?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Claro, veo una disponible. Aquí la tienen.",
+          "en": "Of course, I see one available. Here you are."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Muchas gracias.",
+          "en": "Thank you very much."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Con gusto. Les traigo la carta de comidas y bebidas.",
+          "en": "My pleasure. I’ll bring the food and drink menus."
+        }
+      ]
+    },
+    {
+      "id": "conv11",
+      "title": "Pedido de bebidas antes de revisar la carta",
+      "scenario": "El cliente pide bebidas iniciales mientras decide la comida.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Camarero/a",
+          "es": "¿Les gustaría beber algo mientras revisan la carta?",
+          "en": "Would you like something to drink while you look at the menu?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, una botella de agua con gas y dos refrescos, por favor.",
+          "en": "Yes, a bottle of sparkling water and two soft drinks, please."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "¿Desean hielo y limón con los refrescos?",
+          "en": "Would you like ice and lemon with the soft drinks?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Con limón sí, pero sin hielo, por favor.",
+          "en": "Lemon yes, but no ice, please."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Perfecto. ¿Algo más por ahora?",
+          "en": "Perfect. Anything else for now?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "De momento nada más, gracias.",
+          "en": "Nothing else for now, thank you."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Enseguida se lo traigo.",
+          "en": "I’ll bring it right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias.",
+          "en": "Thank you."
+        }
+      ]
+    },
+    {
+      "id": "conv12",
+      "title": "Recomendación de vino para el plato principal",
+      "scenario": "El cliente pide sugerencia de vino para acompañar un plato concreto.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "¿Qué vino recomienda para la paella de marisco?",
+          "en": "What wine do you recommend with the seafood paella?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Un blanco seco va muy bien, por ejemplo un albariño.",
+          "en": "A dry white pairs very well, for example an Albariño."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Perfecto, una copa de albariño entonces.",
+          "en": "Perfect, a glass of Albariño then."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "¿Prefiere copa o botella para compartir?",
+          "en": "Would you prefer a glass or a bottle to share?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "De momento una copa; si nos gusta pedimos la botella.",
+          "en": "A glass for now; if we like it we’ll order the bottle."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Excelente. Se la traigo enseguida.",
+          "en": "Excellent. I’ll bring it right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias por la recomendación.",
+          "en": "Thanks for the recommendation."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "A usted. ¡Que la disfruten!",
+          "en": "You’re welcome. Enjoy!"
+        }
+      ]
+    },
+    {
+      "id": "conv13",
+      "title": "Entrantes para compartir",
+      "scenario": "El cliente pide tapas y entrantes para compartir; el camarero confirma cantidades.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Queremos pedir para compartir: croquetas, calamares y patatas bravas.",
+          "en": "We’d like to share: croquettes, calamari and patatas bravas."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "¿Una ración de cada, o media ración?",
+          "en": "One full portion of each, or half portions?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Una ración de cada.",
+          "en": "One full portion of each."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Perfecto. ¿Traigo pan?",
+          "en": "Perfect. Shall I bring some bread?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, por favor.",
+          "en": "Yes, please."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "¿Alguna alergia que debamos tener en cuenta?",
+          "en": "Any allergies we should be aware of?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "No, ninguna.",
+          "en": "No, none."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Estupendo, lo pongo en marcha.",
+          "en": "Great, I’ll put that in right away."
+        }
+      ]
+    },
+    {
+      "id": "conv14",
+      "title": "Explicar tiempos de espera en cocina",
+      "scenario": "El cliente pregunta por el tiempo de espera; el camarero da tiempos estimados.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Perdone, ¿cuánto tardará nuestro pedido?",
+          "en": "Excuse me, how long will our order take?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Ahora mismo cocina está algo llena; calculo unos 15–20 minutos.",
+          "en": "The kitchen is a bit busy right now; I estimate about 15–20 minutes."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "De acuerdo, gracias por avisar.",
+          "en": "Alright, thanks for letting us know."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Si lo desean, puedo traerles el pan y las bebidas mientras esperan.",
+          "en": "If you like, I can bring you bread and drinks while you wait."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, por favor.",
+          "en": "Yes, please."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Perfecto, enseguida vuelvo.",
+          "en": "Perfect, I’ll be right back."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias.",
+          "en": "Thank you."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "A ustedes.",
+          "en": "You’re welcome."
+        }
+      ]
+    },
+    {
+      "id": "conv15",
+      "title": "Cambio de guarnición del plato",
+      "scenario": "El cliente pide sustituir la guarnición por otra opción disponible.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "¿Puedo cambiar las patatas por ensalada?",
+          "en": "Can I change the fries for a salad?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Sí, sin problema. ¿Desea ensalada mixta o verde?",
+          "en": "Yes, no problem. Would you like a mixed salad or a green salad?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Mixta, por favor.",
+          "en": "Mixed, please."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Perfecto, lo anoto.",
+          "en": "Perfect, I’ll note that."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias por la flexibilidad.",
+          "en": "Thanks for being flexible."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Con gusto. ¿Algo más que pueda traerle?",
+          "en": "My pleasure. Anything else I can bring you?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "No, está bien así.",
+          "en": "No, that’s fine."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Muy bien, gracias.",
+          "en": "Very well, thank you."
+        }
+      ]
+    },
+    {
+      "id": "conv16",
+      "title": "Solicitar caja para llevar",
+      "scenario": "El cliente no termina el plato y solicita llevarse lo que sobra.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Perdone, ¿podría traerme una caja para llevar?",
+          "en": "Excuse me, could you bring me a takeaway box?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Por supuesto, ¿quiere que lo empaque por separado?",
+          "en": "Of course, would you like me to pack it separately?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, por favor, por separado.",
+          "en": "Yes, please, separately."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "¿Desea también cubiertos desechables?",
+          "en": "Would you also like disposable cutlery?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, sería perfecto.",
+          "en": "Yes, that would be perfect."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Enseguida se lo traigo.",
+          "en": "I’ll bring it right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias.",
+          "en": "Thank you."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "A usted.",
+          "en": "You’re welcome."
+        }
+      ]
+    },
+    {
+      "id": "conv17",
+      "title": "Error en el pedido y solución",
+      "scenario": "Llega un plato equivocado; el camarero se disculpa y lo corrige.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Disculpe, creo que este no es mi plato.",
+          "en": "Excuse me, I think this isn’t my dish."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Lo siento mucho por el error, se lo cambio ahora mismo.",
+          "en": "I’m very sorry for the mistake, I’ll change it right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias, no se preocupe.",
+          "en": "Thanks, don’t worry."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "¿Desea algo mientras espera, como pan o una bebida?",
+          "en": "Would you like anything while you wait, like bread or a drink?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Un poco de pan estaría bien.",
+          "en": "Some bread would be nice."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Perfecto, vuelvo enseguida con el pan y el plato correcto.",
+          "en": "Perfect, I’ll be right back with the bread and the correct dish."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias por la rapidez.",
+          "en": "Thanks for the quick response."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Gracias a usted por la paciencia.",
+          "en": "Thank you for your patience."
+        }
+      ]
+    },
+    {
+      "id": "conv18",
+      "title": "Pedir cubiertos y platos extra",
+      "scenario": "El cliente solicita cubiertos/platos adicionales para compartir.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "¿Podría traer un cuchillo y un plato extra, por favor?",
+          "en": "Could you bring an extra knife and a plate, please?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Claro, ¿necesita también servilletas adicionales?",
+          "en": "Of course, do you also need extra napkins?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, por favor.",
+          "en": "Yes, please."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Ahora se lo traigo todo.",
+          "en": "I’ll bring everything right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Perfecto, gracias.",
+          "en": "Perfect, thank you."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Con gusto. ¿Algo más que pueda acercarles?",
+          "en": "My pleasure. Anything else I can bring you?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Eso es todo por ahora.",
+          "en": "That’s all for now."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Muy bien, disfruten.",
+          "en": "Very well, enjoy."
+        }
+      ]
+    },
+    {
+      "id": "conv19",
+      "title": "Pedir la carta de postres y decidir",
+      "scenario": "El cliente pide la carta de postres; el camarero describe opciones populares.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "¿Nos puede traer la carta de postres?",
+          "en": "Could you bring us the dessert menu?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Por supuesto. Los más populares son la tarta de queso y el coulant de chocolate.",
+          "en": "Of course. Our most popular ones are the cheesecake and the chocolate lava cake."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Suena bien. ¿El coulant lleva frutos secos?",
+          "en": "Sounds good. Does the lava cake contain nuts?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "No, pero puedo confirmarlo con cocina si lo desea.",
+          "en": "No, but I can confirm with the kitchen if you like."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, por favor, gracias.",
+          "en": "Yes, please, thank you."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Confirmado: no contiene frutos secos.",
+          "en": "Confirmed: it doesn’t contain nuts."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Entonces tomaremos dos, para compartir.",
+          "en": "Then we’ll have two to share."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Perfecto, enseguida los traigo.",
+          "en": "Perfect, I’ll bring them right away."
+        }
+      ]
+    },
+    {
+      "id": "conv20",
+      "title": "Dividir la cuenta según consumo",
+      "scenario": "El grupo solicita pagar por separado de acuerdo a lo que pidió cada uno.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "¿Podemos dividir la cuenta según lo que pidió cada uno?",
+          "en": "Can we split the bill according to what each person ordered?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Sí, por supuesto. ¿Pagarán con efectivo o tarjeta?",
+          "en": "Yes, of course. Will you pay with cash or card?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Tarjeta, por favor.",
+          "en": "By card, please."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Perfecto, preparo las cuentas separadas.",
+          "en": "Perfect, I’ll prepare the separate bills."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias, así es más cómodo.",
+          "en": "Thanks, that’s more convenient."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Aquí tienen. ¿Desean añadir propina?",
+          "en": "Here you are. Would you like to add a tip?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, añadiremos un 10%.",
+          "en": "Yes, we’ll add 10%."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Muchas gracias. Paso con el datáfono.",
+          "en": "Thank you very much. I’ll bring the card reader."
+        }
+      ]
+    },
+    {
+      "id": "conv21",
+      "title": "Recomendación de cócteles de la casa",
+      "scenario": "El cliente pide una bebida especial y el bartender recomienda cócteles.",
+      "categoria": "Bar",
+      "participants": [
+        "Cliente",
+        "Bartender/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Me apetece algo fresco y cítrico, ¿alguna recomendación?",
+          "en": "I’m in the mood for something fresh and citrusy, any recommendation?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Le recomiendo un mojito o una caipiriña; ambos son cítricos y refrescantes.",
+          "en": "I recommend a mojito or a caipirinha; both are citrusy and refreshing."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Mojito suena bien. ¿Lo puede hacer menos dulce?",
+          "en": "Mojito sounds good. Can you make it less sweet?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Claro, ajusto el azúcar. ¿Con o sin hielo picado?",
+          "en": "Of course, I’ll adjust the sugar. With or without crushed ice?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Con hielo picado, por favor.",
+          "en": "With crushed ice, please."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Perfecto, en un momento lo tiene.",
+          "en": "Perfect, you’ll have it in a moment."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias.",
+          "en": "Thank you."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "A usted, ¡salud!",
+          "en": "You’re welcome, cheers!"
+        }
+      ]
+    },
+    {
+      "id": "conv22",
+      "title": "Solicitar cambio de mesa",
+      "scenario": "El cliente pide cambiar a una mesa más tranquila; el camarero gestiona el cambio.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "¿Sería posible cambiarnos a una mesa más tranquila?",
+          "en": "Would it be possible to move to a quieter table?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Voy a comprobar disponibilidad. Un momento, por favor.",
+          "en": "I’ll check availability. One moment, please."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Muchas gracias.",
+          "en": "Thank you very much."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Hay una mesa libre junto a la ventana. ¿Les parece bien?",
+          "en": "There’s a free table by the window. Does that work for you?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Perfecto, muchas gracias.",
+          "en": "Perfect, thank you."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Les acompaño ahora mismo.",
+          "en": "I’ll take you there right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Se lo agradecemos.",
+          "en": "We appreciate it."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "A ustedes. Espero que estén más cómodos.",
+          "en": "You’re welcome. I hope you’ll be more comfortable."
+        }
+      ]
+    },
+    {
+      "id": "conv23",
+      "title": "Confirmación de alergias al tomar la orden",
+      "scenario": "El camarero verifica alergias y restricciones dietéticas antes de pasar el pedido a cocina.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Camarero/a",
+          "es": "Antes de pasar su pedido, ¿tienen alguna alergia o restricción dietética?",
+          "en": "Before I send your order, do you have any food allergies or dietary restrictions?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, uno de nosotros es alérgico a los frutos secos.",
+          "en": "Yes, one of us is allergic to nuts."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Gracias por avisar. Me aseguraré de que sus platos sean libres de frutos secos.",
+          "en": "Thanks for letting me know. I’ll make sure your dishes are nut‑free."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "¿El curry de verduras lleva frutos secos?",
+          "en": "Does the vegetable curry contain nuts?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "No suele llevar, pero lo confirmo con cocina ahora mismo.",
+          "en": "It usually doesn’t, but I’ll confirm with the kitchen right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Perfecto, gracias.",
+          "en": "Perfect, thank you."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Confirmado: es apto. Lo anoto en la comanda.",
+          "en": "Confirmed: it’s suitable. I’ll note it on the ticket."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias por la atención.",
+          "en": "Thanks for the attention."
+        }
+      ]
+    },
+    {
+      "id": "conv24",
+      "title": "Happy hour: qué incluye y horarios",
+      "scenario": "El cliente pregunta por la happy hour y qué bebidas entran en la promoción.",
+      "categoria": "Bar",
+      "participants": [
+        "Cliente",
+        "Bartender/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Buenas tardes, ¿tienen happy hour?",
+          "en": "Good afternoon, do you have a happy hour?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Sí, de 18:00 a 20:00. Incluye cervezas, vino por copa y cócteles clásicos.",
+          "en": "Yes, from 6 p.m. to 8 p.m. It includes beers, wine by the glass, and classic cocktails."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "¿Los cócteles de autor también entran?",
+          "en": "Are signature cocktails included as well?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "No, solo mojito, daiquiri, caipiriña y gin-tonic.",
+          "en": "No, only mojito, daiquiri, caipirinha, and gin and tonic."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Perfecto, entonces un mojito por favor.",
+          "en": "Perfect, then a mojito please."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "¿Desea que lo haga menos dulce o con menos alcohol?",
+          "en": "Would you like it less sweet or with less alcohol?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Menos dulce, por favor.",
+          "en": "Less sweet, please."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Hecho. Sale enseguida.",
+          "en": "Done. Coming right up."
+        }
+      ]
+    },
+    {
+      "id": "conv25",
+      "title": "Pedir un mocktail (cóctel sin alcohol)",
+      "scenario": "El cliente quiere una alternativa sin alcohol con perfil cítrico.",
+      "categoria": "Bar",
+      "participants": [
+        "Cliente",
+        "Bartender/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Busco algo sin alcohol, fresco y cítrico. ¿Qué me recomienda?",
+          "en": "I’m looking for something alcohol‑free, fresh and citrusy. What do you recommend?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Un mojito sin alcohol o un 'Virgin Mule' con lima y jengibre.",
+          "en": "A virgin mojito or a 'Virgin Mule' with lime and ginger."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "El Virgin Mule suena bien. ¿Lleva azúcar?",
+          "en": "The Virgin Mule sounds good. Does it have sugar?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Muy poca, puedo reducirla o usar edulcorante.",
+          "en": "Very little, I can reduce it or use a sweetener."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Redúzcala, por favor.",
+          "en": "Please reduce it."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "¿Con hielo picado o cubitos?",
+          "en": "Crushed ice or ice cubes?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Hielo picado.",
+          "en": "Crushed ice."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Perfecto, en un momento lo tiene.",
+          "en": "Perfect, you’ll have it in a moment."
+        }
+      ]
+    },
+    {
+      "id": "conv26",
+      "title": "Alergias en coctelería (clara de huevo, frutos secos)",
+      "scenario": "El cliente indica alergias y el bartender adapta la receta.",
+      "categoria": "Bar",
+      "participants": [
+        "Cliente",
+        "Bartender/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Soy alérgico a la clara de huevo. ¿Algún sour sin clara?",
+          "en": "I’m allergic to egg white. Do you have any sour without egg white?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Sí, puedo hacerlo sin clara y agitarlo fuerte para dar cuerpo.",
+          "en": "Yes, I can make it without egg white and shake it hard for body."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "También evito frutos secos, ¿usa sirope de almendra?",
+          "en": "I also avoid nuts, do you use almond syrup?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "No, usaré sirope simple. ¿Prefiere whisky o pisco?",
+          "en": "No, I’ll use simple syrup. Do you prefer whisky or pisco?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Pisco, por favor.",
+          "en": "Pisco, please."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "¿Quiere más ácido o más dulce?",
+          "en": "Would you like it more sour or sweeter?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Más ácido.",
+          "en": "More sour."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Perfecto, lo preparo ahora mismo, sin clara y sin frutos secos.",
+          "en": "Perfect, I’ll prepare it right away, no egg white and no nuts."
+        }
+      ]
+    },
+    {
+      "id": "conv27",
+      "title": "Preguntar por cervezas artesanas locales",
+      "scenario": "El cliente quiere probar cervezas locales y pide una recomendación.",
+      "categoria": "Bar",
+      "participants": [
+        "Cliente",
+        "Bartender/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "¿Tienen cervezas artesanas locales?",
+          "en": "Do you have any local craft beers?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Sí, tenemos una IPA y una pilsner de la ciudad.",
+          "en": "Yes, we have a local IPA and a pilsner."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "¿Puedo probar primero un poco de la IPA?",
+          "en": "May I taste the IPA first?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Claro, le traigo una muestra.",
+          "en": "Of course, I’ll bring you a sample."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Me gusta, póngame media pinta.",
+          "en": "I like it, I’ll have a half pint."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "¿Quiere también algo para picar?",
+          "en": "Would you like something to nibble on as well?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Unas aceitunas estaría bien.",
+          "en": "Some olives would be nice."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Enseguida lo traigo.",
+          "en": "I’ll bring that right away."
+        }
+      ]
+    },
+    {
+      "id": "conv28",
+      "title": "Degustación de vinos por copa",
+      "scenario": "El cliente desea probar diferentes vinos por copa antes de decidir.",
+      "categoria": "Bar",
+      "participants": [
+        "Cliente",
+        "Bartender/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "¿Ofrecen vinos por copa para degustar?",
+          "en": "Do you offer wine by the glass for tasting?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Sí, tenemos blanco, tinto y rosado. Podemos servir medias copas.",
+          "en": "Yes, we have white, red, and rosé. We can serve half glasses."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Empiezo con un blanco seco y luego un tinto joven.",
+          "en": "I’ll start with a dry white and then a young red."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Perfecto, le sirvo primero el blanco.",
+          "en": "Perfect, I’ll serve the white first."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias, ¿tienen carta de quesos para acompañar?",
+          "en": "Thanks, do you have a cheese board to pair with it?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Sí, con tres tipos: curado, azul y de cabra.",
+          "en": "Yes, with three types: aged, blue, and goat."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Entonces añada la tabla de quesos, por favor.",
+          "en": "Then add the cheese board, please."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Hecho, ahora mismo se la traigo.",
+          "en": "Done, I’ll bring it now."
+        }
+      ]
+    },
+    {
+      "id": "conv29",
+      "title": "Última ronda antes del cierre",
+      "scenario": "El bartender anuncia última ronda y gestiona los últimos pedidos.",
+      "categoria": "Bar",
+      "participants": [
+        "Cliente",
+        "Bartender/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Bartender/a",
+          "es": "Aviso de última ronda: cerramos en 20 minutos.",
+          "en": "Last call: we’re closing in 20 minutes."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Entonces pondremos dos gin-tonics, por favor.",
+          "en": "Then we’ll have two gin and tonics, please."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Claro, ¿con qué ginebra los prefieren?",
+          "en": "Sure, which gin would you like?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Con la de la casa está bien.",
+          "en": "House gin is fine."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "¿Con o sin limón?",
+          "en": "With or without lemon?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Con limón, gracias.",
+          "en": "With lemon, thanks."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Perfecto, salen enseguida.",
+          "en": "Perfect, coming right up."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias por avisar.",
+          "en": "Thanks for the heads-up."
+        }
+      ]
+    },
+    {
+      "id": "conv30",
+      "title": "Pérdida de objetos en barra",
+      "scenario": "El cliente cree haber perdido un objeto y el bartender verifica objetos perdidos.",
+      "categoria": "Bar",
+      "participants": [
+        "Cliente",
+        "Bartender/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Creo que olvidé mi cartera en la barra anoche, ¿la han visto?",
+          "en": "I think I left my wallet at the bar last night, have you seen it?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Déjeme revisar en objetos perdidos. ¿De qué color es?",
+          "en": "Let me check the lost and found. What color is it?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Negra, con una banda gris.",
+          "en": "Black with a grey stripe."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Sí, aquí hay una que coincide. ¿Puede mostrar una identificación?",
+          "en": "Yes, there’s one that matches. Could you show an ID?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Claro, aquí tiene.",
+          "en": "Of course, here you are."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Perfecto, se la devolvemos. ¿Quiere dejar un contacto por si encontramos otra cosa?",
+          "en": "Great, we’ll return it. Would you like to leave a contact number in case we find anything else?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, le dejo mi teléfono.",
+          "en": "Yes, I’ll leave my phone number."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Anotado. Nos alegra que apareciera.",
+          "en": "Noted. We’re glad it turned up."
+        }
+      ]
+    },
+    {
+      "id": "conv31",
+      "title": "Pago inmediato por cada ronda",
+      "scenario": "El cliente prefiere pagar cada ronda al momento.",
+      "categoria": "Bar",
+      "participants": [
+        "Cliente",
+        "Bartender/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Prefiero pagar cada ronda al momento, ¿es posible?",
+          "en": "I prefer to pay for each round right away, is that possible?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Sí, sin problema. Esta ronda son 12 euros.",
+          "en": "Yes, no problem. This round is 12 euros."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Pago con tarjeta, por favor.",
+          "en": "I’ll pay by card, please."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Cuando quiera, acerque la tarjeta.",
+          "en": "Whenever you’re ready, tap your card."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Listo. ¿Puede darme el recibo?",
+          "en": "Done. Could I get the receipt?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Por supuesto, aquí lo tiene.",
+          "en": "Of course, here you are."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias.",
+          "en": "Thank you."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "A usted.",
+          "en": "You’re welcome."
+        }
+      ]
+    },
+    {
+      "id": "conv32",
+      "title": "Preguntar por tapas disponibles en barra",
+      "scenario": "El cliente pregunta si hay tapas o pinchos disponibles en la barra.",
+      "categoria": "Bar",
+      "participants": [
+        "Cliente",
+        "Bartender/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "¿Tienen alguna tapa en barra ahora mismo?",
+          "en": "Do you have any tapas at the bar right now?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Sí, tortilla, croquetas y ensaladilla.",
+          "en": "Yes, tortilla, croquettes, and Russian salad."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Póngame una tapa de tortilla y dos croquetas.",
+          "en": "I’ll have a piece of tortilla and two croquettes."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "¿Quiere pan con la tortilla?",
+          "en": "Would you like bread with the tortilla?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, por favor.",
+          "en": "Yes, please."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Perfecto, se lo llevo a la mesa.",
+          "en": "Perfect, I’ll bring it to your table."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias.",
+          "en": "Thanks."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Con gusto.",
+          "en": "My pleasure."
+        }
+      ]
+    },
+    {
+      "id": "conv33",
+      "title": "Pedir un cóctel con menos alcohol",
+      "scenario": "El cliente solicita un cóctel más suave y el bartender ajusta la receta.",
+      "categoria": "Bar",
+      "participants": [
+        "Cliente",
+        "Bartender/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "¿Puede hacer el cóctel un poco más suave?",
+          "en": "Can you make the cocktail a bit milder?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Sí, reduzco el alcohol y refuerzo el zumo.",
+          "en": "Yes, I’ll reduce the alcohol and add more juice."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Perfecto, gracias.",
+          "en": "Perfect, thank you."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "¿Quiere también menos azúcar?",
+          "en": "Would you also like it less sweet?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, por favor.",
+          "en": "Yes, please."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Hecho, lo preparo ahora mismo.",
+          "en": "Done, I’ll prepare it right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Genial.",
+          "en": "Great."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Aquí lo tiene, ¡salud!",
+          "en": "Here you are, cheers!"
+        }
+      ]
+    },
+    {
+      "id": "conv34",
+      "title": "Recomendación de cóctel de autor",
+      "scenario": "El bartender recomienda un cóctel de autor según preferencias del cliente.",
+      "categoria": "Bar",
+      "participants": [
+        "Cliente",
+        "Bartender/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Quiero algo diferente, ¿qué cóctel de autor recomienda?",
+          "en": "I want something different, what signature cocktail do you recommend?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "El 'Citrus Basil Smash', con gin, albahaca y cítricos.",
+          "en": "The 'Citrus Basil Smash', with gin, basil, and citrus."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Suena bien. ¿Puede hacerlo con vodka en lugar de gin?",
+          "en": "Sounds good. Can you make it with vodka instead of gin?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Sí, será un perfil más suave. ¿Le parece?",
+          "en": "Yes, it’ll be a smoother profile. Does that work for you?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Perfecto, adelante.",
+          "en": "Perfect, go ahead."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "¿Con hielo picado o cubitos?",
+          "en": "Crushed ice or cubes?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Cubitos, gracias.",
+          "en": "Cubes, thanks."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Enseguida lo tiene.",
+          "en": "You’ll have it right away."
+        }
+      ]
+    },
+    {
+      "id": "conv35",
+      "title": "Dejar propina con pago con tarjeta",
+      "scenario": "El cliente quiere dejar propina y pregunta si puede incluirla en el pago con tarjeta.",
+      "categoria": "Restaurante",
+      "participants": [
+        "Cliente",
+        "Bartender/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "¿Puedo incluir la propina al pagar con tarjeta?",
+          "en": "Can I include the tip when paying by card?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Sí, puedo añadir el porcentaje antes de procesar el pago.",
+          "en": "Yes, I can add the percentage before processing the payment."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Añada un 10%, por favor.",
+          "en": "Add 10%, please."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Perfecto, total con propina: aquí tiene para confirmar.",
+          "en": "Perfect, total with tip: here for you to confirm."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Listo.",
+          "en": "All set."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Pago aprobado. Muchas gracias.",
+          "en": "Payment approved. Thank you very much."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias a ustedes por el servicio.",
+          "en": "Thank you for the service."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Un placer, ¡hasta pronto!",
+          "en": "My pleasure, see you soon!"
+        }
+      ]
+    },
+    {
+      "id": "conv36",
+      "title": "Dividir una botella en varias copas",
+      "scenario": "El cliente pide abrir una botella y servir en varias copas con control de cantidades.",
+      "categoria": "Bar",
+      "participants": [
+        "Cliente",
+        "Bartender/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Vamos a abrir una botella de vino y dividirla en cuatro copas.",
+          "en": "We’d like to open a bottle of wine and split it into four glasses."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Por supuesto, ¿quieren copas iguales o una de cata para el conductor?",
+          "en": "Of course, equal pours or a tasting pour for the designated driver?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Una de cata para el conductor, gracias.",
+          "en": "A tasting pour for the designated driver, thanks."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Perfecto, lo sirvo ahora mismo.",
+          "en": "Perfect, I’ll pour it right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "¿Nos deja también agua?",
+          "en": "Could you leave us some water as well?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Sí, una jarra de agua para la mesa.",
+          "en": "Yes, a jug of water for the table."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias.",
+          "en": "Thank you."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "A ustedes, que lo disfruten.",
+          "en": "You’re welcome, enjoy."
+        }
+      ]
+    },
+    {
+      "id": "conv37",
+      "title": "Explicación de un licor típico español",
+      "scenario": "El cliente extranjero pide explicación de un licor local y cómo se toma.",
+      "categoria": "Bar",
+      "participants": [
+        "Cliente",
+        "Bartender/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "¿Qué licor típico español me recomienda probar?",
+          "en": "What typical Spanish liqueur do you recommend I try?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "El orujo es muy popular; también el licor de hierbas y la pacharán.",
+          "en": "Orujo is very popular; also herbal liqueur and pacharán."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "¿Cómo se toman normalmente?",
+          "en": "How are they usually served?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Generalmente, en chupito después de comer, frío o con hielo.",
+          "en": "Usually as a shot after meals, chilled or on the rocks."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Probaré pacharán con hielo, por favor.",
+          "en": "I’ll try a pacharán on the rocks, please."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Excelente elección.",
+          "en": "Excellent choice."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias.",
+          "en": "Thank you."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "A usted, ¡salud!",
+          "en": "You’re welcome, cheers!"
+        }
+      ]
+    },
+    {
+      "id": "conv38",
+      "title": "Cierre de caja: última llamada y negativa cortés",
+      "scenario": "El bar está cerrando y el bartender explica que ya no se sirven bebidas.",
+      "categoria": "Bar",
+      "participants": [
+        "Cliente",
+        "Bartender/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "¿Podemos pedir una bebida rápida?",
+          "en": "Can we order a quick drink?"
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Lo siento, ya hemos cerrado caja y no servimos más bebidas.",
+          "en": "I’m sorry, we’ve already closed out and we’re not serving any more drinks."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Entiendo, gracias igualmente.",
+          "en": "I understand, thanks anyway."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Gracias por venir. Les esperamos en otro momento.",
+          "en": "Thank you for coming. We look forward to seeing you another time."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Volveremos mañana.",
+          "en": "We’ll come back tomorrow."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Perfecto, abrimos a las 17:00.",
+          "en": "Perfect, we open at 5 p.m."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Hasta mañana.",
+          "en": "See you tomorrow."
+        },
+        {
+          "speaker": "Bartender/a",
+          "es": "Hasta mañana, que tengan buena noche.",
+          "en": "See you tomorrow, have a good night."
+        }
+      ]
+    },
+    {
+      "id": "conv39",
+      "title": "Queja: plato frío",
+      "scenario": "Cliente recibe un plato frío y se queja.",
+      "categoria": "Quejas",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Disculpe, mi plato está frío.",
+          "en": "Excuse me, my dish is cold."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Lo siento mucho, voy a pedir que lo recalienten.",
+          "en": "I’m very sorry, I’ll have it reheated."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias, preferiría que estuviera caliente como corresponde.",
+          "en": "Thanks, I’d prefer it hot as it should be."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Enseguida lo solucionamos, no tardará.",
+          "en": "We’ll fix it right away, it won’t take long."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Perfecto, espero un momento.",
+          "en": "Perfect, I’ll wait a moment."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Aquí lo tiene de nuevo, caliente y recién salido.",
+          "en": "Here it is again, hot and fresh out."
+        }
+      ]
+    },
+    {
+      "id": "conv40",
+      "title": "Queja: retraso en servicio",
+      "scenario": "Cliente se queja de que su pedido tarda demasiado.",
+      "categoria": "Quejas",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Perdone, llevamos más de 30 minutos esperando.",
+          "en": "Excuse me, we’ve been waiting over 30 minutes."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Lamento la demora, la cocina está saturada.",
+          "en": "I’m sorry for the delay, the kitchen is very busy."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "¿Cuánto más tendremos que esperar?",
+          "en": "How much longer will it take?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Unos 10 minutos más, si lo desea puedo traerle pan y bebida ahora.",
+          "en": "About 10 more minutes, if you like I can bring you bread and drinks now."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, por favor.",
+          "en": "Yes, please."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "De inmediato, y supervisaré que su pedido salga lo antes posible.",
+          "en": "Right away, and I’ll make sure your order comes out as soon as possible."
+        }
+      ]
+    },
+    {
+      "id": "conv41",
+      "title": "Queja: pedido equivocado",
+      "scenario": "Cliente recibe un plato distinto al que pidió.",
+      "categoria": "Quejas",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Creo que este no es mi plato, yo pedí pasta.",
+          "en": "I think this isn’t my dish, I ordered pasta."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Lo siento, le han traído la orden equivocada.",
+          "en": "I’m sorry, they brought the wrong order."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Es la segunda vez que ocurre.",
+          "en": "It’s the second time this happens."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Voy a corregirlo inmediatamente, y la casa le invita a un postre.",
+          "en": "I’ll fix it right away, and the house will offer you a dessert."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias, lo aprecio.",
+          "en": "Thanks, I appreciate it."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Ya mismo tendrá su pasta correcta.",
+          "en": "You’ll have your correct pasta right away."
+        }
+      ]
+    },
+    {
+      "id": "conv42",
+      "title": "Queja: error en la cuenta",
+      "scenario": "Cliente nota un cobro extra en la cuenta.",
+      "categoria": "Quejas",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Perdone, hay un cargo que no corresponde.",
+          "en": "Excuse me, there’s a charge that doesn’t belong."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Déjeme revisar, tiene razón, es un error.",
+          "en": "Let me check, you’re right, it’s a mistake."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Agradezco que lo corrija.",
+          "en": "I appreciate you correcting it."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Ya está corregido, y le traigo la cuenta actualizada.",
+          "en": "It’s corrected, here’s the updated bill."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Perfecto, gracias.",
+          "en": "Perfect, thank you."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Gracias a usted por señalarlo.",
+          "en": "Thank you for pointing it out."
+        }
+      ]
+    },
+    {
+      "id": "conv43",
+      "title": "Queja: parte del pedido olvidada",
+      "scenario": "Cliente indica que falta parte de lo que pidió.",
+      "categoria": "Quejas",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Nos falta una bebida de lo que pedimos.",
+          "en": "We’re missing one drink from what we ordered."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Disculpas, se quedó en la barra. La traigo ahora mismo.",
+          "en": "Sorry, it was left at the bar. I’ll bring it right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias, solo queríamos recordarlo.",
+          "en": "Thanks, we just wanted to remind you."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Aquí está su bebida, perdón por la omisión.",
+          "en": "Here’s your drink, sorry for the oversight."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Todo bien, gracias.",
+          "en": "All good, thank you."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "A ustedes, disfruten.",
+          "en": "You’re welcome, enjoy."
+        }
+      ]
+    },
+    {
+      "id": "conv44",
+      "title": "Queja: vino pasado",
+      "scenario": "Cliente se queja de que el vino sabe mal.",
+      "categoria": "Quejas",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Este vino no sabe bien, parece pasado.",
+          "en": "This wine doesn’t taste right, it seems off."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Lo lamento, traeré otra botella.",
+          "en": "I’m sorry, I’ll bring another bottle."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias, prefiero no arriesgarme.",
+          "en": "Thanks, I’d rather not risk it."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Abriré una nueva botella para usted.",
+          "en": "I’ll open a new bottle for you."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Perfecto, se lo agradezco.",
+          "en": "Perfect, I appreciate it."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Con gusto, queremos que disfrute.",
+          "en": "My pleasure, we want you to enjoy."
+        }
+      ]
+    },
+    {
+      "id": "conv45",
+      "title": "Queja: silla rota",
+      "scenario": "Cliente se queja de una silla defectuosa.",
+      "categoria": "Quejas",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Esta silla está inestable.",
+          "en": "This chair is wobbly."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Lo siento mucho, voy a cambiarla de inmediato.",
+          "en": "I’m very sorry, I’ll replace it right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias, es incómodo sentarse así.",
+          "en": "Thanks, it’s uncomfortable to sit like this."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Aquí tiene otra silla en buen estado.",
+          "en": "Here’s another chair in good condition."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Mucho mejor, gracias.",
+          "en": "Much better, thanks."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Encantado de resolverlo.",
+          "en": "Glad to fix it."
+        }
+      ]
+    },
+    {
+      "id": "conv46",
+      "title": "Queja: ruido excesivo",
+      "scenario": "Cliente se queja del ruido.",
+      "categoria": "Quejas",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Hay demasiado ruido, casi no podemos hablar.",
+          "en": "It’s too noisy, we can hardly talk."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Comprendo, puedo ofrecerles una mesa más tranquila.",
+          "en": "I understand, I can offer you a quieter table."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Eso estaría bien.",
+          "en": "That would be nice."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Les traslado ahora mismo.",
+          "en": "I’ll move you right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias por la atención.",
+          "en": "Thanks for the attention."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Queremos que estén cómodos.",
+          "en": "We want you to be comfortable."
+        }
+      ]
+    },
+    {
+      "id": "conv47",
+      "title": "Queja: comida poco hecha",
+      "scenario": "Cliente indica que la carne no está bien cocinada.",
+      "categoria": "Quejas",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "La carne está poco hecha para mi gusto.",
+          "en": "The meat is undercooked for my taste."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Lo siento, ¿quiere que la pasen un poco más?",
+          "en": "I’m sorry, would you like it cooked a bit more?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, por favor.",
+          "en": "Yes, please."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Enseguida se la devuelvo más hecha.",
+          "en": "I’ll return it cooked more right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias.",
+          "en": "Thanks."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "De nada, disculpe la molestia.",
+          "en": "You’re welcome, sorry for the inconvenience."
+        }
+      ]
+    },
+    {
+      "id": "conv48",
+      "title": "Queja: café frío",
+      "scenario": "Cliente se queja de café frío.",
+      "categoria": "Quejas",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Mi café está frío.",
+          "en": "My coffee is cold."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Lamento mucho eso, prepararé uno nuevo.",
+          "en": "I’m very sorry, I’ll make a new one."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias, me gustaría que esté caliente.",
+          "en": "Thanks, I’d like it hot."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Por supuesto, en un minuto.",
+          "en": "Of course, in a minute."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Perfecto.",
+          "en": "Perfect."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Aquí lo tiene recién hecho.",
+          "en": "Here it is freshly made."
+        }
+      ]
+    },
+    {
+      "id": "conv49",
+      "title": "Queja: sobrecargo no pedido",
+      "scenario": "Cliente ve un cargo por algo no pedido.",
+      "categoria": "Quejas",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Nos han cobrado un plato que no pedimos.",
+          "en": "We’ve been charged for a dish we didn’t order."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Lo reviso… tiene razón, fue un error.",
+          "en": "I’ll check… you’re right, it was a mistake."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Por favor elimínelo.",
+          "en": "Please remove it."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Hecho, ya está corregido.",
+          "en": "Done, it’s corrected."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias por la rapidez.",
+          "en": "Thanks for the quick fix."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Disculpas por el error.",
+          "en": "Sorry for the mistake."
+        }
+      ]
+    },
+    {
+      "id": "conv50",
+      "title": "Queja: tardanza en postre",
+      "scenario": "Cliente espera demasiado el postre.",
+      "categoria": "Quejas",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "¿El postre tardará mucho más?",
+          "en": "Will the dessert take much longer?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Lo siento, se retrasó en cocina.",
+          "en": "I’m sorry, it was delayed in the kitchen."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "¿Puede comprobarlo?",
+          "en": "Could you check on it?"
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Sí, lo haré de inmediato.",
+          "en": "Yes, I’ll check right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias.",
+          "en": "Thanks."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Aquí está su postre, disculpe la espera.",
+          "en": "Here’s your dessert, sorry for the wait."
+        }
+      ]
+    },
+    {
+      "id": "conv51",
+      "title": "Queja: hablar con encargado",
+      "scenario": "Cliente pide hablar con encargado.",
+      "categoria": "Quejas",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Quiero hablar con el encargado, por favor.",
+          "en": "I’d like to speak to the manager, please."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Por supuesto, ahora mismo se lo llamo.",
+          "en": "Of course, I’ll call them right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias.",
+          "en": "Thanks."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Aquí está el encargado, atenderá su queja.",
+          "en": "Here’s the manager, they’ll handle your complaint."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Muy amable.",
+          "en": "Very kind."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "A usted.",
+          "en": "You’re welcome."
+        }
+      ]
+    },
+    {
+      "id": "conv52",
+      "title": "Queja: limpieza en baño",
+      "scenario": "Cliente se queja del estado del baño.",
+      "categoria": "Quejas",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "El baño está sucio, deberían revisarlo.",
+          "en": "The restroom is dirty, you should check it."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Gracias por avisar, mandaré a alguien a limpiarlo.",
+          "en": "Thank you for letting us know, I’ll send someone to clean it."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Por favor, es importante.",
+          "en": "Please, it’s important."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Lo entiendo, se resolverá en minutos.",
+          "en": "I understand, it will be fixed in minutes."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Muy bien, gracias.",
+          "en": "Very well, thanks."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Gracias por su paciencia.",
+          "en": "Thank you for your patience."
+        }
+      ]
+    },
+    {
+      "id": "conv53",
+      "title": "Resolución con invitación de la casa",
+      "scenario": "El camarero compensa una molestia con un detalle de la casa.",
+      "categoria": "Quejas",
+      "participants": [
+        "Cliente",
+        "Camarero/a"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Hubo varios errores en nuestro servicio hoy.",
+          "en": "There were several mistakes in our service today."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Lamento mucho lo ocurrido.",
+          "en": "I’m very sorry about what happened."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Esperábamos una experiencia más fluida.",
+          "en": "We expected a smoother experience."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Como disculpa, la casa les invita a las bebidas.",
+          "en": "As an apology, the house will cover your drinks."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Lo aprecio mucho.",
+          "en": "I really appreciate that."
+        },
+        {
+          "speaker": "Camarero/a",
+          "es": "Esperamos que vuelvan y disfruten la próxima vez.",
+          "en": "We hope you come back and enjoy next time."
+        }
+      ]
+    },
+    {
+      "id": "conv_bar_01",
+      "title": "Pidiendo una cerveza en la barra",
+      "scenario": "Un cliente pide una cerveza en un bar concurrido.",
+      "categoria": "Barra",
+      "participants": [
+        "Cliente",
+        "Bartender"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Buenas noches, ¿me pone una cerveza, por favor?",
+          "en": "Good evening, can I have a beer, please?"
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Claro, ¿quiere caña o pinta?",
+          "en": "Of course, would you like a half pint or a pint?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Una pinta, por favor.",
+          "en": "A pint, please."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Aquí tiene, son 4 euros.",
+          "en": "Here you go, that will be 4 euros."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "¿Puedo pagar con tarjeta?",
+          "en": "Can I pay by card?"
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Sí, introduzca su tarjeta aquí.",
+          "en": "Yes, please insert your card here."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Perfecto, gracias.",
+          "en": "Perfect, thank you."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Gracias a usted, que lo disfrute.",
+          "en": "Thank you, enjoy."
+        }
+      ]
+    },
+    {
+      "id": "conv_bar_02",
+      "title": "Pidiendo un cóctel clásico",
+      "scenario": "Un cliente pide un cóctel en la barra.",
+      "categoria": "Barra",
+      "participants": [
+        "Cliente",
+        "Bartender"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Buenas tardes, ¿me prepara un mojito, por favor?",
+          "en": "Good evening, could you make me a mojito, please?"
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Por supuesto, ¿lo quiere con más o menos azúcar?",
+          "en": "Of course, would you like it with more or less sugar?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Con poco azúcar, gracias.",
+          "en": "With less sugar, please."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "¿Desea ron blanco o dorado?",
+          "en": "Would you like white or golden rum?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Ron blanco, por favor.",
+          "en": "White rum, please."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Perfecto, enseguida lo preparo.",
+          "en": "Perfect, I’ll prepare it right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias, se ve muy bien.",
+          "en": "Thank you, it looks great."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Que lo disfrute.",
+          "en": "Enjoy it."
+        }
+      ]
+    },
+    {
+      "id": "conv_bar_03",
+      "title": "Cuenta abierta",
+      "scenario": "El cliente quiere dejar la cuenta abierta para varias rondas.",
+      "categoria": "Barra",
+      "participants": [
+        "Cliente",
+        "Bartender"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Hola, ¿puedo dejar la cuenta abierta?",
+          "en": "Hi, can I keep a tab open?"
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Sí, ¿me deja su tarjeta de crédito como garantía?",
+          "en": "Yes, may I keep your credit card as a guarantee?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Claro, aquí tiene.",
+          "en": "Sure, here you are."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Perfecto, ¿qué le sirvo para empezar?",
+          "en": "Perfect, what can I get you to start with?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Una copa de vino tinto.",
+          "en": "A glass of red wine."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Aquí tiene. ¿Algo más de momento?",
+          "en": "Here you go. Anything else for now?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "No, gracias.",
+          "en": "No, thank you."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Perfecto, cuando pida otra ronda, solo dígame su nombre.",
+          "en": "Perfect, when you order another round, just tell me your name."
+        }
+      ]
+    },
+    {
+      "id": "conv_bar_04",
+      "title": "Un cóctel sin alcohol",
+      "scenario": "El cliente pide un cóctel sin alcohol.",
+      "categoria": "Barra",
+      "participants": [
+        "Cliente",
+        "Bartender"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Buenas, ¿tiene cócteles sin alcohol?",
+          "en": "Hello, do you have non-alcoholic cocktails?"
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Sí, tenemos mojito sin alcohol, piña colada sin alcohol y varios zumos.",
+          "en": "Yes, we have virgin mojito, virgin piña colada and several juices."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Me apetece un mojito sin alcohol.",
+          "en": "I feel like a virgin mojito."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Muy bien, enseguida se lo preparo.",
+          "en": "Very well, I’ll prepare it right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias, tiene muy buena pinta.",
+          "en": "Thanks, it looks very nice."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "De nada, disfrútelo.",
+          "en": "You’re welcome, enjoy."
+        }
+      ]
+    },
+    {
+      "id": "conv_bar_05",
+      "title": "Pidiendo tapas en la barra",
+      "scenario": "El cliente acompaña la bebida con tapas.",
+      "categoria": "Barra",
+      "participants": [
+        "Cliente",
+        "Bartender"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Buenas, ¿qué tapas tienen hoy?",
+          "en": "Hello, what tapas do you have today?"
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Tenemos tortilla, aceitunas, calamares y croquetas.",
+          "en": "We have omelette, olives, calamari, and croquettes."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Me pone una ración de croquetas, por favor.",
+          "en": "Can I have a portion of croquettes, please?"
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Claro, ¿algo más para acompañar?",
+          "en": "Sure, anything else to go with it?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Unas aceitunas también.",
+          "en": "Some olives as well."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Perfecto, enseguida lo saco.",
+          "en": "Perfect, I’ll bring it right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Muchas gracias.",
+          "en": "Thank you very much."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "De nada, disfrute de las tapas.",
+          "en": "You’re welcome, enjoy the tapas."
+        }
+      ]
+    },
+    {
+      "id": "conv_bar_06",
+      "title": "Cliente indeciso",
+      "scenario": "El cliente no sabe qué bebida elegir.",
+      "categoria": "Barra",
+      "participants": [
+        "Cliente",
+        "Bartender"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "No sé qué tomar, ¿qué me recomienda?",
+          "en": "I don’t know what to drink, what do you recommend?"
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Si le gusta lo dulce, el daiquiri es una buena opción.",
+          "en": "If you like sweet drinks, the daiquiri is a good option."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Prefiero algo más fuerte.",
+          "en": "I prefer something stronger."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Entonces quizás un whisky solo o con hielo.",
+          "en": "Then maybe a whisky neat or on the rocks."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Vale, me pondré un whisky con hielo.",
+          "en": "Okay, I’ll have a whisky on the rocks."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Enseguida se lo traigo.",
+          "en": "I’ll bring it right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Perfecto, gracias.",
+          "en": "Perfect, thank you."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "A usted.",
+          "en": "You’re welcome."
+        }
+      ]
+    },
+    {
+      "id": "conv_bar_07",
+      "title": "Última ronda",
+      "scenario": "El bar está a punto de cerrar.",
+      "categoria": "Barra",
+      "participants": [
+        "Cliente",
+        "Bartender"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Bartender",
+          "es": "Aviso, esta es la última ronda.",
+          "en": "Last call, this is the final round."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Entonces me pone otra cerveza, por favor.",
+          "en": "Then I’ll have another beer, please."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Claro, aquí tiene.",
+          "en": "Of course, here you are."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "¿Le da tiempo a prepararme también un gin-tonic?",
+          "en": "Do you have time to make me a gin and tonic as well?"
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Sí, pero será la última.",
+          "en": "Yes, but it will be the last one."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Perfecto, gracias.",
+          "en": "Perfect, thank you."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Que los disfrute.",
+          "en": "Enjoy them."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias, buenas noches.",
+          "en": "Thank you, good night."
+        }
+      ]
+    },
+    {
+      "id": "conv_bar_08",
+      "title": "Cliente pide la carta de bebidas",
+      "scenario": "Un cliente quiere ver todas las opciones.",
+      "categoria": "Barra",
+      "participants": [
+        "Cliente",
+        "Bartender"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "¿Me puede dar la carta de bebidas?",
+          "en": "Can I have the drinks menu?"
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Por supuesto, aquí tiene.",
+          "en": "Of course, here it is."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "¿Tienen cervezas artesanas?",
+          "en": "Do you have craft beers?"
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Sí, tenemos IPA y una lager local.",
+          "en": "Yes, we have an IPA and a local lager."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Entonces probaré la IPA.",
+          "en": "Then I’ll try the IPA."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Muy bien, enseguida se la traigo.",
+          "en": "Very well, I’ll bring it right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias.",
+          "en": "Thank you."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "A usted.",
+          "en": "You’re welcome."
+        }
+      ]
+    },
+    {
+      "id": "conv_bar_09",
+      "title": "Pidiendo chupitos",
+      "scenario": "Un grupo pide chupitos en la barra.",
+      "categoria": "Barra",
+      "participants": [
+        "Cliente",
+        "Bartender"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "¿Nos pone cinco chupitos de tequila, por favor?",
+          "en": "Can we have five shots of tequila, please?"
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Claro, ¿quiere sal y limón también?",
+          "en": "Sure, would you like salt and lemon as well?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, por favor.",
+          "en": "Yes, please."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Aquí tiene, todo listo.",
+          "en": "Here you go, all set."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "¿Cuánto es en total?",
+          "en": "How much is it altogether?"
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Son 15 euros.",
+          "en": "That will be 15 euros."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Perfecto, aquí tiene.",
+          "en": "Perfect, here you are."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Gracias, que lo pasen bien.",
+          "en": "Thank you, have a great time."
+        }
+      ]
+    },
+    {
+      "id": "conv_bar_10",
+      "title": "Cliente habitual",
+      "scenario": "Un cliente pide lo de siempre.",
+      "categoria": "Barra",
+      "participants": [
+        "Cliente",
+        "Bartender"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Hola, lo de siempre, por favor.",
+          "en": "Hi, the usual, please."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Claro, una caña y unas aceitunas, ¿verdad?",
+          "en": "Sure, a beer and some olives, right?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Exacto, gracias.",
+          "en": "Exactly, thank you."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Enseguida se lo pongo.",
+          "en": "I’ll get it right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Siempre muy atento, gracias.",
+          "en": "Always very attentive, thank you."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Es un placer verle cada vez.",
+          "en": "It’s a pleasure to see you each time."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Igualmente, hasta la próxima.",
+          "en": "Likewise, see you next time."
+        },
+        {
+          "speaker": "Bartender",
+          "es": "Hasta luego.",
+          "en": "See you later."
+        }
+      ]
+    },
+    {
+      "id": "conv_room_01",
+      "title": "Pidiendo comida por teléfono",
+      "scenario": "Un huésped llama para pedir comida a la habitación.",
+      "categoria": "Room Service",
+      "participants": [
+        "Huésped",
+        "Room Service"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huésped",
+          "es": "Buenas tardes, me gustaría pedir comida a la habitación.",
+          "en": "Good afternoon, I would like to order room service."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Claro, señor. ¿Qué desea ordenar?",
+          "en": "Of course, sir. What would you like to order?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Quiero una hamburguesa con patatas fritas.",
+          "en": "I’d like a burger with fries."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "¿Desea bebida con su pedido?",
+          "en": "Would you like a drink with your order?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Sí, una Coca-Cola, por favor.",
+          "en": "Yes, a Coke, please."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Perfecto. Su pedido llegará en 20 minutos.",
+          "en": "Perfect. Your order will arrive in 20 minutes."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Muchas gracias.",
+          "en": "Thank you very much."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Con mucho gusto, que tenga buena tarde.",
+          "en": "You’re welcome, have a nice afternoon."
+        }
+      ]
+    },
+    {
+      "id": "conv_room_02",
+      "title": "Pidiendo toallas limpias",
+      "scenario": "Un huésped llama porque necesita más toallas.",
+      "categoria": "Room Service",
+      "participants": [
+        "Huésped",
+        "Room Service"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huésped",
+          "es": "Buenas noches, ¿podrían traerme toallas limpias?",
+          "en": "Good evening, could you bring me some clean towels?"
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Sí, señor. ¿Cuántas necesita?",
+          "en": "Yes, sir. How many do you need?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Dos, por favor.",
+          "en": "Two, please."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "De acuerdo, se las llevaremos en unos minutos.",
+          "en": "Alright, we will bring them to your room in a few minutes."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Gracias por la rapidez.",
+          "en": "Thank you for the quick service."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Con mucho gusto.",
+          "en": "You’re welcome."
+        }
+      ]
+    },
+    {
+      "id": "conv_room_03",
+      "title": "Pidiendo desayuno",
+      "scenario": "El huésped pide desayuno a la habitación.",
+      "categoria": "Room Service",
+      "participants": [
+        "Huésped",
+        "Room Service"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huésped",
+          "es": "Buenos días, me gustaría pedir el desayuno en la habitación.",
+          "en": "Good morning, I’d like to order breakfast in my room."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Claro, ¿qué le gustaría?",
+          "en": "Of course, what would you like?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Café con leche y tostadas.",
+          "en": "Coffee with milk and toast."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "¿Desea huevos o fruta?",
+          "en": "Would you like eggs or fruit?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Sí, unos huevos revueltos.",
+          "en": "Yes, some scrambled eggs."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Muy bien, se lo subimos en 15 minutos.",
+          "en": "Very well, we’ll bring it up in 15 minutes."
+        }
+      ]
+    },
+    {
+      "id": "conv_room_04",
+      "title": "Retiro de bandejas",
+      "scenario": "El huésped llama para retirar la bandeja usada.",
+      "categoria": "Room Service",
+      "participants": [
+        "Huésped",
+        "Room Service"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huésped",
+          "es": "Buenas, ¿pueden recoger la bandeja de la cena?",
+          "en": "Hello, can you collect the dinner tray?"
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Sí, ¿podría dejarla fuera de la habitación?",
+          "en": "Yes, could you leave it outside the room?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Por supuesto, la dejaré en el pasillo.",
+          "en": "Of course, I’ll leave it in the hallway."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Perfecto, la recogeremos en unos minutos.",
+          "en": "Perfect, we’ll pick it up in a few minutes."
+        }
+      ]
+    },
+    {
+      "id": "conv_room_05",
+      "title": "Pidiendo bebidas",
+      "scenario": "El huésped pide bebidas al cuarto.",
+      "categoria": "Room Service",
+      "participants": [
+        "Huésped",
+        "Room Service"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huésped",
+          "es": "Buenas tardes, ¿me pueden traer dos cervezas frías?",
+          "en": "Good afternoon, can you bring me two cold beers?"
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Por supuesto, ¿a qué número de habitación?",
+          "en": "Of course, to which room number?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "La 305.",
+          "en": "Room 305."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Perfecto, en 10 minutos las tendrá.",
+          "en": "Perfect, you’ll have them in 10 minutes."
+        }
+      ]
+    },
+    {
+      "id": "conv_room_06",
+      "title": "Pidiendo mantas extra",
+      "scenario": "Un huésped necesita más mantas.",
+      "categoria": "Room Service",
+      "participants": [
+        "Huésped",
+        "Room Service"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huésped",
+          "es": "Disculpe, ¿podrían traerme una manta extra?",
+          "en": "Excuse me, could you bring me an extra blanket?"
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Sí, señor. Se la llevaremos enseguida.",
+          "en": "Yes, sir. We’ll bring it right away."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Muchas gracias, hace un poco de frío.",
+          "en": "Thank you very much, it’s a bit cold."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "No hay problema, llegaremos en unos minutos.",
+          "en": "No problem, we’ll be there in a few minutes."
+        }
+      ]
+    },
+    {
+      "id": "conv_room_07",
+      "title": "Problema con el aire acondicionado",
+      "scenario": "Un huésped informa de un problema con el aire acondicionado.",
+      "categoria": "Room Service",
+      "participants": [
+        "Huésped",
+        "Room Service"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huésped",
+          "es": "Hola, el aire acondicionado no funciona.",
+          "en": "Hello, the air conditioning isn’t working."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Lamentamos el inconveniente. Enviaremos a mantenimiento.",
+          "en": "We’re sorry for the inconvenience. We’ll send maintenance."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "¿Saben cuánto tardarán?",
+          "en": "Do you know how long it will take?"
+        },
+        {
+          "speaker": "Room Service",
+          "es": "En unos 15 minutos debería estar allí.",
+          "en": "In about 15 minutes they should be there."
+        }
+      ]
+    },
+    {
+      "id": "conv_room_08",
+      "title": "Confirmar horario de entrega",
+      "scenario": "El huésped quiere confirmar la hora exacta de entrega de su pedido.",
+      "categoria": "Room Service",
+      "participants": [
+        "Huésped",
+        "Room Service"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huésped",
+          "es": "Hola, pedí comida hace 20 minutos. ¿A qué hora llegará exactamente?",
+          "en": "Hello, I ordered food 20 minutes ago. What time will it arrive exactly?"
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Estamos en camino, llegará en 5 minutos.",
+          "en": "We’re on our way, it will arrive in 5 minutes."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Perfecto, gracias por avisar.",
+          "en": "Perfect, thanks for letting me know."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Con gusto, señor.",
+          "en": "You’re welcome, sir."
+        }
+      ]
+    },
+    {
+      "id": "conv_room_09",
+      "title": "Pedido de postre",
+      "scenario": "El huésped pide un postre a la habitación.",
+      "categoria": "Room Service",
+      "participants": [
+        "Huésped",
+        "Room Service"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huésped",
+          "es": "Buenas tardes, ¿tienen postres disponibles?",
+          "en": "Good afternoon, do you have desserts available?"
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Sí, tenemos tarta de queso y helado.",
+          "en": "Yes, we have cheesecake and ice cream."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Entonces tráigame una tarta de queso.",
+          "en": "Then bring me a cheesecake."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Muy bien, llegará en unos minutos.",
+          "en": "Very well, it will arrive in a few minutes."
+        }
+      ]
+    },
+    {
+      "id": "conv_room_10",
+      "title": "Emergencia médica",
+      "scenario": "El huésped llama con una emergencia médica.",
+      "categoria": "Room Service",
+      "participants": [
+        "Huésped",
+        "Room Service"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huésped",
+          "es": "Por favor, necesito una ambulancia.",
+          "en": "Please, I need an ambulance."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "¿Qué ha ocurrido, señor?",
+          "en": "What happened, sir?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Mi compañero se ha desmayado.",
+          "en": "My partner has fainted."
+        },
+        {
+          "speaker": "Room Service",
+          "es": "Llamaremos inmediatamente a emergencias.",
+          "en": "We will immediately call the emergency services."
+        }
+      ]
+    },
+    {
+      "id": "conv_compl_01",
+      "title": "La sopa está fría",
+      "scenario": "Un cliente se queja de que la sopa está fría en el restaurante del hotel.",
+      "categoria": "Quejas y Reclamaciones",
+      "participants": [
+        "Cliente",
+        "Camarero"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Disculpe, mi sopa está fría.",
+          "en": "Excuse me, my soup is cold."
+        },
+        {
+          "speaker": "Camarero",
+          "es": "Lamento lo ocurrido. ¿Desea que se la calentemos o le traigo una nueva?",
+          "en": "I’m sorry about that. Would you like us to heat it up or bring you a new one?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Prefiero una nueva, por favor.",
+          "en": "I’d prefer a new one, please."
+        },
+        {
+          "speaker": "Camarero",
+          "es": "Por supuesto, se la cambiaré de inmediato.",
+          "en": "Of course, I’ll replace it right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias. También me gustaría un poco de pan caliente.",
+          "en": "Thank you. I’d also like some warm bread."
+        },
+        {
+          "speaker": "Camarero",
+          "es": "Enseguida le traigo pan recién hecho.",
+          "en": "I’ll bring you freshly baked bread right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Agradezco la rapidez.",
+          "en": "I appreciate the quick service."
+        },
+        {
+          "speaker": "Camarero",
+          "es": "De nuevo, disculpe las molestias.",
+          "en": "Once again, I apologize for the inconvenience."
+        }
+      ]
+    },
+    {
+      "id": "conv_compl_02",
+      "title": "Habitación ruidosa",
+      "scenario": "El huésped se queja por ruido cerca de su habitación.",
+      "categoria": "Quejas y Reclamaciones",
+      "participants": [
+        "Huésped",
+        "Recepción"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huésped",
+          "es": "Buenas noches, hay mucho ruido cerca de mi habitación.",
+          "en": "Good evening, there is a lot of noise near my room."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Lamentamos la molestia. ¿Podría indicarnos su número de habitación?",
+          "en": "We’re sorry for the disturbance. Could you tell us your room number?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Estoy en la 412.",
+          "en": "I’m in room 412."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Gracias. Enviaremos a seguridad para que verifique y pediremos silencio.",
+          "en": "Thank you. We’ll send security to check and ask for quiet."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Si no mejora, ¿podrían cambiarme de habitación?",
+          "en": "If it doesn’t improve, could you move me to another room?"
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Por supuesto, tenemos disponibilidad. Podemos ofrecerle una habitación en una planta más alta.",
+          "en": "Of course, we have availability. We can offer you a room on a higher floor."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Se lo agradecería.",
+          "en": "I’d appreciate that."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Nos ocupamos ahora mismo. Disculpe las molestias.",
+          "en": "We’ll take care of it right now. Sorry for the inconvenience."
+        }
+      ]
+    },
+    {
+      "id": "conv_compl_03",
+      "title": "Retraso en el servicio",
+      "scenario": "El cliente se queja por el retraso en la comida.",
+      "categoria": "Quejas y Reclamaciones",
+      "participants": [
+        "Cliente",
+        "Camarero"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Llevamos esperando más de 30 minutos.",
+          "en": "We’ve been waiting for over 30 minutes."
+        },
+        {
+          "speaker": "Camarero",
+          "es": "Lo siento mucho. Voy a comprobar el estado de su pedido en cocina.",
+          "en": "I’m very sorry. I’ll check the status of your order in the kitchen."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Agradecería una actualización.",
+          "en": "I’d appreciate an update."
+        },
+        {
+          "speaker": "Camarero",
+          "es": "Su pedido estará listo en cinco minutos. Le invitamos a una bebida por la espera.",
+          "en": "Your order will be ready in five minutes. We’ll offer you a complimentary drink for the wait."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias, aceptaré una limonada.",
+          "en": "Thank you, I’ll have a lemonade."
+        },
+        {
+          "speaker": "Camarero",
+          "es": "Perfecto, se la traigo enseguida.",
+          "en": "Perfect, I’ll bring it right away."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias por solucionarlo.",
+          "en": "Thanks for sorting it out."
+        },
+        {
+          "speaker": "Camarero",
+          "es": "De nuevo, disculpe el retraso.",
+          "en": "Again, we apologize for the delay."
+        }
+      ]
+    },
+    {
+      "id": "conv_compl_04",
+      "title": "Error en la cuenta",
+      "scenario": "El cliente detecta un cargo incorrecto en la cuenta.",
+      "categoria": "Quejas y Reclamaciones",
+      "participants": [
+        "Cliente",
+        "Cajero"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Perdone, creo que hay un cargo que no corresponde.",
+          "en": "Excuse me, I think there is a charge that doesn’t belong."
+        },
+        {
+          "speaker": "Cajero",
+          "es": "Déjeme revisar. ¿Se refiere a las dos bebidas adicionales?",
+          "en": "Let me check. Are you referring to the two additional drinks?"
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Sí, solo pedimos una.",
+          "en": "Yes, we only ordered one."
+        },
+        {
+          "speaker": "Cajero",
+          "es": "Tiene razón, fue un error de registro. Lo corrijo ahora mismo.",
+          "en": "You’re right, it was a recording error. I’ll correct it right now."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias por la rapidez.",
+          "en": "Thank you for the prompt fix."
+        },
+        {
+          "speaker": "Cajero",
+          "es": "Aquí tiene la cuenta actualizada.",
+          "en": "Here is the updated bill."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Ahora está correcto.",
+          "en": "Now it’s correct."
+        },
+        {
+          "speaker": "Cajero",
+          "es": "Lamentamos la confusión ocasionada.",
+          "en": "We apologize for the confusion caused."
+        }
+      ]
+    },
+    {
+      "id": "conv_compl_05",
+      "title": "Aire acondicionado no enfría",
+      "scenario": "El huésped informa que el aire no funciona correctamente.",
+      "categoria": "Quejas y Reclamaciones",
+      "participants": [
+        "Huésped",
+        "Recepción"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huésped",
+          "es": "Buenas, el aire acondicionado no enfría.",
+          "en": "Hello, the air conditioning isn’t cooling."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Sentimos el inconveniente. Enviaremos a mantenimiento de inmediato.",
+          "en": "We’re sorry for the inconvenience. We’ll send maintenance immediately."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "¿Podrían avisarme cuando vengan?",
+          "en": "Could you let me know when they come?"
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Por supuesto, le llamaremos antes.",
+          "en": "Of course, we’ll call you beforehand."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Gracias. Si no se soluciona, necesitaré cambiar de habitación.",
+          "en": "Thank you. If it isn’t fixed, I’ll need to change rooms."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Tenemos habitaciones disponibles. Le ofreceremos una alternativa si fuera necesario.",
+          "en": "We have rooms available. We’ll offer you an alternative if needed."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "De acuerdo, espero su llamada.",
+          "en": "Alright, I’ll wait for your call."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Gracias por su paciencia.",
+          "en": "Thank you for your patience."
+        }
+      ]
+    },
+    {
+      "id": "conv_compl_06",
+      "title": "Limpieza insuficiente",
+      "scenario": "El huésped se queja de que la habitación no está limpia.",
+      "categoria": "Quejas y Reclamaciones",
+      "participants": [
+        "Huésped",
+        "Recepción"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huésped",
+          "es": "Buenas tardes, mi habitación no está bien limpia.",
+          "en": "Good afternoon, my room isn’t properly cleaned."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Lamentamos mucho escuchar eso. Enviaremos al servicio de limpieza de inmediato.",
+          "en": "We’re very sorry to hear that. We’ll send housekeeping right away."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Hay polvo en la mesa y el baño no está en condiciones.",
+          "en": "There’s dust on the table and the bathroom isn’t in good condition."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Tomamos nota. Haremos una limpieza a fondo y revisaremos el control de calidad.",
+          "en": "Understood. We’ll do a deep cleaning and review quality control."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Gracias. ¿Cuánto tardarán?",
+          "en": "Thank you. How long will it take?"
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Aproximadamente 20 minutos.",
+          "en": "Approximately 20 minutes."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "De acuerdo, esperaré.",
+          "en": "Alright, I’ll wait."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Sentimos las molestias ocasionadas.",
+          "en": "We apologize for the inconvenience."
+        }
+      ]
+    },
+    {
+      "id": "conv_compl_07",
+      "title": "Reserva mal gestionada",
+      "scenario": "El huésped afirma que su reserva no coincide con lo contratado.",
+      "categoria": "Quejas y Reclamaciones",
+      "participants": [
+        "Huésped",
+        "Recepción"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huésped",
+          "es": "Mi reserva incluía desayuno y vista al mar, pero no aparece así.",
+          "en": "My booking included breakfast and sea view, but it doesn’t show that way."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Permítame verificar en el sistema.",
+          "en": "Let me check in the system."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Aquí tengo el correo de confirmación.",
+          "en": "I have the confirmation email here."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Gracias. Tiene razón; actualizaremos su reserva y añadiremos el desayuno sin coste.",
+          "en": "Thank you. You’re right; we’ll update your booking and add breakfast at no cost."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "¿Y la vista al mar?",
+          "en": "And the sea view?"
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Podemos ofrecerle una habitación con vista parcial hoy y vista completa mañana.",
+          "en": "We can offer you a partial sea view today and full sea view tomorrow."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Acepto la solución.",
+          "en": "I accept the solution."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Gracias por su comprensión y disculpe el error.",
+          "en": "Thank you for your understanding and sorry for the mistake."
+        }
+      ]
+    },
+    {
+      "id": "conv_compl_08",
+      "title": "Alergia no atendida",
+      "scenario": "El cliente indica que no se tuvo en cuenta su alergia alimentaria.",
+      "categoria": "Quejas y Reclamaciones",
+      "participants": [
+        "Cliente",
+        "Camarero"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Cliente",
+          "es": "Perdón, pedí sin frutos secos y este postre los tiene.",
+          "en": "Sorry, I asked for no nuts and this dessert has them."
+        },
+        {
+          "speaker": "Camarero",
+          "es": "Lo siento mucho. Prepararemos un postre seguro para usted.",
+          "en": "I’m very sorry. We’ll prepare a safe dessert for you."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Necesito que lo confirmen con cocina, por favor.",
+          "en": "I need you to confirm it with the kitchen, please."
+        },
+        {
+          "speaker": "Camarero",
+          "es": "Ahora mismo hablo con el chef y le traigo una alternativa sin alérgenos.",
+          "en": "I’ll speak to the chef right now and bring you an allergen-free alternative."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Gracias por atenderlo.",
+          "en": "Thank you for taking care of it."
+        },
+        {
+          "speaker": "Camarero",
+          "es": "También revisaremos los procedimientos para evitar que se repita.",
+          "en": "We’ll also review procedures to prevent it from happening again."
+        },
+        {
+          "speaker": "Cliente",
+          "es": "Me quedo más tranquilo.",
+          "en": "That makes me feel more comfortable."
+        },
+        {
+          "speaker": "Camarero",
+          "es": "Disculpe las molestias ocasionadas.",
+          "en": "We apologize for the inconvenience."
+        }
+      ]
+    },
+    {
+      "id": "conv_compl_09",
+      "title": "Wi‑Fi no funciona",
+      "scenario": "El huésped comenta que el Wi‑Fi no conecta.",
+      "categoria": "Quejas y Reclamaciones",
+      "participants": [
+        "Huésped",
+        "Recepción"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huésped",
+          "es": "El Wi‑Fi no me deja conectar.",
+          "en": "The Wi‑Fi won’t let me connect."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Vamos a ayudarle. ¿Le aparece la red del hotel?",
+          "en": "We’ll help you. Do you see the hotel’s network?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Sí, pero dice contraseña incorrecta.",
+          "en": "Yes, but it says incorrect password."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "La contraseña actual es ‘Hotel2025!’. ¿Puede probar de nuevo?",
+          "en": "The current password is ‘Hotel2025!’. Could you try again?"
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Ahora sí conecta, gracias.",
+          "en": "It connects now, thank you."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Si vuelve a fallar, podemos reiniciar el punto de acceso de su planta.",
+          "en": "If it fails again, we can restart the access point on your floor."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Perfecto.",
+          "en": "Perfect."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Estamos a su disposición para cualquier otra cosa.",
+          "en": "We’re at your disposal for anything else."
+        }
+      ]
+    },
+    {
+      "id": "conv_compl_10",
+      "title": "Tiempo de espera en check‑in",
+      "scenario": "El huésped se queja por esperar demasiado en la recepción.",
+      "categoria": "Quejas y Reclamaciones",
+      "participants": [
+        "Huésped",
+        "Recepción"
+      ],
+      "dialogue": [
+        {
+          "speaker": "Huésped",
+          "es": "He esperado más de veinte minutos para hacer el check‑in.",
+          "en": "I waited more than twenty minutes to check in."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Sentimos la espera. Hoy hemos tenido varias llegadas al mismo tiempo.",
+          "en": "We’re sorry for the wait. We had several arrivals at the same time today."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Entiendo, pero ha sido incómodo.",
+          "en": "I understand, but it was inconvenient."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Para compensar, le ofrecemos salida tardía sin coste.",
+          "en": "To compensate, we can offer you a late checkout at no cost."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Gracias, lo aprecio.",
+          "en": "Thank you, I appreciate it."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Además, aceleraremos su check‑in ahora mismo.",
+          "en": "We’ll also speed up your check-in right now."
+        },
+        {
+          "speaker": "Huésped",
+          "es": "Perfecto, gracias por la solución.",
+          "en": "Perfect, thanks for the solution."
+        },
+        {
+          "speaker": "Recepción",
+          "es": "Bienvenido al hotel y que disfrute su estancia.",
+          "en": "Welcome to the hotel, and enjoy your stay."
+        }
+      ]
+    }
+  ]
+}
