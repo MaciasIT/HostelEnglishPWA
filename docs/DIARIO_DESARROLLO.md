@@ -103,6 +103,22 @@
 - Se actualizaron las páginas `Frases.tsx`, `Flashcards.tsx` y `Conversaciones.tsx` para consumir la lista de categorías unificada desde el estado global y permitir el filtrado.
 - Se corrigió un error en `ConversationDetail.tsx` donde no se mostraban los textos del diálogo debido a una discrepancia en los nombres de las propiedades (`turns` vs `dialogue` y `en`/`es` vs `english`/`spanish`).
 
+## Día 16 – Configuración de Testing y Corrección de Audio
+
+- **Configuración del Entorno de Testing:**
+  - Se instalaron y configuraron **Vitest** y **React Testing Library**.
+  - Se añadió la configuración de `test` en `vite.config.ts` para habilitar `globals`, el entorno `jsdom` y `setupFiles`.
+  - Se instaló `jsdom` como dependencia de desarrollo.
+  - Se creó `src/setupTests.ts` para extender `expect` con los matchers de `@testing-library/jest-dom`.
+  - Se añadió el primer "smoke test" para `App.tsx`, verificando que el componente principal se renderiza sin errores. Esto implicó corregir la anidación de `BrowserRouter` y refinar las consultas de texto.
+- **Resolución de Vulnerabilidades de Dependencias:**
+  - Se actualizaron `vite` y `vitest` utilizando `npm audit fix --force` para eliminar vulnerabilidades de seguridad de severidad moderada.
+- **Corrección de la Funcionalidad de Audio (Síntesis de Voz):**
+  - Se diagnosticaron y corrigieron varios errores relacionados con la API de Síntesis de Voz del navegador, incluyendo `SyntaxError` por importaciones incorrectas y `TypeError` por intentar usar `.trim()` en valores `undefined`.
+  - Se refactorizaron los hooks `useAudio.ts` y `useSpeech.ts` para simplificar la gestión de la síntesis de voz, eliminando la lógica compleja de cancelación y espera, y permitiendo que el navegador gestione directamente la cola de voz.
+  - Se adaptaron los componentes `PhraseCard.tsx`, `ConversationDetail.tsx` y `Flashcard.tsx` para usar esta implementación simplificada, asegurando que el texto a hablar siempre sea una cadena válida.
+  - Se confirmó que la categoría "Quejas" no existía en el dataset de frases, por lo que no se requirió acción directa para eliminarla.
+
 ---
 
 ## Plan de Refactorización y Mejoras
