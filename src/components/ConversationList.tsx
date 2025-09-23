@@ -21,7 +21,7 @@ interface ConversationListProps {
 
 const ConversationList: React.FC<ConversationListProps> = ({ conversations, onSelectConversation }) => {
   if (conversations.length === 0) {
-    return <div className="text-center text-gray-500 dark:text-gray-400">No hay conversaciones disponibles.</div>;
+    return <div className="text-center text-white">No hay conversaciones disponibles.</div>;
   }
 
   return (
@@ -29,11 +29,11 @@ const ConversationList: React.FC<ConversationListProps> = ({ conversations, onSe
       {conversations.map(conv => (
         <div
           key={conv.id}
-          className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
+          className="bg-white/10 rounded-lg shadow-md p-4 cursor-pointer hover:bg-white/20"
           onClick={() => onSelectConversation(conv)}
         >
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{conv.title}</h2>
-          <p className="text-gray-600 dark:text-gray-300">{conv.description}</p>
+          <h2 className="text-xl font-semibold text-white">{conv.title}</h2>
+          <p className="text-gray-300">{conv.description}</p>
         </div>
       ))}
     </div>

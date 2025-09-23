@@ -14,9 +14,9 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
   onPlayAudio,
 }) => {
   return (
-    <div className="bg-accent/20 dark:bg-accent/30 rounded-lg shadow-md p-4 mb-4">
-      <p className="text-gray-900 dark:text-white text-lg font-semibold mb-2">{phrase.es}</p>
-      <p className="text-gray-600 dark:text-gray-300 text-md mb-4">{phrase.en}</p>
+    <div className="bg-white/10 rounded-lg shadow-md p-4 mb-4">
+      <p className="text-white text-lg font-semibold mb-2">{phrase.es}</p>
+      <p className="text-gray-300 text-md mb-4">{phrase.en}</p>
       <div className="flex justify-between items-center">
         <div>
           <button
@@ -35,8 +35,8 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
         <button
           onClick={() => onToggleStudied(phrase.id)}
           className={`px-3 py-1 rounded-md ${isStudied
-            ? 'bg-yellow-500 hover:bg-yellow-600 text-white'
-            : 'bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:text-gray-200'
+            ? 'bg-accent hover:bg-accent-dark text-white'
+            : 'bg-primary-dark hover:bg-primary text-white'
           }`}
         >
           {isStudied ? 'Estudiada' : 'Marcar como estudiada'}

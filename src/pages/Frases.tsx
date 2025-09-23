@@ -42,19 +42,19 @@ export default function Frases() {
   };
 
   return (
-    <div className="p-4 pb-20">
-      <h1 className="text-2xl font-bold mb-4">Frases</h1>
+    <div className="p-4 pb-20 bg-primary text-white min-h-screen">
+      <h1 className="text-2xl font-bold mb-4 text-white">Frases</h1>
 
       <input
         type="text"
         placeholder="Buscar frase..."
-        className="w-full p-2 border border-gray-300 rounded-md mb-4 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+        className="w-full p-2 border rounded-md mb-4 bg-primary-dark border-primary-dark text-white placeholder-gray-400"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
       <select
-        className="w-full p-2 border border-gray-300 rounded-md mb-4 dark:bg-gray-700 dark:text-white dark:border-gray-600"
+        className="w-full p-2 border rounded-md mb-4 bg-primary-dark border-primary-dark text-white"
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}
       >
@@ -65,10 +65,10 @@ export default function Frases() {
         ))}
       </select>
 
-      <p className="text-gray-600 dark:text-gray-300 mb-4">{filteredFrases.length} frases encontradas</p>
+      <p className="text-white mb-4">{filteredFrases.length} frases encontradas</p>
 
       {filteredFrases.length === 0 && (
-        <p className="text-center text-gray-500 dark:text-gray-400">No se encontraron frases.</p>
+        <p className="text-center text-white">No se encontraron frases.</p>
       )}
 
       <div>

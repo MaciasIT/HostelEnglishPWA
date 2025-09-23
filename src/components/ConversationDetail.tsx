@@ -36,21 +36,21 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 bg-primary text-white min-h-screen">
       <button
         onClick={onBack}
-        className="mb-4 px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md text-gray-800 dark:text-white"
+        className="mb-4 px-4 py-2 bg-primary-dark rounded-md text-white hover:bg-primary"
       >
         ← Volver a la lista
       </button>
-      <h1 className="text-2xl font-bold mb-4">{conversation.title}</h1>
-      <p className="text-gray-600 dark:text-gray-300 mb-6">{conversation.description}</p>
+      <h1 className="text-2xl font-bold mb-4 text-white">{conversation.title}</h1>
+      <p className="text-gray-300 mb-6">{conversation.description}</p>
 
       <div className="mb-6">
-        <label htmlFor="role-select" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tu Rol:</label>
+        <label htmlFor="role-select" className="block mb-2 text-sm font-medium text-white">Tu Rol:</label>
         <select
           id="role-select"
-          className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600"
+          className="w-full p-2 border rounded-md bg-primary-dark border-primary-dark text-white"
           value={selectedRole}
           onChange={(e) => setSelectedRole(e.target.value)}
         >
@@ -67,15 +67,15 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
           return (
             <div
               key={index}
-              className={`p-4 rounded-lg shadow-md ${isMyTurn ? "bg-yellow-100 dark:bg-yellow-900" : (turn.speaker === conversation.participants[0] ? "bg-primary/10" : "bg-gray-100 dark:bg-gray-800")}`}
+              className={`p-4 rounded-lg shadow-md ${isMyTurn ? "bg-accent" : (turn.speaker === conversation.participants[0] ? "bg-primary/10" : "bg-white/10")}`}
             >
-              <p className="font-semibold mb-1">{turn.speaker}:</p>
+              <p className="font-semibold mb-1 text-white">{turn.speaker}:</p>
               {isMyTurn ? (
-                <p className="text-lg italic text-gray-500 dark:text-gray-400">Tu turno...</p>
+                <p className="text-lg italic text-gray-300">Tu turno...</p>
               ) : (
                 <>
-                  <p className="text-lg mb-2">{turn.en}</p>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm italic">{turn.es}</p>
+                  <p className="text-lg mb-2 text-white">{turn.en}</p>
+                  <p className="text-gray-300 text-sm italic">{turn.es}</p>
                   <button
                     onClick={() => handlePlayTurn(turn)}
                     className="mt-3 px-3 py-1 bg-primary text-white rounded-md hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"

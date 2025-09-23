@@ -50,14 +50,14 @@ export default function Conversaciones() {
   }
 
   return (
-    <div className="p-4 pb-20">
-      <h1 className="text-2xl font-bold mb-4">Conversaciones</h1>
+    <div className="p-4 pb-20 bg-primary text-white min-h-screen">
+      <h1 className="text-2xl font-bold mb-4 text-white">Conversaciones</h1>
 
       <div className="mb-6">
-        <label htmlFor="category-select" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Filtrar por categoría:</label>
+        <label htmlFor="category-select" className="block mb-2 text-sm font-medium text-white">Filtrar por categoría:</label>
         <select
           id="category-select"
-          className="w-full p-2 border border-gray-300 rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600"
+          className="w-full p-2 border rounded-md bg-primary-dark border-primary-dark text-white"
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
         >
