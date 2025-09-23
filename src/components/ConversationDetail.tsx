@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAudio } from '@/hooks/useAudio';
+// import { useAudio } from '@/hooks/useAudio'; // REMOVE THIS
 import { useAppStore } from '@/store/useAppStore';
 
 type ConversationTurn = {
@@ -23,16 +23,25 @@ interface ConversationDetailProps {
 }
 
 const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, onBack }) => {
-  const { playAudio } = useAudio();
+  // const { playAudio } = useAudio(); // REMOVE THIS
   const audioSpeed = useAppStore((state) => state.prefs.audioSpeed);
   const [selectedRole, setSelectedRole] = useState('Todos');
 
   const handlePlayTurn = (turn: ConversationTurn) => {
-    if (turn.audio) {
-      playAudio(`/audio/${turn.audio}`, audioSpeed);
-    } else {
-      playAudio(turn.en, audioSpeed, true);
+    const textToSpeak = turn.en || ''; // Ensure text is a string
+    const speechLang = 'en-US'; // Assuming English for conversation turns
+
+    if (!textToSpeak.trim()) {
+      console.warn("Attempted to speak empty text.");
+      return;
     }
+
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    utterance.lang = speechLang;
+    utterance.rate = audioSpeed;
+
+    // No cancellation logic for this diagnostic test
+    window.speechSynthesis.speak(utterance);
   };
 
   return (

@@ -2,13 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useAppStore } from '@/store/useAppStore';
 import PhraseCard from '@/components/PhraseCard';
 import BottomNav from '@/components/BottomNav';
-import useSpeech from '@/hooks/useSpeech';
-import { useAudio } from '@/hooks/useAudio';
 
 export default function Frases() {
   const { frases, loadFrases, progress, togglePhraseStudied, categories } = useAppStore();
-  const { speak, supported: speechSupported } = useSpeech();
-  const { playAudio } = useAudio();
 
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -29,17 +25,6 @@ export default function Frases() {
     const matchesCategory = selectedCategory === 'all' || phrase.categoria === selectedCategory;
     return matchesSearch && matchesCategory;
   });
-
-  const handlePlayAudio = (lang: 'es' | 'en', audioUrl?: string) => {
-    const phraseText = lang === 'es' ? '' : ''; // Placeholder, will get actual text from phrase object
-    if (speechSupported) {
-      speak(phraseText, lang === 'es' ? 'es-ES' : 'en-US');
-    } else if (audioUrl) {
-      playAudio(audioUrl);
-    } else {
-      console.warn("No audio available and speech synthesis not supported.");
-    }
-  };
 
   return (
     <div className="p-4 pb-20 bg-primary text-white min-h-screen">
@@ -78,7 +63,6 @@ export default function Frases() {
             phrase={phrase}
             onToggleStudied={togglePhraseStudied}
             isStudied={!!progress[phrase.id]}
-            onPlayAudio={(lang) => handlePlayAudio(lang, lang === 'es' ? phrase.audioEs : phrase.audioEn)}
           />
         ))}
       </div>

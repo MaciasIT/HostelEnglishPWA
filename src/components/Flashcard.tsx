@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAudio } from '@/hooks/useAudio';
+// import useAudio from '@/hooks/useAudio'; // REMOVE THIS
 import { useAppStore } from '@/store/useAppStore';
 
 type Phrase = {
@@ -16,7 +16,7 @@ interface FlashcardProps {
 
 const Flashcard: React.FC<FlashcardProps> = ({ phrase }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const { playAudio } = useAudio();
+  // const { playAudio } = useAudio(); // REMOVE THIS
   const audioSpeed = useAppStore((state) => state.prefs.audioSpeed);
 
   const handleFlip = () => {
@@ -24,14 +24,20 @@ const Flashcard: React.FC<FlashcardProps> = ({ phrase }) => {
   };
 
   const handlePlayAudio = (lang: 'es' | 'en') => {
-    if (lang === 'es' && phrase.audioEs) {
-      playAudio(`/audio/${phrase.audioEs}`, audioSpeed);
-    } else if (lang === 'en' && phrase.audioEn) {
-      playAudio(`/audio/${phrase.audioEn}`, audioSpeed);
-    } else {
-      // Fallback to TTS if no specific audio file or if it's not found
-      playAudio(lang === 'es' ? phrase.es : phrase.en, audioSpeed, true);
+    const textToSpeak = (lang === 'es' ? phrase.es : phrase.en) || '';
+    const speechLang = lang === 'es' ? 'es-ES' : 'en-US';
+
+    if (!textToSpeak.trim()) {
+      console.warn("Attempted to speak empty text.");
+      return;
     }
+
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    utterance.lang = speechLang;
+    utterance.rate = audioSpeed;
+
+    // No cancellation logic for this diagnostic test
+    window.speechSynthesis.speak(utterance);
   };
 
   return (
