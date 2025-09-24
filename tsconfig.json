@@ -11,6 +11,7 @@
     "skipLibCheck": true,
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
+    "types": ["vitest/globals"],
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",

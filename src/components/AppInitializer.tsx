@@ -1,15 +1,8 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAppStore } from '@/store/useAppStore';
 
-interface AppInitializerProps {
-  children: React.ReactNode;
-}
-
-const AppInitializer: React.FC<AppInitializerProps> = ({ children }) => {
-  const loadFrases = useAppStore((state) => state.loadFrases);
-  const loadConversations = useAppStore((state) => state.loadConversations);
-  const frasesLoaded = useAppStore((state) => state.frasesLoaded);
-  const conversationsLoaded = useAppStore((state) => state.conversationsLoaded);
+const AppInitializer = () => {
+  const { frasesLoaded, conversationsLoaded, initializeCategories, loadFrases, loadConversations } = useAppStore();
 
   useEffect(() => {
     if (!frasesLoaded) {
@@ -18,17 +11,15 @@ const AppInitializer: React.FC<AppInitializerProps> = ({ children }) => {
     if (!conversationsLoaded) {
       loadConversations();
     }
-  }, [loadFrases, loadConversations, frasesLoaded, conversationsLoaded]);
+  }, []); // El array vacío asegura que esto se ejecute solo una vez
 
-  if (!frasesLoaded || !conversationsLoaded) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-gray-500 dark:text-gray-400">Cargando datos iniciales...</p>
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (frasesLoaded && conversationsLoaded) {
+      initializeCategories();
+    }
+  }, [frasesLoaded, conversationsLoaded, initializeCategories]);
 
-  return <>{children}</>;
+  return null; // This component does not render anything
 };
 
 export default AppInitializer;

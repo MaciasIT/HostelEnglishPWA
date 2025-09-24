@@ -2,26 +2,27 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { get, set, del } from "../db";
 
-type Phrase = {
+export type Phrase = {
   id: number | string;
   es: string;
   en: string;
   categoria?: string;
 };
 
-type ConversationTurn = {
+export type ConversationTurn = {
   speaker: "Hostel Staff" | "Guest";
   english: string;
   spanish: string;
   audio?: string;
 };
 
-type Conversation = {
+export type Conversation = {
   id: number;
   title: string;
   description: string;
   dialogue: ConversationTurn[]; // Cambiado de turns a dialogue
   categoria?: string;
+  participants: string[];
 };
 
 type State = {
@@ -32,12 +33,13 @@ type State = {
   conversationsLoaded: boolean;
   loadFrases: () => Promise<void>;
   loadConversations: () => Promise<void>;
-  progress: Record<string, boolean>;
+  progress: Record<string, number>;
   prefs: { theme: string; audioSpeed: number };
 };
 
 type Actions = {
-  togglePhraseStudied: (phraseId: string) => void;
+  initializeCategories: () => void;
+  advancePhraseProgress: (phraseId: string) => void;
   setTheme: (theme: string) => void;
   setAudioSpeed: (speed: number) => void;
 };
@@ -47,52 +49,49 @@ export const useAppStore = create<State & Actions>()(
     (set, get) => ({
       frases: [],
       conversations: [],
-      categories: [],
+      categories: ['Estudiadas', 'Aprendidas'],
       frasesLoaded: false,
       conversationsLoaded: false,
       progress: {},
       prefs: { theme: "light", audioSpeed: 1 },
+      initializeCategories: () => {
+        const { frases, conversations } = get();
+        const categoriesFromFrases = frases.map(f => f.categoria).filter(Boolean) as string[];
+        const categoriesFromConvos = conversations.map(c => c.categoria).filter(Boolean) as string[];
+        const allDataSetCategories = [...new Set([...categoriesFromFrases, ...categoriesFromConvos])];
+        set({ categories: ['Estudiadas', 'Aprendidas', ...allDataSetCategories] });
+      },
       loadFrases: async () => {
+        if (get().frasesLoaded) return;
         try {
           const res = await fetch("/data/hostelenglish_dataset_clean.json");
           const data = await res.json();
-          const frases = data.phrases || [];
-          set({ frases, frasesLoaded: true });
-          
-          const currentCategories = get().categories;
-          const newCategories = frases.map(f => f.categoria).filter(Boolean) as string[];
-          const allCategories = [...new Set([...currentCategories, ...newCategories])];
-          set({ categories: allCategories });
-
+          set({ frases: data.phrases || [], frasesLoaded: true });
         } catch (e) {
           console.warn("No se pudo cargar el dataset de frases.", e);
-          set({ frases: [], frasesLoaded: true });
         }
       },
       loadConversations: async () => {
+        if (get().conversationsLoaded) return;
         try {
           const res = await fetch("/data/conversations_extended_v4.json");
           const data = await res.json();
-          const conversations = data.conversations || [];
-          set({ conversations, conversationsLoaded: true });
-
-          const currentCategories = get().categories;
-          const newCategories = conversations.map(c => c.categoria).filter(Boolean) as string[];
-          const allCategories = [...new Set([...currentCategories, ...newCategories])];
-          set({ categories: allCategories });
-
+          set({ conversations: data.conversations || [], conversationsLoaded: true });
         } catch (e) {
           console.warn("No se pudo cargar el dataset de conversaciones.", e);
-          set({ conversations: [], conversationsLoaded: true });
         }
       },
-      togglePhraseStudied: (phraseId: string) => {
-        set((state) => ({
-          progress: {
-            ...state.progress,
-            [phraseId]: !state.progress[phraseId],
-          },
-        }));
+      advancePhraseProgress: (phraseId: string) => {
+        set((state) => {
+          const currentLevel = state.progress[phraseId] || 0;
+          const nextLevel = (currentLevel + 1) % 3; // Cycles 0 -> 1 -> 2 -> 0
+          return {
+            progress: {
+              ...state.progress,
+              [phraseId]: nextLevel,
+            },
+          };
+        });
       },
       setTheme: (theme: string) => {
         set((state) => ({

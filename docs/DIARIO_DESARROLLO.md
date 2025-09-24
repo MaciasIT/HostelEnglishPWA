@@ -86,9 +86,14 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
 ## 🎯 Roadmap y Próximos Pasos
 
 1.  **[✅ COMPLETADO] Pulido de Módulos Existentes:**
-    -   Se ha añadido una suite de tests exhaustiva para los módulos `Frases`, `Conversaciones` y `Flashcards`.
-    -   Se ha refactorizado el componente `Flashcard` para mejorar su testabilidad.
-    -   Se han corregido problemas de accesibilidad en la página de `Frases`.
+    -   Se ha completado la **base de testing** para los módulos principales.
+    -   **[✅ COMPLETADO] Módulo Frases:**
+        -   Implementado sistema de progreso de 3 estados (No estudiada -> Estudiada -> Aprendida).
+        -   Corregido el problema de categorías duplicadas en el filtro.
+        -   Refactorizada la lógica de filtrado con `useMemo` para optimizar el rendimiento.
+        -   Corregida la accesibilidad del filtro de categorías.
+    -   **[🧊 PENDIENTE] Módulo Conversaciones:** Revisión de código, UI/UX y accesibilidad.
+    -   **[🧊 PENDIENTE] Módulo Flashcards:** Revisión de código, UI/UX y accesibilidad.
 2.  **[🧊 PENDIENTE] Implementar Módulos Restantes:**
     -   Módulo de **Quiz**.
     -   Módulo de **Estudio (SRS)**.

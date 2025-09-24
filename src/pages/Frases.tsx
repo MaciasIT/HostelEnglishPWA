@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useAppStore } from '@/store/useAppStore';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useAppStore, Phrase } from '@/store/useAppStore';
 import PhraseCard from '@/components/PhraseCard';
 import BottomNav from '@/components/BottomNav';
 
 export default function Frases() {
-  const { frases, loadFrases, progress, togglePhraseStudied, categories } = useAppStore();
+  const { frases, loadFrases, progress, advancePhraseProgress, categories } = useAppStore();
 
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -17,14 +17,30 @@ export default function Frases() {
 
   const displayCategories = ['all', ...categories];
 
-  const filteredFrases = frases.filter(phrase => {
-    const phraseEs = phrase.es || '';
-    const phraseEn = phrase.en || '';
-    const matchesSearch = phraseEs.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                          phraseEn.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === 'all' || phrase.categoria === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const filteredFrases = useMemo(() => {
+    const searchFilter = (phrase: Phrase) => {
+      const phraseEs = phrase.es || '';
+      const phraseEn = phrase.en || '';
+      return phraseEs.toLowerCase().includes(searchTerm.toLowerCase()) ||
+             phraseEn.toLowerCase().includes(searchTerm.toLowerCase());
+    };
+
+    if (selectedCategory === 'Estudiadas') {
+      return frases.filter(phrase => progress[phrase.id] === 1 && searchFilter(phrase));
+    }
+
+    if (selectedCategory === 'Aprendidas') {
+      return frases.filter(phrase => progress[phrase.id] === 2 && searchFilter(phrase));
+    }
+
+    return frases.filter(phrase => {
+      const progressLevel = progress[phrase.id] || 0;
+      if (progressLevel > 0) return false; // Oculta estudiadas y aprendidas de las categorías normales
+
+      const matchesCategory = selectedCategory === 'all' || phrase.categoria === selectedCategory;
+      return matchesCategory && searchFilter(phrase);
+    });
+  }, [frases, searchTerm, selectedCategory, progress]);
 
   return (
     <div className="p-4 pb-20 bg-primary text-white min-h-screen">
@@ -63,8 +79,8 @@ export default function Frases() {
           <PhraseCard
             key={phrase.id}
             phrase={phrase}
-            onToggleStudied={togglePhraseStudied}
-            isStudied={!!progress[phrase.id]}
+            onAdvanceProgress={advancePhraseProgress}
+            progressLevel={progress[phrase.id] || 0}
           />
         ))}
       </div>

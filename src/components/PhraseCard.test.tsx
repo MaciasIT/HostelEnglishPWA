@@ -19,14 +19,13 @@ describe('<PhraseCard />', () => {
   };
 
   it('should render the Spanish and English phrases', () => {
-    // Arrange: Preparamos una función mock para la prop onToggleStudied
-    const handleToggleStudied = vi.fn();
+    const handleAdvanceProgress = vi.fn();
 
     render(
       <PhraseCard
         phrase={mockPhrase}
-        onToggleStudied={handleToggleStudied}
-        isStudied={false}
+        onAdvanceProgress={handleAdvanceProgress}
+        progressLevel={0}
       />
     );
 
@@ -36,13 +35,13 @@ describe('<PhraseCard />', () => {
   });
 
   it('should display the "Estudiada" button when isStudied is true', () => {
-    const handleToggleStudied = vi.fn();
+    const handleAdvanceProgress = vi.fn();
 
     render(
       <PhraseCard
         phrase={mockPhrase}
-        onToggleStudied={handleToggleStudied}
-        isStudied={true}
+        onAdvanceProgress={handleAdvanceProgress}
+        progressLevel={1}
       />
     );
 
@@ -51,13 +50,13 @@ describe('<PhraseCard />', () => {
   });
 
   it('should display the "Marcar como estudiada" button when isStudied is false', () => {
-    const handleToggleStudied = vi.fn();
+    const handleAdvanceProgress = vi.fn();
 
     render(
       <PhraseCard
         phrase={mockPhrase}
-        onToggleStudied={handleToggleStudied}
-        isStudied={false}
+        onAdvanceProgress={handleAdvanceProgress}
+        progressLevel={0}
       />
     );
 
@@ -65,24 +64,24 @@ describe('<PhraseCard />', () => {
     expect(screen.getByRole('button', { name: 'Marcar como estudiada' })).toBeInTheDocument();
   });
 
-  it('should call onToggleStudied with the correct phrase id when the button is clicked', async () => {
+  it('should call onAdvanceProgress with the correct phrase id when the button is clicked', async () => {
     const user = userEvent.setup();
-    const handleToggleStudied = vi.fn();
+    const handleAdvanceProgress = vi.fn();
 
     render(
       <PhraseCard
         phrase={mockPhrase}
-        onToggleStudied={handleToggleStudied}
-        isStudied={false}
+        onAdvanceProgress={handleAdvanceProgress}
+        progressLevel={0}
       />
     );
 
     // Act: Simulamos el clic del usuario
-    const button = screen.getByRole('button', { name: 'Marcar como estudiada' });
+    const button = screen.getByRole('button', { name: 'Marcar como Estudiada' });
     await user.click(button);
 
     // Assert: Comprobamos que la función mock fue llamada
-    expect(handleToggleStudied).toHaveBeenCalledOnce();
-    expect(handleToggleStudied).toHaveBeenCalledWith(mockPhrase.id);
+    expect(handleAdvanceProgress).toHaveBeenCalledOnce();
+    expect(handleAdvanceProgress).toHaveBeenCalledWith(mockPhrase.id);
   });
 });

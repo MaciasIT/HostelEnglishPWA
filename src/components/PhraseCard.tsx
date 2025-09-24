@@ -10,17 +10,18 @@ type Phrase = {
   audioEn?: string;
 };
 
-interface FlashcardProps {
+interface PhraseCardProps {
   phrase: Phrase;
+  onAdvanceProgress: (phraseId: string) => void;
+  progressLevel: number; // 0: unseen, 1: studied, 2: learned
 }
 
-const PhraseCard: React.FC<FlashcardProps> = ({
+const PhraseCard: React.FC<PhraseCardProps> = ({
   phrase,
-  onToggleStudied,
-  isStudied,
-  // onPlayAudio, // REMOVE THIS
+  onAdvanceProgress,
+  progressLevel,
 }) => {
-  // const { playAudio } = useAudio(); // REMOVE THIS
+  // ... (handlePlayAudio remains the same)
   const audioSpeed = useAppStore((state) => state.prefs.audioSpeed);
 
   const handlePlayAudio = (lang: 'es' | 'en') => {
@@ -36,9 +37,21 @@ const PhraseCard: React.FC<FlashcardProps> = ({
     utterance.lang = speechLang;
     utterance.rate = audioSpeed;
 
-    // No cancellation logic for this diagnostic test
     window.speechSynthesis.speak(utterance);
   };
+
+  const getButtonAppearance = () => {
+    switch (progressLevel) {
+      case 1: // Studied
+        return { text: 'Marcar como Aprendida', className: 'bg-green-500 hover:bg-green-600 text-white' };
+      case 2: // Learned
+        return { text: 'Reiniciar Progreso', className: 'bg-yellow-500 hover:bg-yellow-600 text-white' };
+      default: // Unseen (0 or undefined)
+        return { text: 'Marcar como Estudiada', className: 'bg-primary-dark hover:bg-primary text-white' };
+    }
+  };
+
+  const { text, className } = getButtonAppearance();
 
   return (
     <div className="bg-white/10 rounded-lg shadow-md p-4 mb-4">
@@ -60,13 +73,10 @@ const PhraseCard: React.FC<FlashcardProps> = ({
           </button>
         </div>
         <button
-          onClick={() => onToggleStudied(phrase.id)}
-          className={`px-3 py-1 rounded-md ${isStudied
-            ? 'bg-accent hover:bg-accent-dark text-white'
-            : 'bg-primary-dark hover:bg-primary text-white'
-          }`}
+          onClick={() => onAdvanceProgress(String(phrase.id))}
+          className={`px-3 py-1 rounded-md ${className}`}
         >
-          {isStudied ? 'Estudiada' : 'Marcar como estudiada'}
+          {text}
         </button>
       </div>
     </div>

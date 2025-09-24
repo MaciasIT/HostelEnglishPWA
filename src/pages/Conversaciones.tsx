@@ -4,9 +4,9 @@ import ConversationDetail from '@/components/ConversationDetail';
 import { useAppStore } from '@/store/useAppStore';
 
 type ConversationTurn = {
-  speaker: "Hostel Staff" | "Guest";
-  english: string;
-  spanish: string;
+  speaker: string;
+  en: string;
+  es: string;
   audio?: string;
 };
 
@@ -14,8 +14,9 @@ type Conversation = {
   id: number;
   title: string;
   description: string;
-  dialogue: ConversationTurn[]; // Cambiado de turns a dialogue
+  dialogue: ConversationTurn[];
   categoria?: string;
+  participants: string[];
 };
 
 export default function Conversaciones() {

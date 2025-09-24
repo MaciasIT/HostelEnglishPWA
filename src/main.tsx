@@ -6,8 +6,7 @@ import AppInitializer from "./components/AppInitializer";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <AppInitializer>
-      <App />
-    </AppInitializer>
+    <AppInitializer />
+    <App />
   </React.StrictMode>
 );
