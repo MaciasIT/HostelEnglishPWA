@@ -1,161 +1,99 @@
 # 📖 Diario de Desarrollo – HostelInglésApp
 
-## Día 1 – Idea y visión inicial
-- Partimos de una **app de escritorio previa** con módulos de aprendizaje de inglés para hostelería.  
-- Nueva meta: llevarla a **PWA móvil**, instalable y usable offline, desplegada en **GitHub Pages**.  
-- Decidimos documentar antes de escribir código.
+*Última actualización: 24-09-2025*
 
-**Documentos creados:**
-- `Documento_Vision_HostelInglesApp.pdf` → resumen del producto, objetivos, público, diferenciadores.
-- `Documentos_Requerimientos_HostelInglesApp.pdf` → alcance MVP, requisitos funcionales y no funcionales.
-- `Documento_UserStories_HostelInglesApp.pdf` → historias de usuario del MVP.
-- `Documento_UserStories_Extendidas_HostelInglesApp.pdf` → incluye Conversaciones, Flashcards, Quiz, Examen, Estudio, Dashboard.
-- `Mapa_Navegacion_Texto_HostelInglesApp.pdf` y diagrama visual `.png`.
-- `Wireframes_Texto_HostelInglesApp.pdf` → bocetos en texto de todas las pantallas.
-- `Modulo_Conversaciones.pdf` y wireframes visuales → flujo detallado del módulo.
-
-## Día 2 – Estructura y datasets
-- Revisamos datasets (`hostelenglish_dataset_clean.json`, `conversations_extended_v4.json`) → válidos para la PWA.  
-- Diseñamos la **estructura de carpetas profesional** (`src/pages`, `src/components`, `src/store`, `src/router`, etc.).  
-- Creamos `Estructura_Final_HostelInglesApp.pdf` y `Roadmap_Tecnico_HostelInglesApp.pdf`.  
-
-## Día 3 – Guías refinadas
-- Refinamos guías v1:
-  - **Diseño** → tokens de color, tipografía, spacing, componentes base, accesibilidad mínima.  
-  - **Testing** → pirámide de pruebas, casos clave por módulo, integración en CI.  
-  - **Offline** → Workbox (App Shell SWR, datasets y audios Cache First con LRU, persistencia IndexedDB, aviso de nueva versión).  
-- Documento: `Guias_v1_Refinadas_HostelInglesApp.pdf`.
-
-## Día 4 – Primer módulo: Frases
-- Decidimos empezar con el **módulo Frases** como vertical slice.
-- Implementación en ZIP:
-  - `Frases.tsx` con listado, búsqueda, filtros, contador de resultados.  
-  - `PhraseCard.tsx` con ES/EN, audio, marcar como estudiada/favorito.  
-  - Hooks `useSpeech.ts`, `useAudio.ts` (TTS + fallback mp3).  
-  - Estado global con `Zustand` (`useAppStore.ts`).  
-  - Persistencia inicial con `localStorage` (migrable a IndexedDB).  
-  - `BottomNav.tsx` con navegación principal.
-
-## Día 5 – Configuración PWA
-- Se instaló `vite-plugin-pwa` para facilitar la configuración de la PWA.
-- Se modificó `vite.config.ts` para:
-  - Añadir `base: '/HostelEnglish/'` para el despliegue en GitHub Pages.
-  - Integrar el plugin `VitePWA` para la generación automática del `service-worker.js` y la configuración del `manifest.json`.
-- Se crearon archivos placeholder para los iconos PWA (`pwa-192x192.png`, `pwa-512x512.png`) en el directorio `public`. **PENDIENTE: Reemplazar con imágenes reales.**
-- Se registró el Service Worker en `src/main.tsx` para iniciar el proceso de cacheo y funcionalidad offline.
-
-## Día 6 – Inicialización de Repositorio Git
-- Se inicializó un repositorio Git local en el directorio del proyecto.
-- Se realizó el primer commit con la configuración inicial del proyecto y los cambios de PWA.
-
-## Día 7 – Migración de Persistencia a IndexedDB
-- Se creó el directorio `src/db`.
-- Se implementó `src/db/index.ts` para gestionar la base de datos IndexedDB utilizando la librería `idb`.
-- Se configuró una única object store (`appState`) en IndexedDB para almacenar el estado persistente de la aplicación.
-- Se modificó `src/store/useAppStore.ts` para integrar el middleware `persist` de Zustand con el almacenamiento personalizado de IndexedDB.
-- Se ajustaron las funciones `getItem`, `setItem` y `removeItem` del `storage` personalizado para serializar y deserializar el estado completo del store de Zustand y guardarlo/cargarlo en la object store `appState` de IndexedDB.
-
-## Día 8 – Implementación y Estructuración del Módulo Frases
-- Se crearon los directorios `src/components` y `src/hooks` para organizar los componentes y hooks del proyecto.
-- Se implementaron los componentes `PhraseCard.tsx` y `BottomNav.tsx` en `src/components`.
-- Se implementaron los hooks `useSpeech.ts` y `useAudio.ts` en `src/hooks`.
-- Se modificó `src/pages/Frases.tsx` para integrar la lógica de carga de frases, búsqueda, filtrado, reproducción de audio (TTS y archivos) y la funcionalidad de marcar frases como estudiadas, utilizando los nuevos componentes y hooks, así como el estado global de Zustand.
-
-## Día 9 – Corrección de Configuración PWA y Estructura de Iconos
-- Se identificaron y corrigieron los problemas de registro del Service Worker (MIME type incorrecto) y los errores 404 de los iconos PWA.
-- Se añadió `devOptions: { enabled: true }` al plugin `VitePWA` en `vite.config.ts` para asegurar la generación del Service Worker en desarrollo.
-- Se movieron los archivos placeholder de los iconos (`pwa-192x192.png`, `pwa-512x512.png`) al subdirectorio `public/icons`.
-- Se actualizaron las rutas de los iconos en el `manifest` dentro de `vite.config.ts` para que apunten correctamente a `icons/pwa-192x192.png` y `icons/pwa-512x512.png`.
-
-## Día 10 – Implementación Inicial del Módulo Conversaciones
-- Se implementó el componente `ConversationList.tsx` en `src/components` para mostrar la lista de conversaciones.
-- Se modificó `src/pages/Conversaciones.tsx` para integrar `ConversationList` y manejar la selección de conversaciones, mostrando una vista de detalle/interacción básica.
-
-## Día 11 – Corrección de Registro de Service Worker y Manifest
-- Se modificó `vite.config.ts` para cambiar `registerType` a `"prompt"` y asegurar la configuración adecuada de `workbox`.
-- Se eliminó el bloque de registro manual del Service Worker en `src/main.tsx`, dejando que `vite-plugin-pwa` se encargue de la inyección del script de registro.
-- Se eliminó el `manifest.json` estático en `public/` para evitar conflictos con el manifest generado dinámicamente.
-- Se actualizó la referencia al manifest en `index.html` para que apunte a `/HostelEnglish/manifest.webmanifest`.
-
-## Día 12 – Implementación del Enrutamiento de la Aplicación
-- Se implementó `src/router/AppRouter.tsx` para definir las rutas de la aplicación utilizando `react-router-dom`.
-- Se configuró el `basename` en el `Router` para `/HostelEnglish/` para el despliegue en GitHub Pages.
-- Se definieron rutas para `Home`, `Frases`, `Conversaciones`, y placeholders para `Progreso`, `Flashcards`, `Quiz`, `Estudio`, `Examen` y `Dashboard`.
-
-## Día 13 – Corrección de Errores de Desarrollo y Estructura de Páginas
-- Se crearon los componentes de página faltantes (`Progreso.tsx`, `Flashcards.tsx`, `Quiz.tsx`, `Estudio.tsx`, `Examen.tsx`, `Dashboard.tsx`) en `src/pages` para resolver errores de importación en el enrutamiento.
-- Se comentó temporalmente la propiedad `base` en `vite.config.ts` y se eliminó el `basename` del `Router` en `src/router/AppRouter.tsx` para solucionar problemas de Service Worker y manifest en el entorno de desarrollo.
-
-## Día 14 – Implementación del Módulo de Conversaciones y Correcciones Finales
-- Se añadió el estado `conversations` y la acción `loadConversations` en `src/store/useAppStore.ts` para cargar los datos de las conversaciones.
-- Se creó `src/components/AppInitializer.tsx` para llamar a `loadFrases` y `loadConversations` al inicio de la aplicación.
-- Se modificó `src/main.tsx` para usar `AppInitializer`.
-- Se actualizó `src/pages/Conversaciones.tsx` para obtener las conversaciones del estado global y renderizar `ConversationList` o `ConversationDetail`.
-- Se modificó `src/components/ConversationList.tsx` para recibir las conversaciones como prop y eliminar su lógica de carga interna.
-- Se creó `src/components/ConversationDetail.tsx` para mostrar los turnos de una conversación y reproducir el audio (con fallback a TTS).
-- Se actualizó `src/hooks/useAudio.ts` para incluir `audioSpeed`, fallback a TTS y cambiar a un *named export*.
-- Se corrigió la importación de `useAudio` en `src/pages/Frases.tsx` para usar el *named import*.
-- Se integraron todos los iconos de navegación en `src/components/BottomNav.tsx`.
-
-## Día 15 – Corrección de Datasets y Refactorización de Categorías
-- Se corrigió la ruta del dataset de frases en `useAppStore.ts` para apuntar al archivo definitivo `hostelenglish_dataset_clean.json`.
-- Se refactorizó `useAppStore.ts` para unificar la recolección de categorías de los datasets de frases y conversaciones en un único estado `categories`.
-- Se actualizaron las páginas `Frases.tsx`, `Flashcards.tsx` y `Conversaciones.tsx` para consumir la lista de categorías unificada desde el estado global y permitir el filtrado.
-- Se corrigió un error en `ConversationDetail.tsx` donde no se mostraban los textos del diálogo debido a una discrepancia en los nombres de las propiedades (`turns` vs `dialogue` y `en`/`es` vs `english`/`spanish`).
-
-## Día 16 – Configuración de Testing y Corrección de Audio
-
-- **Configuración del Entorno de Testing:**
-  - Se instalaron y configuraron **Vitest** y **React Testing Library**.
-  - Se añadió la configuración de `test` en `vite.config.ts` para habilitar `globals`, el entorno `jsdom` y `setupFiles`.
-  - Se instaló `jsdom` como dependencia de desarrollo.
-  - Se creó `src/setupTests.ts` para extender `expect` con los matchers de `@testing-library/jest-dom`.
-  - Se añadió el primer "smoke test" para `App.tsx`, verificando que el componente principal se renderiza sin errores. Esto implicó corregir la anidación de `BrowserRouter` y refinar las consultas de texto.
-- **Resolución de Vulnerabilidades de Dependencias:**
-  - Se actualizaron `vite` y `vitest` utilizando `npm audit fix --force` para eliminar vulnerabilidades de seguridad de severidad moderada.
-- **Corrección de la Funcionalidad de Audio (Síntesis de Voz):**
-  - Se diagnosticaron y corrigieron varios errores relacionados con la API de Síntesis de Voz del navegador, incluyendo `SyntaxError` por importaciones incorrectas y `TypeError` por intentar usar `.trim()` en valores `undefined`.
-  - Se refactorizaron los hooks `useAudio.ts` y `useSpeech.ts` para simplificar la gestión de la síntesis de voz, eliminando la lógica compleja de cancelación y espera, y permitiendo que el navegador gestione directamente la cola de voz.
-  - Se adaptaron los componentes `PhraseCard.tsx`, `ConversationDetail.tsx` y `Flashcard.tsx` para usar esta implementación simplificada, asegurando que el texto a hablar siempre sea una cadena válida.
-  - Se confirmó que la categoría "Quejas" no existía en el dataset de frases, por lo que no se requirió acción directa para eliminarla.
+Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por módulos para reflejar el estado actual de cada componente de la aplicación.
 
 ---
 
-## Plan de Refactorización y Mejoras
+## 🚀 Visión y Estrategia
 
-A continuación se detalla el plan para las próximas sesiones de desarrollo, enfocado en alinear la PWA con la visión de diseño de la aplicación original y mejorar la funcionalidad de los módulos existentes.
-
-### 1. Refactorización de Estilos y Colores
-- **Objetivo:** Unificar la paleta de colores de la aplicación para usar el azul y naranja como colores primario y de acento, respectivamente.
-- **Acciones:**
-    -   Definir los colores personalizados (`primary`, `accent`, etc.) en `tailwind.config.js`.
-    -   Revisar todos los componentes (`BottomNav`, `Flashcards`, `Conversaciones`, etc.) y reemplazar las clases de color existentes por las nuevas clases estandarizadas.
-
-### 2. Implementación de la Nueva Página de Inicio
-- **Objetivo:** Recrear la página de inicio de la aplicación original.
-- **Acciones:**
-    -   Modificar `src/pages/Home.tsx` para que coincida con el diseño de la captura de pantalla, incluyendo la sección "hero" (azul) y la sección de características (naranja).
-    -   Añadir el logo, textos y botones correspondientes.
-
-### 3. Mejoras en el Módulo de Conversaciones
-- **Objetivo:** Añadir funcionalidades clave para mejorar la experiencia de aprendizaje interactivo.
-- **Acciones:**
-    -   **Selección de Rol:**
-        -   Añadir un menú desplegable en `ConversationDetail.tsx` para que el usuario pueda seleccionar su rol.
-        -   Implementar la lógica para ocultar los textos del rol seleccionado, mostrando un placeholder como "Tu turno...".
-    -   **Reproducción Completa:**
-        -   Añadir un botón "Reproducir todo" en `ConversationDetail.tsx`.
-        -   Implementar la lógica para reproducir secuencialmente todos los turnos de la conversación.
+- **Objetivo:** Convertir una app de escritorio en una PWA móvil, offline-first, desplegada en GitHub Pages.
+- **Stack Tecnológico:** Vite, React, TypeScript, TailwindCSS, Zustand, IndexedDB (con `idb`), Vitest, React Testing Library y `vite-plugin-pwa` para Workbox.
+- **Documentación Inicial:** Se crearon documentos de visión, requerimientos, historias de usuario, mapas de navegación y wireframes.
 
 ---
 
-## Próximos pasos
-1. Migrar persistencia de **localStorage → IndexedDB (idb)**.  
-2. Implementar **Conversaciones** (rol + turnos + audio).  
-3. Iterar en **Flashcards, Quiz, Estudio, Examen y Dashboard**.  
-4. Configurar **tests con Vitest + RTL**.  
-5. CI/CD → GitHub Actions para tests + deploy automático en Pages.  
+## 🏗️ Infraestructura y Configuración Core
+
+- **[✅] Estructura de Carpetas:** Definida y creada (`/src/pages`, `/components`, `/store`, etc.).
+- **[✅] PWA con Vite:**
+    - Integrado `vite-plugin-pwa`.
+    - Generación automática de `service-worker.js` y `manifest.webmanifest`.
+    - Configurado `registerType: 'prompt'` para la actualización.
+    - Iconos de la PWA configurados y rutas corregidas.
+- **[✅] Persistencia Local:**
+    - Migración de `localStorage` a **IndexedDB** con la librería `idb`.
+    - Creado un `storage` personalizado para el middleware `persist` de Zustand, que guarda todo el estado de la app en una única object store.
+- **[✅] Enrutamiento:**
+    - Implementado con `react-router-dom`.
+    - Creadas rutas para todas las páginas principales.
+- **[✅] Carga de Datos Inicial:**
+    - Creado `AppInitializer.tsx` para cargar los datasets de frases y conversaciones al inicio.
+    - El estado de Zustand se hidrata con los datos de los JSON.
+- **[✅] Testing:**
+    - Configurado **Vitest** y **React Testing Library**.
+    - Entorno `jsdom` habilitado.
+    - Creado `setupTests.ts` para los matchers de `jest-dom`.
+    - Añadido "smoke test" inicial para `App.tsx`.
 
 ---
 
-👉 Este diario se actualizará cada vez que avancemos con un módulo, decisión técnica o documentación nueva.
+## 🎨 UI, Estilos y Tema Visual
+
+- **[✅] Identidad Visual:**
+    - Paleta de colores unificada (azul primario, naranja de acento) en `tailwind.config.js`.
+    - Estilos aplicados de forma consistente en todos los componentes.
+- **[✅] Página de Inicio (`Home.tsx`):**
+    - Rediseñada para coincidir con la nueva identidad visual.
+- **[✅] Navegación Principal:**
+    - Componente `BottomNav.tsx` implementado con todos los iconos.
+
+---
+
+## 📚 Módulo: Frases (`/pages/Frases.tsx`)
+
+- **[✅] Listado y Renderizado:** Muestra la lista de frases usando el componente `PhraseCard`.
+- **[✅] Búsqueda:** Input de texto para filtrar frases en tiempo real (ES/EN).
+- **[✅] Filtro por Categoría:** Select para filtrar por las categorías unificadas del store.
+- **[✅] Contador de Resultados:** Muestra el número de frases encontradas.
+- **[✅] Marcar como Estudiada:** Botón para marcar/desmarcar, con persistencia en el estado de Zustand.
+- **[✅] Reproducción de Audio:** Botones en `PhraseCard` para reproducir audio en ES y EN usando la API de Síntesis de Voz del navegador.
+
+---
+
+## 💬 Módulo: Conversaciones (`/pages/Conversaciones.tsx`)
+
+- **[✅] Listado y Filtro:** Muestra la lista de conversaciones y permite filtrar por categoría.
+- **[✅] Vista de Detalle:** Al seleccionar una conversación, navega a `ConversationDetail.tsx`.
+- **[✅] Selección de Rol:** Dropdown para que el usuario elija su rol. Las líneas de diálogo del rol seleccionado se ocultan para una práctica interactiva.
+- **[✅] Reproducción de Audio por Turno:** Botón para escuchar cada turno de la conversación.
+- **[✅] Reproducción Completa:** Botón "Reproducir todo" para escuchar la conversación entera de forma secuencial.
+
+---
+
+## 🃏 Módulo: Flashcards (`/pages/Flashcards.tsx`)
+
+- **[✅] Renderizado de Tarjetas:** Utiliza el componente `Flashcard.tsx`.
+- **[✅] Efecto de Volteo:** La tarjeta se voltea al hacer clic, mostrando el anverso (EN) y el reverso (ES).
+- **[✅] Filtro por Categoría:** Permite estudiar flashcards de una categoría específica.
+- **[✅] Navegación:** Botones "Anterior" y "Siguiente" para moverse por el set de tarjetas filtrado.
+- **[✅] Modo Aleatorio:** Botón "Aleatorio" para estudiar las tarjetas en un orden no secuencial.
+- **[✅] Reproducción de Audio:** Botones en cada cara de la tarjeta para reproducir el audio correspondiente.
+
+---
+
+## 🎯 Roadmap y Próximos Pasos
+
+1.  **[✅ COMPLETADO] Pulido de Módulos Existentes:**
+    -   Se ha añadido una suite de tests exhaustiva para los módulos `Frases`, `Conversaciones` y `Flashcards`.
+    -   Se ha refactorizado el componente `Flashcard` para mejorar su testabilidad.
+    -   Se han corregido problemas de accesibilidad en la página de `Frases`.
+2.  **[🧊 PENDIENTE] Implementar Módulos Restantes:**
+    -   Módulo de **Quiz**.
+    -   Módulo de **Estudio (SRS)**.
+    -   Módulo de **Progreso/Dashboard**.
+    -   Módulo de **Examen**.
+3.  **[🧊 PENDIENTE] CI/CD:**
+    -   Configurar GitHub Actions para ejecutar los tests en cada push.
+    -   Automatizar el despliegue a GitHub Pages en cada merge a `main`.

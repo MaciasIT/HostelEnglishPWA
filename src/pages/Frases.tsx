@@ -38,7 +38,9 @@ export default function Frases() {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
+      <label htmlFor="category-select" className="block mb-2 text-sm font-medium text-white">Filtrar por categoría:</label>
       <select
+        id="category-select"
         className="w-full p-2 border rounded-md mb-4 bg-primary-dark border-primary-dark text-white"
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}

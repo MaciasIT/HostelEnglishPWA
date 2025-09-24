@@ -42,37 +42,36 @@ const Flashcard: React.FC<FlashcardProps> = ({ phrase }) => {
 
   return (
     <div
-      className="relative w-full h-64 rounded-lg shadow-lg cursor-pointer transform transition-transform duration-500 ease-in-out"
+      className="relative w-full h-64 rounded-lg shadow-lg cursor-pointer bg-primary flex items-center justify-center p-4"
       onClick={handleFlip}
-      style={{ transformStyle: 'preserve-3d', transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
     >
-      {/* Front of the card */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-primary rounded-lg backface-hidden p-4" style={{ zIndex: isFlipped ? 0 : 1 }}>
-        <p className="text-2xl font-bold text-white text-center">
-          {phrase.en}
-        </p>
-        <button
-          onClick={(e) => { e.stopPropagation(); handlePlayAudio('en'); }}
-          className="mt-4 px-4 py-2 bg-white/20 text-white rounded-md hover:bg-white/30"
-        >
-          Reproducir EN
-        </button>
-      </div>
-
-      {/* Back of the card */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center bg-accent rounded-lg backface-hidden p-4 rotateY-180" style={{ zIndex: isFlipped ? 1 : 0 }}>
-        <div style={{ transform: 'rotateY(-180deg)' }}>
-          <p className="text-2xl font-bold text-white text-center">
+      {!isFlipped ? (
+        // Front of the card (English)
+        <div className="text-center">
+          <p className="text-2xl font-bold text-white">
+            {phrase.en}
+          </p>
+          <button
+            onClick={(e) => { e.stopPropagation(); handlePlayAudio('en'); }}
+            className="mt-4 px-4 py-2 bg-white/20 text-white rounded-md hover:bg-white/30"
+          >
+            Reproducir EN
+          </button>
+        </div>
+      ) : (
+        // Back of the card (Spanish)
+        <div className="text-center">
+          <p className="text-2xl font-bold text-white">
             {phrase.es}
           </p>
           <button
             onClick={(e) => { e.stopPropagation(); handlePlayAudio('es'); }}
-            className="mt-4 px-4 py-2 bg-white/20 text-white rounded-md hover:bg-white/30"
+            className="mt-4 px-4 py-2 bg-accent text-white rounded-md hover:bg-accent-dark"
           >
             Reproducir ES
           </button>
         </div>
-      </div>
+      )}
     </div>
   );
 };
