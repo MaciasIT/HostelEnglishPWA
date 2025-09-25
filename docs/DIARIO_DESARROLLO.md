@@ -68,7 +68,11 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
 - **[✅] Vista de Detalle:** Al seleccionar una conversación, navega a `ConversationDetail.tsx`.
 - **[✅] Selección de Rol:** Dropdown para que el usuario elija su rol. Las líneas de diálogo del rol seleccionado se ocultan para una práctica interactiva.
 - **[✅] Reproducción de Audio por Turno:** Botón para escuchar cada turno de la conversación.
-- **[✅] Reproducción Completa:** Botón "Reproducir todo" para escuchar la conversación entera de forma secuencial.
+- **[✅] Reproducción Completa:** Implementada la reproducción secuencial de todos los turnos de la conversación, con un botón "Reproducir Toda la Conversación".
+- **[✅] Voces Diferenciadas por Rol:** Añadida la capacidad de seleccionar voces, ajustar velocidad y tono por cada participante, con persistencia de las preferencias.
+- **[✅] Navegación Post-Conversación:** Implementado un modal al finalizar la conversación para ofrecer opciones de "Siguiente Conversación" o "Volver a la Lista".
+- **[✅] Corrección de Truncamiento de Texto:** Asegurado que el texto en las tarjetas de diálogo se ajuste correctamente.
+- **[✅] Ampliación de Selección de Voces:** Modificada la lógica para incluir todas las voces disponibles del navegador, priorizando las inglesas.
 
 ---
 
@@ -92,7 +96,7 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
         -   Corregido el problema de categorías duplicadas en el filtro.
         -   Refactorizada la lógica de filtrado con `useMemo` para optimizar el rendimiento.
         -   Corregida la accesibilidad del filtro de categorías.
-    -   **[🧊 PENDIENTE] Módulo Conversaciones:** Revisión de código, UI/UX y accesibilidad.
+    -   **[✅ COMPLETADO] Módulo Conversaciones:** Revisión de código, UI/UX y accesibilidad.
     -   **[🧊 PENDIENTE] Módulo Flashcards:** Revisión de código, UI/UX y accesibilidad.
 2.  **[🧊 PENDIENTE] Implementar Módulos Restantes:**
     -   Módulo de **Quiz**.

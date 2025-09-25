@@ -34,7 +34,21 @@ type State = {
   loadFrases: () => Promise<void>;
   loadConversations: () => Promise<void>;
   progress: Record<string, number>;
-  prefs: { theme: string; audioSpeed: number };
+  prefs: {
+    theme: string;
+    audioSpeed: number;
+    /**
+     * Stores per-participant speech synthesis settings for conversations.
+     * Key is the participant's name, value is an object with voiceURI, rate, and pitch.
+     */
+    conversationSettings: {
+      [participant: string]: {
+        voiceURI: string;
+        rate: number;
+        pitch: number;
+      };
+    };
+  };
 };
 
 type Actions = {
@@ -42,6 +56,18 @@ type Actions = {
   advancePhraseProgress: (phraseId: string) => void;
   setTheme: (theme: string) => void;
   setAudioSpeed: (speed: number) => void;
+  /**
+   * Sets a specific speech synthesis setting (voiceURI, rate, or pitch) for a given conversation participant.
+   * This allows for differentiated voices and speech characteristics per role in conversations.
+   * @param participant The name of the conversation participant.
+   * @param setting The specific setting to update ('voiceURI', 'rate', or 'pitch').
+   * @param value The new value for the setting.
+   */
+  setConversationParticipantSetting: (
+    participant: string,
+    setting: 'voiceURI' | 'rate' | 'pitch',
+    value: string | number
+  ) => void;
 };
 
 export const useAppStore = create<State & Actions>()(
@@ -53,7 +79,11 @@ export const useAppStore = create<State & Actions>()(
       frasesLoaded: false,
       conversationsLoaded: false,
       progress: {},
-      prefs: { theme: "light", audioSpeed: 1 },
+      prefs: {
+        theme: "light",
+        audioSpeed: 1,
+        conversationSettings: {}, // Initialize conversation settings as an empty object
+      },
       initializeCategories: () => {
         const { frases, conversations } = get();
         const categoriesFromFrases = frases.map(f => f.categoria).filter(Boolean) as string[];
@@ -101,6 +131,20 @@ export const useAppStore = create<State & Actions>()(
       setAudioSpeed: (speed: number) => {
         set((state) => ({
           prefs: { ...state.prefs, audioSpeed: speed },
+        }));
+      },
+      setConversationParticipantSetting: (participant, setting, value) => {
+        set((state) => ({
+          prefs: {
+            ...state.prefs,
+            conversationSettings: {
+              ...state.prefs.conversationSettings,
+              [participant]: {
+                ...(state.prefs.conversationSettings[participant] || { voiceURI: '', rate: 1, pitch: 1 }),
+                [setting]: value,
+              },
+            },
+          },
         }));
       },
     }),
