@@ -29,39 +29,26 @@ describe('<PhraseCard />', () => {
       />
     );
 
-    // Assert: Comprobamos que los textos están en el documento
     expect(screen.getByText('Hola Mundo')).toBeInTheDocument();
     expect(screen.getByText('Hello World')).toBeInTheDocument();
   });
 
-  it('should display the "Estudiada" button when isStudied is true', () => {
+  it('should display "Marcar como Estudiada" when progressLevel is 0', () => {
     const handleAdvanceProgress = vi.fn();
-
-    render(
-      <PhraseCard
-        phrase={mockPhrase}
-        onAdvanceProgress={handleAdvanceProgress}
-        progressLevel={1}
-      />
-    );
-
-    // Assert: Comprobamos que el botón muestra el texto correcto
-    expect(screen.getByRole('button', { name: 'Estudiada' })).toBeInTheDocument();
+    render(<PhraseCard phrase={mockPhrase} onAdvanceProgress={handleAdvanceProgress} progressLevel={0} />);
+    expect(screen.getByRole('button', { name: 'Marcar como Estudiada' })).toBeInTheDocument();
   });
 
-  it('should display the "Marcar como estudiada" button when isStudied is false', () => {
+  it('should display "Marcar como Aprendida" when progressLevel is 1', () => {
     const handleAdvanceProgress = vi.fn();
+    render(<PhraseCard phrase={mockPhrase} onAdvanceProgress={handleAdvanceProgress} progressLevel={1} />);
+    expect(screen.getByRole('button', { name: 'Marcar como Aprendida' })).toBeInTheDocument();
+  });
 
-    render(
-      <PhraseCard
-        phrase={mockPhrase}
-        onAdvanceProgress={handleAdvanceProgress}
-        progressLevel={0}
-      />
-    );
-
-    // Assert: Comprobamos que el botón muestra el texto correcto
-    expect(screen.getByRole('button', { name: 'Marcar como estudiada' })).toBeInTheDocument();
+  it('should display "Reiniciar Progreso" when progressLevel is 2', () => {
+    const handleAdvanceProgress = vi.fn();
+    render(<PhraseCard phrase={mockPhrase} onAdvanceProgress={handleAdvanceProgress} progressLevel={2} />);
+    expect(screen.getByRole('button', { name: 'Reiniciar Progreso' })).toBeInTheDocument();
   });
 
   it('should call onAdvanceProgress with the correct phrase id when the button is clicked', async () => {
@@ -76,11 +63,9 @@ describe('<PhraseCard />', () => {
       />
     );
 
-    // Act: Simulamos el clic del usuario
     const button = screen.getByRole('button', { name: 'Marcar como Estudiada' });
     await user.click(button);
 
-    // Assert: Comprobamos que la función mock fue llamada
     expect(handleAdvanceProgress).toHaveBeenCalledOnce();
     expect(handleAdvanceProgress).toHaveBeenCalledWith(mockPhrase.id);
   });

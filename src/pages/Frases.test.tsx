@@ -24,8 +24,8 @@ describe('<Frases />', () => {
       frases: mockFrases,
       loadFrases: vi.fn(),
       progress: {},
-      togglePhraseStudied: vi.fn(),
-      categories: mockCategories,
+      advancePhraseProgress: vi.fn(), // Nueva acción
+      categories: ['Estudiadas', 'Aprendidas', ...mockCategories], // Nuevas categorías
     });
   });
 
@@ -44,7 +44,7 @@ describe('<Frases />', () => {
     expect(screen.getByPlaceholderText('Buscar frase...')).toBeInTheDocument();
     expect(screen.getByLabelText(/filtrar por categoría:/i)).toBeInTheDocument();
 
-    // Verifica que todas las frases mockeadas se rendericen
+    // Verifica que todas las frases mockeadas se rendericen (las no estudiadas)
     expect(screen.getByText('Agua con gas')).toBeInTheDocument();
     expect(screen.getByText('The check, please')).toBeInTheDocument();
     expect(screen.getByText('Habitación doble')).toBeInTheDocument();
@@ -73,4 +73,43 @@ describe('<Frases />', () => {
     expect(screen.queryByText('La cuenta, por favor')).not.toBeInTheDocument();
     expect(screen.getByText('Habitación doble')).toBeInTheDocument();
   });
-});
+
+  it('should show only studied phrases when "Estudiadas" category is selected', async () => {
+    const user = userEvent.setup();
+    // Mockeamos el store para que una frase esté estudiada
+    vi.mocked(useAppStore).mockReturnValue({
+      frases: mockFrases,
+      loadFrases: vi.fn(),
+      progress: { '1': 1 }, // Frase 1 como estudiada
+      advancePhraseProgress: vi.fn(),
+      categories: ['Estudiadas', 'Aprendidas', ...mockCategories],
+    });
+    renderComponent();
+
+    const categorySelect = screen.getByLabelText(/filtrar por categoría:/i);
+    await user.selectOptions(categorySelect, 'Estudiadas');
+
+    expect(screen.getByText('Agua con gas')).toBeInTheDocument();
+    expect(screen.queryByText('La cuenta, por favor')).not.toBeInTheDocument();
+    expect(screen.queryByText('Habitación doble')).not.toBeInTheDocument();
+  });
+
+  it('should show only learned phrases when "Aprendidas" category is selected', async () => {
+    const user = userEvent.setup();
+    // Mockeamos el store para que una frase esté aprendida
+    vi.mocked(useAppStore).mockReturnValue({
+      frases: mockFrases,
+      loadFrases: vi.fn(),
+      progress: { '2': 2 }, // Frase 2 como aprendida
+      advancePhraseProgress: vi.fn(),
+      categories: ['Estudiadas', 'Aprendidas', ...mockCategories],
+    });
+    renderComponent();
+
+    const categorySelect = screen.getByLabelText(/filtrar por categoría:/i);
+    await user.selectOptions(categorySelect, 'Aprendidas');
+
+    expect(screen.getByText('La cuenta, por favor')).toBeInTheDocument();
+    expect(screen.queryByText('Agua con gas')).not.toBeInTheDocument();
+    expect(screen.queryByText('Habitación doble')).not.toBeInTheDocument();
+  });
