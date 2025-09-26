@@ -1,6 +1,6 @@
 # 📖 Diario de Desarrollo – HostelInglésApp
 
-*Última actualización: 24-09-2025*
+*Última actualización: 26-09-2025*
 
 Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por módulos para reflejar el estado actual de cada componente de la aplicación.
 
@@ -36,6 +36,9 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
     - Entorno `jsdom` habilitado.
     - Creado `setupTests.ts` para los matchers de `jest-dom`.
     - Añadido "smoke test" inicial para `App.tsx`.
+    - **[✅] Mock de speechSynthesis:** Añadido mock global de `window.speechSynthesis` en los tests para evitar errores en jsdom.
+    - **[✅] Corrección de mocks en Conversaciones:** Ajustados los mocks de participantes y conversationSettings en los tests de Conversaciones.
+    - **[✅] Refuerzo de protección en ConversationDetail:** Mejorada la protección contra valores `undefined` en el acceso a settings de participantes.
 
 ---
 
@@ -73,6 +76,7 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
 - **[✅] Navegación Post-Conversación:** Implementado un modal al finalizar la conversación para ofrecer opciones de "Siguiente Conversación" o "Volver a la Lista".
 - **[✅] Corrección de Truncamiento de Texto:** Asegurado que el texto en las tarjetas de diálogo se ajuste correctamente.
 - **[✅] Ampliación de Selección de Voces:** Modificada la lógica para incluir todas las voces disponibles del navegador, priorizando las inglesas.
+- **[✅] Corrección de tests y mocks:** Mockeado correctamente `window.speechSynthesis` en los tests, añadido y ajustado el mock de `conversationSettings` y participantes, y reforzada la protección contra valores `undefined` en el componente `ConversationDetail`.
 
 ---
 
@@ -97,6 +101,7 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
         -   Refactorizada la lógica de filtrado con `useMemo` para optimizar el rendimiento.
         -   Corregida la accesibilidad del filtro de categorías.
     -   **[✅ COMPLETADO] Módulo Conversaciones:** Revisión de código, UI/UX y accesibilidad.
+        -   **[✅] Corrección de tests y mocks:** Mockeado correctamente `window.speechSynthesis` en los tests, añadido y ajustado el mock de `conversationSettings` y participantes, y reforzada la protección contra valores `undefined` en el componente `ConversationDetail`.
     -   **[🧊 PENDIENTE] Módulo Flashcards:** Revisión de código, UI/UX y accesibilidad.
 2.  **[🧊 PENDIENTE] Implementar Módulos Restantes:**
     -   Módulo de **Quiz**.
