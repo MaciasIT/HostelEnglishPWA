@@ -193,7 +193,10 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
           Reproducir Toda la Conversación
         </button>
         {conversation.participants.map(participant => {
-          const participantSettings = conversationSettings[participant] || { voiceURI: '', rate: 1, pitch: 1 };
+          // Corrección: protege el acceso a conversationSettings
+          const participantSettings =
+            (conversationSettings && conversationSettings[participant]) ||
+            { voiceURI: '', rate: 1, pitch: 1 };
           const defaultVoice = availableVoices.find(v => v.voiceURI === participantSettings.voiceURI);
 
           return (

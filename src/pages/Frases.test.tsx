@@ -100,7 +100,7 @@ describe('<Frases />', () => {
     vi.mocked(useAppStore).mockReturnValue({
       frases: mockFrases,
       loadFrases: vi.fn(),
-      progress: { '2': 2 }, // Frase 2 como aprendida
+      progress: { 2: 2 }, // <-- clave numérica
       advancePhraseProgress: vi.fn(),
       categories: ['Estudiadas', 'Aprendidas', ...mockCategories],
     });
@@ -113,3 +113,5 @@ describe('<Frases />', () => {
     expect(screen.queryByText('Agua con gas')).not.toBeInTheDocument();
     expect(screen.queryByText('Habitación doble')).not.toBeInTheDocument();
   });
+
+});

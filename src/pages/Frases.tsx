@@ -25,16 +25,17 @@ export default function Frases() {
              phraseEn.toLowerCase().includes(searchTerm.toLowerCase());
     };
 
+    // Corrección: asegurar que el acceso a progress sea consistente usando Number(phrase.id)
     if (selectedCategory === 'Estudiadas') {
-      return frases.filter(phrase => progress[phrase.id] === 1 && searchFilter(phrase));
+      return frases.filter(phrase => progress[Number(phrase.id)] === 1 && searchFilter(phrase));
     }
 
     if (selectedCategory === 'Aprendidas') {
-      return frases.filter(phrase => progress[phrase.id] === 2 && searchFilter(phrase));
+      return frases.filter(phrase => progress[Number(phrase.id)] === 2 && searchFilter(phrase));
     }
 
     return frases.filter(phrase => {
-      const progressLevel = progress[phrase.id] || 0;
+      const progressLevel = progress[Number(phrase.id)] || 0;
       if (progressLevel > 0) return false; // Oculta estudiadas y aprendidas de las categorías normales
 
       const matchesCategory = selectedCategory === 'all' || phrase.categoria === selectedCategory;
@@ -80,7 +81,7 @@ export default function Frases() {
             key={phrase.id}
             phrase={phrase}
             onAdvanceProgress={advancePhraseProgress}
-            progressLevel={progress[phrase.id] || 0}
+            progressLevel={progress[Number(phrase.id)] || 0}
           />
         ))}
       </div>
