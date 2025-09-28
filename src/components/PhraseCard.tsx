@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-// import { useAudio } from '@/hooks/useAudio'; // REMOVE THIS
+import React from 'react';
 import { useAppStore } from '@/store/useAppStore';
 
 type Phrase = {
@@ -21,11 +20,12 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
   onAdvanceProgress,
   progressLevel,
 }) => {
-  // ... (handlePlayAudio remains the same)
-  const audioSpeed = useAppStore((state) => state.prefs.audioSpeed);
+  const { phraseSettings } = useAppStore((state) => ({
+    phraseSettings: state.prefs.phraseSettings,
+  }));
 
   const handlePlayAudio = (lang: 'es' | 'en') => {
-    const textToSpeak = (lang === 'es' ? phrase.es : phrase.en) || '';
+    const textToSpeak = lang === 'es' ? phrase.es : phrase.en;
     const speechLang = lang === 'es' ? 'es-ES' : 'en-US';
 
     if (!textToSpeak.trim()) {
@@ -35,7 +35,17 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
 
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
     utterance.lang = speechLang;
-    utterance.rate = audioSpeed;
+
+    if (lang === 'en') {
+      utterance.rate = phraseSettings.rate;
+      utterance.pitch = phraseSettings.pitch;
+      if (phraseSettings.voiceURI) {
+        const voice = window.speechSynthesis.getVoices().find(v => v.voiceURI === phraseSettings.voiceURI);
+        if (voice) {
+          utterance.voice = voice;
+        }
+      }
+    }
 
     window.speechSynthesis.speak(utterance);
   };

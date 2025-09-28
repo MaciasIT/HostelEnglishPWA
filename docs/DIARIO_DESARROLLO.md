@@ -67,6 +67,13 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
     - Añadidos botones de navegación "Anterior" y "Siguiente".
     - Añadido un botón "Volver al inicio" para resetear los filtros.
     - El estado de la paginación se gestiona de forma centralizada en `useAppStore`.
+- **[✅] Personalización de Voz y Reproducción Secuencial:**
+    - Se ha replicado la funcionalidad del módulo de "Conversaciones", permitiendo la personalización de la voz (voz, velocidad, tono) para la reproducción de frases en inglés.
+    - Se ha añadido un botón "Reproducir Todo" para escuchar secuencialmente todas las frases de la página actual.
+    - Al finalizar la reproducción, un modal ofrece opciones para navegar a la siguiente página o volver al inicio.
+- **[✅] Corrección de Errores de Estado:**
+    - Se ha solucionado un error crítico que provocaba que la aplicación fallara al intentar acceder a la configuración de la voz (`phraseSettings`).
+    - Se ha refactorizado la forma en que los componentes `Frases.tsx` y `PhraseCard.tsx` acceden al estado de Zustand, utilizando selectores específicos para garantizar que los datos siempre estén disponibles y evitar renderizados innecesarios.
 
 ---
 

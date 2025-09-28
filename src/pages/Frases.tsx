@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useAppStore, Phrase } from '@/store/useAppStore';
 import PhraseCard from '@/components/PhraseCard';
 import BottomNav from '@/components/BottomNav';
+import VoiceSettings from '@/components/VoiceSettings';
 
 export default function Frases() {
   const {
@@ -16,8 +17,14 @@ export default function Frases() {
     setPhrasesPerPage,
   } = useAppStore();
 
+  const { phraseSettings, setPhraseSetting } = useAppStore((state) => ({
+    phraseSettings: state.prefs.phraseSettings,
+    setPhraseSetting: state.setPhraseSetting,
+  }));
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     if (frases.length === 0) {
@@ -70,6 +77,38 @@ export default function Frases() {
     setPhrasesCurrentPage(1);
   };
 
+  const handlePlayAll = () => {
+    const utterances = paginatedFrases.map(phrase => {
+      const utterance = new SpeechSynthesisUtterance(phrase.en);
+      utterance.lang = 'en-US';
+      utterance.rate = phraseSettings.rate;
+      utterance.pitch = phraseSettings.pitch;
+      if (phraseSettings.voiceURI) {
+        const voice = window.speechSynthesis.getVoices().find(v => v.voiceURI === phraseSettings.voiceURI);
+        if (voice) {
+          utterance.voice = voice;
+        }
+      }
+      return utterance;
+    });
+
+    let currentIndex = 0;
+    const speak = () => {
+      if (currentIndex < utterances.length) {
+        const currentUtterance = utterances[currentIndex];
+        currentUtterance.onend = () => {
+          currentIndex++;
+          speak();
+        };
+        window.speechSynthesis.speak(currentUtterance);
+      } else {
+        setIsModalOpen(true);
+      }
+    };
+
+    speak();
+  };
+
   return (
     <div className="p-4 pb-20 bg-primary text-white min-h-screen">
       <h1 className="text-2xl font-bold mb-4 text-white">Frases</h1>
@@ -96,9 +135,17 @@ export default function Frases() {
         </select>
       </div>
 
+      <VoiceSettings settings={phraseSettings} onSettingChange={setPhraseSetting} />
+
       <div className="flex justify-between items-center mb-4">
         <p className="text-white">{filteredFrases.length} frases encontradas</p>
         <div className="flex items-center">
+          <button
+            onClick={handlePlayAll}
+            className="px-4 py-2 rounded-md bg-accent text-white mr-4"
+          >
+            Reproducir Todo
+          </button>
           <label htmlFor="phrases-per-page" className="mr-2 text-white">Frases por página:</label>
           <select
             id="phrases-per-page"
@@ -158,6 +205,37 @@ export default function Frases() {
             Volver al inicio de Frases
           </button>
       </div>
+
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-primary-dark p-8 rounded-lg">
+            <h2 className="text-xl font-bold text-white mb-4">¡Has completado la página!</h2>
+            <div className="flex justify-around">
+              <button
+                onClick={() => {
+                  setIsModalOpen(false);
+                  if (phrasesCurrentPage < totalPages) {
+                    setPhrasesCurrentPage(phrasesCurrentPage + 1);
+                  }
+                }}
+                disabled={phrasesCurrentPage === totalPages}
+                className="px-4 py-2 rounded-md bg-accent text-white disabled:bg-gray-600"
+              >
+                Siguiente Página
+              </button>
+              <button
+                onClick={() => {
+                  setIsModalOpen(false);
+                  handleGoToHome();
+                }}
+                className="px-4 py-2 rounded-md bg-primary text-white"
+              >
+                Volver al inicio
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <BottomNav />
     </div>

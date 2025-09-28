@@ -48,6 +48,11 @@ type State = {
         pitch: number;
       };
     };
+    phraseSettings: {
+      voiceURI: string;
+      rate: number;
+      pitch: number;
+    };
   };
   phrasesCurrentPage: number;
   phrasesPerPage: number;
@@ -70,6 +75,10 @@ type Actions = {
     setting: 'voiceURI' | 'rate' | 'pitch',
     value: string | number
   ) => void;
+  setPhraseSetting: (
+    setting: 'voiceURI' | 'rate' | 'pitch',
+    value: string | number
+  ) => void;
   setPhrasesCurrentPage: (page: number) => void;
   setPhrasesPerPage: (limit: number) => void;
 };
@@ -87,6 +96,11 @@ export const useAppStore = create<State & Actions>()(
         theme: "light",
         audioSpeed: 1,
         conversationSettings: {}, // Initialize conversation settings as an empty object
+        phraseSettings: {
+          voiceURI: '',
+          rate: 1,
+          pitch: 1,
+        },
       },
       phrasesCurrentPage: 1,
       phrasesPerPage: 10,
@@ -149,6 +163,17 @@ export const useAppStore = create<State & Actions>()(
                 ...(state.prefs.conversationSettings[participant] || { voiceURI: '', rate: 1, pitch: 1 }),
                 [setting]: value,
               },
+            },
+          },
+        }));
+      },
+      setPhraseSetting: (setting, value) => {
+        set((state) => ({
+          prefs: {
+            ...state.prefs,
+            phraseSettings: {
+              ...state.prefs.phraseSettings,
+              [setting]: value,
             },
           },
         }));
