@@ -49,6 +49,8 @@ type State = {
       };
     };
   };
+  phrasesCurrentPage: number;
+  phrasesPerPage: number;
 };
 
 type Actions = {
@@ -68,6 +70,8 @@ type Actions = {
     setting: 'voiceURI' | 'rate' | 'pitch',
     value: string | number
   ) => void;
+  setPhrasesCurrentPage: (page: number) => void;
+  setPhrasesPerPage: (limit: number) => void;
 };
 
 export const useAppStore = create<State & Actions>()(
@@ -84,6 +88,8 @@ export const useAppStore = create<State & Actions>()(
         audioSpeed: 1,
         conversationSettings: {}, // Initialize conversation settings as an empty object
       },
+      phrasesCurrentPage: 1,
+      phrasesPerPage: 10,
       initializeCategories: () => {
         const { frases, conversations } = get();
         const categoriesFromFrases = frases.map(f => f.categoria).filter(Boolean) as string[];
@@ -147,6 +153,8 @@ export const useAppStore = create<State & Actions>()(
           },
         }));
       },
+      setPhrasesCurrentPage: (page) => set({ phrasesCurrentPage: page }),
+      setPhrasesPerPage: (limit) => set({ phrasesPerPage: limit, phrasesCurrentPage: 1 }), // Reset to first page
     }),
     {
       name: "hostelenglish-storage",
@@ -165,6 +173,8 @@ export const useAppStore = create<State & Actions>()(
       partialize: (state) => ({
         progress: state.progress,
         prefs: state.prefs,
+        phrasesCurrentPage: state.phrasesCurrentPage,
+        phrasesPerPage: state.phrasesPerPage,
       }),
     }
   )

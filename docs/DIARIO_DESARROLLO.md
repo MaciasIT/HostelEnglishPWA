@@ -62,6 +62,11 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
 - **[✅] Contador de Resultados:** Muestra el número de frases encontradas.
 - **[✅] Marcar como Estudiada:** Botón para marcar/desmarcar, con persistencia en el estado de Zustand.
 - **[✅] Reproducción de Audio:** Botones en `PhraseCard` para reproducir audio en ES y EN usando la API de Síntesis de Voz del navegador.
+- **[✅] Paginación:**
+    - Implementado un sistema de paginación con controles para seleccionar el número de frases por página (5, 10, 20).
+    - Añadidos botones de navegación "Anterior" y "Siguiente".
+    - Añadido un botón "Volver al inicio" para resetear los filtros.
+    - El estado de la paginación se gestiona de forma centralizada en `useAppStore`.
 
 ---
 
