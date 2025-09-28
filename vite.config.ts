@@ -4,7 +4,7 @@ import path from "node:path";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
-  // base: "/HostelEnglish/", // Comentado temporalmente para desarrollo
+  base: "/HostelEnglishPWA/", // Necesario para despliegue en GitHub Pages
   plugins: [
     react(),
     // VitePWA({
