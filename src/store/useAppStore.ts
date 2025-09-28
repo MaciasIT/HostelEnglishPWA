@@ -124,7 +124,7 @@ export const useAppStore = create<State & Actions>()(
       loadConversations: async () => {
         if (get().conversationsLoaded) return;
         try {
-          const res = await fetch("/data/conversations_extended_v4.json");
+          const res = await fetch(`${import.meta.env.BASE_URL}data/conversations_extended_v4.json`);
           const data = await res.json();
           set({ conversations: data.conversations || [], conversationsLoaded: true });
         } catch (e) {
