@@ -114,7 +114,7 @@ export const useAppStore = create<State & Actions>()(
       loadFrases: async () => {
         if (get().frasesLoaded) return;
         try {
-          const res = await fetch("/data/hostelenglish_dataset_clean.json");
+          const res = await fetch(`${import.meta.env.BASE_URL}data/hostelenglish_dataset_clean.json`);
           const data = await res.json();
           set({ frases: data.phrases || [], frasesLoaded: true });
         } catch (e) {
