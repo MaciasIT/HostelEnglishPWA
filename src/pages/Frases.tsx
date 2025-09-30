@@ -159,6 +159,7 @@ export default function Frases() {
         />
         <select
           id="category-select"
+          data-testid="category-select"
           className="w-full p-2 border rounded-md bg-primary-dark border-primary-dark text-white"
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}

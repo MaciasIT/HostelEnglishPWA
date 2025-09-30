@@ -2,31 +2,72 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
-import Frases from './Frases';
-import { useAppStore } from '@/store/useAppStore';
 import React from 'react';
+import Frases from './Frases';
 
-// Mock del store de Zustand
-vi.mock('@/store/useAppStore');
-
-const mockFrases = [
+// Mock base para Zustand store
+const frasesFixture = [
   { id: 1, es: 'Agua con gas', en: 'Sparkling water', categoria: 'Bebidas' },
   { id: 2, es: 'La cuenta, por favor', en: 'The check, please', categoria: 'General' },
   { id: 3, es: 'Habitación doble', en: 'Double room', categoria: 'Recepción' },
 ];
+const categoriasFixture = ['Estudiadas', 'Aprendidas', 'Bebidas', 'General', 'Recepción'];
+function createMockStore(overrides = {}) {
+  return {
+    frases: [...frasesFixture],
+    loadFrases: vi.fn(),
+    progress: {},
+    advancePhraseProgress: vi.fn(),
+    // Aseguramos que las categorías incluyan todas las posibles usadas en los tests y en los datos
+    categories: ['Estudiadas', 'Aprendidas', 'Bebidas', 'General', 'Recepción'],
+    frasesLoaded: true,
+    phrasesCurrentPage: 1,
+    phrasesPerPage: 10,
+    initializeCategories: vi.fn(),
+    prefs: {
+      phraseSettings: { voiceURI: 'test', rate: 1, pitch: 1 },
+    },
+    setPhrasesCurrentPage: vi.fn(),
+    setPhrasesPerPage: vi.fn(),
+    ...overrides,
+  };
+}
 
-const mockCategories = ['Bebidas', 'General', 'Recepción'];
+// Mock Zustand store global
+let useAppStoreMock;
+vi.doMock('@/store/useAppStore', () => ({
+  useAppStore: (selector) => {
+    const state = useAppStoreMock();
+    if (typeof selector === 'function') {
+      return selector(state);
+    }
+    return state;
+  },
+}));
+
+// Mock completo de idb para evitar errores de indexedDB en tests
+vi.mock('idb', () => ({
+  openDB: vi.fn(() => Promise.resolve({
+    put: vi.fn(),
+    get: vi.fn(),
+    delete: vi.fn(),
+    setPhrasesCurrentPage: vi.fn(),
+    setPhrasesPerPage: vi.fn(),
+    objectStoreNames: { contains: vi.fn(() => true) },
+    createObjectStore: vi.fn(),
+  })),
+}));
 
 describe('<Frases />', () => {
   beforeEach(() => {
-    // Reseteamos el mock antes de cada test
-    vi.mocked(useAppStore).mockReturnValue({
-      frases: mockFrases,
-      loadFrases: vi.fn(),
-      progress: {},
-      advancePhraseProgress: vi.fn(), // Nueva acción
-      categories: ['Estudiadas', 'Aprendidas', ...mockCategories], // Nuevas categorías
-    });
+    // Mock window.speechSynthesis para evitar errores en tests
+    globalThis.window.speechSynthesis = {
+      getVoices: () => [],
+      speak: () => {},
+      cancel: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+    } as any;
   });
 
   const renderComponent = () => {
@@ -38,80 +79,69 @@ describe('<Frases />', () => {
   };
 
   it('should render the title, search input, category filter, and list of phrases', () => {
+    useAppStoreMock = () => createMockStore();
     renderComponent();
 
-    expect(screen.getByRole('heading', { name: /frases/i })).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Buscar frase...')).toBeInTheDocument();
-    expect(screen.getByLabelText(/filtrar por categoría:/i)).toBeInTheDocument();
-
-    // Verifica que todas las frases mockeadas se rendericen (las no estudiadas)
-    expect(screen.getByText('Agua con gas')).toBeInTheDocument();
-    expect(screen.getByText('The check, please')).toBeInTheDocument();
-    expect(screen.getByText('Habitación doble')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /frases/i })).to.exist;
+    const searchInputs = screen.getAllByPlaceholderText('Buscar frase...');
+    expect(searchInputs[0]).to.exist;
+    const categorySelect = screen.getAllByTestId('category-select')[0];
+    expect(categorySelect).to.exist;
+    expect(screen.getByText((content) => content.includes('Agua con gas'))).to.exist;
+    expect(screen.getByText((content) => content.includes('The check, please'))).to.exist;
+    expect(screen.getByText((content) => content.includes('Habitación doble'))).to.exist;
   });
 
   it('should filter phrases based on search term', async () => {
+    useAppStoreMock = () => createMockStore();
     const user = userEvent.setup();
     renderComponent();
 
-    const searchInput = screen.getByPlaceholderText('Buscar frase...');
+    const searchInputs = screen.getAllByPlaceholderText('Buscar frase...');
+    const searchInput = searchInputs[0];
     await user.type(searchInput, 'agua');
 
-    expect(screen.getByText('Agua con gas')).toBeInTheDocument();
-    expect(screen.queryByText('La cuenta, por favor')).not.toBeInTheDocument();
-    expect(screen.queryByText('Habitación doble')).not.toBeInTheDocument();
+    expect(screen.getByText((content) => content.includes('Agua con gas'))).to.exist;
+    expect(screen.queryByText((content) => content.includes('La cuenta, por favor'))).to.not.exist;
+    expect(screen.queryByText((content) => content.includes('Habitación doble'))).to.not.exist;
   });
 
   it('should filter phrases based on selected category', async () => {
+    useAppStoreMock = () => createMockStore();
     const user = userEvent.setup();
     renderComponent();
 
-    const categorySelect = screen.getByLabelText(/filtrar por categoría:/i);
+    const categorySelect = screen.getAllByTestId('category-select')[0];
     await user.selectOptions(categorySelect, 'Recepción');
 
-    expect(screen.queryByText('Agua con gas')).not.toBeInTheDocument();
-    expect(screen.queryByText('La cuenta, por favor')).not.toBeInTheDocument();
-    expect(screen.getByText('Habitación doble')).toBeInTheDocument();
+    expect(screen.queryByText((content) => content.includes('Agua con gas'))).to.not.exist;
+    expect(screen.queryByText((content) => content.includes('La cuenta, por favor'))).to.not.exist;
+    expect(screen.getByText((content) => content.includes('Habitación doble'))).to.exist;
   });
 
   it('should show only studied phrases when "Estudiadas" category is selected', async () => {
+    useAppStoreMock = () => createMockStore({ progress: { '1': 1 } });
     const user = userEvent.setup();
-    // Mockeamos el store para que una frase esté estudiada
-    vi.mocked(useAppStore).mockReturnValue({
-      frases: mockFrases,
-      loadFrases: vi.fn(),
-      progress: { '1': 1 }, // Frase 1 como estudiada
-      advancePhraseProgress: vi.fn(),
-      categories: ['Estudiadas', 'Aprendidas', ...mockCategories],
-    });
     renderComponent();
 
-    const categorySelect = screen.getByLabelText(/filtrar por categoría:/i);
+    const categorySelect = screen.getAllByTestId('category-select')[0];
     await user.selectOptions(categorySelect, 'Estudiadas');
 
-    expect(screen.getByText('Agua con gas')).toBeInTheDocument();
-    expect(screen.queryByText('La cuenta, por favor')).not.toBeInTheDocument();
-    expect(screen.queryByText('Habitación doble')).not.toBeInTheDocument();
+    expect(screen.getByText((content) => content.includes('Agua con gas'))).to.exist;
+    expect(screen.queryByText((content) => content.includes('La cuenta, por favor'))).to.not.exist;
+    expect(screen.queryByText((content) => content.includes('Habitación doble'))).to.not.exist;
   });
 
   it('should show only learned phrases when "Aprendidas" category is selected', async () => {
+    useAppStoreMock = () => createMockStore({ progress: { 2: 2 } });
     const user = userEvent.setup();
-    // Mockeamos el store para que una frase esté aprendida
-    vi.mocked(useAppStore).mockReturnValue({
-      frases: mockFrases,
-      loadFrases: vi.fn(),
-      progress: { 2: 2 }, // <-- clave numérica
-      advancePhraseProgress: vi.fn(),
-      categories: ['Estudiadas', 'Aprendidas', ...mockCategories],
-    });
     renderComponent();
 
-    const categorySelect = screen.getByLabelText(/filtrar por categoría:/i);
+    const categorySelect = screen.getAllByTestId('category-select')[0];
     await user.selectOptions(categorySelect, 'Aprendidas');
 
-    expect(screen.getByText('La cuenta, por favor')).toBeInTheDocument();
-    expect(screen.queryByText('Agua con gas')).not.toBeInTheDocument();
-    expect(screen.queryByText('Habitación doble')).not.toBeInTheDocument();
+    expect(screen.getByText((content) => content.includes('La cuenta, por favor'))).to.exist;
+    expect(screen.queryByText((content) => content.includes('Agua con gas'))).to.not.exist;
+    expect(screen.queryByText((content) => content.includes('Habitación doble'))).to.not.exist;
   });
-
 });

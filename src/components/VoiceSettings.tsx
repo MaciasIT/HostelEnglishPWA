@@ -9,7 +9,8 @@ interface VoiceSettingsProps {
   onSettingChange: (setting: 'voiceURI' | 'rate' | 'pitch', value: string | number) => void;
 }
 
-const VoiceSettings: React.FC<VoiceSettingsProps> = ({ settings, onSettingChange }) => {
+const defaultSettings = { voiceURI: '', rate: 1, pitch: 1 };
+const VoiceSettings: React.FC<VoiceSettingsProps> = ({ settings = defaultSettings, onSettingChange }) => {
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
 
   useEffect(() => {

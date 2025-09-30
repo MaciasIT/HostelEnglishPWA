@@ -132,3 +132,13 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
 3.  **[🧊 PENDIENTE] CI/CD:**
     -   Configurar GitHub Actions para ejecutar los tests en cada push.
     -   Automatizar el despliegue a GitHub Pages en cada merge a `main`.
+
+---
+
+## 📝 Tareas Pendientes de Testing (30-09-2025)
+
+- [ ] **Corregir tests de Frases y Conversaciones:**
+    - Los tests de `/pages/Frases.test.tsx` siguen fallando porque el mock de Zustand no inyecta correctamente el estado y las frases no se renderizan en los tests. Revisar el mock y la reactividad/selectores.
+    - Un test de `/pages/Conversaciones.test.tsx` falla por un filtro de categoría. Revisar el mock de participantes y conversationSettings.
+    - Verificar que todos los mocks de Zustand sean reactivos y soporten selectores como en la app real.
+    - Una vez corregido, asegurar que todos los tests pasen y dejar la rama lista para merge.

@@ -1,0 +1,2 @@
+// This file is used to coordinate robust playback cancellation in ConversationDetail.
+// It is safe to delete after the patch is applied.

@@ -25,7 +25,7 @@ const ConversationList: React.FC<ConversationListProps> = ({ conversations, onSe
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4" data-testid="conversation-list">
       {conversations.map(conv => (
         <div
           key={conv.id}

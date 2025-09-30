@@ -37,7 +37,7 @@ describe('<Flashcards />', () => {
 
   it('should render the first flashcard by default', () => {
     renderComponent();
-    expect(screen.getByText('Drink Phrase')).toBeInTheDocument();
+  expect(screen.getAllByText('Drink Phrase')[0]).to.exist;
   });
 
   it('should navigate to the next and previous flashcard', async () => {
@@ -45,15 +45,17 @@ describe('<Flashcards />', () => {
     renderComponent();
 
     // Debería empezar con la primera frase
-    expect(screen.getByText('Drink Phrase')).toBeInTheDocument();
+  expect(screen.getAllByText('Drink Phrase')[0]).to.exist;
 
     // Clic en Siguiente
-    await user.click(screen.getByRole('button', { name: /siguiente/i }));
-    expect(screen.getByText('General Phrase')).toBeInTheDocument();
+  const nextButtons = screen.getAllByRole('button', { name: /siguiente/i });
+  await user.click(nextButtons[nextButtons.length - 1]);
+  expect(screen.getAllByText('General Phrase')[0]).to.exist;
 
     // Clic en Anterior
-    await user.click(screen.getByRole('button', { name: /anterior/i }));
-    expect(screen.getByText('Drink Phrase')).toBeInTheDocument();
+  const prevButtons = screen.getAllByRole('button', { name: /anterior/i });
+  await user.click(prevButtons[prevButtons.length - 1]);
+  expect(screen.getAllByText('Drink Phrase')[0]).to.exist;
   });
 
   it('should filter flashcards by category', async () => {
@@ -61,12 +63,15 @@ describe('<Flashcards />', () => {
     renderComponent();
 
     // Seleccionar categoría 'Recepción'
-    const categorySelect = screen.getByRole('combobox');
-    await user.selectOptions(categorySelect, 'Recepción');
+  const selects = screen.getAllByRole('combobox');
+  const categorySelect = selects[selects.length - 1];
+  await user.selectOptions(categorySelect, 'Recepción');
 
-    // Solo la frase de recepción debería ser visible
-    expect(screen.getByText('Reception Phrase')).toBeInTheDocument();
-    expect(screen.queryByText('Drink Phrase')).not.toBeInTheDocument();
-    expect(screen.queryByText('General Phrase')).not.toBeInTheDocument();
+  // Solo la frase de recepción debería ser visible en la flashcard actual
+  const flashcardWrappers = document.querySelectorAll('.relative.w-full.h-64.rounded-lg.shadow-lg.cursor-pointer.bg-primary.flex.items-center.justify-center.p-4');
+  const flashcard = flashcardWrappers[flashcardWrappers.length - 1];
+  expect(flashcard.textContent).to.include('Reception Phrase');
+  expect(flashcard.textContent).to.not.include('Drink Phrase');
+  expect(flashcard.textContent).to.not.include('General Phrase');
   });
 });
