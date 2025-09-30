@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import InstallPWAButton from './InstallPWAButton';
 import { useAppStore } from '@/store/useAppStore';
 
 const AppInitializer = () => {
@@ -19,7 +20,7 @@ const AppInitializer = () => {
     }
   }, [frasesLoaded, conversationsLoaded, initializeCategories]);
 
-  return null; // This component does not render anything
+  return <InstallPWAButton />;
 };
 
 export default AppInitializer;

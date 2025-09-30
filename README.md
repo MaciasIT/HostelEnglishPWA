@@ -30,6 +30,15 @@ Coloca tus datasets en `public/data/`:
 
 ## Notas de Desarrollo
 
+
+## Características PWA
+
+- Soporte completo para Service Worker y modo offline (activado con vite-plugin-pwa).
+- Manifest.json y pantalla de instalación personalizada (botón Instalar app).
+- Notificaciones push: solicita permiso y muestra notificación de bienvenida.
+- Permiso de micrófono: hook preparado para futuras funciones de dictado.
+- Tests TDD para todas las nuevas funcionalidades PWA.
+
 Para un historial detallado de las decisiones técnicas, problemas resueltos y mejoras implementadas, consulta el [Diario de Desarrollo](docs/DIARIO_DESARROLLO.md).
 
 > Este repo incluye páginas vacías para que el router compile sin errores.

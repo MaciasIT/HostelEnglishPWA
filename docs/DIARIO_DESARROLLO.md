@@ -1,6 +1,6 @@
 # 📖 Diario de Desarrollo – HostelInglésApp
 
-*Última actualización: 26-09-2025*
+*Última actualización: 30-09-2025*
 
 Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por módulos para reflejar el estado actual de cada componente de la aplicación.
 
@@ -14,7 +14,15 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
 
 ---
 
+
 ## 🏗️ Infraestructura y Configuración Core
+
+- **[✅] Activación real de PWA:**
+    - Service Worker y manifest activos y registrados en producción y desarrollo.
+    - Botón personalizado para instalar la app (gestión de beforeinstallprompt).
+    - Notificaciones push: solicitud de permiso y notificación de bienvenida.
+    - Hook para solicitar permiso de micrófono (base para dictado).
+    - Tests TDD para todas las nuevas funcionalidades PWA (service worker, push, instalación, micrófono).
 
 - **[✅] Estructura de Carpetas:** Definida y creada (`/src/pages`, `/components`, `/store`, etc.).
 - **[✅] PWA con Vite:**
@@ -39,6 +47,7 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
     - **[✅] Mock de speechSynthesis:** Añadido mock global de `window.speechSynthesis` en los tests para evitar errores en jsdom.
     - **[✅] Corrección de mocks en Conversaciones:** Ajustados los mocks de participantes y conversationSettings en los tests de Conversaciones.
     - **[✅] Refuerzo de protección en ConversationDetail:** Mejorada la protección contra valores `undefined` en el acceso a settings de participantes.
+    - **[✅] Tests TDD para PWA:** Añadidos tests para registro de service worker, notificaciones push, instalación y permisos de micrófono.
 
 ---
 
