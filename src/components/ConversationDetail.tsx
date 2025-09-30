@@ -33,6 +33,24 @@ interface ConversationDetailProps {
 }
 
 const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, onBack, onConversationEnd }) => {
+  // Hacemos la ref global para que cualquier botón pueda detener la reproducción secuencial
+  if (!(window as any).isPlayingAllConversationRef) {
+    (window as any).isPlayingAllConversationRef = React.createRef<{ current: boolean }>() as any;
+    (window as any).isPlayingAllConversationRef.current = false;
+  }
+  const isPlayingAllConversationRef = (window as any).isPlayingAllConversationRef as React.MutableRefObject<boolean>;
+
+  // Detiene la reproducción secuencial y limpia la ref
+  const stopAllConversationPlayback = () => {
+    isPlayingAllConversationRef.current = false;
+    window.speechSynthesis.cancel();
+  };
+  // Cleanup: cancela cualquier reproducción de voz al desmontar el componente
+  useEffect(() => {
+    return () => {
+      stopAllConversationPlayback();
+    };
+  }, []);
   const audioSpeed = useAppStore((state) => state.prefs.audioSpeed);
   const { conversationSettings, setConversationParticipantSetting } = useAppStore((state) => ({
     conversationSettings: state.prefs.conversationSettings,
@@ -103,15 +121,50 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
     window.speechSynthesis.speak(utterance);
   };
 
+  // Maneja el botón de volver y detiene la reproducción
+  const handleBack = () => {
+    stopAllConversationPlayback();
+    onBack();
+  };
+
+  // --- PATCH: handlePlayTurn detiene reproducción secuencial ---
+  const patchedHandlePlayTurn = (turn: ConversationTurn) => {
+    stopAllConversationPlayback();
+    const textToSpeak = turn.en || '';
+    const speechLang = 'en-US';
+
+    if (!textToSpeak.trim()) {
+      console.warn("Attempted to speak empty text.");
+      return;
+    }
+
+    const participantSettings = conversationSettings[turn.speaker] || { voiceURI: '', rate: 1, pitch: 1 };
+    const selectedVoice = availableVoices.find(voice => voice.voiceURI === participantSettings.voiceURI);
+
+    console.log(`Playing turn for ${turn.speaker} with rate: ${participantSettings.rate}`);
+
+    const utterance = new SpeechSynthesisUtterance(textToSpeak);
+    utterance.lang = speechLang;
+    utterance.rate = participantSettings.rate;
+    utterance.pitch = participantSettings.pitch;
+    if (selectedVoice) {
+      utterance.voice = selectedVoice;
+    }
+
+    window.speechSynthesis.speak(utterance);
+  };
+
   /**
    * Plays all turns of the conversation sequentially, using the configured voice settings for each participant.
    * This provides a continuous listening experience for the entire dialogue.
    */
   const handlePlayAll = useCallback(() => {
-    window.speechSynthesis.cancel(); // Stop any ongoing speech
+    stopAllConversationPlayback();
+    isPlayingAllConversationRef.current = true;
 
     let i = 0;
     const playNextTurn = () => {
+      if (!isPlayingAllConversationRef.current) return;
       if (i < conversation.dialogue.length) {
         const turn = conversation.dialogue[i];
         const textToSpeak = turn.en || '';
@@ -120,7 +173,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
         if (!textToSpeak.trim()) {
           console.warn("Attempted to speak empty text for turn", i);
           i++;
-          playNextTurn(); // Skip to next turn if text is empty
+          playNextTurn; // Skip to next turn if text is empty
           return;
         }
 
@@ -138,10 +191,12 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
         }
 
         utterance.onend = () => {
+          if (!isPlayingAllConversationRef.current) return;
           i++;
           playNextTurn();
         };
         utterance.onerror = (event) => {
+          if (!isPlayingAllConversationRef.current) return;
           console.error("Speech synthesis error during play all:", event);
           i++;
           playNextTurn(); // Continue to next turn even on error
@@ -149,6 +204,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
 
         window.speechSynthesis.speak(utterance);
       } else {
+        isPlayingAllConversationRef.current = false;
         // All turns played
         console.log("Conversation playback finished.");
         onConversationEnd(); // Notify parent component that conversation has ended
@@ -161,7 +217,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
   return (
     <div className="p-4 pb-20 bg-primary text-white min-h-screen">
       <button
-        onClick={onBack}
+        onClick={handleBack}
         className="mb-4 px-4 py-2 bg-primary-dark rounded-md text-white hover:bg-primary"
       >
         ← Volver a la lista
@@ -261,7 +317,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
                   <p className="text-lg mb-2 text-white whitespace-normal break-words">{turn.en}</p>
                   <p className="text-gray-300 text-sm italic whitespace-normal break-words">{turn.es}</p>
                   <button
-                    onClick={() => handlePlayTurn(turn)}
+                    onClick={() => patchedHandlePlayTurn(turn)}
                     className="mt-3 px-3 py-1 bg-primary text-white rounded-md hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
                   >
                     Reproducir

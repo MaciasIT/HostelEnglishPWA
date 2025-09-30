@@ -5,6 +5,32 @@ import BottomNav from '@/components/BottomNav';
 import VoiceSettings from '@/components/VoiceSettings';
 
 export default function Frases() {
+  // Ref para controlar si la reproducción secuencial está activa
+  // Hacemos la ref global para que PhraseCard pueda detener la reproducción secuencial
+  if (!(window as any).isPlayingAllRef) {
+    (window as any).isPlayingAllRef = React.createRef<{ current: boolean }>() as any;
+    (window as any).isPlayingAllRef.current = false;
+  }
+  const isPlayingAllRef = (window as any).isPlayingAllRef as React.MutableRefObject<boolean>;
+
+  // Detiene la reproducción secuencial y limpia la ref
+  const stopAllPlayback = () => {
+    isPlayingAllRef.current = false;
+    window.speechSynthesis.cancel();
+  };
+
+  // Handler global para detener la voz al pulsar cualquier botón
+  const handleAnyButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    stopAllPlayback();
+    // Si el botón ya tiene un onClick, se ejecutará después
+  };
+
+  // Cleanup: cancela cualquier reproducción de voz al desmontar o cambiar de pantalla
+  useEffect(() => {
+    return () => {
+      stopAllPlayback(); // Detiene cualquier reproducción en curso
+    };
+  }, []);
   const {
     frases,
     loadFrases,
@@ -72,12 +98,15 @@ export default function Frases() {
   const totalPages = Math.ceil(filteredFrases.length / phrasesPerPage);
 
   const handleGoToHome = () => {
+    stopAllPlayback();
     setSelectedCategory('all');
     setSearchTerm('');
     setPhrasesCurrentPage(1);
   };
 
   const handlePlayAll = () => {
+    stopAllPlayback();
+    isPlayingAllRef.current = true;
     const utterances = paginatedFrases.map(phrase => {
       const utterance = new SpeechSynthesisUtterance(phrase.en);
       utterance.lang = 'en-US';
@@ -94,18 +123,25 @@ export default function Frases() {
 
     let currentIndex = 0;
     const speak = () => {
+      if (!isPlayingAllRef.current) return;
       if (currentIndex < utterances.length) {
         const currentUtterance = utterances[currentIndex];
         currentUtterance.onend = () => {
+          if (!isPlayingAllRef.current) return;
+          currentIndex++;
+          speak();
+        };
+        currentUtterance.onerror = () => {
+          if (!isPlayingAllRef.current) return;
           currentIndex++;
           speak();
         };
         window.speechSynthesis.speak(currentUtterance);
       } else {
+        isPlayingAllRef.current = false;
         setIsModalOpen(true);
       }
     };
-
     speak();
   };
 
@@ -141,7 +177,7 @@ export default function Frases() {
         <p className="text-white">{filteredFrases.length} frases encontradas</p>
         <div className="flex items-center">
           <button
-            onClick={handlePlayAll}
+            onClick={e => { handleAnyButton(e); handlePlayAll(); }}
             className="px-4 py-2 rounded-md bg-accent text-white mr-4"
           >
             Reproducir Todo
@@ -199,7 +235,7 @@ export default function Frases() {
       
       <div className="flex justify-center mt-4">
           <button
-            onClick={handleGoToHome}
+            onClick={e => { handleAnyButton(e); handleGoToHome(); }}
             className="px-4 py-2 rounded-md bg-accent text-white"
           >
             Volver al inicio de Frases
@@ -212,7 +248,8 @@ export default function Frases() {
             <h2 className="text-xl font-bold text-white mb-4">¡Has completado la página!</h2>
             <div className="flex justify-around">
               <button
-                onClick={() => {
+                onClick={e => {
+                  handleAnyButton(e);
                   setIsModalOpen(false);
                   if (phrasesCurrentPage < totalPages) {
                     setPhrasesCurrentPage(phrasesCurrentPage + 1);
@@ -224,7 +261,8 @@ export default function Frases() {
                 Siguiente Página
               </button>
               <button
-                onClick={() => {
+                onClick={e => {
+                  handleAnyButton(e);
                   setIsModalOpen(false);
                   handleGoToHome();
                 }}

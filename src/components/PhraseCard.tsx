@@ -25,6 +25,12 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
   }));
 
   const handlePlayAudio = (lang: 'es' | 'en') => {
+    // Detiene la reproducción secuencial si está activa
+    if (window.isPlayingAllRef && window.isPlayingAllRef.current) {
+      window.isPlayingAllRef.current = false;
+    }
+    window.speechSynthesis.cancel();
+
     const textToSpeak = lang === 'es' ? phrase.es : phrase.en;
     const speechLang = lang === 'es' ? 'es-ES' : 'en-US';
 
