@@ -1,13 +1,5 @@
-feat(modules): add unique welcome screens for each module
+feat(modules): add welcome screens to remaining modules
 
-Adds a unique welcome screen to the `Estudio`, `Examen`, and `Conversaciones` modules.
+Adds a unique welcome screen to the `Frases`, `Flashcards`, `Quiz`, `Progreso`, and `Dashboard` modules.
 
-Each welcome screen provides a brief introduction to the module's functionality, with a design consistent with the application's home screen.
-
-This improves the user experience by offering a clear and attractive entry point to each section of the application.
-
-fix(components): correct `useRef` call in `ConversationDetail`
-
-Moves the `React.useRef` call inside the `ConversationDetail` component to comply with the Rules of Hooks.
-
-This ensures that the `isPlayingAllRef` reference is correctly created and that the component renders without errors.
+This change extends the user experience improvement of having a clear and attractive entry point to all sections of the application.
