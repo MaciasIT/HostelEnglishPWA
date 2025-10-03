@@ -1,5 +1,0 @@
-fix(conversations): stop playback when leaving module
-
-Adds a cleanup function to the `ConversationDetail` component to stop the speech synthesis when the component unmounts.
-
-This fixes a bug where the "Play All" feature in the `Conversaciones` module would not stop when the user navigated to another module.

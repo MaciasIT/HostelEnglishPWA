@@ -56,6 +56,7 @@ type State = {
   };
   phrasesCurrentPage: number;
   phrasesPerPage: number;
+  isSideNavOpen: boolean;
 };
 
 type Actions = {
@@ -81,6 +82,8 @@ type Actions = {
   ) => void;
   setPhrasesCurrentPage: (page: number) => void;
   setPhrasesPerPage: (limit: number) => void;
+  toggleSideNav: () => void;
+  closeSideNav: () => void;
 };
 
 export const useAppStore = create<State & Actions>()(
@@ -104,6 +107,7 @@ export const useAppStore = create<State & Actions>()(
       },
       phrasesCurrentPage: 1,
       phrasesPerPage: 10,
+      isSideNavOpen: false,
       initializeCategories: () => {
         const { frases, conversations } = get();
         const categoriesFromFrases = frases.map(f => f.categoria).filter(Boolean) as string[];
@@ -180,6 +184,8 @@ export const useAppStore = create<State & Actions>()(
       },
       setPhrasesCurrentPage: (page) => set({ phrasesCurrentPage: page }),
       setPhrasesPerPage: (limit) => set({ phrasesPerPage: limit, phrasesCurrentPage: 1 }), // Reset to first page
+      toggleSideNav: () => set((state) => ({ isSideNavOpen: !state.isSideNavOpen })),
+      closeSideNav: () => set({ isSideNavOpen: false }),
     }),
     {
       name: "hostelenglish-storage",

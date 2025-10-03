@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 // (debe ir después del import)
 import { useAppStore, Phrase } from '@/store/useAppStore';
 import PhraseCard from '@/components/PhraseCard';
-import BottomNav from '@/components/BottomNav';
 import VoiceSettings from '@/components/VoiceSettings';
 
 const FeatureCard = ({ title, description }: { title: string, description: string }) => (
@@ -291,8 +290,6 @@ export default function Frases() {
           </div>
         </div>
       )}
-
-      <BottomNav />
     </div>
   );
 }
