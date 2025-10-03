@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import ConversationList from '@/components/ConversationList';
 import ConversationDetail from '@/components/ConversationDetail';
 import { useAppStore } from '@/store/useAppStore';
@@ -19,6 +20,13 @@ type Conversation = {
   participants: string[];
 };
 
+const FeatureCard = ({ title, description }: { title: string, description: string }) => (
+  <div className="bg-white/20 p-6 rounded-lg shadow-lg text-center">
+    <h3 className="text-xl font-bold mb-2">{title}</h3>
+    <p>{description}</p>
+  </div>
+);
+
 export default function Conversaciones() {
   const { conversations, categories } = useAppStore((state) => ({
     conversations: state.conversations,
@@ -27,6 +35,7 @@ export default function Conversaciones() {
   const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showPostConversationOptions, setShowPostConversationOptions] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(true);
 
   const displayCategories = ['all', ...categories];
 
@@ -47,37 +56,63 @@ export default function Conversaciones() {
     setShowPostConversationOptions(false); // Hide options when going back to list
   };
 
-  /**
-   * Handles the event when a conversation finishes playing all its turns.
-   * It sets a state to show options for navigating to the next conversation or returning to the list.
-   */
   const handleConversationEnd = () => {
     console.log("handleConversationEnd called. Setting showPostConversationOptions to true.");
     setShowPostConversationOptions(true);
   };
 
-  /**
-   * Handles navigation to the next conversation in the filtered list.
-   * If there is a next conversation, it sets it as the selected conversation.
-   * Otherwise, it returns to the main list.
-   */
   const handleNextConversation = () => {
     const currentIndex = filteredConversations.findIndex(c => c.id === selectedConversation?.id);
     if (currentIndex !== -1 && currentIndex < filteredConversations.length - 1) {
       setSelectedConversation(filteredConversations[currentIndex + 1]);
       setShowPostConversationOptions(false);
     } else {
-      // If no next conversation, go back to the list
       handleBackToList();
     }
   };
 
-  /**
-   * Handles returning to the main conversation list.
-   */
   const handleReturnToList = () => {
     handleBackToList();
   };
+
+  if (showWelcome) {
+    return (
+      <div className="text-white">
+        {/* Hero Section */}
+        <section className="bg-primary py-20 px-4 text-center">
+          <div className="max-w-4xl mx-auto">
+            <div className="mb-4 text-4xl">💬</div>
+            <h1 className="text-5xl font-bold mb-4">Módulo de Conversaciones</h1>
+            <p className="text-xl mb-8">Practica con diálogos reales y mejora tu fluidez y pronunciación.</p>
+            <button
+              onClick={() => setShowWelcome(false)}
+              className="bg-accent hover:bg-accent-dark text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300"
+            >
+              Empezar a Practicar
+            </button>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="bg-accent py-20 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-4xl font-bold text-center mb-12">¿Qué encontrarás aquí?</h2>
+            <div className="grid md:grid-cols-1 gap-8">
+              <FeatureCard
+                title="Diálogos Interactivos"
+                description="Escucha y repite conversaciones comunes en el entorno de la hostelería. Practica con diferentes acentos y situaciones para ganar confianza."
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer className="bg-primary-dark py-4 text-center text-sm">
+          <p>© 2025 HostellinglésApp. Todos los derechos reservados.</p>
+        </footer>
+      </div>
+    );
+  }
 
   return (
     <div className="p-4 pb-20 bg-primary text-white min-h-screen">

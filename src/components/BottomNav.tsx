@@ -7,12 +7,17 @@ type NavItemProps = {
   label: string;
 };
 
-const NavItem: React.FC<NavItemProps> = ({ to, icon, label }) => (
-  <Link to={to} className="flex flex-col items-center justify-center p-2 text-gray-300 hover:text-accent">
-    <span className="text-xl">{icon}</span>
-    <span className="text-xs">{label}</span>
-  </Link>
-);
+const NavItem: React.FC<NavItemProps> = ({ to, icon, label }) => {
+  const handleClick = () => {
+    window.speechSynthesis.cancel();
+  };
+  return (
+    <Link to={to} onClick={handleClick} className="flex flex-col items-center justify-center p-2 text-gray-300 hover:text-accent">
+      <span className="text-xl">{icon}</span>
+      <span className="text-xs">{label}</span>
+    </Link>
+  );
+};
 
 const BottomNav: React.FC = () => {
   return (

@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
+// Cleanup global: cancela cualquier reproducción de voz al desmontar la pantalla
+// (debe ir después del import)
 import { useAppStore, Phrase } from '@/store/useAppStore';
 import PhraseCard from '@/components/PhraseCard';
 import BottomNav from '@/components/BottomNav';
@@ -110,20 +112,21 @@ export default function Frases() {
   };
 
   return (
-    <div className="p-4 pb-20 bg-primary text-white min-h-screen">
-      <h1 className="text-2xl font-bold mb-4 text-white">Frases</h1>
 
-      <div className="grid grid-cols-2 gap-4 mb-4">
+    <div className="p-2 sm:p-4 pb-24 bg-primary text-white min-h-screen w-full max-w-full overflow-x-hidden">
+      <h1 className="text-xl sm:text-2xl font-bold mb-4 text-white">Frases</h1>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 mb-4">
         <input
           type="text"
           placeholder="Buscar frase..."
-          className="w-full p-2 border rounded-md bg-primary-dark border-primary-dark text-white placeholder-gray-400"
+          className="w-full p-2 border rounded-md bg-primary-dark border-primary-dark text-white placeholder-gray-400 text-sm sm:text-base"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <select
           id="category-select"
-          className="w-full p-2 border rounded-md bg-primary-dark border-primary-dark text-white"
+          className="w-full p-2 border rounded-md bg-primary-dark border-primary-dark text-white text-sm sm:text-base"
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
         >
@@ -137,26 +140,29 @@ export default function Frases() {
 
       <VoiceSettings settings={phraseSettings} onSettingChange={setPhraseSetting} />
 
-      <div className="flex justify-between items-center mb-4">
-        <p className="text-white">{filteredFrases.length} frases encontradas</p>
-        <div className="flex items-center">
+
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2 sm:gap-0">
+        <p className="text-white text-sm sm:text-base">{filteredFrases.length} frases encontradas</p>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
           <button
             onClick={handlePlayAll}
-            className="px-4 py-2 rounded-md bg-accent text-white mr-4"
+            className="px-3 py-2 rounded-md bg-accent text-white text-sm sm:text-base w-full sm:w-auto"
           >
             Reproducir Todo
           </button>
-          <label htmlFor="phrases-per-page" className="mr-2 text-white">Frases por página:</label>
-          <select
-            id="phrases-per-page"
-            className="p-2 border rounded-md bg-primary-dark border-primary-dark text-white"
-            value={phrasesPerPage}
-            onChange={(e) => setPhrasesPerPage(Number(e.target.value))}
-          >
-            <option value={5}>5</option>
-            <option value={10}>10</option>
-            <option value={20}>20</option>
-          </select>
+          <div className="flex items-center">
+            <label htmlFor="phrases-per-page" className="mr-2 text-white text-sm sm:text-base">Frases por página:</label>
+            <select
+              id="phrases-per-page"
+              className="p-2 border rounded-md bg-primary-dark border-primary-dark text-white text-sm sm:text-base"
+              value={phrasesPerPage}
+              onChange={(e) => setPhrasesPerPage(Number(e.target.value))}
+            >
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+            </select>
+          </div>
         </div>
       </div>
 
@@ -164,7 +170,8 @@ export default function Frases() {
         <p className="text-center text-white">No se encontraron frases.</p>
       )}
 
-      <div>
+
+      <div className="space-y-3">
         {paginatedFrases.map(phrase => (
           <PhraseCard
             key={phrase.id}
@@ -176,21 +183,21 @@ export default function Frases() {
       </div>
 
       {totalPages > 1 && (
-        <div className="flex justify-center items-center mt-4 space-x-4">
+        <div className="flex flex-wrap justify-center items-center mt-4 gap-2">
           <button
             onClick={() => setPhrasesCurrentPage(phrasesCurrentPage - 1)}
             disabled={phrasesCurrentPage === 1}
-            className="px-4 py-2 rounded-md bg-primary-dark disabled:bg-gray-600"
+            className="px-3 py-2 rounded-md bg-primary-dark disabled:bg-gray-600 text-sm sm:text-base"
           >
             Anterior
           </button>
-          <span className="text-white">
+          <span className="text-white text-sm sm:text-base">
             Página {phrasesCurrentPage} de {totalPages}
           </span>
           <button
             onClick={() => setPhrasesCurrentPage(phrasesCurrentPage + 1)}
             disabled={phrasesCurrentPage === totalPages}
-            className="px-4 py-2 rounded-md bg-primary-dark disabled:bg-gray-600"
+            className="px-3 py-2 rounded-md bg-primary-dark disabled:bg-gray-600 text-sm sm:text-base"
           >
             Siguiente
           </button>
@@ -198,12 +205,12 @@ export default function Frases() {
       )}
       
       <div className="flex justify-center mt-4">
-          <button
-            onClick={handleGoToHome}
-            className="px-4 py-2 rounded-md bg-accent text-white"
-          >
-            Volver al inicio de Frases
-          </button>
+        <button
+          onClick={handleGoToHome}
+          className="px-3 py-2 rounded-md bg-accent text-white text-sm sm:text-base w-full sm:w-auto"
+        >
+          Volver al inicio de Frases
+        </button>
       </div>
 
       {isModalOpen && (

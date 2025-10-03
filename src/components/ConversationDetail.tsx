@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useAppStore } from '@/store/useAppStore';
 
 /**
@@ -33,6 +33,7 @@ interface ConversationDetailProps {
 }
 
 const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, onBack, onConversationEnd }) => {
+  const isPlayingAllRef = useRef(false);
   const audioSpeed = useAppStore((state) => state.prefs.audioSpeed);
   const { conversationSettings, setConversationParticipantSetting } = useAppStore((state) => ({
     conversationSettings: state.prefs.conversationSettings,
@@ -78,6 +79,8 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
    * @param turn The ConversationTurn object to play.
    */
   const handlePlayTurn = (turn: ConversationTurn) => {
+    isPlayingAllRef.current = false;
+    window.speechSynthesis.cancel();
     const textToSpeak = turn.en || '';
     const speechLang = 'en-US';
 
@@ -109,9 +112,11 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
    */
   const handlePlayAll = useCallback(() => {
     window.speechSynthesis.cancel(); // Stop any ongoing speech
+    isPlayingAllRef.current = true;
 
     let i = 0;
     const playNextTurn = () => {
+      if (!isPlayingAllRef.current) return;
       if (i < conversation.dialogue.length) {
         const turn = conversation.dialogue[i];
         const textToSpeak = turn.en || '';
@@ -138,10 +143,12 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
         }
 
         utterance.onend = () => {
+          if (!isPlayingAllRef.current) return;
           i++;
           playNextTurn();
         };
         utterance.onerror = (event) => {
+          if (!isPlayingAllRef.current) return;
           console.error("Speech synthesis error during play all:", event);
           i++;
           playNextTurn(); // Continue to next turn even on error
@@ -149,6 +156,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
 
         window.speechSynthesis.speak(utterance);
       } else {
+        isPlayingAllRef.current = false;
         // All turns played
         console.log("Conversation playback finished.");
         onConversationEnd(); // Notify parent component that conversation has ended
@@ -161,7 +169,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
   return (
     <div className="p-4 pb-20 bg-primary text-white min-h-screen">
       <button
-        onClick={onBack}
+        onClick={() => { isPlayingAllRef.current = false; window.speechSynthesis.cancel(); onBack(); }}
         className="mb-4 px-4 py-2 bg-primary-dark rounded-md text-white hover:bg-primary"
       >
         ← Volver a la lista
@@ -175,7 +183,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
           id="role-select"
           className="w-full p-2 border rounded-md bg-primary-dark border-primary-dark text-white"
           value={selectedRole}
-          onChange={(e) => setSelectedRole(e.target.value)}
+          onChange={(e) => { isPlayingAllRef.current = false; window.speechSynthesis.cancel(); setSelectedRole(e.target.value); }}
         >
           <option value="Todos">Todos</option>
           {conversation.participants.map(participant => (
@@ -209,7 +217,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
                 id={`voice-select-${participant}`}
                 className="w-full p-2 border rounded-md bg-primary-light border-primary-dark text-white mb-2"
                 value={participantSettings.voiceURI}
-                onChange={(e) => setConversationParticipantSetting(participant, 'voiceURI', e.target.value)}
+                onChange={(e) => { isPlayingAllRef.current = false; window.speechSynthesis.cancel(); setConversationParticipantSetting(participant, 'voiceURI', e.target.value); }}
               >
                 <option value="">Por defecto</option>
                 {availableVoices.map(voice => (
@@ -226,7 +234,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
                 id={`rate-range-${participant}`}
                 min="0.5" max="2" step="0.1"
                 value={participantSettings.rate}
-                onChange={(e) => setConversationParticipantSetting(participant, 'rate', parseFloat(e.target.value))}
+                onChange={(e) => { isPlayingAllRef.current = false; window.speechSynthesis.cancel(); setConversationParticipantSetting(participant, 'rate', parseFloat(e.target.value)); }}
                 className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 mb-2"
               />
 
@@ -237,7 +245,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
                 id={`pitch-range-${participant}`}
                 min="0" max="2" step="0.1"
                 value={participantSettings.pitch}
-                onChange={(e) => setConversationParticipantSetting(participant, 'pitch', parseFloat(e.target.value))}
+                onChange={(e) => { isPlayingAllRef.current = false; window.speechSynthesis.cancel(); setConversationParticipantSetting(participant, 'pitch', parseFloat(e.target.value)); }}
                 className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
               />
             </div>
