@@ -1,5 +1,5 @@
-feat(modules): add welcome screens to remaining modules
+fix(conversations): stop playback when leaving module
 
-Adds a unique welcome screen to the `Frases`, `Flashcards`, `Quiz`, `Progreso`, and `Dashboard` modules.
+Adds a cleanup function to the `ConversationDetail` component to stop the speech synthesis when the component unmounts.
 
-This change extends the user experience improvement of having a clear and attractive entry point to all sections of the application.
+This fixes a bug where the "Play All" feature in the `Conversaciones` module would not stop when the user navigated to another module.

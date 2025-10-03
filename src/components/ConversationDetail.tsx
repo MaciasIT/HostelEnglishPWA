@@ -73,6 +73,14 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
     }
   }, [getSortedVoices]);
 
+  useEffect(() => {
+    // Cleanup function to stop speech synthesis when the component unmounts
+    return () => {
+      isPlayingAllRef.current = false;
+      window.speechSynthesis.cancel();
+    };
+  }, []);
+
   /**
    * Plays a single turn of the conversation using the configured voice settings for the speaker.
    * Ensures any previous speech is stopped before starting a new turn.
