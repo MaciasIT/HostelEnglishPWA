@@ -185,8 +185,8 @@ const Dictation: React.FC = () => {
                   cancelSpeech();
                   handleCheckAnswer();
                 }}
-                className="flex-grow bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300 w-full"
-                aria-label="enviar respuesta por voz"
+                className="flex-grow bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300 w-full"
+                aria-label="Enviar respuesta"
               >
                 Enviar Respuesta
               </button>
