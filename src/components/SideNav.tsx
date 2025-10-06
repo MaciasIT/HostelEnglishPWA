@@ -39,6 +39,7 @@ const SideNav: React.FC = () => {
             <NavItem to="/" icon="🏠" label="Inicio" />
             <NavItem to="/frases" icon="🗣️" label="Frases" />
             <NavItem to="/conversaciones" icon="💬" label="Conversaciones" />
+            <NavItem to="/dictado" icon="✍️" label="Dictado" />
             <NavItem to="/flashcards" icon="🧠" label="Flashcards" />
             <NavItem to="/quiz" icon="❓" label="Quiz" />
             <NavItem to="/estudio" icon="📚" label="Estudio" />

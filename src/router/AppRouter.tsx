@@ -10,6 +10,7 @@ import Quiz from '@/pages/Quiz';
 import Estudio from '@/pages/Estudio';
 import Examen from '@/pages/Examen';
 import Dashboard from '@/pages/Dashboard';
+import Dictation from '@/pages/Dictation';
 
 const AppRouter: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const AppRouter: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/frases" element={<Frases />} />
         <Route path="/conversaciones" element={<Conversaciones />} />
+        <Route path="/dictado" element={<Dictation />} />
         <Route path="/progreso" element={<Progreso />} />
         <Route path="/flashcards" element={<Flashcards />} />
         <Route path="/quiz" element={<Quiz />} />
