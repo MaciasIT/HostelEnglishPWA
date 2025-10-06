@@ -52,9 +52,12 @@ const Dictation: React.FC = () => {
       utterance.pitch = phraseSettings.pitch;
 
       const voices = window.speechSynthesis.getVoices();
-      const selectedVoice = voices.find(voice => voice.lang.startsWith('en') && voice.voiceURI === phraseSettings.voiceURI);
+      const selectedVoice = voices.find(voice => voice.voiceURI === phraseSettings.voiceURI);
+
       if (selectedVoice) {
         utterance.voice = selectedVoice;
+      } else {
+        console.warn("Selected voice not found. Using default voice.");
       }
 
       window.speechSynthesis.speak(utterance);
