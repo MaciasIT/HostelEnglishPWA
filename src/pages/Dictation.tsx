@@ -52,7 +52,7 @@ const Dictation: React.FC = () => {
       utterance.pitch = phraseSettings.pitch;
 
       const voices = window.speechSynthesis.getVoices();
-      const selectedVoice = voices.find(voice => voice.voiceURI === phraseSettings.voiceURI);
+      const selectedVoice = voices.find(voice => voice.lang.startsWith('en') && voice.voiceURI === phraseSettings.voiceURI);
       if (selectedVoice) {
         utterance.voice = selectedVoice;
       }
@@ -185,7 +185,7 @@ const Dictation: React.FC = () => {
                   cancelSpeech();
                   handleCheckAnswer();
                 }}
-                className="flex-grow bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300"
+                className="flex-grow bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300 w-full"
                 aria-label="enviar respuesta por voz"
               >
                 Enviar Respuesta
