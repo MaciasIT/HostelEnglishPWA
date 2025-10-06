@@ -83,6 +83,21 @@ const Dictation: React.FC = () => {
     }
   }, [currentPhrase, userAnswer, cancelSpeech]);
 
+  const handleStopListening = () => {
+    stopListening();
+    setTimeout(() => {
+      if (currentPhrase) {
+        const normalizedUserAnswer = normalizeText(transcript);
+        const normalizedCorrectAnswer = normalizeText(currentPhrase.en);
+        const isCorrect = normalizedUserAnswer === normalizedCorrectAnswer;
+        setFeedback(isCorrect ? '¡Correcto!' : 'Inténtalo de nuevo.');
+        if (!isCorrect) {
+          setCorrectAnswer(currentPhrase.en);
+        }
+      }
+    }, 1000); // Esperar 1 segundo antes de analizar
+  };
+
   // Effect to handle speech recognition transcript
   useEffect(() => {
     if (!isListening && transcript) {
@@ -173,22 +188,12 @@ const Dictation: React.FC = () => {
                 Comprobar
               </button>
               <button
-                onClick={() => { cancelSpeech(); isListening ? stopListening() : startListening(); }}
+                onClick={() => { cancelSpeech(); isListening ? handleStopListening() : startListening(); }}
                 className={`p-3 rounded-lg text-lg transition duration-300 ${isListening ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'}`}
                 aria-label={isListening ? "detener dictado por voz" : "iniciar dictado por voz"}
                 disabled={!browserSupportsSpeechRecognition}
               >
-                {isListening ? '🔴' : '🎤'}
-              </button>
-              <button
-                onClick={() => {
-                  cancelSpeech();
-                  handleCheckAnswer();
-                }}
-                className="flex-grow bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300 w-full"
-                aria-label="Enviar respuesta"
-              >
-                Enviar Respuesta
+                {isListening ? '🛑' : '🎤'}
               </button>
             </div>
           </div>

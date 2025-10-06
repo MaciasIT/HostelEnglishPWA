@@ -27,6 +27,11 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({ settings, onSettingChange
     };
   }, []);
 
+  const handleVoiceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedVoiceURI = e.target.value;
+    onSettingChange('voiceURI', selectedVoiceURI);
+  };
+
   return (
     <div className="bg-primary-dark p-4 rounded-lg mb-4">
       <h3 className="text-lg font-bold text-white mb-2">Configuración de Voz</h3>
@@ -37,7 +42,7 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({ settings, onSettingChange
             id="voice-select"
             className="w-full p-2 border rounded-md bg-primary border-primary-dark text-white"
             value={settings.voiceURI}
-            onChange={(e) => onSettingChange('voiceURI', e.target.value)}
+            onChange={handleVoiceChange}
           >
             <option value="">Voz por defecto</option>
             {voices.map(voice => (
