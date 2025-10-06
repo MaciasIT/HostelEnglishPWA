@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useAppStore, Phrase } from '@/store/useAppStore';
-import { normalizeText } from '@/utils/normalize';
+import { normalizeText, levenshteinDistance } from '@/utils/normalize';
 import useSpeechRecognition from '@/hooks/useSpeechRecognition';
+import VoiceSettings from '@/components/VoiceSettings';
+import useAudioControl from '@/hooks/useAudioControl'; // Use the new hook
 
 const FeatureCard = ({ title, description }: { title: string, description: string }) => (
   <div className="bg-white/20 p-6 rounded-lg shadow-lg text-center">
@@ -16,8 +17,14 @@ const Dictation: React.FC = () => {
   const [currentPhrase, setCurrentPhrase] = useState<Phrase | null>(null);
   const [userAnswer, setUserAnswer] = useState('');
   const [feedback, setFeedback] = useState('');
+  const [correctAnswer, setCorrectAnswer] = useState<string | null>(null); // New state for correct answer
+  const [showTranslation, setShowTranslation] = useState(false); // State to control translation visibility
 
-  const { isListening, transcript, startListening, stopListening, browserSupportsSpeechRecognition, error } = useSpeechRecognition();
+  const { isListening, transcript, startListening, stopListening, browserSupportsSpeechRecognition, error: speechError } = useSpeechRecognition();
+  const { cancelSpeech } = useAudioControl(); // Use the new hook
+
+  const phraseSettings = useAppStore((state) => state.prefs.phraseSettings);
+  const setPhraseSetting = useAppStore((state) => state.setPhraseSetting);
 
   const selectNewPhrase = useCallback(() => {
     if (frases.length > 0) {
@@ -25,6 +32,8 @@ const Dictation: React.FC = () => {
       setCurrentPhrase(frases[randomIndex]);
       setUserAnswer(''); // Reset answer
       setFeedback(''); // Reset feedback
+      setCorrectAnswer(null); // Reset correct answer
+      setShowTranslation(false); // Hide translation for new phrase
     }
   }, [frases]);
 
@@ -36,21 +45,51 @@ const Dictation: React.FC = () => {
 
   const handlePlayAudio = () => {
     if (currentPhrase) {
+      cancelSpeech(); // Cancel any ongoing speech before playing new audio
       const utterance = new SpeechSynthesisUtterance(currentPhrase.en);
+      utterance.rate = phraseSettings.rate;
+      utterance.pitch = phraseSettings.pitch;
+
+      const voices = window.speechSynthesis.getVoices();
+      const selectedVoice = voices.find(voice => voice.voiceURI === phraseSettings.voiceURI);
+      if (selectedVoice) {
+        utterance.voice = selectedVoice;
+      }
+
       window.speechSynthesis.speak(utterance);
     }
   };
 
-  const handleCheckAnswer = () => {
+  const handleCheckAnswer = useCallback(() => {
     if (!currentPhrase) return;
 
-    // Simple comparison for now
-    if (normalizeText(userAnswer) === normalizeText(currentPhrase.en)) {
+    cancelSpeech(); // Cancel speech on check
+
+    const normalizedUserAnswer = normalizeText(userAnswer);
+    const normalizedCorrectAnswer = normalizeText(currentPhrase.en);
+
+    const distance = levenshteinDistance(normalizedUserAnswer, normalizedCorrectAnswer);
+    const toleranceThreshold = Math.floor(normalizedCorrectAnswer.length * 0.15); // 15% tolerance
+
+    if (distance <= toleranceThreshold) {
       setFeedback('¡Correcto!');
+      setCorrectAnswer(null); // Clear correct answer on success
+      setShowTranslation(true); // Show translation on correct answer
     } else {
       setFeedback('Inténtalo de nuevo.');
+      setCorrectAnswer(currentPhrase.en); // Show correct answer on failure
+      setShowTranslation(true); // Show translation on incorrect answer
     }
-  };
+  }, [currentPhrase, userAnswer, cancelSpeech]);
+
+  // Effect to handle speech recognition transcript
+  useEffect(() => {
+    if (!isListening && transcript) {
+      setUserAnswer(transcript);
+      // Automatically check the answer after speech recognition stops and a transcript is available
+      handleCheckAnswer();
+    }
+  }, [isListening, transcript, handleCheckAnswer]);
 
   if (showWelcome) {
     return (
@@ -63,7 +102,7 @@ const Dictation: React.FC = () => {
             <p className="text-xl mb-8">Pon a prueba tu oído y escritura. Escucha frases en inglés y escríbelas correctamente.</p>
             <button
               onClick={() => {
-                window.speechSynthesis.cancel();
+                cancelSpeech(); // Use cancelSpeech from the hook
                 setShowWelcome(false);
               }}
               className="bg-accent hover:bg-accent-dark text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300"
@@ -120,20 +159,20 @@ const Dictation: React.FC = () => {
             <input
               type="text"
               value={isListening ? transcript : userAnswer}
-              onChange={(e) => setUserAnswer(e.target.value)}
+              onChange={(e) => { cancelSpeech(); setUserAnswer(e.target.value); }}
               placeholder={isListening ? "Escuchando..." : "Escribe lo que escuchas..."}
               className="w-full p-3 bg-primary border border-gray-600 rounded-lg text-white text-lg focus:outline-none focus:ring-2 focus:ring-accent"
               disabled={isListening}
             />
             <div className="flex gap-2">
               <button
-                onClick={handleCheckAnswer}
+                onClick={() => { cancelSpeech(); handleCheckAnswer(); }}
                 className="flex-grow bg-accent hover:bg-accent-dark text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300"
               >
                 Comprobar
               </button>
               <button
-                onClick={isListening ? stopListening : startListening}
+                onClick={() => { cancelSpeech(); isListening ? stopListening() : startListening(); }}
                 className={`p-3 rounded-lg text-lg transition duration-300 ${isListening ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'}`}
                 aria-label={isListening ? "detener dictado por voz" : "iniciar dictado por voz"}
                 disabled={!browserSupportsSpeechRecognition}
@@ -143,7 +182,28 @@ const Dictation: React.FC = () => {
             </div>
           </div>
 
-          {error && <p className="mt-4 text-center text-red-400 text-lg">{error}</p>}
+          {!browserSupportsSpeechRecognition && (
+            <p className="mt-4 text-center text-red-400 text-lg">
+              Tu navegador no soporta el reconocimiento de voz. Por favor, usa Chrome o Edge.
+            </p>
+          )}
+          {speechError && <p className="mt-4 text-center text-red-400 text-lg">Error de voz: {speechError}</p>}
+          {feedback && (
+            <p className={`mt-4 text-center text-xl font-bold ${feedback === '¡Correcto!' ? 'text-green-400' : 'text-red-400'}`}>
+              {feedback}
+            </p>
+          )}
+          {correctAnswer && feedback === 'Inténtalo de nuevo.' && (
+            <p className="mt-2 text-center text-lg text-gray-300">
+              Respuesta correcta: <span className="font-semibold">{currentPhrase?.en}</span>
+            </p>
+          )}
+          {showTranslation && currentPhrase?.es && (
+            <p className="mt-2 text-center text-lg text-gray-400">
+              Traducción: <span className="font-semibold">{currentPhrase.es}</span>
+            </p>
+          )}
+
         </div>
       ) : (
         <p>Cargando frases...</p>
@@ -151,11 +211,19 @@ const Dictation: React.FC = () => {
 
       <div className="mt-6 flex justify-center">
         <button 
-          onClick={selectNewPhrase}
+          onClick={() => { cancelSpeech(); selectNewPhrase(); }}
           className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-full transition duration-300"
         >
           Siguiente Frase
         </button>
+      </div>
+
+      {/* Voice Settings Component */}
+      <div className="mt-8">
+        <VoiceSettings 
+          settings={phraseSettings}
+          onSettingChange={setPhraseSetting}
+        />
       </div>
     </div>
   );

@@ -79,83 +79,83 @@ describe('<Dictation />', () => {
     randomSpy.mockRestore();
   });
 
-  // it('should show a success message when the user types the correct answer', async () => {
-  //   const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0);
-  //   const user = userEvent.setup();
-  //   renderComponent();
+  it('should show a success message when the user types the correct answer', async () => {
+    const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0);
+    const user = userEvent.setup();
+    renderComponent();
 
-  //   await user.click(screen.getByRole('button', { name: /Empezar a Practicar/i }));
-  //   // Esperar a que el contenido principal se renderice
-  //   const input = await screen.findByPlaceholderText(/Escribe lo que escuchas/i);
+    await user.click(screen.getByRole('button', { name: /Empezar a Practicar/i }));
+    // Esperar a que el contenido principal se renderice
+    const input = await screen.findByPlaceholderText(/Escribe lo que escuchas/i);
 
-  //   await user.type(input, mockFrases[0].en);
+    await user.type(input, mockFrases[0].en);
 
-  //   const checkButton = screen.getByRole('button', { name: /comprobar/i });
-  //   await act(async () => {
-  //     await user.click(checkButton);
-  //   });
-  //   await new Promise(resolve => setTimeout(resolve, 0)); // Flush microtasks
+    const checkButton = screen.getByRole('button', { name: /comprobar/i });
+    await act(async () => {
+      await user.click(checkButton);
+    });
+    await new Promise(resolve => setTimeout(resolve, 0)); // Flush microtasks
 
-  //   await waitFor(() => {
-  //     expect(screen.getByText(/¡Correcto!/i)).toBeInTheDocument();
-  //   });
+    await waitFor(() => {
+      expect(screen.getByText(/¡Correcto!/i)).toBeInTheDocument();
+    });
 
-  //   randomSpy.mockRestore();
-  // });
+    randomSpy.mockRestore();
+  });
 
-  // it('should show a failure message for an incorrect answer', async () => {
-  //   const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0);
-  //   const user = userEvent.setup();
-  //   renderComponent();
+  it('should show a failure message for an incorrect answer', async () => {
+    const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0);
+    const user = userEvent.setup();
+    renderComponent();
 
-  //   await user.click(screen.getByRole('button', { name: /Empezar a Practicar/i }));
-  //   // Esperar a que el contenido principal se renderice
-  //   const input = await screen.findByPlaceholderText(/Escribe lo que escuchas/i);
+    await user.click(screen.getByRole('button', { name: /Empezar a Practicar/i }));
+    // Esperar a que el contenido principal se renderice
+    const input = await screen.findByPlaceholderText(/Escribe lo que escuchas/i);
 
-  //   await user.type(input, 'wrong answer');
+    await user.type(input, 'wrong answer');
 
-  //   const checkButton = screen.getByRole('button', { name: /comprobar/i });
-  //   await act(async () => {
-  //     await user.click(checkButton);
-  //   });
-  //   await new Promise(resolve => setTimeout(resolve, 0)); // Flush microtasks
+    const checkButton = screen.getByRole('button', { name: /comprobar/i });
+    await act(async () => {
+      await user.click(checkButton);
+    });
+    await new Promise(resolve => setTimeout(resolve, 0)); // Flush microtasks
 
-  //   await waitFor(() => {
-  //     expect(screen.getByText(/Inténtalo de nuevo/i)).toBeInTheDocument();
-  //   });
+    await waitFor(() => {
+      expect(screen.getByText(/Inténtalo de nuevo/i)).toBeInTheDocument();
+    });
 
-  //   randomSpy.mockRestore();
-  // });
+    randomSpy.mockRestore();
+  });
 
-  // it('should process spoken input and show success message', async () => {
-  //   const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0);
-  //   const user = userEvent.setup();
-  //   renderComponent();
+  it('should process spoken input and show success message', async () => {
+    const randomSpy = vi.spyOn(Math, 'random').mockReturnValue(0);
+    const user = userEvent.setup();
+    renderComponent();
 
-  //   await user.click(screen.getByRole('button', { name: /Empezar a Practicar/i }));
-  //   await screen.findByPlaceholderText(/Escribe lo que escuchas/i);
+    await user.click(screen.getByRole('button', { name: /Empezar a Practicar/i }));
+    await screen.findByPlaceholderText(/Escribe lo que escuchas/i);
 
-  //   // Clear mock functions for this test
-  //   _mockSpeechRecognition.startListening.mockClear();
-  //   _mockSpeechRecognition.stopListening.mockClear();
+    // Clear mock functions for this test
+    _mockSpeechRecognition.startListening.mockClear();
+    _mockSpeechRecognition.stopListening.mockClear();
 
-  //   // Simulate clicking the microphone button
-  //   const microphoneButton = await screen.findByRole('button', { name: /iniciar dictado por voz/i });
-  //   await user.click(microphoneButton);
+    // Simulate clicking the microphone button
+    const microphoneButton = await screen.findByRole('button', { name: /iniciar dictado por voz/i });
+    await user.click(microphoneButton);
 
-  //   // Expect startListening to have been called
-  //   expect(_mockSpeechRecognition.startListening).toHaveBeenCalled();
+    // Expect startListening to have been called
+    expect(_mockSpeechRecognition.startListening).toHaveBeenCalled();
 
-  //   // Simulate speech recognition providing a transcript
-  //   _mockSpeechRecognition.transcript = mockFrases[0].en;
-  //   _mockSpeechRecognition.isListening = false; // Simulate recognition ending
-  //   renderComponent(); // Re-render with updated mock values
+    // Simulate speech recognition providing a transcript
+    _mockSpeechRecognition.transcript = mockFrases[0].en;
+    _mockSpeechRecognition.isListening = false; // Simulate recognition ending
+    // renderComponent(); // Re-render with updated mock values - REMOVED THIS LINE
 
-  //   // Assert that the success message appears
-  //   await waitFor(() => {
-  //     expect(screen.getByText(/¡Correcto!/i)).toBeInTheDocument();
-  //   });
+    // Assert that the success message appears
+    await waitFor(() => {
+      expect(screen.getByText(/¡Correcto!/i)).toBeInTheDocument();
+    });
 
-  //   randomSpy.mockRestore();
-  // });
+    randomSpy.mockRestore();
+  });
 });
