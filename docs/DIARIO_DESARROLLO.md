@@ -1,6 +1,6 @@
 # 📖 Diario de Desarrollo – HostelInglésApp
 
-*Última actualización: 26-09-2025*
+*Última actualización: 06-10-2025*
 
 Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por módulos para reflejar el estado actual de cada componente de la aplicación.
 
@@ -28,6 +28,8 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
 - **[✅] Enrutamiento:**
     - Implementado con `react-router-dom`.
     - Creadas rutas para todas las páginas principales.
+    - **[✅] Manejo de Rutas en Pages:**
+        - Se añadió un archivo `404.html` para redirigir todas las rutas al `index.html` y garantizar el correcto funcionamiento en GitHub Pages.
 - **[✅] Carga de Datos Inicial:**
     - Creado `AppInitializer.tsx` para cargar los datasets de frases y conversaciones al inicio.
     - El estado de Zustand se hidrata con los datos de los JSON.
@@ -103,17 +105,32 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
 
 ---
 
+## 💬 Módulo: Dictado (`/pages/Dictation.tsx`)
+
+- **[✅] Reproducción de Audio:**
+    - Refactorización completa de la lógica de voces.
+    - Se eliminó la lógica anterior y se reimplementó para garantizar el uso de voces en inglés si están disponibles.
+    - Se añadió un fallback a la voz predeterminada del navegador si no se encuentra una voz en inglés.
+    - Se asegura que las voces estén completamente cargadas antes de usarlas, escuchando el evento `voiceschanged`.
+- **[✅] Corrección de Errores:**
+    - Se corrigió un problema donde la voz seleccionada no se aplicaba correctamente en Pages.
+    - Se mejoró la compatibilidad con navegadores y entornos de despliegue.
+
+---
+
 ## 🎯 Roadmap y Próximos Pasos
 
-1.  **[✅ COMPLETADO] Pulido de Módulos Existentes:**
-    -   Se ha completado la **base de testing** para los módulos principales.
-    -   **[✅ COMPLETADO] Módulo Frases:**
+1. **[✅ COMPLETADO] Pulido de Módulos Existentes:**
+    - **[✅ COMPLETADO] Módulo Frases:**
         -   Implementado sistema de progreso de 3 estados (No estudiada -> Estudiada -> Aprendida).
         -   Corregido el problema de categorías duplicadas en el filtro.
         -   Refactorizada la lógica de filtrado con `useMemo` para optimizar el rendimiento.
         -   Corregida la accesibilidad del filtro de categorías.
     -   **[✅ COMPLETADO] Módulo Conversaciones:** Revisión de código, UI/UX y accesibilidad.
         -   **[✅] Corrección de tests y mocks:** Mockeado correctamente `window.speechSynthesis` en los tests, añadido y ajustado el mock de `conversationSettings` y participantes, y reforzada la protección contra valores `undefined` en el componente `ConversationDetail`.
+    -   **[✅ COMPLETADO] Módulo Dictado:**
+        - Refactorización de la lógica de voces.
+        - Corrección de problemas de compatibilidad en Pages.
     -   **[🧊 PENDIENTE] Módulo Flashcards:** Revisión de código, UI/UX y accesibilidad.
 2.  **[🧊 PENDIENTE] Implementar Módulos Restantes:**
     -   Módulo de **Quiz**.
