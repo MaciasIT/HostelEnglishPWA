@@ -44,6 +44,23 @@ const Dictation: React.FC = () => {
     }
   }, [showWelcome, selectNewPhrase]);
 
+  useEffect(() => {
+    const loadVoices = () => {
+      const voices = window.speechSynthesis.getVoices();
+      if (voices.length === 0) {
+        console.warn("No voices available. Ensure voices are loaded.");
+      }
+    };
+
+    // Load voices and listen for changes
+    loadVoices();
+    window.speechSynthesis.addEventListener('voiceschanged', loadVoices);
+
+    return () => {
+      window.speechSynthesis.removeEventListener('voiceschanged', loadVoices);
+    };
+  }, []);
+
   const handlePlayAudio = () => {
     if (currentPhrase) {
       cancelSpeech(); // Cancel any ongoing speech before playing new audio
@@ -52,12 +69,17 @@ const Dictation: React.FC = () => {
       utterance.pitch = phraseSettings.pitch;
 
       const voices = window.speechSynthesis.getVoices();
-      const selectedVoice = voices.find(voice => voice.voiceURI === phraseSettings.voiceURI);
+      let selectedVoice = voices.find(voice => voice.voiceURI === phraseSettings.voiceURI);
+
+      if (!selectedVoice) {
+        console.warn("Selected voice not found. Using default English voice.");
+        selectedVoice = voices.find(voice => voice.lang.startsWith('en'));
+      }
 
       if (selectedVoice) {
         utterance.voice = selectedVoice;
       } else {
-        console.warn("Selected voice not found. Using default voice.");
+        console.error("No English voice available. Using browser default.");
       }
 
       window.speechSynthesis.speak(utterance);
