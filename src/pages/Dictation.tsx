@@ -3,6 +3,7 @@ import { normalizeText, levenshteinDistance } from '@/utils/normalize';
 import useSpeechRecognition from '@/hooks/useSpeechRecognition';
 import VoiceSettings from '@/components/VoiceSettings';
 import useAudioControl from '@/hooks/useAudioControl'; // Use the new hook
+import { useAppStore, Phrase } from '../store/useAppStore';
 
 const FeatureCard = ({ title, description }: { title: string, description: string }) => (
   <div className="bg-white/20 p-6 rounded-lg shadow-lg text-center">
@@ -20,7 +21,7 @@ const Dictation: React.FC = () => {
   const [correctAnswer, setCorrectAnswer] = useState<string | null>(null); // New state for correct answer
   const [showTranslation, setShowTranslation] = useState(false); // State to control translation visibility
 
-  const { isListening, transcript, startListening, stopListening, browserSupportsSpeechRecognition, error: speechError } = useSpeechRecognition();
+  const { isListening, transcript, startListening, stopListening, browserSupportsSpeechRecognition, error: speechError, requestingPermission } = useSpeechRecognition();
   const { cancelSpeech } = useAudioControl(); // Use the new hook
 
   const phraseSettings = useAppStore((state) => state.prefs.phraseSettings);
@@ -179,6 +180,16 @@ const Dictation: React.FC = () => {
               >
                 {isListening ? '🔴' : '🎤'}
               </button>
+              <button
+                onClick={() => {
+                  cancelSpeech();
+                  handleCheckAnswer();
+                }}
+                className="flex-grow bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300"
+                aria-label="enviar respuesta por voz"
+              >
+                Enviar Respuesta
+              </button>
             </div>
           </div>
 
@@ -188,6 +199,11 @@ const Dictation: React.FC = () => {
             </p>
           )}
           {speechError && <p className="mt-4 text-center text-red-400 text-lg">Error de voz: {speechError}</p>}
+          {requestingPermission && (
+            <p className="mt-4 text-center text-yellow-400 text-lg">
+              Solicitando permisos para usar el micrófono...
+            </p>
+          )}
           {feedback && (
             <p className={`mt-4 text-center text-xl font-bold ${feedback === '¡Correcto!' ? 'text-green-400' : 'text-red-400'}`}>
               {feedback}

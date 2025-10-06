@@ -7,12 +7,14 @@ interface SpeechRecognitionHook {
   stopListening: () => void;
   browserSupportsSpeechRecognition: boolean;
   error: string | null;
+  requestingPermission: boolean;
 }
 
 // Extend Window interface to include webkitSpeechRecognition
 declare global {
   interface Window {
     webkitSpeechRecognition: any;
+    SpeechRecognition: any;
   }
 }
 
@@ -20,6 +22,7 @@ const useSpeechRecognition = (): SpeechRecognitionHook => {
   const [isListening, setIsListening] = useState(false);
   const [transcript, setTranscript] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [requestingPermission, setRequestingPermission] = useState(false);
   const recognitionRef = useRef<any | null>(null);
 
   const browserSupportsSpeechRecognition =
@@ -64,9 +67,26 @@ const useSpeechRecognition = (): SpeechRecognitionHook => {
     };
 
     recognitionRef.current.onerror = (event: any) => {
-      setError(`Error de reconocimiento de voz: ${event.error}`);
+      if (event.error === 'not-allowed') {
+        setError('Permiso denegado: Por favor, habilita el acceso al micrófono en tu navegador.');
+      } else {
+        setError(`Error de reconocimiento de voz: ${event.error}`);
+      }
       setIsListening(false);
     };
+
+    // Automatically request microphone permissions
+    if (browserSupportsSpeechRecognition && recognitionRef.current) {
+      try {
+        setRequestingPermission(true);
+        recognitionRef.current.start();
+        recognitionRef.current.stop();
+        setRequestingPermission(false);
+      } catch (e) {
+        console.warn('No se pudo solicitar permisos automáticamente:', e);
+        setRequestingPermission(false);
+      }
+    }
 
     return () => {
       if (recognitionRef.current) {
@@ -95,6 +115,7 @@ const useSpeechRecognition = (): SpeechRecognitionHook => {
     stopListening,
     browserSupportsSpeechRecognition,
     error,
+    requestingPermission,
   };
 };
 
