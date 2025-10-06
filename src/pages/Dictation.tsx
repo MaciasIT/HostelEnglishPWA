@@ -44,42 +44,22 @@ const Dictation: React.FC = () => {
     }
   }, [showWelcome, selectNewPhrase]);
 
-  useEffect(() => {
-    const loadVoices = () => {
-      const voices = window.speechSynthesis.getVoices();
-      if (voices.length === 0) {
-        console.warn("No voices available. Ensure voices are loaded.");
-      }
-    };
-
-    // Load voices and listen for changes
-    loadVoices();
-    window.speechSynthesis.addEventListener('voiceschanged', loadVoices);
-
-    return () => {
-      window.speechSynthesis.removeEventListener('voiceschanged', loadVoices);
-    };
-  }, []);
-
   const handlePlayAudio = () => {
     if (currentPhrase) {
-      cancelSpeech(); // Cancel any ongoing speech before playing new audio
+      cancelSpeech(); // Cancelar cualquier síntesis de voz en curso
+
       const utterance = new SpeechSynthesisUtterance(currentPhrase.en);
       utterance.rate = phraseSettings.rate;
       utterance.pitch = phraseSettings.pitch;
 
+      // Obtener voces disponibles y seleccionar una voz en inglés
       const voices = window.speechSynthesis.getVoices();
-      let selectedVoice = voices.find(voice => voice.voiceURI === phraseSettings.voiceURI);
+      const englishVoice = voices.find(voice => voice.lang.startsWith('en'));
 
-      if (!selectedVoice) {
-        console.warn("Selected voice not found. Using default English voice.");
-        selectedVoice = voices.find(voice => voice.lang.startsWith('en'));
-      }
-
-      if (selectedVoice) {
-        utterance.voice = selectedVoice;
+      if (englishVoice) {
+        utterance.voice = englishVoice;
       } else {
-        console.error("No English voice available. Using browser default.");
+        console.warn("No se encontró una voz en inglés. Usando la voz predeterminada del navegador.");
       }
 
       window.speechSynthesis.speak(utterance);
