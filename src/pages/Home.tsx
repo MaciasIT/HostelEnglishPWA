@@ -14,8 +14,8 @@ export default function Home() {
       {/* Hero Section */}
       <section className="bg-primary py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
-          {/* Placeholder para el logo */}
-          <div className="mb-4 text-4xl">LOGO</div>
+          {/* Logo */}
+          <img src="/HostelEnglishPWA/icons/icono.png" alt="HostelEnglish Logo" className="mx-auto mb-4 w-40 h-40" />
           <h1 className="text-5xl font-bold mb-4">HostellinglésApp</h1>
           <p className="text-xl mb-8">Aprende Inglés para hostelería de forma interactiva.</p>
           <Link
