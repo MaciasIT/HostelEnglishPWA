@@ -15,7 +15,7 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({ settings, onSettingChange
   useEffect(() => {
     const loadVoices = () => {
       const availableVoices = window.speechSynthesis.getVoices();
-      const filteredVoices = availableVoices.filter(voice => voice.lang.startsWith('en') || voice.lang.startsWith('es'));
+      const filteredVoices = availableVoices.filter(voice => voice.lang.startsWith('en'));
       setVoices(filteredVoices);
     };
 
