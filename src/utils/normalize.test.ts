@@ -1,4 +1,4 @@
-import { normalizeText } from './normalize';
+import { normalizeText, levenshteinDistance } from './normalize';
 
 describe('normalizeText', () => {
   it('should convert text to lowercase', () => {

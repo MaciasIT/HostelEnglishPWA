@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
@@ -73,16 +73,18 @@ describe('<Conversaciones />', () => {
 		});
 	});
 
-	const renderComponent = () => {
-		return render(
+	const renderComponentAndStart = () => {
+		render(
 			<MemoryRouter>
 				<Conversaciones />
 			</MemoryRouter>
 		);
+		const startButton = screen.getByText('Empezar a Practicar');
+		fireEvent.click(startButton);
 	};
 
 	it('should render the list of conversations and filter', () => {
-		renderComponent();
+		renderComponentAndStart();
 		expect(screen.getByText('Check-in')).toBeInTheDocument();
 		expect(screen.getByText('Ordering a drink')).toBeInTheDocument();
 		expect(screen.getByLabelText(/filtrar por categoría/i)).toBeInTheDocument();
@@ -90,7 +92,7 @@ describe('<Conversaciones />', () => {
 
 	it('should filter conversations when a category is selected', async () => {
 		const user = userEvent.setup();
-		renderComponent();
+		renderComponentAndStart();
 
 		await user.selectOptions(screen.getByLabelText(/filtrar por categoría/i), 'Bar');
 
@@ -100,7 +102,7 @@ describe('<Conversaciones />', () => {
 
 	it('should navigate to detail view on conversation click and back', async () => {
 		const user = userEvent.setup();
-		renderComponent();
+		renderComponentAndStart();
 
 		// Navegar a la vista de detalle
 		await user.click(screen.getByText('Check-in'));
@@ -115,7 +117,7 @@ describe('<Conversaciones />', () => {
 
 	it('should hide user text when a role is selected in detail view', async () => {
 		const user = userEvent.setup();
-		renderComponent();
+		renderComponentAndStart();
 
 		// Navegar a la vista de detalle
 		await user.click(screen.getByText('Check-in'));

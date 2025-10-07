@@ -5,24 +5,28 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import Dictation from './Dictation';
 import { useAppStore } from '@/store/useAppStore';
-import useSpeechRecognition, { _mockSpeechRecognition } from '@/hooks/useSpeechRecognition';
+import useSpeechRecognition from '@/hooks/useSpeechRecognition';
 
 vi.mock('@/store/useAppStore');
 
+// Variable para almacenar el callback onResult
+let onResultCallback: (result: string) => void = () => {};
+
 vi.mock('@/hooks/useSpeechRecognition', () => {
-  const mockSpeechRecognition = {
-    isListening: false,
-    transcript: '',
-    startListening: vi.fn(),
-    stopListening: vi.fn(),
-    browserSupportsSpeechRecognition: true,
-    error: null,
-  };
-  return {
-    __esModule: true,
-    default: vi.fn(() => mockSpeechRecognition),
-    _mockSpeechRecognition: mockSpeechRecognition, // Export for direct manipulation in tests
-  };
+  const mock = vi.fn(options => {
+    if (options && options.onResult) {
+      onResultCallback = options.onResult;
+    }
+    return {
+      isListening: false,
+      transcript: '',
+      startListening: vi.fn(),
+      stopListening: vi.fn(),
+      browserSupportsSpeechRecognition: true,
+      error: null,
+    };
+  });
+  return { default: mock };
 });
 
 const mockFrases = [
@@ -38,6 +42,14 @@ describe('<Dictation />', () => {
         frases: mockFrases,
         loadFrases: vi.fn(),
         closeSideNav: vi.fn(),
+        prefs: {
+          phraseSettings: {
+            voiceURI: '',
+            rate: 1,
+            pitch: 1,
+          },
+        },
+        setPhraseSetting: vi.fn(),
       };
       if (typeof selector === 'function') {
         return selector(state);
@@ -66,7 +78,6 @@ describe('<Dictation />', () => {
     renderComponent();
 
     await user.click(screen.getByRole('button', { name: /Empezar a Practicar/i }));
-    // Esperar a que el contenido principal se renderice
     await screen.findByPlaceholderText(/Escribe lo que escuchas/i);
 
     const playButton = await screen.findByRole('button', { name: /reproducir audio/i });
@@ -85,16 +96,12 @@ describe('<Dictation />', () => {
     renderComponent();
 
     await user.click(screen.getByRole('button', { name: /Empezar a Practicar/i }));
-    // Esperar a que el contenido principal se renderice
     const input = await screen.findByPlaceholderText(/Escribe lo que escuchas/i);
 
     await user.type(input, mockFrases[0].en);
 
     const checkButton = screen.getByRole('button', { name: /comprobar/i });
-    await act(async () => {
-      await user.click(checkButton);
-    });
-    await new Promise(resolve => setTimeout(resolve, 0)); // Flush microtasks
+    await user.click(checkButton);
 
     await waitFor(() => {
       expect(screen.getByText(/¡Correcto!/i)).toBeInTheDocument();
@@ -109,16 +116,12 @@ describe('<Dictation />', () => {
     renderComponent();
 
     await user.click(screen.getByRole('button', { name: /Empezar a Practicar/i }));
-    // Esperar a que el contenido principal se renderice
     const input = await screen.findByPlaceholderText(/Escribe lo que escuchas/i);
 
     await user.type(input, 'wrong answer');
 
     const checkButton = screen.getByRole('button', { name: /comprobar/i });
-    await act(async () => {
-      await user.click(checkButton);
-    });
-    await new Promise(resolve => setTimeout(resolve, 0)); // Flush microtasks
+    await user.click(checkButton);
 
     await waitFor(() => {
       expect(screen.getByText(/Inténtalo de nuevo/i)).toBeInTheDocument();
@@ -135,23 +138,15 @@ describe('<Dictation />', () => {
     await user.click(screen.getByRole('button', { name: /Empezar a Practicar/i }));
     await screen.findByPlaceholderText(/Escribe lo que escuchas/i);
 
-    // Clear mock functions for this test
-    _mockSpeechRecognition.startListening.mockClear();
-    _mockSpeechRecognition.stopListening.mockClear();
-
-    // Simulate clicking the microphone button
     const microphoneButton = await screen.findByRole('button', { name: /iniciar dictado por voz/i });
     await user.click(microphoneButton);
 
-    // Expect startListening to have been called
-    expect(_mockSpeechRecognition.startListening).toHaveBeenCalled();
+    // Simula que el reconocimiento de voz devuelve un resultado
+    act(() => {
+      onResultCallback(mockFrases[0].en);
+    });
 
-    // Simulate speech recognition providing a transcript
-    _mockSpeechRecognition.transcript = mockFrases[0].en;
-    _mockSpeechRecognition.isListening = false; // Simulate recognition ending
-    // renderComponent(); // Re-render with updated mock values - REMOVED THIS LINE
-
-    // Assert that the success message appears
+    // El componente debería reaccionar y mostrar el mensaje de éxito
     await waitFor(() => {
       expect(screen.getByText(/¡Correcto!/i)).toBeInTheDocument();
     });

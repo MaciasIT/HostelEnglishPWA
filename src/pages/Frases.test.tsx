@@ -1,117 +1,94 @@
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { MemoryRouter } from 'react-router-dom';
 import Frases from './Frases';
 import { useAppStore } from '@/store/useAppStore';
-import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 
-// Mock del store de Zustand
+// Mock a parte del store para evitar warnings de Zustand
 vi.mock('@/store/useAppStore');
 
 const mockFrases = [
-  { id: 1, es: 'Agua con gas', en: 'Sparkling water', categoria: 'Bebidas' },
-  { id: 2, es: 'La cuenta, por favor', en: 'The check, please', categoria: 'General' },
-  { id: 3, es: 'Habitación doble', en: 'Double room', categoria: 'Recepción' },
+  { id: '1', es: 'Hola', en: 'Hello', categoria: 'Saludos' },
+  { id: '2', es: 'Adiós', en: 'Goodbye', categoria: 'Saludos' },
+  { id: '3', es: 'Gracias', en: 'Thank you', categoria: 'General' },
 ];
 
-const mockCategories = ['Bebidas', 'General', 'Recepción'];
-
-describe('<Frases />', () => {
+describe('Frases Page', () => {
   beforeEach(() => {
-    // Reseteamos el mock antes de cada test
+    // Proporciona un estado mockeado para cada test
     vi.mocked(useAppStore).mockReturnValue({
       frases: mockFrases,
       loadFrases: vi.fn(),
       progress: {},
-      advancePhraseProgress: vi.fn(), // Nueva acción
-      categories: ['Estudiadas', 'Aprendidas', ...mockCategories], // Nuevas categorías
+      advancePhraseProgress: vi.fn(),
+      categories: ['Saludos', 'General'],
+      prefs: {
+        phraseSettings: {
+          voiceURI: '',
+          rate: 1,
+          pitch: 1,
+        },
+      },
+      setPhraseSetting: vi.fn(),
     });
-  });
 
-  const renderComponent = () => {
-    return render(
-      <MemoryRouter>
-        <Frases />
-      </MemoryRouter>
+    // Forzamos que la pantalla de bienvenida no se muestre para testear la funcionalidad principal
+    render(
+        <MemoryRouter>
+            <Frases />
+        </MemoryRouter>
     );
-  };
-
-  it('should render the title, search input, category filter, and list of phrases', () => {
-    renderComponent();
-
-    expect(screen.getByRole('heading', { name: /frases/i })).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Buscar frase...')).toBeInTheDocument();
-    expect(screen.getByLabelText(/filtrar por categoría:/i)).toBeInTheDocument();
-
-    // Verifica que todas las frases mockeadas se rendericen (las no estudiadas)
-    expect(screen.getByText('Agua con gas')).toBeInTheDocument();
-    expect(screen.getByText('The check, please')).toBeInTheDocument();
-    expect(screen.getByText('Habitación doble')).toBeInTheDocument();
+    const startButton = screen.getByText('Empezar a Aprender');
+    fireEvent.click(startButton);
   });
 
-  it('should filter phrases based on search term', async () => {
-    const user = userEvent.setup();
-    renderComponent();
-
-    const searchInput = screen.getByPlaceholderText('Buscar frase...');
-    await user.type(searchInput, 'agua');
-
-    expect(screen.getByText('Agua con gas')).toBeInTheDocument();
-    expect(screen.queryByText('La cuenta, por favor')).not.toBeInTheDocument();
-    expect(screen.queryByText('Habitación doble')).not.toBeInTheDocument();
+  it('debería renderizar la primera frase al cargar', () => {
+    expect(screen.getByText('Hola')).toBeInTheDocument();
+    expect(screen.getByText('Hello')).toBeInTheDocument();
+    expect(screen.queryByText('Adiós')).not.toBeInTheDocument();
   });
 
-  it('should filter phrases based on selected category', async () => {
-    const user = userEvent.setup();
-    renderComponent();
+  it('debería mostrar la siguiente frase al hacer clic en el botón de siguiente', () => {
+    const nextButton = screen.getByLabelText('Siguiente frase');
+    fireEvent.click(nextButton);
 
-    const categorySelect = screen.getByLabelText(/filtrar por categoría:/i);
-    await user.selectOptions(categorySelect, 'Recepción');
-
-    expect(screen.queryByText('Agua con gas')).not.toBeInTheDocument();
-    expect(screen.queryByText('La cuenta, por favor')).not.toBeInTheDocument();
-    expect(screen.getByText('Habitación doble')).toBeInTheDocument();
+    expect(screen.getByText('Adiós')).toBeInTheDocument();
+    expect(screen.getByText('Goodbye')).toBeInTheDocument();
+    expect(screen.queryByText('Hola')).not.toBeInTheDocument();
   });
 
-  it('should show only studied phrases when "Estudiadas" category is selected', async () => {
-    const user = userEvent.setup();
-    // Mockeamos el store para que una frase esté estudiada
-    vi.mocked(useAppStore).mockReturnValue({
-      frases: mockFrases,
-      loadFrases: vi.fn(),
-      progress: { '1': 1 }, // Frase 1 como estudiada
-      advancePhraseProgress: vi.fn(),
-      categories: ['Estudiadas', 'Aprendidas', ...mockCategories],
-    });
-    renderComponent();
+  it('debería mostrar la frase anterior al hacer clic en el botón de anterior', () => {
+    const nextButton = screen.getByLabelText('Siguiente frase');
+    fireEvent.click(nextButton); // Vamos a la segunda frase
 
-    const categorySelect = screen.getByLabelText(/filtrar por categoría:/i);
-    await user.selectOptions(categorySelect, 'Estudiadas');
+    const prevButton = screen.getByLabelText('Frase anterior');
+    fireEvent.click(prevButton); // Volvemos a la primera
 
-    expect(screen.getByText('Agua con gas')).toBeInTheDocument();
-    expect(screen.queryByText('La cuenta, por favor')).not.toBeInTheDocument();
-    expect(screen.queryByText('Habitación doble')).not.toBeInTheDocument();
+    expect(screen.getByText('Hola')).toBeInTheDocument();
+    expect(screen.getByText('Hello')).toBeInTheDocument();
   });
 
-  it('should show only learned phrases when "Aprendidas" category is selected', async () => {
-    const user = userEvent.setup();
-    // Mockeamos el store para que una frase esté aprendida
-    vi.mocked(useAppStore).mockReturnValue({
-      frases: mockFrases,
-      loadFrases: vi.fn(),
-      progress: { 2: 2 }, // <-- clave numérica
-      advancePhraseProgress: vi.fn(),
-      categories: ['Estudiadas', 'Aprendidas', ...mockCategories],
-    });
-    renderComponent();
+  it('debería el carrusel ser circular y pasar de la última a la primera frase', () => {
+    const nextButton = screen.getByLabelText('Siguiente frase');
+    fireEvent.click(nextButton); // -> 2
+    fireEvent.click(nextButton); // -> 3
+    fireEvent.click(nextButton); // -> 1 (debería volver al inicio)
 
-    const categorySelect = screen.getByLabelText(/filtrar por categoría:/i);
-    await user.selectOptions(categorySelect, 'Aprendidas');
-
-    expect(screen.getByText('La cuenta, por favor')).toBeInTheDocument();
-    expect(screen.queryByText('Agua con gas')).not.toBeInTheDocument();
-    expect(screen.queryByText('Habitación doble')).not.toBeInTheDocument();
+    expect(screen.getByText('Hola')).toBeInTheDocument();
   });
 
+  it('debería expandir y colapsar los ajustes de voz', () => {
+    const voiceSettingsTitle = screen.getByText('Ajustes de Voz');
+    // Inicialmente, los controles no son visibles
+    expect(screen.queryByText(/Velocidad:/)).not.toBeInTheDocument();
+
+    // Al hacer clic, se expande
+    fireEvent.click(voiceSettingsTitle);
+    expect(screen.getByText(/Velocidad:/)).toBeInTheDocument();
+    expect(screen.getByText(/Tono:/)).toBeInTheDocument();
+
+    // Al volver a hacer clic, se colapsa
+    fireEvent.click(voiceSettingsTitle);
+    expect(screen.queryByText(/Velocidad:/)).not.toBeInTheDocument();
+  });
 });

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-// Cleanup global: cancela cualquier reproducción de voz al desmontar la pantalla
-// (debe ir después del import)
 import { useAppStore, Phrase } from '@/store/useAppStore';
 import PhraseCard from '@/components/PhraseCard';
 import VoiceSettings from '@/components/VoiceSettings';
+import CollapsibleSection from '@/components/CollapsibleSection';
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
 
 const FeatureCard = ({ title, description }: { title: string, description: string }) => (
   <div className="bg-white/20 p-6 rounded-lg shadow-lg text-center">
@@ -20,10 +20,6 @@ export default function Frases() {
     progress,
     advancePhraseProgress,
     categories,
-    phrasesCurrentPage,
-    phrasesPerPage,
-    setPhrasesCurrentPage,
-    setPhrasesPerPage,
   } = useAppStore();
 
   const { phraseSettings, setPhraseSetting } = useAppStore((state) => ({
@@ -33,96 +29,66 @@ export default function Frases() {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [showWelcome, setShowWelcome] = useState(true);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     if (frases.length === 0) {
       loadFrases();
     }
+    // Cancel speech synthesis on component unmount
+    return () => window.speechSynthesis.cancel();
   }, [frases.length, loadFrases]);
 
-  // Reset page to 1 when filters change
+  // Reset index when filters change
   useEffect(() => {
-    setPhrasesCurrentPage(1);
-  }, [searchTerm, selectedCategory, setPhrasesCurrentPage]);
+    setCurrentIndex(0);
+  }, [searchTerm, selectedCategory]);
 
   const displayCategories = ['all', ...categories];
 
   const filteredFrases = useMemo(() => {
-    const searchFilter = (phrase: Phrase) => {
+    return frases.filter(phrase => {
       const phraseEs = phrase.es || '';
       const phraseEn = phrase.en || '';
-      return phraseEs.toLowerCase().includes(searchTerm.toLowerCase()) ||
-             phraseEn.toLowerCase().includes(searchTerm.toLowerCase());
-    };
+      const matchesSearch = phraseEs.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                            phraseEn.toLowerCase().includes(searchTerm.toLowerCase());
 
-    if (selectedCategory === 'Estudiadas') {
-      return frases.filter(phrase => progress[Number(phrase.id)] === 1 && searchFilter(phrase));
-    }
-
-    if (selectedCategory === 'Aprendidas') {
-      return frases.filter(phrase => progress[Number(phrase.id)] === 2 && searchFilter(phrase));
-    }
-
-    return frases.filter(phrase => {
       const progressLevel = progress[Number(phrase.id)] || 0;
-      if (progressLevel > 0) return false;
+      let matchesCategory = false;
 
-      const matchesCategory = selectedCategory === 'all' || phrase.categoria === selectedCategory;
-      return matchesCategory && searchFilter(phrase);
+      switch (selectedCategory) {
+        case 'all':
+          matchesCategory = progressLevel === 0;
+          break;
+        case 'Estudiadas':
+          matchesCategory = progressLevel === 1;
+          break;
+        case 'Aprendidas':
+          matchesCategory = progressLevel === 2;
+          break;
+        default:
+          matchesCategory = phrase.categoria === selectedCategory && progressLevel === 0;
+          break;
+      }
+
+      return matchesCategory && matchesSearch;
     });
   }, [frases, searchTerm, selectedCategory, progress]);
 
-  const paginatedFrases = useMemo(() => {
-    const startIndex = (phrasesCurrentPage - 1) * phrasesPerPage;
-    return filteredFrases.slice(startIndex, startIndex + phrasesPerPage);
-  }, [filteredFrases, phrasesCurrentPage, phrasesPerPage]);
-
-  const totalPages = Math.ceil(filteredFrases.length / phrasesPerPage);
-
-  const handleGoToHome = () => {
-    setSelectedCategory('all');
-    setSearchTerm('');
-    setPhrasesCurrentPage(1);
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % filteredFrases.length);
   };
 
-  const handlePlayAll = () => {
-    const utterances = paginatedFrases.map(phrase => {
-      const utterance = new SpeechSynthesisUtterance(phrase.en);
-      utterance.lang = 'en-US';
-      utterance.rate = phraseSettings.rate;
-      utterance.pitch = phraseSettings.pitch;
-      if (phraseSettings.voiceURI) {
-        const voice = window.speechSynthesis.getVoices().find(v => v.voiceURI === phraseSettings.voiceURI);
-        if (voice) {
-          utterance.voice = voice;
-        }
-      }
-      return utterance;
-    });
-
-    let currentIndex = 0;
-    const speak = () => {
-      if (currentIndex < utterances.length) {
-        const currentUtterance = utterances[currentIndex];
-        currentUtterance.onend = () => {
-          currentIndex++;
-          speak();
-        };
-        window.speechSynthesis.speak(currentUtterance);
-      } else {
-        setIsModalOpen(true);
-      }
-    };
-
-    speak();
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + filteredFrases.length) % filteredFrases.length);
   };
+  
+  const currentPhrase = filteredFrases[currentIndex];
 
   if (showWelcome) {
     return (
       <div className="text-white">
-        {/* Hero Section */}
         <section className="bg-primary py-20 px-4 text-center">
           <div className="max-w-4xl mx-auto">
             <div className="mb-4 text-4xl">🗣️</div>
@@ -136,8 +102,6 @@ export default function Frases() {
             </button>
           </div>
         </section>
-
-        {/* Features Section */}
         <section className="bg-accent py-20 px-4">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-4xl font-bold text-center mb-12">¿Qué encontrarás aquí?</h2>
@@ -149,8 +113,6 @@ export default function Frases() {
             </div>
           </div>
         </section>
-
-        {/* Footer */}
         <footer className="bg-primary-dark py-4 text-center text-sm">
           <p>© 2025 HostellinglésApp. Todos los derechos reservados.</p>
         </footer>
@@ -159,8 +121,7 @@ export default function Frases() {
   }
 
   return (
-
-    <div className="p-2 sm:p-4 pb-24 bg-primary text-white min-h-screen w-full max-w-full overflow-x-hidden">
+    <div className="p-2 sm:p-4 pb-24 bg-primary text-white min-h-screen w-full max-w-full overflow-x-hidden flex flex-col">
       <h1 className="text-xl sm:text-2xl font-bold mb-4 text-white">Frases</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 mb-4">
@@ -179,117 +140,63 @@ export default function Frases() {
         >
           {displayCategories.map(category => (
             <option key={category} value={category}>
-              {category === 'all' ? 'Todas las categorías' : category}
+              {category === 'all' ? 'Nuevas' : category}
             </option>
           ))}
         </select>
       </div>
 
-      <VoiceSettings settings={phraseSettings} onSettingChange={setPhraseSetting} />
+      <CollapsibleSection title="Ajustes de Voz">
+        <VoiceSettings settings={phraseSettings} onSettingChange={setPhraseSetting} />
+      </CollapsibleSection>
 
+      <div className="flex-grow flex flex-col items-center justify-center w-full">
+        {filteredFrases.length > 0 ? (
+          <>
+            <div className="w-full max-w-2xl mb-4">
+              <PhraseCard
+                key={currentPhrase.id}
+                phrase={currentPhrase}
+                onAdvanceProgress={advancePhraseProgress}
+                progressLevel={progress[Number(currentPhrase.id)] || 0}
+              />
+            </div>
 
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 gap-2 sm:gap-0">
-        <p className="text-white text-sm sm:text-base">{filteredFrases.length} frases encontradas</p>
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
-          <button
-            onClick={handlePlayAll}
-            className="px-3 py-2 rounded-md bg-accent text-white text-sm sm:text-base w-full sm:w-auto"
-          >
-            Reproducir Todo
-          </button>
-          <div className="flex items-center">
-            <label htmlFor="phrases-per-page" className="mr-2 text-white text-sm sm:text-base">Frases por página:</label>
-            <select
-              id="phrases-per-page"
-              className="p-2 border rounded-md bg-primary-dark border-primary-dark text-white text-sm sm:text-base"
-              value={phrasesPerPage}
-              onChange={(e) => setPhrasesPerPage(Number(e.target.value))}
-            >
-              <option value={5}>5</option>
-              <option value={10}>10</option>
-              <option value={20}>20</option>
-            </select>
-          </div>
-        </div>
-      </div>
-
-      {paginatedFrases.length === 0 && (
-        <p className="text-center text-white">No se encontraron frases.</p>
-      )}
-
-
-      <div className="space-y-3">
-        {paginatedFrases.map(phrase => (
-          <PhraseCard
-            key={phrase.id}
-            phrase={phrase}
-            onAdvanceProgress={advancePhraseProgress}
-            progressLevel={progress[Number(phrase.id)] || 0}
-          />
-        ))}
-      </div>
-
-      {totalPages > 1 && (
-        <div className="flex flex-wrap justify-center items-center mt-4 gap-2">
-          <button
-            onClick={() => setPhrasesCurrentPage(phrasesCurrentPage - 1)}
-            disabled={phrasesCurrentPage === 1}
-            className="px-3 py-2 rounded-md bg-primary-dark disabled:bg-gray-600 text-sm sm:text-base"
-          >
-            Anterior
-          </button>
-          <span className="text-white text-sm sm:text-base">
-            Página {phrasesCurrentPage} de {totalPages}
-          </span>
-          <button
-            onClick={() => setPhrasesCurrentPage(phrasesCurrentPage + 1)}
-            disabled={phrasesCurrentPage === totalPages}
-            className="px-3 py-2 rounded-md bg-primary-dark disabled:bg-gray-600 text-sm sm:text-base"
-          >
-            Siguiente
-          </button>
-        </div>
-      )}
-      
-      <div className="flex justify-center mt-4">
-        <button
-          onClick={handleGoToHome}
-          className="px-3 py-2 rounded-md bg-accent text-white text-sm sm:text-base w-full sm:w-auto"
-        >
-          Volver al inicio de Frases
-        </button>
-      </div>
-
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-primary-dark p-8 rounded-lg">
-            <h2 className="text-xl font-bold text-white mb-4">¡Has completado la página!</h2>
-            <div className="flex justify-around">
+            <div className="flex justify-between items-center w-full max-w-2xl">
               <button
-                onClick={() => {
-                  setIsModalOpen(false);
-                  if (phrasesCurrentPage < totalPages) {
-                    setPhrasesCurrentPage(phrasesCurrentPage + 1);
-                  }
-                }}
-                disabled={phrasesCurrentPage === totalPages}
-                className="px-4 py-2 rounded-md bg-accent text-white disabled:bg-gray-600"
+                onClick={handlePrev}
+                className="p-4 rounded-full bg-accent hover:bg-accent-dark text-white disabled:bg-gray-600"
+                aria-label="Frase anterior"
               >
-                Siguiente Página
+                <ArrowLeftIcon className="h-6 w-6" />
               </button>
+              <span className="text-white text-lg font-semibold">
+                {currentIndex + 1} / {filteredFrases.length}
+              </span>
               <button
-                onClick={() => {
-                  setIsModalOpen(false);
-                  handleGoToHome();
-                }}
-                className="px-4 py-2 rounded-md bg-primary text-white"
+                onClick={handleNext}
+                className="p-4 rounded-full bg-accent hover:bg-accent-dark text-white disabled:bg-gray-600"
+                aria-label="Siguiente frase"
               >
-                Volver al inicio
+                <ArrowRightIcon className="h-6 w-6" />
               </button>
             </div>
+          </>
+        ) : (
+          <div className="text-center text-white bg-white/10 p-8 rounded-lg">
+            <p className="text-xl">No se encontraron frases que coincidan con tu búsqueda.</p>
+            <button
+              onClick={() => {
+                setSelectedCategory('all');
+                setSearchTerm('');
+              }}
+              className="mt-4 px-4 py-2 rounded-md bg-accent text-white"
+            >
+              Mostrar todas las frases nuevas
+            </button>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

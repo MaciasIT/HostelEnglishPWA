@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
@@ -27,22 +27,24 @@ describe('<Flashcards />', () => {
     });
   });
 
-  const renderComponent = () => {
-    return render(
+  const renderComponentAndStart = () => {
+    render(
       <MemoryRouter>
         <Flashcards />
       </MemoryRouter>
     );
+    const startButton = screen.getByText('Empezar a Estudiar');
+    fireEvent.click(startButton);
   };
 
   it('should render the first flashcard by default', () => {
-    renderComponent();
+    renderComponentAndStart();
     expect(screen.getByText('Drink Phrase')).toBeInTheDocument();
   });
 
   it('should navigate to the next and previous flashcard', async () => {
     const user = userEvent.setup();
-    renderComponent();
+    renderComponentAndStart();
 
     // Debería empezar con la primera frase
     expect(screen.getByText('Drink Phrase')).toBeInTheDocument();
@@ -58,7 +60,7 @@ describe('<Flashcards />', () => {
 
   it('should filter flashcards by category', async () => {
     const user = userEvent.setup();
-    renderComponent();
+    renderComponentAndStart();
 
     // Seleccionar categoría 'Recepción'
     const categorySelect = screen.getByRole('combobox');
