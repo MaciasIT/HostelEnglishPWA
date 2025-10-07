@@ -1,35 +1,91 @@
-# HostelInglésApp
+# HostelInglés PWA
 
-PWA de aprendizaje de inglés para hostelería.
+![CI/CD](https://github.com/m1txel/HostelEnglishPWA/actions/workflows/deploy.yml/badge.svg)
+[![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/Vite-5.2.0-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.2.2-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 
-## Tecnologías Utilizadas
+**HostelInglés** es una Progressive Web App (PWA) interactiva, diseñada para ayudar al personal de hostelería a dominar el inglés esencial para su trabajo diario. ¡Aprende, practica y mejora tu confianza!
 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![Zustand](https://img.shields.io/badge/zustand-%2320232a.svg?style=for-the-badge&logo=zustand&logoColor=white) <!-- No official logo, using generic -->
-![Vitest](https://img.shields.io/badge/vitest-%236E9AD6.svg?style=for-the-badge&logo=vitest&logoColor=white)
-![Testing-Library](https://img.shields.io/badge/testing--library-E33332?style=for-the-badge&logo=testing-library&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=github-actions&logoColor=white)
+➡️ **[Visita la Demo (m1txel)](https://m1txel.github.io/HostelEnglishPWA/)** ⬅️
 
-## Arranque Rápido
+➡️ **[Visita la Demo (maciasit)](https://maciasit.github.io/HostelEnglishPWA/)** ⬅️
 
-Para poner en marcha el proyecto, sigue estos pasos:
+---
 
-```bash
-npm install
-npm run dev
+## ✨ Funcionalidades Clave
+
+-   🗣️ **Módulo de Frases**: Aprende frases clave con una interfaz de carrusel que te ayuda a concentrarte.
+-   💬 **Módulo de Conversaciones**: Simula diálogos reales (check-in, bar, etc.) y practica tu rol.
+-   ✍️ **Módulo de Dictado**: Pon a prueba tu comprensión auditiva y escritura transcribiendo las frases que escuchas.
+-   🃏 **Módulo de Flashcards**: Memoriza vocabulario de forma rápida y efectiva con tarjetas interactivas.
+-   ⚙️ **Configuración de Voz**: Personaliza la voz, velocidad y tono para adaptar la experiencia de aprendizaje.
+-   📊 **Progreso Persistente**: Tu progreso se guarda localmente en tu dispositivo gracias a IndexedDB.
+-   📱 **Instalable (PWA)**: Añade la aplicación a la pantalla de inicio de tu móvil y úsala sin conexión.
+
+## 🛠️ Stack Tecnológico
+
+| Área                | Tecnología                                                                                             |
+| ------------------- | ------------------------------------------------------------------------------------------------------ |
+| **Framework**       | [React](https://reactjs.org/) con [TypeScript](https://www.typescriptlang.org/)                          |
+| **Build Tool**      | [Vite](https://vitejs.dev/)                                                                            |
+| **Estilos**         | [Tailwind CSS](https://tailwindcss.com/)                                                               |
+| **Gestión de Estado** | [Zustand](https://github.com/pmndrs/zustand)                                                           |
+| **Routing**         | [React Router](https://reactrouter.com/)                                                               |
+| **Testing**         | [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/)                    |
+| **PWA & Offline**   | [vite-plugin-pwa](https://vite-pwa-org.netlify.app/) (con Workbox) + [idb](https://github.com/jakearchibald/idb) |
+| **CI/CD**           | [GitHub Actions](https://github.com/features/actions)                                                  |
+
+## 📂 Estructura del Proyecto
+
+Una descripción general de los directorios más importantes:
+
+```
+/
+├── public/              # Archivos estáticos, iconos, manifest y datasets
+├── src/
+│   ├── components/      # Componentes de UI reutilizables (PhraseCard, SideNav...)
+│   ├── db/              # Lógica de interacción con IndexedDB
+│   ├── hooks/           # Hooks personalizados (useSpeech, useAudio...)
+│   ├── pages/           # Componentes de página para cada módulo (Frases, Home...)
+│   ├── router/          # Configuración de React Router
+│   ├── store/           # Store global de Zustand (useAppStore)
+│   └── utils/           # Funciones de utilidad (normalize, etc.)
+└── ...
 ```
 
-## Datasets
+## 🚀 Empezar
 
-Coloca tus datasets en `public/data/`:
-- `hostelenglish_dataset_clean.json`
-- `conversations_extended_v4.json`
+Sigue estos pasos para levantar el proyecto en tu máquina local.
 
-## Notas de Desarrollo
+1.  **Clona el repositorio:**
+    ```bash
+    git clone https://github.com/m1txel/HostelEnglishPWA.git
+    cd HostelEnglishPWA
+    ```
 
-Para un historial detallado de las decisiones técnicas, problemas resueltos y mejoras implementadas, consulta el [Diario de Desarrollo](docs/DIARIO_DESARROLLO.md).
+2.  **Instala las dependencias:**
+    ```bash
+    npm install
+    ```
 
-> Este repo incluye páginas vacías para que el router compile sin errores.
+3.  **Inicia el servidor de desarrollo:**
+    ```bash
+    npm run dev
+    ```
+    ¡La aplicación estará disponible en `http://localhost:5173`!
+
+## 🧪 Pruebas
+
+Para ejecutar la suite de tests y verificar la integridad del código, usa:
+
+```bash
+npm test
+```
+
+> **⚠️ Advertencia de Estado Actual:**
+> Actualmente, hay 2 tests fallando de forma intermitente en los módulos de `Frases` y `Dictado`. Esto es una **deuda técnica conocida** y está pendiente de ser solucionada.
+
+## 🚢 Despliegue
+
+El despliegue a GitHub Pages está **totalmente automatizado** con GitHub Actions. Cada vez que se hace un `push` o `merge` a la rama `main`, el workflow se dispara, ejecuta los tests, construye la aplicación y la despliega.

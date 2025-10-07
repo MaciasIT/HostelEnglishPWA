@@ -38,7 +38,7 @@ Thumbs.db
 *.pdf
 
 # Internal development docs
-/docs/
+
 
 # Gemini-specific files
 GEMINI.md

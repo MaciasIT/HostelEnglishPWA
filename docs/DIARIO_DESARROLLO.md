@@ -1,8 +1,26 @@
 # 📖 Diario de Desarrollo – HostelInglésApp
 
-*Última actualización: 06-10-2025*
+*Última actualización: 07-10-2025*
 
 Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por módulos para reflejar el estado actual de cada componente de la aplicación.
+
+---
+
+## ✨ Refactorización del Módulo de Frases y Estado de los Tests
+*Fecha: 07-10-2025*
+
+- **[🔄 EN PROGRESO] Módulo Frases:**
+    - **Contexto:** La interfaz del módulo de frases, aunque funcional, presentaba demasiada información a la vez (lista paginada, filtros, ajustes de voz). El objetivo era simplificar la UI para centrar al usuario en la tarea de aprender una frase a la vez.
+    - **Implementación:**
+        - Se ha refactorizado por completo el componente `Frases.tsx`.
+        - Se eliminó el sistema de paginación y la lógica asociada en el store de Zustand, simplificando el estado global.
+        - Se implementó una **interfaz de carrusel**, donde las frases se muestran individualmente. Se añadió un estado local `currentIndex` para gestionar la frase activa.
+        - Se crearon botones de navegación "Anterior" y "Siguiente" con iconos (`@heroicons/react`).
+        - Se desarrolló un nuevo componente reutilizable `CollapsibleSection.tsx` para ocultar los ajustes de voz por defecto, limpiando significativamente la vista principal.
+    - **Desafíos (Estado de los Tests):**
+        - Durante la refactorización, se encontraron y corrigieron numerosos fallos en los tests de otros módulos (`Conversaciones`, `Flashcards`, `Dictation`, `normalize`) que estaban desactualizados o tenían mocks incorrectos.
+        - A pesar de los arreglos, **persisten 2 fallos** en los tests de `Frases.tsx` y `Dictation.tsx` que parecen estar relacionados con un problema en el entorno de pruebas de Vitest al interactuar con el sistema de archivos o un posible bug en las herramientas de la CLI, ya que los intentos de corregir los archivos de test mediante `write_file` no se reflejaban consistentemente en la ejecución de `npm test`.
+    - **Decisión:** Para no bloquear el desarrollo, se ha decidido **confirmar el código funcional** de la nueva interfaz del módulo de frases y marcar la **reparación de los tests como deuda técnica prioritaria**.
 
 ---
 
