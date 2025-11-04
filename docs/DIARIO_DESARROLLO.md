@@ -1,8 +1,34 @@
 # 📖 Diario de Desarrollo – HostelInglésApp
 
-*Última actualización: 07-10-2025*
+*Última actualización: 04-11-2025*
 
 Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por módulos para reflejar el estado actual de cada componente de la aplicación.
+
+---
+
+## ✨ Sesiones de Estudio, Refactor de UI y Correcciones
+*Fecha: 04-11-2025*
+
+- **[✅ COMPLETADO] Módulo Frases - Sesiones de Estudio:**
+    - **Contexto:** Se ha rediseñado el flujo de estudio del módulo de frases para mejorar la concentración del usuario y la retención del conocimiento. El sistema anterior de carrusel/paginación ha sido reemplazado.
+    - **Implementación:**
+        - Ahora el usuario primero filtra las frases que desea estudiar y luego elige el tamaño de la sesión: 10, 25 o todas las frases filtradas.
+        - Al iniciar la sesión, las frases seleccionadas se cargan en un estado temporal (`activePhraseSet` en Zustand) y se presentan una por una.
+        - Se ha añadido una función `shuffle` para que el orden de las frases sea aleatorio en cada sesión.
+        - Se ha refactorizado `useAppStore` para incluir la nueva lógica de sesiones de estudio, eliminando estados de paginación que ya no eran necesarios.
+
+- **[✅ COMPLETADO] Refactorización de UI y Layout Global:**
+    - **Contexto:** Se buscaba unificar el aspecto visual de los diferentes módulos de la aplicación y centralizar el estilo del fondo.
+    - **Implementación:**
+        - Se ha creado un nuevo componente `PageContainer.tsx` que encapsula un fondo de degradado con un patrón SVG sutil y gestiona el título de la página.
+        - Se ha mejorado el diseño de `PhraseCard.tsx`, dándole un fondo opaco (`bg-primary-dark`), sombra más pronunciada, mayor padding y texto más grande y centrado para mejorar la legibilidad.
+        - Se han refactorizado los módulos `Frases`, `Conversaciones`, `Dictation` y `Flashcards` para que utilicen `PageContainer`, logrando una UI consistente.
+        - Se han omitido intencionadamente los módulos con páginas de bienvenida (`Dashboard`, `Estudio`, `Examen`, `Quiz`) para no interferir con sus layouts únicos.
+
+- **[✅ COMPLETADO] Corrección de Bug - Módulo Dictado:**
+    - **Contexto:** Se detectó que el audio en el módulo de dictado se reproducía en español en lugar de inglés.
+    - **Implementación:**
+        - Se ha corregido el problema en `Dictation.tsx` forzando explícitamente el idioma de la locución a inglés mediante `utterance.lang = 'en-US';`. Esto asegura que el navegador seleccione la voz correcta independientemente de la configuración regional del sistema.
 
 ---
 
