@@ -15,7 +15,7 @@
 
 ## ✨ Funcionalidades Clave
 
--   🗣️ **Módulo de Frases**: Aprende frases clave con una interfaz de carrusel que te ayuda a concentrarte.
+-   🗣️ **Módulo de Frases**: Filtra frases por categoría y elige el tamaño de tu sesión de estudio (10, 25 o todas) para un aprendizaje enfocado.
 -   💬 **Módulo de Conversaciones**: Simula diálogos reales (check-in, bar, etc.) y practica tu rol.
 -   ✍️ **Módulo de Dictado**: Pon a prueba tu comprensión auditiva y escritura transcribiendo las frases que escuchas.
 -   🃏 **Módulo de Flashcards**: Memoriza vocabulario de forma rápida y efectiva con tarjetas interactivas.

@@ -36,6 +36,7 @@ export default function Frases() {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showWelcome, setShowWelcome] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
+  // This state controls the two-phase UI: selection view vs. study session view.
   const [isSessionActive, setIsSessionActive] = useState(false);
 
   // Effects
@@ -180,7 +181,9 @@ export default function Frases() {
 
       <div className="flex-grow flex flex-col items-center justify-center w-full mt-4">
         {isSessionActive && currentPhrase ? (
-          // Study Session View
+          // --- Study Session View ---
+          // This view is active when a user has started a study session.
+          // It displays one phrase at a time with navigation controls.
           <>
             <div className="w-full max-w-xl sm:max-w-2xl md:max-w-3xl mb-4">
               <PhraseCard
@@ -219,7 +222,8 @@ export default function Frases() {
             </button>
           </>
         ) : (
-          // Selection View
+          // --- Selection View ---
+          // This is the default view where users can see filter results and choose a session size.
           <div className="text-center text-white bg-white/10 p-8 rounded-lg w-full max-w-xl sm:max-w-2xl md:max-w-3xl">
             {filteredFrases.length > 0 ? (
               <>

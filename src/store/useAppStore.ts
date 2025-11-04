@@ -55,6 +55,10 @@ type State = {
     };
   };
   isSideNavOpen: boolean;
+  /**
+   * Stores the subset of phrases selected by the user for an active study session.
+   * This allows modules like 'Frases' to work with a specific, temporary set of phrases.
+   */
   activePhraseSet: Phrase[];
 };
 
@@ -79,6 +83,10 @@ type Actions = {
     setting: 'voiceURI' | 'rate' | 'pitch',
     value: string | number
   ) => void;
+  /**
+   * Sets the active phrase set to start a new study session.
+   * @param phrases The array of phrases to be used for the study session.
+   */
   setActivePhraseSet: (phrases: Phrase[]) => void;
   toggleSideNav: () => void;
   closeSideNav: () => void;
