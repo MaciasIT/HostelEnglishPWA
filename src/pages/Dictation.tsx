@@ -4,6 +4,7 @@ import useSpeechRecognition from '@/hooks/useSpeechRecognition';
 import VoiceSettings from '@/components/VoiceSettings';
 import useAudioControl from '@/hooks/useAudioControl'; // Use the new hook
 import { useAppStore, Phrase } from '../store/useAppStore';
+import PageContainer from '@/components/layout/PageContainer';
 
 const FeatureCard = ({ title, description }: { title: string, description: string }) => (
   <div className="bg-white/20 p-6 rounded-lg shadow-lg text-center">
@@ -160,11 +161,9 @@ const Dictation: React.FC = () => {
 
   // Main content of the dictation module
   return (
-    <div className="p-4 text-white max-w-2xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4 text-center">Dictado: ¡A practicar!</h1>
-      
+    <PageContainer title="Módulo de Dictado">
       {currentPhrase ? (
-        <div className="bg-primary-dark p-6 rounded-lg">
+        <div className="bg-primary-dark p-6 rounded-lg max-w-2xl mx-auto">
           <div className="flex items-center justify-center gap-4 mb-6">
             <p className="text-2xl text-center font-semibold text-accent-light">Escucha la frase</p>
             <button 
@@ -193,7 +192,10 @@ const Dictation: React.FC = () => {
                 Comprobar
               </button>
               <button
-                onClick={() => { cancelSpeech(); isListening ? handleStopListening() : startListening(); }}
+                onClick={() => {
+                  cancelSpeech();
+                  isListening ? handleStopListening() : startListening();
+                }}
                 className={`p-3 rounded-lg text-lg transition duration-300 ${isListening ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'}`}
                 aria-label={isListening ? "detener dictado por voz" : "iniciar dictado por voz"}
                 disabled={!browserSupportsSpeechRecognition}
@@ -251,7 +253,7 @@ const Dictation: React.FC = () => {
           onSettingChange={setPhraseSetting}
         />
       </div>
-    </div>
+    </PageContainer>
   );
 };
 

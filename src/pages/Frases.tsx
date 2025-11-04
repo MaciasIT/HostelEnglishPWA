@@ -5,6 +5,7 @@ import VoiceSettings from '@/components/VoiceSettings';
 import CollapsibleSection from '@/components/CollapsibleSection';
 import { ArrowLeftIcon, ArrowRightIcon, XCircleIcon } from '@heroicons/react/24/solid';
 import { shuffle } from '@/utils/shuffle';
+import PageContainer from '@/components/layout/PageContainer';
 
 const FeatureCard = ({ title, description }: { title: string, description: string }) => (
   <div className="bg-white/20 p-6 rounded-lg shadow-lg text-center">
@@ -147,14 +148,7 @@ export default function Frases() {
 
   // Main Render
   return (
-    <div 
-      className="p-2 sm:p-4 pb-24 bg-gradient-to-br from-primary to-primary-dark text-white min-h-screen w-full max-w-full overflow-x-hidden flex flex-col"
-      style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpolygon fill-rule='evenodd' points='8 4 12 6 8 8 6 12 4 8 0 6 4 4 6 0 8 4'/%3E%3C/g%3E%3C/svg%3E")`
-      }}
-    >
-      <h1 className="text-xl sm:text-2xl font-bold mb-4 text-white">Módulo de Frases</h1>
-
+    <PageContainer title="Módulo de Frases">
       {!isSessionActive && (
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 mb-4">
@@ -254,6 +248,6 @@ export default function Frases() {
           </div>
         )}
       </div>
-    </div>
+    </PageContainer>
   );
 }
