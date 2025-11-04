@@ -65,27 +65,27 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
   const { text, className } = getButtonAppearance();
 
   return (
-    <div className="bg-white/10 rounded-lg shadow-md p-3 sm:p-4 mb-2 sm:mb-4 w-full max-w-full">
-      <p className="text-white text-base sm:text-lg font-semibold mb-1 sm:mb-2 break-words">{phrase.es}</p>
-      <p className="text-gray-300 text-sm sm:text-md mb-2 sm:mb-4 break-words">{phrase.en}</p>
-      <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-2">
-        <div className="flex gap-2">
+    <div className="bg-primary-dark rounded-lg shadow-xl p-6 sm:p-8 mb-2 sm:mb-4 w-full max-w-full text-center">
+      <p className="text-white text-xl sm:text-2xl font-semibold mb-2 sm:mb-4 break-words">{phrase.es}</p>
+      <p className="text-gray-300 text-base sm:text-lg mb-4 sm:mb-6 break-words">{phrase.en}</p>
+      <div className="flex flex-col sm:flex-row justify-center items-stretch sm:items-center gap-2">
+        <div className="flex gap-2 justify-center">
           <button
             onClick={() => handlePlayAudio('es')}
-            className="bg-primary hover:bg-primary-dark text-white px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm"
+            className="bg-primary hover:bg-primary-dark text-white px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base"
           >
             Audio ES
           </button>
           <button
             onClick={() => handlePlayAudio('en')}
-            className="bg-primary hover:bg-primary-dark text-white px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm"
+            className="bg-primary hover:bg-primary-dark text-white px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base"
           >
             Audio EN
           </button>
         </div>
         <button
           onClick={() => onAdvanceProgress(String(phrase.id))}
-          className={`px-2 sm:px-3 py-1 rounded-md text-xs sm:text-sm ${className}`}
+          className={`px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base ${className}`}
         >
           {text}
         </button>
