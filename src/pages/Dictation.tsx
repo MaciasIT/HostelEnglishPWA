@@ -50,6 +50,7 @@ const Dictation: React.FC = () => {
       cancelSpeech(); // Cancelar cualquier síntesis de voz en curso
 
       const utterance = new SpeechSynthesisUtterance(currentPhrase.en);
+      utterance.lang = 'en-US'; // <-- FIX: Explicitly set the language
       utterance.rate = phraseSettings.rate;
       utterance.pitch = phraseSettings.pitch;
 
