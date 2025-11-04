@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppStore } from '@/store/useAppStore';
 import Flashcard from '@/components/Flashcard';
+import PageContainer from '@/components/layout/PageContainer';
 
 const FeatureCard = ({ title, description }: { title: string, description: string }) => (
   <div className="bg-white/20 p-6 rounded-lg shadow-lg text-center">
@@ -93,28 +94,24 @@ export default function Flashcards() {
 
   if (!frasesLoaded) {
     return (
-      <div className="p-4">
-        <h1 className="text-2xl font-bold mb-4">Flashcards</h1>
+      <PageContainer title="Flashcards">
         <p>Cargando frases...</p>
-      </div>
+      </PageContainer>
     );
   }
 
   if (filteredFrases.length === 0) {
     return (
-      <div className="p-4">
-        <h1 className="text-2xl font-bold mb-4">Flashcards</h1>
+      <PageContainer title="Flashcards">
         <p>No hay frases disponibles para la categoría seleccionada.</p>
-      </div>
+      </PageContainer>
     );
   }
 
   const currentPhrase = filteredFrases[currentPhraseIndex];
 
   return (
-    <div className="p-4 pb-20 flex flex-col items-center">
-      <h1 className="text-2xl font-bold mb-4">Flashcards</h1>
-
+    <PageContainer title="Flashcards">
       <select
         className="w-full p-2 border border-gray-300 rounded-md mb-4 dark:bg-gray-700 dark:text-white dark:border-gray-600"
         value={selectedCategory}
@@ -151,6 +148,6 @@ export default function Flashcards() {
           Siguiente
         </button>
       </div>
-    </div>
+    </PageContainer>
   );
 }
