@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import { useAppStore, Phrase } from '@/store/useAppStore';
+import { useAppStore } from '@/store/useAppStore';
 import PhraseCard from '@/components/PhraseCard';
 import VoiceSettings from '@/components/VoiceSettings';
 import CollapsibleSection from '@/components/CollapsibleSection';
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
+import { ArrowLeftIcon, ArrowRightIcon, XCircleIcon } from '@heroicons/react/24/solid';
+import { shuffle } from '@/utils/shuffle';
+import PageContainer from '@/components/layout/PageContainer';
 
 const FeatureCard = ({ title, description }: { title: string, description: string }) => (
   <div className="bg-white/20 p-6 rounded-lg shadow-lg text-center">
@@ -14,12 +15,15 @@ const FeatureCard = ({ title, description }: { title: string, description: strin
 );
 
 export default function Frases() {
+  // Zustand Store
   const {
     frases,
     loadFrases,
     progress,
     advancePhraseProgress,
     categories,
+    activePhraseSet,
+    setActivePhraseSet,
   } = useAppStore();
 
   const { phraseSettings, setPhraseSetting } = useAppStore((state) => ({
@@ -27,24 +31,28 @@ export default function Frases() {
     setPhraseSetting: state.setPhraseSetting,
   }));
 
+  // Local State
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showWelcome, setShowWelcome] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isSessionActive, setIsSessionActive] = useState(false);
 
+  // Effects
   useEffect(() => {
     if (frases.length === 0) {
       loadFrases();
     }
-    // Cancel speech synthesis on component unmount
     return () => window.speechSynthesis.cancel();
   }, [frases.length, loadFrases]);
 
-  // Reset index when filters change
   useEffect(() => {
     setCurrentIndex(0);
-  }, [searchTerm, selectedCategory]);
+    setIsSessionActive(false);
+    setActivePhraseSet([]);
+  }, [searchTerm, selectedCategory, setActivePhraseSet]);
 
+  // Memoized Data
   const displayCategories = ['all', ...categories];
 
   const filteredFrases = useMemo(() => {
@@ -76,16 +84,34 @@ export default function Frases() {
     });
   }, [frases, searchTerm, selectedCategory, progress]);
 
+  // Handlers
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % filteredFrases.length);
+    const limit = activePhraseSet.length;
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % limit);
   };
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + filteredFrases.length) % filteredFrases.length);
+    const limit = activePhraseSet.length;
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + limit) % limit);
   };
-  
-  const currentPhrase = filteredFrases[currentIndex];
 
+  const startStudySession = (size: number | 'all') => {
+    const phrasesToStudy = shuffle([...filteredFrases]);
+    const sessionSize = size === 'all' ? phrasesToStudy.length : size;
+    setActivePhraseSet(phrasesToStudy.slice(0, sessionSize));
+    setCurrentIndex(0);
+    setIsSessionActive(true);
+  };
+
+  const endStudySession = () => {
+    setIsSessionActive(false);
+    setActivePhraseSet([]);
+    setCurrentIndex(0);
+  };
+
+  const currentPhrase = isSessionActive ? activePhraseSet[currentIndex] : null;
+
+  // Render Welcome
   if (showWelcome) {
     return (
       <div className="text-white">
@@ -120,40 +146,43 @@ export default function Frases() {
     );
   }
 
+  // Main Render
   return (
-    <div className="p-2 sm:p-4 pb-24 bg-primary text-white min-h-screen w-full max-w-full overflow-x-hidden flex flex-col">
-      <h1 className="text-xl sm:text-2xl font-bold mb-4 text-white">Frases</h1>
+    <PageContainer title="Módulo de Frases">
+      {!isSessionActive && (
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 mb-4">
+            <input
+              type="text"
+              placeholder="Buscar frase..."
+              className="w-full p-2 border rounded-md bg-primary-dark border-primary-dark text-white placeholder-gray-400 text-sm sm:text-base"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <select
+              id="category-select"
+              className="w-full p-2 border rounded-md bg-primary-dark border-primary-dark text-white text-sm sm:text-base"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+            >
+              {displayCategories.map(category => (
+                <option key={category} value={category}>
+                  {category === 'all' ? 'Nuevas' : category}
+                </option>
+              ))}
+            </select>
+          </div>
+          <CollapsibleSection title="Ajustes de Voz">
+            <VoiceSettings settings={phraseSettings} onSettingChange={setPhraseSetting} />
+          </CollapsibleSection>
+        </>
+      )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 mb-4">
-        <input
-          type="text"
-          placeholder="Buscar frase..."
-          className="w-full p-2 border rounded-md bg-primary-dark border-primary-dark text-white placeholder-gray-400 text-sm sm:text-base"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <select
-          id="category-select"
-          className="w-full p-2 border rounded-md bg-primary-dark border-primary-dark text-white text-sm sm:text-base"
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-        >
-          {displayCategories.map(category => (
-            <option key={category} value={category}>
-              {category === 'all' ? 'Nuevas' : category}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <CollapsibleSection title="Ajustes de Voz">
-        <VoiceSettings settings={phraseSettings} onSettingChange={setPhraseSetting} />
-      </CollapsibleSection>
-
-      <div className="flex-grow flex flex-col items-center justify-center w-full">
-        {filteredFrases.length > 0 ? (
+      <div className="flex-grow flex flex-col items-center justify-center w-full mt-4">
+        {isSessionActive && currentPhrase ? (
+          // Study Session View
           <>
-            <div className="w-full max-w-2xl mb-4">
+            <div className="w-full max-w-xl sm:max-w-2xl md:max-w-3xl mb-4">
               <PhraseCard
                 key={currentPhrase.id}
                 phrase={currentPhrase}
@@ -162,41 +191,63 @@ export default function Frases() {
               />
             </div>
 
-            <div className="flex justify-between items-center w-full max-w-2xl">
+            <div className="flex justify-between items-center w-full max-w-xl sm:max-w-2xl md:max-w-3xl gap-4">
               <button
                 onClick={handlePrev}
-                className="p-4 rounded-full bg-accent hover:bg-accent-dark text-white disabled:bg-gray-600"
+                className="p-4 rounded-full bg-accent hover:bg-accent-dark text-white text-lg"
                 aria-label="Frase anterior"
               >
                 <ArrowLeftIcon className="h-6 w-6" />
               </button>
               <span className="text-white text-lg font-semibold">
-                {currentIndex + 1} / {filteredFrases.length}
+                {currentIndex + 1} / {activePhraseSet.length}
               </span>
               <button
                 onClick={handleNext}
-                className="p-4 rounded-full bg-accent hover:bg-accent-dark text-white disabled:bg-gray-600"
+                className="p-4 rounded-full bg-accent hover:bg-accent-dark text-white text-lg"
                 aria-label="Siguiente frase"
               >
                 <ArrowRightIcon className="h-6 w-6" />
               </button>
             </div>
+            <button
+              onClick={endStudySession}
+              className="mt-6 flex items-center gap-2 text-sm text-gray-300 hover:text-white"
+            >
+              <XCircleIcon className="h-5 w-5" />
+              Finalizar Sesión
+            </button>
           </>
         ) : (
-          <div className="text-center text-white bg-white/10 p-8 rounded-lg">
-            <p className="text-xl">No se encontraron frases que coincidan con tu búsqueda.</p>
-            <button
-              onClick={() => {
-                setSelectedCategory('all');
-                setSearchTerm('');
-              }}
-              className="mt-4 px-4 py-2 rounded-md bg-accent text-white"
-            >
-              Mostrar todas las frases nuevas
-            </button>
+          // Selection View
+          <div className="text-center text-white bg-white/10 p-8 rounded-lg w-full max-w-xl sm:max-w-2xl md:max-w-3xl">
+            {filteredFrases.length > 0 ? (
+              <>
+                <p className="text-2xl font-bold mb-4">{filteredFrases.length} frases encontradas</p>
+                <p className="mb-6">Elige cuántas quieres estudiar en esta sesión:</p>
+                <div className="flex flex-col sm:flex-row justify-center gap-4">
+                  <button onClick={() => startStudySession(10)} className="px-6 py-3 rounded-md bg-accent hover:bg-accent-dark text-white font-semibold disabled:bg-gray-600" disabled={filteredFrases.length < 1}>Estudiar 10</button>
+                  <button onClick={() => startStudySession(25)} className="px-6 py-3 rounded-md bg-accent hover:bg-accent-dark text-white font-semibold disabled:bg-gray-600" disabled={filteredFrases.length < 10}>Estudiar 25</button>
+                  <button onClick={() => startStudySession('all')} className="px-6 py-3 rounded-md bg-accent hover:bg-accent-dark text-white font-semibold disabled:bg-gray-600" disabled={filteredFrases.length < 1}>Estudiar Todas</button>
+                </div>
+              </>
+            ) : (
+              <>
+                <p className="text-xl">No se encontraron frases que coincidan con tu búsqueda.</p>
+                <button
+                  onClick={() => {
+                    setSelectedCategory('all');
+                    setSearchTerm('');
+                  }}
+                  className="mt-4 px-4 py-2 rounded-md bg-accent text-white"
+                >
+                  Mostrar todas las frases nuevas
+                </button>
+              </>
+            )}
           </div>
         )}
       </div>
-    </div>
+    </PageContainer>
   );
 }

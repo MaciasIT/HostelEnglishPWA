@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import ConversationList from '@/components/ConversationList';
 import ConversationDetail from '@/components/ConversationDetail';
 import { useAppStore } from '@/store/useAppStore';
+import PageContainer from '@/components/layout/PageContainer';
 
 type ConversationTurn = {
   speaker: string;
@@ -115,7 +116,7 @@ export default function Conversaciones() {
   }
 
   return (
-    <div className="p-4 pb-20 bg-primary text-white min-h-screen">
+    <PageContainer title={!selectedConversation ? "Conversaciones" : undefined}>
       {selectedConversation ? (
         <ConversationDetail
           conversation={selectedConversation}
@@ -124,8 +125,6 @@ export default function Conversaciones() {
         />
       ) : (
         <>
-          <h1 className="text-2xl font-bold mb-4 text-white">Conversaciones</h1>
-
           <div className="mb-6">
             <label htmlFor="category-select" className="block mb-2 text-sm font-medium text-white">Filtrar por categoría:</label>
             <select
@@ -168,6 +167,6 @@ export default function Conversaciones() {
           </div>
         </div>
       )}
-    </div>
+    </PageContainer>
   );
 }

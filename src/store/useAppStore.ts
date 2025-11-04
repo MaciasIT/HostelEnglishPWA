@@ -54,9 +54,8 @@ type State = {
       pitch: number;
     };
   };
-  phrasesCurrentPage: number;
-  phrasesPerPage: number;
   isSideNavOpen: boolean;
+  activePhraseSet: Phrase[];
 };
 
 type Actions = {
@@ -80,8 +79,7 @@ type Actions = {
     setting: 'voiceURI' | 'rate' | 'pitch',
     value: string | number
   ) => void;
-  setPhrasesCurrentPage: (page: number) => void;
-  setPhrasesPerPage: (limit: number) => void;
+  setActivePhraseSet: (phrases: Phrase[]) => void;
   toggleSideNav: () => void;
   closeSideNav: () => void;
 };
@@ -105,9 +103,8 @@ export const useAppStore = create<State & Actions>()(
           pitch: 1,
         },
       },
-      phrasesCurrentPage: 1,
-      phrasesPerPage: 10,
       isSideNavOpen: false,
+      activePhraseSet: [],
       initializeCategories: () => {
         const { frases, conversations } = get();
         const categoriesFromFrases = frases.map(f => f.categoria).filter(Boolean) as string[];
@@ -182,8 +179,7 @@ export const useAppStore = create<State & Actions>()(
           },
         }));
       },
-      setPhrasesCurrentPage: (page) => set({ phrasesCurrentPage: page }),
-      setPhrasesPerPage: (limit) => set({ phrasesPerPage: limit, phrasesCurrentPage: 1 }), // Reset to first page
+      setActivePhraseSet: (phrases) => set({ activePhraseSet: phrases }),
       toggleSideNav: () => set((state) => ({ isSideNavOpen: !state.isSideNavOpen })),
       closeSideNav: () => set({ isSideNavOpen: false }),
     }),
@@ -204,8 +200,6 @@ export const useAppStore = create<State & Actions>()(
       partialize: (state) => ({
         progress: state.progress,
         prefs: state.prefs,
-        phrasesCurrentPage: state.phrasesCurrentPage,
-        phrasesPerPage: state.phrasesPerPage,
       }),
     }
   )
