@@ -302,3 +302,4 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
 };
 
 export default ConversationDetail;
+// Force module reload

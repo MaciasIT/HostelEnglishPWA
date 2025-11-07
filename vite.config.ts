@@ -4,13 +4,13 @@ import path from "node:path";
 import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
-  base: "/HostelEnglishPWA/", // Necesario para despliegue en GitHub Pages
+  // base: "/HostelEnglishPWA/", // Necesario para despliegue en GitHub Pages
   plugins: [
     react(),
     VitePWA({
       registerType: "prompt", // Cambiado a 'prompt' para depuración
       outDir: "dist",
-      devOptions: { enabled: false }, // Deshabilitar PWA en desarrollo
+      devOptions: { enabled: true }, // Deshabilitar PWA en desarrollo
       manifest: {
         name: "HostelEnglish PWA",
         short_name: "HostelEnglish",
@@ -37,8 +37,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,json,webmanifest}"],
-        // Asegurarse de que el Service Worker se genere correctamente
-        // swDest: 'dist/sw.js', // Esto es por defecto, no es necesario especificarlo
+        swDest: 'sw.js', // Asegurarse de que el Service Worker se genere correctamente
       },
     }),
   ],
