@@ -96,8 +96,8 @@ describe('<Conversaciones />', () => {
 
 		await user.selectOptions(screen.getByLabelText(/filtrar por categoría/i), 'Bar');
 
-		expect(screen.getByText('Ordering a drink')).toBeInTheDocument();
 		expect(screen.queryByText('Check-in')).not.toBeInTheDocument();
+		expect(screen.getByText('Ordering a drink')).toBeInTheDocument();
 	});
 
 	it('should navigate to detail view on conversation click and back', async () => {
@@ -107,7 +107,8 @@ describe('<Conversaciones />', () => {
 		// Navegar a la vista de detalle
 		await user.click(screen.getByText('Check-in'));
 
-		expect(screen.getByRole('heading', { name: 'Check-in' })).toBeInTheDocument();
+		// Hay más de un heading con el mismo nombre, seleccionamos el h1
+		expect(screen.getByRole('heading', { name: 'Check-in', level: 1 })).toBeInTheDocument();
 		expect(screen.getByText('Welcome! How can I help?')).toBeInTheDocument();
 
 		// Volver a la lista

@@ -114,6 +114,14 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
     window.speechSynthesis.speak(utterance);
   };
 
+    // Maneja el botón de volver y detiene la reproducción
+    const handleBack = () => {
+      isPlayingAllRef.current = false;
+      window.speechSynthesis.cancel();
+      onBack();
+  };
+
+
   /**
    * Plays all turns of the conversation sequentially, using the configured voice settings for each participant.
    * This provides a continuous listening experience for the entire dialogue.
@@ -133,7 +141,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
         if (!textToSpeak.trim()) {
           console.warn("Attempted to speak empty text for turn", i);
           i++;
-          playNextTurn(); // Skip to next turn if text is empty
+          playNextTurn; // Skip to next turn if text is empty
           return;
         }
 

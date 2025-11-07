@@ -63,8 +63,7 @@ describe('<Flashcards />', () => {
     renderComponentAndStart();
 
     // Seleccionar categoría 'Recepción'
-    const categorySelect = screen.getByRole('combobox');
-    await user.selectOptions(categorySelect, 'Recepción');
+    await user.selectOptions(screen.getByRole('combobox'), 'Recepción');
 
     // Solo la frase de recepción debería ser visible
     expect(screen.getByText('Reception Phrase')).toBeInTheDocument();

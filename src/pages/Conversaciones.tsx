@@ -29,6 +29,10 @@ const FeatureCard = ({ title, description }: { title: string, description: strin
 );
 
 export default function Conversaciones() {
+  // Handler global para detener la voz al pulsar cualquier botón
+  const handleAnyButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    window.speechSynthesis.cancel();
+  };
   const { conversations, categories } = useAppStore((state) => ({
     conversations: state.conversations,
     categories: state.categories,
@@ -53,6 +57,7 @@ export default function Conversaciones() {
   };
 
   const handleBackToList = () => {
+    window.speechSynthesis.cancel(); // Detiene cualquier reproducción de voz al salir de la conversación
     setSelectedConversation(null);
     setShowPostConversationOptions(false); // Hide options when going back to list
   };
@@ -151,18 +156,18 @@ export default function Conversaciones() {
             <h2 className="text-xl font-bold mb-4 text-white">Conversación Terminada</h2>
             <p className="mb-6 text-white">¿Qué quieres hacer a continuación?</p>
             <div className="flex justify-center space-x-4">
-              <button
-                onClick={handleNextConversation}
-                className="px-4 py-2 bg-accent rounded-md text-white hover:bg-accent-dark"
-              >
-                Siguiente Conversación
-              </button>
-              <button
-                onClick={handleReturnToList}
-                className="px-4 py-2 bg-primary rounded-md text-white hover:bg-primary-dark"
-              >
-                Volver a la Lista
-              </button>
+                <button
+                  onClick={e => { handleAnyButton(e); handleNextConversation(); }}
+                  className="px-4 py-2 bg-accent rounded-md text-white hover:bg-accent-dark"
+                >
+                  Siguiente Conversación
+                </button>
+                <button
+                  onClick={e => { handleAnyButton(e); handleReturnToList(); }}
+                  className="px-4 py-2 bg-primary rounded-md text-white hover:bg-primary-dark"
+                >
+                  Volver a la Lista
+                </button>
             </div>
           </div>
         </div>

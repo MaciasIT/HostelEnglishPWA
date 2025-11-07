@@ -58,7 +58,15 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
 
 ---
 
+
 ## 🏗️ Infraestructura y Configuración Core
+
+- **[✅] Activación real de PWA:**
+    - Service Worker y manifest activos y registrados en producción y desarrollo.
+    - Botón personalizado para instalar la app (gestión de beforeinstallprompt).
+    - Notificaciones push: solicitud de permiso y notificación de bienvenida.
+    - Hook para solicitar permiso de micrófono (base para dictado).
+    - Tests TDD para todas las nuevas funcionalidades PWA (service worker, push, instalación, micrófono).
 
 - **[✅] Estructura de Carpetas:** Definida y creada (`/src/pages`, `/components`, `/store`, etc.).
 - **[✅] PWA con Vite:**
@@ -85,6 +93,7 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
     - **[✅] Mock de speechSynthesis:** Añadido mock global de `window.speechSynthesis` en los tests para evitar errores en jsdom.
     - **[✅] Corrección de mocks en Conversaciones:** Ajustados los mocks de participantes y conversationSettings en los tests de Conversaciones.
     - **[✅] Refuerzo de protección en ConversationDetail:** Mejorada la protección contra valores `undefined` en el acceso a settings de participantes.
+    - **[✅] Tests TDD para PWA:** Añadidos tests para registro de service worker, notificaciones push, instalación y permisos de micrófono.
 
 ---
 
@@ -184,3 +193,13 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
 3.  **[🧊 PENDIENTE] CI/CD:**
     -   Configurar GitHub Actions para ejecutar los tests en cada push.
     -   Automatizar el despliegue a GitHub Pages en cada merge a `main`.
+
+---
+
+## 📝 Tareas Pendientes de Testing (30-09-2025)
+
+- [ ] **Corregir tests de Frases y Conversaciones:**
+    - Los tests de `/pages/Frases.test.tsx` siguen fallando porque el mock de Zustand no inyecta correctamente el estado y las frases no se renderizan en los tests. Revisar el mock y la reactividad/selectores.
+    - Un test de `/pages/Conversaciones.test.tsx` falla por un filtro de categoría. Revisar el mock de participantes y conversationSettings.
+    - Verificar que todos los mocks de Zustand sean reactivos y soporten selectores como en la app real.
+    - Una vez corregido, asegurar que todos los tests pasen y dejar la rama lista para merge.

@@ -28,4 +28,3 @@ global.window.SpeechSynthesisUtterance = class SpeechSynthesisUtterance {
     this.volume = 1;
   }
 };
-
