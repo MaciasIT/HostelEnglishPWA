@@ -13,33 +13,42 @@ const mockFrases = [
   { id: '3', es: 'Gracias', en: 'Thank you', categoria: 'General' },
 ];
 
+const mockState = {
+  frases: mockFrases,
+  loadFrases: vi.fn(),
+  progress: {},
+  advancePhraseProgress: vi.fn(),
+  categories: ['Saludos', 'General'],
+  activePhraseSet: mockFrases, // Simula una sesión activa
+  setActivePhraseSet: vi.fn(),
+  prefs: {
+    phraseSettings: {
+      voiceURI: 'mock-voice',
+      rate: 1,
+      pitch: 1,
+    },
+  },
+  setPhraseSetting: vi.fn(),
+};
+
 describe('Frases Page', () => {
   beforeEach(() => {
-    // Proporciona un estado mockeado para cada test
-    vi.mocked(useAppStore).mockReturnValue({
-      frases: mockFrases,
-      loadFrases: vi.fn(),
-      progress: {},
-      advancePhraseProgress: vi.fn(),
-      categories: ['Saludos', 'General'],
-      prefs: {
-        phraseSettings: {
-          voiceURI: '',
-          rate: 1,
-          pitch: 1,
-        },
-      },
-      setPhraseSetting: vi.fn(),
+    // Mock más robusto que soporta selectores
+    vi.mocked(useAppStore).mockImplementation((selector) => {
+      if (selector) {
+        return selector(mockState);
+      }
+      return mockState;
     });
 
-    // Forzamos que la pantalla de bienvenida no se muestre para testear la funcionalidad principal
     render(
-        <MemoryRouter>
-            <Frases />
-        </MemoryRouter>
+      <MemoryRouter>
+        <Frases />
+      </MemoryRouter>
     );
-    const startButton = screen.getByText('Empezar a Aprender');
-    fireEvent.click(startButton);
+    // Flujo de usuario completo: Entra y empieza una sesión
+    fireEvent.click(screen.getByText('Empezar a Aprender'));
+    fireEvent.click(screen.getByText('Estudiar Todas'));
   });
 
   it('debería renderizar la primera frase al cargar', () => {
@@ -77,7 +86,16 @@ describe('Frases Page', () => {
     expect(screen.getByText('Hola')).toBeInTheDocument();
   });
 
+  // Este test necesita un setup diferente porque no debe haber una sesión activa
   it('debería expandir y colapsar los ajustes de voz', () => {
+    // Setup específico para este test
+    render(
+      <MemoryRouter>
+        <Frases />
+      </MemoryRouter>
+    );
+    fireEvent.click(screen.getByText('Empezar a Aprender'));
+
     const voiceSettingsTitle = screen.getByText('Ajustes de Voz');
     // Inicialmente, los controles no son visibles
     expect(screen.queryByText(/Velocidad:/)).not.toBeInTheDocument();
