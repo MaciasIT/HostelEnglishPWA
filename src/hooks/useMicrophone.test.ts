@@ -18,13 +18,13 @@ describe('Permiso de micrófono', () => {
   });
 
   it('solicita permiso de micrófono al usuario', async () => {
-    const { requestMicrophonePermission } = await import('../src/hooks/useMicrophone');
+    const { requestMicrophonePermission } = await import('./useMicrophone');
     await requestMicrophonePermission();
     expect(getUserMediaMock).toHaveBeenCalledWith({ audio: true });
   });
 
   it('devuelve true si el usuario concede el permiso', async () => {
-    const { requestMicrophonePermission } = await import('../src/hooks/useMicrophone');
+    const { requestMicrophonePermission } = await import('./useMicrophone');
     const result = await requestMicrophonePermission();
     expect(result).toBe(true);
   });
@@ -33,7 +33,7 @@ describe('Permiso de micrófono', () => {
     getUserMediaMock = vi.fn(() => Promise.reject('denegado'));
     // @ts-ignore
     navigator.mediaDevices = { getUserMedia: getUserMediaMock };
-    const { requestMicrophonePermission } = await import('../src/hooks/useMicrophone');
+    const { requestMicrophonePermission } = await import('./useMicrophone');
     const result = await requestMicrophonePermission();
     expect(result).toBe(false);
   });

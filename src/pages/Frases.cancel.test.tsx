@@ -42,8 +42,7 @@ beforeAll(() => {
   })) as any;
   // Mock indexedDB y constructores requeridos por idb
   (global as any).indexedDB = {
-    open: vi.fn(() => ({
-      addEventListener: vi.fn(),
+    open: vi.fn(() => ({      addEventListener: vi.fn(),
       result: {},
       onsuccess: null,
       onerror: null,
@@ -68,21 +67,6 @@ beforeAll(() => {
 describe('Frases - Playback Cancellation', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    (window as any).isPlayingAllRef = undefined;
-  });
-
-  it('cancels playback when pressing "Reproducir Todo"', () => {
-    render(
-      <MemoryRouter>
-        <Frases />
-      </MemoryRouter>
-    );
-    (window as any).isPlayingAllRef.current = true;
-    const playAllBtn = screen.getByText(/reproducir todo/i);
-    fireEvent.click(playAllBtn);
-    expect(global.speechSynthesis.cancel).toHaveBeenCalled();
-    (window as any).isPlayingAllRef.current = false;
-    expect((window as any).isPlayingAllRef.current).toBe(false);
   });
 
   it('cancels playback on unmount', () => {

@@ -16,7 +16,7 @@ vi.mock('./useBeforeInstallPrompt', () => {
 });
 
 import { __setDeferredPrompt } from './useBeforeInstallPrompt';
-import InstallPWAButton from './components/InstallPWAButton';
+import InstallPWAButton from './InstallPWAButton';
 
 describe('InstallPWAButton', () => {
   beforeEach(() => {

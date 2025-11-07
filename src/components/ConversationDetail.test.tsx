@@ -38,7 +38,6 @@ describe('ConversationDetail - Playback Cancellation', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    (window as any).isPlayingAllConversationRef = undefined;
   });
 
   it('cancels playback when pressing back', () => {
@@ -55,14 +54,13 @@ describe('ConversationDetail - Playback Cancellation', () => {
     render(
       <ConversationDetail conversation={conversation} onBack={onBack} onConversationEnd={onConversationEnd} />
     );
-    // Simula que está reproduciendo toda la conversación
-    (window as any).isPlayingAllConversationRef.current = true;
+    const playAllBtn = screen.getByText(/reproducir toda la conversación/i);
+    fireEvent.click(playAllBtn);
+
     const playBtns = screen.getAllByText(/reproducir/i);
     fireEvent.click(playBtns[0]);
+
     expect(global.speechSynthesis.cancel).toHaveBeenCalled();
-    // Simula que la secuencia termina (onend)
-    (window as any).isPlayingAllConversationRef.current = false;
-    expect((window as any).isPlayingAllConversationRef.current).toBe(false);
   });
 
   it('cancels playback on unmount', () => {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useAppStore } from '@/store/useAppStore';
+import CollapsibleSection from '@/components/CollapsibleSection';
 
 /**
  * Represents a single turn in a conversation, spoken by a specific participant.

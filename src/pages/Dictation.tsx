@@ -5,6 +5,7 @@ import VoiceSettings from '@/components/VoiceSettings';
 import useAudioControl from '@/hooks/useAudioControl'; // Use the new hook
 import { useAppStore, Phrase } from '../store/useAppStore';
 import PageContainer from '@/components/layout/PageContainer';
+import CollapsibleSection from '@/components/CollapsibleSection';
 
 const FeatureCard = ({ title, description }: { title: string, description: string }) => (
   <div className="bg-white/20 p-6 rounded-lg shadow-lg text-center">
