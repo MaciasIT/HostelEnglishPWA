@@ -1,5 +1,5 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import Frases from './Frases';
 import { useAppStore } from '@/store/useAppStore';
 import { MemoryRouter } from 'react-router-dom';
@@ -31,33 +31,44 @@ const mockState = {
   setPhraseSetting: vi.fn(),
 };
 
-describe('Frases Page', () => {
-  beforeEach(() => {
-    // Mock más robusto que soporta selectores
-    vi.mocked(useAppStore).mockImplementation((selector) => {
-      if (selector) {
-        return selector(mockState);
-      }
-      return mockState;
-    });
-
-    render(
-      <MemoryRouter>
-        <Frases />
-      </MemoryRouter>
-    );
-    // Flujo de usuario completo: Entra y empieza una sesión
-    fireEvent.click(screen.getByText('Empezar a Aprender'));
-    fireEvent.click(screen.getByText('Estudiar Todas'));
+// --- Helper para renderizar con estado inicial ---
+const renderFrasesComponent = (initialState = mockState) => {
+  vi.mocked(useAppStore).mockImplementation((selector) => {
+    if (selector) {
+      return selector(initialState);
+    }
+    return initialState;
   });
 
-  it('debería renderizar la primera frase al cargar', () => {
+  render(
+    <MemoryRouter>
+      <Frases />
+    </MemoryRouter>
+  );
+};
+
+describe('Frases Page', () => {
+
+  afterEach(() => {
+    cleanup(); // Limpia el DOM de JSDOM
+    vi.clearAllMocks(); // Resetea los mocks de Vitest
+  });
+
+  it('debería renderizar la primera frase al empezar una sesión', () => {
+    renderFrasesComponent();
+    fireEvent.click(screen.getByText('Empezar a Aprender'));
+    fireEvent.click(screen.getByText('Estudiar Todas'));
+
     expect(screen.getByText('Hola')).toBeInTheDocument();
     expect(screen.getByText('Hello')).toBeInTheDocument();
     expect(screen.queryByText('Adiós')).not.toBeInTheDocument();
   });
 
   it('debería mostrar la siguiente frase al hacer clic en el botón de siguiente', () => {
+    renderFrasesComponent();
+    fireEvent.click(screen.getByText('Empezar a Aprender'));
+    fireEvent.click(screen.getByText('Estudiar Todas'));
+
     const nextButton = screen.getByLabelText('Siguiente frase');
     fireEvent.click(nextButton);
 
@@ -67,6 +78,10 @@ describe('Frases Page', () => {
   });
 
   it('debería mostrar la frase anterior al hacer clic en el botón de anterior', () => {
+    renderFrasesComponent();
+    fireEvent.click(screen.getByText('Empezar a Aprender'));
+    fireEvent.click(screen.getByText('Estudiar Todas'));
+
     const nextButton = screen.getByLabelText('Siguiente frase');
     fireEvent.click(nextButton); // Vamos a la segunda frase
 
@@ -78,6 +93,10 @@ describe('Frases Page', () => {
   });
 
   it('debería el carrusel ser circular y pasar de la última a la primera frase', () => {
+    renderFrasesComponent();
+    fireEvent.click(screen.getByText('Empezar a Aprender'));
+    fireEvent.click(screen.getByText('Estudiar Todas'));
+    
     const nextButton = screen.getByLabelText('Siguiente frase');
     fireEvent.click(nextButton); // -> 2
     fireEvent.click(nextButton); // -> 3
@@ -86,14 +105,13 @@ describe('Frases Page', () => {
     expect(screen.getByText('Hola')).toBeInTheDocument();
   });
 
-  // Este test necesita un setup diferente porque no debe haber una sesión activa
   it('debería expandir y colapsar los ajustes de voz', () => {
-    // Setup específico para este test
-    render(
-      <MemoryRouter>
-        <Frases />
-      </MemoryRouter>
-    );
+    // Para este test, la sesión no debe estar activa al inicio
+    const initialStateWithoutActiveSession = {
+      ...mockState,
+      activePhraseSet: [], // Sin sesión activa
+    };
+    renderFrasesComponent(initialStateWithoutActiveSession);
     fireEvent.click(screen.getByText('Empezar a Aprender'));
 
     const voiceSettingsTitle = screen.getByText('Ajustes de Voz');

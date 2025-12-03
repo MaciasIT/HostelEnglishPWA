@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, screen, act } from '@testing-library/react';
+import { render, screen, act, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import Dictation from './Dictation';
 import { useAppStore } from '@/store/useAppStore';
@@ -10,7 +10,6 @@ import useSpeechRecognition from '@/hooks/useSpeechRecognition';
 // --- Mocks ---
 vi.mock('@/store/useAppStore');
 
-// Mock del hook de reconocimiento de voz
 const mockUseSpeechRecognition = {
   isListening: false,
   transcript: '',
@@ -30,9 +29,11 @@ const mockFrases = [
 ];
 
 describe('<Dictation />', () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
+  let user;
 
+  beforeEach(() => {
+    user = userEvent.setup();
+    
     // Resetear el estado del mock antes de cada test
     mockUseSpeechRecognition.isListening = false;
     mockUseSpeechRecognition.transcript = '';
@@ -54,8 +55,12 @@ describe('<Dictation />', () => {
       return state;
     });
 
-    // Mock para Math.random para tener una frase predecible
     vi.spyOn(Math, 'random').mockReturnValue(0);
+  });
+
+  afterEach(() => {
+    cleanup();
+    vi.clearAllMocks();
   });
 
   const renderComponent = () => {
@@ -73,7 +78,6 @@ describe('<Dictation />', () => {
   });
 
   it('should call speech synthesis with the correct phrase when play is clicked', async () => {
-    const user = userEvent.setup();
     renderComponent();
     await user.click(screen.getByRole('button', { name: /Empezar a Practicar/i }));
 
@@ -86,7 +90,6 @@ describe('<Dictation />', () => {
   });
 
   it('should show a success message when the user types the correct answer', async () => {
-    const user = userEvent.setup();
     renderComponent();
     await user.click(screen.getByRole('button', { name: /Empezar a Practicar/i }));
     const input = await screen.findByPlaceholderText(/Escribe lo que escuchas/i);
@@ -97,7 +100,6 @@ describe('<Dictation />', () => {
   });
 
   it('should show a failure message for an incorrect answer', async () => {
-    const user = userEvent.setup();
     renderComponent();
     await user.click(screen.getByRole('button', { name: /Empezar a Practicar/i }));
     const input = await screen.findByPlaceholderText(/Escribe lo que escuchas/i);
@@ -108,7 +110,9 @@ describe('<Dictation />', () => {
   });
 
   it('should process spoken input and show success message', async () => {
-    const user = userEvent.setup();
+    const mockRecognitionHook = vi.mocked(useSpeechRecognition);
+    
+    // 1. Render inicial
     const { rerender } = renderComponent();
 
     await user.click(screen.getByRole('button', { name: /Empezar a Practicar/i }));
@@ -117,20 +121,20 @@ describe('<Dictation />', () => {
     const microphoneButton = screen.getByRole('button', { name: /iniciar dictado por voz/i });
     await user.click(microphoneButton);
 
-    // 1. Simular que el reconocimiento está activo
-    await act(async () => {
-      mockUseSpeechRecognition.isListening = true;
+    // 2. Simular que el reconocimiento está activo
+    act(() => {
+        mockRecognitionHook.mockReturnValue({ ...mockUseSpeechRecognition, isListening: true });
     });
     rerender(<MemoryRouter><Dictation /></MemoryRouter>);
 
-    // 2. Simular que el reconocimiento devuelve un resultado y se detiene
-    await act(async () => {
-      mockUseSpeechRecognition.transcript = mockFrases[0].en; // El resultado
-      mockUseSpeechRecognition.isListening = false; // Se detiene
+
+    // 3. Simular que el reconocimiento devuelve un resultado y se detiene
+    act(() => {
+        mockRecognitionHook.mockReturnValue({ ...mockUseSpeechRecognition, transcript: mockFrases[0].en, isListening: false });
     });
     rerender(<MemoryRouter><Dictation /></MemoryRouter>);
 
-    // 3. El useEffect en el componente ahora debería activarse y mostrar el feedback
+    // 4. El useEffect en el componente ahora debería activarse y mostrar el feedback
     expect(await screen.findByText(/¡Correcto!/i)).toBeInTheDocument();
   });
 });
