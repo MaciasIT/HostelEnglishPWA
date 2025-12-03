@@ -17,11 +17,21 @@
 
 -   🗣️ **Módulo de Frases**: Filtra frases por categoría y elige el tamaño de tu sesión de estudio (10, 25 o todas) para un aprendizaje enfocado.
 -   💬 **Módulo de Conversaciones**: Simula diálogos reales (check-in, bar, etc.) y practica tu rol.
--   ✍️ **Módulo de Dictado**: Pon a prueba tu comprensión auditiva y escritura transcribiendo las frases que escuchas.
+-   ✍️ **Módulo de Dictado**: Pon a prueba tu comprensión auditiva y escritura transcribiendo las frases que escuchas. Incluye funcionalidad de reconocimiento de voz para una experiencia interactiva.
 -   🃏 **Módulo de Flashcards**: Memoriza vocabulario de forma rápida y efectiva con tarjetas interactivas.
 -   ⚙️ **Configuración de Voz**: Personaliza la voz, velocidad y tono para adaptar la experiencia de aprendizaje.
--   📊 **Progreso Persistente**: Tu progreso se guarda localmente en tu dispositivo gracias a IndexedDB.
+-   📊 **Progreso Persistente**: Tu progreso se guarda localmente en tu dispositivo gracias a IndexedDB, asegurando que no pierdas tu avance.
 -   📱 **Instalable (PWA)**: Añade la aplicación a la pantalla de inicio de tu móvil y úsala sin conexión.
+-   🔔 **Notificaciones Push**: Solicita permiso y muestra notificaciones de bienvenida, mejorando la interacción con el usuario.
+
+## 🚀 Arquitectura y Diseño
+
+La aplicación sigue una arquitectura basada en componentes con React, promoviendo la reutilización y la modularidad.
+
+-   **Gestión de Estado**: Se utiliza [Zustand](https://github.com/pmndrs/zustand) para una gestión de estado global eficiente y escalable. Su diseño ligero y su curva de aprendizaje suave lo hacen ideal para manejar el estado de la aplicación de manera reactiva.
+-   **Enrutamiento**: [React Router](https://reactrouter.com/) se emplea para la navegación declarativa dentro de la aplicación, gestionando las diferentes vistas de manera eficiente.
+-   **Estilado**: [Tailwind CSS](https://tailwindcss.com/) se usa para un estilado utility-first, facilitando un desarrollo rápido de la UI y asegurando un diseño responsivo con un enfoque "Mobile First".
+-   **PWA**: La aplicación está configurada como una Progressive Web App utilizando [vite-plugin-pwa](https://vite-pwa-org.netlify.app/). Esto permite capacidades offline, instalación en dispositivos y otras características de aplicaciones nativas. El `manifest.json` y el `service-worker.js` (gestionado por Workbox) aseguran la funcionalidad PWA.
 
 ## 🛠️ Stack Tecnológico
 
@@ -45,14 +55,25 @@ Una descripción general de los directorios más importantes:
 ├── public/              # Archivos estáticos, iconos, manifest y datasets
 ├── src/
 │   ├── components/      # Componentes de UI reutilizables (PhraseCard, SideNav...)
-│   ├── db/              # Lógica de interacción con IndexedDB
-│   ├── hooks/           # Hooks personalizados (useSpeech, useAudio...)
-│   ├── pages/           # Componentes de página para cada módulo (Frases, Home...)
-│   ├── router/          # Configuración de React Router
-│   ├── store/           # Store global de Zustand (useAppStore)
-│   └── utils/           # Funciones de utilidad (normalize, etc.)
+│   ├── db/              # Lógica de interacción con IndexedDB para persistencia de datos.
+│   ├── hooks/           # Hooks personalizados (useSpeech, useAudio, useSpeechRecognition...) para lógica reutilizable.
+│   ├── pages/           # Componentes de página para cada módulo (Frases, Dictation, Home...) que representan las vistas principales.
+│   ├── router/          # Configuración de React Router para la navegación de la aplicación.
+│   ├── store/           # Store global de Zustand (useAppStore) para la gestión del estado.
+│   └── utils/           # Funciones de utilidad (normalize, shuffle, etc.) que proporcionan lógica auxiliar.
 └── ...
 ```
+
+## 🧪 Estrategia de Testing
+
+Se ha implementado una estrategia de pruebas robusta utilizando **Vitest** como framework de pruebas y **React Testing Library** para la simulación del comportamiento del usuario y la aserción de la UI.
+
+-   **Pruebas Unitarias y de Integración**: Se escriben tests para componentes críticos, páginas y la lógica de negocio (hooks, store), asegurando que cada parte de la aplicación funcione como se espera y se integre correctamente.
+-   **Enfoque en el Comportamiento del Usuario**: React Testing Library fomenta la escritura de pruebas que se centran en cómo los usuarios interactúan con la aplicación, en lugar de en los detalles de implementación interna.
+-   **Fiabilidad de las Pruebas**: Se prioriza la estabilidad de las pruebas para evitar fallos intermitentes. Esto incluye:
+    -   Aislamiento de tests mediante la configuración específica dentro de cada caso de prueba.
+    -   Uso de `cleanup` y `vi.clearAllMocks()` en los bloques `afterEach` para garantizar un estado limpio entre las ejecuciones de los tests.
+    -   Manejo cuidadoso de mocks y asincronía en las pruebas de hooks (como `useSpeechRecognition`) para simular comportamientos de forma determinista.
 
 ## 🚀 Empezar
 
@@ -69,33 +90,22 @@ Sigue estos pasos para levantar el proyecto en tu máquina local.
     npm install
     ```
 
-## Características PWA
-
-- Soporte completo para Service Worker y modo offline (activado con vite-plugin-pwa).
-- Manifest.json y pantalla de instalación personalizada (botón Instalar app).
-- Notificaciones push: solicita permiso y muestra notificación de bienvenida.
-- Permiso de micrófono: hook preparado para futuras funciones de dictado.
-- Tests TDD para todas las nuevas funcionalidades PWA.
-
-Para un historial detallado de las decisiones técnicas, problemas resueltos y mejoras implementadas, consulta el [Diario de Desarrollo](docs/DIARIO_DESARROLLO.md).
-
 3.  **Inicia el servidor de desarrollo:**
     ```bash
     npm run dev
     ```
     ¡La aplicación estará disponible en `http://localhost:5173`!
 
-## 🧪 Pruebas
-
-Para ejecutar la suite de tests y verificar la integridad del código, usa:
-
-```bash
-npm test
-```
-
-> **⚠️ Advertencia de Estado Actual:**
-> Actualmente, hay 2 tests fallando de forma intermitente en los módulos de `Frases` y `Dictado`. Esto es una **deuda técnica conocida** y está pendiente de ser solucionada.
-
 ## 🚢 Despliegue
 
 El despliegue a GitHub Pages está **totalmente automatizado** con GitHub Actions. Cada vez que se hace un `push` o `merge` a la rama `main`, el workflow se dispara, ejecuta los tests, construye la aplicación y la despliega.
+
+## 🤝 Contribución
+
+¡Las contribuciones son bienvenidas! Si deseas mejorar el proyecto, considera los siguientes puntos:
+
+-   **Reporting de Bugs**: Si encuentras un error, por favor, abre un issue detallado.
+-   **Solicitudes de Características**: ¿Tienes una idea para una nueva funcionalidad? Abre un issue para discutirla.
+-   **Pull Requests**: Para cambios de código, por favor, asegúrate de que tus tests pasen y añade nuevos tests si tu contribución lo requiere. Sigue las convenciones de Conventional Commits para tus mensajes de commit.
+
+Para un historial detallado de las decisiones técnicas, problemas resueltos y mejoras implementadas, consulta el [Diario de Desarrollo](docs/DIARIO_DESARROLLO.md).
