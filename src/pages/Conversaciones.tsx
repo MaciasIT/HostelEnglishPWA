@@ -87,7 +87,7 @@ export default function Conversaciones() {
         {/* Hero Section */}
         <section className="bg-primary py-20 px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            <div className="mb-4 text-4xl">💬</div>
+            <img src={`${import.meta.env.BASE_URL}icons/icono.png`} alt="HostelEnglish Logo" className="mx-auto mb-4 w-32 h-32" />
             <h1 className="text-5xl font-bold mb-4">Módulo de Conversaciones</h1>
             <p className="text-xl mb-8">Practica con diálogos reales y mejora tu fluidez y pronunciación.</p>
             <button
@@ -114,7 +114,7 @@ export default function Conversaciones() {
 
         {/* Footer */}
         <footer className="bg-primary-dark py-4 text-center text-sm">
-          <p>© 2025 HostellinglésApp. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} HostellinglésApp. Todos los derechos reservados.</p>
         </footer>
       </div>
     );
@@ -156,18 +156,18 @@ export default function Conversaciones() {
             <h2 className="text-xl font-bold mb-4 text-white">Conversación Terminada</h2>
             <p className="mb-6 text-white">¿Qué quieres hacer a continuación?</p>
             <div className="flex justify-center space-x-4">
-                <button
-                  onClick={e => { handleAnyButton(e); handleNextConversation(); }}
-                  className="px-4 py-2 bg-accent rounded-md text-white hover:bg-accent-dark"
-                >
-                  Siguiente Conversación
-                </button>
-                <button
-                  onClick={e => { handleAnyButton(e); handleReturnToList(); }}
-                  className="px-4 py-2 bg-primary rounded-md text-white hover:bg-primary-dark"
-                >
-                  Volver a la Lista
-                </button>
+              <button
+                onClick={e => { handleAnyButton(e); handleNextConversation(); }}
+                className="px-4 py-2 bg-accent rounded-md text-white hover:bg-accent-dark"
+              >
+                Siguiente Conversación
+              </button>
+              <button
+                onClick={e => { handleAnyButton(e); handleReturnToList(); }}
+                className="px-4 py-2 bg-primary rounded-md text-white hover:bg-primary-dark"
+              >
+                Volver a la Lista
+              </button>
             </div>
           </div>
         </div>

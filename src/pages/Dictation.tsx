@@ -121,7 +121,7 @@ const Dictation: React.FC = () => {
         {/* Hero Section */}
         <section className="bg-primary py-20 px-4 text-center">
           <div className="max-w-4xl mx-auto">
-            <div className="mb-4 text-4xl">✍️</div>
+            <img src={`${import.meta.env.BASE_URL}icons/icono.png`} alt="HostelEnglish Logo" className="mx-auto mb-4 w-32 h-32" />
             <h1 className="text-5xl font-bold mb-4">Módulo de Dictado</h1>
             <p className="text-xl mb-8">Pon a prueba tu oído y escritura. Escucha frases en inglés y escríbelas correctamente.</p>
             <button
@@ -155,7 +155,7 @@ const Dictation: React.FC = () => {
 
         {/* Footer */}
         <footer className="bg-primary-dark py-4 text-center text-sm">
-          <p>© 2025 HostellinglésApp. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} HostellinglésApp. Todos los derechos reservados.</p>
         </footer>
       </div>
     );
@@ -168,7 +168,7 @@ const Dictation: React.FC = () => {
         <div className="bg-primary-dark p-6 rounded-lg max-w-2xl mx-auto">
           <div className="flex items-center justify-center gap-4 mb-6">
             <p className="text-2xl text-center font-semibold text-accent-light">Escucha la frase</p>
-            <button 
+            <button
               aria-label="reproducir audio"
               onClick={handlePlayAudio}
               className="text-3xl hover:scale-110 transition-transform"
@@ -240,7 +240,7 @@ const Dictation: React.FC = () => {
       )}
 
       <div className="mt-6 flex justify-center">
-        <button 
+        <button
           onClick={() => { cancelSpeech(); selectNewPhrase(); }}
           className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-full transition duration-300"
         >
@@ -250,7 +250,7 @@ const Dictation: React.FC = () => {
 
       {/* Voice Settings Component */}
       <div className="mt-8">
-        <VoiceSettings 
+        <VoiceSettings
           settings={phraseSettings}
           onSettingChange={setPhraseSetting}
         />

@@ -14,8 +14,7 @@ export default function Examen() {
       {/* Hero Section */}
       <section className="bg-primary py-20 px-4 text-center">
         <div className="max-w-4xl mx-auto">
-          {/* Placeholder para el logo */}
-          <div className="mb-4 text-4xl">📝</div>
+          <img src={`${import.meta.env.BASE_URL}icons/icono.png`} alt="HostelEnglish Logo" className="mx-auto mb-4 w-32 h-32" />
           <h1 className="text-5xl font-bold mb-4">Módulo de Examen</h1>
           <p className="text-xl mb-8">Ponte a prueba y evalúa tu conocimiento del inglés para hostelería.</p>
           <Link
@@ -42,7 +41,7 @@ export default function Examen() {
 
       {/* Footer */}
       <footer className="bg-primary-dark py-4 text-center text-sm">
-        <p>© 2025 HostellinglésApp. Todos los derechos reservados.</p>
+        <p>© {new Date().getFullYear()} HostellinglésApp. Todos los derechos reservados.</p>
       </footer>
     </div>
   );

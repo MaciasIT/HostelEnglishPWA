@@ -8,14 +8,21 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: "autoUpdate", // Cambiado a 'autoUpdate' para asegurar que las correcciones se apliquen inmediatamente
-      outDir: "dist",
-      devOptions: { enabled: true }, // Deshabilitar PWA en desarrollo
+      registerType: "autoUpdate",
+      injectRegister: "script",
+      devOptions: {
+        enabled: true,
+      },
+      includeAssets: ["favicon.ico", "icons/icono.png", "icons/pwa-192x192.png", "icons/pwa-512x512.png"],
       manifest: {
         name: "HostelEnglish PWA",
         short_name: "HostelEnglish",
         description: "Aplicación para aprender inglés para hostelería",
         theme_color: "#ffffff",
+        background_color: "#ffffff",
+        display: "standalone",
+        scope: "/HostelEnglishPWA/",
+        start_url: "/HostelEnglishPWA/",
         icons: [
           {
             src: "icons/pwa-192x192.png",
