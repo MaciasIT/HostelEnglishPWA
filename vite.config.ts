@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: "prompt", // Cambiado a 'prompt' para depuración
+      registerType: "autoUpdate", // Cambiado a 'autoUpdate' para asegurar que las correcciones se apliquen inmediatamente
       outDir: "dist",
       devOptions: { enabled: true }, // Deshabilitar PWA en desarrollo
       manifest: {
