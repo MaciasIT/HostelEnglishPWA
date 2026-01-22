@@ -43,3 +43,5 @@ Thumbs.db
 # Gemini-specific files
 GEMINI.md
 .gemini/
+sw.js
+workbox-*.js
