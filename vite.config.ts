@@ -37,7 +37,6 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,json,webmanifest}"],
-        swDest: 'sw.js', // Asegurarse de que el Service Worker se genere correctamente
       },
     }),
   ],
