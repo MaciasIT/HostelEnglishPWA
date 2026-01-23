@@ -1,27 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { useAppStore } from '@/store/useAppStore';
+import { useAppStore, Conversation, ConversationTurn } from '@/store/useAppStore';
 import CollapsibleSection from '@/components/CollapsibleSection';
-
-/**
- * Represents a single turn in a conversation, spoken by a specific participant.
- */
-type ConversationTurn = {
-  speaker: string; // More generic to accept any role
-  en: string;
-  es: string;
-  audio?: string;
-};
-
-/**
- * Represents a full conversation with a title, description, dialogue turns, and participants.
- */
-type Conversation = {
-  id: number;
-  title: string;
-  description: string;
-  dialogue: ConversationTurn[];
-  participants: string[]; // Add participants
-};
+import VoiceSettings from '@/components/VoiceSettings';
 
 interface ConversationDetailProps {
   conversation: Conversation;
@@ -35,7 +15,6 @@ interface ConversationDetailProps {
 
 const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, onBack, onConversationEnd }) => {
   const isPlayingAllRef = useRef(false);
-  const audioSpeed = useAppStore((state) => state.prefs.audioSpeed);
   const { conversationSettings, setConversationParticipantSetting } = useAppStore((state) => ({
     conversationSettings: state.prefs.conversationSettings,
     setConversationParticipantSetting: state.setConversationParticipantSetting,
@@ -111,17 +90,9 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
       utterance.voice = selectedVoice;
     }
 
-    window.speechSynthesis.cancel(); // Cancel any ongoing speech
+    // window.speechSynthesis.cancel() already called at the start
     window.speechSynthesis.speak(utterance);
   };
-
-    // Maneja el botón de volver y detiene la reproducción
-    const handleBack = () => {
-      isPlayingAllRef.current = false;
-      window.speechSynthesis.cancel();
-      onBack();
-  };
-
 
   /**
    * Plays all turns of the conversation sequentially, using the configured voice settings for each participant.
@@ -142,14 +113,12 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
         if (!textToSpeak.trim()) {
           console.warn("Attempted to speak empty text for turn", i);
           i++;
-          playNextTurn; // Skip to next turn if text is empty
+          playNextTurn();
           return;
         }
 
         const participantSettings = conversationSettings[turn.speaker] || { voiceURI: '', rate: 1, pitch: 1 };
         const selectedVoice = availableVoices.find(voice => voice.voiceURI === participantSettings.voiceURI);
-
-        console.log(`Playing all turn ${i} for ${turn.speaker} with rate: ${participantSettings.rate}`);
 
         const utterance = new SpeechSynthesisUtterance(textToSpeak);
         utterance.lang = speechLang;
@@ -168,15 +137,14 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
           if (!isPlayingAllRef.current) return;
           console.error("Speech synthesis error during play all:", event);
           i++;
-          playNextTurn(); // Continue to next turn even on error
+          playNextTurn();
         };
 
         window.speechSynthesis.speak(utterance);
       } else {
         isPlayingAllRef.current = false;
-        // All turns played
         console.log("Conversation playback finished.");
-        onConversationEnd(); // Notify parent component that conversation has ended
+        onConversationEnd();
       }
     };
 
@@ -209,68 +177,32 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
         </select>
       </div>
 
-      <div className="mb-6 p-4 bg-primary-dark rounded-md">
-        <h2 className="text-xl font-bold mb-4 text-white">Configuración de Voces por Rol</h2>
-        <button
-          onClick={handlePlayAll}
-          className="mb-4 px-4 py-2 bg-accent rounded-md text-white hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50"
-        >
-          Reproducir Toda la Conversación
-        </button>
-        {conversation.participants.map(participant => {
-          // Corrección: protege el acceso a conversationSettings
-          const participantSettings =
-            (conversationSettings && conversationSettings[participant]) ||
-            { voiceURI: '', rate: 1, pitch: 1 };
-          const defaultVoice = availableVoices.find(v => v.voiceURI === participantSettings.voiceURI);
-
-          return (
-            <div key={participant} className="mb-4 p-3 border border-primary rounded-md">
-              <h3 className="font-semibold mb-2 text-white">{participant}</h3>
-              
-              {/* Voice Selection */}
-              <label htmlFor={`voice-select-${participant}`} className="block mb-1 text-sm font-medium text-gray-300">Voz:</label>
-              <select
-                id={`voice-select-${participant}`}
-                className="w-full p-2 border rounded-md bg-primary-light border-primary-dark text-white mb-2"
-                value={participantSettings.voiceURI}
-                onChange={(e) => { isPlayingAllRef.current = false; window.speechSynthesis.cancel(); setConversationParticipantSetting(participant, 'voiceURI', e.target.value); }}
-              >
-                <option value="">Por defecto</option>
-                {availableVoices.map(voice => (
-                  <option key={voice.voiceURI} value={voice.voiceURI}>
-                    {voice.name} ({voice.lang})
-                  </option>
-                ))}
-              </select>
-
-              {/* Rate Control */}
-              <label htmlFor={`rate-range-${participant}`} className="block mb-1 text-sm font-medium text-gray-300">Velocidad: {participantSettings.rate.toFixed(1)}</label>
-              <input
-                type="range"
-                id={`rate-range-${participant}`}
-                min="0.5" max="2" step="0.1"
-                value={participantSettings.rate}
-                onChange={(e) => { isPlayingAllRef.current = false; window.speechSynthesis.cancel(); setConversationParticipantSetting(participant, 'rate', parseFloat(e.target.value)); }}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700 mb-2"
-              />
-
-              {/* Pitch Control */}
-              <label htmlFor={`pitch-range-${participant}`} className="block mb-1 text-sm font-medium text-gray-300">Tono: {participantSettings.pitch.toFixed(1)}</label>
-              <input
-                type="range"
-                id={`pitch-range-${participant}`}
-                min="0" max="2" step="0.1"
-                value={participantSettings.pitch}
-                onChange={(e) => { isPlayingAllRef.current = false; window.speechSynthesis.cancel(); setConversationParticipantSetting(participant, 'pitch', parseFloat(e.target.value)); }}
-                className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+      <CollapsibleSection title="Voces por Rol">
+        <div className="flex flex-col gap-4">
+          <p className="text-sm text-gray-400 mb-2">Configura una voz diferente para cada participante de la conversación.</p>
+          <button
+            onClick={handlePlayAll}
+            className="mb-4 px-4 py-2 bg-accent rounded-md text-white hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50 font-bold"
+          >
+            Reproducir Toda la Conversación
+          </button>
+          {conversation.participants.map(participant => (
+            <div key={participant} className="border-t border-white/10 pt-4">
+              <VoiceSettings
+                title={participant}
+                settings={conversationSettings[participant] || { voiceURI: '', rate: 1, pitch: 1 }}
+                onSettingChange={(setting, value) => {
+                  isPlayingAllRef.current = false;
+                  window.speechSynthesis.cancel();
+                  setConversationParticipantSetting(participant, setting, value);
+                }}
               />
             </div>
-          );
-        })}
-      </div>
+          ))}
+        </div>
+      </CollapsibleSection>
 
-      <div className="space-y-6">
+      <div className="space-y-6 mt-8">
         {conversation.dialogue.map((turn, index) => {
           const isMyTurn = turn.speaker === selectedRole;
           return (
@@ -302,4 +234,3 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
 };
 
 export default ConversationDetail;
-// Force module reload

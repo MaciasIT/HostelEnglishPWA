@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { useAppStore } from '@/store/useAppStore';
 import Flashcard from '@/components/Flashcard';
 import PageContainer from '@/components/layout/PageContainer';
+import CollapsibleSection from '@/components/CollapsibleSection';
+import VoiceSettings from '@/components/VoiceSettings';
+
 
 const FeatureCard = ({ title, description }: { title: string, description: string }) => (
   <div className="bg-white/20 p-6 rounded-lg shadow-lg text-center">
@@ -13,6 +16,8 @@ const FeatureCard = ({ title, description }: { title: string, description: strin
 
 export default function Flashcards() {
   const { frases, loadFrases, frasesLoaded, categories } = useAppStore();
+  const phraseSettings = useAppStore((state) => state.prefs.phraseSettings);
+  const setPhraseSetting = useAppStore((state) => state.setPhraseSetting);
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showWelcome, setShowWelcome] = useState(true);
@@ -147,6 +152,16 @@ export default function Flashcards() {
         >
           Siguiente
         </button>
+      </div>
+
+      <div className="w-full max-w-md mt-8">
+        <CollapsibleSection title="Ajustes de Voz">
+          <VoiceSettings
+            settings={phraseSettings}
+            onSettingChange={setPhraseSetting}
+            showTitle={false}
+          />
+        </CollapsibleSection>
       </div>
     </PageContainer>
   );

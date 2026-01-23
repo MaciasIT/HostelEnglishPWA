@@ -10,9 +10,9 @@ export type Phrase = {
 };
 
 export type ConversationTurn = {
-  speaker: "Hostel Staff" | "Guest";
-  english: string;
-  spanish: string;
+  speaker: string;
+  en: string;
+  es: string;
   audio?: string;
 };
 

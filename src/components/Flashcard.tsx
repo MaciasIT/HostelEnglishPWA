@@ -17,13 +17,16 @@ interface FlashcardProps {
 const Flashcard: React.FC<FlashcardProps> = ({ phrase }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   // const { playAudio } = useAudio(); // REMOVE THIS
-  const audioSpeed = useAppStore((state) => state.prefs.audioSpeed);
+  const { phraseSettings } = useAppStore((state) => ({
+    phraseSettings: state.prefs.phraseSettings,
+  }));
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
   };
 
   const handlePlayAudio = (lang: 'es' | 'en') => {
+    window.speechSynthesis.cancel();
     const textToSpeak = (lang === 'es' ? phrase.es : phrase.en) || '';
     const speechLang = lang === 'es' ? 'es-ES' : 'en-US';
 
@@ -34,9 +37,20 @@ const Flashcard: React.FC<FlashcardProps> = ({ phrase }) => {
 
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
     utterance.lang = speechLang;
-    utterance.rate = audioSpeed;
 
-    // No cancellation logic for this diagnostic test
+    if (lang === 'en') {
+      utterance.rate = phraseSettings.rate;
+      utterance.pitch = phraseSettings.pitch;
+      if (phraseSettings.voiceURI) {
+        const voice = window.speechSynthesis.getVoices().find(v => v.voiceURI === phraseSettings.voiceURI);
+        if (voice) {
+          utterance.voice = voice;
+        }
+      }
+    } else {
+      utterance.rate = 1; // Default rate for Spanish
+    }
+
     window.speechSynthesis.speak(utterance);
   };
 

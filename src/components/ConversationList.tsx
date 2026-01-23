@@ -1,23 +1,12 @@
 import React from 'react';
 
-type ConversationTurn = {
-  speaker: "Hostel Staff" | "Guest";
-  english: string;
-  spanish: string;
-  audio?: string;
-};
-
-type Conversation = {
-  id: number;
-  title: string;
-  description: string;
-  turns: ConversationTurn[];
-};
+import { Conversation } from '@/store/useAppStore';
 
 interface ConversationListProps {
   conversations: Conversation[];
   onSelectConversation: (conversation: Conversation) => void;
 }
+
 
 const ConversationList: React.FC<ConversationListProps> = ({ conversations, onSelectConversation }) => {
   if (conversations.length === 0) {

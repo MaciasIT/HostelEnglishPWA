@@ -7,10 +7,17 @@ interface VoiceSettingsProps {
     pitch: number;
   };
   onSettingChange: (setting: 'voiceURI' | 'rate' | 'pitch', value: string | number) => void;
+  title?: string;
+  showTitle?: boolean;
 }
 
 const defaultSettings = { voiceURI: '', rate: 1, pitch: 1 };
-const VoiceSettings: React.FC<VoiceSettingsProps> = ({ settings = defaultSettings, onSettingChange }) => {
+const VoiceSettings: React.FC<VoiceSettingsProps> = ({
+  settings = defaultSettings,
+  onSettingChange,
+  title = "Configuración de Voz",
+  showTitle = true
+}) => {
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
 
   useEffect(() => {
@@ -34,8 +41,8 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({ settings = defaultSetting
   };
 
   return (
-    <div className="bg-primary-dark p-4 rounded-lg mb-4">
-      <h3 className="text-lg font-bold text-white mb-2">Configuración de Voz</h3>
+    <div className="p-2 rounded-lg">
+      {showTitle && <h3 className="text-lg font-bold text-white mb-2">{title}</h3>}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
           <label htmlFor="voice-select" className="block mb-2 text-sm font-medium text-white">Voz</label>

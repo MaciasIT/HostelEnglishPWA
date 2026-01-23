@@ -9,7 +9,7 @@ export default function App() {
 
   return (
     <HashRouter>
-      <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-white text-gray-900 dark:bg-gray-900 dark:text-white flex flex-col">
+      <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-primary-dark text-gray-900 dark:bg-gray-900 dark:text-white flex flex-col">
         <TopNav />
         <SideNav />
         <main className={`flex-grow w-full max-w-full transition-all duration-300 ease-in-out pt-16 ${isSideNavOpen ? 'pl-64' : ''}`}>

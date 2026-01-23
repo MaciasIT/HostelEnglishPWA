@@ -51,18 +51,22 @@ const Dictation: React.FC = () => {
       cancelSpeech(); // Cancelar cualquier síntesis de voz en curso
 
       const utterance = new SpeechSynthesisUtterance(currentPhrase.en);
-      utterance.lang = 'en-US'; // <-- FIX: Explicitly set the language
+      utterance.lang = 'en-US';
       utterance.rate = phraseSettings.rate;
       utterance.pitch = phraseSettings.pitch;
 
-      // Obtener voces disponibles y seleccionar una voz en inglés
-      const voices = window.speechSynthesis.getVoices();
-      const englishVoice = voices.find(voice => voice.lang.startsWith('en'));
-
-      if (englishVoice) {
-        utterance.voice = englishVoice;
+      if (phraseSettings.voiceURI) {
+        const voice = window.speechSynthesis.getVoices().find(v => v.voiceURI === phraseSettings.voiceURI);
+        if (voice) {
+          utterance.voice = voice;
+        }
       } else {
-        console.warn("No se encontró una voz en inglés. Usando la voz predeterminada del navegador.");
+        // Fallback to any English voice if no specific URI is set
+        const voices = window.speechSynthesis.getVoices();
+        const englishVoice = voices.find(voice => voice.lang.startsWith('en'));
+        if (englishVoice) {
+          utterance.voice = englishVoice;
+        }
       }
 
       window.speechSynthesis.speak(utterance);
@@ -250,10 +254,13 @@ const Dictation: React.FC = () => {
 
       {/* Voice Settings Component */}
       <div className="mt-8">
-        <VoiceSettings
-          settings={phraseSettings}
-          onSettingChange={setPhraseSetting}
-        />
+        <CollapsibleSection title="Ajustes de Voz">
+          <VoiceSettings
+            settings={phraseSettings}
+            onSettingChange={setPhraseSetting}
+            showTitle={false}
+          />
+        </CollapsibleSection>
       </div>
     </PageContainer>
   );

@@ -174,7 +174,7 @@ export default function Frases() {
             </select>
           </div>
           <CollapsibleSection title="Ajustes de Voz">
-            <VoiceSettings settings={phraseSettings} onSettingChange={setPhraseSetting} />
+            <VoiceSettings settings={phraseSettings} onSettingChange={setPhraseSetting} showTitle={false} />
           </CollapsibleSection>
         </>
       )}

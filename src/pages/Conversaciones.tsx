@@ -2,24 +2,9 @@ import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import ConversationList from '@/components/ConversationList';
 import ConversationDetail from '@/components/ConversationDetail';
-import { useAppStore } from '@/store/useAppStore';
+import { useAppStore, Conversation, ConversationTurn } from '@/store/useAppStore';
 import PageContainer from '@/components/layout/PageContainer';
 
-type ConversationTurn = {
-  speaker: string;
-  en: string;
-  es: string;
-  audio?: string;
-};
-
-type Conversation = {
-  id: number;
-  title: string;
-  description: string;
-  dialogue: ConversationTurn[];
-  categoria?: string;
-  participants: string[];
-};
 
 const FeatureCard = ({ title, description }: { title: string, description: string }) => (
   <div className="bg-white/20 p-6 rounded-lg shadow-lg text-center">
