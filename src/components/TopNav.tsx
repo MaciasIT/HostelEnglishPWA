@@ -1,18 +1,26 @@
 import React from 'react';
 import { useAppStore } from '@/store/useAppStore';
+import { Bars3Icon } from '@heroicons/react/24/outline';
 
 const TopNav: React.FC = () => {
   const { toggleSideNav } = useAppStore();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-primary-dark border-b border-primary shadow-lg flex items-center justify-between px-4 py-2 z-20">
-      <button onClick={toggleSideNav} className="text-white">
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
+    <nav className="fixed top-0 left-0 right-0 bg-primary-dark/80 backdrop-blur-xl border-b border-white/5 shadow-2xl flex items-center justify-between px-6 py-4 z-[45]">
+      <button
+        onClick={toggleSideNav}
+        className="p-2 bg-white/5 border border-white/10 rounded-xl text-white hover:bg-accent transition-colors active:scale-95"
+      >
+        <Bars3Icon className="w-6 h-6" />
       </button>
-      <h1 className="text-xl font-bold text-white">Hostellinglés</h1>
-      <div className="w-6"></div> {/* Spacer */}
+
+      <h1 className="text-xl font-black text-white tracking-tighter">
+        Hostel<span className="text-accent">English</span>
+      </h1>
+
+      <div className="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center text-accent text-xs font-black border border-accent/20">
+        HE
+      </div>
     </nav>
   );
 };

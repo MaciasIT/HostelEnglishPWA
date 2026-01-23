@@ -2,19 +2,24 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useAppStore, Conversation, ConversationTurn } from '@/store/useAppStore';
 import CollapsibleSection from '@/components/CollapsibleSection';
 import VoiceSettings from '@/components/VoiceSettings';
+import {
+  ArrowLeftIcon,
+  PlayIcon,
+  PauseIcon,
+  SpeakerWaveIcon,
+  UserCircleIcon,
+  Cog6ToothIcon
+} from '@heroicons/react/24/outline';
 
 interface ConversationDetailProps {
   conversation: Conversation;
   onBack: () => void;
-  /**
-   * Callback function invoked when the full conversation playback finishes.
-   * This allows the parent component to handle post-conversation navigation or options.
-   */
   onConversationEnd: () => void;
 }
 
 const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, onBack, onConversationEnd }) => {
   const isPlayingAllRef = useRef(false);
+  const [isPlaying, setIsPlaying] = useState(false);
   const { conversationSettings, setConversationParticipantSetting } = useAppStore((state) => ({
     conversationSettings: state.prefs.conversationSettings,
     setConversationParticipantSetting: state.setConversationParticipantSetting,
@@ -22,16 +27,9 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
   const [selectedRole, setSelectedRole] = useState('Todos');
   const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([]);
 
-  /**
-   * Filters and sorts available speech synthesis voices. English voices are prioritized and listed first.
-   * This helps in presenting relevant voice options to the user.
-   * @param voices An array of SpeechSynthesisVoice objects.
-   * @returns An array containing sorted SpeechSynthesisVoice objects.
-   */
   const getSortedVoices = useCallback((voices: SpeechSynthesisVoice[]) => {
     const englishVoices = voices.filter(voice => voice.lang.startsWith('en'));
     const otherVoices = voices.filter(voice => !voice.lang.startsWith('en'));
-    // Sort English voices alphabetically by name, then other voices alphabetically by name
     return [...englishVoices.sort((a, b) => a.name.localeCompare(b.name)), ...otherVoices.sort((a, b) => a.name.localeCompare(b.name))];
   }, []);
 
@@ -41,66 +39,44 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
       setAvailableVoices(getSortedVoices(voices));
     };
 
-    // Populate voices immediately if they are already loaded
     if (window.speechSynthesis.getVoices().length > 0) {
       populateVoices();
     } else {
-      // Otherwise, wait for the voiceschanged event
       window.speechSynthesis.addEventListener('voiceschanged', populateVoices);
-      return () => {
-        window.speechSynthesis.removeEventListener('voiceschanged', populateVoices);
-      };
+      return () => window.speechSynthesis.removeEventListener('voiceschanged', populateVoices);
     }
   }, [getSortedVoices]);
 
   useEffect(() => {
-    // Cleanup function to stop speech synthesis when the component unmounts
     return () => {
       isPlayingAllRef.current = false;
       window.speechSynthesis.cancel();
     };
   }, []);
 
-  /**
-   * Plays a single turn of the conversation using the configured voice settings for the speaker.
-   * Ensures any previous speech is stopped before starting a new turn.
-   * @param turn The ConversationTurn object to play.
-   */
   const handlePlayTurn = (turn: ConversationTurn) => {
     isPlayingAllRef.current = false;
+    setIsPlaying(false);
     window.speechSynthesis.cancel();
     const textToSpeak = turn.en || '';
-    const speechLang = 'en-US';
-
-    if (!textToSpeak.trim()) {
-      console.warn("Attempted to speak empty text.");
-      return;
-    }
+    if (!textToSpeak.trim()) return;
 
     const participantSettings = conversationSettings[turn.speaker] || { voiceURI: '', rate: 1, pitch: 1 };
     const selectedVoice = availableVoices.find(voice => voice.voiceURI === participantSettings.voiceURI);
 
-    console.log(`Playing turn for ${turn.speaker} with rate: ${participantSettings.rate}`);
-
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
-    utterance.lang = speechLang;
+    utterance.lang = 'en-US';
     utterance.rate = participantSettings.rate;
     utterance.pitch = participantSettings.pitch;
-    if (selectedVoice) {
-      utterance.voice = selectedVoice;
-    }
+    if (selectedVoice) utterance.voice = selectedVoice;
 
-    // window.speechSynthesis.cancel() already called at the start
     window.speechSynthesis.speak(utterance);
   };
 
-  /**
-   * Plays all turns of the conversation sequentially, using the configured voice settings for each participant.
-   * This provides a continuous listening experience for the entire dialogue.
-   */
   const handlePlayAll = useCallback(() => {
-    window.speechSynthesis.cancel(); // Stop any ongoing speech
+    window.speechSynthesis.cancel();
     isPlayingAllRef.current = true;
+    setIsPlaying(true);
 
     let i = 0;
     const playNextTurn = () => {
@@ -108,123 +84,165 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
       if (i < conversation.dialogue.length) {
         const turn = conversation.dialogue[i];
         const textToSpeak = turn.en || '';
-        const speechLang = 'en-US';
-
-        if (!textToSpeak.trim()) {
-          console.warn("Attempted to speak empty text for turn", i);
-          i++;
-          playNextTurn();
-          return;
-        }
+        if (!textToSpeak.trim()) { i++; playNextTurn(); return; }
 
         const participantSettings = conversationSettings[turn.speaker] || { voiceURI: '', rate: 1, pitch: 1 };
         const selectedVoice = availableVoices.find(voice => voice.voiceURI === participantSettings.voiceURI);
 
         const utterance = new SpeechSynthesisUtterance(textToSpeak);
-        utterance.lang = speechLang;
+        utterance.lang = 'en-US';
         utterance.rate = participantSettings.rate;
         utterance.pitch = participantSettings.pitch;
-        if (selectedVoice) {
-          utterance.voice = selectedVoice;
-        }
+        if (selectedVoice) utterance.voice = selectedVoice;
 
-        utterance.onend = () => {
-          if (!isPlayingAllRef.current) return;
-          i++;
-          playNextTurn();
-        };
-        utterance.onerror = (event) => {
-          if (!isPlayingAllRef.current) return;
-          console.error("Speech synthesis error during play all:", event);
-          i++;
-          playNextTurn();
-        };
+        utterance.onend = () => { if (isPlayingAllRef.current) { i++; playNextTurn(); } };
+        utterance.onerror = () => { if (isPlayingAllRef.current) { i++; playNextTurn(); } };
 
         window.speechSynthesis.speak(utterance);
       } else {
         isPlayingAllRef.current = false;
-        console.log("Conversation playback finished.");
+        setIsPlaying(false);
         onConversationEnd();
       }
     };
-
     playNextTurn();
   }, [conversation, conversationSettings, availableVoices, onConversationEnd]);
 
-  return (
-    <div className="p-4 pb-20 bg-primary text-white min-h-screen">
-      <button
-        onClick={() => { isPlayingAllRef.current = false; window.speechSynthesis.cancel(); onBack(); }}
-        className="mb-4 px-4 py-2 bg-primary-dark rounded-md text-white hover:bg-primary"
-      >
-        ← Volver a la lista
-      </button>
-      <h1 className="text-2xl font-bold mb-4 text-white">{conversation.title}</h1>
-      <p className="text-gray-300 mb-6">{conversation.description}</p>
+  const handleStop = () => {
+    isPlayingAllRef.current = false;
+    setIsPlaying(false);
+    window.speechSynthesis.cancel();
+  };
 
-      <div className="mb-6">
-        <label htmlFor="role-select" className="block mb-2 text-sm font-medium text-white">Tu Rol:</label>
-        <select
-          id="role-select"
-          className="w-full p-2 border rounded-md bg-primary-dark border-primary-dark text-white"
-          value={selectedRole}
-          onChange={(e) => { isPlayingAllRef.current = false; window.speechSynthesis.cancel(); setSelectedRole(e.target.value); }}
+  return (
+    <div className="flex flex-col min-h-[85vh] animate-fade-in">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-8">
+        <button
+          onClick={() => { handleStop(); onBack(); }}
+          className="p-3 bg-white/5 border border-white/10 rounded-2xl text-white hover:bg-white/10 transition-all active:scale-90"
         >
-          <option value="Todos">Todos</option>
-          {conversation.participants.map(participant => (
-            <option key={participant} value={participant}>{participant}</option>
-          ))}
-        </select>
+          <ArrowLeftIcon className="w-6 h-6" />
+        </button>
+        <div className="text-center">
+          <h1 className="text-2xl font-black text-white leading-tight">{conversation.title}</h1>
+          <p className="text-xs text-accent font-bold uppercase tracking-widest">{conversation.categoria || 'Lección de Hostelería'}</p>
+        </div>
+        <div className="w-12"></div>
       </div>
 
-      <CollapsibleSection title="Voces por Rol">
-        <div className="flex flex-col gap-4">
-          <p className="text-sm text-gray-400 mb-2">Configura una voz diferente para cada participante de la conversación.</p>
-          <button
-            onClick={handlePlayAll}
-            className="mb-4 px-4 py-2 bg-accent rounded-md text-white hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50 font-bold"
-          >
-            Reproducir Toda la Conversación
-          </button>
-          {conversation.participants.map(participant => (
-            <div key={participant} className="border-t border-white/10 pt-4">
-              <VoiceSettings
-                title={participant}
-                settings={conversationSettings[participant] || { voiceURI: '', rate: 1, pitch: 1 }}
-                onSettingChange={(setting, value) => {
-                  isPlayingAllRef.current = false;
-                  window.speechSynthesis.cancel();
-                  setConversationParticipantSetting(participant, setting, value);
-                }}
-              />
-            </div>
-          ))}
-        </div>
-      </CollapsibleSection>
+      <p className="text-gray-400 text-center mb-10 max-w-xl mx-auto italic">
+        "{conversation.description}"
+      </p>
 
-      <div className="space-y-6 mt-8">
+      {/* Profile & Controls */}
+      <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 mb-10 shadow-2xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <label className="block text-[10px] uppercase font-black tracking-[0.2em] text-gray-500 mb-4">Elige tu personaje</label>
+            <div className="flex flex-wrap gap-3">
+              <button
+                onClick={() => { handleStop(); setSelectedRole('Todos'); }}
+                className={`px-6 py-3 rounded-2xl font-bold transition-all border ${selectedRole === 'Todos' ? 'bg-accent border-accent text-white' : 'bg-white/5 border-white/10 text-gray-400 hover:bg-white/10'}`}
+              >
+                Escuchar ambos
+              </button>
+              {conversation.participants.map(p => (
+                <button
+                  key={p}
+                  onClick={() => { handleStop(); setSelectedRole(p); }}
+                  className={`px-6 py-3 rounded-2xl font-bold transition-all border ${selectedRole === p ? 'bg-accent border-accent text-white' : 'bg-white/5 border-white/10 text-gray-400 hover:bg-white/10'}`}
+                >
+                  Ser {p}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex justify-center md:justify-end gap-3">
+            {!isPlaying ? (
+              <button
+                onClick={handlePlayAll}
+                className="bg-accent hover:brightness-110 text-white font-black py-4 px-8 rounded-2xl shadow-xl transition-all active:scale-95 flex items-center gap-3"
+              >
+                <PlayIcon className="w-5 h-5 fill-current" />
+                REPRODUCIR TODO
+              </button>
+            ) : (
+              <button
+                onClick={handleStop}
+                className="bg-red-500 hover:brightness-110 text-white font-black py-4 px-8 rounded-2xl shadow-xl transition-all active:scale-95 flex items-center gap-3"
+              >
+                <PauseIcon className="w-5 h-5 fill-current" />
+                DETENER
+              </button>
+            )}
+          </div>
+        </div>
+
+        <div className="mt-8 border-t border-white/5 pt-6">
+          <CollapsibleSection title="Ajustes de Voces">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+              {conversation.participants.map(participant => (
+                <div key={participant} className="bg-white/5 p-6 rounded-3xl border border-white/10">
+                  <h4 className="flex items-center gap-2 font-black text-white mb-4">
+                    <UserCircleIcon className="w-5 h-5 text-accent" />
+                    {participant}
+                  </h4>
+                  <VoiceSettings
+                    settings={conversationSettings[participant] || { voiceURI: '', rate: 1, pitch: 1 }}
+                    onSettingChange={(setting, value) => setConversationParticipantSetting(participant, setting, value)}
+                    showTitle={false}
+                  />
+                </div>
+              ))}
+            </div>
+          </CollapsibleSection>
+        </div>
+      </div>
+
+      {/* Chat Interface */}
+      <div className="space-y-6 max-w-4xl mx-auto w-full pb-20">
         {conversation.dialogue.map((turn, index) => {
           const isMyTurn = turn.speaker === selectedRole;
+          const isParticipant0 = turn.speaker === conversation.participants[0];
+
           return (
             <div
               key={index}
-              className={`p-4 rounded-lg shadow-md ${isMyTurn ? "bg-accent" : (turn.speaker === conversation.participants[0] ? "bg-primary/10" : "bg-white/10")}`}
+              className={`flex flex-col ${isParticipant0 ? 'items-start' : 'items-end'} animate-in slide-in-from-bottom-4 duration-500`}
+              style={{ animationDelay: `${index * 100}ms` }}
             >
-              <p className="font-semibold mb-1 text-white">{turn.speaker}:</p>
-              {isMyTurn ? (
-                <p className="text-lg italic text-gray-300">Tu turno...</p>
-              ) : (
-                <>
-                  <p className="text-lg mb-2 text-white whitespace-normal break-words">{turn.en}</p>
-                  <p className="text-gray-300 text-sm italic whitespace-normal break-words">{turn.es}</p>
-                  <button
-                    onClick={() => handlePlayTurn(turn)}
-                    className="mt-3 px-3 py-1 bg-primary text-white rounded-md hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50"
-                  >
-                    Reproducir
-                  </button>
-                </>
-              )}
+              <div className={`max-w-[85%] rounded-[2rem] p-6 shadow-xl relative group ${isMyTurn
+                  ? 'bg-accent/20 border-2 border-accent/40 rounded-br-none'
+                  : (isParticipant0 ? 'bg-white/10 rounded-bl-none' : 'bg-primary-light/10 rounded-br-none')
+                }`}>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className={`text-[10px] font-black uppercase tracking-widest ${isMyTurn ? 'text-accent' : 'text-gray-500'}`}>
+                    {turn.speaker} {isMyTurn ? '(TÚ)' : ''}
+                  </span>
+                  {!isMyTurn && (
+                    <button
+                      onClick={() => handlePlayTurn(turn)}
+                      className="p-1 text-gray-400 hover:text-white transition-all opacity-0 group-hover:opacity-100"
+                    >
+                      <SpeakerWaveIcon className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+
+                {isMyTurn ? (
+                  <div className="py-4 px-6 bg-accent border border-accent rounded-2xl text-center">
+                    <p className="text-white font-black">¡TU TURNO!</p>
+                    <p className="text-white/60 text-xs mt-1">Lee en voz alta para practicar</p>
+                  </div>
+                ) : (
+                  <>
+                    <p className="text-xl font-bold text-white mb-2 leading-tight">{turn.en}</p>
+                    <p className="text-gray-400 text-sm leading-relaxed">{turn.es}</p>
+                  </>
+                )}
+              </div>
             </div>
           );
         })}
