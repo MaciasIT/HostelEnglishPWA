@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SparklesIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
+import { useAppStore } from '@/store/useAppStore';
 
 interface VoiceSettingsProps {
   settings: {
@@ -13,6 +14,7 @@ interface VoiceSettingsProps {
 }
 
 const defaultSettings = { voiceURI: '', rate: 1, pitch: 1 };
+
 const VoiceSettings: React.FC<VoiceSettingsProps> = ({
   settings = defaultSettings,
   onSettingChange,
@@ -20,11 +22,14 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({
   showTitle = true
 }) => {
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const targetLanguage = useAppStore(state => state.prefs.targetLanguage);
 
   useEffect(() => {
     const loadVoices = () => {
       const availableVoices = window.speechSynthesis.getVoices();
-      const filteredVoices = availableVoices.filter(voice => voice.lang.startsWith('en'));
+      // Filter voices based on the target language code (en or eu)
+      const langCode = targetLanguage === 'eu' ? 'eu' : 'en';
+      const filteredVoices = availableVoices.filter(voice => voice.lang.startsWith(langCode));
       setVoices(filteredVoices);
     };
 
@@ -34,7 +39,7 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({
     return () => {
       window.speechSynthesis.onvoiceschanged = null;
     };
-  }, []);
+  }, [targetLanguage]);
 
   const handleVoiceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedVoiceURI = e.target.value;

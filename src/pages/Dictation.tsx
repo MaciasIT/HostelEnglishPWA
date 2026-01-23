@@ -18,7 +18,14 @@ import {
 
 const Dictation: React.FC = () => {
   const [showWelcome, setShowWelcome] = useState(true);
-  const frases = useAppStore((state) => state.frases);
+  const { frases, progress, advancePhraseProgress, setPhraseSetting } = useAppStore(state => ({
+    frases: state.frases,
+    progress: state.progress,
+    advancePhraseProgress: state.advancePhraseProgress,
+    setPhraseSetting: state.setPhraseSetting,
+  }));
+  const phraseSettings = useAppStore((state) => state.prefs.phraseSettings);
+
   const [currentPhrase, setCurrentPhrase] = useState<Phrase | null>(null);
   const [userAnswer, setUserAnswer] = useState('');
   const [feedback, setFeedback] = useState<{ isCorrect: boolean, message: string } | null>(null);
@@ -27,9 +34,6 @@ const Dictation: React.FC = () => {
 
   const { isListening, transcript, startListening, stopListening, browserSupportsSpeechRecognition } = useSpeechRecognition();
   const { cancelSpeech } = useAudioControl();
-
-  const phraseSettings = useAppStore((state) => state.prefs.phraseSettings);
-  const setPhraseSetting = useAppStore((state) => state.setPhraseSetting);
 
   const selectNewPhrase = useCallback(() => {
     if (frases.length > 0) {
@@ -46,17 +50,27 @@ const Dictation: React.FC = () => {
     if (!showWelcome) selectNewPhrase();
   }, [showWelcome, selectNewPhrase]);
 
+  const targetLanguage = useAppStore((state) => state.prefs.targetLanguage);
+
   const handlePlayAudio = () => {
     if (currentPhrase) {
       cancelSpeech();
-      const utterance = new SpeechSynthesisUtterance(currentPhrase.en);
-      utterance.lang = 'en-US';
+      const textToSpeak = targetLanguage === 'eu' ? currentPhrase.eu : currentPhrase.en;
+      const voiceLang = targetLanguage === 'eu' ? 'eu-ES' : 'en-US';
+
+      if (!textToSpeak?.trim()) return;
+
+      const utterance = new SpeechSynthesisUtterance(textToSpeak);
+      utterance.lang = voiceLang;
       utterance.rate = phraseSettings.rate;
       utterance.pitch = phraseSettings.pitch;
 
       if (phraseSettings.voiceURI) {
+        // Only use the saved voice if it matches the current target language
         const voice = window.speechSynthesis.getVoices().find(v => v.voiceURI === phraseSettings.voiceURI);
-        if (voice) utterance.voice = voice;
+        if (voice && voice.lang.startsWith(targetLanguage === 'eu' ? 'eu' : 'en')) {
+          utterance.voice = voice;
+        }
       }
       window.speechSynthesis.speak(utterance);
     }
@@ -66,8 +80,11 @@ const Dictation: React.FC = () => {
     if (!currentPhrase) return;
     cancelSpeech();
 
+    const correctText = targetLanguage === 'eu' ? currentPhrase.eu : currentPhrase.en;
+    if (!correctText) return;
+
     const normalizedUserAnswer = normalizeText(userAnswer);
-    const normalizedCorrectAnswer = normalizeText(currentPhrase.en);
+    const normalizedCorrectAnswer = normalizeText(correctText);
     const distance = levenshteinDistance(normalizedUserAnswer, normalizedCorrectAnswer);
     const toleranceThreshold = Math.floor(normalizedCorrectAnswer.length * 0.15);
 
@@ -75,12 +92,17 @@ const Dictation: React.FC = () => {
       setFeedback({ isCorrect: true, message: '¡Absolutamente correcto!' });
       setCorrectAnswer(null);
       setShowTranslation(true);
+
+      // Advance progress if correct
+      if ((progress[currentPhrase.id] || 0) < 2) {
+        advancePhraseProgress(String(currentPhrase.id));
+      }
     } else {
       setFeedback({ isCorrect: false, message: '¡Casi! Inténtalo una vez más.' });
-      setCorrectAnswer(currentPhrase.en);
+      setCorrectAnswer(correctText);
       setShowTranslation(true);
     }
-  }, [currentPhrase, userAnswer, cancelSpeech]);
+  }, [currentPhrase, userAnswer, cancelSpeech, targetLanguage, progress, advancePhraseProgress]);
 
   useEffect(() => {
     if (!isListening && transcript) {
@@ -179,7 +201,7 @@ const Dictation: React.FC = () => {
               {correctAnswer && !feedback.isCorrect && (
                 <div className="mt-6 pt-6 border-t border-white/5">
                   <p className="text-[10px] text-gray-500 uppercase font-black mb-2">Respuesta Correcta:</p>
-                  <p className="text-xl text-white font-black italic">"{currentPhrase?.en}"</p>
+                  <p className="text-xl text-white font-black italic">"{correctAnswer}"</p>
                 </div>
               )}
 

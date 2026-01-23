@@ -22,7 +22,7 @@ type Question = {
 };
 
 export default function Quiz() {
-  const { frases, loadFrases, frasesLoaded } = useAppStore();
+  const { frases, loadFrases, frasesLoaded, progress, advancePhraseProgress } = useAppStore();
   const phraseSettings = useAppStore((state) => state.prefs.phraseSettings);
   const setPhraseSetting = useAppStore((state) => state.setPhraseSetting);
 
@@ -42,56 +42,63 @@ export default function Quiz() {
     }
   }, [frasesLoaded, loadFrases]);
 
+  const targetLanguage = useAppStore((state) => state.prefs.targetLanguage);
+
   const playAudio = useCallback((text: string) => {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
+    utterance.lang = targetLanguage === 'eu' ? 'eu-ES' : 'en-US';
     utterance.rate = phraseSettings.rate;
     utterance.pitch = phraseSettings.pitch;
 
     if (phraseSettings.voiceURI) {
       const voice = window.speechSynthesis.getVoices().find(v => v.voiceURI === phraseSettings.voiceURI);
-      if (voice) utterance.voice = voice;
+      if (voice && voice.lang.startsWith(targetLanguage === 'eu' ? 'eu' : 'en')) {
+        utterance.voice = voice;
+      }
     }
 
     window.speechSynthesis.speak(utterance);
-  }, [phraseSettings]);
+  }, [phraseSettings, targetLanguage]);
 
   const generateQuestion = useCallback(() => {
     if (frases.length < 4) return;
 
     const target = frases[Math.floor(Math.random() * frases.length)];
+    const getTargetText = (f: Phrase) => (targetLanguage === 'eu' ? f.eu : f.en) || f.en;
+    const targetText = getTargetText(target);
 
     if (selectedMode === 'multiple') {
       const distractors: string[] = [];
       while (distractors.length < 3) {
         const randomFrase = frases[Math.floor(Math.random() * frases.length)];
-        if (randomFrase.id !== target.id && !distractors.includes(randomFrase.en)) {
-          distractors.push(randomFrase.en);
+        const distactorText = getTargetText(randomFrase);
+        if (randomFrase.id !== target.id && !distractors.includes(distactorText)) {
+          distractors.push(distactorText);
         }
       }
-      const options = [...distractors, target.en].sort(() => Math.random() - 0.5);
+      const options = [...distractors, targetText].sort(() => Math.random() - 0.5);
       setCurrentQuestion({ target, options });
     } else if (selectedMode === 'truefalse') {
       const shouldBeCorrect = Math.random() > 0.5;
-      let tfTranslation = target.en;
+      let tfTranslation = targetText;
       if (!shouldBeCorrect) {
         let randomFrase;
         do {
           randomFrase = frases[Math.floor(Math.random() * frases.length)];
         } while (randomFrase.id === target.id);
-        tfTranslation = randomFrase.en;
+        tfTranslation = getTargetText(randomFrase);
       }
       setCurrentQuestion({ target, options: [], tfTranslation, tfIsCorrect: shouldBeCorrect });
     } else if (selectedMode === 'scramble') {
-      const words = target.en.split(' ');
+      const words = targetText.split(' ');
       const scrambledWords = words.map((w, i) => ({ id: `${i}-${w}`, text: w })).sort(() => Math.random() - 0.5);
       setCurrentQuestion({ target, options: [], scrambledWords });
       setScrambleAnswers([]);
     }
 
     setFeedback(null);
-  }, [frases, selectedMode]);
+  }, [frases, selectedMode, targetLanguage]);
 
   const handleStartQuiz = () => {
     setShowWelcome(false);
@@ -104,24 +111,30 @@ export default function Quiz() {
   const checkAnswer = (answer: boolean | string) => {
     if (feedback || !currentQuestion) return;
 
+    const targetText = (targetLanguage === 'eu' ? currentQuestion.target.eu : currentQuestion.target.en) || currentQuestion.target.en;
+
     let isCorrect = false;
     if (selectedMode === 'multiple') {
-      isCorrect = answer === currentQuestion.target.en;
+      isCorrect = answer === targetText;
     } else if (selectedMode === 'truefalse') {
       isCorrect = answer === currentQuestion.tfIsCorrect;
     } else if (selectedMode === 'scramble') {
-      isCorrect = answer === currentQuestion.target.en;
+      isCorrect = answer === targetText;
     }
 
     if (isCorrect) {
       setScore(s => s + 1);
       setFeedback({ isCorrect: true, message: '¡Correcto!' });
+
+      // Advance progress if correct
+      if ((progress[currentQuestion.target.id] || 0) < 2) {
+        advancePhraseProgress(String(currentQuestion.target.id));
+      }
     } else {
-      const correctText = currentQuestion.target.en;
-      setFeedback({ isCorrect: false, message: `Incorrecto. Era: ${correctText}` });
+      setFeedback({ isCorrect: false, message: `Incorrecto. Era: ${targetText}` });
     }
     setTotalQuestions(t => t + 1);
-    playAudio(currentQuestion.target.en);
+    playAudio(targetText);
   };
 
   const handleScrambleClick = (word: ScrambledWord) => {

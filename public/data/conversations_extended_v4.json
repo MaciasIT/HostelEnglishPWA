@@ -13,49 +13,60 @@
         {
           "speaker": "Recepcionista",
           "es": "Buenas tardes, bienvenido al Grand Palace Hotel. ¿En qué puedo ayudarle?",
-          "en": "Good afternoon, welcome to the Grand Palace Hotel. How can I help you?"
+          "en": "Good afternoon, welcome to the Grand Palace Hotel. How can I help you?",
+          "eu": "Arratsalde on, ongi etorri Grand Palace Hotelera. Zertan lagun zaitzaket?"
         },
         {
           "speaker": "Huésped",
           "es": "Hola, tengo una reserva a nombre de García.",
-          "en": "Hello, I have a reservation under the name of Garcia."
+          "en": "Hello, I have a reservation under the name of Garcia.",
+          "eu": "Kaixo, erreserba bat dut García izenean."
         },
         {
           "speaker": "Recepcionista",
           "es": "Un momento, por favor... Sí, aquí está. Una habitación doble para tres noches. ¿Es correcto?",
-          "en": "One moment, please... Yes, here it is. A double room for three nights. Is that correct?"
+          "en": "One moment, please... Yes, here it is. A double room for three nights. Is that correct?",
+          "eu": "Une bat, mesedez... Bai, hemen dago. Gela bikoitza hiru gauetarako. Zuzena da?"
         },
         {
           "speaker": "Huésped",
           "es": "Sí, es correcto.",
-          "en": "Yes, that's correct."
+          "en": "Yes, that's correct.",
+          "eu": "Bai, zuzena da."
         },
         {
           "speaker": "Recepcionista",
           "es": "Perfecto. ¿Podría darme su pasaporte y una tarjeta de crédito, por favor?",
-          "en": "Perfect. Could I have your passport and a credit card, please?"
+          "en": "Perfect. Could I have your passport and a credit card, please?",
+          "eu": "Perfektu. Pasaportea eta kreditu-txartela emango didazu, mesedez?"
         },
         {
           "speaker": "Huésped",
           "es": "Claro, aquí tiene.",
-          "en": "Of course, here you are."
+          "en": "Of course, here you are.",
+          "eu": "Noski, hemen duzu."
         },
         {
           "speaker": "Recepcionista",
           "es": "Gracias. Por favor, rellene este formulario de registro. El desayuno se sirve de 7 a 10 de la mañana en el restaurante del primer piso.",
-          "en": "Thank you. Please fill out this registration form. Breakfast is served from 7 to 10 a.m. in the first-floor restaurant."
+          "en": "Thank you. Please fill out this registration form. Breakfast is served from 7 to 10 a.m. in the first-floor restaurant.",
+          "eu": "Eskerrik asko. Bete ezazu erregistro-inprimaki hau, mesedez. Gosaria goizeko 7etatik 10etara ematen da lehen solairuko jatetxean."
         },
         {
           "speaker": "Recepcionista",
           "es": "Aquí tiene la llave de su habitación. Es la 405, en el cuarto piso. El ascensor está al final del pasillo a la derecha. ¡Disfrute de su estancia!",
-          "en": "Here is your room key. It's room 405, on the fourth floor. The elevator is at the end of the hall to your right. Enjoy your stay!"
+          "en": "Here is your room key. It's room 405, on the fourth floor. The elevator is at the end of the hall to your right. Enjoy your stay!",
+          "eu": "Hemen duzu zure gelako giltza. 405.a da, laugarren solairuan. Igogailua korridorearen amaieran dago, eskuinean. Ondo pasa egonaldia!"
         },
         {
           "speaker": "Huésped",
           "es": "Muchas gracias.",
-          "en": "Thank you very much."
+          "en": "Thank you very much.",
+          "eu": "Eskerrik asko."
         }
-      ]
+      ],
+      "title_eu": "Hotelean sarrera (check-in) egiten",
+      "scenario_eu": "Bezero bat harrerara iritsi da erregistratzeko."
     },
     {
       "id": "conv2",
@@ -70,29 +81,36 @@
         {
           "speaker": "Cliente",
           "es": "Disculpe, tengo una alergia alimentaria. ¿Tienen algún plato sin gluten?",
-          "en": "Excuse me, I have a food allergy. Do you have any dishes that are gluten-free?"
+          "en": "Excuse me, I have a food allergy. Do you have any dishes that are gluten-free?",
+          "eu": "Barkatu, elikagai-alergia bat dut. Glutenik gabeko platerik baduzue?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Claro, señor/señora. ¿Tiene alguna alergia o restricción dietética? Permítame revisar el menú.",
-          "en": "Certainly, Sir/Madam. Do you have any food allergies or dietary restrictions? Let me check the menu for you."
+          "en": "Certainly, Sir/Madam. Do you have any food allergies or dietary restrictions? Let me check the menu for you.",
+          "eu": "Noski, jauna/andrea. Alergiarik edo dieta-murrizketarik baduzu? Utzi menua begiratzen."
         },
         {
           "speaker": "Camarero/a",
           "es": "Este plato es sin gluten, ¿le gustaría probarlo?",
-          "en": "This dish is gluten-free, would you like to try it?"
+          "en": "This dish is gluten-free, would you like to try it?",
+          "eu": "Plater hau glutenik gabekoa da, probatu nahi duzu?"
         },
         {
           "speaker": "Cliente",
           "es": "Sí, perfecto. ¿Qué lleva esta ensalada?",
-          "en": "Yes, that would be great. What are the ingredients in this salad?"
+          "en": "Yes, that would be great. What are the ingredients in this salad?",
+          "eu": "Bai, bikain. Zer darama entsalada honek?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Contiene lechugas mixtas, tomate, pepino y una vinagreta ligera. Voy a confirmarlo con el chef para asegurar que no lleve frutos secos.",
-          "en": "It contains mixed greens, tomatoes, cucumber, and a light vinaigrette. Let me double-check with the chef to ensure it is nut-free."
+          "en": "It contains mixed greens, tomatoes, cucumber, and a light vinaigrette. Let me double-check with the chef to ensure it is nut-free.",
+          "eu": "Hosto mistoak, tomatea, luzokerra eta ozpinetako arin bat ditu. Sukaldariarekin egiaztatuko dut fruitu lehorrik ez duela ziurtatzeko."
         }
-      ]
+      ],
+      "title_eu": "Alergiak eta dieta-murrizketak jatetxean",
+      "scenario_eu": "Bezero batek elikagai-alergia baten berri eman du eta zerbitzariak aukera seguruak eskaintzen dizkio."
     },
     {
       "id": "conv3",
@@ -107,34 +125,42 @@
         {
           "speaker": "Camarero/a",
           "es": "Buenas noches, ¿están listos para ordenar o desean unos minutos más?",
-          "en": "Good evening, are you ready to order or would you like a few more minutes?"
+          "en": "Good evening, are you ready to order or would you like a few more minutes?",
+          "eu": "Gabon, eskaera egiteko prest zaudete ala minutu batzuk gehiago behar dituzue?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Nuestra especialidad son las tapas y la paella. Puedo recomendar la paella de marisco; es muy popular.",
-          "en": "Our specialty is tapas and paella. I can recommend our seafood paella; it's very popular."
+          "en": "Our specialty is tapas and paella. I can recommend our seafood paella; it's very popular.",
+          "eu": "Gure espezialitatea tapak eta paella dira. Itsaski paella gomenda diezazueket; oso ezaguna da."
         },
         {
           "speaker": "Cliente",
           "es": "¡Suena bien! ¿Cómo se prepara el atún rojo?",
-          "en": "That sounds good! How is the ahi tuna prepared?"
+          "en": "That sounds good! How is the ahi tuna prepared?",
+          "eu": "Ondo dirudi! Nola prestatzen da atun gorria?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Está sellado y se sirve con salsa ponzu. 'Sellado' significa que el pescado se cocina solo por fuera.",
-          "en": "It is seared and served with a ponzu sauce. 'Seared' means that the fish is cooked just on the outside."
+          "en": "It is seared and served with a ponzu sauce. 'Seared' means that the fish is cooked just on the outside.",
+          "eu": "Markatuta dago eta ponzu saltsarekin ematen da. 'Markatuta' esan nahi du arraina kanpotik bakarrik egosten dela."
         },
         {
           "speaker": "Cliente",
           "es": "¿Con qué viene el plato?",
-          "en": "What does the dish come with?"
+          "en": "What does the dish come with?",
+          "eu": "Zerekin dator platera?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Se sirve con arroz y verduras al vapor.",
-          "en": "It is served with rice and steamed vegetables."
+          "en": "It is served with rice and steamed vegetables.",
+          "eu": "Arrozarekin eta lurrunetan egindako barazkiekin ematen da."
         }
-      ]
+      ],
+      "title_eu": "Platerak gomendatzen eta deskribatzen",
+      "scenario_eu": "Zerbitzariak espezialitateak proposatzen ditu eta prestaketa eta lagungarriak azaltzen ditu."
     },
     {
       "id": "conv4",
@@ -421,7 +447,8 @@
         {
           "speaker": "Cliente",
           "es": "Muchas gracias.",
-          "en": "Thank you very much."
+          "en": "Thank you very much.",
+          "eu": "Eskerrik asko."
         },
         {
           "speaker": "Camarero/a",
@@ -1025,7 +1052,8 @@
         {
           "speaker": "Cliente",
           "es": "Muchas gracias.",
-          "en": "Thank you very much."
+          "en": "Thank you very much.",
+          "eu": "Eskerrik asko."
         },
         {
           "speaker": "Camarero/a",
@@ -1451,7 +1479,8 @@
         {
           "speaker": "Cliente",
           "es": "Claro, aquí tiene.",
-          "en": "Of course, here you are."
+          "en": "Of course, here you are.",
+          "eu": "Noski, hemen duzu."
         },
         {
           "speaker": "Bartender/a",
@@ -2643,7 +2672,8 @@
         {
           "speaker": "Cliente",
           "es": "Claro, aquí tiene.",
-          "en": "Sure, here you are."
+          "en": "Sure, here you are.",
+          "eu": "Noski, hemen duzu."
         },
         {
           "speaker": "Bartender",
@@ -2757,7 +2787,8 @@
         {
           "speaker": "Cliente",
           "es": "Muchas gracias.",
-          "en": "Thank you very much."
+          "en": "Thank you very much.",
+          "eu": "Eskerrik asko."
         },
         {
           "speaker": "Bartender",
@@ -2841,7 +2872,8 @@
         {
           "speaker": "Bartender",
           "es": "Claro, aquí tiene.",
-          "en": "Of course, here you are."
+          "en": "Of course, here you are.",
+          "eu": "Noski, hemen duzu."
         },
         {
           "speaker": "Cliente",
@@ -3069,7 +3101,8 @@
         {
           "speaker": "Huésped",
           "es": "Muchas gracias.",
-          "en": "Thank you very much."
+          "en": "Thank you very much.",
+          "eu": "Eskerrik asko."
         },
         {
           "speaker": "Room Service",

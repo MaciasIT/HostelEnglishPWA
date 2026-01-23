@@ -7,6 +7,8 @@ import PhraseCard from '@/components/PhraseCard';
 
 export default function Estudio() {
   const { frases, categories, progress, advancePhraseProgress, frasesLoaded, loadFrases } = useAppStore();
+  const targetLanguage = useAppStore(state => state.prefs.targetLanguage);
+
   const [showWelcome, setShowWelcome] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -30,14 +32,17 @@ export default function Estudio() {
     return (
       <PageContainer>
         <ModuleIntro
-          title="Módulo de Estudio"
-          description="Aprende paso a paso con lecciones estructuradas por situaciones reales del sector hostelero."
+          title={targetLanguage === 'eu' ? 'Ikasketa Modulua' : 'Módulo de Estudio'}
+          description={targetLanguage === 'eu'
+            ? 'Ikasi pausoz pauso ostalaritzaren sektoreko benetako egoerek egituratutako ikasgaiekin.'
+            : 'Aprende paso a paso con lecciones estructuradas por situaciones reales del sector hostelero.'
+          }
           icon={BookOpenIcon}
           onStart={() => setShowWelcome(false)}
           stats={[
-            { label: 'Lecciones', value: categories.length },
-            { label: 'Dominio', value: `${Math.round((stats.learned / stats.total) * 100) || 0}%` },
-            { label: 'Modo', value: 'Guiado' }
+            { label: targetLanguage === 'eu' ? 'Ikasgaiak' : 'Lecciones', value: categories.length },
+            { label: targetLanguage === 'eu' ? 'Jabegoa' : 'Dominio', value: `${Math.round((stats.learned / stats.total) * 100) || 0}%` },
+            { label: targetLanguage === 'eu' ? 'Modua' : 'Modo', value: targetLanguage === 'eu' ? 'Gidatua' : 'Guiado' }
           ]}
         />
       </PageContainer>
@@ -46,7 +51,7 @@ export default function Estudio() {
 
   if (!selectedCategory) {
     return (
-      <PageContainer title="Elige una Lección">
+      <PageContainer title={targetLanguage === 'eu' ? 'Aukeratu Ikasgai bat' : 'Elige una Lección'}>
         <div className="max-w-4xl mx-auto py-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {categories.filter(c => c !== 'Estudiadas' && c !== 'Aprendidas').map((cat, idx) => {
@@ -68,13 +73,13 @@ export default function Estudio() {
                       <AcademicCapIcon className="w-6 h-6 text-accent" />
                     </div>
                     <span className="text-[10px] uppercase font-black tracking-widest text-gray-500 bg-white/5 px-3 py-1 rounded-full">
-                      {catPhrases.length} frases
+                      {catPhrases.length} {targetLanguage === 'eu' ? 'esaldi' : 'frases'}
                     </span>
                   </div>
                   <h3 className="text-xl font-bold text-white mb-4">{cat}</h3>
                   <div className="mt-auto w-full">
                     <div className="flex justify-between text-xs mb-2">
-                      <span className="text-gray-400">Progreso</span>
+                      <span className="text-gray-400">{targetLanguage === 'eu' ? 'Aurrerapena' : 'Progreso'}</span>
                       <span className="text-accent font-bold">{percent}%</span>
                     </div>
                     <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
@@ -93,14 +98,14 @@ export default function Estudio() {
   const currentPhrase = filteredFrases[currentIndex];
 
   return (
-    <PageContainer title={`Estudiando: ${selectedCategory}`}>
+    <PageContainer title={targetLanguage === 'eu' ? `Ikasten: ${selectedCategory}` : `Estudiando: ${selectedCategory}`}>
       <div className="max-w-2xl mx-auto flex flex-col items-center">
         <div className="w-full flex justify-between items-center mb-10">
           <button
             onClick={() => setSelectedCategory(null)}
             className="text-gray-400 hover:text-white transition-all text-sm font-bold flex items-center gap-2"
           >
-            ← Cambiar Lección
+            ← {targetLanguage === 'eu' ? 'Ikasgaia Aldatu' : 'Cambiar Lección'}
           </button>
           <div className="px-4 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300 font-bold">
             {currentIndex + 1} / {filteredFrases.length}
@@ -123,22 +128,25 @@ export default function Estudio() {
             className="flex-1 py-4 bg-white/5 border border-white/10 rounded-2xl text-white font-black hover:bg-white/10 disabled:opacity-30"
             disabled={currentIndex === 0}
           >
-            ANTERIOR
+            {targetLanguage === 'eu' ? 'AURREKOA' : 'ANTERIOR'}
           </button>
           <button
             onClick={() => setCurrentIndex(prev => Math.min(filteredFrases.length - 1, prev + 1))}
             className="flex-1 py-4 bg-accent text-white rounded-2xl font-black hover:brightness-110 disabled:opacity-30 shadow-xl"
             disabled={currentIndex === filteredFrases.length - 1}
           >
-            SIGUIENTE
+            {targetLanguage === 'eu' ? 'HURRENGOA' : 'SIGUIENTE'}
           </button>
         </div>
 
         <div className="mt-16 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 p-8 rounded-[2rem] border border-yellow-500/20 w-full text-center">
           <StarIcon className="w-8 h-8 text-yellow-500 mx-auto mb-4" />
-          <h4 className="text-white font-bold mb-2">Consejo de Estudio</h4>
+          <h4 className="text-white font-bold mb-2">{targetLanguage === 'eu' ? 'Ikasteko Aholkua' : 'Consejo de Estudio'}</h4>
           <p className="text-sm text-gray-400">
-            Repite la frase en voz alta después de escucharla. La memoria muscular de la boca es clave para hablar con fluidez.
+            {targetLanguage === 'eu'
+              ? 'Esaldia ozenki errepikatu entzun ondoren. Ahoaren memoria muskularra funtsezkoa da jariotasunez hitz egiteko.'
+              : 'Repite la frase en voz alta después de escucharla. La memoria muscular de la boca es clave para hablar con fluidez.'
+            }
           </p>
         </div>
       </div>

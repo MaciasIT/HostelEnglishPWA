@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAppStore } from '@/store/useAppStore';
 import {
   SparklesIcon,
   UserGroupIcon,
@@ -18,6 +19,8 @@ const FeatureCard = ({ title, description, icon: Icon }: { title: string, descri
 );
 
 export default function Home() {
+  const targetLanguage = useAppStore(state => state.prefs.targetLanguage);
+
   return (
     <div className="text-white min-h-screen bg-primary-dark overflow-x-hidden">
       {/* Hero Section with Glassmorphism */}
@@ -29,7 +32,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto text-center relative z-10">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-xs font-black uppercase tracking-[0.2em] text-accent mb-8 animate-in fade-in slide-in-from-top-4 duration-700">
             <SparklesIcon className="w-4 h-4" />
-            La forma más rápida de hablar inglés
+            {targetLanguage === 'eu' ? 'Ingelesez hitz egiteko modurik azkarrena' : 'La forma más rápida de hablar inglés'}
           </div>
 
           <h1 className="text-6xl sm:text-8xl font-black mb-8 tracking-tighter leading-[0.9] animate-in fade-in slide-in-from-top-8 duration-700 delay-100">
@@ -38,7 +41,10 @@ export default function Home() {
           </h1>
 
           <p className="text-xl sm:text-2xl mb-12 text-gray-400 max-w-2xl mx-auto leading-relaxed animate-in fade-in slide-in-from-top-12 duration-700 delay-200">
-            Domina el vocabulario y las expresiones esenciales para destacar en el mundo de la hostelería profesional.
+            {targetLanguage === 'eu'
+              ? 'Ostalaritza profesionalaren munduan nabarmentzeko ezinbestekoak diren hiztegia eta esaldiak menderatu.'
+              : 'Domina el vocabulario y las expresiones esenciales para destacar en el mundo de la hostelería profesional.'
+            }
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 animate-in fade-in slide-in-from-top-16 duration-700 delay-300">
@@ -46,13 +52,13 @@ export default function Home() {
               to="/dashboard"
               className="w-full sm:w-auto bg-accent hover:brightness-110 text-white font-black py-5 px-12 rounded-2xl text-xl shadow-2xl transform active:scale-95 transition-all text-center tracking-widest"
             >
-              EMPEZAR AHORA
+              {targetLanguage === 'eu' ? 'ORAIN HASI' : 'EMPEZAR AHORA'}
             </Link>
             <Link
               to="/progreso"
               className="w-full sm:w-auto bg-white/5 hover:bg-white/10 text-white font-bold py-5 px-12 rounded-2xl text-xl border border-white/10 transition-all text-center tracking-widest"
             >
-              VER MI PROGRESO
+              {targetLanguage === 'eu' ? 'IKUSI NIRE AURRERAPENA' : 'VER MI PROGRESO'}
             </Link>
           </div>
 
@@ -72,32 +78,49 @@ export default function Home() {
       <section className="py-24 px-6 bg-white/[0.02]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-20">
-            <h2 className="text-4xl sm:text-5xl font-black text-white mb-6">Diseñado para Hostelería</h2>
+            <h2 className="text-4xl sm:text-5xl font-black text-white mb-6">
+              {targetLanguage === 'eu' ? 'Ostalaritzarako Diseinatua' : 'Diseñado para Hostelería'}
+            </h2>
             <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-              Olvida los cursos genéricos. Aprende lo que realmente necesitas para trabajar en hoteles, restaurantes y eventos.
+              {targetLanguage === 'eu'
+                ? 'Ahaztu ikastaro generikoak. Ikasi hotel, jatetxe eta ekitaldietan lan egiteko benetan behar duzuna.'
+                : 'Olvida los cursos genéricos. Aprende lo que realmente necesitas para trabajar en hoteles, restaurantes y eventos.'
+              }
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <FeatureCard
               icon={AcademicCapIcon}
-              title="Aprendizaje Activo"
-              description="Interactúa con frases y recibe feedback instantáneo para acelerar tu asimilación."
+              title={targetLanguage === 'eu' ? 'Ikaskuntza Aktiboa' : 'Aprendizaje Activo'}
+              description={targetLanguage === 'eu'
+                ? 'Esaldiekin elkarreragin eta berehalako feedbacka jaso asimilazioa azkartzeko.'
+                : 'Interactúa con frases y recibe feedback instantáneo para acelerar tu asimilación.'
+              }
             />
             <FeatureCard
               icon={UserGroupIcon}
-              title="Diálogos Reales"
-              description="Practica situaciones comunes entre staff y clientes con audios de alta calidad."
+              title={targetLanguage === 'eu' ? 'Benetako Elkarrizketak' : 'Diálogos Reales'}
+              description={targetLanguage === 'eu'
+                ? 'Langileen eta bezeroen arteko ohiko egoerak landu kalitate handiko audioekin.'
+                : 'Practica situaciones comunes entre staff y clientes con audios de alta calidad.'
+              }
             />
             <FeatureCard
               icon={SparklesIcon}
-              title="Voz y Pronunciación"
-              description="Ajusta la velocidad y tono de las voces para entrenar tu oído según tu nivel."
+              title={targetLanguage === 'eu' ? 'Ahotsa eta Ahoskera' : 'Voz y Pronunciación'}
+              description={targetLanguage === 'eu'
+                ? 'Ahotsek abiadura eta tonua doitu zure mailaren arabera belarria entrenatzeko.'
+                : 'Ajusta la velocidad y tono de las voces para entrenar tu oído según tu nivel.'
+              }
             />
             <FeatureCard
               icon={MapPinIcon}
-              title="Siempre Contigo"
-              description="Instálalo como PWA y practica en cualquier lugar, incluso sin conexión."
+              title={targetLanguage === 'eu' ? 'Zurekin Beti' : 'Siempre Contigo'}
+              description={targetLanguage === 'eu'
+                ? 'PWA gisa instalatu eta edozein lekutan praktikatu, baita konexiorik gabe ere.'
+                : 'Instálalo como PWA y practica en cualquier lugar, incluso sin conexión.'
+              }
             />
           </div>
         </div>
@@ -108,15 +131,21 @@ export default function Home() {
         <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
           <div>
             <p className="text-5xl font-black text-accent mb-2">500+</p>
-            <p className="text-xs uppercase tracking-widest text-gray-500 font-bold">Frases Útiles</p>
+            <p className="text-xs uppercase tracking-widest text-gray-500 font-bold">
+              {targetLanguage === 'eu' ? 'Esaldi Erabilgarriak' : 'Frases Útiles'}
+            </p>
           </div>
           <div>
             <p className="text-5xl font-black text-accent mb-2">20+</p>
-            <p className="text-xs uppercase tracking-widest text-gray-500 font-bold">Escenarios</p>
+            <p className="text-xs uppercase tracking-widest text-gray-500 font-bold">
+              {targetLanguage === 'eu' ? 'Agertokiak' : 'Escenarios'}
+            </p>
           </div>
           <div>
             <p className="text-5xl font-black text-accent mb-2">100%</p>
-            <p className="text-xs uppercase tracking-widest text-gray-500 font-bold">Gratis</p>
+            <p className="text-xs uppercase tracking-widest text-gray-500 font-bold">
+              {targetLanguage === 'eu' ? 'Doan' : 'Gratis'}
+            </p>
           </div>
           <div>
             <p className="text-5xl font-black text-accent mb-2">PWA</p>
@@ -131,10 +160,13 @@ export default function Home() {
           Hostel<span className="text-accent">English</span>
         </Link>
         <p className="text-gray-500 text-sm max-w-sm mx-auto mb-8">
-          Transformando la comunicación en el sector hostelero a través de la tecnología y el aprendizaje interactivo.
+          {targetLanguage === 'eu'
+            ? 'Ostalaritzaren sektoreko komunikazioa eraldatzen teknologiaren eta ikaskuntza interaktiboaren bidez.'
+            : 'Transformando la comunicación en el sector hostelero a través de la tecnología y el aprendizaje interactivo.'
+          }
         </p>
         <p className="text-xs text-gray-600">
-          © {new Date().getFullYear()} HostellinglésApp. Todos los derechos reservados.
+          © {new Date().getFullYear()} HostellinglésApp. {targetLanguage === 'eu' ? 'Eskubide guztiak erreserbatuta.' : 'Todos los derechos reservados.'}
         </p>
       </footer>
 

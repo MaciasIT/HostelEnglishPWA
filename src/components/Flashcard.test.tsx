@@ -6,9 +6,16 @@ import React from 'react';
 
 // Mock de useAppStore para aislar el componente
 vi.mock('@/store/useAppStore', () => ({
-  useAppStore: vi.fn(() => ({
-    prefs: { audioSpeed: 1 },
-  })),
+  useAppStore: vi.fn((selector) => {
+    const mockState = {
+      prefs: {
+        audioSpeed: 1,
+        phraseSettings: { rate: 1, pitch: 1, voiceURI: '' },
+        targetLanguage: 'en',
+      },
+    };
+    return selector(mockState);
+  }),
 }));
 
 describe('<Flashcard />', () => {
@@ -18,37 +25,38 @@ describe('<Flashcard />', () => {
     en: 'Test card',
   };
 
-  it('should render the front face (English) by default', () => {
+  it('should render both sides and start unflipped', () => {
     render(<Flashcard phrase={mockPhrase} />);
 
-    expect(screen.getByText('Test card')).toBeInTheDocument();
-    expect(screen.queryByText('Tarjeta de prueba')).not.toBeInTheDocument();
+    expect(screen.getByText('"Test card"')).toBeInTheDocument();
+    expect(screen.getByText('"Tarjeta de prueba"')).toBeInTheDocument();
+
+    const innerCard = screen.getByTestId('flashcard-inner');
+    expect(innerCard).not.toHaveClass('rotate-y-180');
   });
 
   it('should flip from front to back on click', async () => {
     const user = userEvent.setup();
     render(<Flashcard phrase={mockPhrase} />);
 
-    const frontText = screen.getByText('Test card');
-    await user.click(frontText);
+    const card = screen.getByTestId('flashcard-inner');
+    await user.click(card); // Click anywhere on the card
 
-    expect(screen.getByText('Tarjeta de prueba')).toBeInTheDocument();
-    expect(screen.queryByText('Test card')).not.toBeInTheDocument();
+    expect(card).toHaveClass('rotate-y-180');
   });
 
   it('should flip back to front on a second click', async () => {
     const user = userEvent.setup();
     render(<Flashcard phrase={mockPhrase} />);
 
-    const cardElement = screen.getByText('Test card');
+    const card = screen.getByTestId('flashcard-inner');
 
     // Primer clic
-    await user.click(cardElement);
-    const backText = await screen.findByText('Tarjeta de prueba');
+    await user.click(card);
+    expect(card).toHaveClass('rotate-y-180');
 
     // Segundo clic
-    await user.click(backText);
-    expect(screen.getByText('Test card')).toBeInTheDocument();
-    expect(screen.queryByText('Tarjeta de prueba')).not.toBeInTheDocument();
+    await user.click(card);
+    expect(card).not.toHaveClass('rotate-y-180');
   });
 });

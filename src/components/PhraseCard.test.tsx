@@ -6,9 +6,16 @@ import React from 'react';
 
 // Mock de useAppStore para evitar errores en el test
 vi.mock('@/store/useAppStore', () => ({
-  useAppStore: vi.fn(() => ({
-    prefs: { audioSpeed: 1 },
-  })),
+  useAppStore: vi.fn((selector) => {
+    const mockState = {
+      prefs: {
+        audioSpeed: 1,
+        phraseSettings: { rate: 1, pitch: 1, voiceURI: '' },
+        targetLanguage: 'en',
+      },
+    };
+    return selector(mockState);
+  }),
 }));
 
 describe('<PhraseCard />', () => {
@@ -29,7 +36,7 @@ describe('<PhraseCard />', () => {
       />
     );
 
-    expect(screen.getByText('Hola Mundo')).toBeInTheDocument();
+    expect(screen.getByText('"Hola Mundo"')).toBeInTheDocument();
     expect(screen.getByText('Hello World')).toBeInTheDocument();
   });
 

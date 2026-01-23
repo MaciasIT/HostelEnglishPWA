@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAppStore } from '@/store/useAppStore';
+import LanguageSelector from './LanguageSelector';
 import {
   HomeIcon,
   ChatBubbleLeftRightIcon,
@@ -36,8 +37,8 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon: Icon, label }) => {
       to={to}
       onClick={handleClick}
       className={`flex items-center p-4 rounded-2xl transition-all mb-1 group ${isActive
-          ? 'bg-accent text-white shadow-lg shadow-accent/20 font-black'
-          : 'text-gray-400 hover:bg-white/5 hover:text-white'
+        ? 'bg-accent text-white shadow-lg shadow-accent/20 font-black'
+        : 'text-gray-400 hover:bg-white/5 hover:text-white'
         }`}
     >
       <Icon className={`w-6 h-6 mr-4 transition-transform group-hover:scale-110 ${isActive ? 'text-white' : 'text-gray-500 group-hover:text-accent'}`} />
@@ -93,14 +94,19 @@ const SideNav: React.FC = () => {
           <NavItem to="/progreso" icon={ChartBarIcon} label="Mi Progreso" />
         </nav>
 
+        <div className="p-4 border-t border-white/5 bg-black/10">
+          <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-3 px-2">Idioma de Aprendizaje</p>
+          <LanguageSelector />
+        </div>
+
         <div className="p-8 border-t border-white/5 bg-black/20">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center text-white font-black shadow-lg">
               H
             </div>
             <div>
-              <p className="text-xs font-black text-white">Versión 2.0</p>
-              <p className="text-[10px] text-gray-500">Premium Experience</p>
+              <p className="text-xs font-black text-white">Versión 2.1</p>
+              <p className="text-[10px] text-gray-500">HostelEnglish MultiLang</p>
             </div>
           </div>
         </div>

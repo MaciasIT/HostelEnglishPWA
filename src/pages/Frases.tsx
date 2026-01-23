@@ -31,6 +31,7 @@ export default function Frases() {
     setPhraseSetting: state.setPhraseSetting,
   }));
 
+  const targetLanguage = useAppStore(state => state.prefs.targetLanguage);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showWelcome, setShowWelcome] = useState(true);
@@ -49,14 +50,19 @@ export default function Frases() {
     return frases.filter(phrase => {
       const phraseEs = phrase.es || '';
       const phraseEn = phrase.en || '';
+      const phraseEu = phrase.eu || '';
       const matchesSearch = phraseEs.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        phraseEn.toLowerCase().includes(searchTerm.toLowerCase());
+        phraseEn.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        phraseEu.toLowerCase().includes(searchTerm.toLowerCase());
 
       const progressLevel = progress[phrase.id] || 0;
       let matchesCategory = false;
 
       switch (selectedCategory) {
         case 'all':
+          matchesCategory = true;
+          break;
+        case 'Nuevas':
           matchesCategory = progressLevel === 0;
           break;
         case 'Estudiadas':
@@ -66,7 +72,7 @@ export default function Frases() {
           matchesCategory = progressLevel === 2;
           break;
         default:
-          matchesCategory = phrase.categoria === selectedCategory && progressLevel === 0;
+          matchesCategory = phrase.categoria === selectedCategory;
           break;
       }
 
@@ -135,9 +141,15 @@ export default function Frases() {
                     value={selectedCategory}
                     onChange={(e) => setSelectedCategory(e.target.value)}
                   >
-                    {displayCategories.map(category => (
+                    <option value="all" className="bg-primary-dark">
+                      {targetLanguage === 'eu' ? 'Guztiak' : 'Todas las frases'}
+                    </option>
+                    <option value="Nuevas" className="bg-primary-dark">
+                      {targetLanguage === 'eu' ? 'Berriak (Ikasi gabekoak)' : 'Nuevas (Sin estudiar)'}
+                    </option>
+                    {categories.map(category => (
                       <option key={category} value={category} className="bg-primary-dark">
-                        {category === 'all' ? 'Nuevas (Sin estudiar)' : category}
+                        {category}
                       </option>
                     ))}
                   </select>

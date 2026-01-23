@@ -11,6 +11,7 @@ type Phrase = {
   id: number | string;
   es: string;
   en: string;
+  eu?: string;
   audioEs?: string;
   audioEn?: string;
 };
@@ -26,26 +27,35 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
   onAdvanceProgress,
   progressLevel,
 }) => {
-  const { phraseSettings } = useAppStore((state) => ({
+  const { phraseSettings, targetLanguage } = useAppStore((state) => ({
     phraseSettings: state.prefs.phraseSettings,
+    targetLanguage: state.prefs.targetLanguage,
   }));
 
-  const handlePlayAudio = (lang: 'es' | 'en') => {
+  const handlePlayAudio = (lang: 'es' | 'target') => {
     window.speechSynthesis.cancel();
-    const textToSpeak = lang === 'es' ? phrase.es : phrase.en;
-    const speechLang = lang === 'es' ? 'es-ES' : 'en-US';
 
-    if (!textToSpeak.trim()) return;
+    // Determine target text and language based on store setting
+    const targetText = targetLanguage === 'eu' ? phrase.eu : phrase.en;
+    const targetVoiceLang = targetLanguage === 'eu' ? 'eu-ES' : 'en-US';
+
+    const textToSpeak = lang === 'es' ? phrase.es : targetText;
+    const speechLang = lang === 'es' ? 'es-ES' : targetVoiceLang;
+
+    if (!textToSpeak?.trim()) return;
 
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
     utterance.lang = speechLang;
 
-    if (lang === 'en') {
+    if (lang === 'target') {
       utterance.rate = phraseSettings.rate;
       utterance.pitch = phraseSettings.pitch;
       if (phraseSettings.voiceURI) {
+        // Only use the saved voice if it matches the current target language
         const voice = window.speechSynthesis.getVoices().find(v => v.voiceURI === phraseSettings.voiceURI);
-        if (voice) utterance.voice = voice;
+        if (voice && voice.lang.startsWith(targetLanguage === 'eu' ? 'eu' : 'en')) {
+          utterance.voice = voice;
+        }
       }
     }
 
@@ -78,6 +88,9 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
     icon: BookmarkIcon
   };
 
+  const targetText = targetLanguage === 'eu' ? (phrase.eu || '...') : phrase.en;
+  const targetLabel = targetLanguage === 'eu' ? 'EUSKERA' : 'INGLÉS';
+
   return (
     <div className="group bg-white/10 backdrop-blur-xl rounded-[2.5rem] border border-white/10 shadow-2xl p-8 sm:p-10 w-full transition-all hover:border-white/20 relative overflow-hidden">
       {/* Abstract Background Element */}
@@ -93,7 +106,7 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
         </h3>
 
         <p className="text-lg sm:text-xl text-gray-400 font-medium mb-10 text-center">
-          {phrase.en}
+          {targetText}
         </p>
 
         <div className="flex flex-wrap justify-center gap-4 w-full">
@@ -106,12 +119,12 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
               <SpeakerWaveIcon className="w-6 h-6 opacity-70" />
             </button>
             <button
-              onClick={() => handlePlayAudio('en')}
+              onClick={() => handlePlayAudio('target')}
               className="p-4 bg-accent text-white rounded-2xl hover:brightness-110 active:scale-90 transition-all shadow-lg flex items-center gap-2"
-              title="Escuchar en Inglés"
+              title={`Escuchar en ${targetLabel}`}
             >
               <SpeakerWaveIcon className="w-6 h-6" />
-              <span className="font-bold text-sm hidden sm:inline">INGLÉS</span>
+              <span className="font-bold text-sm hidden sm:inline">{targetLabel}</span>
             </button>
           </div>
 
@@ -127,5 +140,6 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
     </div>
   );
 };
+
 
 export default PhraseCard;

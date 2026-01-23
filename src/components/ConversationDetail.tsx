@@ -20,18 +20,20 @@ interface ConversationDetailProps {
 const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, onBack, onConversationEnd }) => {
   const isPlayingAllRef = useRef(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const { conversationSettings, setConversationParticipantSetting } = useAppStore((state) => ({
+  const { conversationSettings, setConversationParticipantSetting, targetLanguage } = useAppStore((state) => ({
     conversationSettings: state.prefs.conversationSettings,
     setConversationParticipantSetting: state.setConversationParticipantSetting,
+    targetLanguage: state.prefs.targetLanguage,
   }));
   const [selectedRole, setSelectedRole] = useState('Todos');
   const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([]);
 
   const getSortedVoices = useCallback((voices: SpeechSynthesisVoice[]) => {
-    const englishVoices = voices.filter(voice => voice.lang.startsWith('en'));
-    const otherVoices = voices.filter(voice => !voice.lang.startsWith('en'));
-    return [...englishVoices.sort((a, b) => a.name.localeCompare(b.name)), ...otherVoices.sort((a, b) => a.name.localeCompare(b.name))];
-  }, []);
+    const langCode = targetLanguage === 'eu' ? 'eu' : 'en';
+    const primaryVoices = voices.filter(voice => voice.lang.startsWith(langCode));
+    const otherVoices = voices.filter(voice => !voice.lang.startsWith(langCode));
+    return [...primaryVoices.sort((a, b) => a.name.localeCompare(b.name)), ...otherVoices.sort((a, b) => a.name.localeCompare(b.name))];
+  }, [targetLanguage]);
 
   useEffect(() => {
     const populateVoices = () => {
@@ -42,8 +44,8 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
     if (window.speechSynthesis.getVoices().length > 0) {
       populateVoices();
     } else {
-      window.speechSynthesis.addEventListener('voiceschanged', populateVoices);
-      return () => window.speechSynthesis.removeEventListener('voiceschanged', populateVoices);
+      window.speechSynthesis.onvoiceschanged = populateVoices;
+      return () => { window.speechSynthesis.onvoiceschanged = null; };
     }
   }, [getSortedVoices]);
 
@@ -58,17 +60,24 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
     isPlayingAllRef.current = false;
     setIsPlaying(false);
     window.speechSynthesis.cancel();
-    const textToSpeak = turn.en || '';
-    if (!textToSpeak.trim()) return;
+
+    const textToSpeak = targetLanguage === 'eu' ? turn.eu : turn.en;
+    const voiceLang = targetLanguage === 'eu' ? 'eu-ES' : 'en-US';
+
+    if (!textToSpeak?.trim()) return;
 
     const participantSettings = conversationSettings[turn.speaker] || { voiceURI: '', rate: 1, pitch: 1 };
     const selectedVoice = availableVoices.find(voice => voice.voiceURI === participantSettings.voiceURI);
 
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
-    utterance.lang = 'en-US';
+    utterance.lang = voiceLang;
     utterance.rate = participantSettings.rate;
     utterance.pitch = participantSettings.pitch;
-    if (selectedVoice) utterance.voice = selectedVoice;
+
+    // Only use the saved voice if it matches the current target language
+    if (selectedVoice && selectedVoice.lang.startsWith(targetLanguage === 'eu' ? 'eu' : 'en')) {
+      utterance.voice = selectedVoice;
+    }
 
     window.speechSynthesis.speak(utterance);
   };
@@ -83,17 +92,22 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
       if (!isPlayingAllRef.current) return;
       if (i < conversation.dialogue.length) {
         const turn = conversation.dialogue[i];
-        const textToSpeak = turn.en || '';
-        if (!textToSpeak.trim()) { i++; playNextTurn(); return; }
+        const textToSpeak = targetLanguage === 'eu' ? turn.eu : turn.en;
+        const voiceLang = targetLanguage === 'eu' ? 'eu-ES' : 'en-US';
+
+        if (!textToSpeak?.trim()) { i++; playNextTurn(); return; }
 
         const participantSettings = conversationSettings[turn.speaker] || { voiceURI: '', rate: 1, pitch: 1 };
         const selectedVoice = availableVoices.find(voice => voice.voiceURI === participantSettings.voiceURI);
 
         const utterance = new SpeechSynthesisUtterance(textToSpeak);
-        utterance.lang = 'en-US';
+        utterance.lang = voiceLang;
         utterance.rate = participantSettings.rate;
         utterance.pitch = participantSettings.pitch;
-        if (selectedVoice) utterance.voice = selectedVoice;
+
+        if (selectedVoice && selectedVoice.lang.startsWith(targetLanguage === 'eu' ? 'eu' : 'en')) {
+          utterance.voice = selectedVoice;
+        }
 
         utterance.onend = () => { if (isPlayingAllRef.current) { i++; playNextTurn(); } };
         utterance.onerror = () => { if (isPlayingAllRef.current) { i++; playNextTurn(); } };
@@ -106,7 +120,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
       }
     };
     playNextTurn();
-  }, [conversation, conversationSettings, availableVoices, onConversationEnd]);
+  }, [conversation, conversationSettings, availableVoices, onConversationEnd, targetLanguage]);
 
   const handleStop = () => {
     isPlayingAllRef.current = false;
@@ -214,8 +228,8 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className={`max-w-[85%] rounded-[2rem] p-6 shadow-xl relative group ${isMyTurn
-                  ? 'bg-accent/20 border-2 border-accent/40 rounded-br-none'
-                  : (isParticipant0 ? 'bg-white/10 rounded-bl-none' : 'bg-primary-light/10 rounded-br-none')
+                ? 'bg-accent/20 border-2 border-accent/40 rounded-br-none'
+                : (isParticipant0 ? 'bg-white/10 rounded-bl-none' : 'bg-primary-light/10 rounded-br-none')
                 }`}>
                 <div className="flex items-center gap-2 mb-2">
                   <span className={`text-[10px] font-black uppercase tracking-widest ${isMyTurn ? 'text-accent' : 'text-gray-500'}`}>
@@ -233,12 +247,14 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
 
                 {isMyTurn ? (
                   <div className="py-4 px-6 bg-accent border border-accent rounded-2xl text-center">
-                    <p className="text-white font-black">¡TU TURNO!</p>
-                    <p className="text-white/60 text-xs mt-1">Lee en voz alta para practicar</p>
+                    <p className="text-white font-black">{targetLanguage === 'eu' ? 'ZURE TXANDA!' : '¡TU TURNO!'}</p>
+                    <p className="text-white/60 text-xs mt-1">{targetLanguage === 'eu' ? 'Irakurri ozenki praktikatzeko' : 'Lee en voz alta para practicar'}</p>
                   </div>
                 ) : (
                   <>
-                    <p className="text-xl font-bold text-white mb-2 leading-tight">{turn.en}</p>
+                    <p className="text-xl font-bold text-white mb-2 leading-tight">
+                      {targetLanguage === 'eu' ? (turn.eu || '...') : turn.en}
+                    </p>
                     <p className="text-gray-400 text-sm leading-relaxed">{turn.es}</p>
                   </>
                 )}

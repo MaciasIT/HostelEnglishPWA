@@ -6,6 +6,7 @@ export type Phrase = {
   id: number | string;
   es: string;
   en: string;
+  eu?: string;
   categoria?: string;
 };
 
@@ -13,6 +14,7 @@ export type ConversationTurn = {
   speaker: string;
   en: string;
   es: string;
+  eu?: string;
   audio?: string;
 };
 
@@ -35,6 +37,7 @@ type State = {
   loadConversations: () => Promise<void>;
   progress: Record<string, number>;
   prefs: {
+    targetLanguage: 'en' | 'eu'; // Added targetLanguage
     theme: string;
     audioSpeed: number;
     /**
@@ -67,6 +70,7 @@ type Actions = {
   advancePhraseProgress: (phraseId: string) => void;
   setTheme: (theme: string) => void;
   setAudioSpeed: (speed: number) => void;
+  setTargetLanguage: (lang: 'en' | 'eu') => void; // Added action
   /**
    * Sets a specific speech synthesis setting (voiceURI, rate, or pitch) for a given conversation participant.
    * This allows for differentiated voices and speech characteristics per role in conversations.
@@ -102,6 +106,7 @@ export const useAppStore = create<State & Actions>()(
       conversationsLoaded: false,
       progress: {},
       prefs: {
+        targetLanguage: 'en', // Default to English
         theme: "light",
         audioSpeed: 1,
         conversationSettings: {}, // Initialize conversation settings as an empty object
@@ -160,6 +165,11 @@ export const useAppStore = create<State & Actions>()(
       setAudioSpeed: (speed: number) => {
         set((state) => ({
           prefs: { ...state.prefs, audioSpeed: speed },
+        }));
+      },
+      setTargetLanguage: (lang: 'en' | 'eu') => {
+        set((state) => ({
+          prefs: { ...state.prefs, targetLanguage: lang },
         }));
       },
       setConversationParticipantSetting: (participant, setting, value) => {

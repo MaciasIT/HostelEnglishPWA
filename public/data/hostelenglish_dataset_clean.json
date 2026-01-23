@@ -4,6 +4,7 @@
       "id": 0,
       "es": "Se le ha enviado un correo electrónico de confirmación",
       "en": "A confirmation email has been sent to you",
+      "eu": "Baieztapen mezu elektroniko bat bidali zaizu",
       "source": "frases.pdf",
       "categoria": "Recepción"
     },
@@ -11,6 +12,7 @@
       "id": 1,
       "es": "Un vaso de agua con limón, por favor",
       "en": "A glass of water with lemon, please",
+      "eu": "Ur baso bat limoiarekin, mesedez",
       "source": "frases.pdf",
       "categoria": "Restaurante"
     },
@@ -18,6 +20,7 @@
       "id": 2,
       "es": "Una jarra de agua",
       "en": "A pitcher of water",
+      "eu": "Ur pitxer bat",
       "source": "frases.pdf",
       "categoria": "Restaurante"
     },
@@ -26,483 +29,552 @@
       "es": "Algo más",
       "en": "Anything else",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Besterik?"
     },
     {
       "id": 4,
       "es": "Están todos bien",
       "en": "Are you all OK",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Ondo zaudete denak?"
     },
     {
       "id": 5,
       "es": "Van a pagar juntos o por separado",
       "en": "Are you paying together or separately",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Batera edo bakoitzak bere aldetik ordainduko duzue?"
     },
     {
       "id": 6,
       "es": "Están listos para ordenar o necesitan unos minutos más",
       "en": "Are you ready to order, or would you like a few more minutes",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Eskatzeko prest zaudete ala minutu batzuk gehiago behar dituzue?"
     },
     {
       "id": 7,
       "es": "Está listo para pedir",
       "en": "Are you ready to order",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Eskatzeko prest zaude?"
     },
     {
       "id": 8,
       "es": "El desayuno está incluido en el precio",
       "en": "Breakfast is included in the price",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Gosaria prezioaren barne dago"
     },
     {
       "id": 9,
       "es": "Le traigo la cuenta",
       "en": "Can I bring you the check",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Kontua ekarriko dizut?"
     },
     {
       "id": 10,
       "es": "Podría pasarme la cuenta",
       "en": "Can I bring you the check",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Kontua ekarriko didazu, mesedez?"
     },
     {
       "id": 11,
       "es": "Puedo entrar",
       "en": "Can I come in",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Sartu naiteke?"
     },
     {
       "id": 12,
       "es": "Puedo traerle algo más",
       "en": "Can I get you anything else",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Beste zerbait ekar diezazuket?"
     },
     {
       "id": 13,
       "es": "Puedo traerles algo de beber",
       "en": "Can I get you something to drink",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Edateko zerbait ekar diezazueket?"
     },
     {
       "id": 14,
       "es": "Puedo tener la cuenta por favor",
       "en": "Can I have the bill please",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Kontua ekarriko didazu, mesedez?"
     },
     {
       "id": 15,
       "es": "En qué puedo ayudarle",
       "en": "Can I help you",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zertan lagun zaitzaket?"
     },
     {
       "id": 16,
       "es": "Puedo dejar esto en la caja fuerte",
       "en": "Can I leave this in the safe",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Hau kutxa sendoan utzi dezaket?"
     },
     {
       "id": 17,
       "es": "Puedo pagar con tarjeta de crédito",
       "en": "Can I pay by credit card",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Kreditu-txartelarekin ordaindu dezaket?"
     },
     {
       "id": 18,
       "es": "Puedo recomendarle el especial de hoy",
       "en": "Can I recommend today’ s special",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Gaurko gomendioa proposa diezazuket?"
     },
     {
       "id": 19,
       "es": "Puedo sacar la basura",
       "en": "Can I take out the trash",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Zaborra atera dezaket?"
     },
     {
       "id": 20,
       "es": "Puedo coger esto",
       "en": "Can I take this",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Hau hartu dezaket?"
     },
     {
       "id": 21,
       "es": "Podría darme su abrigo",
       "en": "Can I take your coats",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zure berokia har dezaket?"
     },
     {
       "id": 22,
       "es": "Puede comprobar la cantidad y firmar aquí",
       "en": "Can you check the amount and sign here",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Zenbatekoa egiaztatu eta hemen sinatu dezakezu?"
     },
     {
       "id": 23,
       "es": "Puede limpiarme un traje",
       "en": "Can you clean a suit for me",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Traje bat garbi diezadakezu?"
     },
     {
       "id": 24,
       "es": "Puede regresar más tarde",
       "en": "Can you come back later",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Geroago itzuli zaitezke?"
     },
     {
       "id": 25,
       "es": "Puede contactar a la recepción marcando Cero en su teléfono",
       "en": "Can you contact the Front Office by dialing Zero on your phone",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Harrerarekin harremanetan jar zaitezke telefonoan zeroa sakatuz."
     },
     {
       "id": 26,
       "es": "Puede arreglarlo inmediatamente",
       "en": "Can you fix it immediately",
       "source": "frases.pdf",
-      "categoria": "Mantenimiento"
+      "categoria": "Mantenimiento",
+      "eu": "Berehala konpon dezakezu?"
     },
     {
       "id": 27,
       "es": "Puede sacar mis cosas de la caja fuerte",
       "en": "Can you get my things from the safe",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Nire gauzak kutxa sendotik atera ditzakezu?"
     },
     {
       "id": 28,
       "es": "Puede pedirme un taxi",
       "en": "Can you order me a taxi",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Taxi bat eska diezadakezu?"
     },
     {
       "id": 29,
       "es": "Puede ponerlo en la cuenta",
       "en": "Can you put it on the bill",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Kontuan jar dezakezu?"
     },
     {
       "id": 30,
       "es": "Puede firmar aquí, por favor",
       "en": "Can you sign here, please",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Hemen sinatu dezakezu, mesedez?"
     },
     {
       "id": 31,
       "es": "Puede decirme su número de teléfono, por favor",
       "en": "Can you tell me your phone number, please",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zure telefono zenbakia esango didazu, mesedez?"
     },
     {
       "id": 32,
       "es": "Cuidado, el piso está mojado",
       "en": "Careful, the floor is wet",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Kontuz, lurra bustita dago"
     },
     {
       "id": 33,
       "es": "Por supuesto, desde luego",
       "en": "Certainly",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Jakina / Noski"
     },
     {
       "id": 34,
       "es": "Cambiar las sábanas",
       "en": "Change the sheets",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Maindireak aldatu"
     },
     {
       "id": 35,
       "es": "Cambiar las toallas",
       "en": "Change the towels",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Toailak aldatu"
     },
     {
       "id": 36,
       "es": "El registro de salida debe hacerse antes del mediodía",
       "en": "Checkout must be done before noon",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Irteera eguerdia baino lehen egin behar da"
     },
     {
       "id": 37,
       "es": "Limpiar todos los gabinetes y cajones",
       "en": "Clean all cabinets and drawers",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Armairu eta tiradera guztiak garbitu"
     },
     {
       "id": 38,
       "es": "Limpiar todos los cajones",
       "en": "Clean all drawers",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Tiradera guztiak garbitu"
     },
     {
       "id": 39,
       "es": "Limpiar todas las lámparas, incluidas las bombillas/los focos",
       "en": "Clean all lamps, including light bulbs",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Lanpara guztiak garbitu, bonbillak barne"
     },
     {
       "id": 40,
       "es": "Limpiar todos los cuadros y demás artículos decorativos",
       "en": "Clean all pictures and other decorative items",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Koadro guztiak eta gainontzeko apaingarriak garbitu"
     },
     {
       "id": 41,
       "es": "Limpiar todos los cuadros, espejos, adornos, ventiladores del techo",
       "en": "Clean all pictures, mirrors, ornaments, ceiling fans",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Koadro, ispilu, apaingarri eta sabaiko haizagailu guztiak garbitu"
     },
     {
       "id": 42,
       "es": "Limpiar todos los estantes en los armarios",
       "en": "Clean all shelves in the closets",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Armairuetako apal guztiak garbitu"
     },
     {
       "id": 43,
       "es": "Limpiar todos los marcos de ventanas y puertas",
       "en": "Clean all window and door frames",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Leiho eta ateetako marko guztiak garbitu"
     },
     {
       "id": 44,
       "es": "Limpiar puertas y ventanas",
       "en": "Clean doors and windows",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Ateak eta leihoak garbitu"
     },
     {
       "id": 45,
       "es": "Limpiar la bañera/tina/ducha",
       "en": "Clean the bathtub/shower",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Bainuontzia/dutxa garbitu"
     },
     {
       "id": 46,
       "es": "Limpiar la mesada/encimera",
       "en": "Clean the countertop",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Mahaigaina garbitu"
     },
     {
       "id": 47,
       "es": "Limpiar el espejo",
       "en": "Clean the mirror",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Ispilua garbitu"
     },
     {
       "id": 48,
       "es": "Limpiar el horno/la cocina/el fogón/la estufa",
       "en": "Clean the oven/stove",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Labea/sukaldea garbitu"
     },
     {
       "id": 49,
       "es": "Limpiar el refrigerador/la nevera/el frigorífico",
       "en": "Clean the refrigerator",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Hozkailua garbitu"
     },
     {
       "id": 50,
       "es": "Limpiar el fregadero",
       "en": "Clean the sink",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Kondua/arraska garbitu"
     },
     {
       "id": 51,
       "es": "Limpiar las escaleras",
       "en": "Clean the stairs",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Eskailerak garbitu"
     },
     {
       "id": 52,
       "es": "Limpiar la mesa",
       "en": "Clean the table",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Mahaia garbitu"
     },
     {
       "id": 53,
       "es": "Limpiar los azulejos",
       "en": "Clean the tiles",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Azulejoak garbitu"
     },
     {
       "id": 54,
       "es": "Limpiar el inodoro",
       "en": "Clean the toilet",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Komuna garbitu"
     },
     {
       "id": 55,
       "es": "Limpie el bote de basura",
       "en": "Clean the trash can",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Zabor-ontzia garbitu"
     },
     {
       "id": 56,
       "es": "Limpiar el lavabo",
       "en": "Clean the washbasin",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Labaun/kondua garbitu"
     },
     {
       "id": 57,
       "es": "Guantes de limpieza",
       "en": "Cleaning gloves",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Garbitzeko eskularruak"
     },
     {
       "id": 58,
       "es": "Venga por aquí, acompáñeme",
       "en": "Come this way",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zatoz hemendik, lagundu nazazu"
     },
     {
       "id": 59,
       "es": "Podría darme una bolsa para llevar",
       "en": "Could I have a doggy bag",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Eramateko poltsa bat emango didazu?"
     },
     {
       "id": 60,
       "es": "Me deja su DNI y tarjeta de crédito",
       "en": "Could I have your ID and credit card",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Nan-a eta kreditu-txartela utziko didazu?"
     },
     {
       "id": 61,
       "es": "Podría ver la carta de vinos, por favor",
       "en": "Could I see the wine list, please",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Ardoen karta ikusi dezaket, mesedez?"
     },
     {
       "id": 62,
       "es": "Podría ver su pasaporte",
       "en": "Could I see your passport",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Pasaportea ikusi dezaket?"
     },
     {
       "id": 63,
       "es": "Podría traerme un cepillo de dientes",
       "en": "Could you bring me a toothbrush",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Hortzetako eskuila bat ekar diezadakezu?"
     },
     {
       "id": 64,
       "es": "Podría llamarme un taxi, por favor",
       "en": "Could you call me a taxi, please",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Taxi bat deitu diezadakezu, mesedez?"
     },
     {
       "id": 65,
       "es": "Podría rellenar este formulario de registro",
       "en": "Could you fill in this registration form",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Erregistro-inprimaki hau bete dezakezu?"
     },
     {
       "id": 66,
       "es": "Podría darme otra cobija/manta",
       "en": "Could you give me another blanket",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Beste manta bat emango didazu?"
     },
     {
       "id": 67,
       "es": "Podría recomendarnos otro hotel",
       "en": "Could you recommend us another hotel",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Beste hotel bat gomendatuko didazu?"
     },
     {
       "id": 68,
       "es": "Podría hacer las cuentas por separado",
       "en": "Could you split the check",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Bakoitzari bere kontua egin diezaiokezu?"
     },
     {
       "id": 69,
       "es": "Podría barrer/escobar el piso, por favor",
       "en": "Could you sweep the floor, please",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Lurrak harrotu ditzakezu, mesedez?"
     },
     {
       "id": 70,
       "es": "Podría decirme el número de su habitación",
       "en": "Could you tell me your room number",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Zure logela zenbakia esango didazu?"
     },
     {
       "id": 71,
       "es": "No molestar",
       "en": "Do not disturb",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Ez gogaitu / Ez molestar"
     },
     {
       "id": 72,
@@ -789,7 +861,8 @@
       "es": "Buenos días",
       "en": "Good morning",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Egun on"
     },
     {
       "id": 113,
@@ -838,7 +911,8 @@
       "es": "Hola",
       "en": "Hello",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Kaixo"
     },
     {
       "id": 120,
@@ -908,7 +982,8 @@
       "es": "En qué puedo ayudarle",
       "en": "How can I help you",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zertan lagun zaitzaket?"
     },
     {
       "id": 130,
@@ -2917,7 +2992,8 @@
       "es": "Muchas gracias.",
       "en": "Thank you very much.",
       "source": "Pidiendo comida por teléfono",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Eskerrik asko."
     },
     {
       "id": 417,

@@ -13,7 +13,14 @@ type ExamResult = {
 };
 
 export default function Examen() {
-  const { frases, progress, advancePhraseProgress, frasesLoaded, loadFrases } = useAppStore();
+  const { frases, progress, advancePhraseProgress, frasesLoaded, loadFrases, targetLanguage } = useAppStore(state => ({
+    frases: state.frases,
+    progress: state.progress,
+    advancePhraseProgress: state.advancePhraseProgress,
+    frasesLoaded: state.frasesLoaded,
+    loadFrases: state.loadFrases,
+    targetLanguage: state.prefs.targetLanguage,
+  }));
   const phraseSettings = useAppStore((state) => state.prefs.phraseSettings);
 
   const [showWelcome, setShowWelcome] = useState(true);
@@ -28,14 +35,17 @@ export default function Examen() {
     if (!frasesLoaded) loadFrases();
   }, [frasesLoaded, loadFrases]);
 
+  const getTargetText = (f: Phrase) => (targetLanguage === 'eu' ? f.eu : f.en) || f.en;
+
   const generateOptions = useCallback((target: Phrase) => {
+    const targetText = getTargetText(target);
     const distractors = frases
       .filter(f => f.id !== target.id)
       .sort(() => Math.random() - 0.5)
       .slice(0, 3)
-      .map(f => f.en);
-    return shuffle([...distractors, target.en]);
-  }, [frases]);
+      .map(f => getTargetText(f));
+    return shuffle([...distractors, targetText]);
+  }, [frases, targetLanguage]);
 
   useEffect(() => {
     if (examState === 'active' && examPhrases.length > 0) {
@@ -57,7 +67,8 @@ export default function Examen() {
     setSelectedOption(option);
 
     const current = examPhrases[currentIndex];
-    const isCorrect = option === current.en;
+    const targetText = getTargetText(current);
+    const isCorrect = option === targetText;
 
     setTimeout(() => {
       if (isCorrect) {
@@ -66,16 +77,9 @@ export default function Examen() {
           score: prev.score + 1,
           correctIds: [...prev.correctIds, String(current.id)]
         }));
-        // Update progress in store: mark as learned (level 2)
-        // Note: advancePhraseProgress typically cycles 0->1->2->0. 
-        // We might want a direct 'setLearned' but for now we follow the existing logic.
-        // If it's 0 or 1, we advance it.
+
         if ((progress[current.id] || 0) < 2) {
           advancePhraseProgress(String(current.id));
-          if ((progress[current.id] || 0) === 1) {
-            // Already studied, one more advance to reach learned
-            // This is a bit hacky due to the store implementation
-          }
         }
       } else {
         setResults(prev => ({
@@ -165,9 +169,9 @@ export default function Examen() {
                   key={i}
                   onClick={() => handleAnswer(opt)}
                   className={`p-6 text-left rounded-2xl font-bold border-2 transition-all ${selectedOption === opt
-                      ? (opt === current.en ? 'bg-green-500 border-green-400' : 'bg-red-500 border-red-400')
-                      : 'bg-white/5 border-white/10 hover:border-accent hover:bg-white/10'
-                    } ${selectedOption && opt !== selectedOption && opt !== current.en ? 'opacity-30' : ''}`}
+                    ? (opt === getTargetText(current) ? 'bg-green-500 border-green-400' : 'bg-red-500 border-red-400')
+                    : 'bg-white/5 border-white/10 hover:border-accent hover:bg-white/10'
+                    } ${selectedOption && opt !== selectedOption && opt !== getTargetText(current) ? 'opacity-30' : ''}`}
                   disabled={!!selectedOption}
                 >
                   {opt}
@@ -194,19 +198,23 @@ export default function Examen() {
               {passed ? <TrophyIcon className="w-12 h-12 text-white" /> : <ShieldCheckIcon className="w-12 h-12 text-white opacity-50" />}
             </div>
             <h2 className="text-4xl font-black text-white mb-2">
-              {passed ? '¡APROBADO!' : 'NO SUPERADO'}
+              {passed ? (targetLanguage === 'eu' ? 'GAINDITUA!' : '¡APROBADO!') : (targetLanguage === 'eu' ? 'EZ GAINDITUA' : 'NO SUPERADO')}
             </h2>
             <p className="text-gray-400 mb-8">
-              Has acertado <span className="text-white font-bold">{results.score}</span> de <span className="text-white font-bold">{results.total}</span> preguntas.
+              {targetLanguage === 'eu' ? (
+                <>Zuk <span className="text-white font-bold">{results.score}</span> asmatu dituzu <span className="text-white font-bold">{results.total}</span> galderatik.</>
+              ) : (
+                <>Has acertado <span className="text-white font-bold">{results.score}</span> de <span className="text-white font-bold">{results.total}</span> preguntas.</>
+              )}
             </p>
 
             <div className="flex justify-center gap-4 mb-8">
               <div className="bg-white/5 p-4 rounded-2xl border border-white/10 w-32">
-                <p className="text-[10px] uppercase font-bold text-gray-500">Correctas</p>
+                <p className="text-[10px] uppercase font-bold text-gray-500">{targetLanguage === 'eu' ? 'Zuzenak' : 'Correctas'}</p>
                 <p className="text-2xl font-black text-green-500">{results.score}</p>
               </div>
               <div className="bg-white/5 p-4 rounded-2xl border border-white/10 w-32">
-                <p className="text-[10px] uppercase font-bold text-gray-500">Nota</p>
+                <p className="text-[10px] uppercase font-bold text-gray-500">{targetLanguage === 'eu' ? 'Nota' : 'Nota'}</p>
                 <p className="text-2xl font-black text-accent">{Math.round((results.score / results.total) * 100)}%</p>
               </div>
             </div>
@@ -216,27 +224,27 @@ export default function Examen() {
                 onClick={() => setExamState('setup')}
                 className="bg-accent text-white font-black py-4 rounded-2xl text-lg shadow-lg hover:brightness-110"
               >
-                Intentar de Nuevo
+                {targetLanguage === 'eu' ? 'Berriro Saiatu' : 'Intentar de Nuevo'}
               </button>
               <button
                 onClick={() => setShowWelcome(true)}
                 className="bg-white/5 text-white font-bold py-3 rounded-2xl hover:bg-white/10"
               >
-                Volver al Inicio
+                {targetLanguage === 'eu' ? 'Hasierara Itzuli' : 'Volver al Inicio'}
               </button>
             </div>
           </div>
 
           {results.incorrectIds.length > 0 && (
             <div className="bg-white/5 p-8 rounded-[2rem] border border-white/10 text-left">
-              <h3 className="text-lg font-bold text-white mb-4">Repasa estos conceptos:</h3>
+              <h3 className="text-lg font-bold text-white mb-4">{targetLanguage === 'eu' ? 'Kontzeptu hauek errepasatu:' : 'Repasa estos conceptos:'}</h3>
               <div className="space-y-4">
                 {results.incorrectIds.map(id => {
                   const p = frases.find(f => f.id === id);
                   return p ? (
                     <div key={id} className="p-4 bg-red-500/5 rounded-xl border border-red-500/10">
                       <p className="text-sm text-gray-400 italic mb-1">"{p.es}"</p>
-                      <p className="text-white font-bold">{p.en}</p>
+                      <p className="text-white font-bold">{getTargetText(p)}</p>
                     </div>
                   ) : null;
                 })}
