@@ -1,23 +1,12 @@
 import React, { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import ConversationList from '@/components/ConversationList';
 import ConversationDetail from '@/components/ConversationDetail';
-import { useAppStore, Conversation, ConversationTurn } from '@/store/useAppStore';
+import { useAppStore, Conversation } from '@/store/useAppStore';
 import PageContainer from '@/components/layout/PageContainer';
-
-
-const FeatureCard = ({ title, description }: { title: string, description: string }) => (
-  <div className="bg-white/20 p-6 rounded-lg shadow-lg text-center">
-    <h3 className="text-xl font-bold mb-2">{title}</h3>
-    <p>{description}</p>
-  </div>
-);
+import ModuleIntro from '@/components/ModuleIntro';
+import { ChatBubbleLeftIcon } from '@heroicons/react/24/outline';
 
 export default function Conversaciones() {
-  // Handler global para detener la voz al pulsar cualquier botón
-  const handleAnyButton = (e: React.MouseEvent<HTMLButtonElement>) => {
-    window.speechSynthesis.cancel();
-  };
   const { conversations, categories } = useAppStore((state) => ({
     conversations: state.conversations,
     categories: state.categories,
@@ -38,17 +27,16 @@ export default function Conversaciones() {
 
   const handleSelectConversation = (conversation: Conversation) => {
     setSelectedConversation(conversation);
-    setShowPostConversationOptions(false); // Reset options when a new conversation is selected
+    setShowPostConversationOptions(false);
   };
 
   const handleBackToList = () => {
-    window.speechSynthesis.cancel(); // Detiene cualquier reproducción de voz al salir de la conversación
+    window.speechSynthesis.cancel();
     setSelectedConversation(null);
-    setShowPostConversationOptions(false); // Hide options when going back to list
+    setShowPostConversationOptions(false);
   };
 
   const handleConversationEnd = () => {
-    console.log("handleConversationEnd called. Setting showPostConversationOptions to true.");
     setShowPostConversationOptions(true);
   };
 
@@ -62,46 +50,21 @@ export default function Conversaciones() {
     }
   };
 
-  const handleReturnToList = () => {
-    handleBackToList();
-  };
-
   if (showWelcome) {
     return (
-      <div className="text-white">
-        {/* Hero Section */}
-        <section className="bg-primary py-20 px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <img src={`${import.meta.env.BASE_URL}icons/icono.png`} alt="HostelEnglish Logo" className="mx-auto mb-4 w-32 h-32" />
-            <h1 className="text-5xl font-bold mb-4">Módulo de Conversaciones</h1>
-            <p className="text-xl mb-8">Practica con diálogos reales y mejora tu fluidez y pronunciación.</p>
-            <button
-              onClick={() => setShowWelcome(false)}
-              className="bg-accent hover:bg-accent-dark text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300"
-            >
-              Empezar a Practicar
-            </button>
-          </div>
-        </section>
-
-        {/* Features Section */}
-        <section className="bg-accent py-20 px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">¿Qué encontrarás aquí?</h2>
-            <div className="grid md:grid-cols-1 gap-8">
-              <FeatureCard
-                title="Diálogos Interactivos"
-                description="Escucha y repite conversaciones comunes en el entorno de la hostelería. Practica con diferentes acentos y situaciones para ganar confianza."
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <footer className="bg-primary-dark py-4 text-center text-sm">
-          <p>© {new Date().getFullYear()} HostellinglésApp. Todos los derechos reservados.</p>
-        </footer>
-      </div>
+      <PageContainer>
+        <ModuleIntro
+          title="Módulo de Conversaciones"
+          description="Practica con diálogos reales y mejora tu fluidez y pronunciación en situaciones comunes del sector hostelero."
+          icon={ChatBubbleLeftIcon}
+          onStart={() => setShowWelcome(false)}
+          stats={[
+            { label: 'Diálogos', value: conversations.length },
+            { label: 'Categorías', value: categories.length },
+            { label: 'Dificultad', value: 'Media' }
+          ]}
+        />
+      </PageContainer>
     );
   }
 
@@ -136,22 +99,22 @@ export default function Conversaciones() {
       )}
 
       {showPostConversationOptions && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-primary-dark p-6 rounded-lg shadow-lg text-center text-white">
-            <h2 className="text-xl font-bold mb-4 text-white">Conversación Terminada</h2>
-            <p className="mb-6 text-white">¿Qué quieres hacer a continuación?</p>
-            <div className="flex justify-center space-x-4">
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="bg-primary-dark p-8 rounded-3xl shadow-2xl text-center text-white border border-white/10 backdrop-blur-xl">
+            <h2 className="text-2xl font-bold mb-4">¡Buen trabajo!</h2>
+            <p className="mb-8 text-gray-300">Has completado esta conversación. ¿Qué te gustaría hacer ahora?</p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
               <button
-                onClick={e => { handleAnyButton(e); handleNextConversation(); }}
-                className="px-4 py-2 bg-accent rounded-md text-white hover:bg-accent-dark"
+                onClick={() => handleNextConversation()}
+                className="px-6 py-3 bg-accent rounded-2xl text-white font-bold hover:brightness-110 transition-all"
               >
-                Siguiente Conversación
+                Siguiente Diálogo
               </button>
               <button
-                onClick={e => { handleAnyButton(e); handleReturnToList(); }}
-                className="px-4 py-2 bg-primary rounded-md text-white hover:bg-primary-dark"
+                onClick={() => handleBackToList()}
+                className="px-6 py-3 bg-white/10 rounded-2xl text-white font-bold hover:bg-white/20 transition-all"
               >
-                Volver a la Lista
+                Volver al Listado
               </button>
             </div>
           </div>

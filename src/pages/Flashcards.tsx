@@ -1,18 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import { useAppStore } from '@/store/useAppStore';
 import Flashcard from '@/components/Flashcard';
 import PageContainer from '@/components/layout/PageContainer';
 import CollapsibleSection from '@/components/CollapsibleSection';
 import VoiceSettings from '@/components/VoiceSettings';
-
-
-const FeatureCard = ({ title, description }: { title: string, description: string }) => (
-  <div className="bg-white/20 p-6 rounded-lg shadow-lg text-center">
-    <h3 className="text-xl font-bold mb-2">{title}</h3>
-    <p>{description}</p>
-  </div>
-);
+import ModuleIntro from '@/components/ModuleIntro';
+import { Square2StackIcon } from '@heroicons/react/24/outline';
 
 export default function Flashcards() {
   const { frases, loadFrases, frasesLoaded, categories } = useAppStore();
@@ -39,7 +32,6 @@ export default function Flashcards() {
   }, [frases, selectedCategory]);
 
   useEffect(() => {
-    // Reset index when filters change
     setCurrentPhraseIndex(0);
   }, [filteredFrases]);
 
@@ -60,47 +52,29 @@ export default function Flashcards() {
 
   if (showWelcome) {
     return (
-      <div className="text-white">
-        {/* Hero Section */}
-        <section className="bg-primary py-20 px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <img src={`${import.meta.env.BASE_URL}icons/icono.png`} alt="HostelEnglish Logo" className="mx-auto mb-4 w-32 h-32" />
-            <h1 className="text-5xl font-bold mb-4">Módulo de Flashcards</h1>
-            <p className="text-xl mb-8">Memoriza vocabulario y frases de forma rápida y efectiva.</p>
-            <button
-              onClick={() => setShowWelcome(false)}
-              className="bg-accent hover:bg-accent-dark text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300"
-            >
-              Empezar a Estudiar
-            </button>
-          </div>
-        </section>
-
-        {/* Features Section */}
-        <section className="bg-accent py-20 px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">¿Qué encontrarás aquí?</h2>
-            <div className="grid md:grid-cols-1 gap-8">
-              <FeatureCard
-                title="Tarjetas Interactivas"
-                description="Voltea las tarjetas para ver la traducción y escuchar la pronunciación. Una forma clásica y probada de aprender nuevo vocabulario."
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <footer className="bg-primary-dark py-4 text-center text-sm">
-          <p>© {new Date().getFullYear()} HostellinglésApp. Todos los derechos reservados.</p>
-        </footer>
-      </div>
+      <PageContainer>
+        <ModuleIntro
+          title="Módulo de Flashcards"
+          description="Memoriza vocabulario y frases de forma rápida y efectiva con tarjetas interactivas. Ideal para repasar términos clave del sector hostelero."
+          icon={Square2StackIcon}
+          onStart={() => setShowWelcome(false)}
+          stats={[
+            { label: 'Tarjetas', value: frases.length },
+            { label: 'Categorías', value: categories.length },
+            { label: 'Método', value: 'Repetición' }
+          ]}
+        />
+      </PageContainer>
     );
   }
 
   if (!frasesLoaded) {
     return (
       <PageContainer title="Flashcards">
-        <p>Cargando frases...</p>
+        <div className="flex flex-col items-center justify-center p-20">
+          <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
+          <p className="mt-4 text-gray-400">Cargando vocabulario...</p>
+        </div>
       </PageContainer>
     );
   }
@@ -108,7 +82,15 @@ export default function Flashcards() {
   if (filteredFrases.length === 0) {
     return (
       <PageContainer title="Flashcards">
-        <p>No hay frases disponibles para la categoría seleccionada.</p>
+        <div className="text-center py-20 px-4">
+          <p className="text-xl text-gray-400 mb-6">No hay tarjetas disponibles para esta selección.</p>
+          <button
+            onClick={() => setSelectedCategory('all')}
+            className="bg-accent text-white px-8 py-3 rounded-2xl font-bold"
+          >
+            Ver todas las categorías
+          </button>
+        </div>
       </PageContainer>
     );
   }
@@ -117,51 +99,60 @@ export default function Flashcards() {
 
   return (
     <PageContainer title="Flashcards">
-      <select
-        className="w-full p-2 border border-gray-300 rounded-md mb-4 dark:bg-gray-700 dark:text-white dark:border-gray-600"
-        value={selectedCategory}
-        onChange={(e) => setSelectedCategory(e.target.value)}
-      >
-        {displayCategories.map(category => (
-          <option key={category} value={category}>
-            {category === 'all' ? 'Todas las categorías' : category}
-          </option>
-        ))}
-      </select>
+      <div className="max-w-md mx-auto w-full flex flex-col items-center">
+        <div className="w-full mb-8">
+          <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-black">Categoría</label>
+          <select
+            className="w-full p-4 bg-white/5 border border-white/10 rounded-2xl text-white font-bold appearance-none shadow-xl focus:ring-2 focus:ring-accent outline-none transition-all"
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            {displayCategories.map(category => (
+              <option key={category} value={category} className="bg-primary-dark text-white">
+                {category === 'all' ? 'Todas las categorías' : category}
+              </option>
+            ))}
+          </select>
+        </div>
 
-      <div className="w-full max-w-md mb-6 relative z-0">
-        <Flashcard phrase={currentPhrase} />
-      </div>
+        <div className="w-full mb-10 relative perspective-1000">
+          <Flashcard phrase={currentPhrase} />
+        </div>
 
-      <div className="flex justify-between w-full max-w-md relative z-10">
-        <button
-          onClick={handlePrev}
-          className="px-4 py-2 bg-gray-200 dark:bg-gray-700 rounded-md text-gray-800 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-600"
-        >
-          Anterior
-        </button>
-        <button
-          onClick={handleShuffle}
-          className="px-4 py-2 bg-accent text-white rounded-md hover:bg-accent-dark"
-        >
-          Aleatorio
-        </button>
-        <button
-          onClick={handleNext}
-          className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-dark"
-        >
-          Siguiente
-        </button>
-      </div>
+        <div className="grid grid-cols-3 gap-4 w-full mb-12">
+          <button
+            onClick={handlePrev}
+            className="p-4 bg-white/5 border border-white/10 rounded-2xl text-white font-bold hover:bg-white/10 active:scale-95 transition-all text-sm uppercase tracking-tighter"
+          >
+            Anterior
+          </button>
+          <button
+            onClick={handleShuffle}
+            className="p-4 bg-accent text-white rounded-2xl font-bold hover:brightness-110 active:scale-95 transition-all shadow-lg text-sm uppercase tracking-tighter"
+          >
+            Mezclar
+          </button>
+          <button
+            onClick={handleNext}
+            className="p-4 bg-white/5 border border-white/10 rounded-2xl text-white font-bold hover:bg-white/10 active:scale-95 transition-all text-sm uppercase tracking-tighter"
+          >
+            Siguiente
+          </button>
+        </div>
 
-      <div className="w-full max-w-md mt-8">
-        <CollapsibleSection title="Ajustes de Voz">
-          <VoiceSettings
-            settings={phraseSettings}
-            onSettingChange={setPhraseSetting}
-            showTitle={false}
-          />
-        </CollapsibleSection>
+        <div className="w-full">
+          <CollapsibleSection title="Ajustes de Voz">
+            <VoiceSettings
+              settings={phraseSettings}
+              onSettingChange={setPhraseSetting}
+              showTitle={false}
+            />
+          </CollapsibleSection>
+        </div>
+
+        <div className="mt-8 text-center text-gray-500 text-sm">
+          Tarjeta {currentPhraseIndex + 1} de {filteredFrases.length}
+        </div>
       </div>
     </PageContainer>
   );

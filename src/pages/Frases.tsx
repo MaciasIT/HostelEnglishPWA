@@ -4,15 +4,10 @@ import PhraseCard from '@/components/PhraseCard';
 import VoiceSettings from '@/components/VoiceSettings';
 import CollapsibleSection from '@/components/CollapsibleSection';
 import { ArrowLeftIcon, ArrowRightIcon, XCircleIcon } from '@heroicons/react/24/solid';
+import { ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline';
 import { shuffle } from '@/utils/shuffle';
 import PageContainer from '@/components/layout/PageContainer';
-
-const FeatureCard = ({ title, description }: { title: string, description: string }) => (
-  <div className="bg-white/20 p-6 rounded-lg shadow-lg text-center">
-    <h3 className="text-xl font-bold mb-2">{title}</h3>
-    <p>{description}</p>
-  </div>
-);
+import ModuleIntro from '@/components/ModuleIntro';
 
 export default function Frases() {
   // Zustand Store
@@ -115,35 +110,19 @@ export default function Frases() {
   // Render Welcome
   if (showWelcome) {
     return (
-      <div className="text-white">
-        <section className="bg-primary py-20 px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <img src={`${import.meta.env.BASE_URL}icons/icono.png`} alt="HostelEnglish Logo" className="mx-auto mb-4 w-32 h-32" />
-            <h1 className="text-5xl font-bold mb-4">Módulo de Frases</h1>
-            <p className="text-xl mb-8">Aprende y practica frases clave para el día a día en la hostelería.</p>
-            <button
-              onClick={() => setShowWelcome(false)}
-              className="bg-accent hover:bg-accent-dark text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300"
-            >
-              Empezar a Aprender
-            </button>
-          </div>
-        </section>
-        <section className="bg-accent py-20 px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">¿Qué encontrarás aquí?</h2>
-            <div className="grid md:grid-cols-1 gap-8">
-              <FeatureCard
-                title="Frases Esenciales"
-                description="Encuentra una amplia selección de frases útiles para comunicarte con clientes en inglés. Filtra por categoría y busca frases específicas para cada situación."
-              />
-            </div>
-          </div>
-        </section>
-        <footer className="bg-primary-dark py-4 text-center text-sm">
-          <p>© {new Date().getFullYear()} HostellinglésApp. Todos los derechos reservados.</p>
-        </footer>
-      </div>
+      <PageContainer>
+        <ModuleIntro
+          title="Módulo de Frases"
+          description="Aprende y practica frases clave para el día a día en la hostelería. Filtra por categoría y busca frases específicas para cada situación."
+          icon={ChatBubbleLeftRightIcon}
+          onStart={() => setShowWelcome(false)}
+          stats={[
+            { label: 'Frases', value: frases.length },
+            { label: 'Categorías', value: categories.length },
+            { label: 'Tu Progreso', value: `${Object.keys(progress).length}` }
+          ]}
+        />
+      </PageContainer>
     );
   }
 
@@ -182,8 +161,6 @@ export default function Frases() {
       <div className="flex-grow flex flex-col items-center justify-center w-full mt-4">
         {isSessionActive && currentPhrase ? (
           // --- Study Session View ---
-          // This view is active when a user has started a study session.
-          // It displays one phrase at a time with navigation controls.
           <>
             <div className="w-full max-w-xl sm:max-w-2xl md:max-w-3xl mb-4">
               <PhraseCard
@@ -223,7 +200,6 @@ export default function Frases() {
           </>
         ) : (
           // --- Selection View ---
-          // This is the default view where users can see filter results and choose a session size.
           <div className="text-center text-white bg-white/10 p-8 rounded-lg w-full max-w-xl sm:max-w-2xl md:max-w-3xl">
             {filteredFrases.length > 0 ? (
               <>

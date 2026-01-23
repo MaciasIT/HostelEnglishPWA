@@ -4,7 +4,70 @@
 
 :root {
   color-scheme: light dark;
+  --accent: #e67e22;
+  --primary: #34495e;
+  --primary-dark: #2c3e50;
+  --primary-light: #7f8c8d;
 }
+
 body {
-  @apply min-h-screen w-full max-w-full overflow-x-hidden;
+  @apply min-h-screen w-full max-w-full overflow-x-hidden bg-primary-dark text-white font-sans;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1a252f;
+}
+::-webkit-scrollbar-thumb {
+  background: #34495e;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e67e22;
+}
+
+/* Global Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  @apply bg-white/10 backdrop-blur-xl border border-white/10 shadow-2xl;
+}
+
+/* Text Enhancements */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-blue-500;
+}
+
+/* Custom components classes */
+.btn-primary {
+  @apply bg-accent hover:brightness-110 text-white font-black py-4 px-10 rounded-2xl shadow-xl transition-all active:scale-95;
+}
+
+.btn-secondary {
+  @apply bg-white/5 hover:bg-white/10 text-white font-bold py-3 px-8 rounded-2xl border border-white/10 transition-all;
 }

@@ -2,17 +2,12 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { normalizeText, levenshteinDistance } from '@/utils/normalize';
 import useSpeechRecognition from '@/hooks/useSpeechRecognition';
 import VoiceSettings from '@/components/VoiceSettings';
-import useAudioControl from '@/hooks/useAudioControl'; // Use the new hook
+import useAudioControl from '@/hooks/useAudioControl';
 import { useAppStore, Phrase } from '../store/useAppStore';
 import PageContainer from '@/components/layout/PageContainer';
 import CollapsibleSection from '@/components/CollapsibleSection';
-
-const FeatureCard = ({ title, description }: { title: string, description: string }) => (
-  <div className="bg-white/20 p-6 rounded-lg shadow-lg text-center">
-    <h3 className="text-xl font-bold mb-2">{title}</h3>
-    <p>{description}</p>
-  </div>
-);
+import ModuleIntro from '@/components/ModuleIntro';
+import { MicrophoneIcon } from '@heroicons/react/24/outline';
 
 const Dictation: React.FC = () => {
   const [showWelcome, setShowWelcome] = useState(true);
@@ -20,11 +15,11 @@ const Dictation: React.FC = () => {
   const [currentPhrase, setCurrentPhrase] = useState<Phrase | null>(null);
   const [userAnswer, setUserAnswer] = useState('');
   const [feedback, setFeedback] = useState('');
-  const [correctAnswer, setCorrectAnswer] = useState<string | null>(null); // New state for correct answer
-  const [showTranslation, setShowTranslation] = useState(false); // State to control translation visibility
+  const [correctAnswer, setCorrectAnswer] = useState<string | null>(null);
+  const [showTranslation, setShowTranslation] = useState(false);
 
   const { isListening, transcript, startListening, stopListening, browserSupportsSpeechRecognition, error: speechError, requestingPermission } = useSpeechRecognition();
-  const { cancelSpeech } = useAudioControl(); // Use the new hook
+  const { cancelSpeech } = useAudioControl();
 
   const phraseSettings = useAppStore((state) => state.prefs.phraseSettings);
   const setPhraseSetting = useAppStore((state) => state.setPhraseSetting);
@@ -33,10 +28,10 @@ const Dictation: React.FC = () => {
     if (frases.length > 0) {
       const randomIndex = Math.floor(Math.random() * frases.length);
       setCurrentPhrase(frases[randomIndex]);
-      setUserAnswer(''); // Reset answer
-      setFeedback(''); // Reset feedback
-      setCorrectAnswer(null); // Reset correct answer
-      setShowTranslation(false); // Hide translation for new phrase
+      setUserAnswer('');
+      setFeedback('');
+      setCorrectAnswer(null);
+      setShowTranslation(false);
     }
   }, [frases]);
 
@@ -48,7 +43,7 @@ const Dictation: React.FC = () => {
 
   const handlePlayAudio = () => {
     if (currentPhrase) {
-      cancelSpeech(); // Cancelar cualquier síntesis de voz en curso
+      cancelSpeech();
 
       const utterance = new SpeechSynthesisUtterance(currentPhrase.en);
       utterance.lang = 'en-US';
@@ -61,7 +56,6 @@ const Dictation: React.FC = () => {
           utterance.voice = voice;
         }
       } else {
-        // Fallback to any English voice if no specific URI is set
         const voices = window.speechSynthesis.getVoices();
         const englishVoice = voices.find(voice => voice.lang.startsWith('en'));
         if (englishVoice) {
@@ -76,22 +70,22 @@ const Dictation: React.FC = () => {
   const handleCheckAnswer = useCallback(() => {
     if (!currentPhrase) return;
 
-    cancelSpeech(); // Cancel speech on check
+    cancelSpeech();
 
     const normalizedUserAnswer = normalizeText(userAnswer);
     const normalizedCorrectAnswer = normalizeText(currentPhrase.en);
 
     const distance = levenshteinDistance(normalizedUserAnswer, normalizedCorrectAnswer);
-    const toleranceThreshold = Math.floor(normalizedCorrectAnswer.length * 0.15); // 15% tolerance
+    const toleranceThreshold = Math.floor(normalizedCorrectAnswer.length * 0.15);
 
     if (distance <= toleranceThreshold) {
       setFeedback('¡Correcto!');
-      setCorrectAnswer(null); // Clear correct answer on success
-      setShowTranslation(true); // Show translation on correct answer
+      setCorrectAnswer(null);
+      setShowTranslation(true);
     } else {
       setFeedback('Inténtalo de nuevo.');
-      setCorrectAnswer(currentPhrase.en); // Show correct answer on failure
-      setShowTranslation(true); // Show translation on incorrect answer
+      setCorrectAnswer(currentPhrase.en);
+      setShowTranslation(true);
     }
   }, [currentPhrase, userAnswer, cancelSpeech]);
 
@@ -107,93 +101,66 @@ const Dictation: React.FC = () => {
           setCorrectAnswer(currentPhrase.en);
         }
       }
-    }, 1000); // Esperar 1 segundo antes de analizar
+    }, 1000);
   };
 
-  // Effect to handle speech recognition transcript
   useEffect(() => {
     if (!isListening && transcript) {
       setUserAnswer(transcript);
-      // Automatically check the answer after speech recognition stops and a transcript is available
       handleCheckAnswer();
     }
   }, [isListening, transcript, handleCheckAnswer]);
 
   if (showWelcome) {
     return (
-      <div className="text-white">
-        {/* Hero Section */}
-        <section className="bg-primary py-20 px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <img src={`${import.meta.env.BASE_URL}icons/icono.png`} alt="HostelEnglish Logo" className="mx-auto mb-4 w-32 h-32" />
-            <h1 className="text-5xl font-bold mb-4">Módulo de Dictado</h1>
-            <p className="text-xl mb-8">Pon a prueba tu oído y escritura. Escucha frases en inglés y escríbelas correctamente.</p>
-            <button
-              onClick={() => {
-                cancelSpeech(); // Use cancelSpeech from the hook
-                setShowWelcome(false);
-              }}
-              className="bg-accent hover:bg-accent-dark text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300"
-            >
-              Empezar a Practicar
-            </button>
-          </div>
-        </section>
-
-        {/* Features Section */}
-        <section className="bg-accent py-20 px-4">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold text-center mb-12">¿Qué practicarás aquí?</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <FeatureCard
-                title="Listening Activo"
-                description="Agudiza tu oído para entender el inglés hablado en diferentes contextos y acentos."
-              />
-              <FeatureCard
-                title="Escritura y Ortografía"
-                description="Mejora tu precisión al escribir, prestando atención a la gramática y la ortografía."
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <footer className="bg-primary-dark py-4 text-center text-sm">
-          <p>© {new Date().getFullYear()} HostellinglésApp. Todos los derechos reservados.</p>
-        </footer>
-      </div>
+      <PageContainer>
+        <ModuleIntro
+          title="Módulo de Dictado"
+          description="Pon a prueba tu oído y escritura. Escucha frases en inglés y escríbelas correctamente para mejorar tu ortografía y comprensión auditiva."
+          icon={MicrophoneIcon}
+          onStart={() => setShowWelcome(false)}
+          stats={[
+            { label: 'Frases', value: frases.length },
+            { label: 'Habilidad', value: 'Listening' },
+            { label: 'Nivel', value: 'Intermedio' }
+          ]}
+        />
+      </PageContainer>
     );
   }
 
-  // Main content of the dictation module
   return (
     <PageContainer title="Módulo de Dictado">
       {currentPhrase ? (
-        <div className="bg-primary-dark p-6 rounded-lg max-w-2xl mx-auto">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <p className="text-2xl text-center font-semibold text-accent-light">Escucha la frase</p>
+        <div className="bg-white/10 p-8 rounded-3xl shadow-2xl backdrop-blur-md border border-white/20 max-w-2xl mx-auto">
+          <div className="flex flex-col items-center justify-center gap-6 mb-8">
+            <p className="text-xl text-center text-gray-300 uppercase tracking-widest font-black">Escucha con atención</p>
             <button
               aria-label="reproducir audio"
               onClick={handlePlayAudio}
-              className="text-3xl hover:scale-110 transition-transform"
+              className="w-24 h-24 bg-accent rounded-full flex items-center justify-center text-5xl shadow-xl hover:scale-110 active:scale-95 transition-all duration-300 transform"
             >
               🔊
             </button>
           </div>
 
-          <div className="space-y-4">
-            <input
-              type="text"
-              value={isListening ? transcript : userAnswer}
-              onChange={(e) => { cancelSpeech(); setUserAnswer(e.target.value); }}
-              placeholder={isListening ? "Escuchando..." : "Escribe lo que escuchas..."}
-              className="w-full p-3 bg-primary border border-gray-600 rounded-lg text-white text-lg focus:outline-none focus:ring-2 focus:ring-accent"
-              disabled={isListening}
-            />
-            <div className="flex gap-2">
+          <div className="space-y-6">
+            <div className="relative">
+              <input
+                type="text"
+                value={isListening ? transcript : userAnswer}
+                onChange={(e) => { cancelSpeech(); setUserAnswer(e.target.value); }}
+                placeholder={isListening ? "Escuchando..." : "Escribe lo que escuchas..."}
+                className="w-full p-5 bg-white/5 border border-white/10 rounded-2xl text-white text-xl focus:outline-none focus:ring-2 focus:ring-accent transition-all placeholder-gray-500"
+                disabled={isListening}
+              />
+              {isListening && <div className="absolute right-4 top-1/2 -translate-y-1/2 w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>}
+            </div>
+
+            <div className="flex gap-4">
               <button
                 onClick={() => { cancelSpeech(); handleCheckAnswer(); }}
-                className="flex-grow bg-accent hover:bg-accent-dark text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300"
+                className="flex-[2] bg-accent hover:brightness-110 text-white font-bold py-4 px-6 rounded-2xl text-xl transition-all shadow-lg active:scale-95"
               >
                 Comprobar
               </button>
@@ -202,7 +169,7 @@ const Dictation: React.FC = () => {
                   cancelSpeech();
                   isListening ? handleStopListening() : startListening();
                 }}
-                className={`p-3 rounded-lg text-lg transition duration-300 ${isListening ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'}`}
+                className={`flex-1 p-4 rounded-2xl text-2xl transition-all shadow-lg active:scale-95 flex items-center justify-center ${isListening ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-600 hover:bg-blue-700'}`}
                 aria-label={isListening ? "detener dictado por voz" : "iniciar dictado por voz"}
                 disabled={!browserSupportsSpeechRecognition}
               >
@@ -212,48 +179,48 @@ const Dictation: React.FC = () => {
           </div>
 
           {!browserSupportsSpeechRecognition && (
-            <p className="mt-4 text-center text-red-400 text-lg">
-              Tu navegador no soporta el reconocimiento de voz. Por favor, usa Chrome o Edge.
-            </p>
-          )}
-          {speechError && <p className="mt-4 text-center text-red-400 text-lg">Error de voz: {speechError}</p>}
-          {requestingPermission && (
-            <p className="mt-4 text-center text-yellow-400 text-lg">
-              Solicitando permisos para usar el micrófono...
-            </p>
-          )}
-          {feedback && (
-            <p className={`mt-4 text-center text-xl font-bold ${feedback === '¡Correcto!' ? 'text-green-400' : 'text-red-400'}`}>
-              {feedback}
-            </p>
-          )}
-          {correctAnswer && feedback === 'Inténtalo de nuevo.' && (
-            <p className="mt-2 text-center text-lg text-gray-300">
-              Respuesta correcta: <span className="font-semibold">{currentPhrase?.en}</span>
-            </p>
-          )}
-          {showTranslation && currentPhrase?.es && (
-            <p className="mt-2 text-center text-lg text-gray-400">
-              Traducción: <span className="font-semibold">{currentPhrase.es}</span>
+            <p className="mt-4 text-center text-red-400 text-sm">
+              Tu navegador no soporta el reconocimiento de voz.
             </p>
           )}
 
+          {feedback && (
+            <div className={`mt-8 p-6 rounded-2xl text-center animate-in slide-in-from-top-4 duration-300 ${feedback === '¡Correcto!' ? 'bg-green-500/20 border border-green-500/50' : 'bg-red-500/20 border border-red-500/50'}`}>
+              <p className={`text-2xl font-black ${feedback === '¡Correcto!' ? 'text-green-400' : 'text-red-400'}`}>
+                {feedback}
+              </p>
+              {correctAnswer && feedback === 'Inténtalo de nuevo.' && (
+                <div className="mt-4 pt-4 border-t border-red-500/20">
+                  <p className="text-gray-400 text-sm uppercase tracking-tighter mb-1">Debiste escribir:</p>
+                  <p className="text-lg text-white font-bold italic">"{currentPhrase?.en}"</p>
+                </div>
+              )}
+              {showTranslation && currentPhrase?.es && (
+                <div className="mt-2">
+                  <p className="text-gray-400 text-sm uppercase tracking-tighter mb-1">Traducción:</p>
+                  <p className="text-lg text-white font-medium italic">{currentPhrase.es}</p>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       ) : (
-        <p>Cargando frases...</p>
+        <div className="flex flex-col items-center justify-center p-20">
+          <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
+          <p className="mt-4 text-gray-400">Preparando frases...</p>
+        </div>
       )}
 
-      <div className="mt-6 flex justify-center">
+      <div className="mt-8 flex justify-center">
         <button
           onClick={() => { cancelSpeech(); selectNewPhrase(); }}
-          className="bg-gray-600 hover:bg-gray-500 text-white font-bold py-2 px-6 rounded-full transition duration-300"
+          className="bg-white/10 hover:bg-white/20 text-white font-bold py-3 px-10 rounded-2xl transition-all active:scale-95 border border-white/10"
         >
-          Siguiente Frase
+          Siguiente Desafío
         </button>
       </div>
 
-      {/* Voice Settings Component */}
-      <div className="mt-8">
+      <div className="mt-12 max-w-2xl mx-auto">
         <CollapsibleSection title="Ajustes de Voz">
           <VoiceSettings
             settings={phraseSettings}
