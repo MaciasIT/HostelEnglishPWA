@@ -4,6 +4,7 @@
 [![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-5.2.0-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.2.2-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=for-the-badge)](https://www.gnu.org/licenses/agpl-3.0)
 
 **HostelInglés** es una Progressive Web App (PWA) interactiva, diseñada para ayudar al personal de hostelería a dominar el inglés esencial para su trabajo diario.
 
@@ -72,3 +73,9 @@ Se ha implementado una estrategia de pruebas robusta utilizando **Vitest** y **R
 
 ---
 Para un historial detallado de las decisiones técnicas y mejoras implementadas, consulta el [Diario de Desarrollo](docs/DIARIO_DESARROLLO.md).
+
+## 📄 Licencia
+
+Este proyecto está bajo la licencia **GNU Affero General Public License v3.0 (AGPL-3.0)**. Esta licencia garantiza que el software siga siendo libre y abierto para todos los usuarios, incluso cuando se utiliza a través de una red.
+
+Puedes leer el texto completo en el archivo [LICENSE](./LICENSE).
