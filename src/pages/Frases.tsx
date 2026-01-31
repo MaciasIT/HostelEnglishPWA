@@ -229,12 +229,14 @@ export default function Frases() {
               <button
                 onClick={() => setCurrentIndex(prev => (prev - 1 + activePhrases.length) % activePhrases.length)}
                 className="p-6 bg-white/5 border border-white/10 rounded-full text-white hover:bg-white/10 active:scale-90 transition-all shadow-xl"
+                aria-label="Frase anterior"
               >
                 <ArrowLeftIcon className="w-8 h-8" />
               </button>
               <button
                 onClick={() => setCurrentIndex(prev => (prev + 1) % activePhrases.length)}
                 className="p-6 bg-accent border border-accent rounded-full text-white hover:brightness-110 active:scale-90 transition-all shadow-xl"
+                aria-label="Siguiente frase"
               >
                 <ArrowRightIcon className="w-8 h-8" />
               </button>

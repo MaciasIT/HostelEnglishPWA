@@ -140,6 +140,7 @@ const Dictation: React.FC = () => {
             <button
               onClick={handlePlayAudio}
               className="group relative w-28 h-28 bg-accent rounded-[2rem] flex items-center justify-center shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300"
+              aria-label="Reproducir audio"
             >
               <SpeakerWaveIcon className="w-12 h-12 text-white group-hover:animate-pulse" />
               <div className="absolute -inset-2 bg-accent opacity-20 blur-xl rounded-full group-hover:opacity-40 transition-opacity"></div>
@@ -179,6 +180,7 @@ const Dictation: React.FC = () => {
                 onClick={() => { cancelSpeech(); isListening ? stopListening() : startListening(); }}
                 className={`flex-1 p-5 rounded-2xl transition-all shadow-xl active:scale-95 flex items-center justify-center border-2 ${isListening ? 'bg-red-500/20 border-red-500 text-red-500' : 'bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20'}`}
                 disabled={!browserSupportsSpeechRecognition}
+                aria-label="Iniciar dictado por voz"
               >
                 <MicrophoneIcon className={`w-8 h-8 ${isListening ? 'animate-pulse' : ''}`} />
               </button>

@@ -135,6 +135,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
         <button
           onClick={() => { handleStop(); onBack(); }}
           className="p-3 bg-white/5 border border-white/10 rounded-2xl text-white hover:bg-white/10 transition-all active:scale-90"
+          aria-label="Volver"
         >
           <ArrowLeftIcon className="w-6 h-6" />
         </button>
@@ -239,6 +240,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
                     <button
                       onClick={() => handlePlayTurn(turn)}
                       className="p-1 text-gray-400 hover:text-white transition-all opacity-0 group-hover:opacity-100"
+                      aria-label="Reproducir frase"
                     >
                       <SpeakerWaveIcon className="w-4 h-4" />
                     </button>

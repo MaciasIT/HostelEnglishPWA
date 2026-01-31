@@ -18,13 +18,24 @@ Object.defineProperty(window, 'speechSynthesis', {
 });
 
 // Mock de la clase SpeechSynthesisUtterance
-global.window.SpeechSynthesisUtterance = class SpeechSynthesisUtterance {
-  constructor(text) {
+(globalThis as any).SpeechSynthesisUtterance = class SpeechSynthesisUtterance {
+  text: string;
+  lang: string;
+  pitch: number;
+  rate: number;
+  voice: any;
+  volume: number;
+  onend: any;
+  onerror: any;
+
+  constructor(text: string) {
     this.text = text;
     this.lang = '';
     this.pitch = 1;
     this.rate = 1;
     this.voice = null;
     this.volume = 1;
+    this.onend = null;
+    this.onerror = null;
   }
 };

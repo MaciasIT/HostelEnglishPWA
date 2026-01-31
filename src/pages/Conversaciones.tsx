@@ -103,6 +103,7 @@ export default function Conversaciones() {
                   className="w-full pl-6 pr-10 py-4 bg-white/5 border border-white/10 rounded-2xl text-white font-bold appearance-none focus:ring-2 focus:ring-accent outline-none transition-all group-hover:bg-white/10"
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
+                  aria-label="Filtrar por categoría"
                 >
                   {displayCategories.map(category => (
                     <option key={category} value={category} className="bg-primary-dark">

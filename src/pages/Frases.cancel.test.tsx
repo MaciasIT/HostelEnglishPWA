@@ -1,3 +1,9 @@
+import { vi, expect, describe, it, beforeEach, beforeAll } from 'vitest';
+import { render } from '@testing-library/react';
+import Frases from './Frases';
+import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
+
 // Mock completo de idb para evitar errores de indexedDB en tests
 vi.mock('idb', () => ({
   openDB: vi.fn(() => Promise.resolve({
@@ -10,13 +16,8 @@ vi.mock('idb', () => ({
     addEventListener: vi.fn(),
   })),
 }));
-import { vi, expect, describe, it, beforeEach, beforeAll } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import Frases from './Frases';
-import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
 
-(global as any).SpeechSynthesisUtterance = function(text: string) {
+(globalThis as any).SpeechSynthesisUtterance = function (text: string) {
   this.text = text;
   this.lang = '';
   this.rate = 1;
@@ -26,7 +27,7 @@ import { MemoryRouter } from 'react-router-dom';
   this.onerror = null;
 };
 
-global.speechSynthesis = {
+(globalThis as any).speechSynthesis = {
   speak: vi.fn(),
   cancel: vi.fn(),
   getVoices: () => [{ voiceURI: 'test', name: 'Test', lang: 'en-US' }],
@@ -36,13 +37,15 @@ global.speechSynthesis = {
 
 // Mock fetch para evitar errores de carga de JSON
 beforeAll(() => {
-  global.fetch = vi.fn(() => Promise.resolve({
+  (globalThis as any).fetch = vi.fn(() => Promise.resolve({
     ok: true,
     json: () => Promise.resolve([]),
   })) as any;
+
   // Mock indexedDB y constructores requeridos por idb
-  (global as any).indexedDB = {
-    open: vi.fn(() => ({      addEventListener: vi.fn(),
+  (globalThis as any).indexedDB = {
+    open: vi.fn(() => ({
+      addEventListener: vi.fn(),
       result: {},
       onsuccess: null,
       onerror: null,
@@ -50,13 +53,13 @@ beforeAll(() => {
     })),
     deleteDatabase: vi.fn(),
   };
-  (global as any).IDBRequest = function() {};
-  (global as any).IDBDatabase = function() {};
-  (global as any).IDBObjectStore = function() {};
-  (global as any).IDBTransaction = function() {};
-  (global as any).IDBCursor = function() {};
-  (global as any).IDBIndex = function() {};
-  (global as any).IDBKeyRange = {
+  (globalThis as any).IDBRequest = function () { };
+  (globalThis as any).IDBDatabase = function () { };
+  (globalThis as any).IDBObjectStore = function () { };
+  (globalThis as any).IDBTransaction = function () { };
+  (globalThis as any).IDBCursor = function () { };
+  (globalThis as any).IDBIndex = function () { };
+  (globalThis as any).IDBKeyRange = {
     only: vi.fn(),
     bound: vi.fn(),
     lowerBound: vi.fn(),
@@ -76,6 +79,6 @@ describe('Frases - Playback Cancellation', () => {
       </MemoryRouter>
     );
     unmount();
-    expect(global.speechSynthesis.cancel).toHaveBeenCalled();
+    expect((globalThis as any).speechSynthesis.cancel).toHaveBeenCalled();
   });
 });

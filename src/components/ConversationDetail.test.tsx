@@ -1,10 +1,10 @@
 import React from 'react';
-import { render, fireEvent, screen, act } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import { vi, expect, describe, it, beforeEach } from 'vitest';
 import ConversationDetail from './ConversationDetail';
 
 // Mock speechSynthesis API
-global.speechSynthesis = {
+(globalThis as any).speechSynthesis = {
   speak: vi.fn(),
   cancel: vi.fn(),
   getVoices: () => [{ voiceURI: 'test', name: 'Test', lang: 'en-US' }],
@@ -12,7 +12,7 @@ global.speechSynthesis = {
   removeEventListener: vi.fn(),
 } as any;
 
-(global as any).SpeechSynthesisUtterance = function(text: string) {
+(globalThis as any).SpeechSynthesisUtterance = function (text: string) {
   this.text = text;
   this.lang = '';
   this.rate = 1;
@@ -44,9 +44,9 @@ describe('ConversationDetail - Playback Cancellation', () => {
     render(
       <ConversationDetail conversation={conversation} onBack={onBack} onConversationEnd={onConversationEnd} />
     );
-    const backBtn = screen.getByText(/volver a la lista/i);
+    const backBtn = screen.getByLabelText(/volver/i);
     fireEvent.click(backBtn);
-    expect(global.speechSynthesis.cancel).toHaveBeenCalled();
+    expect((globalThis as any).speechSynthesis.cancel).toHaveBeenCalled();
     expect(onBack).toHaveBeenCalled();
   });
 
@@ -54,13 +54,13 @@ describe('ConversationDetail - Playback Cancellation', () => {
     render(
       <ConversationDetail conversation={conversation} onBack={onBack} onConversationEnd={onConversationEnd} />
     );
-    const playAllBtn = screen.getByText(/reproducir toda la conversación/i);
+    const playAllBtn = screen.getByText(/reproducir todo/i);
     fireEvent.click(playAllBtn);
 
-    const playBtns = screen.getAllByText(/reproducir/i);
+    const playBtns = screen.getAllByLabelText(/reproducir frase/i);
     fireEvent.click(playBtns[0]);
 
-    expect(global.speechSynthesis.cancel).toHaveBeenCalled();
+    expect((globalThis as any).speechSynthesis.cancel).toHaveBeenCalled();
   });
 
   it('cancels playback on unmount', () => {
@@ -68,6 +68,6 @@ describe('ConversationDetail - Playback Cancellation', () => {
       <ConversationDetail conversation={conversation} onBack={onBack} onConversationEnd={onConversationEnd} />
     );
     unmount();
-    expect(global.speechSynthesis.cancel).toHaveBeenCalled();
+    expect((globalThis as any).speechSynthesis.cancel).toHaveBeenCalled();
   });
 });
