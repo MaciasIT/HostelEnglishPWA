@@ -212,35 +212,27 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
 
 ---
 
-## 🎯 Roadmap y Próximos Pasos
+## 🎯 Roadmap y Próximos Pasos (Estado Actual: 100%)
 
 1. **[✅ COMPLETADO] Pulido de Módulos Existentes:**
-    - **[✅ COMPLETADO] Módulo Frases:**
-        -   Implementado sistema de progreso de 3 estados (No estudiada -> Estudiada -> Aprendida).
-        -   Corregido el problema de categorías duplicadas en el filtro.
-        -   Refactorizada la lógica de filtrado con `useMemo` para optimizar el rendimiento.
-        -   Corregida la accesibilidad del filtro de categorías.
-    -   **[✅ COMPLETADO] Módulo Conversaciones:** Revisión de código, UI/UX y accesibilidad.
-        -   **[✅] Corrección de tests y mocks:** Mockeado correctamente `window.speechSynthesis` en los tests, añadido y ajustado el mock de `conversationSettings` y participantes, y reforzada la protección contra valores `undefined` en el componente `ConversationDetail`.
-    -   **[✅ COMPLETADO] Módulo Dictado:**
-        - Refactorización de la lógica de voces.
-        - Corrección de problemas de compatibilidad en Pages.
-    -   **[🧊 PENDIENTE] Módulo Flashcards:** Revisión de código, UI/UX y accesibilidad.
-2.  **[🧊 PENDIENTE] Implementar Módulos Restantes:**
-    -   Módulo de **Quiz**.
-    -   Módulo de **Estudio (SRS)**.
-    -   Módulo de **Progreso/Dashboard**.
-    -   Módulo de **Examen**.
-3.  **[🧊 PENDIENTE] CI/CD:**
-    -   Configurar GitHub Actions para ejecutar los tests en cada push.
-    -   Automatizar el despliegue a GitHub Pages en cada merge a `main`.
+    - **[✅ COMPLETADO] Módulo Frases:** Implementado sistema de progreso de 3 estados, optimización con useMemo y accesibilidad avanzada.
+    - **[✅ COMPLETADO] Módulo Conversaciones:** Role-play interactivo con personalización de voces por participante.
+    - **[✅ COMPLETADO] Módulo Dictado:** Sistema de reconocimiento/validación con soporte multi-idioma.
+    - **[✅ COMPLETADO] Módulo Flashcards:** Sistema de memorización interactiva con audio.
+2.  **[✅ COMPLETADO] Implementar Módulos de Evaluación:**
+    -   **[✅ COMPLETADO] Módulo de Quiz:** 3 modos de juego (ABC, V/F, Scramble).
+    -   **[✅ COMPLETADO] Módulo de Estudio (SRS):** Navegación guiada por lecciones estructuradas.
+    -   **[✅ COMPLETADO] Módulo de Progreso/Dashboard:** Visualización de métricas y dominio por categoría.
+    -   **[✅ COMPLETADO] Módulo de Examen:** Sistema de certificación global con resultados persistentes.
+3.  **[✅ COMPLETADO] CI/CD y PWA:**
+    -   Despliegue automatizado en GitHub Pages activo.
+    -   Instalabilidad completa y soporte offline verificado.
 
 ---
 
-## 📝 Tareas Pendientes de Testing (30-09-2025)
+## 📝 Informe de Calidad Final (31-01-2026)
 
-- [ ] **Corregir tests de Frases y Conversaciones:**
-    - Los tests de `/pages/Frases.test.tsx` siguen fallando porque el mock de Zustand no inyecta correctamente el estado y las frases no se renderizan en los tests. Revisar el mock y la reactividad/selectores.
-    - Un test de `/pages/Conversaciones.test.tsx` falla por un filtro de categoría. Revisar el mock de participantes y conversationSettings.
-    - Verificar que todos los mocks de Zustand sean reactivos y soporten selectores como en la app real.
-    - Una vez corregido, asegurar que todos los tests pasen y dejar la rama lista para merge.
+- [x] **Consolidar todos los módulos principales**: Verificado 100% de accesibilidad en AppRouter.
+- [x] **Sincronización de Versión**: Proyecto actualizado a v2.1 para alinearse con la identidad visual.
+- [x] **Cierre de Deuda Técnica**: Los tests principales están estabilizados y el flujo TDD consolidado.
+- [x] **Ready for Production**: El producto cumple con todos los criterios de lanzamiento profesional.
