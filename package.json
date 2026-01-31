@@ -13,10 +13,12 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "framer-motion": "^12.29.2",
     "idb": "^7.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.0",
+    "recharts": "^3.7.0",
     "workbox-window": "^7.0.0",
     "zustand": "^4.5.2"
   },

@@ -57,12 +57,15 @@ type State = {
       pitch: number;
     };
   };
+  activePhraseSet: Phrase[];
   isSideNavOpen: boolean;
   /**
    * Stores the subset of phrases selected by the user for an active study session.
    * This allows modules like 'Frases' to work with a specific, temporary set of phrases.
    */
-  activePhraseSet: Phrase[];
+  dailyActivity: Record<string, number>;
+  examHistory: Array<{ date: string; score: number; total: number }>;
+  achievements: string[];
 };
 
 type Actions = {
@@ -94,6 +97,8 @@ type Actions = {
   setActivePhraseSet: (phrases: Phrase[]) => void;
   toggleSideNav: () => void;
   closeSideNav: () => void;
+  recordActivity: () => void;
+  recordExamResult: (score: number, total: number) => void;
 };
 
 export const useAppStore = create<State & Actions>()(
@@ -118,6 +123,9 @@ export const useAppStore = create<State & Actions>()(
       },
       isSideNavOpen: false,
       activePhraseSet: [],
+      dailyActivity: {},
+      examHistory: [],
+      achievements: [],
       initializeCategories: () => {
         const { frases, conversations } = get();
         const categoriesFromFrases = frases.map(f => f.categoria).filter(Boolean) as string[];
@@ -146,6 +154,7 @@ export const useAppStore = create<State & Actions>()(
         }
       },
       advancePhraseProgress: (phraseId: string) => {
+        const { recordActivity } = get();
         set((state) => {
           const currentLevel = state.progress[phraseId] || 0;
           const nextLevel = (currentLevel + 1) % 3; // Cycles 0 -> 1 -> 2 -> 0
@@ -154,6 +163,41 @@ export const useAppStore = create<State & Actions>()(
               ...state.progress,
               [phraseId]: nextLevel,
             },
+          };
+        });
+        recordActivity();
+      },
+      recordActivity: () => {
+        const today = new Date().toISOString().split('T')[0];
+        set((state) => ({
+          dailyActivity: {
+            ...state.dailyActivity,
+            [today]: (state.dailyActivity[today] || 0) + 1,
+          },
+        }));
+      },
+      recordExamResult: (score, total) => {
+        const today = new Date().toISOString().split('T')[0];
+        const newResult = { date: today, score, total };
+
+        set((state) => {
+          const newHistory = [...state.examHistory, newResult];
+          const newAchievements = [...state.achievements];
+
+          // Achievement Logic
+          if (newHistory.length === 1 && !newAchievements.includes('first_exam')) {
+            newAchievements.push('first_exam');
+          }
+          if (score === total && total >= 10 && !newAchievements.includes('perfect_score')) {
+            newAchievements.push('perfect_score');
+          }
+          if (newHistory.filter(h => h.score >= h.total * 0.8).length >= 5 && !newAchievements.includes('exam_master')) {
+            newAchievements.push('exam_master');
+          }
+
+          return {
+            examHistory: newHistory,
+            achievements: newAchievements,
           };
         });
       },
@@ -218,6 +262,9 @@ export const useAppStore = create<State & Actions>()(
       partialize: (state) => ({
         progress: state.progress,
         prefs: state.prefs,
+        dailyActivity: state.dailyActivity,
+        examHistory: state.examHistory,
+        achievements: state.achievements,
       }),
     }
   )

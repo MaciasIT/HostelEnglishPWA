@@ -13,10 +13,11 @@ type ExamResult = {
 };
 
 export default function Examen() {
-  const { frases, progress, advancePhraseProgress, frasesLoaded, loadFrases, targetLanguage } = useAppStore(state => ({
+  const { frases, progress, advancePhraseProgress, recordExamResult, frasesLoaded, loadFrases, targetLanguage } = useAppStore(state => ({
     frases: state.frases,
     progress: state.progress,
     advancePhraseProgress: state.advancePhraseProgress,
+    recordExamResult: state.recordExamResult,
     frasesLoaded: state.frasesLoaded,
     loadFrases: state.loadFrases,
     targetLanguage: state.prefs.targetLanguage,
@@ -91,6 +92,8 @@ export default function Examen() {
       if (currentIndex < examPhrases.length - 1) {
         setCurrentIndex(prev => prev + 1);
       } else {
+        const finalScore = isCorrect ? results.score + 1 : results.score;
+        recordExamResult(finalScore, examPhrases.length);
         setExamState('results');
       }
     }, 600);

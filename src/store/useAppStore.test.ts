@@ -19,10 +19,21 @@ describe('useAppStore - Conversation Settings', () => {
       frasesLoaded: false,
       conversationsLoaded: false,
       progress: {},
+      dailyActivity: {},
+      examHistory: [],
+      achievements: [],
+      isSideNavOpen: false,
+      activePhraseSet: [],
       prefs: {
+        targetLanguage: 'en',
         theme: 'light',
         audioSpeed: 1,
         conversationSettings: {},
+        phraseSettings: {
+          voiceURI: '',
+          rate: 1,
+          pitch: 1,
+        },
       },
     });
     // Clear all mocks for idb functions
