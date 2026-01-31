@@ -73,7 +73,7 @@ const Flashcard: React.FC<FlashcardProps> = ({ phrase }) => {
           <div className="absolute top-8 right-8 text-white/20">
             <ArrowPathIcon className="w-8 h-8 rotate-12" />
           </div>
-          <p className="text-xs uppercase tracking-[0.3em] font-black text-accent mb-6">Original ({targetLanguage === 'eu' ? 'Euskera' : 'English'})</p>
+          <p className="text-xs uppercase tracking-[0.3em] font-black text-accent mb-6">Original ({targetLanguage === 'eu' ? 'Euskera' : 'Inglés'})</p>
           <h2 className="text-4xl sm:text-5xl font-black text-white italic leading-tight mb-12">
             "{targetLanguage === 'eu' ? (phrase.eu || '...') : phrase.en}"
           </h2>

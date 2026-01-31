@@ -247,8 +247,8 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
 
                 {isMyTurn ? (
                   <div className="py-4 px-6 bg-accent border border-accent rounded-2xl text-center">
-                    <p className="text-white font-black">{targetLanguage === 'eu' ? 'ZURE TXANDA!' : '¡TU TURNO!'}</p>
-                    <p className="text-white/60 text-xs mt-1">{targetLanguage === 'eu' ? 'Irakurri ozenki praktikatzeko' : 'Lee en voz alta para practicar'}</p>
+                    <p className="text-white font-black">¡TU TURNO!</p>
+                    <p className="text-white/60 text-xs mt-1">Lee en voz alta para practicar</p>
                   </div>
                 ) : (
                   <>

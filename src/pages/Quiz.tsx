@@ -237,7 +237,7 @@ export default function Quiz() {
 
             <h2 className="text-[10px] uppercase tracking-[0.2em] text-accent font-black mb-6 flex items-center gap-2">
               <span className="w-6 h-[1px] bg-accent"></span>
-              {selectedMode === 'truefalse' ? 'Identifica si es correcto' : 'Traduce al inglés'}
+              {selectedMode === 'truefalse' ? 'Identifica si es correcto' : `Traduce al ${targetLanguage === 'eu' ? 'euskera' : 'inglés'}`}
             </h2>
 
             <p data-testid="quiz-question" className="text-3xl sm:text-5xl font-black mb-12 text-white italic leading-[1.1]">
@@ -251,7 +251,7 @@ export default function Quiz() {
                     key={idx}
                     onClick={() => checkAnswer(option)}
                     className={`p-6 text-left rounded-2xl transition-all duration-300 border-2 flex items-center ${feedback
-                      ? (option === currentQuestion.target.en
+                      ? (option === (targetLanguage === 'eu' ? currentQuestion.target.eu : currentQuestion.target.en)
                         ? 'bg-green-500 border-green-400 scale-[1.02] shadow-xl z-10'
                         : (feedback.isCorrect ? 'bg-white/5 border-white/10 opacity-30 scale-95' : 'bg-red-500 border-red-400'))
                       : 'bg-white/5 border-white/10 hover:bg-white/20 hover:border-accent active:scale-98'
@@ -357,7 +357,7 @@ export default function Quiz() {
               <div data-testid="quiz-feedback" className={`mt-12 p-8 rounded-3xl text-center shadow-2xl border ${feedback.isCorrect ? 'bg-green-600/90 border-green-400' : 'bg-red-600/90 border-red-400'} animate-in slide-in-from-bottom-8 duration-500 backdrop-blur-xl`}>
                 <p className="text-3xl font-black mb-2">{feedback.isCorrect ? '✨ ¡EXCELENTE! ✨' : '🤔 ¡Casi lo tienes!'}</p>
                 <p className="text-xl opacity-90 mb-8 font-medium">
-                  {feedback.isCorrect ? 'Respuesta perfecta.' : `Era: ${currentQuestion.target.en}`}
+                  {feedback.isCorrect ? 'Respuesta perfecta.' : `Era: ${targetLanguage === 'eu' ? currentQuestion.target.eu : currentQuestion.target.en}`}
                 </p>
                 <button
                   onClick={handleNextQuestion}

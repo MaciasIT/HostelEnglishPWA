@@ -15,7 +15,7 @@ const ConversationList: React.FC<ConversationListProps> = ({ conversations, onSe
       <div className="text-center py-20 bg-white/5 rounded-[2rem] border border-white/10">
         <ChatBubbleLeftRightIcon className="w-16 h-16 text-gray-600 mx-auto mb-4" />
         <p className="text-gray-400 font-bold uppercase tracking-widest text-sm">
-          {targetLanguage === 'eu' ? 'Ez dago elkarrizketarik erabilgarri' : 'No hay conversaciones disponibles'}
+          No hay conversaciones disponibles
         </p>
       </div>
     );
@@ -52,7 +52,7 @@ const ConversationList: React.FC<ConversationListProps> = ({ conversations, onSe
                 {conv.categoria || 'General'}
               </span>
               <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">
-                {conv.dialogue.length} {targetLanguage === 'eu' ? 'Mezuak' : 'Mensajes'}
+                {conv.dialogue.length} Mensajes
               </span>
             </div>
           </button>

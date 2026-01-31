@@ -142,10 +142,10 @@ export default function Frases() {
                     onChange={(e) => setSelectedCategory(e.target.value)}
                   >
                     <option value="all" className="bg-primary-dark">
-                      {targetLanguage === 'eu' ? 'Guztiak' : 'Todas las frases'}
+                      Todas las frases
                     </option>
                     <option value="Nuevas" className="bg-primary-dark">
-                      {targetLanguage === 'eu' ? 'Berriak (Ikasi gabekoak)' : 'Nuevas (Sin estudiar)'}
+                      Nuevas (Sin estudiar)
                     </option>
                     {categories.map(category => (
                       <option key={category} value={category} className="bg-primary-dark">

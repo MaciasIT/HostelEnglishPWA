@@ -24,35 +24,29 @@ import {
 } from 'recharts';
 import { motion } from 'framer-motion';
 
-const ACHIEVEMENT_METADATA: Record<string, { title: string, desc: string, icon: any, color: string, euTitle: string, euDesc: string }> = {
+const ACHIEVEMENT_METADATA: Record<string, { title: string, desc: string, icon: any, color: string }> = {
   'first_exam': {
     title: 'Primer Paso',
-    euTitle: 'Lehen Urratsa',
     desc: 'Completaste tu primer examen oficial.',
-    euDesc: 'Zure lehen azterketa ofiziala osatu duzu.',
     icon: StarIcon,
     color: 'from-blue-400 to-blue-600'
   },
   'perfect_score': {
     title: 'Excelencia',
-    euTitle: 'Bikaintasuna',
     desc: '¡Puntuación perfecta! 100% de aciertos.',
-    euDesc: 'Puntuazio perfektua! %100 asmatu duzu.',
     icon: SparklesIcon,
     color: 'from-amber-400 to-orange-500'
   },
   'exam_master': {
     title: 'Maestro de Exámenes',
-    euTitle: 'Azterketa Maisua',
     desc: 'Superaste 5 exámenes con nota excelente.',
-    euDesc: '5 azterketa gainditu dituzu nota bikainarekin.',
     icon: TrophyIcon,
     color: 'from-purple-500 to-pink-600'
   }
 };
 
 export default function Progreso() {
-  const { frases, progress, dailyActivity, achievements, recordActivity } = useAppStore();
+  const { frases, progress, dailyActivity, achievements } = useAppStore();
   const targetLanguage = useAppStore(state => state.prefs.targetLanguage);
 
   const stats = useMemo(() => {
@@ -102,35 +96,35 @@ export default function Progreso() {
   }, [frases, progress]);
 
   return (
-    <PageContainer title={targetLanguage === 'eu' ? 'Nire Aurrerapena' : 'Mi Progreso'}>
+    <PageContainer title="Mi Progreso">
       <div className="max-w-6xl mx-auto space-y-8 pb-20">
 
         {/* Top Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <StatCard
             icon={ChartBarIcon}
-            label={targetLanguage === 'eu' ? 'Esaldi Guztiak' : 'Total Frases'}
+            label="Total Frases"
             value={stats.total}
             color="bg-blue-500"
             delay={0}
           />
           <StatCard
             icon={AcademicCapIcon}
-            label={targetLanguage === 'eu' ? 'Ikasten' : 'En Estudio'}
+            label="En Estudio"
             value={stats.studied}
             color="bg-yellow-500"
             delay={0.1}
           />
           <StatCard
             icon={CheckBadgeIcon}
-            label={targetLanguage === 'eu' ? 'Ikasiak' : 'Aprendidas'}
+            label="Aprendidas"
             value={stats.learned}
             color="bg-green-500"
             delay={0.2}
           />
           <StatCard
             icon={FireIcon}
-            label={targetLanguage === 'eu' ? 'Ospea' : 'Prestigio'}
+            label="Prestigio"
             value={`${stats.progressPercent}%`}
             color="bg-orange-500"
             delay={0.3}
@@ -146,11 +140,11 @@ export default function Progreso() {
           >
             <div className="flex justify-between items-center mb-8">
               <div>
-                <h3 className="text-xl font-black text-white">{targetLanguage === 'eu' ? 'Eguneroko Bilakaera' : 'Evolución Diaria'}</h3>
-                <p className="text-gray-500 text-sm">{targetLanguage === 'eu' ? 'Azken 7 egunetako jarduera' : 'Actividad en los últimos 7 días'}</p>
+                <h3 className="text-xl font-black text-white">Evolución Diaria</h3>
+                <p className="text-gray-500 text-sm">Actividad en los últimos 7 días</p>
               </div>
               <div className="bg-accent/20 px-4 py-1 rounded-full text-accent text-xs font-bold uppercase tracking-widest">
-                {targetLanguage === 'eu' ? 'Zuzenean' : 'En Vivo'}
+                En Vivo
               </div>
             </div>
 
@@ -202,7 +196,7 @@ export default function Progreso() {
           >
             <h3 className="text-xl font-black text-white mb-6 flex items-center gap-2">
               <TrophyIcon className="w-6 h-6 text-yellow-500" />
-              {targetLanguage === 'eu' ? 'Lorpenak' : 'Insignias y Logros'}
+              Insignias y Logros
             </h3>
 
             <div className="space-y-4">
@@ -220,10 +214,10 @@ export default function Progreso() {
                     </div>
                     <div>
                       <h4 className="text-sm font-bold text-white uppercase tracking-tight">
-                        {targetLanguage === 'eu' ? meta.euTitle : meta.title}
+                        {meta.title}
                       </h4>
                       <p className="text-[10px] text-gray-400">
-                        {targetLanguage === 'eu' ? meta.euDesc : meta.desc}
+                        {meta.desc}
                       </p>
                     </div>
                     {isUnlocked && (
@@ -238,7 +232,7 @@ export default function Progreso() {
               {achievements.length === 0 && (
                 <div className="py-8 text-center bg-white/5 rounded-2xl border border-dashed border-white/10">
                   <p className="text-xs text-gray-500 font-medium">
-                    {targetLanguage === 'eu' ? 'Osatu azterketak lorpenak desblokeatzeko' : 'Completa exámenes para desbloquear logros'}
+                    Completa exámenes para desbloquear logros
                   </p>
                 </div>
               )}
@@ -255,7 +249,7 @@ export default function Progreso() {
           >
             <h3 className="text-xl font-bold mb-8 text-white flex items-center gap-2">
               <span className="w-2 h-6 bg-accent rounded-full"></span>
-              {targetLanguage === 'eu' ? 'Top Kategoriak' : 'Top Categorías'}
+              Top Categorías
             </h3>
             <div className="h-[250px]">
               <ResponsiveContainer width="100%" height="100%">
@@ -297,17 +291,13 @@ export default function Progreso() {
               <AcademicCapIcon className="w-12 h-12 text-white" />
             </div>
             <h3 className="text-2xl font-black text-white mb-2">
-              {targetLanguage === 'eu' ? 'Jarraitu Horrela!' : '¡Sigue Así!'}
+              ¡Sigue Así!
             </h3>
             <p className="text-gray-400 mb-8 max-w-xs text-sm">
-              {targetLanguage === 'eu' ? (
-                <>Ikastaroaren <span className="text-white font-bold">{stats.progressPercent}%</span> osatu duzu. Jarraitu egunero praktikatzen hoteleko ingelesa menderatzeko.</>
-              ) : (
-                <>Has completado el <span className="text-white font-bold">{stats.progressPercent}%</span> del curso. Sigue practicando diariamente para dominar el inglés hostelero.</>
-              )}
+              Has completado el <span className="text-white font-bold">{stats.progressPercent}%</span> del curso de {targetLanguage === 'eu' ? 'euskera' : 'inglés'}. Sigue practicando diariamente para dominar el idioma.
             </p>
             <button className="bg-white text-primary px-10 py-4 rounded-2xl font-black uppercase tracking-widest hover:bg-accent hover:text-white transition-all shadow-2xl active:scale-95 z-10">
-              {targetLanguage === 'eu' ? 'Ikasten Jarraitu' : 'Continuar Estudiando'}
+              Continuar Estudiando
             </button>
           </motion.div>
         </div>

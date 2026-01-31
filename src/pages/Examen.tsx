@@ -125,7 +125,7 @@ export default function Examen() {
             <ShieldCheckIcon className="w-16 h-16 text-accent mx-auto mb-6" />
             <h2 className="text-3xl font-black text-white mb-4">Examen Global</h2>
             <p className="text-gray-400 mb-8">
-              Se te presentarán 10 frases aleatorias de todo el dataset.
+              Se te presentarán 10 frases aleatorias de todo el dataset ({targetLanguage === 'eu' ? 'euskera' : 'inglés'}).
               Debes acertar al menos el 80% para considerarlo superado.
             </p>
             <div className="space-y-4">
@@ -201,23 +201,19 @@ export default function Examen() {
               {passed ? <TrophyIcon className="w-12 h-12 text-white" /> : <ShieldCheckIcon className="w-12 h-12 text-white opacity-50" />}
             </div>
             <h2 className="text-4xl font-black text-white mb-2">
-              {passed ? (targetLanguage === 'eu' ? 'GAINDITUA!' : '¡APROBADO!') : (targetLanguage === 'eu' ? 'EZ GAINDITUA' : 'NO SUPERADO')}
+              {passed ? '¡APROBADO!' : 'NO SUPERADO'}
             </h2>
             <p className="text-gray-400 mb-8">
-              {targetLanguage === 'eu' ? (
-                <>Zuk <span className="text-white font-bold">{results.score}</span> asmatu dituzu <span className="text-white font-bold">{results.total}</span> galderatik.</>
-              ) : (
-                <>Has acertado <span className="text-white font-bold">{results.score}</span> de <span className="text-white font-bold">{results.total}</span> preguntas.</>
-              )}
+              Has acertado <span className="text-white font-bold">{results.score}</span> de <span className="text-white font-bold">{results.total}</span> preguntas.
             </p>
 
             <div className="flex justify-center gap-4 mb-8">
               <div className="bg-white/5 p-4 rounded-2xl border border-white/10 w-32">
-                <p className="text-[10px] uppercase font-bold text-gray-500">{targetLanguage === 'eu' ? 'Zuzenak' : 'Correctas'}</p>
+                <p className="text-[10px] uppercase font-bold text-gray-500">Correctas</p>
                 <p className="text-2xl font-black text-green-500">{results.score}</p>
               </div>
               <div className="bg-white/5 p-4 rounded-2xl border border-white/10 w-32">
-                <p className="text-[10px] uppercase font-bold text-gray-500">{targetLanguage === 'eu' ? 'Nota' : 'Nota'}</p>
+                <p className="text-[10px] uppercase font-bold text-gray-500">Nota</p>
                 <p className="text-2xl font-black text-accent">{Math.round((results.score / results.total) * 100)}%</p>
               </div>
             </div>
@@ -227,20 +223,20 @@ export default function Examen() {
                 onClick={() => setExamState('setup')}
                 className="bg-accent text-white font-black py-4 rounded-2xl text-lg shadow-lg hover:brightness-110"
               >
-                {targetLanguage === 'eu' ? 'Berriro Saiatu' : 'Intentar de Nuevo'}
+                Intentar de Nuevo
               </button>
               <button
                 onClick={() => setShowWelcome(true)}
                 className="bg-white/5 text-white font-bold py-3 rounded-2xl hover:bg-white/10"
               >
-                {targetLanguage === 'eu' ? 'Hasierara Itzuli' : 'Volver al Inicio'}
+                Volver al Inicio
               </button>
             </div>
           </div>
 
           {results.incorrectIds.length > 0 && (
             <div className="bg-white/5 p-8 rounded-[2rem] border border-white/10 text-left">
-              <h3 className="text-lg font-bold text-white mb-4">{targetLanguage === 'eu' ? 'Kontzeptu hauek errepasatu:' : 'Repasa estos conceptos:'}</h3>
+              <h3 className="text-lg font-bold text-white mb-4">Repasa estos conceptos:</h3>
               <div className="space-y-4">
                 {results.incorrectIds.map(id => {
                   const p = frases.find(f => f.id === id);

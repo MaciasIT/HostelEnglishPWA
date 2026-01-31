@@ -31,46 +31,46 @@ export default function Dashboard() {
 
   const modules = [
     {
-      title: targetLanguage === 'eu' ? 'Esaldiak' : 'Frases',
+      title: 'Frases',
       path: '/frases',
       icon: ChatBubbleLeftRightIcon,
       color: 'bg-blue-500',
-      desc: targetLanguage === 'eu' ? 'Eguneroko ezinbestekoak' : 'Esenciales del día a día'
+      desc: 'Esenciales del día a día'
     },
     {
-      title: targetLanguage === 'eu' ? 'Elkarrizketak' : 'Diálogos',
+      title: 'Diálogos',
       path: '/conversaciones',
       icon: MapIcon,
       color: 'bg-green-500',
-      desc: targetLanguage === 'eu' ? 'Benetako simulazioak' : 'Simulaciones reales'
+      desc: 'Simulaciones reales'
     },
     {
-      title: targetLanguage === 'eu' ? 'Diktaua' : 'Dictado',
+      title: 'Dictado',
       path: '/dictado',
       icon: MicrophoneIcon,
       color: 'bg-red-500',
-      desc: targetLanguage === 'eu' ? 'Entrenatu zure belarria' : 'Entrena tu oído'
+      desc: 'Entrena tu oído'
     },
     {
       title: 'Flashcards',
       path: '/flashcards',
       icon: Square2StackIcon,
       color: 'bg-yellow-600',
-      desc: targetLanguage === 'eu' ? 'Memoria azkarra' : 'Memorización rápida'
+      desc: 'Memorización rápida'
     },
     {
       title: 'Quiz',
       path: '/quiz',
       icon: AcademicCapIcon,
       color: 'bg-purple-500',
-      desc: targetLanguage === 'eu' ? 'Jarri zaitez frogara!' : '¡Ponte a prueba!'
+      desc: '¡Ponte a prueba!'
     },
     {
-      title: targetLanguage === 'eu' ? 'Aurrerapena' : 'Progreso',
+      title: 'Progreso',
       path: '/progreso',
       icon: ChartBarIcon,
       color: 'bg-orange-500',
-      desc: targetLanguage === 'eu' ? 'Ikusi zure lorpenak' : 'Mira tus logros'
+      desc: 'Mira tus logros'
     },
   ];
 
@@ -82,13 +82,10 @@ export default function Dashboard() {
         <section className="bg-gradient-to-br from-primary-light to-primary-dark p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden border border-white/10">
           <div className="relative z-10">
             <h1 className="text-4xl sm:text-5xl font-black text-white mb-4">
-              {targetLanguage === 'eu' ? 'Kaixo berriro! 🏨' : '¡Hola de nuevo! 🏨'}
+              ¡Hola de nuevo! 🏨
             </h1>
             <p className="text-xl text-gray-300 mb-8 max-w-xl">
-              {targetLanguage === 'eu'
-                ? 'Jarraitu zure ostalaritzako ingeleseko prestakuntza. Zure ibilbide profesionala hemen hasten da.'
-                : 'Continúa tu formación en inglés para hostelería. Tu camino hacia la fluidez profesional empieza aquí.'
-              }
+              Continúa tu formación en {targetLanguage === 'eu' ? 'euskera' : 'inglés'} para hostelería. Tu camino hacia la fluidez profesional empieza aquí.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-6">
@@ -98,10 +95,10 @@ export default function Dashboard() {
                 </div>
                 <div>
                   <p className="text-[10px] uppercase font-bold text-gray-400">
-                    {targetLanguage === 'eu' ? 'Egungo Maila' : 'Nivel Actual'}
+                    Nivel Actual
                   </p>
                   <p className="text-white font-black">
-                    {targetLanguage === 'eu' ? 'Hasiberri Pro' : 'Principiante Pro'}
+                    Principiante Pro
                   </p>
                 </div>
               </div>
@@ -112,10 +109,10 @@ export default function Dashboard() {
                 </div>
                 <div>
                   <p className="text-[10px] uppercase font-bold text-gray-400">
-                    {targetLanguage === 'eu' ? 'Ikasten' : 'En Estudio'}
+                    En Estudio
                   </p>
                   <p className="text-white font-black">
-                    {stats.studied} {targetLanguage === 'eu' ? 'esaldi' : 'frases'}
+                    {stats.studied} frases
                   </p>
                 </div>
               </div>
@@ -126,10 +123,10 @@ export default function Dashboard() {
                 </div>
                 <div>
                   <p className="text-[10px] uppercase font-bold text-gray-400">
-                    {targetLanguage === 'eu' ? 'Ikasiak' : 'Aprendidas'}
+                    Aprendidas
                   </p>
                   <p className="text-white font-black">
-                    {stats.learned} {targetLanguage === 'eu' ? 'esaldi' : 'frases'}
+                    {stats.learned} frases
                   </p>
                 </div>
               </div>
@@ -145,7 +142,7 @@ export default function Dashboard() {
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl font-black text-white flex items-center gap-3">
               <span className="w-3 h-8 bg-accent rounded-full"></span>
-              {targetLanguage === 'eu' ? 'Ikaskuntza Moduluak' : 'Módulos de Aprendizaje'}
+              Módulos de Aprendizaje
             </h2>
           </div>
 
@@ -171,15 +168,15 @@ export default function Dashboard() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-center md:text-left">
               <h3 className="text-xl font-black text-white">
-                {targetLanguage === 'eu' ? 'Zure Aurrerapen Orokorra' : 'Tu Progreso Global'}
+                Tu Progreso Global
               </h3>
               <p className="text-gray-400 text-sm">
-                {targetLanguage === 'eu' ? 'Bide onetik zoaz. Jarraitu horrela!' : 'Vas por muy buen camino. ¡Sigue así!'}
+                Vas por muy buen camino. ¡Sigue así!
               </p>
             </div>
             <div className="flex-grow max-w-xl w-full">
               <div className="flex justify-between text-xs font-black uppercase text-accent mb-2 tracking-widest">
-                <span>{targetLanguage === 'eu' ? 'Ikastaroaren jabe' : 'Dominio del curso'}</span>
+                <span>Dominio del curso</span>
                 <span>{stats.percent}%</span>
               </div>
               <div className="w-full h-3 bg-white/5 rounded-full overflow-hidden">
@@ -193,7 +190,7 @@ export default function Dashboard() {
               to="/progreso"
               className="whitespace-nowrap bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-xl font-bold transition-all"
             >
-              {targetLanguage === 'eu' ? 'Ikusi estatistikak' : 'Ver estadísticas'}
+              Ver estadísticas
             </Link>
           </div>
         </section>
