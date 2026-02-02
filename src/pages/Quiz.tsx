@@ -49,7 +49,10 @@ export default function Quiz() {
     ? frases.filter(f => f.categoria === selectedCategory)
     : frases;
 
-  // New Gamification States
+  // --- Gamification Logic ---
+  // Level: A set of 10 questions from the same professional world.
+  // Lives: User starts with 3 lives. Lose all and it's Game Over.
+  // Streak: Reward consecutive correct answers with visual fire effects.
   const [lives, setLives] = useState(3);
   const [streak, setStreak] = useState(0);
   const [questionsHandledInLevel, setQuestionsHandledInLevel] = useState(0);
@@ -136,6 +139,10 @@ export default function Quiz() {
     generateQuestion();
   };
 
+  /**
+   * Main answer evaluation logic. 
+   * Manages point scoring, life reduction, and streak tracking.
+   */
   const checkAnswer = (answer: boolean | string) => {
     if (feedback || !currentQuestion) return;
 

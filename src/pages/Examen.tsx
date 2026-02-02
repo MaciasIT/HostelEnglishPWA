@@ -13,6 +13,10 @@ import {
 import { shuffle } from '@/utils/shuffle';
 import { motion, AnimatePresence } from 'framer-motion';
 
+/** 
+ * Final evaluation results object.
+ * correctIds/incorrectIds allow the 'Improvement Modal' to show specific phrases.
+ */
 type ExamResult = {
   score: number;
   total: number;
@@ -64,6 +68,10 @@ export default function Examen() {
     }
   }, [currentIndex, examState, examPhrases, generateOptions]);
 
+  /**
+   * Initializes a set of random phrases for the exam.
+   * Default is 10 phrases. Accuracy goal is 80%.
+   */
   const startExam = (limit: number = 10) => {
     const subset = shuffle([...frases]).slice(0, limit);
     setExamPhrases(subset);

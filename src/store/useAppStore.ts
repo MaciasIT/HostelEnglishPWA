@@ -35,14 +35,16 @@ type State = {
   conversationsLoaded: boolean;
   loadFrases: () => Promise<void>;
   loadConversations: () => Promise<void>;
+  /** Progress tracking: Maps phrase ID to mastery level (0-3) */
   progress: Record<string, number>;
   prefs: {
-    targetLanguage: 'en' | 'eu'; // Added targetLanguage
+    /** Learning target: English or Basque */
+    targetLanguage: 'en' | 'eu';
     theme: string;
     audioSpeed: number;
     /**
-     * Stores per-participant speech synthesis settings for conversations.
-     * Key is the participant's name, value is an object with voiceURI, rate, and pitch.
+     * Speech settings per participant in conversations.
+     * Allows multi-voice simulation for roleplaying.
      */
     conversationSettings: {
       [participant: string]: {
@@ -51,20 +53,22 @@ type State = {
         pitch: number;
       };
     };
+    /** Global preference for individual phrase playback */
     phraseSettings: {
       voiceURI: string;
       rate: number;
       pitch: number;
     };
   };
+  /** Phrases currently active in a study session (Frases or Quiz) */
   activePhraseSet: Phrase[];
+  /** UI State for the navigation sidebar */
   isSideNavOpen: boolean;
-  /**
-   * Stores the subset of phrases selected by the user for an active study session.
-   * This allows modules like 'Frases' to work with a specific, temporary set of phrases.
-   */
+  /** Activity log: Maps ISO date string to points earned */
   dailyActivity: Record<string, number>;
+  /** Historical exam performance */
   examHistory: Array<{ date: string; score: number; total: number }>;
+  /** Unlocked badge IDs */
   achievements: string[];
 };
 
@@ -126,6 +130,10 @@ export const useAppStore = create<State & Actions>()(
       dailyActivity: {},
       examHistory: [],
       achievements: [],
+      /**
+       * Calculates unique categories by merging phrases and conversations data.
+       * Injects system categories 'Estudiadas' and 'Aprendidas' for filtering.
+       */
       initializeCategories: () => {
         const { frases, conversations } = get();
         const categoriesFromFrases = frases.map(f => f.categoria).filter(Boolean) as string[];
@@ -155,16 +163,17 @@ export const useAppStore = create<State & Actions>()(
           console.warn("No se pudo cargar el dataset de conversaciones.", e);
         }
       },
+      /**
+       * Increments the mastery level of a phrase.
+       * Used across Quiz, Flashcards, and Frases to track learning progress.
+       */
       advancePhraseProgress: (phraseId: string) => {
         const { recordActivity } = get();
         set((state) => {
           const currentLevel = state.progress[phraseId] || 0;
-          const nextLevel = (currentLevel + 1) % 3; // Cycles 0 -> 1 -> 2 -> 0
+          if (currentLevel >= 3) return state; // Cap mastery level at 3
           return {
-            progress: {
-              ...state.progress,
-              [phraseId]: nextLevel,
-            },
+            progress: { ...state.progress, [phraseId]: currentLevel + 1 }
           };
         });
         recordActivity();
