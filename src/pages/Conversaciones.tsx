@@ -105,11 +105,21 @@ export default function Conversaciones() {
                   onChange={(e) => setSelectedCategory(e.target.value)}
                   aria-label="Filtrar por categoría"
                 >
-                  {displayCategories.map(category => (
-                    <option key={category} value={category} className="bg-primary-dark">
-                      {category === 'all' ? 'Todas las situaciones' : category}
-                    </option>
-                  ))}
+                  {displayCategories.map(category => {
+                    let label = category;
+                    if (category === 'all') label = 'Todas las situaciones';
+                    // Ensure categories stay in Spanish if they were translated in data
+                    if (category === 'Jatetxea') label = 'Restaurante';
+                    if (category === 'Harrera') label = 'Recepción';
+                    if (category === 'Kexak') label = 'Quejas';
+                    if (category === 'Kexak eta erreklamazioak') label = 'Quejas y Reclamaciones';
+
+                    return (
+                      <option key={category} value={category} className="bg-primary-dark">
+                        {label}
+                      </option>
+                    );
+                  })}
                 </select>
                 <ArrowRightIcon className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none group-hover:text-accent transition-colors rotate-90 md:rotate-0" />
               </div>

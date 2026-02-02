@@ -49,7 +49,14 @@ const ConversationList: React.FC<ConversationListProps> = ({ conversations, onSe
 
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-black uppercase tracking-widest text-accent bg-accent/10 px-3 py-1 rounded-full border border-accent/20">
-                {conv.categoria || 'General'}
+                {(() => {
+                  const cat = conv.categoria || 'General';
+                  if (cat === 'Jatetxea') return 'Restaurante';
+                  if (cat === 'Harrera') return 'Recepción';
+                  if (cat === 'Kexak') return 'Quejas';
+                  if (cat === 'Kexak eta erreklamazioak') return 'Quejas y Reclamaciones';
+                  return cat;
+                })()}
               </span>
               <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">
                 {conv.dialogue.length} Mensajes

@@ -581,280 +581,320 @@
       "es": "Lavar la ropa",
       "en": "Do the laundry",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Arropa garbitu"
     },
     {
       "id": 73,
       "es": "Aceptan tarjetas de crédito",
       "en": "Do you accept credit cards",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Txartelarekin ordaindu daiteke?"
     },
     {
       "id": 74,
       "es": "Tiene una cuna para el bebé",
       "en": "Do you have a cot for the baby",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Haurrentzako sehaskarik baduzue?"
     },
     {
       "id": 75,
       "es": "Tiene una reserva",
       "en": "Do you have a reservation",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Erreserbarik baduzu?"
     },
     {
       "id": 76,
       "es": "Tienen una caja fuerte",
       "en": "Do you have a safe",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Kutxa sendoa duzue?"
     },
     {
       "id": 77,
       "es": "Tiene una habitación individual",
       "en": "Do you have a single room",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gela bakuna duzu?"
     },
     {
       "id": 78,
       "es": "Tiene alguna habitación más grande",
       "en": "Do you have any bigger room",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gela handiagorik baduzu?"
     },
     {
       "id": 79,
       "es": "Tiene alguna habitación más barata",
       "en": "Do you have any cheaper room",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gela merkeagorik baduzu?"
     },
     {
       "id": 80,
       "es": "Tiene alguna restricción dietética o alergia",
       "en": "Do you have any dietary restrictions or allergies",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Berezko elikadura-beharrik edo alergiarik baduzu?"
     },
     {
       "id": 81,
       "es": "Tiene alguna mesa disponible",
       "en": "Do you have any free tables",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Mahai librerik baduzu?"
     },
     {
       "id": 82,
       "es": "Tiene alguna habitación disponible",
       "en": "Do you have any room available",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gela librerik baduzu?"
     },
     {
       "id": 83,
       "es": "Tiene alguna especialidad de la casa",
       "en": "Do you have any special",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Etxeko espezialitaterik baduzue?"
     },
     {
       "id": 84,
       "es": "Tiene algo más barato",
       "en": "Do you have anything cheaper",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zerbait merkeagorik baduzu?"
     },
     {
       "id": 85,
       "es": "Tiene algo más tranquilo",
       "en": "Do you have anything quieter",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zerbait lasaiagorik baduzu?"
     },
     {
       "id": 86,
       "es": "Tiene instalaciones para discapacitados",
       "en": "Do you have facilities for disabled",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Desgaituentzako instalaziorik baduzue?"
     },
     {
       "id": 87,
       "es": "Necesita algo más con su comida",
       "en": "Do you need anything else with your meal",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Zure janariarekin beste zerbait behar duzu?"
     },
     {
       "id": 88,
       "es": "Necesita algo más",
       "en": "Do you need anything else",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Beste zerbait behar duzu?"
     },
     {
       "id": 89,
       "es": "Necesita ayuda con su equipaje",
       "en": "Do you need help with your luggage",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Ekipajearekin laguntza behar duzu?"
     },
     {
       "id": 90,
       "es": "Necesitan más servilletas",
       "en": "Do you need more napkins",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Ezpainzapi gehiago behar duzue?"
     },
     {
       "id": 91,
       "es": "Quieren postre después de las comidas",
       "en": "Do you want any dessert after your meals",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Postrerik nahi duzue bazkaldu/afaldu ondoren?"
     },
     {
       "id": 92,
       "es": "Quiere revisar la lista",
       "en": "Do you want to check the list",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zerrenda berrikusi nahi duzu?"
     },
     {
       "id": 93,
       "es": "Tiene baño privado",
       "en": "Does it have a private bathroom",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Bainugela pribatua du?"
     },
     {
       "id": 94,
       "es": "Tiene la habitación acceso a internet",
       "en": "Does the room have internet access",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gelak badu interneterako sarbidea?"
     },
     {
       "id": 95,
       "es": "Secar la ropa",
       "en": "Dry the clothes",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Arropa lehortu"
     },
     {
       "id": 96,
       "es": "Secar la vajilla/los platos",
       "en": "Dry the dishes",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Ontziak/platerak lehortu"
     },
     {
       "id": 97,
       "es": "Desempolvar/sacudir los muebles",
       "en": "Dust the furniture",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Altzariei hautsa kendu"
     },
     {
       "id": 98,
       "es": "Vaciar la papelera",
       "en": "Empty the wastebasket",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Zabor-ontzia hustu"
     },
     {
       "id": 99,
       "es": "Disfrute de su comida",
       "en": "Enjoy your meal",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "On egin!"
     },
     {
       "id": 100,
       "es": "Disfrute su comida",
       "en": "Enjoy your meal",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "On egin!"
     },
     {
       "id": 101,
       "es": "Disfrute de su estancia",
       "en": "Enjoy your stay",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Ondo pasa egonaldia!"
     },
     {
       "id": 102,
       "es": "Todo bien con su comida",
       "en": "Everything okay with your meal",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Dena ondo dago janariarekin?"
     },
     {
       "id": 103,
       "es": "Disculpe, mi llave no funciona",
       "en": "Excuse me, my key doesn't work",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Barkatu, nire giltzak ez du funtzionatzen"
     },
     {
       "id": 104,
       "es": "Disculpe, hay un error aquí",
       "en": "Excuse me, there is a mistake here",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Barkatu, akats bat dago hemen"
     },
     {
       "id": 105,
       "es": "Perdone. (Para llamar al mesero)",
       "en": "Excuse me",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Barkatu. (Zerbitzariari deitzeko)"
     },
     {
       "id": 106,
       "es": "Escalera de incendios",
       "en": "Fire escape",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Sute-eskailera"
     },
     {
       "id": 107,
       "es": "Salida de incendios",
       "en": "Fire exit",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Sute-irteera"
     },
     {
       "id": 108,
       "es": "Doblar la ropa",
       "en": "Fold the clothes",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Arropa tolestu"
     },
     {
       "id": 109,
       "es": "Para cuántas noches",
       "en": "For how many nights",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Zenbat gauetarako?"
     },
     {
       "id": 110,
       "es": "Para ahora mismo",
       "en": "For right now",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Oraintxe bertarako"
     },
     {
       "id": 111,
       "es": "Direcciones: en el interior y en el exterior del establecimiento",
       "en": "Giving directions: indoors and outside",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Helbideak: establezimenduaren barruan eta kanpoan"
     },
     {
       "id": 112,
@@ -869,42 +909,48 @@
       "es": "Estupendo",
       "en": "Great",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Bikain"
     },
     {
       "id": 114,
       "es": "Que tenga un buen día/noche",
       "en": "Have a great day/night",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Egun/gabon ona izan!"
     },
     {
       "id": 115,
       "es": "Ya han decidido",
       "en": "Have you decided yet",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Erabaki duzue?"
     },
     {
       "id": 116,
       "es": "Ha utilizado el minibar",
       "en": "Have you used the minibar",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Minibarra erabili duzu?"
     },
     {
       "id": 117,
       "es": "Hola, me gustaría reservar una mesa para cenar el domingo",
       "en": "Hello, I’d like to reserve a table for dinner on Sunday",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Kaixo, mahai bat erreserbatu nahi nuke igandean afaltzeko"
     },
     {
       "id": 118,
       "es": "Hola, bienvenido a [nombre del restaurante]",
       "en": "Hello, welcome to [nombre del restaurante]",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Kaixo, ongi etorri [jatetxearen izena]-(e)ra"
     },
     {
       "id": 119,
@@ -919,63 +965,72 @@
       "es": "Aquí tiene su [nombre del plato]",
       "en": "Here is your [nombre del plato]",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Hemen duzu zure [plateraren izena]"
     },
     {
       "id": 121,
       "es": "Aquí tiene su tique de compra",
       "en": "Here is your receipt",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Hemen duzu erosketa-txartela"
     },
     {
       "id": 122,
       "es": "Aquí tiene su llave de habitación",
       "en": "Here is your room key",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Hemen duzu gelako giltza"
     },
     {
       "id": 123,
       "es": "Aquí está el menú principal y los especiales están aquí",
       "en": "Here's the main menu and the specials are here",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Hemen dago menu nagusia eta bereziak hemen daude"
     },
     {
       "id": 124,
       "es": "Aquí tiene su mesa",
       "en": "Here's your table",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Hemen duzu zure mahaia"
     },
     {
       "id": 125,
       "es": "Hola, estoy aquí para una entrevista de trabajo",
       "en": "Hi, I am here for a job interview",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Kaixo, lan-elkarrizketa baterako nator"
     },
     {
       "id": 126,
       "es": "Hola (informal)",
       "en": "Hi",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Kaixo"
     },
     {
       "id": 127,
       "es": "Las amas de llaves tienen una lista de control con todas las tareas de limpieza",
       "en": "Housekeepers have a checklist with all cleaning tasks",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Giltzazainek garbiketa lan guztien kontrol-zerrenda bat dute"
     },
     {
       "id": 128,
       "es": "Cómo puedo ayudarle/ayudarles",
       "en": "How can I help you",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zertan lagun zaitzaket/zaitzaketet?"
     },
     {
       "id": 129,
@@ -990,2002 +1045,2288 @@
       "es": "Cómo se va a nuestra habitación desde aquí",
       "en": "How do we get to our room from here",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Nola joaten da gure gelara hemendik?"
     },
     {
       "id": 131,
       "es": "Cómo funciona",
       "en": "How does it work",
       "source": "frases.pdf",
-      "categoria": "Mantenimiento"
+      "categoria": "Mantenimiento",
+      "eu": "Nola funtzionatzen du?"
     },
     {
       "id": 132,
       "es": "Cómo va todo",
       "en": "How is everything",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zer moduz doa dena?"
     },
     {
       "id": 133,
       "es": "Cuántas personas son",
       "en": "How many people in your party",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zenbat pertsona zarete?"
     },
     {
       "id": 134,
       "es": "Para cuántos",
       "en": "How many people in your party",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zenbatentzat?"
     },
     {
       "id": 135,
       "es": "Cuántas personas vendrían",
       "en": "How many people would be coming",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zenbat pertsona etorriko zinateke?"
     },
     {
       "id": 136,
-      "es": "Cuánto cuesta una habitación individual por noche? Este listado abarca las frases más comunes y útiles para un camarero en un entorno de hostelería, permitiendo una comunicación fluida y profesional con clientes de habla inglesa",
+      "es": "Cuánto cuesta una habitación individual por noche?",
       "en": "How much does a single room cost per night",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Zenbat kostatzen da banakako gela bat gau bakoitzeko?"
     },
     {
       "id": 137,
       "es": "Cuánto cuesta la media pensión",
       "en": "How much does half board cost",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Zenbat balio du pentsio erdiak?"
     },
     {
       "id": 138,
       "es": "Cuánto cuesta",
       "en": "How much does it cost",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zenbat balio du?"
     },
     {
       "id": 139,
       "es": "Cuánto cuesta la noche",
       "en": "How much does one night cost",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Zenbat balio du gauak?"
     },
     {
       "id": 140,
       "es": "Cuánto cuesta la pensión completa",
       "en": "How much is full board",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Zenbat balio du pentsio osoak?"
     },
     {
       "id": 141,
       "es": "Cómo le gustaría pagar",
       "en": "How would you like to pay",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Nola ordaindu nahi zenuke?"
     },
     {
       "id": 142,
       "es": "Cómo desea pagar",
       "en": "How would you like to pay",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Nola ordaindu nahi duzu?"
     },
     {
       "id": 143,
       "es": "Cómo le gustaría su carne: poco hecha, al punto o bien hecha",
       "en": "How would you like your steak cooked: rare, medium, or well-done",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Nola nahi duzu haragia: gutxi egina, puntuan ala oso egina?"
     },
     {
       "id": 144,
       "es": "Cómo le gustaría que se cocinara su filete",
       "en": "How would you like your steak cooked",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Nola nahi duzu filetia egitea?"
     },
     {
       "id": 145,
       "es": "Voy a solicitar este trabajo",
       "en": "I am going to apply for this job",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Lan hau eskatuko dut"
     },
     {
       "id": 146,
       "es": "Me voy mañana por la mañana",
       "en": "I am leaving tomorrow morning",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Bihar goizean joango naiz"
     },
     {
       "id": 147,
       "es": "Estoy listo para mi cuenta",
       "en": "I am ready for my bill",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Kontua ordaintzeko prest nago"
     },
     {
       "id": 148,
       "es": "Estoy listo para pagar la cuenta",
       "en": "I am ready to pay the bill",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Kontua ordaintzeko prest nago"
     },
     {
       "id": 149,
       "es": "Lo siento, no puedo hacer nada",
       "en": "I am sorry, I can’t do anything",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Sentitzen dut, ezin dut ezer egin"
     },
     {
       "id": 150,
       "es": "Le pido disculpas por el inconveniente",
       "en": "I apologize for the inconvenience",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Barkamena eskatzen dizut eragozpenagatik"
     },
     {
       "id": 151,
       "es": "No puedo encontrar mi habitación",
       "en": "I can't find my room",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Ezin dut nire gela aurkitu"
     },
     {
       "id": 152,
       "es": "No puedo abrir la ventana",
       "en": "I can't open the window",
       "source": "frases.pdf",
-      "categoria": "Mantenimiento"
+      "categoria": "Mantenimiento",
+      "eu": "Ezin dut leihoa ireki"
     },
     {
       "id": 153,
       "es": "Eso no me gusta",
       "en": "I don't like that",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Hori ez zait gustatzen"
     },
     {
       "id": 154,
       "es": "No quiero nada, gracias",
       "en": "I don't want anything, thanks",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Ez dut ezer nahi, eskerrik asko"
     },
     {
       "id": 155,
       "es": "Tengo que aspirar la alfombra antes de que lleguen los huéspedes",
       "en": "I have to vacuum the carpet before the guests arrive",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Alfonbra xurgatu behar dut ostalariak iritsi baino lehen"
     },
     {
       "id": 156,
       "es": "Acabo de trapearlo",
       "en": "I just mopped it",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Garbitu berri dut"
     },
     {
       "id": 157,
       "es": "Solo necesito su firma",
       "en": "I just need your signature",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Zure sinadura besterik ez dut behar"
     },
     {
       "id": 158,
       "es": "Solo quería preguntar si hay estacionamiento disponible en el restaurante",
       "en": "I just wanted to ask if there’ s parking available at the restaurant",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Jatetxean aparkalekurik baden galdetu nahi nuen"
     },
     {
       "id": 159,
       "es": "Necesito un botones",
       "en": "I need a bellhop",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Botoidun bat behar dut"
     },
     {
       "id": 160,
       "es": "Necesito un buen masaje para relajarme después de tanto trabajo",
       "en": "I need a good massage to relax me after doing so much work",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Masaje on bat behar dut hainbeste lan egin ondoren erlaxatzeko"
     },
     {
       "id": 161,
       "es": "Necesito una habitación para dos",
       "en": "I need a room for two",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Bi lagunentzako gela bat behar dut"
     },
     {
       "id": 162,
       "es": "Necesito una toalla",
       "en": "I need a towel",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Toaila bat behar dut"
     },
     {
       "id": 163,
       "es": "Necesito otra almohada",
       "en": "I need another pillow",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Beste almohada bat behar dut"
     },
     {
       "id": 164,
       "es": "Necesito ayuda con mi equipaje",
       "en": "I need help with my luggage",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Laguntza behar dut nire ekipajearekin"
     },
     {
       "id": 165,
       "es": "Necesito fregar/trapear el baño porque el piso está sucio",
       "en": "I need to mop the bathroom because the floor is dirty",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Komuna garbitu behar dut zorua zikin dagoelako"
     },
     {
       "id": 166,
       "es": "Necesito alquilar un coche",
       "en": "I need to rent a car",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Auto bat alokatu behar dut"
     },
     {
       "id": 167,
       "es": "Necesito que limpie el baño",
       "en": "I need you to clean the bathroom",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Komuna garbi dezazun behar dut"
     },
     {
       "id": 168,
       "es": "Necesito que barra el piso",
       "en": "I need you to sweep the floor",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Zorua harrotu dezazun behar dut"
     },
     {
       "id": 169,
       "es": "Prefiero usar un trapeador/una fregona para limpiar el piso de baldosa",
       "en": "I prefer to use a mop to clean the tile floor",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Nahiago dut mopa erabili baldosazko zorua garbitzeko"
     },
     {
       "id": 170,
       "es": "Creo que la habitación ya está ocupada",
       "en": "I think the room is already occupied",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Uste dut gela okupatuta dagoela jada"
     },
     {
       "id": 171,
       "es": "Creo que hay un error en esta cuenta",
       "en": "I think there is a mistake in this bill",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Uste dut akats bat dagoela kontu honetan"
     },
     {
       "id": 172,
       "es": "Les traigo la cuenta enseguida",
       "en": "I will bring your check right away",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Berehala ekarriko dizuet kontua"
     },
     {
       "id": 173,
       "es": "Los recomendaré",
       "en": "I will recommend you",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Gomendatuko zaituztet"
     },
     {
       "id": 174,
       "es": "Quisiera mi cheque, por favor",
       "en": "I would like my check, please",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Nire kontua nahiko nuke, mesedez"
     },
     {
       "id": 175,
       "es": "Me gustaría reservar una habitación con cama doble",
       "en": "I would like to book a room with a double bed",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gela bat erreserbatu nahi nuke ohe bikoitzarekin"
     },
     {
       "id": 176,
       "es": "Me gustaría reservar una habitación",
       "en": "I would like to book a room",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gela bat erreserbatu nahi nuke"
     },
     {
       "id": 177,
       "es": "Me gustaría cancelar una reserva, por favor",
       "en": "I would like to cancel a reservation, please",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Erreserba bat bertan behera utzi nahi nuke, mesedez"
     },
     {
       "id": 178,
       "es": "Me gustaría cambiar de habitación",
       "en": "I would like to change room",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gelaz aldatu nahi nuke"
     },
     {
       "id": 179,
       "es": "Me gustaría hacer el checkout, por favor",
       "en": "I would like to check out, please",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Irteera (checkout) egin nahi nuke, mesedez"
     },
     {
       "id": 180,
       "es": "Me gustaría tener una habitación diferente",
       "en": "I would like to have a different room",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gela ezberdin bat izatea nahiko nuke"
     },
     {
       "id": 181,
       "es": "Quisiera hacer una reclamación",
       "en": "I would like to make a complaint",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Erreklamazio bat egin nahiko nuke"
     },
     {
       "id": 182,
       "es": "Quisiera pagar en efectivo, por favor",
       "en": "I would like to pay in cash, please",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Eskudirutan ordaindu nahiko nuke, mesedez"
     },
     {
       "id": 183,
       "es": "Me gustaría quedarme tres noches",
       "en": "I would like to stay three nights",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Hiru gauetarako geratu nahiko nuke"
     },
     {
       "id": 184,
       "es": "Me gustaría una habitación con baño/ducha",
       "en": "I'd like a room with a bath/shower",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gela bat nahiko nuke bainu/dutxarekin"
     },
     {
       "id": 185,
       "es": "Quisiéramos una habitación con vistas al mar",
       "en": "I'd like a room with a sea view",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Itsasoari begira dagoen gela bat nahiko genuke"
     },
     {
       "id": 186,
       "es": "Quisiera un cuarto con camas gemelas",
       "en": "I'd like a room with twin beds",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gela bat nahiko nuke ohe bikiekin"
     },
     {
       "id": 187,
       "es": "Quiero una habitación individual con cama doble, por favor",
       "en": "I'd like a single room with a double bed, please",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Banako gela bat nahi dut ohe bikoitzarekin, mesedez"
     },
     {
       "id": 188,
       "es": "Me gustaría media pensión",
       "en": "I'd like half board",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Pentsio erdia nahiko nuke"
     },
     {
       "id": 189,
       "es": "Me gustaría reservar una mesa para cenar el domingo",
       "en": "I'd like to reserve a table for dinner on Sunday",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Igandean afaltzeko mahai bat erreserbatu nahi nuke"
     },
     {
       "id": 190,
       "es": "Me gustaría quedarme una noche más",
       "en": "I'd like to stay one more night",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gau bat gehiago geratu nahiko nuke"
     },
     {
       "id": 191,
       "es": "Me gustaría... (Para ordenar)",
       "en": "I'd like",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Nahi nuke... (Eskatzeko)"
     },
     {
       "id": 192,
       "es": "Volveré muy tarde",
       "en": "I'll be back very late",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Oso berandu itzuliko naiz"
     },
     {
       "id": 193,
       "es": "Le traeré una inmediatamente",
       "en": "I'll bring you one immediately",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Berehala ekarriko dizut bat"
     },
     {
       "id": 194,
       "es": "Les doy dos llaves de la habitación",
       "en": "I'll give you two room keys",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gelako bi giltza ematen dizkizuet"
     },
     {
       "id": 195,
       "es": "Yo quiero el salmón a la parrilla",
       "en": "I'll have the grilled salmon",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Izokin parrillan errea nahi dut"
     },
     {
       "id": 196,
       "es": "Tomaré... (Para ordenar)",
       "en": "I'll have",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Hartuko dut... (Eskatzeko)"
     },
     {
       "id": 197,
       "es": "Lo siento mucho",
       "en": "I'm really sorry",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Oso sentitzen dut"
     },
     {
       "id": 198,
       "es": "Lamento escuchar que no esté contento con su habitación",
       "en": "I'm sorry to hear that you are not happy with your room",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Sentitzen dut zure gelarekin pozik ez zaudela entzutea"
     },
     {
       "id": 199,
       "es": "He disfrutado de mi estancia",
       "en": "I've enjoyed my stay",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Nire egonaldia gustuko izan dut"
     },
     {
       "id": 200,
       "es": "He reservado una habitación",
       "en": "I've reserved a room",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gela bat erreserbatu dut"
     },
     {
       "id": 201,
       "es": "Si nadie responde, puede entrar",
       "en": "If nobody answers, you can come in",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Inork erantzuten ez badu, sartu zaitezke"
     },
     {
       "id": 202,
       "es": "En el baño hay un inodoro, un lavabo y un espejo",
       "en": "In the bathroom, there is a toilet, a sink, and a mirror",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Bainugelan komun bat, konketa bat eta ispilu bat daude"
     },
     {
       "id": 203,
       "es": "Planchar la ropa",
       "en": "Iron the clothes",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Arropa lisatu"
     },
     {
       "id": 204,
       "es": "Está incluido el desayuno",
       "en": "Is breakfast included",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Gosaria barne dago"
     },
     {
       "id": 205,
       "es": "Está todo bien",
       "en": "Is everything alright? / Is everything fine",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Dena ondo dago"
     },
     {
       "id": 206,
       "es": "Está todo bien con su comida",
       "en": "Is everything okay with your meal",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Dena ondo dago janariarekin?"
     },
     {
       "id": 207,
       "es": "Está incluido el servicio de habitaciones",
       "en": "Is room service included",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gela-zerbitzua barne dago"
     },
     {
       "id": 208,
       "es": "Está incluida la propina",
       "en": "Is the tip included",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Propina barne dago"
     },
     {
       "id": 209,
       "es": "Hay un servicio de lavandería",
       "en": "Is there a laundry service",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Garbitegi-zerbitzua dago"
     },
     {
       "id": 210,
       "es": "Hay restaurante en el hotel",
       "en": "Is there a restaurant in the hotel",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Hotelak jatetxea du"
     },
     {
       "id": 211,
       "es": "Hay piscina en el hotel",
       "en": "Is there a swimming pool in the hotel",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Hotelak igerilekua du"
     },
     {
       "id": 212,
       "es": "Hay aire acondicionado",
       "en": "Is there air conditioning",
       "source": "frases.pdf",
-      "categoria": "Mantenimiento"
+      "categoria": "Mantenimiento",
+      "eu": "Aire girotua dago"
     },
     {
       "id": 213,
       "es": "Puedo ayudarle en algo más",
       "en": "Is there anything else I can help you with",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Beste zertan lagun zaitzaket?"
     },
     {
       "id": 214,
       "es": "Hay aparcamiento",
       "en": "Is there parking",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Aparkalekua dago"
     },
     {
       "id": 215,
       "es": "Hay Wi-Fi en el hotel",
       "en": "Is there Wi-Fi in the hotel",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Hotelean Wi-Fi sarbidea dago"
     },
     {
       "id": 216,
       "es": "Viene con verduras mixtas y patatas cocidas",
       "en": "It comes with mixed vegetables and boiled potatoes",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Barazki nahasiekin eta patata egosiiekin dator"
     },
     {
       "id": 217,
       "es": "Eso es un poco más de lo que me esperaba pagar",
       "en": "It is a bit more than I expected to pay",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Hori ordaintzea espero nuena baino pixka bat gehiago da"
     },
     {
       "id": 218,
       "es": "Es demasiado caro",
       "en": "It is too expensive",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Oso garestia da"
     },
     {
       "id": 219,
       "es": "Hace demasiado calor en la habitación",
       "en": "It is too hot in the room",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Bero gehiegi egiten du gelan"
     },
     {
       "id": 220,
       "es": "Mejor abrir las ventanas",
       "en": "It's better to open the windows",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Hobe leihoak irekitzea"
     },
     {
       "id": 221,
       "es": "No es lo que esperábamos",
       "en": "It's not what we expected",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Ez da guk espero genuena"
     },
     {
       "id": 222,
       "es": "Es un placer verle de nuevo",
       "en": "It’s a pleasure to see you again",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Atsegina da zu berriro ikustea"
     },
     {
       "id": 223,
       "es": "Me gustaría pagar con tarjeta",
       "en": "I’d like to pay by card",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Txartelarekin ordaindu nahi nuke"
     },
     {
       "id": 224,
       "es": "Me gustaría pagar mi cuenta",
       "en": "I’d like to pay my bill",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Nire kontua ordaindu nahi nuke"
     },
     {
       "id": 225,
       "es": "Regreso enseguida con sus bebidas",
       "en": "I’ll be right back with your drinks",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Berehala itzuliko naiz zure edariekin"
     },
     {
       "id": 226,
       "es": "Pagaré en efectivo",
       "en": "I’ll pay cash",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Eskudirutan ordainduko dut"
     },
     {
       "id": 227,
       "es": "Le conduciré a",
       "en": "I’ll show you to",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Hura eramango zaitut"
     },
     {
       "id": 228,
       "es": "Voy a tomar el puré de papas, por favor",
       "en": "I’ll take the mashed potatoes, please",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Patata purea hartuko dut, mesedez"
     },
     {
       "id": 229,
       "es": "Lo siento, permítame solucionarlo de inmediato",
       "en": "I’m sorry, let me fix that for you right away",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Sentitzen dut, utzi iezadazu berehala konpontzen"
     },
     {
       "id": 230,
       "es": "Lo siento, no tenemos eso disponible en este momento",
       "en": "I’m sorry, we don’t have that available right now",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Sentitzen dut, ez dugu hori erabilgarri une honetan"
     },
     {
       "id": 231,
       "es": "Sólo, simplemente, justamente",
       "en": "Just",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Bakarrik, soilik, justu-justu"
     },
     {
       "id": 232,
       "es": "Llame a la puerta",
       "en": "Knock on the door",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Deitu atean"
     },
     {
       "id": 233,
       "es": "Déjeme ver cómo podemos solucionarlo inmediatamente",
       "en": "Let me see how we can fix that right away",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Utzi iezadazu ikusten nola konpon dezakegun berehala"
     },
     {
       "id": 234,
       "es": "Permítame hablar con el gerente por usted",
       "en": "Let me speak to the manager for you",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Utzi iezadazu gerentearekin hitz egiten zure ordez"
     },
     {
       "id": 235,
       "es": "Vamos a revisar la lista",
       "en": "Let's check the list",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zerrenda berrikusiko dugu"
     },
     {
       "id": 236,
       "es": "Restaurante Magnolia, ¿en qué puedo ayudarle",
       "en": "Magnolia restaurant, how can I help you",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Magnolia jatetxea, zertan lagun zaitzaket?"
     },
     {
       "id": 237,
       "es": "Hacer una lista, si es posible",
       "en": "Make a list, if possible",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zerrenda bat egin, ahal bada"
     },
     {
       "id": 238,
       "es": "Hacer la cama/tender la cama",
       "en": "Make the bed",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Ohea egin"
     },
     {
       "id": 239,
       "es": "Puedo dejar mi equipaje aquí",
       "en": "May I leave my luggage here",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Nire ekipajea hemen utzi dezaket?"
     },
     {
       "id": 240,
       "es": "Podría darme su nombre, por favor",
       "en": "May I please have your name",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zure izena emango didazu, mesedez?"
     },
     {
       "id": 241,
       "es": "Puedo ver la habitación primero",
       "en": "May I see the room first",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gela lehenago ikusi dezaket?"
     },
     {
       "id": 242,
       "es": "Puedo tomar su pedido",
       "en": "May I take your order",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Zure eskaera jaso dezaket?"
     },
     {
       "id": 243,
       "es": "Mi nombre es [nombre]. Tengo una reservación a nombre de [nombre]",
       "en": "My name is [nombre]. I have a reservation in the name of [nombre]",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Nire izena [izena] da. [izena]-(r)en izenean erreserba bat dut"
     },
     {
       "id": 244,
       "es": "Mi vecino es muy ruidoso",
       "en": "My neighbor is very noisy",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Nire auzokidea oso zaratatsua da"
     },
     {
       "id": 245,
       "es": "Mi número de teléfono es",
       "en": "My phone number is",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Nire telefono zenbakia ... da"
     },
     {
       "id": 246,
       "es": "Mi habitación es demasiado ruidosa",
       "en": "My room is too noisy",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Nire gela zaratatsuegia da"
     },
     {
       "id": 247,
       "es": "Sin hielo, por favor",
       "en": "No ice, please",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Izotzik gabe, mesedez"
     },
     {
       "id": 248,
       "es": "No hay habitaciones libres",
       "en": "No vacancies",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Ez dago gela librerik"
     },
     {
       "id": 249,
       "es": "No, gracias",
       "en": "No, thank you",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Ez, eskerrik asko"
     },
     {
       "id": 250,
       "es": "No, no hemos utilizado el minibar",
       "en": "No, we haven't used the minibar",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Ez, ez dugu minibarra erabili"
     },
     {
       "id": 251,
       "es": "Nada más, gracias",
       "en": "Nothing else, thanks",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Besterik ez, eskerrik asko"
     },
     {
       "id": 252,
       "es": "Ok, la tomo",
       "en": "Okay, I'll take it",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Ados, hartuko dut"
     },
     {
       "id": 253,
       "es": "Averiado/fuera de servicio",
       "en": "Out of order",
       "source": "frases.pdf",
-      "categoria": "Mantenimiento"
+      "categoria": "Mantenimiento",
+      "eu": "Matxuratuta / Zerbitzuz kanpo"
     },
     {
       "id": 254,
       "es": "Perfecto. ¿Cuántas personas vendrían",
       "en": "Perfect. How many people would be coming",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Bikain. Zenbat pertsona etorriko zinateke?"
     },
     {
       "id": 255,
       "es": "Por favor, tenga cuidado con esto",
       "en": "Please be careful with this",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Mesedez, kontuz ibili honekin"
     },
     {
       "id": 256,
       "es": "Por favor, entre",
       "en": "Please come in",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Mesedez, sartu"
     },
     {
       "id": 257,
       "es": "Por favor, rellene este formulario con sus datos personales",
       "en": "Please fill out this form with your personal data",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Mesedez, bete inprimaki hau zure datu pertsonalekin"
     },
     {
       "id": 258,
       "es": "Por favor, no limpie esto",
       "en": "Please, don't clean this",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Mesedez, ez garbitu hau"
     },
     {
       "id": 259,
       "es": "Por favor, sígame a su mesa",
       "en": "Please, follow me to your table",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Mesedez, jarraitu niri zure mahairaino"
     },
     {
       "id": 260,
       "es": "Por favor, necesito su llave de habitación",
       "en": "Please, I need your room key",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Mesedez, zure gelako giltza behar dut"
     },
     {
       "id": 261,
       "es": "Por favor, saque la basura",
       "en": "Please, take out the trash",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Mesedez, atera zaborra"
     },
     {
       "id": 262,
       "es": "Guardar la vajilla/los platos",
       "en": "Put away the dishes",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Ontziak/platerak gorde"
     },
     {
       "id": 263,
       "es": "Recuerde limpiar las ventanas",
       "en": "Remember to clean the windows",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Gogoratu leihoak garbitzea"
     },
     {
       "id": 264,
       "es": "Reponer el papel higiénico",
       "en": "Replenish the toilet paper",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Komuneko papera jarri"
     },
     {
       "id": 265,
       "es": "Reportar cualquier daño en la habitación",
       "en": "Report any damage in the room",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gelako edozein kalte jakinarazi"
     },
     {
       "id": 266,
       "es": "Ahora mismo",
       "en": "Right away",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Oraintxe bertan"
     },
     {
       "id": 267,
       "es": "Por aquí, por favor",
       "en": "Right this way, please",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Hemendik, mesedez"
     },
     {
       "id": 268,
       "es": "Lo siento, pero el hotel está completo",
       "en": "Sorry, but the hotel has no vacancies",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Sentitzen dut, baina hotela beteta dago"
     },
     {
       "id": 269,
       "es": "Lo siento, perdí la llave de mi habitación",
       "en": "Sorry, I lost my room key",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Sentitzen dut, nire gelako giltza galdu dut"
     },
     {
       "id": 270,
       "es": "Lo siento, no volverá a ocurrir",
       "en": "Sorry, it won't happen again",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Sentitzen dut, ez da berriro gertatuko"
     },
     {
       "id": 271,
       "es": "Claro, por supuesto",
       "en": "Sure",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Jakina, noski"
     },
     {
       "id": 272,
       "es": "Barrer y fregar/trapear el piso",
       "en": "Sweep and mop the floor",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Zorua harrotu eta garbitu"
     },
     {
       "id": 273,
       "es": "Barrer/escobar la terraza",
       "en": "Sweep the terrace",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Terraza harrotu"
     },
     {
       "id": 274,
       "es": "Gracias y espero verle pronto",
       "en": "Thank you and I hope to see you soon",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Eskerrik asko eta laster arte"
     },
     {
       "id": 275,
       "es": "Gracias por llamar a Magnolia. Hasta pronto",
       "en": "Thank you for calling Magnolia. See you soon",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Eskerrik asko Magnoliara deitzeagatik. Laster arte"
     },
     {
       "id": 276,
       "es": "Gracias por comer con nosotros",
       "en": "Thank you for dining with us",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Eskerrik asko gurekin bazkaltzeagatik/afaltzeagatik"
     },
     {
       "id": 277,
       "es": "Gracias por su paciencia",
       "en": "Thank you for your patience",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Eskerrik asko zure pazientziagatik"
     },
     {
       "id": 278,
       "es": "Gracias por su trabajo",
       "en": "Thank you for your work",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Eskerrik asko zure lanagatik"
     },
     {
       "id": 279,
       "es": "Gracias",
       "en": "Thank you",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Eskerrik asko"
     },
     {
       "id": 280,
       "es": "Gracias! ¡Que tengan un buen día",
       "en": "Thank you! Have a great day",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Eskerrik asko! Egun ona izan"
     },
     {
       "id": 281,
       "es": "Gracias por todo",
       "en": "Thanks for everything",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Eskerrik asko denagatik"
     },
     {
       "id": 282,
       "es": "Gracias por su trabajo",
       "en": "Thanks for your work",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Eskerrik asko zure lanagatik"
     },
     {
       "id": 283,
       "es": "Muchas gracias",
       "en": "Thanks so much",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Eskerrik asko"
     },
     {
       "id": 284,
       "es": "Esa habitación huele muy mal",
       "en": "That room smells bad",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gela horrek oso usain txarra du"
     },
     {
       "id": 285,
       "es": "Eso/a está bien",
       "en": "That’ll be fine",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Hori ondo dago"
     },
     {
       "id": 286,
       "es": "El aire acondicionado está roto",
       "en": "The air conditioning is broken",
       "source": "frases.pdf",
-      "categoria": "Mantenimiento"
+      "categoria": "Mantenimiento",
+      "eu": "Aire girotua hautsita dago"
     },
     {
       "id": 287,
       "es": "El baño está sucio",
       "en": "The bathroom is dirty",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Bainugela zikin dago"
     },
     {
       "id": 288,
       "es": "La cama es muy incómoda",
       "en": "The bed is very uncomfortable",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Ohea oso deserosoa da"
     },
     {
       "id": 289,
       "es": "La escoba y el recogedor están detrás de la puerta",
       "en": "The broom and dustpan are behind the door",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Errutza eta pala atearen atzean daude"
     },
     {
       "id": 290,
       "es": "La alfombra está sucia",
       "en": "The carpet is dirty",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Alfonbra zikin dago"
     },
     {
       "id": 291,
       "es": "El pollo al curry es muy bueno",
       "en": "The chicken curry is very good",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Curry oiloa oso ona da"
     },
     {
       "id": 292,
       "es": "Lo primero que necesitamos hacer es fregar/trapear la cocina",
       "en": "The first thing we need to do is mop the kitchen",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Egin behar dugun lehenengo gauza sukaldea garbitzea da"
     },
     {
       "id": 293,
       "es": "El suelo/piso está muy sucio",
       "en": "The floor is very dirty",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Zorua oso zikin dago"
     },
     {
       "id": 294,
       "es": "La calefacción no funciona",
       "en": "The heater isn't working",
       "source": "frases.pdf",
-      "categoria": "Mantenimiento"
+      "categoria": "Mantenimiento",
+      "eu": "Berogailuak ez du funtzionatzen"
     },
     {
       "id": 295,
       "es": "La cocina está preparando su pedido",
       "en": "The kitchen is preparing your order",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Sukaldea zure eskaera prestatzen ari da"
     },
     {
       "id": 296,
       "es": "La luz no funciona",
       "en": "The light isn't working",
       "source": "frases.pdf",
-      "categoria": "Mantenimiento"
+      "categoria": "Mantenimiento",
+      "eu": "Argia ez dabil"
     },
     {
       "id": 297,
       "es": "La cerradura está rota",
       "en": "The lock is broken",
       "source": "frases.pdf",
-      "categoria": "Mantenimiento"
+      "categoria": "Mantenimiento",
+      "eu": "Sarrailatua hautsita dago"
     },
     {
       "id": 298,
       "es": "El minibar está vacío",
       "en": "The minibar is empty",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Minibarra hutsik dago"
     },
     {
       "id": 299,
       "es": "La reserva se realizó por teléfono",
       "en": "The reservation was made over the phone",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Erreserba telefonoz egin zen"
     },
     {
       "id": 300,
       "es": "La habitación no tiene balcón",
       "en": "The room doesn't have a balcony",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gelak ez du balkoirik"
     },
     {
       "id": 301,
       "es": "La habitación es demasiado pequeña",
       "en": "The room is too small",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gela txikiegia da"
     },
     {
       "id": 302,
       "es": "La habitación es muy oscura",
       "en": "The room is very dark",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gela oso iluna da"
     },
     {
       "id": 303,
       "es": "La habitación donde estoy ahora no está limpia",
       "en": "The room where I am now is not clean",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Orain nagoen gela ez dago garbi"
     },
     {
       "id": 304,
       "es": "Las sábanas están sucias",
       "en": "The sheets are dirty",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Maindireak zikin daude"
     },
     {
       "id": 305,
       "es": "La ducha no funciona",
       "en": "The shower doesn't work",
       "source": "frases.pdf",
-      "categoria": "Mantenimiento"
+      "categoria": "Mantenimiento",
+      "eu": "Dutxak ez du funtzionatzen"
     },
     {
       "id": 306,
       "es": "El especial del día es",
       "en": "The special of the day is",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Gaurko berezia da..."
     },
     {
       "id": 307,
       "es": "La esponja está sucia",
       "en": "The sponge is dirty",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Esponja zikin dago"
     },
     {
       "id": 308,
       "es": "La toalla tiene una mancha",
       "en": "The towel has a stain",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Toailak orban bat du"
     },
     {
       "id": 309,
       "es": "Las bolsas de basura están afuera",
       "en": "The trash bags are outside",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Zabor-poltsak kanpoan daude"
     },
     {
       "id": 310,
       "es": "El bote de basura",
       "en": "The trash can",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Zabor-ontzia"
     },
     {
       "id": 311,
       "es": "El televisor no está funcionando",
       "en": "The TV is not working",
       "source": "frases.pdf",
-      "categoria": "Mantenimiento"
+      "categoria": "Mantenimiento",
+      "eu": "Telebistak ez du funtzionatzen"
     },
     {
       "id": 312,
       "es": "El lavabo está sucio",
       "en": "The wash basin is dirty",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Konketa zikin dago"
     },
     {
       "id": 313,
       "es": "Hay insectos",
       "en": "There are insects",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Intsektuak daude"
     },
     {
       "id": 314,
       "es": "No hay toallas",
       "en": "There are no towels",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Ez dago toailarik"
     },
     {
       "id": 315,
       "es": "No hay toallas",
       "en": "There aren't towels",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Ez dago toailarik"
     },
     {
       "id": 316,
       "es": "Hay un problema con el baño",
       "en": "There is a problem with the bathroom",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Arazo bat dago bainugelarekin"
     },
     {
       "id": 317,
       "es": "Hay un olor extraño en el baño",
       "en": "There is a strange smell in the bathroom",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Usain arraro bat dago bainugelan"
     },
     {
       "id": 318,
       "es": "Hay polvo en los estantes y en las escaleras",
       "en": "There is dust on the shelves and stairs",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Hautsa dago apaletan eta eskaileretan"
     },
     {
       "id": 319,
       "es": "No hay agua caliente",
       "en": "There is no hot water",
       "source": "frases.pdf",
-      "categoria": "Mantenimiento"
+      "categoria": "Mantenimiento",
+      "eu": "Ez dago ur berorik"
     },
     {
       "id": 320,
       "es": "No hay papel higiénico",
       "en": "There is no toilet paper",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Ez dago komuneko paperik"
     },
     {
       "id": 321,
       "es": "No hay televisión en la habitación",
       "en": "There is no TV in the room",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Ez dago telebistarik gelan"
     },
     {
       "id": 322,
       "es": "Este hotel es precioso",
       "en": "This hotel is beautiful",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Hotel hau ederra da"
     },
     {
       "id": 323,
       "es": "Para solicitar el puesto, envíe un currículum/CV y una carta de presentación",
       "en": "To apply for the job, submit a resume/CV and cover letter",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Lanpostua eskatzeko, bidali curriculum bat eta aurkezpen-gutun bat"
     },
     {
       "id": 324,
       "es": "Para conseguir el puesto, primero tiene que pasar la entrevista en inglés y español",
       "en": "To get the job, you first have to pass the interview in English and Spanish",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Lanpostua lortzeko, lehenik ingelesezko eta gaztelaniazko elkarrizketa gainditu behar duzu"
     },
     {
       "id": 325,
       "es": "El especial de hoy es la pasta con camarones en una salsa de crema de ajo",
       "en": "Today’ s special is the shrimp pasta with a garlic cream sauce",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Gaurko berezia pasta ganbekin baratxuri-krema saltsan da"
     },
     {
       "id": 326,
       "es": "Use una escoba para barrer el cristal roto",
       "en": "Use a broom to sweep the broken glass",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Erabili errutza apurtutako kristala harrotzeko"
     },
     {
       "id": 327,
       "es": "Habitaciones libres",
       "en": "Vacancies",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gela libreak"
     },
     {
       "id": 328,
       "es": "Aspirar detrás de las mesitas de noche",
       "en": "Vacuum behind the nightstands",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Mesanotxeen atzean xurgatu"
     },
     {
       "id": 329,
       "es": "Aspirar la alfombra",
       "en": "Vacuum the carpet",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Alfonbra xurgatu"
     },
     {
       "id": 330,
       "es": "Aspirar las habitaciones",
       "en": "Vacuum the rooms",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Gelak xurgatu"
     },
     {
       "id": 331,
       "es": "Aspirar debajo de las camas",
       "en": "Vacuum under the beds",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Oheen azpian xurgatu"
     },
     {
       "id": 332,
       "es": "Lavar la vajilla/los platos",
       "en": "Wash the dishes",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Ontziak/platerak garbitu"
     },
     {
       "id": 333,
       "es": "Encerar/pulir el piso",
       "en": "Wax the floors",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Zorua argitu"
     },
     {
       "id": 334,
       "es": "Somos cuatro personas, necesitamos dos habitaciones",
       "en": "We are four people, we need two rooms",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Lau lagun gara, bi gela behar ditugu"
     },
     {
       "id": 335,
       "es": "Vamos a cambiar la bolsa de basura",
       "en": "We are going to change the trash bag",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Zabor-poltsa aldatuko dugu"
     },
     {
       "id": 336,
       "es": "Estamos contratando para los siguientes puestos",
       "en": "We are hiring for the following positions",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Hurrengo lanpostuetarako kontratatzen ari gara"
     },
     {
       "id": 337,
       "es": "No somos responsables",
       "en": "We are not responsible",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Ez gara arduradun"
     },
     {
       "id": 338,
       "es": "No estamos satisfechos con la habitación",
       "en": "We are not satisfied with the room",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Ez gaude gelarekin gustura"
     },
     {
       "id": 339,
       "es": "No podemos abrir la puerta",
       "en": "We can't open the door",
       "source": "frases.pdf",
-      "categoria": "Mantenimiento"
+      "categoria": "Mantenimiento",
+      "eu": "Ezin dugu atea ireki"
     },
     {
       "id": 340,
       "es": "Cambiamos la ropa de cama cada día",
       "en": "We change the bedding every day",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Oheko arropa egunero aldatzen dugu"
     },
     {
       "id": 341,
       "es": "Nosotros limpiamos cada día",
       "en": "We clean every day",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Guk egunero garbitzen dugu"
     },
     {
       "id": 342,
       "es": "Hemos disfrutado de nuestra estancia",
       "en": "We enjoyed our stay",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gure egonaldiagatik gozatu dugu"
     },
     {
       "id": 343,
       "es": "Tenemos que limpiar cada habitación",
       "en": "We have to clean every room",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Gela bakoitza garbitu behar dugu"
     },
     {
       "id": 344,
       "es": "Esperamos verle de nuevo pronto",
       "en": "We hope to see you again soon",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Laster berriro ikustea espero dugu"
     },
     {
       "id": 345,
       "es": "Hacemos/tendemos las camas en todos los cuartos",
       "en": "We make the beds in all rooms",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Gela guztietan egiten ditugu oheak"
     },
     {
       "id": 346,
       "es": "Debemos fregar/trapear la cocina",
       "en": "We must mop the kitchen",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Sukaldea garbitu behar dugu"
     },
     {
       "id": 347,
       "es": "Necesitamos una cama extra",
       "en": "We need an extra bed",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Ohe gehigarri bat behar dugu"
     },
     {
       "id": 348,
       "es": "Necesitamos dos llaves",
       "en": "We need two keys",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Bi giltza behar ditugu"
     },
     {
       "id": 349,
       "es": "Abrimos las ventanas",
       "en": "We open the windows",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Leihoak irekitzen ditugu"
     },
     {
       "id": 350,
       "es": "Servimos un desayuno continental",
       "en": "We serve a continental breakfast",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Gosari kontinentala zerbitzatzen dugu"
     },
     {
       "id": 351,
       "es": "Usamos el trapo para sacudir/desempolvar",
       "en": "We use the rag to dust",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Zapirik erabiltzen dugu hautsa kentzeko"
     },
     {
       "id": 352,
       "es": "Quisiéramos quejarnos por el ruido en nuestra habitación",
       "en": "We would like to complain about the noise in our room",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Gure gelako zarata dela eta kexu garen"
     },
     {
       "id": 353,
       "es": "Bienvenido al Hotel California",
       "en": "Welcome to the Hotel California",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Ongi etorri California Hotelera"
     },
     {
       "id": 354,
       "es": "Bienvenidos! ¿Cuántas personas en su grupo",
       "en": "Welcome! How many people in your party",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Ongi etorri! Zenbat lagun zaudete taldean?"
     },
     {
       "id": 355,
       "es": "Piso mojado",
       "en": "Wet floor",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Zoru bustia"
     },
     {
       "id": 356,
       "es": "Qué le pongo",
       "en": "What can I get you",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Zer jarriko dizut?"
     },
     {
       "id": 357,
       "es": "Qué fecha y hora es la entrevista",
       "en": "What date and time is the interview",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zer egun eta ordutan da elkarrizketa?"
     },
     {
       "id": 358,
       "es": "Cuál es la fecha de su llegada",
       "en": "What is the date of your arrival",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Zein da zure iritsiera-data?"
     },
     {
       "id": 359,
       "es": "A qué hora tengo que hacer el checkout",
       "en": "What time do I have to check out",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Zer ordutan egin behar dut irteera (checkout)?"
     },
     {
       "id": 360,
       "es": "A qué hora cierra el hotel",
       "en": "What time does the hotel close",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Zer ordutan ixten da hotela?"
     },
     {
       "id": 361,
       "es": "A qué hora abre el restaurante para cenar",
       "en": "What time does the restaurant open for dinner",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Zer ordutan irekitzen da jatetxea afaltzeko?"
     },
     {
       "id": 362,
       "es": "A qué hora es el desayuno",
       "en": "What time is breakfast",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Zer ordutan da gosaria?"
     },
     {
       "id": 363,
       "es": "A qué hora es la cena",
       "en": "What time is dinner",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Zer ordutan da afaria?"
     },
     {
       "id": 364,
       "es": "A qué hora es la salida",
       "en": "What time is the checkout",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Zer ordutan da irteera?"
     },
     {
       "id": 365,
       "es": "A qué hora llegarían",
       "en": "What time would you be arriving",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Zer ordutan iritsiko zinatekete?"
     },
     {
       "id": 366,
       "es": "Qué tipo de habitación prefiere",
       "en": "What type of room do you prefer",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Zer gela mota nahiago duzu?"
     },
     {
       "id": 367,
       "es": "Qué les gustaría de entrada",
       "en": "What would you like for your appetizer",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Zer nahiko zenukete hasierako gisa?"
     },
     {
       "id": 368,
       "es": "Qué le gustaría beber",
       "en": "What would you like to drink",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Zer edan nahi zenuke?"
     },
     {
       "id": 369,
       "es": "Qué les gustaría comer",
       "en": "What would you like to eat",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Zer jan nahi zenukete?"
     },
     {
       "id": 370,
       "es": "Qué nos recomienda del menú",
       "en": "What would you recommend from the menu",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Zer gomendatzen diguzu menutik?"
     },
     {
       "id": 371,
       "es": "Cuál es la clave del Wi-Fi",
       "en": "What's the Wi-Fi password",
       "source": "frases.pdf",
-      "categoria": "Mantenimiento"
+      "categoria": "Mantenimiento",
+      "eu": "Zein da Wi-Fi pasahitza?"
     },
     {
       "id": 372,
       "es": "Cuándo puede arreglarlo",
       "en": "When can you fix it",
       "source": "frases.pdf",
-      "categoria": "Mantenimiento"
+      "categoria": "Mantenimiento",
+      "eu": "Noiz konpon dezakezu?"
     },
     {
       "id": 373,
       "es": "Dónde puedo conseguir un masaje",
       "en": "Where can I get a massage",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Non lor dezaket masaje bat?"
     },
     {
       "id": 374,
       "es": "Dónde puedo aparcar mi coche",
       "en": "Where can I park my car",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Non aparka dezaket nire autoa?"
     },
     {
       "id": 375,
       "es": "Dónde compra los guantes",
       "en": "Where do you buy the gloves",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Non erosten dituzu eskularruak?"
     },
     {
       "id": 376,
       "es": "Dónde se sirve el desayuno",
       "en": "Where is breakfast served",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Non zerbitzatzen da gosaria?"
     },
     {
       "id": 377,
       "es": "Dónde está el cuarto de baño",
       "en": "Where is the bathroom",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Non dago bainugela?"
     },
     {
       "id": 378,
       "es": "Dónde está el comedor",
       "en": "Where is the dining room",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Non dago jantokia?"
     },
     {
       "id": 379,
       "es": "Dónde está el ascensor",
       "en": "Where is the elevator/lift",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Non dago igogailua?"
     },
     {
       "id": 380,
       "es": "Dónde está la mopa/el trapeador/la fregona",
       "en": "Where is the mop",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Non dago mopa/fregona?"
     },
     {
       "id": 381,
       "es": "Dónde está la basura",
       "en": "Where is the trash",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Non dago zakarrontzia?"
     },
     {
       "id": 382,
       "es": "Vino blanco para mí, un vino tinto",
       "en": "White wine for me, a red wine",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Ardo zuria niretzat, ardo beltz bat (harentzat)"
     },
     {
       "id": 383,
       "es": "Por quién debo preguntar cuando llegue",
       "en": "Who should I ask for when I arrive",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Norengatik galdetu behar dut iristean?"
     },
     {
       "id": 384,
       "es": "Con baño o sin baño",
       "en": "With bath or without bath",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Bainugelarekin ala gabe?"
     },
     {
       "id": 385,
       "es": "Con",
       "en": "With",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Bainugelarekin"
     },
     {
       "id": 386,
       "es": "Le gustaría un reemplazo o algo más en su lugar",
       "en": "Would you like a replacement or something else instead",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Ordezko bat ala beste zerbait nahi zenuke haren ordez?"
     },
     {
       "id": 387,
       "es": "Le gustaría una guarnición con eso",
       "en": "Would you like a side dish with that",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Guarnizioren bat nahi al zenuke horrekin?"
     },
     {
       "id": 388,
       "es": "Le gustaría una habitación individual o doble",
       "en": "Would you like a single or double room",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Banakako gela ala bikoitza nahi al zenuke?"
     },
     {
       "id": 389,
       "es": "Prefiere una mesa dentro o fuera",
       "en": "Would you like a table inside or outside",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Mahaia barruan ala kanpoan nahiago duzu?"
     },
     {
       "id": 390,
       "es": "Le gustaría algún postre",
       "en": "Would you like any dessert",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Postrerik nahi al zenuke?"
     },
     {
       "id": 391,
       "es": "Le gustaría hielo",
       "en": "Would you like ice",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Izotzik nahi al zenuke?"
     },
     {
       "id": 392,
       "es": "Le gustaría más agua/vino/cerveza",
       "en": "Would you like more water/wine/beer",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Ur/ardo/garagardo gehiago nahi al zenuke?"
     },
     {
       "id": 393,
       "es": "Les gustaría algo de beber",
       "en": "Would you like something to drink",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Zerbait edan nahi al zenukete?"
     },
     {
       "id": 394,
       "es": "Les gustaría algo para empezar",
       "en": "Would you like something to start",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Hasierako zerbait nahi al zenukete?"
     },
     {
       "id": 395,
       "es": "Le gustaría esa mesa al sol por allí",
       "en": "Would you like that table in the sun over there",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Eguzkitako mahai hori nahi al zenuke, hangoa?"
     },
     {
       "id": 396,
       "es": "Le gustaría pedir algún postre de nuestro carrito de postres",
       "en": "Would you like to order any dessert from our dessert trolley",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Gure postre-orgatxoan postrerik eskatu nahi al zenuke?"
     },
     {
       "id": 397,
       "es": "Les gustaría ver el menú de postres",
       "en": "Would you like to see the dessert menu",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Postreen menua ikusi nahi al zenukete?"
     },
     {
       "id": 398,
       "es": "Le gustaría comenzar con un aperitivo",
       "en": "Would you like to start with an appetizer",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Aperitibo batekin hasi nahi al zenuke?"
     },
     {
       "id": 399,
       "es": "Les gustaría comenzar con algunas entradas",
       "en": "Would you like to start with some appetizers",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Hasierako batzuekin hasi nahi al zenukete?"
     },
     {
       "id": 400,
       "es": "Le gustaría probar nuestro postre especial",
       "en": "Would you like to try our dessert special",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Gure postre berezia probatu nahi al zenuke?"
     },
     {
       "id": 401,
       "es": "Sí, y luego seque el piso",
       "en": "Yes, and then dry the floor",
       "source": "frases.pdf",
-      "categoria": "Limpieza"
+      "categoria": "Limpieza",
+      "eu": "Bai, eta gero lehortu zorua"
     },
     {
       "id": 402,
       "es": "Sí, mi nombre es Carmen Rojas",
       "en": "Yes, my name is Carmen Rojas",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Bai, nire izena Carmen Rojas da"
     },
     {
       "id": 403,
       "es": "Sí, por favor, entre",
       "en": "Yes, please, come in",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Bai, mesedez, sartu"
     },
     {
       "id": 404,
       "es": "Sí, por favor",
       "en": "Yes, please",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Bai, mesedez"
     },
     {
       "id": 405,
       "es": "Sí, lo hay",
       "en": "Yes, there is",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Bai, bada"
     },
     {
       "id": 406,
       "es": "Su nombre, por favor",
       "en": "Your name, please",
       "source": "frases.pdf",
-      "categoria": "General"
+      "categoria": "General",
+      "eu": "Zure izena, mesedez"
     },
     {
       "id": 407,
       "es": "Su pedido estará listo en unos minutos",
       "en": "Your order will be ready in a few minutes",
       "source": "frases.pdf",
-      "categoria": "Restaurante"
+      "categoria": "Restaurante",
+      "eu": "Zure eskaera minutu gutxi barru prest egongo da"
     },
     {
       "id": 408,
       "es": "Su reserva ha sido cancelada",
       "en": "Your reservation has been cancelled",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Zure erreserba bertan behera geratu da"
     },
     {
       "id": 409,
       "es": "Su habitación está en el segundo piso",
       "en": "Your room is on the second floor",
       "source": "frases.pdf",
-      "categoria": "Recepción"
+      "categoria": "Recepción",
+      "eu": "Zure gela bigarren solairuan dago"
     },
     {
       "id": 410,
       "es": "Buenas tardes, me gustaría pedir comida a la habitación.",
       "en": "Good afternoon, I would like to order room service.",
       "source": "Pidiendo comida por teléfono",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Arratsalde on, gelara janaria eskatu nahi nuke."
     },
     {
       "id": 411,
       "es": "Claro, señor. ¿Qué desea ordenar?",
       "en": "Of course, sir. What would you like to order?",
       "source": "Pidiendo comida por teléfono",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Jakina, jauna. Zer eskatu nahi duzu?"
     },
     {
       "id": 412,
       "es": "Quiero una hamburguesa con patatas fritas.",
       "en": "I’d like a burger with fries.",
       "source": "Pidiendo comida por teléfono",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Hanburgesa bat patata frijituekin nahi dut."
     },
     {
       "id": 413,
       "es": "¿Desea bebida con su pedido?",
       "en": "Would you like a drink with your order?",
       "source": "Pidiendo comida por teléfono",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Edaririk nahi duzu zure eskaeraren bitartean?"
     },
     {
       "id": 414,
       "es": "Sí, una Coca-Cola, por favor.",
       "en": "Yes, a Coke, please.",
       "source": "Pidiendo comida por teléfono",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Bai, Coca-Cola bat, mesedez."
     },
     {
       "id": 415,
       "es": "Perfecto. Su pedido llegará en 20 minutos.",
       "en": "Perfect. Your order will arrive in 20 minutes.",
       "source": "Pidiendo comida por teléfono",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Bikain. Zure eskaera 20 minututan iritsiko da."
     },
     {
       "id": 416,
@@ -3000,847 +3341,968 @@
       "es": "Con mucho gusto, que tenga buena tarde.",
       "en": "You’re welcome, have a nice afternoon.",
       "source": "Pidiendo comida por teléfono",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Atseginez, arratsalde ona izan."
     },
     {
       "id": 418,
       "es": "Buenas noches, ¿podrían traerme toallas limpias?",
       "en": "Good evening, could you bring me some clean towels?",
       "source": "Pidiendo toallas limpias",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Gabon, toaila garbiak ekar diezazkigukezu?"
     },
     {
       "id": 419,
       "es": "Sí, señor. ¿Cuántas necesita?",
       "en": "Yes, sir. How many do you need?",
       "source": "Pidiendo toallas limpias",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Bai, jauna. Zenbat behar dituzu?"
     },
     {
       "id": 420,
       "es": "Dos, por favor.",
       "en": "Two, please.",
       "source": "Pidiendo toallas limpias",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Bi, mesedez."
     },
     {
       "id": 421,
       "es": "De acuerdo, se las llevaremos en unos minutos.",
       "en": "Alright, we will bring them to your room in a few minutes.",
       "source": "Pidiendo toallas limpias",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Ados, minutu gutxi barru eramango dizkizugu."
     },
     {
       "id": 422,
       "es": "Gracias por la rapidez.",
       "en": "Thank you for the quick service.",
       "source": "Pidiendo toallas limpias",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Eskerrik asko azkartasunagatik."
     },
     {
       "id": 423,
       "es": "Con mucho gusto.",
       "en": "You’re welcome.",
       "source": "Pidiendo toallas limpias",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Atseginez."
     },
     {
       "id": 424,
       "es": "Buenos días, me gustaría pedir el desayuno en la habitación.",
       "en": "Good morning, I’d like to order breakfast in my room.",
       "source": "Pidiendo desayuno",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Egun on, gosaria gelan eskatu nahi nuke."
     },
     {
       "id": 425,
       "es": "Claro, ¿qué le gustaría?",
       "en": "Of course, what would you like?",
       "source": "Pidiendo desayuno",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Jakina, zer nahiko zenuke?"
     },
     {
       "id": 426,
       "es": "Café con leche y tostadas.",
       "en": "Coffee with milk and toast.",
       "source": "Pidiendo desayuno",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Kafesnea eta txigorkiak."
     },
     {
       "id": 427,
       "es": "¿Desea huevos o fruta?",
       "en": "Would you like eggs or fruit?",
       "source": "Pidiendo desayuno",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Arrautzak ala fruta nahi duzu?"
     },
     {
       "id": 428,
       "es": "Sí, unos huevos revueltos.",
       "en": "Yes, some scrambled eggs.",
       "source": "Pidiendo desayuno",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Bai, arrautza nahasi batzuk."
     },
     {
       "id": 429,
       "es": "Muy bien, se lo subimos en 15 minutos.",
       "en": "Very well, we’ll bring it up in 15 minutes.",
       "source": "Pidiendo desayuno",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Oso ondo, 15 minututan igoko dizugu."
     },
     {
       "id": 430,
       "es": "Buenas, ¿pueden recoger la bandeja de la cena?",
       "en": "Hello, can you collect the dinner tray?",
       "source": "Retiro de bandejas",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Kaixo, afariaren erretilua jaso dezakezue?"
     },
     {
       "id": 431,
       "es": "Sí, ¿podría dejarla fuera de la habitación?",
       "en": "Yes, could you leave it outside the room?",
       "source": "Retiro de bandejas",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Bai, gelatik kanpo utzi al zenuke?"
     },
     {
       "id": 432,
       "es": "Por supuesto, la dejaré en el pasillo.",
       "en": "Of course, I’ll leave it in the hallway.",
       "source": "Retiro de bandejas",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Jakina, korridorean utziko dut."
     },
     {
       "id": 433,
       "es": "Perfecto, la recogeremos en unos minutos.",
       "en": "Perfect, we’ll pick it up in a few minutes.",
       "source": "Retiro de bandejas",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Bikain, minutu gutxi barru jasoko dugu."
     },
     {
       "id": 434,
       "es": "Buenas tardes, ¿me pueden traer dos cervezas frías?",
       "en": "Good afternoon, can you bring me two cold beers?",
       "source": "Pidiendo bebidas",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Arratsalde on, bi garagardo hotz ekar diezazkigukezue?"
     },
     {
       "id": 435,
       "es": "Por supuesto, ¿a qué número de habitación?",
       "en": "Of course, to which room number?",
       "source": "Pidiendo bebidas",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Jakina, zein gela-zenbakira?"
     },
     {
       "id": 436,
       "es": "La 305.",
       "en": "Room 305.",
       "source": "Pidiendo bebidas",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "305.a."
     },
     {
       "id": 437,
       "es": "Perfecto, en 10 minutos las tendrá.",
       "en": "Perfect, you’ll have them in 10 minutes.",
       "source": "Pidiendo bebidas",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Bikain, 10 minututan izango dituzue."
     },
     {
       "id": 438,
       "es": "Disculpe, ¿podrían traerme una manta extra?",
       "en": "Excuse me, could you bring me an extra blanket?",
       "source": "Pidiendo mantas extra",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Barkatu, manta osagarri bat ekar diezadakezue?"
     },
     {
       "id": 439,
       "es": "Sí, señor. Se la llevaremos enseguida.",
       "en": "Yes, sir. We’ll bring it right away.",
       "source": "Pidiendo mantas extra",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Bai, jauna. Berehala eramango dizugu."
     },
     {
       "id": 440,
       "es": "Muchas gracias, hace un poco de frío.",
       "en": "Thank you very much, it’s a bit cold.",
       "source": "Pidiendo mantas extra",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Eskerrik asko, hotz pixka bat egiten du."
     },
     {
       "id": 441,
       "es": "No hay problema, llegaremos en unos minutos.",
       "en": "No problem, we’ll be there in a few minutes.",
       "source": "Pidiendo mantas extra",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Arazorik ez, minutu gutxi barru iritsiko gara."
     },
     {
       "id": 442,
       "es": "Hola, el aire acondicionado no funciona.",
       "en": "Hello, the air conditioning isn’t working.",
       "source": "Problema con el aire acondicionado",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Kaixo, aire girotuak ez du funtzionatzen."
     },
     {
       "id": 443,
       "es": "Lamentamos el inconveniente. Enviaremos a mantenimiento.",
       "en": "We’re sorry for the inconvenience. We’ll send maintenance.",
       "source": "Problema con el aire acondicionado",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Sentitzen dugu eragozpena. Mantentze-lanean bidaliko dugu."
     },
     {
       "id": 444,
       "es": "¿Saben cuánto tardarán?",
       "en": "Do you know how long it will take?",
       "source": "Problema con el aire acondicionado",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Badakizue zenbat deituko duten?"
     },
     {
       "id": 445,
       "es": "En unos 15 minutos debería estar allí.",
       "en": "In about 15 minutes they should be there.",
       "source": "Problema con el aire acondicionado",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "15 minutu inguru barru han egon beharko luke."
     },
     {
       "id": 446,
       "es": "Hola, pedí comida hace 20 minutos. ¿A qué hora llegará exactamente?",
       "en": "Hello, I ordered food 20 minutes ago. What time will it arrive exactly?",
       "source": "Confirmar horario de entrega",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Kaixo, janaria duela 20 minutu eskatu nuen. Noiz iritsiko da zehazki?"
     },
     {
       "id": 447,
       "es": "Estamos en camino, llegará en 5 minutos.",
       "en": "We’re on our way, it will arrive in 5 minutes.",
       "source": "Confirmar horario de entrega",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Bidean gaude, 5 minututan iritsiko da."
     },
     {
       "id": 448,
       "es": "Perfecto, gracias por avisar.",
       "en": "Perfect, thanks for letting me know.",
       "source": "Confirmar horario de entrega",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Bikain, eskerrik asko abisatzeagatik."
     },
     {
       "id": 449,
       "es": "Con gusto, señor.",
       "en": "You’re welcome, sir.",
       "source": "Confirmar horario de entrega",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Atseginez, jauna."
     },
     {
       "id": 450,
       "es": "Buenas tardes, ¿tienen postres disponibles?",
       "en": "Good afternoon, do you have desserts available?",
       "source": "Pedido de postre",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Arratsalde on, postrerik baduzue erabilgarri?"
     },
     {
       "id": 451,
       "es": "Sí, tenemos tarta de queso y helado.",
       "en": "Yes, we have cheesecake and ice cream.",
       "source": "Pedido de postre",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Bai, gazta-tarta eta izozkia ditugu."
     },
     {
       "id": 452,
       "es": "Entonces tráigame una tarta de queso.",
       "en": "Then bring me a cheesecake.",
       "source": "Pedido de postre",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Orduan ekarri iezadazu gazta-tarta bat."
     },
     {
       "id": 453,
       "es": "Muy bien, llegará en unos minutos.",
       "en": "Very well, it will arrive in a few minutes.",
       "source": "Pedido de postre",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Oso ondo, minutu gutxi barru iritsiko da."
     },
     {
       "id": 454,
       "es": "Por favor, necesito una ambulancia.",
       "en": "Please, I need an ambulance.",
       "source": "Emergencia médica",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Mesedez, anbulantzia bat behar dut."
     },
     {
       "id": 455,
       "es": "¿Qué ha ocurrido, señor?",
       "en": "What happened, sir?",
       "source": "Emergencia médica",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Zer gertatu da, jauna?"
     },
     {
       "id": 456,
       "es": "Mi compañero se ha desmayado.",
       "en": "My partner has fainted.",
       "source": "Emergencia médica",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Nire kidea konortegabetu egin da."
     },
     {
       "id": 457,
       "es": "Llamaremos inmediatamente a emergencias.",
       "en": "We will immediately call the emergency services.",
       "source": "Emergencia médica",
-      "categoria": "Room Service"
+      "categoria": "Room Service",
+      "eu": "Berehala deituko dugu larrialdietara."
     },
     {
       "id": 458,
       "es": "Disculpe, mi sopa está fría.",
       "en": "Excuse me, my soup is cold.",
       "source": "La sopa está fría",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Barkatu, nire sopa hotza dago."
     },
     {
       "id": 459,
       "es": "Lamento lo ocurrido. ¿Desea que se la calentemos o le traigo una nueva?",
       "en": "I’m sorry about that. Would you like us to heat it up or bring you a new one?",
       "source": "La sopa está fría",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Sentitzen dut gertatutakoa. Berotzea nahi duzu ala berri bat ekarriko dizut?"
     },
     {
       "id": 460,
       "es": "Prefiero una nueva, por favor.",
       "en": "I’d prefer a new one, please.",
       "source": "La sopa está fría",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Nahiago dut berri bat, mesedez."
     },
     {
       "id": 461,
       "es": "Por supuesto, se la cambiaré de inmediato.",
       "en": "Of course, I’ll replace it right away.",
       "source": "La sopa está fría",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Jakina, berehala aldatuko dizut."
     },
     {
       "id": 462,
       "es": "Gracias. También me gustaría un poco de pan caliente.",
       "en": "Thank you. I’d also like some warm bread.",
       "source": "La sopa está fría",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Eskerrik asko. Ogi bero pixka bat ere nahiko nuke."
     },
     {
       "id": 463,
       "es": "Enseguida le traigo pan recién hecho.",
       "en": "I’ll bring you freshly baked bread right away.",
       "source": "La sopa está fría",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Berehala ekarriko dizut ogi egina berri."
     },
     {
       "id": 464,
       "es": "Agradezco la rapidez.",
       "en": "I appreciate the quick service.",
       "source": "La sopa está fría",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Azkartasuna eskertzen dut."
     },
     {
       "id": 465,
       "es": "De nuevo, disculpe las molestias.",
       "en": "Once again, I apologize for the inconvenience.",
       "source": "La sopa está fría",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Berriro ere, barkatu eragozpenak."
     },
     {
       "id": 466,
       "es": "Buenas noches, hay mucho ruido cerca de mi habitación.",
       "en": "Good evening, there is a lot of noise near my room.",
       "source": "Habitación ruidosa",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Gabon, zarata handia dago nire gelatik gertu."
     },
     {
       "id": 467,
       "es": "Lamentamos la molestia. ¿Podría indicarnos su número de habitación?",
       "en": "We’re sorry for the disturbance. Could you tell us your room number?",
       "source": "Habitación ruidosa",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Sentitzen dugu eragozpena. Zure gela-zenbakia adieraziko diguzu?"
     },
     {
       "id": 468,
       "es": "Estoy en la 412.",
       "en": "I’m in room 412.",
       "source": "Habitación ruidosa",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "412.ean nago."
     },
     {
       "id": 469,
       "es": "Gracias. Enviaremos a seguridad para que verifique y pediremos silencio.",
       "en": "Thank you. We’ll send security to check and ask for quiet.",
       "source": "Habitación ruidosa",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Eskerrik asko. Segurtasuna bidaliko dugu egiaztatzeko eta isiltasuna eskatuko dugu."
     },
     {
       "id": 470,
       "es": "Si no mejora, ¿podrían cambiarme de habitación?",
       "en": "If it doesn’t improve, could you move me to another room?",
       "source": "Habitación ruidosa",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Hobetzen ez bada, gelaz aldatu ahal didazue?"
     },
     {
       "id": 471,
       "es": "Por supuesto, tenemos disponibilidad. Podemos ofrecerle una habitación en una planta más alta.",
       "en": "Of course, we have availability. We can offer you a room on a higher floor.",
       "source": "Habitación ruidosa",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Jakina, badugu erabilgarritasuna. Solairu altuago batean gela bat eskain diezazuekegu."
     },
     {
       "id": 472,
       "es": "Se lo agradecería.",
       "en": "I’d appreciate that.",
       "source": "Habitación ruidosa",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Eskertuko nuke."
     },
     {
       "id": 473,
       "es": "Nos ocupamos ahora mismo. Disculpe las molestias.",
       "en": "We’ll take care of it right now. Sorry for the inconvenience.",
       "source": "Habitación ruidosa",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Oraintxe bertan arduratuko gara. Barkatu eragozpenak."
     },
     {
       "id": 474,
       "es": "Llevamos esperando más de 30 minutos.",
       "en": "We’ve been waiting for over 30 minutes.",
       "source": "Retraso en el servicio",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "30 minutu baino gehiago daramatzagu zain."
     },
     {
       "id": 475,
       "es": "Lo siento mucho. Voy a comprobar el estado de su pedido en cocina.",
       "en": "I’m very sorry. I’ll check the status of your order in the kitchen.",
       "source": "Retraso en el servicio",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Asko sentitzen dut. Zure eskaeraren egoera egiaztatuko dut sukaldean."
     },
     {
       "id": 476,
       "es": "Agradecería una actualización.",
       "en": "I’d appreciate an update.",
       "source": "Retraso en el servicio",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Eguneratze bat eskertuko nuke."
     },
     {
       "id": 477,
       "es": "Su pedido estará listo en cinco minutos. Le invitamos a una bebida por la espera.",
       "en": "Your order will be ready in five minutes. We’ll offer you a complimentary drink for the wait.",
       "source": "Retraso en el servicio",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Zure eskaera bost minututan prest egongo da. Edari batera gonbidatzen zaituztegu itxaronaldiagatik."
     },
     {
       "id": 478,
       "es": "Gracias, aceptaré una limonada.",
       "en": "Thank you, I’ll have a lemonade.",
       "source": "Retraso en el servicio",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Eskerrik asko, limonada bat onartuko dut."
     },
     {
       "id": 479,
       "es": "Perfecto, se la traigo enseguida.",
       "en": "Perfect, I’ll bring it right away.",
       "source": "Retraso en el servicio",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Bikain, berehala ekarriko dizut."
     },
     {
       "id": 480,
       "es": "Gracias por solucionarlo.",
       "en": "Thanks for sorting it out.",
       "source": "Retraso en el servicio",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Eskerrik asko konpontzeagatik."
     },
     {
       "id": 481,
       "es": "De nuevo, disculpe el retraso.",
       "en": "Again, we apologize for the delay.",
       "source": "Retraso en el servicio",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Berriro ere, barkatu atzerapena."
     },
     {
       "id": 482,
       "es": "Perdone, creo que hay un cargo que no corresponde.",
       "en": "Excuse me, I think there is a charge that doesn’t belong.",
       "source": "Error en la cuenta",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Barkatu, uste dut dagokion ez den kargu bat dagoela."
     },
     {
       "id": 483,
       "es": "Déjeme revisar. ¿Se refiere a las dos bebidas adicionales?",
       "en": "Let me check. Are you referring to the two additional drinks?",
       "source": "Error en la cuenta",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Utzi iezadazu berrikusten. Bi edari osagarriei buruz ari zara?"
     },
     {
       "id": 484,
       "es": "Sí, solo pedimos una.",
       "en": "Yes, we only ordered one.",
       "source": "Error en la cuenta",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Bai, bakarra eskatu dugu."
     },
     {
       "id": 485,
       "es": "Tiene razón, fue un error de registro. Lo corrijo ahora mismo.",
       "en": "You’re right, it was a recording error. I’ll correct it right now.",
       "source": "Error en la cuenta",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Arrazoi duzu, erregistro-akats bat izan da. Oraintxe bertan zuzenduko dut."
     },
     {
       "id": 486,
       "es": "Gracias por la rapidez.",
       "en": "Thank you for the prompt fix.",
       "source": "Error en la cuenta",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Eskerrik asko azkartasunagatik."
     },
     {
       "id": 487,
       "es": "Aquí tiene la cuenta actualizada.",
       "en": "Here is the updated bill.",
       "source": "Error en la cuenta",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Hemen duzu kontu eguneratua."
     },
     {
       "id": 488,
       "es": "Ahora está correcto.",
       "en": "Now it’s correct.",
       "source": "Error en la cuenta",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Orain zuzen dago."
     },
     {
       "id": 489,
       "es": "Lamentamos la confusión ocasionada.",
       "en": "We apologize for the confusion caused.",
       "source": "Error en la cuenta",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Barkatu sortutako nahasmena."
     },
     {
       "id": 490,
       "es": "Buenas, el aire acondicionado no enfría.",
       "en": "Hello, the air conditioning isn’t cooling.",
       "source": "Aire acondicionado no enfría",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Kaixo, aire girotuak ez du hozten."
     },
     {
       "id": 491,
       "es": "Sentimos el inconveniente. Enviaremos a mantenimiento de inmediato.",
       "en": "We’re sorry for the inconvenience. We’ll send maintenance immediately.",
       "source": "Aire acondicionado no enfría",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Sentitzen dugu eragozpena. Mantentze-lanean bidaliko dugu berehala."
     },
     {
       "id": 492,
       "es": "¿Podrían avisarme cuando vengan?",
       "en": "Could you let me know when they come?",
       "source": "Aire acondicionado no enfría",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Abisatuko didazue datozenean?"
     },
     {
       "id": 493,
       "es": "Por supuesto, le llamaremos antes.",
       "en": "Of course, we’ll call you beforehand.",
       "source": "Aire acondicionado no enfría",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Jakina, lehenago deituko dizuegu."
     },
     {
       "id": 494,
       "es": "Gracias. Si no se soluciona, necesitaré cambiar de habitación.",
       "en": "Thank you. If it isn’t fixed, I’ll need to change rooms.",
       "source": "Aire acondicionado no enfría",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Eskerrik asko. Konpontzen ez bada, gelaz aldatu beharko dut."
     },
     {
       "id": 495,
       "es": "Tenemos habitaciones disponibles. Le ofreceremos una alternativa si fuera necesario.",
       "en": "We have rooms available. We’ll offer you an alternative if needed.",
       "source": "Aire acondicionado no enfría",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Gelak libre ditugu. Alternatiba bat eskainiko dizugu beharrezkoa bada."
     },
     {
       "id": 496,
       "es": "De acuerdo, espero su llamada.",
       "en": "Alright, I’ll wait for your call.",
       "source": "Aire acondicionado no enfría",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Ados, zure deiaren zain nago."
     },
     {
       "id": 497,
       "es": "Gracias por su paciencia.",
       "en": "Thank you for your patience.",
       "source": "Aire acondicionado no enfría",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Eskerrik asko zure pazientziagatik."
     },
     {
       "id": 498,
       "es": "Buenas tardes, mi habitación no está bien limpia.",
       "en": "Good afternoon, my room isn’t properly cleaned.",
       "source": "Limpieza insuficiente",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Arratsalde on, nire gela ez dago ondo garbituta."
     },
     {
       "id": 499,
       "es": "Lamentamos mucho escuchar eso. Enviaremos al servicio de limpieza de inmediato.",
       "en": "We’re very sorry to hear that. We’ll send housekeeping right away.",
       "source": "Limpieza insuficiente",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Asko sentitzen dugu hori entzutea. Garbiketa-zerbitzua bidaliko dugu berehala."
     },
     {
       "id": 500,
       "es": "Hay polvo en la mesa y el baño no está en condiciones.",
       "en": "There’s dust on the table and the bathroom isn’t in good condition.",
       "source": "Limpieza insuficiente",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Hautsa dago mahaian eta bainugela ez dago egoera onean."
     },
     {
       "id": 501,
       "es": "Tomamos nota. Haremos una limpieza a fondo y revisaremos el control de calidad.",
       "en": "Understood. We’ll do a deep cleaning and review quality control.",
       "source": "Limpieza insuficiente",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Oharra hartzen dugu. Garbiketa sakon bat egingo dugu eta kalitate-kontrola berrikusiko dugu."
     },
     {
       "id": 502,
       "es": "Gracias. ¿Cuánto tardarán?",
       "en": "Thank you. How long will it take?",
       "source": "Limpieza insuficiente",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Eskerrik asko. Zenbat deituko duzue?"
     },
     {
       "id": 503,
       "es": "Aproximadamente 20 minutos.",
       "en": "Approximately 20 minutes.",
       "source": "Limpieza insuficiente",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "20 minutu inguru."
     },
     {
       "id": 504,
       "es": "De acuerdo, esperaré.",
       "en": "Alright, I’ll wait.",
       "source": "Limpieza insuficiente",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Ados, itxarongo dut."
     },
     {
       "id": 505,
       "es": "Sentimos las molestias ocasionadas.",
       "en": "We apologize for the inconvenience.",
       "source": "Limpieza insuficiente",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Sentitzen dugu sortutako eragozpenak."
     },
     {
       "id": 506,
       "es": "Mi reserva incluía desayuno y vista al mar, pero no aparece así.",
       "en": "My booking included breakfast and sea view, but it doesn’t show that way.",
       "source": "Reserva mal gestionada",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Nire erreserbak gosaria eta itsasorako begirada barne hartzen zituen, baina ez da horrela agertzen."
     },
     {
       "id": 507,
       "es": "Permítame verificar en el sistema.",
       "en": "Let me check in the system.",
       "source": "Reserva mal gestionada",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Utzi iezadazu sisteman egiaztatzen."
     },
     {
       "id": 508,
       "es": "Aquí tengo el correo de confirmación.",
       "en": "I have the confirmation email here.",
       "source": "Reserva mal gestionada",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Hemen dut baieztapen-mezua."
     },
     {
       "id": 509,
       "es": "Gracias. Tiene razón; actualizaremos su reserva y añadiremos el desayuno sin coste.",
       "en": "Thank you. You’re right; we’ll update your booking and add breakfast at no cost.",
       "source": "Reserva mal gestionada",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Eskerrik asko. Arrazoi duzu; zure erreserba eguneratuko dugu eta gosaria doan gehituko dugu."
     },
     {
       "id": 510,
       "es": "¿Y la vista al mar?",
       "en": "And the sea view?",
       "source": "Reserva mal gestionada",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Eta itsasorako begirada?"
     },
     {
       "id": 511,
       "es": "Podemos ofrecerle una habitación con vista parcial hoy y vista completa mañana.",
       "en": "We can offer you a partial sea view today and full sea view tomorrow.",
       "source": "Reserva mal gestionada",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Gaur begirada partziala duen gela bat eskain diezazugu eta bihar begirada osoko bat."
     },
     {
       "id": 512,
       "es": "Acepto la solución.",
       "en": "I accept the solution.",
       "source": "Reserva mal gestionada",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Irtenbidea onartzen dut."
     },
     {
       "id": 513,
       "es": "Gracias por su comprensión y disculpe el error.",
       "en": "Thank you for your understanding and sorry for the mistake.",
       "source": "Reserva mal gestionada",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Eskerrik asko zure ulermenagatik eta barkatu akatsa."
     },
     {
       "id": 514,
       "es": "Perdón, pedí sin frutos secos y este postre los tiene.",
       "en": "Sorry, I asked for no nuts and this dessert has them.",
       "source": "Alergia no atendida",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Barkatu, fruitu lehorrik gabe eskatu nuen eta postre honek baditu."
     },
     {
       "id": 515,
       "es": "Lo siento mucho. Prepararemos un postre seguro para usted.",
       "en": "I’m very sorry. We’ll prepare a safe dessert for you.",
       "source": "Alergia no atendida",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Oso sentitzen dut. Zuretzat postre seguru bat prestatuko dugu."
     },
     {
       "id": 516,
       "es": "Necesito que lo confirmen con cocina, por favor.",
       "en": "I need you to confirm it with the kitchen, please.",
       "source": "Alergia no atendida",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Mesedez, sukaldean baieztatu dezazuela behar dut."
     },
     {
       "id": 517,
       "es": "Ahora mismo hablo con el chef y le traigo una alternativa sin alérgenos.",
       "en": "I’ll speak to the chef right now and bring you an allergen-free alternative.",
       "source": "Alergia no atendida",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Oraintxe bertan hitz egingo dut chefarekin eta alergenorik gabeko alternatiba bat ekarriko dizut."
     },
     {
       "id": 518,
       "es": "Gracias por atenderlo.",
       "en": "Thank you for taking care of it.",
       "source": "Alergia no atendida",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Eskerrik asko horretaz arduratzeagatik."
     },
     {
       "id": 519,
       "es": "También revisaremos los procedimientos para evitar que se repita.",
       "en": "We’ll also review procedures to prevent it from happening again.",
       "source": "Alergia no atendida",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Prozedurak ere berrikusiko ditugu berriro gerta ez dadin."
     },
     {
       "id": 520,
       "es": "Me quedo más tranquilo.",
       "en": "That makes me feel more comfortable.",
       "source": "Alergia no atendida",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Lasaiago geratzen naiz."
     },
     {
       "id": 521,
       "es": "Disculpe las molestias ocasionadas.",
       "en": "We apologize for the inconvenience.",
       "source": "Alergia no atendida",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Barkatu sortutako eragozpenak."
     },
     {
       "id": 522,
       "es": "El Wi‑Fi no me deja conectar.",
       "en": "The Wi‑Fi won’t let me connect.",
       "source": "Wi‑Fi no funciona",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Wi-Fiak ez dit konektatzen uzten."
     },
     {
       "id": 523,
       "es": "Vamos a ayudarle. ¿Le aparece la red del hotel?",
       "en": "We’ll help you. Do you see the hotel’s network?",
       "source": "Wi‑Fi no funciona",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Lagunduko dizugu. Hotelaren sarea agertzen zaizu?"
     },
     {
       "id": 524,
       "es": "Sí, pero dice contraseña incorrecta.",
       "en": "Yes, but it says incorrect password.",
       "source": "Wi‑Fi no funciona",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Bai, baina pasahitz okerra dio."
     },
     {
       "id": 525,
       "es": "La contraseña actual es ‘Hotel2025!’. ¿Puede probar de nuevo?",
       "en": "The current password is ‘Hotel2025!’. Could you try again?",
       "source": "Wi‑Fi no funciona",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Oraingo pasahitza ‘Hotel2025!’ da. Berriro probatu al dezakezu?"
     },
     {
       "id": 526,
       "es": "Ahora sí conecta, gracias.",
       "en": "It connects now, thank you.",
       "source": "Wi‑Fi no funciona",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Orain bai konektatzen du, eskerrik asko."
     },
     {
       "id": 527,
       "es": "Si vuelve a fallar, podemos reiniciar el punto de acceso de su planta.",
       "en": "If it fails again, we can restart the access point on your floor.",
       "source": "Wi‑Fi no funciona",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Berriro huts egiten badu, zure solairuko sarbide-puntua berrabiarazi dezakegu."
     },
     {
       "id": 528,
       "es": "Perfecto.",
       "en": "Perfect.",
       "source": "Wi‑Fi no funciona",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Bikain."
     },
     {
       "id": 529,
       "es": "Estamos a su disposición para cualquier otra cosa.",
       "en": "We’re at your disposal for anything else.",
       "source": "Wi‑Fi no funciona",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Zure esanetara gaude beste edozein gauzetarako."
     },
     {
       "id": 530,
       "es": "He esperado más de veinte minutos para hacer el check‑in.",
       "en": "I waited more than twenty minutes to check in.",
       "source": "Tiempo de espera en check‑in",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Hogei minutu baino gehiago itxaron dut sarrera (check-in) egiteko."
     },
     {
       "id": 531,
       "es": "Sentimos la espera. Hoy hemos tenido varias llegadas al mismo tiempo.",
       "en": "We’re sorry for the wait. We had several arrivals at the same time today.",
       "source": "Tiempo de espera en check‑in",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Sentitzen dugu itxaronaldia. Gaur hainbat iritsiera izan ditugu aldi berean."
     },
     {
       "id": 532,
       "es": "Entiendo, pero ha sido incómodo.",
       "en": "I understand, but it was inconvenient.",
       "source": "Tiempo de espera en check‑in",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Ulertzen dut, baina deserosoa izan da."
     },
     {
       "id": 533,
       "es": "Para compensar, le ofrecemos salida tardía sin coste.",
       "en": "To compensate, we can offer you a late checkout at no cost.",
       "source": "Tiempo de espera en check‑in",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Konpentsatzeko, irteera berantiarra doan eskaintzen dizugu."
     },
     {
       "id": 534,
       "es": "Gracias, lo aprecio.",
       "en": "Thank you, I appreciate it.",
       "source": "Tiempo de espera en check‑in",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Eskerrik asko, estimatzen dut."
     },
     {
       "id": 535,
       "es": "Además, aceleraremos su check‑in ahora mismo.",
       "en": "We’ll also speed up your check-in right now.",
       "source": "Tiempo de espera en check‑in",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Gainera, zure sarrera (check-in) azkartuko dugu oraintxe bertan."
     },
     {
       "id": 536,
       "es": "Perfecto, gracias por la solución.",
       "en": "Perfect, thanks for the solution.",
       "source": "Tiempo de espera en check‑in",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Bikain, eskerrik asko irtenbideagatik."
     },
     {
       "id": 537,
       "es": "Bienvenido al hotel y que disfrute su estancia.",
       "en": "Welcome to the hotel, and enjoy your stay.",
       "source": "Tiempo de espera en check‑in",
-      "categoria": "Quejas y Reclamaciones"
+      "categoria": "Quejas y Reclamaciones",
+      "eu": "Ongi etorri hotelera eta ondo pasa egonaldia."
     }
   ]
 }

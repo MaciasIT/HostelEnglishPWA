@@ -42,7 +42,10 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
     const textToSpeak = lang === 'es' ? phrase.es : targetText;
     const speechLang = lang === 'es' ? 'es-ES' : targetVoiceLang;
 
-    if (!textToSpeak?.trim()) return;
+    if (!textToSpeak?.trim()) {
+      console.warn(`Missing translation for ${lang} in ${targetLanguage}`);
+      return;
+    }
 
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
     utterance.lang = speechLang;
@@ -105,8 +108,8 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
           "{phrase.es}"
         </h3>
 
-        <p className="text-lg sm:text-xl text-gray-400 font-medium mb-10 text-center">
-          {targetText}
+        <p className={`text-lg sm:text-xl font-medium mb-10 text-center ${!phrase[targetLanguage === 'eu' ? 'eu' : 'en'] ? 'text-orange-400 italic' : 'text-gray-400'}`}>
+          {targetLanguage === 'eu' ? (phrase.eu || 'Traducción pendiente...') : phrase.en}
         </p>
 
         <div className="flex flex-wrap justify-center gap-4 w-full">

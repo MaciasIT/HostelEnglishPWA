@@ -141,7 +141,16 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
         </button>
         <div className="text-center">
           <h1 className="text-2xl font-black text-white leading-tight">{conversation.title}</h1>
-          <p className="text-xs text-accent font-bold uppercase tracking-widest">{conversation.categoria || 'Lección de Hostelería'}</p>
+          <p className="text-xs text-accent font-bold uppercase tracking-widest">
+            {(() => {
+              const cat = conversation.categoria || 'Lección de Hostelería';
+              if (cat === 'Jatetxea') return 'Restaurante';
+              if (cat === 'Harrera') return 'Recepción';
+              if (cat === 'Kexak') return 'Quejas';
+              if (cat === 'Kexak eta erreklamazioak') return 'Quejas y Reclamaciones';
+              return cat;
+            })()}
+          </p>
         </div>
         <div className="w-12"></div>
       </div>

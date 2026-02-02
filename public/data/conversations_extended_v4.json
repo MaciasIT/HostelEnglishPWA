@@ -175,29 +175,36 @@
         {
           "speaker": "Recepcionista",
           "es": "¡Buenas tardes! Bienvenido al hotel. ¿Cómo puedo ayudarle hoy?",
-          "en": "Good afternoon! Welcome to the hotel. How can I assist you today?"
+          "en": "Good afternoon! Welcome to the hotel. How can I assist you today?",
+          "eu": "Arratsalde on! Ongi etorri hotelera. Zertan lagun zaitzaket gaur?"
         },
         {
           "speaker": "Huésped",
           "es": "Tengo una reserva a nombre de García.",
-          "en": "I have a reservation under the name Garcia."
+          "en": "I have a reservation under the name Garcia.",
+          "eu": "García jaunaren/andrearen izenean erreserba bat dut."
         },
         {
           "speaker": "Recepcionista",
           "es": "Perfecto, ¿podría ver su identificación, por favor?",
-          "en": "Perfect, could I see your ID, please?"
+          "en": "Perfect, could I see your ID, please?",
+          "eu": "Bikain, zure identifikazio-agiria ikus dezaket, mesedez?"
         },
         {
           "speaker": "Recepcionista",
           "es": "El desayuno se sirve de 6 a 9 a. m. en el comedor. Si tiene cualquier duda, pregúntenos.",
-          "en": "Breakfast is served from 6 to 9 a.m. in the dining area. If you have any questions, feel free to ask."
+          "en": "Breakfast is served from 6 to 9 a.m. in the dining area. If you have any questions, feel free to ask.",
+          "eu": "Gosaria goizeko 6etatik 9etara zerbitzatzen da jangelan. Edozein zalantza izanez gero, galdetu iezaguzu."
         },
         {
           "speaker": "Huésped",
           "es": "Gracias, hasta luego.",
-          "en": "Thank you! See you later."
+          "en": "Thank you! See you later.",
+          "eu": "Eskerrik asko, gero arte."
         }
-      ]
+      ],
+      "title_eu": "Sarrera (check-in): zerbitzuen informazioa eta ordutegiak",
+      "scenario_eu": "Check-in aldaera, gosari ordutegien berri emateko eta laguntza eskaintzeko."
     },
     {
       "id": "conv5",
@@ -212,34 +219,42 @@
         {
           "speaker": "Recepcionista",
           "es": "¿Cómo ha sido su estancia con nosotros?",
-          "en": "How was your stay with us?"
+          "en": "How was your stay with us?",
+          "eu": "Zer moduzkoa izan da gurekin egindako egonaldia?"
         },
         {
           "speaker": "Huésped",
           "es": "Excelente, gracias.",
-          "en": "It was excellent, thank you."
+          "en": "It was excellent, thank you.",
+          "eu": "Bikaina, eskerrik asko."
         },
         {
           "speaker": "Recepcionista",
           "es": "¿Podría darme su apellido y número de habitación para registrar la salida?",
-          "en": "Could I have your last name and room number for check-out, please?"
+          "en": "Could I have your last name and room number for check-out, please?",
+          "eu": "Zure abizena eta gela-zenbakia emango didazu irteera erregistratzeko?"
         },
         {
           "speaker": "Recepcionista",
           "es": "La factura final incluye los cargos de la habitación y servicios adicionales. Su total es [cantidad]. ¿Cómo desea pagar?",
-          "en": "Your final bill includes the room charges and any additional services you’ve used. Your total is [amount]. How will you be paying for this, please?"
+          "en": "Your final bill includes the room charges and any additional services you’ve used. Your total is [amount]. How will you be paying for this, please?",
+          "eu": "Azken fakturak gelako gastuak eta zerbitzu osagarriak biltzen ditu. Guztira [kopurua] da. Nola ordaindu nahi duzu?"
         },
         {
           "speaker": "Huésped",
           "es": "Pagaré con tarjeta de crédito.",
-          "en": "I'll pay with my credit card."
+          "en": "I'll pay with my credit card.",
+          "eu": "Kreditu-txartelarekin ordainduko dut."
         },
         {
           "speaker": "Recepcionista",
           "es": "Gracias y esperamos verle pronto de nuevo. ¡Que tenga un buen viaje!",
-          "en": "Thank you and hope to see you again soon. Have a safe journey!"
+          "en": "Thank you and hope to see you again soon. Have a safe journey!",
+          "eu": "Eskerrik asko eta laster arte. Bidaia ona izan!"
         }
-      ]
+      ],
+      "title_eu": "Irteera (check-out) eta egonaldiaren ordainketa",
+      "scenario_eu": "Hospedeak irteera egiten du; faktura eta ordaintzeko modua azaltzen dira."
     },
     {
       "id": "conv6",
@@ -254,24 +269,30 @@
         {
           "speaker": "Cliente",
           "es": "Disculpe, me gustaría presentar una queja. La comida está fría.",
-          "en": "Excuse me, I'd like to make a complaint, please. The food is cold."
+          "en": "Excuse me, I'd like to make a complaint, please. The food is cold.",
+          "eu": "Barkatu, kexa bat jarri nahi nuke. Janaria hotza dago."
         },
         {
           "speaker": "Camarero/a",
           "es": "Lo siento mucho por las molestias, permítame arreglar esto por usted. Puedo imaginar lo frustrante que es esta situación.",
-          "en": "I'm so sorry for the inconvenience, let me fix this for you. I can imagine how frustrating this situation must be for you."
+          "en": "I'm so sorry for the inconvenience, let me fix this for you. I can imagine how frustrating this situation must be for you.",
+          "eu": "Asko sentitzen dut eragozpenak, utzi iezadazu hau konpontzen. Imajinatu dezaket egoera hau zeinen frustrantea den zuretzat."
         },
         {
           "speaker": "Cliente",
           "es": "Además, creo que me ha cobrado de más.",
-          "en": "Also, I think you've overcharged me."
+          "en": "Also, I think you've overcharged me.",
+          "eu": "Gainera, uste dut gehiegi kobratu didazula."
         },
         {
           "speaker": "Camarero/a",
           "es": "Acepte mis disculpas. Veré qué puedo hacer. Se lo cambiaré y revisaré la cuenta ahora mismo.",
-          "en": "My apologies. I'll see what I can do. I'll change it for you and let me double-check the bill right away."
+          "en": "My apologies. I'll see what I can do. I'll change it for you and let me double-check the bill right away.",
+          "eu": "Onartu nire barkamena. Ikusiko dut zer egin dezakedan. Aldatuko dizut eta kontua berrikusiko dut oraintxe bertan."
         }
-      ]
+      ],
+      "title_eu": "Kexen kudeaketa: janari hotza eta okerreko kobrantza",
+      "scenario_eu": "Bezeroak kexa hasten du eta zerbitzariak irtenbideak eskaintzen ditu eta kontua berrikusten du."
     },
     {
       "id": "conv7",
@@ -286,29 +307,36 @@
         {
           "speaker": "Camarero/a",
           "es": "¡Buenas tardes! ¿En qué puedo ayudarle?",
-          "en": "Good afternoon! How can I assist you?"
+          "en": "Good afternoon! How can I assist you?",
+          "eu": "Arratsalde on! Zertan lagun zaitzaket?"
         },
         {
           "speaker": "Cliente",
           "es": "Buenas tardes, una mesa para dos, por favor.",
-          "en": "Good afternoon, a table for two, please."
+          "en": "Good afternoon, a table for two, please.",
+          "eu": "Arratsalde on, bi lagunentzako mahaia, mesedez."
         },
         {
           "speaker": "Camarero/a",
           "es": "¿Tiene una reserva?",
-          "en": "Do you have a reservation?"
+          "en": "Do you have a reservation?",
+          "eu": "Erreserbarik baduzu?"
         },
         {
           "speaker": "Cliente",
           "es": "No, no tenemos reserva, pero no nos importa esperar.",
-          "en": "No, we don't have a reservation, but we don't mind waiting."
+          "en": "No, we don't have a reservation, but we don't mind waiting.",
+          "eu": "Ez, ez dugu erreserbarik, baina ez zaigu axola itxoitea."
         },
         {
           "speaker": "Camarero/a",
           "es": "Permítame comprobar si hay una mesa disponible... Sí, tenemos una mesa. Por aquí, por favor.",
-          "en": "Let me check if we have a table available... Yes, we have a table available. Right this way, please."
+          "en": "Let me check if we have a table available... Yes, we have a table available. Right this way, please.",
+          "eu": "Utzi iezadazu mahai librerik dagoen egiaztatzen... Bai, badugu mahai bat. Hemendik, mesedez."
         }
-      ]
+      ],
+      "title_eu": "Jatetxera iritsi eta mahaia esleitzea",
+      "scenario_eu": "Bezeroa erreserbarik gabe iritsi da eta mahaia itxoitea onartzen du."
     },
     {
       "id": "conv8",
@@ -323,34 +351,42 @@
         {
           "speaker": "Bartender/a",
           "es": "Bienvenido/a, ¿cómo está?",
-          "en": "Welcome, how are you?"
+          "en": "Welcome, how are you?",
+          "eu": "Ongi etorri, zer moduz zaude?"
         },
         {
           "speaker": "Cliente",
           "es": "Bien, gracias. ¿Puedo ver el menú de bebidas, por favor?",
-          "en": "Fine, thanks. Can I see the drink menu, please?"
+          "en": "Fine, thanks. Can I see the drink menu, please?",
+          "eu": "Ondo, eskerrik asko. Edarien menua ikus dezaket, mesedez?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Aquí está nuestro menú. Le doy un par de minutos.",
-          "en": "Here's our menu. I'll give you a couple of minutes."
+          "en": "Here's our menu. I'll give you a couple of minutes.",
+          "eu": "Hemen duzu gure menua. Pare bat minutu emango dizkizut."
         },
         {
           "speaker": "Bartender/a",
           "es": "¿Está listo para ordenar?",
-          "en": "Are you ready to order?"
+          "en": "Are you ready to order?",
+          "eu": "Eskatzeko prest zaude?"
         },
         {
           "speaker": "Cliente",
           "es": "Sí. Me gustaría una copa de vino blanco. Sin hielo, por favor.",
-          "en": "Yes. I'd like a glass of white wine. No ice, please."
+          "en": "Yes. I'd like a glass of white wine. No ice, please.",
+          "eu": "Bai. Ardo zuri kopa bat nahiko nuke. Izotzik gabe, mesedez."
         },
         {
           "speaker": "Bartender/a",
           "es": "Excelente elección. Vuelvo enseguida con su copa.",
-          "en": "A fine choice. I'll be right back with your glass."
+          "en": "A fine choice. I'll be right back with your glass.",
+          "eu": "Aukera bikaina. Berehala itzuliko naiz zure koparekin."
         }
-      ]
+      ],
+      "title_eu": "Tabernan: edaria eta lehentasunak eskatzea",
+      "scenario_eu": "Bezeroak edarien karta eskatzen du eta izotzik gabe nahi duela zehazten du."
     },
     {
       "id": "conv9",
@@ -365,44 +401,54 @@
         {
           "speaker": "Cliente",
           "es": "Buenas tardes, ¿puedo hacer una reserva para esta noche?",
-          "en": "Good afternoon, may I make a reservation for tonight?"
+          "en": "Good afternoon, may I make a reservation for tonight?",
+          "eu": "Arratsalde on, erreserba bat egin dezaket gaur gaueko?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Por supuesto, ¿para cuántas personas sería la mesa?",
-          "en": "Of course, for how many people would the table be?"
+          "en": "Of course, for how many people would the table be?",
+          "eu": "Jakina, zenbat lagunentzako litzateke mahaia?"
         },
         {
           "speaker": "Cliente",
           "es": "Para cuatro personas, por favor.",
-          "en": "For four people, please."
+          "en": "For four people, please.",
+          "eu": "Lau lagunentzako, mesedez."
         },
         {
           "speaker": "Camarero/a",
           "es": "Perfecto, ¿a qué hora desean venir?",
-          "en": "Perfect, what time would you like to come?"
+          "en": "Perfect, what time would you like to come?",
+          "eu": "Bikain, zer ordutan etorri nahi duzue?"
         },
         {
           "speaker": "Cliente",
           "es": "A las 21:00.",
-          "en": "At 9 p.m."
+          "en": "At 9 p.m.",
+          "eu": "21:00etan."
         },
         {
           "speaker": "Camarero/a",
           "es": "Anotado. ¿Prefieren terraza o interior?",
-          "en": "Noted. Do you prefer the terrace or indoors?"
+          "en": "Noted. Do you prefer the terrace or indoors?",
+          "eu": "Idatzita dago. Terraza ala barrualdea nahiago duzue?"
         },
         {
           "speaker": "Cliente",
           "es": "Terraza, si es posible.",
-          "en": "The terrace, if possible."
+          "en": "The terrace, if possible.",
+          "eu": "Terraza, ahal bada."
         },
         {
           "speaker": "Camarero/a",
           "es": "Hecho. Les esperamos a las 21:00 en la terraza. Gracias.",
-          "en": "Done. We’ll see you at 9 p.m. on the terrace. Thank you."
+          "en": "Done. We’ll see you at 9 p.m. on the terrace. Thank you.",
+          "eu": "Egina. 21:00etan itxarongo zaituztegu terrazan. Eskerrik asko."
         }
-      ]
+      ],
+      "title_eu": "Jatetxean telefonoz erreserba egitea (ordua eta lehentasunak)",
+      "scenario_eu": "Bezero batek deitu du mahaia erreserbatzeko, ordua, pertsona kopurua eta terraza/barrualdea lehentasuna adieraziz."
     },
     {
       "id": "conv10",
@@ -417,32 +463,38 @@
         {
           "speaker": "Cliente",
           "es": "Buenas noches, tenemos una reserva a nombre de López.",
-          "en": "Good evening, we have a reservation under the name López."
+          "en": "Good evening, we have a reservation under the name López.",
+          "eu": "Gabon, López izenean erreserba bat dugu."
         },
         {
           "speaker": "Camarero/a",
           "es": "Un momento, por favor... Sí, mesa para cuatro a las 21:00. ¿Es correcto?",
-          "en": "One moment, please... Yes, a table for four at 9 p.m. Is that correct?"
+          "en": "One moment, please... Yes, a table for four at 9 p.m. Is that correct?",
+          "eu": "Une bat, mesedez... Bai, lau lagunentzako mahaia 21:00etan. Zuzena da?"
         },
         {
           "speaker": "Cliente",
           "es": "Sí, correcto.",
-          "en": "Yes, that’s correct."
+          "en": "Yes, that’s correct.",
+          "eu": "Bai, zuzena."
         },
         {
           "speaker": "Camarero/a",
           "es": "Perfecto, síganme, por favor.",
-          "en": "Perfect, please follow me."
+          "en": "Perfect, please follow me.",
+          "eu": "Bikain, jarraitu niri, mesedez."
         },
         {
           "speaker": "Cliente",
           "es": "¿Podría ser una mesa cerca de la ventana?",
-          "en": "Could we have a table near the window?"
+          "en": "Could we have a table near the window?",
+          "eu": "Leiho ondoko mahai bat izan liteke?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Claro, veo una disponible. Aquí la tienen.",
-          "en": "Of course, I see one available. Here you are."
+          "en": "Of course, I see one available. Here you are.",
+          "eu": "Jakina, bat libre ikusten dut. Hemen duzue."
         },
         {
           "speaker": "Cliente",
@@ -453,9 +505,12 @@
         {
           "speaker": "Camarero/a",
           "es": "Con gusto. Les traigo la carta de comidas y bebidas.",
-          "en": "My pleasure. I’ll bring the food and drink menus."
+          "en": "My pleasure. I’ll bring the food and drink menus.",
+          "eu": "Atseginez. Janari eta edarien karta ekarriko dizuet."
         }
-      ]
+      ],
+      "title_eu": "Jatetxera iritsi erreserbarekin",
+      "scenario_eu": "Bezeroa erreserbarekin iritsi da eta zerbitzariak datuak berretsi eta mahairaino laguntzen du."
     },
     {
       "id": "conv11",
@@ -470,44 +525,54 @@
         {
           "speaker": "Camarero/a",
           "es": "¿Les gustaría beber algo mientras revisan la carta?",
-          "en": "Would you like something to drink while you look at the menu?"
+          "en": "Would you like something to drink while you look at the menu?",
+          "eu": "Zerbait edan nahi duzue karta begiratzen duzuen bitartean?"
         },
         {
           "speaker": "Cliente",
           "es": "Sí, una botella de agua con gas y dos refrescos, por favor.",
-          "en": "Yes, a bottle of sparkling water and two soft drinks, please."
+          "en": "Yes, a bottle of sparkling water and two soft drinks, please.",
+          "eu": "Bai, gasezko ur botila bat eta bi freskagarri, mesedez."
         },
         {
           "speaker": "Camarero/a",
           "es": "¿Desean hielo y limón con los refrescos?",
-          "en": "Would you like ice and lemon with the soft drinks?"
+          "en": "Would you like ice and lemon with the soft drinks?",
+          "eu": "Izotza eta limoia nahi duzue freskagarriekin?"
         },
         {
           "speaker": "Cliente",
           "es": "Con limón sí, pero sin hielo, por favor.",
-          "en": "Lemon yes, but no ice, please."
+          "en": "Lemon yes, but no ice, please.",
+          "eu": "Limoiarekin bai, baina izotzik gabe, mesedez."
         },
         {
           "speaker": "Camarero/a",
           "es": "Perfecto. ¿Algo más por ahora?",
-          "en": "Perfect. Anything else for now?"
+          "en": "Perfect. Anything else for now?",
+          "eu": "Bikain. Beste zerbait oraingoz?"
         },
         {
           "speaker": "Cliente",
           "es": "De momento nada más, gracias.",
-          "en": "Nothing else for now, thank you."
+          "en": "Nothing else for now, thank you.",
+          "eu": "Momentuz besterik ez, eskerrik asko."
         },
         {
           "speaker": "Camarero/a",
           "es": "Enseguida se lo traigo.",
-          "en": "I’ll bring it right away."
+          "en": "I’ll bring it right away.",
+          "eu": "Berehala ekarriko dizut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias.",
-          "en": "Thank you."
+          "en": "Thank you.",
+          "eu": "Eskerrik asko."
         }
-      ]
+      ],
+      "title_eu": "Edariak eskatzea karta begiratu aurretik",
+      "scenario_eu": "Bezeroak hasierako edariak eskatzen ditu janaria erabakitzen duen bitartean."
     },
     {
       "id": "conv12",
@@ -522,44 +587,54 @@
         {
           "speaker": "Cliente",
           "es": "¿Qué vino recomienda para la paella de marisco?",
-          "en": "What wine do you recommend with the seafood paella?"
+          "en": "What wine do you recommend with the seafood paella?",
+          "eu": "Zer ardo gomendatzen duzu itsaski-paellarentzat?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Un blanco seco va muy bien, por ejemplo un albariño.",
-          "en": "A dry white pairs very well, for example an Albariño."
+          "en": "A dry white pairs very well, for example an Albariño.",
+          "eu": "Ardo zuri siku bat oso ondo doa, albariño bat adibidez."
         },
         {
           "speaker": "Cliente",
           "es": "Perfecto, una copa de albariño entonces.",
-          "en": "Perfect, a glass of Albariño then."
+          "en": "Perfect, a glass of Albariño then.",
+          "eu": "Bikain, albariño kopa bat orduan."
         },
         {
           "speaker": "Camarero/a",
           "es": "¿Prefiere copa o botella para compartir?",
-          "en": "Would you prefer a glass or a bottle to share?"
+          "en": "Would you prefer a glass or a bottle to share?",
+          "eu": "Kopa ala botila nahiago duzue partekatzeko?"
         },
         {
           "speaker": "Cliente",
           "es": "De momento una copa; si nos gusta pedimos la botella.",
-          "en": "A glass for now; if we like it we’ll order the bottle."
+          "en": "A glass for now; if we like it we’ll order the bottle.",
+          "eu": "Momentuz kopa bat; gustuko badugu botila eskatuko dugu."
         },
         {
           "speaker": "Camarero/a",
           "es": "Excelente. Se la traigo enseguida.",
-          "en": "Excellent. I’ll bring it right away."
+          "en": "Excellent. I’ll bring it right away.",
+          "eu": "Bikain. Berehala ekarriko dizut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias por la recomendación.",
-          "en": "Thanks for the recommendation."
+          "en": "Thanks for the recommendation.",
+          "eu": "Eskerrik asko gomendioagatik."
         },
         {
           "speaker": "Camarero/a",
           "es": "A usted. ¡Que la disfruten!",
-          "en": "You’re welcome. Enjoy!"
+          "en": "You’re welcome. Enjoy!",
+          "eu": "Zuri. On egin!"
         }
-      ]
+      ],
+      "title_eu": "Ardoa gomendatzea plater nagusirako",
+      "scenario_eu": "Bezeroak ardo gomendioa eskatzen du plater jakin bat laguntzeko."
     },
     {
       "id": "conv13",
@@ -574,44 +649,54 @@
         {
           "speaker": "Cliente",
           "es": "Queremos pedir para compartir: croquetas, calamares y patatas bravas.",
-          "en": "We’d like to share: croquettes, calamari and patatas bravas."
+          "en": "We’d like to share: croquettes, calamari and patatas bravas.",
+          "eu": "Partekatzeko eskatu nahi dugu: kroketak, kalamarrak eta patata brakak."
         },
         {
           "speaker": "Camarero/a",
           "es": "¿Una ración de cada, o media ración?",
-          "en": "One full portion of each, or half portions?"
+          "en": "One full portion of each, or half portions?",
+          "eu": "Razio bat bakoitzetik, ala porzio erdia?"
         },
         {
           "speaker": "Cliente",
           "es": "Una ración de cada.",
-          "en": "One full portion of each."
+          "en": "One full portion of each.",
+          "eu": "Razio bat bakoitzetik."
         },
         {
           "speaker": "Camarero/a",
           "es": "Perfecto. ¿Traigo pan?",
-          "en": "Perfect. Shall I bring some bread?"
+          "en": "Perfect. Shall I bring some bread?",
+          "eu": "Bikain. Ogia ekarriko dut?"
         },
         {
           "speaker": "Cliente",
           "es": "Sí, por favor.",
-          "en": "Yes, please."
+          "en": "Yes, please.",
+          "eu": "Bai, mesedez."
         },
         {
           "speaker": "Camarero/a",
           "es": "¿Alguna alergia que debamos tener en cuenta?",
-          "en": "Any allergies we should be aware of?"
+          "en": "Any allergies we should be aware of?",
+          "eu": "Kontuan hartu beharreko alergiarik?"
         },
         {
           "speaker": "Cliente",
           "es": "No, ninguna.",
-          "en": "No, none."
+          "en": "No, none.",
+          "eu": "Ez, batere ez."
         },
         {
           "speaker": "Camarero/a",
           "es": "Estupendo, lo pongo en marcha.",
-          "en": "Great, I’ll put that in right away."
+          "en": "Great, I’ll put that in right away.",
+          "eu": "Bikain, martxan jarriko dut."
         }
-      ]
+      ],
+      "title_eu": "Hasierakoak partekatzeko",
+      "scenario_eu": "Bezeroak partekatzeko tapak eta hasierakoak eskatzen ditu; zerbitzariak kopuruak berresten ditu."
     },
     {
       "id": "conv14",
@@ -626,44 +711,54 @@
         {
           "speaker": "Cliente",
           "es": "Perdone, ¿cuánto tardará nuestro pedido?",
-          "en": "Excuse me, how long will our order take?"
+          "en": "Excuse me, how long will our order take?",
+          "eu": "Barkatu, zenbat deituko du gure eskaerak?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Ahora mismo cocina está algo llena; calculo unos 15–20 minutos.",
-          "en": "The kitchen is a bit busy right now; I estimate about 15–20 minutes."
+          "en": "The kitchen is a bit busy right now; I estimate about 15–20 minutes.",
+          "eu": "Oraintxe bertan sukaldea nahiko beteta dago; 15-20 minutu inguru kalkulatzen dut."
         },
         {
           "speaker": "Cliente",
           "es": "De acuerdo, gracias por avisar.",
-          "en": "Alright, thanks for letting us know."
+          "en": "Alright, thanks for letting us know.",
+          "eu": "Ados, eskerrik asko abisatzeagatik."
         },
         {
           "speaker": "Camarero/a",
           "es": "Si lo desean, puedo traerles el pan y las bebidas mientras esperan.",
-          "en": "If you like, I can bring you bread and drinks while you wait."
+          "en": "If you like, I can bring you bread and drinks while you wait.",
+          "eu": "Nahi baduzue, ogia eta edariak ekar diezazueket itxoiten duzuen bitartean."
         },
         {
           "speaker": "Cliente",
           "es": "Sí, por favor.",
-          "en": "Yes, please."
+          "en": "Yes, please.",
+          "eu": "Bai, mesedez."
         },
         {
           "speaker": "Camarero/a",
           "es": "Perfecto, enseguida vuelvo.",
-          "en": "Perfect, I’ll be right back."
+          "en": "Perfect, I’ll be right back.",
+          "eu": "Bikain, berehala itzuliko naiz."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias.",
-          "en": "Thank you."
+          "en": "Thank you.",
+          "eu": "Eskerrik asko."
         },
         {
           "speaker": "Camarero/a",
           "es": "A ustedes.",
-          "en": "You’re welcome."
+          "en": "You’re welcome.",
+          "eu": "Zuei."
         }
-      ]
+      ],
+      "title_eu": "Sukaldeko itxaronaldiak azaltzea",
+      "scenario_eu": "Bezeroak itxaronaldiaz galdetzen du; zerbitzariak gutxi gorabeherako denborak ematen ditu."
     },
     {
       "id": "conv15",
@@ -678,44 +773,54 @@
         {
           "speaker": "Cliente",
           "es": "¿Puedo cambiar las patatas por ensalada?",
-          "en": "Can I change the fries for a salad?"
+          "en": "Can I change the fries for a salad?",
+          "eu": "Patatak entsaladaren truke alda ditzaket?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Sí, sin problema. ¿Desea ensalada mixta o verde?",
-          "en": "Yes, no problem. Would you like a mixed salad or a green salad?"
+          "en": "Yes, no problem. Would you like a mixed salad or a green salad?",
+          "eu": "Bai, arazorik gabe. Entsalada mistoa ala berdea nahi duzu?"
         },
         {
           "speaker": "Cliente",
           "es": "Mixta, por favor.",
-          "en": "Mixed, please."
+          "en": "Mixed, please.",
+          "eu": "Mistoa, mesedez."
         },
         {
           "speaker": "Camarero/a",
           "es": "Perfecto, lo anoto.",
-          "en": "Perfect, I’ll note that."
+          "en": "Perfect, I’ll note that.",
+          "eu": "Bikain, idatziko dut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias por la flexibilidad.",
-          "en": "Thanks for being flexible."
+          "en": "Thanks for being flexible.",
+          "eu": "Eskerrik asko malgutasunagatik."
         },
         {
           "speaker": "Camarero/a",
           "es": "Con gusto. ¿Algo más que pueda traerle?",
-          "en": "My pleasure. Anything else I can bring you?"
+          "en": "My pleasure. Anything else I can bring you?",
+          "eu": "Atseginez. Beste zerbait ekar diezazuket?"
         },
         {
           "speaker": "Cliente",
           "es": "No, está bien así.",
-          "en": "No, that’s fine."
+          "en": "No, that’s fine.",
+          "eu": "Ez, horrela ondo dago."
         },
         {
           "speaker": "Camarero/a",
           "es": "Muy bien, gracias.",
-          "en": "Very well, thank you."
+          "en": "Very well, thank you.",
+          "eu": "Oso ondo, eskerrik asko."
         }
-      ]
+      ],
+      "title_eu": "Plateraren guarnizioa aldatzea",
+      "scenario_eu": "Bezeroak guarnizioa aldatzeko eskatzen du, erabilgarri dagoen beste aukera baten truke."
     },
     {
       "id": "conv16",
@@ -730,44 +835,54 @@
         {
           "speaker": "Cliente",
           "es": "Perdone, ¿podría traerme una caja para llevar?",
-          "en": "Excuse me, could you bring me a takeaway box?"
+          "en": "Excuse me, could you bring me a takeaway box?",
+          "eu": "Barkatu, eramateko kutxa bat ekar diezadakezu?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Por supuesto, ¿quiere que lo empaque por separado?",
-          "en": "Of course, would you like me to pack it separately?"
+          "en": "Of course, would you like me to pack it separately?",
+          "eu": "Jakina, bereizita paketatzea nahi duzu?"
         },
         {
           "speaker": "Cliente",
           "es": "Sí, por favor, por separado.",
-          "en": "Yes, please, separately."
+          "en": "Yes, please, separately.",
+          "eu": "Bai, mesedez, bereizita."
         },
         {
           "speaker": "Camarero/a",
           "es": "¿Desea también cubiertos desechables?",
-          "en": "Would you also like disposable cutlery?"
+          "en": "Would you also like disposable cutlery?",
+          "eu": "Botatzeko mahai-tresnak ere nahi dituzu?"
         },
         {
           "speaker": "Cliente",
           "es": "Sí, sería perfecto.",
-          "en": "Yes, that would be perfect."
+          "en": "Yes, that would be perfect.",
+          "eu": "Bai, bikain litzateke."
         },
         {
           "speaker": "Camarero/a",
           "es": "Enseguida se lo traigo.",
-          "en": "I’ll bring it right away."
+          "en": "I’ll bring it right away.",
+          "eu": "Berehala ekarriko dizut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias.",
-          "en": "Thank you."
+          "en": "Thank you.",
+          "eu": "Eskerrik asko."
         },
         {
           "speaker": "Camarero/a",
           "es": "A usted.",
-          "en": "You’re welcome."
+          "en": "You’re welcome.",
+          "eu": "Zuri."
         }
-      ]
+      ],
+      "title_eu": "Eramateko kutxa eskatzea",
+      "scenario_eu": "Bezeroak ez du platera amaitzen eta soberan geratu dena eramateko eskatzen du."
     },
     {
       "id": "conv17",
@@ -782,44 +897,54 @@
         {
           "speaker": "Cliente",
           "es": "Disculpe, creo que este no es mi plato.",
-          "en": "Excuse me, I think this isn’t my dish."
+          "en": "Excuse me, I think this isn’t my dish.",
+          "eu": "Barkatu, uste dut hau ez dela nire platera."
         },
         {
           "speaker": "Camarero/a",
           "es": "Lo siento mucho por el error, se lo cambio ahora mismo.",
-          "en": "I’m very sorry for the mistake, I’ll change it right away."
+          "en": "I’m very sorry for the mistake, I’ll change it right away.",
+          "eu": "Asko sentitzen dut akatsa, oraintxe bertan aldatuko dizut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias, no se preocupe.",
-          "en": "Thanks, don’t worry."
+          "en": "Thanks, don’t worry.",
+          "eu": "Eskerrik asko, ez kezkatu."
         },
         {
           "speaker": "Camarero/a",
           "es": "¿Desea algo mientras espera, como pan o una bebida?",
-          "en": "Would you like anything while you wait, like bread or a drink?"
+          "en": "Would you like anything while you wait, like bread or a drink?",
+          "eu": "Zerbait nahi duzu itxoiten duzun bitartean, ogia ala edariren bat?"
         },
         {
           "speaker": "Cliente",
           "es": "Un poco de pan estaría bien.",
-          "en": "Some bread would be nice."
+          "en": "Some bread would be nice.",
+          "eu": "Ogi pixka bat ondo egongo litzateke."
         },
         {
           "speaker": "Camarero/a",
           "es": "Perfecto, vuelvo enseguida con el pan y el plato correcto.",
-          "en": "Perfect, I’ll be right back with the bread and the correct dish."
+          "en": "Perfect, I’ll be right back with the bread and the correct dish.",
+          "eu": "Bikain, berehala itzuliko naiz ogiarekin eta plater zuzenarekin."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias por la rapidez.",
-          "en": "Thanks for the quick response."
+          "en": "Thanks for the quick response.",
+          "eu": "Eskerrik asko azkartasunagatik."
         },
         {
           "speaker": "Camarero/a",
           "es": "Gracias a usted por la paciencia.",
-          "en": "Thank you for your patience."
+          "en": "Thank you for your patience.",
+          "eu": "Eskerrik asko zuri pazientziagatik."
         }
-      ]
+      ],
+      "title_eu": "Eskaeran akatsa eta irtenbidea",
+      "scenario_eu": "Okerreko plater bat iristen da; zerbitzariak barkamena eskatzen du eta zuzendu egiten du."
     },
     {
       "id": "conv18",
@@ -834,44 +959,54 @@
         {
           "speaker": "Cliente",
           "es": "¿Podría traer un cuchillo y un plato extra, por favor?",
-          "en": "Could you bring an extra knife and a plate, please?"
+          "en": "Could you bring an extra knife and a plate, please?",
+          "eu": "Labana bat eta plater gehigarri bat ekar ditzakezu, mesedez?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Claro, ¿necesita también servilletas adicionales?",
-          "en": "Of course, do you also need extra napkins?"
+          "en": "Of course, do you also need extra napkins?",
+          "eu": "Jakina, ezpainzapi gehiago ere behar dituzu?"
         },
         {
           "speaker": "Cliente",
           "es": "Sí, por favor.",
-          "en": "Yes, please."
+          "en": "Yes, please.",
+          "eu": "Bai, mesedez."
         },
         {
           "speaker": "Camarero/a",
           "es": "Ahora se lo traigo todo.",
-          "en": "I’ll bring everything right away."
+          "en": "I’ll bring everything right away.",
+          "eu": "Orain ekarriko dizut dena."
         },
         {
           "speaker": "Cliente",
           "es": "Perfecto, gracias.",
-          "en": "Perfect, thank you."
+          "en": "Perfect, thank you.",
+          "eu": "Bikain, eskerrik asko."
         },
         {
           "speaker": "Camarero/a",
           "es": "Con gusto. ¿Algo más que pueda acercarles?",
-          "en": "My pleasure. Anything else I can bring you?"
+          "en": "My pleasure. Anything else I can bring you?",
+          "eu": "Atseginez. Beste zerbait hurbil diezazueket?"
         },
         {
           "speaker": "Cliente",
           "es": "Eso es todo por ahora.",
-          "en": "That’s all for now."
+          "en": "That’s all for now.",
+          "eu": "Hori da dena orain denez."
         },
         {
           "speaker": "Camarero/a",
           "es": "Muy bien, disfruten.",
-          "en": "Very well, enjoy."
+          "en": "Very well, enjoy.",
+          "eu": "Oso ondo, gozatu."
         }
-      ]
+      ],
+      "title_eu": "Mahai-tresna eta plater gehigarriak eskatzea",
+      "scenario_eu": "Bezeroak mahai-tresna edo plater gehigarriak eskatzen ditu partekatzeko."
     },
     {
       "id": "conv19",
@@ -886,44 +1021,54 @@
         {
           "speaker": "Cliente",
           "es": "¿Nos puede traer la carta de postres?",
-          "en": "Could you bring us the dessert menu?"
+          "en": "Could you bring us the dessert menu?",
+          "eu": "Postreen karta ekar diezagukezu?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Por supuesto. Los más populares son la tarta de queso y el coulant de chocolate.",
-          "en": "Of course. Our most popular ones are the cheesecake and the chocolate lava cake."
+          "en": "Of course. Our most popular ones are the cheesecake and the chocolate lava cake.",
+          "eu": "Jakina. Ezagunenak gazta-tarta eta txokolatezko coulanta dira."
         },
         {
           "speaker": "Cliente",
           "es": "Suena bien. ¿El coulant lleva frutos secos?",
-          "en": "Sounds good. Does the lava cake contain nuts?"
+          "en": "Sounds good. Does the lava cake contain nuts?",
+          "eu": "Ondo dirudi. Coulantak fruitu lehorrik darama?"
         },
         {
           "speaker": "Camarero/a",
           "es": "No, pero puedo confirmarlo con cocina si lo desea.",
-          "en": "No, but I can confirm with the kitchen if you like."
+          "en": "No, but I can confirm with the kitchen if you like.",
+          "eu": "Ez, baina sukaldean baiezta dezaket nahi baduzu."
         },
         {
           "speaker": "Cliente",
           "es": "Sí, por favor, gracias.",
-          "en": "Yes, please, thank you."
+          "en": "Yes, please, thank you.",
+          "eu": "Bai, mesedez, eskerrik asko."
         },
         {
           "speaker": "Camarero/a",
           "es": "Confirmado: no contiene frutos secos.",
-          "en": "Confirmed: it doesn’t contain nuts."
+          "en": "Confirmed: it doesn’t contain nuts.",
+          "eu": "Baieztatuta: ez du fruitu lehorrik."
         },
         {
           "speaker": "Cliente",
           "es": "Entonces tomaremos dos, para compartir.",
-          "en": "Then we’ll have two to share."
+          "en": "Then we’ll have two to share.",
+          "eu": "Orduan bi hartuko ditugu, partekatzeko."
         },
         {
           "speaker": "Camarero/a",
           "es": "Perfecto, enseguida los traigo.",
-          "en": "Perfect, I’ll bring them right away."
+          "en": "Perfect, I’ll bring them right away.",
+          "eu": "Bikain, berehala ekarriko ditut."
         }
-      ]
+      ],
+      "title_eu": "Postreen karta eskatzea eta erabakitzea",
+      "scenario_eu": "Bezeroak postreen karta eskatzen du; zerbitzariak aukera ezagunenak deskribatzen ditu."
     },
     {
       "id": "conv20",
@@ -938,44 +1083,54 @@
         {
           "speaker": "Cliente",
           "es": "¿Podemos dividir la cuenta según lo que pidió cada uno?",
-          "en": "Can we split the bill according to what each person ordered?"
+          "en": "Can we split the bill according to what each person ordered?",
+          "eu": "Kontua bakoitzak eskatutakoaren arabera banatu dezakegu?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Sí, por supuesto. ¿Pagarán con efectivo o tarjeta?",
-          "en": "Yes, of course. Will you pay with cash or card?"
+          "en": "Yes, of course. Will you pay with cash or card?",
+          "eu": "Bai, jakina. Eskudirutan ala txartelarekin ordainduko duzue?"
         },
         {
           "speaker": "Cliente",
           "es": "Tarjeta, por favor.",
-          "en": "By card, please."
+          "en": "By card, please.",
+          "eu": "Txartelarekin, mesedez."
         },
         {
           "speaker": "Camarero/a",
           "es": "Perfecto, preparo las cuentas separadas.",
-          "en": "Perfect, I’ll prepare the separate bills."
+          "en": "Perfect, I’ll prepare the separate bills.",
+          "eu": "Bikain, kontu banatuak prestatuko ditut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias, así es más cómodo.",
-          "en": "Thanks, that’s more convenient."
+          "en": "Thanks, that’s more convenient.",
+          "eu": "Eskerrik asko, horrela erosoagoa da."
         },
         {
           "speaker": "Camarero/a",
           "es": "Aquí tienen. ¿Desean añadir propina?",
-          "en": "Here you are. Would you like to add a tip?"
+          "en": "Here you are. Would you like to add a tip?",
+          "eu": "Hemen duzue. Propina gehitu nahi duzue?"
         },
         {
           "speaker": "Cliente",
           "es": "Sí, añadiremos un 10%.",
-          "en": "Yes, we’ll add 10%."
+          "en": "Yes, we’ll add 10%.",
+          "eu": "Bai, %10 gehituko dugu."
         },
         {
           "speaker": "Camarero/a",
           "es": "Muchas gracias. Paso con el datáfono.",
-          "en": "Thank you very much. I’ll bring the card reader."
+          "en": "Thank you very much. I’ll bring the card reader.",
+          "eu": "Eskerrik asko. Datafonoarekin pasatuko naiz."
         }
-      ]
+      ],
+      "title_eu": "Kontua kontsumoaren arabera banatzea",
+      "scenario_eu": "Taldeak bakoitzak eskatutakoaren arabera bereizita ordaintzea eskatzen du."
     },
     {
       "id": "conv21",
@@ -990,44 +1145,54 @@
         {
           "speaker": "Cliente",
           "es": "Me apetece algo fresco y cítrico, ¿alguna recomendación?",
-          "en": "I’m in the mood for something fresh and citrusy, any recommendation?"
+          "en": "I’m in the mood for something fresh and citrusy, any recommendation?",
+          "eu": "Zerbait fresko eta zitrikoa nahi dut, gomendiorik?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Le recomiendo un mojito o una caipiriña; ambos son cítricos y refrescantes.",
-          "en": "I recommend a mojito or a caipirinha; both are citrusy and refreshing."
+          "en": "I recommend a mojito or a caipirinha; both are citrusy and refreshing.",
+          "eu": "Mojito bat edo caipiriña bat gomendatzen dizut; biak dira zitrikoak eta freskagarriak."
         },
         {
           "speaker": "Cliente",
           "es": "Mojito suena bien. ¿Lo puede hacer menos dulce?",
-          "en": "Mojito sounds good. Can you make it less sweet?"
+          "en": "Mojito sounds good. Can you make it less sweet?",
+          "eu": "Mojitoa ondo iruditzen zait. Gozo gutxiagorekin egin dezakezu?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Claro, ajusto el azúcar. ¿Con o sin hielo picado?",
-          "en": "Of course, I’ll adjust the sugar. With or without crushed ice?"
+          "en": "Of course, I’ll adjust the sugar. With or without crushed ice?",
+          "eu": "Jakina, azukrea doituko dut. Izotz xehatuarekin ala gabe?"
         },
         {
           "speaker": "Cliente",
           "es": "Con hielo picado, por favor.",
-          "en": "With crushed ice, please."
+          "en": "With crushed ice, please.",
+          "eu": "Izotz xehatuarekin, mesedez."
         },
         {
           "speaker": "Bartender/a",
           "es": "Perfecto, en un momento lo tiene.",
-          "en": "Perfect, you’ll have it in a moment."
+          "en": "Perfect, you’ll have it in a moment.",
+          "eu": "Bikain, une batean izango duzu."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias.",
-          "en": "Thank you."
+          "en": "Thank you.",
+          "eu": "Eskerrik asko."
         },
         {
           "speaker": "Bartender/a",
           "es": "A usted, ¡salud!",
-          "en": "You’re welcome, cheers!"
+          "en": "You’re welcome, cheers!",
+          "eu": "Zuri, osasuna!"
         }
-      ]
+      ],
+      "title_eu": "Etxeko koktelen gomendioa",
+      "scenario_eu": "Bezeroak edari berezi bat eskatzen du eta bartenderrak koktelak gomendatzen ditu."
     },
     {
       "id": "conv22",
@@ -1042,12 +1207,14 @@
         {
           "speaker": "Cliente",
           "es": "¿Sería posible cambiarnos a una mesa más tranquila?",
-          "en": "Would it be possible to move to a quieter table?"
+          "en": "Would it be possible to move to a quieter table?",
+          "eu": "Mahai lasaiago batera aldatzea posible litzateke?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Voy a comprobar disponibilidad. Un momento, por favor.",
-          "en": "I’ll check availability. One moment, please."
+          "en": "I’ll check availability. One moment, please.",
+          "eu": "Erabilgarritasuna egiaztatuko dut. Une bat, mesedez."
         },
         {
           "speaker": "Cliente",
@@ -1058,29 +1225,36 @@
         {
           "speaker": "Camarero/a",
           "es": "Hay una mesa libre junto a la ventana. ¿Les parece bien?",
-          "en": "There’s a free table by the window. Does that work for you?"
+          "en": "There’s a free table by the window. Does that work for you?",
+          "eu": "Leiho ondoan mahai bat libre dago. Ondo iruditzen zaizue?"
         },
         {
           "speaker": "Cliente",
           "es": "Perfecto, muchas gracias.",
-          "en": "Perfect, thank you."
+          "en": "Perfect, thank you.",
+          "eu": "Bikain, eskerrik asko."
         },
         {
           "speaker": "Camarero/a",
           "es": "Les acompaño ahora mismo.",
-          "en": "I’ll take you there right away."
+          "en": "I’ll take you there right away.",
+          "eu": "Oraintxe lagunduko dizuet."
         },
         {
           "speaker": "Cliente",
           "es": "Se lo agradecemos.",
-          "en": "We appreciate it."
+          "en": "We appreciate it.",
+          "eu": "Eskertzen dizugu."
         },
         {
           "speaker": "Camarero/a",
           "es": "A ustedes. Espero que estén más cómodos.",
-          "en": "You’re welcome. I hope you’ll be more comfortable."
+          "en": "You’re welcome. I hope you’ll be more comfortable.",
+          "eu": "Zuei. Erosoago egotea espero dut."
         }
-      ]
+      ],
+      "title_eu": "Mahai-aldaketa eskatzea",
+      "scenario_eu": "Bezeroak mahai lasaiago batera aldatzeko eskatzen du; zerbitzariak aldaketa kudeatzen du."
     },
     {
       "id": "conv23",
@@ -1095,44 +1269,54 @@
         {
           "speaker": "Camarero/a",
           "es": "Antes de pasar su pedido, ¿tienen alguna alergia o restricción dietética?",
-          "en": "Before I send your order, do you have any food allergies or dietary restrictions?"
+          "en": "Before I send your order, do you have any food allergies or dietary restrictions?",
+          "eu": "Zuen eskaera pasatu aurretik, alergiarik edo dieta-murrizketarik baduzue?"
         },
         {
           "speaker": "Cliente",
           "es": "Sí, uno de nosotros es alérgico a los frutos secos.",
-          "en": "Yes, one of us is allergic to nuts."
+          "en": "Yes, one of us is allergic to nuts.",
+          "eu": "Bai, gutako bat fruitu lehorrei alergikoa da."
         },
         {
           "speaker": "Camarero/a",
           "es": "Gracias por avisar. Me aseguraré de que sus platos sean libres de frutos secos.",
-          "en": "Thanks for letting me know. I’ll make sure your dishes are nut‑free."
+          "en": "Thanks for letting me know. I’ll make sure your dishes are nut‑free.",
+          "eu": "Eskerrik asko abisatzeagatik. Ziurtatuko dut zuen platerak fruitu lehorrik gabeak direla."
         },
         {
           "speaker": "Cliente",
           "es": "¿El curry de verduras lleva frutos secos?",
-          "en": "Does the vegetable curry contain nuts?"
+          "en": "Does the vegetable curry contain nuts?",
+          "eu": "Barazki-curryak fruitu lehorrik darama?"
         },
         {
           "speaker": "Camarero/a",
           "es": "No suele llevar, pero lo confirmo con cocina ahora mismo.",
-          "en": "It usually doesn’t, but I’ll confirm with the kitchen right away."
+          "en": "It usually doesn’t, but I’ll confirm with the kitchen right away.",
+          "eu": "Ez du ohi, baina sukaldean baieztatuko dut oraintxe bertan."
         },
         {
           "speaker": "Cliente",
           "es": "Perfecto, gracias.",
-          "en": "Perfect, thank you."
+          "en": "Perfect, thank you.",
+          "eu": "Bikain, eskerrik asko."
         },
         {
           "speaker": "Camarero/a",
           "es": "Confirmado: es apto. Lo anoto en la comanda.",
-          "en": "Confirmed: it’s suitable. I’ll note it on the ticket."
+          "en": "Confirmed: it’s suitable. I’ll note it on the ticket.",
+          "eu": "Baieztatuta: egokia da. Komandan idatziko dut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias por la atención.",
-          "en": "Thanks for the attention."
+          "en": "Thanks for the attention.",
+          "eu": "Eskerrik asko arretagatik."
         }
-      ]
+      ],
+      "title_eu": "Eskaera jasotzean alergiak baieztatzea",
+      "scenario_eu": "Zerbitzariak alergiak eta dieta-murrizketak egiaztatzen ditu eskaera sukaldera pasatu aurretik."
     },
     {
       "id": "conv24",
@@ -1147,44 +1331,54 @@
         {
           "speaker": "Cliente",
           "es": "Buenas tardes, ¿tienen happy hour?",
-          "en": "Good afternoon, do you have a happy hour?"
+          "en": "Good afternoon, do you have a happy hour?",
+          "eu": "Arratsalde on, happy hour-rik baduzue?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Sí, de 18:00 a 20:00. Incluye cervezas, vino por copa y cócteles clásicos.",
-          "en": "Yes, from 6 p.m. to 8 p.m. It includes beers, wine by the glass, and classic cocktails."
+          "en": "Yes, from 6 p.m. to 8 p.m. It includes beers, wine by the glass, and classic cocktails.",
+          "eu": "Bai, 18:00etatik 20:00etara. Garagardoak, ardoa kopaka eta koktel klasikoak barne hartzen ditu."
         },
         {
           "speaker": "Cliente",
           "es": "¿Los cócteles de autor también entran?",
-          "en": "Are signature cocktails included as well?"
+          "en": "Are signature cocktails included as well?",
+          "eu": "Egile-koktelak ere sartzen dira?"
         },
         {
           "speaker": "Bartender/a",
           "es": "No, solo mojito, daiquiri, caipiriña y gin-tonic.",
-          "en": "No, only mojito, daiquiri, caipirinha, and gin and tonic."
+          "en": "No, only mojito, daiquiri, caipirinha, and gin and tonic.",
+          "eu": "Ez, bakarrik mojitoa, daiquiria, caipiriña eta gin-tonica."
         },
         {
           "speaker": "Cliente",
           "es": "Perfecto, entonces un mojito por favor.",
-          "en": "Perfect, then a mojito please."
+          "en": "Perfect, then a mojito please.",
+          "eu": "Bikain, orduan mojito bat mesedez."
         },
         {
           "speaker": "Bartender/a",
           "es": "¿Desea que lo haga menos dulce o con menos alcohol?",
-          "en": "Would you like it less sweet or with less alcohol?"
+          "en": "Would you like it less sweet or with less alcohol?",
+          "eu": "Gozo gutxiagorekin ala alkohol gutxiagorekin egitea nahi duzu?"
         },
         {
           "speaker": "Cliente",
           "es": "Menos dulce, por favor.",
-          "en": "Less sweet, please."
+          "en": "Less sweet, please.",
+          "eu": "Gozo gutxiagorekin, mesedez."
         },
         {
           "speaker": "Bartender/a",
           "es": "Hecho. Sale enseguida.",
-          "en": "Done. Coming right up."
+          "en": "Done. Coming right up.",
+          "eu": "Egina. Berehala aterako da."
         }
-      ]
+      ],
+      "title_eu": "Happy hour: zer barne hartzen duen eta ordutegiak",
+      "scenario_eu": "Bezeroak happy hour-ari buruz galdetzen du eta zer edari sartzen diren promozioan."
     },
     {
       "id": "conv25",
@@ -1199,44 +1393,54 @@
         {
           "speaker": "Cliente",
           "es": "Busco algo sin alcohol, fresco y cítrico. ¿Qué me recomienda?",
-          "en": "I’m looking for something alcohol‑free, fresh and citrusy. What do you recommend?"
+          "en": "I’m looking for something alcohol‑free, fresh and citrusy. What do you recommend?",
+          "eu": "Alkoholik gabeko zerbait bilatzen dut, freskoa eta zitrikoa. Zer gomendatzen didazu?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Un mojito sin alcohol o un 'Virgin Mule' con lima y jengibre.",
-          "en": "A virgin mojito or a 'Virgin Mule' with lime and ginger."
+          "en": "A virgin mojito or a 'Virgin Mule' with lime and ginger.",
+          "eu": "Alkoholik gabeko mojito bat edo 'Virgin Mule' bat lima eta jengibrearekin."
         },
         {
           "speaker": "Cliente",
           "es": "El Virgin Mule suena bien. ¿Lleva azúcar?",
-          "en": "The Virgin Mule sounds good. Does it have sugar?"
+          "en": "The Virgin Mule sounds good. Does it have sugar?",
+          "eu": "Virgin Mule-ak ondo dirudi. Azukrerik darama?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Muy poca, puedo reducirla o usar edulcorante.",
-          "en": "Very little, I can reduce it or use a sweetener."
+          "en": "Very little, I can reduce it or use a sweetener.",
+          "eu": "Oso gutxi, murriztu dezaket edo edulkoratzailea erabili."
         },
         {
           "speaker": "Cliente",
           "es": "Redúzcala, por favor.",
-          "en": "Please reduce it."
+          "en": "Please reduce it.",
+          "eu": "Murriztu ezazu, mesedez."
         },
         {
           "speaker": "Bartender/a",
           "es": "¿Con hielo picado o cubitos?",
-          "en": "Crushed ice or ice cubes?"
+          "en": "Crushed ice or ice cubes?",
+          "eu": "Izotz xehatuarekin ala koxkorrekin?"
         },
         {
           "speaker": "Cliente",
           "es": "Hielo picado.",
-          "en": "Crushed ice."
+          "en": "Crushed ice.",
+          "eu": "Izotz xehatua."
         },
         {
           "speaker": "Bartender/a",
           "es": "Perfecto, en un momento lo tiene.",
-          "en": "Perfect, you’ll have it in a moment."
+          "en": "Perfect, you’ll have it in a moment.",
+          "eu": "Bikain, une batean izango duzu."
         }
-      ]
+      ],
+      "title_eu": "Mocktail bat eskatzea (alkoholik gabeko koktela)",
+      "scenario_eu": "Bezeroak alkoholik gabeko alternatiba bat nahi du, kutsu zitrikoarekin."
     },
     {
       "id": "conv26",
@@ -1251,44 +1455,54 @@
         {
           "speaker": "Cliente",
           "es": "Soy alérgico a la clara de huevo. ¿Algún sour sin clara?",
-          "en": "I’m allergic to egg white. Do you have any sour without egg white?"
+          "en": "I’m allergic to egg white. Do you have any sour without egg white?",
+          "eu": "Arrautza-zuriari alergia diot. Sour-ik baduzue zuririk gabe?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Sí, puedo hacerlo sin clara y agitarlo fuerte para dar cuerpo.",
-          "en": "Yes, I can make it without egg white and shake it hard for body."
+          "en": "Yes, I can make it without egg white and shake it hard for body.",
+          "eu": "Bai, zuririk gabe egin dezaket eta gogor astindu gorputza emateko."
         },
         {
           "speaker": "Cliente",
           "es": "También evito frutos secos, ¿usa sirope de almendra?",
-          "en": "I also avoid nuts, do you use almond syrup?"
+          "en": "I also avoid nuts, do you use almond syrup?",
+          "eu": "Fruitu lehorrak ere saihesten ditut, almendra-jarabea erabiltzen duzue?"
         },
         {
           "speaker": "Bartender/a",
           "es": "No, usaré sirope simple. ¿Prefiere whisky o pisco?",
-          "en": "No, I’ll use simple syrup. Do you prefer whisky or pisco?"
+          "en": "No, I’ll use simple syrup. Do you prefer whisky or pisco?",
+          "eu": "Ez, jarabe soila erabiliko dut. Whiskya ala piscoa nahiago duzu?"
         },
         {
           "speaker": "Cliente",
           "es": "Pisco, por favor.",
-          "en": "Pisco, please."
+          "en": "Pisco, please.",
+          "eu": "Piscoa, mesedez."
         },
         {
           "speaker": "Bartender/a",
           "es": "¿Quiere más ácido o más dulce?",
-          "en": "Would you like it more sour or sweeter?"
+          "en": "Would you like it more sour or sweeter?",
+          "eu": "Azidoagoa ala gozoagoa nahi duzu?"
         },
         {
           "speaker": "Cliente",
           "es": "Más ácido.",
-          "en": "More sour."
+          "en": "More sour.",
+          "eu": "Azidoagoa."
         },
         {
           "speaker": "Bartender/a",
           "es": "Perfecto, lo preparo ahora mismo, sin clara y sin frutos secos.",
-          "en": "Perfect, I’ll prepare it right away, no egg white and no nuts."
+          "en": "Perfect, I’ll prepare it right away, no egg white and no nuts.",
+          "eu": "Bikain, oraintxe bertan prestatuko dut, zuririk gabe eta fruitu lehorrik gabe."
         }
-      ]
+      ],
+      "title_eu": "Alergiak koktelerian (arrautza-zuria, fruitu lehorrak)",
+      "scenario_eu": "Bezeroak alergiak adierazten ditu eta bartenderrak errezeta egokitzen du."
     },
     {
       "id": "conv27",
@@ -1303,44 +1517,54 @@
         {
           "speaker": "Cliente",
           "es": "¿Tienen cervezas artesanas locales?",
-          "en": "Do you have any local craft beers?"
+          "en": "Do you have any local craft beers?",
+          "eu": "Tokiko artisau-garagardorik baduzue?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Sí, tenemos una IPA y una pilsner de la ciudad.",
-          "en": "Yes, we have a local IPA and a pilsner."
+          "en": "Yes, we have a local IPA and a pilsner.",
+          "eu": "Bai, hiriko IPA bat eta pilsner bat ditugu."
         },
         {
           "speaker": "Cliente",
           "es": "¿Puedo probar primero un poco de la IPA?",
-          "en": "May I taste the IPA first?"
+          "en": "May I taste the IPA first?",
+          "eu": "IPA-tik pixka bat probatu dezaket lehenago?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Claro, le traigo una muestra.",
-          "en": "Of course, I’ll bring you a sample."
+          "en": "Of course, I’ll bring you a sample.",
+          "eu": "Jakina, lagin bat ekarriko dizut."
         },
         {
           "speaker": "Cliente",
           "es": "Me gusta, póngame media pinta.",
-          "en": "I like it, I’ll have a half pint."
+          "en": "I like it, I’ll have a half pint.",
+          "eu": "Gustuko dut, jarri puntu erdi bat."
         },
         {
           "speaker": "Bartender/a",
           "es": "¿Quiere también algo para picar?",
-          "en": "Would you like something to nibble on as well?"
+          "en": "Would you like something to nibble on as well?",
+          "eu": "Pikatzeko zerbait ere nahi duzu?"
         },
         {
           "speaker": "Cliente",
           "es": "Unas aceitunas estaría bien.",
-          "en": "Some olives would be nice."
+          "en": "Some olives would be nice.",
+          "eu": "Oliba batzuk ondo egongo lirateke."
         },
         {
           "speaker": "Bartender/a",
           "es": "Enseguida lo traigo.",
-          "en": "I’ll bring that right away."
+          "en": "I’ll bring that right away.",
+          "eu": "Berehala ekarriko dut."
         }
-      ]
+      ],
+      "title_eu": "Tokiko artisau-garagardoei buruz galdetzea",
+      "scenario_eu": "Bezeroak tokiko garagardoak probatu nahi ditu eta gomendio bat eskatzen du."
     },
     {
       "id": "conv28",
@@ -1355,44 +1579,54 @@
         {
           "speaker": "Cliente",
           "es": "¿Ofrecen vinos por copa para degustar?",
-          "en": "Do you offer wine by the glass for tasting?"
+          "en": "Do you offer wine by the glass for tasting?",
+          "eu": "Ardorik kopaka eskaintzen duzue dastatzeko?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Sí, tenemos blanco, tinto y rosado. Podemos servir medias copas.",
-          "en": "Yes, we have white, red, and rosé. We can serve half glasses."
+          "en": "Yes, we have white, red, and rosé. We can serve half glasses.",
+          "eu": "Bai, zuria, beltza eta gorria ditugu. Kopa erdiak zerbitzatu ditzakegu."
         },
         {
           "speaker": "Cliente",
           "es": "Empiezo con un blanco seco y luego un tinto joven.",
-          "en": "I’ll start with a dry white and then a young red."
+          "en": "I’ll start with a dry white and then a young red.",
+          "eu": "Zuri siku batekin hasiko naiz eta gero beltz gazte batekin."
         },
         {
           "speaker": "Bartender/a",
           "es": "Perfecto, le sirvo primero el blanco.",
-          "en": "Perfect, I’ll serve the white first."
+          "en": "Perfect, I’ll serve the white first.",
+          "eu": "Bikain, zuria zerbitzatuko dizut lehenengo."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias, ¿tienen carta de quesos para acompañar?",
-          "en": "Thanks, do you have a cheese board to pair with it?"
+          "en": "Thanks, do you have a cheese board to pair with it?",
+          "eu": "Eskerrik asko, gazta-kartarik baduzue laguntzeko?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Sí, con tres tipos: curado, azul y de cabra.",
-          "en": "Yes, with three types: aged, blue, and goat."
+          "en": "Yes, with three types: aged, blue, and goat.",
+          "eu": "Bai, hiru motatakoa: ondua, urdina eta ahuntzarena."
         },
         {
           "speaker": "Cliente",
           "es": "Entonces añada la tabla de quesos, por favor.",
-          "en": "Then add the cheese board, please."
+          "en": "Then add the cheese board, please.",
+          "eu": "Orduan gehitu gazta-taula, mesedez."
         },
         {
           "speaker": "Bartender/a",
           "es": "Hecho, ahora mismo se la traigo.",
-          "en": "Done, I’ll bring it now."
+          "en": "Done, I’ll bring it now.",
+          "eu": "Egina, oraintxe bertan ekarriko dizut."
         }
-      ]
+      ],
+      "title_eu": "Ardo-dastaketa kopaka",
+      "scenario_eu": "Bezeroak ardo ezberdinak probatu nahi ditu kopaka erabaki aurretik."
     },
     {
       "id": "conv29",
@@ -1407,44 +1641,54 @@
         {
           "speaker": "Bartender/a",
           "es": "Aviso de última ronda: cerramos en 20 minutos.",
-          "en": "Last call: we’re closing in 20 minutes."
+          "en": "Last call: we’re closing in 20 minutes.",
+          "eu": "Azken bultzada/erronda oharra: 20 minututan itxiko dugu."
         },
         {
           "speaker": "Cliente",
           "es": "Entonces pondremos dos gin-tonics, por favor.",
-          "en": "Then we’ll have two gin and tonics, please."
+          "en": "Then we’ll have two gin and tonics, please.",
+          "eu": "Orduan bi gin-tonic jarriko ditugu, mesedez."
         },
         {
           "speaker": "Bartender/a",
           "es": "Claro, ¿con qué ginebra los prefieren?",
-          "en": "Sure, which gin would you like?"
+          "en": "Sure, which gin would you like?",
+          "eu": "Jakina, zein ginebrarekin nahiago dituzue?"
         },
         {
           "speaker": "Cliente",
           "es": "Con la de la casa está bien.",
-          "en": "House gin is fine."
+          "en": "House gin is fine.",
+          "eu": "Etxekoarekin ondo dago."
         },
         {
           "speaker": "Bartender/a",
           "es": "¿Con o sin limón?",
-          "en": "With or without lemon?"
+          "en": "With or without lemon?",
+          "eu": "Limoiarekin ala gabe?"
         },
         {
           "speaker": "Cliente",
           "es": "Con limón, gracias.",
-          "en": "With lemon, thanks."
+          "en": "With lemon, thanks.",
+          "eu": "Limoiarekin, eskerrik asko."
         },
         {
           "speaker": "Bartender/a",
           "es": "Perfecto, salen enseguida.",
-          "en": "Perfect, coming right up."
+          "en": "Perfect, coming right up.",
+          "eu": "Bikain, berehala aterako dira."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias por avisar.",
-          "en": "Thanks for the heads-up."
+          "en": "Thanks for the heads-up.",
+          "eu": "Eskerrik asko abisatzeagatik."
         }
-      ]
+      ],
+      "title_eu": "Azken erronda itxi aurretik",
+      "scenario_eu": "Bartenderrak azken erronda iragartzen du eta azken eskaerak kudeatzen ditu."
     },
     {
       "id": "conv30",
@@ -1459,22 +1703,26 @@
         {
           "speaker": "Cliente",
           "es": "Creo que olvidé mi cartera en la barra anoche, ¿la han visto?",
-          "en": "I think I left my wallet at the bar last night, have you seen it?"
+          "en": "I think I left my wallet at the bar last night, have you seen it?",
+          "eu": "Uste dut nire zorroa barran ahaztu nuela bart, ikusi al duzue?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Déjeme revisar en objetos perdidos. ¿De qué color es?",
-          "en": "Let me check the lost and found. What color is it?"
+          "en": "Let me check the lost and found. What color is it?",
+          "eu": "Utzi iezadazu galdutako objektuetan begiratzen. Zer koloretakoa da?"
         },
         {
           "speaker": "Cliente",
           "es": "Negra, con una banda gris.",
-          "en": "Black with a grey stripe."
+          "en": "Black with a grey stripe.",
+          "eu": "Beltza, banda gris batekin."
         },
         {
           "speaker": "Bartender/a",
           "es": "Sí, aquí hay una que coincide. ¿Puede mostrar una identificación?",
-          "en": "Yes, there’s one that matches. Could you show an ID?"
+          "en": "Yes, there’s one that matches. Could you show an ID?",
+          "eu": "Bai, hemen bat dago bat datorrena. Identifikazio-agiririk erakuts dezakezu?"
         },
         {
           "speaker": "Cliente",
@@ -1485,19 +1733,24 @@
         {
           "speaker": "Bartender/a",
           "es": "Perfecto, se la devolvemos. ¿Quiere dejar un contacto por si encontramos otra cosa?",
-          "en": "Great, we’ll return it. Would you like to leave a contact number in case we find anything else?"
+          "en": "Great, we’ll return it. Would you like to leave a contact number in case we find anything else?",
+          "eu": "Bikain, itzuliko dizugu. Kontaktu bat utzi nahi duzu beste zerbait aurkitzen badugu ere?"
         },
         {
           "speaker": "Cliente",
           "es": "Sí, le dejo mi teléfono.",
-          "en": "Yes, I’ll leave my phone number."
+          "en": "Yes, I’ll leave my phone number.",
+          "eu": "Bai, nire telefonoa utziko dizut."
         },
         {
           "speaker": "Bartender/a",
           "es": "Anotado. Nos alegra que apareciera.",
-          "en": "Noted. We’re glad it turned up."
+          "en": "Noted. We’re glad it turned up.",
+          "eu": "Idatzita. Pozten gara agertu delako."
         }
-      ]
+      ],
+      "title_eu": "Objektuak galtzea barran",
+      "scenario_eu": "Bezeroak objektu bat galdu duela deitu du eta bartenderrak galdutako objektuak egiaztatzen ditu."
     },
     {
       "id": "conv31",
@@ -1512,44 +1765,54 @@
         {
           "speaker": "Cliente",
           "es": "Prefiero pagar cada ronda al momento, ¿es posible?",
-          "en": "I prefer to pay for each round right away, is that possible?"
+          "en": "I prefer to pay for each round right away, is that possible?",
+          "eu": "Nahiago dut erronda bakoitza unean bertan ordaintzea, posible da?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Sí, sin problema. Esta ronda son 12 euros.",
-          "en": "Yes, no problem. This round is 12 euros."
+          "en": "Yes, no problem. This round is 12 euros.",
+          "eu": "Bai, arazorik gabe. Erronka honek 12 euro balio du."
         },
         {
           "speaker": "Cliente",
           "es": "Pago con tarjeta, por favor.",
-          "en": "I’ll pay by card, please."
+          "en": "I’ll pay by card, please.",
+          "eu": "Txartelarekin ordainduko dut, mesedez."
         },
         {
           "speaker": "Bartender/a",
           "es": "Cuando quiera, acerque la tarjeta.",
-          "en": "Whenever you’re ready, tap your card."
+          "en": "Whenever you’re ready, tap your card.",
+          "eu": "Nahi duzunean, hurbildu txartela."
         },
         {
           "speaker": "Cliente",
           "es": "Listo. ¿Puede darme el recibo?",
-          "en": "Done. Could I get the receipt?"
+          "en": "Done. Could I get the receipt?",
+          "eu": "Prest. Ordainagiria eman didazu?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Por supuesto, aquí lo tiene.",
-          "en": "Of course, here you are."
+          "en": "Of course, here you are.",
+          "eu": "Jakina, hemen duzu."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias.",
-          "en": "Thank you."
+          "en": "Thank you.",
+          "eu": "Eskerrik asko."
         },
         {
           "speaker": "Bartender/a",
           "es": "A usted.",
-          "en": "You’re welcome."
+          "en": "You’re welcome.",
+          "eu": "Zuri."
         }
-      ]
+      ],
+      "title_eu": "Berehalako ordainketa erronda bakoitzeko",
+      "scenario_eu": "Bezeroak erronda bakoitza unean bertan ordaintzea nahiago du."
     },
     {
       "id": "conv32",
@@ -1564,44 +1827,54 @@
         {
           "speaker": "Cliente",
           "es": "¿Tienen alguna tapa en barra ahora mismo?",
-          "en": "Do you have any tapas at the bar right now?"
+          "en": "Do you have any tapas at the bar right now?",
+          "eu": "Barran taparik baduzue oraintxe bertan?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Sí, tortilla, croquetas y ensaladilla.",
-          "en": "Yes, tortilla, croquettes, and Russian salad."
+          "en": "Yes, tortilla, croquettes, and Russian salad.",
+          "eu": "Bai, tortilla, kroketak eta ensaladilla."
         },
         {
           "speaker": "Cliente",
           "es": "Póngame una tapa de tortilla y dos croquetas.",
-          "en": "I’ll have a piece of tortilla and two croquettes."
+          "en": "I’ll have a piece of tortilla and two croquettes.",
+          "eu": "Jarri iezaidazu tortilla tapa bat eta bi broketa."
         },
         {
           "speaker": "Bartender/a",
           "es": "¿Quiere pan con la tortilla?",
-          "en": "Would you like bread with the tortilla?"
+          "en": "Would you like bread with the tortilla?",
+          "eu": "Ogia nahi duzu tortillarekin?"
         },
         {
           "speaker": "Cliente",
           "es": "Sí, por favor.",
-          "en": "Yes, please."
+          "en": "Yes, please.",
+          "eu": "Bai, mesedez."
         },
         {
           "speaker": "Bartender/a",
           "es": "Perfecto, se lo llevo a la mesa.",
-          "en": "Perfect, I’ll bring it to your table."
+          "en": "Perfect, I’ll bring it to your table.",
+          "eu": "Bikain, mahaira eramango dizut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias.",
-          "en": "Thanks."
+          "en": "Thanks.",
+          "eu": "Eskerrik asko."
         },
         {
           "speaker": "Bartender/a",
           "es": "Con gusto.",
-          "en": "My pleasure."
+          "en": "My pleasure.",
+          "eu": "Atseginez."
         }
-      ]
+      ],
+      "title_eu": "Barran dauden tapen inguruan galdetzea",
+      "scenario_eu": "Bezeroak barran taparik edo pintxorik baden galdetzen du."
     },
     {
       "id": "conv33",
@@ -1616,44 +1889,54 @@
         {
           "speaker": "Cliente",
           "es": "¿Puede hacer el cóctel un poco más suave?",
-          "en": "Can you make the cocktail a bit milder?"
+          "en": "Can you make the cocktail a bit milder?",
+          "eu": "Koktela pixka bat leunagoa egin dezakezu?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Sí, reduzco el alcohol y refuerzo el zumo.",
-          "en": "Yes, I’ll reduce the alcohol and add more juice."
+          "en": "Yes, I’ll reduce the alcohol and add more juice.",
+          "eu": "Bai, alkohola murriztuko dut eta zukua indartuko dut."
         },
         {
           "speaker": "Cliente",
           "es": "Perfecto, gracias.",
-          "en": "Perfect, thank you."
+          "en": "Perfect, thank you.",
+          "eu": "Bikain, eskerrik asko."
         },
         {
           "speaker": "Bartender/a",
           "es": "¿Quiere también menos azúcar?",
-          "en": "Would you also like it less sweet?"
+          "en": "Would you also like it less sweet?",
+          "eu": "Azukre gutxiago ere nahi duzu?"
         },
         {
           "speaker": "Cliente",
           "es": "Sí, por favor.",
-          "en": "Yes, please."
+          "en": "Yes, please.",
+          "eu": "Bai, mesedez."
         },
         {
           "speaker": "Bartender/a",
           "es": "Hecho, lo preparo ahora mismo.",
-          "en": "Done, I’ll prepare it right away."
+          "en": "Done, I’ll prepare it right away.",
+          "eu": "Egina, oraintxe bertan prestatuko dut."
         },
         {
           "speaker": "Cliente",
           "es": "Genial.",
-          "en": "Great."
+          "en": "Great.",
+          "eu": "Bikain."
         },
         {
           "speaker": "Bartender/a",
           "es": "Aquí lo tiene, ¡salud!",
-          "en": "Here you are, cheers!"
+          "en": "Here you are, cheers!",
+          "eu": "Hemen duzu, osasuna!"
         }
-      ]
+      ],
+      "title_eu": "Alkohol gutxiagoko koktel bat eskatzea",
+      "scenario_eu": "Bezeroak koktel leunago bat eskatzen du eta bartenderrak errezeta egokitzen du."
     },
     {
       "id": "conv34",
@@ -1668,44 +1951,54 @@
         {
           "speaker": "Cliente",
           "es": "Quiero algo diferente, ¿qué cóctel de autor recomienda?",
-          "en": "I want something different, what signature cocktail do you recommend?"
+          "en": "I want something different, what signature cocktail do you recommend?",
+          "eu": "Zerbait ezberdina nahi dut, zein egile-koktel gomendatzen duzu?"
         },
         {
           "speaker": "Bartender/a",
           "es": "El 'Citrus Basil Smash', con gin, albahaca y cítricos.",
-          "en": "The 'Citrus Basil Smash', with gin, basil, and citrus."
+          "en": "The 'Citrus Basil Smash', with gin, basil, and citrus.",
+          "eu": "'Citrus Basil Smash'-a, gin, albahaka eta zitrikoekin."
         },
         {
           "speaker": "Cliente",
           "es": "Suena bien. ¿Puede hacerlo con vodka en lugar de gin?",
-          "en": "Sounds good. Can you make it with vodka instead of gin?"
+          "en": "Sounds good. Can you make it with vodka instead of gin?",
+          "eu": "Ondo dirudi. Vodkarekin egin dezakezu gin-aren ordez?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Sí, será un perfil más suave. ¿Le parece?",
-          "en": "Yes, it’ll be a smoother profile. Does that work for you?"
+          "en": "Yes, it’ll be a smoother profile. Does that work for you?",
+          "eu": "Bai, profil leunagoa izango da. Zer iruditzen zaizu?"
         },
         {
           "speaker": "Cliente",
           "es": "Perfecto, adelante.",
-          "en": "Perfect, go ahead."
+          "en": "Perfect, go ahead.",
+          "eu": "Bikain, aurrera."
         },
         {
           "speaker": "Bartender/a",
           "es": "¿Con hielo picado o cubitos?",
-          "en": "Crushed ice or cubes?"
+          "en": "Crushed ice or cubes?",
+          "eu": "Izotz xehatuarekin ala koxkorrekin?"
         },
         {
           "speaker": "Cliente",
           "es": "Cubitos, gracias.",
-          "en": "Cubes, thanks."
+          "en": "Cubes, thanks.",
+          "eu": "Koxkorrak, eskerrik asko."
         },
         {
           "speaker": "Bartender/a",
           "es": "Enseguida lo tiene.",
-          "en": "You’ll have it right away."
+          "en": "You’ll have it right away.",
+          "eu": "Berehala izango duzu."
         }
-      ]
+      ],
+      "title_eu": "Egile-koktel baten gomendioa",
+      "scenario_eu": "Bartenderrak egile-koktel bat gomendatzen du bezeroaren lehentasunen arabera."
     },
     {
       "id": "conv35",
@@ -1720,44 +2013,54 @@
         {
           "speaker": "Cliente",
           "es": "¿Puedo incluir la propina al pagar con tarjeta?",
-          "en": "Can I include the tip when paying by card?"
+          "en": "Can I include the tip when paying by card?",
+          "eu": "Propina gehitu dezaket txartelarekin ordaintzean?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Sí, puedo añadir el porcentaje antes de procesar el pago.",
-          "en": "Yes, I can add the percentage before processing the payment."
+          "en": "Yes, I can add the percentage before processing the payment.",
+          "eu": "Bai, portzentajea gehitu dezaket ordainketa prozesatu aurretik."
         },
         {
           "speaker": "Cliente",
           "es": "Añada un 10%, por favor.",
-          "en": "Add 10%, please."
+          "en": "Add 10%, please.",
+          "eu": "Gehitu %10, mesedez."
         },
         {
           "speaker": "Bartender/a",
           "es": "Perfecto, total con propina: aquí tiene para confirmar.",
-          "en": "Perfect, total with tip: here for you to confirm."
+          "en": "Perfect, total with tip: here for you to confirm.",
+          "eu": "Bikain, guztira propinarekin: hemen duzu baieztatzeko."
         },
         {
           "speaker": "Cliente",
           "es": "Listo.",
-          "en": "All set."
+          "en": "All set.",
+          "eu": "Prest."
         },
         {
           "speaker": "Bartender/a",
           "es": "Pago aprobado. Muchas gracias.",
-          "en": "Payment approved. Thank you very much."
+          "en": "Payment approved. Thank you very much.",
+          "eu": "Ordainketa onartuta. Eskerrik asko."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias a ustedes por el servicio.",
-          "en": "Thank you for the service."
+          "en": "Thank you for the service.",
+          "eu": "Eskerrik asko zuei zerbitzuagatik."
         },
         {
           "speaker": "Bartender/a",
           "es": "Un placer, ¡hasta pronto!",
-          "en": "My pleasure, see you soon!"
+          "en": "My pleasure, see you soon!",
+          "eu": "Atsegina, laster arte!"
         }
-      ]
+      ],
+      "title_eu": "Propina uztea txartelarekin ordaintzean",
+      "scenario_eu": "Bezeroak propina utzi nahi du eta txartelarekin ordaintzean gehitu dezakeen galdetzen du."
     },
     {
       "id": "conv36",
@@ -1772,44 +2075,54 @@
         {
           "speaker": "Cliente",
           "es": "Vamos a abrir una botella de vino y dividirla en cuatro copas.",
-          "en": "We’d like to open a bottle of wine and split it into four glasses."
+          "en": "We’d like to open a bottle of wine and split it into four glasses.",
+          "eu": "Ardo botila bat irekiko dugu eta lau kopatan banatuko dugu."
         },
         {
           "speaker": "Bartender/a",
           "es": "Por supuesto, ¿quieren copas iguales o una de cata para el conductor?",
-          "en": "Of course, equal pours or a tasting pour for the designated driver?"
+          "en": "Of course, equal pours or a tasting pour for the designated driver?",
+          "eu": "Jakina, kopa berdinak nahi dituzue ala dasta-kopa bat gidariarentzat?"
         },
         {
           "speaker": "Cliente",
           "es": "Una de cata para el conductor, gracias.",
-          "en": "A tasting pour for the designated driver, thanks."
+          "en": "A tasting pour for the designated driver, thanks.",
+          "eu": "Dasta-kopa bat gidariarentzat, eskerrik asko."
         },
         {
           "speaker": "Bartender/a",
           "es": "Perfecto, lo sirvo ahora mismo.",
-          "en": "Perfect, I’ll pour it right away."
+          "en": "Perfect, I’ll pour it right away.",
+          "eu": "Bikain, oraintxe bertan zerbitzatuko dut."
         },
         {
           "speaker": "Cliente",
           "es": "¿Nos deja también agua?",
-          "en": "Could you leave us some water as well?"
+          "en": "Could you leave us some water as well?",
+          "eu": "Ura ere utziko diguzu?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Sí, una jarra de agua para la mesa.",
-          "en": "Yes, a jug of water for the table."
+          "en": "Yes, a jug of water for the table.",
+          "eu": "Bai, ur pitxer bat mahaiarentzat."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias.",
-          "en": "Thank you."
+          "en": "Thank you.",
+          "eu": "Eskerrik asko."
         },
         {
           "speaker": "Bartender/a",
           "es": "A ustedes, que lo disfruten.",
-          "en": "You’re welcome, enjoy."
+          "en": "You’re welcome, enjoy.",
+          "eu": "Zuei, on egin/gozatu."
         }
-      ]
+      ],
+      "title_eu": "Botila bat hainbat kopatan banatzea",
+      "scenario_eu": "Bezeroak botila bat irekitzeko eta hainbat kopatan banatzeko eskatzen du, kopuruak kontrolatuz."
     },
     {
       "id": "conv37",
@@ -1824,44 +2137,54 @@
         {
           "speaker": "Cliente",
           "es": "¿Qué licor típico español me recomienda probar?",
-          "en": "What typical Spanish liqueur do you recommend I try?"
+          "en": "What typical Spanish liqueur do you recommend I try?",
+          "eu": "Espainiako zein likore tipiko probatzea gomendatzen didazu?"
         },
         {
           "speaker": "Bartender/a",
           "es": "El orujo es muy popular; también el licor de hierbas y la pacharán.",
-          "en": "Orujo is very popular; also herbal liqueur and pacharán."
+          "en": "Orujo is very popular; also herbal liqueur and pacharán.",
+          "eu": "Orujoa oso ezaguna da; baita belar-likorea eta patxarana ere."
         },
         {
           "speaker": "Cliente",
           "es": "¿Cómo se toman normalmente?",
-          "en": "How are they usually served?"
+          "en": "How are they usually served?",
+          "eu": "Nola edaten dira normalean?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Generalmente, en chupito después de comer, frío o con hielo.",
-          "en": "Usually as a shot after meals, chilled or on the rocks."
+          "en": "Usually as a shot after meals, chilled or on the rocks.",
+          "eu": "Normalean, txupitoan bazkaldu/afaldu ondoren, hotz edo izotzarekin."
         },
         {
           "speaker": "Cliente",
           "es": "Probaré pacharán con hielo, por favor.",
-          "en": "I’ll try a pacharán on the rocks, please."
+          "en": "I’ll try a pacharán on the rocks, please.",
+          "eu": "Patxarana probatuko dut izotzarekin, mesedez."
         },
         {
           "speaker": "Bartender/a",
           "es": "Excelente elección.",
-          "en": "Excellent choice."
+          "en": "Excellent choice.",
+          "eu": "Aukera bikaina."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias.",
-          "en": "Thank you."
+          "en": "Thank you.",
+          "eu": "Eskerrik asko."
         },
         {
           "speaker": "Bartender/a",
           "es": "A usted, ¡salud!",
-          "en": "You’re welcome, cheers!"
+          "en": "You’re welcome, cheers!",
+          "eu": "Zuri, osasuna!"
         }
-      ]
+      ],
+      "title_eu": "Espainiako likore tipiko baten azalpena",
+      "scenario_eu": "Atzerriko bezeroak tokiko likore baten azalpena eskatzen du eta nola edaten den galdetzen du."
     },
     {
       "id": "conv38",
@@ -1876,44 +2199,54 @@
         {
           "speaker": "Cliente",
           "es": "¿Podemos pedir una bebida rápida?",
-          "en": "Can we order a quick drink?"
+          "en": "Can we order a quick drink?",
+          "eu": "Edari azkar bat eskatu dezakegu?"
         },
         {
           "speaker": "Bartender/a",
           "es": "Lo siento, ya hemos cerrado caja y no servimos más bebidas.",
-          "en": "I’m sorry, we’ve already closed out and we’re not serving any more drinks."
+          "en": "I’m sorry, we’ve already closed out and we’re not serving any more drinks.",
+          "eu": "Sentitzen dut, diru-kutxa itxi dugu jada eta ez dugu edari gehiagorik zerbitzatzen."
         },
         {
           "speaker": "Cliente",
           "es": "Entiendo, gracias igualmente.",
-          "en": "I understand, thanks anyway."
+          "en": "I understand, thanks anyway.",
+          "eu": "Ulertzen dut, eskerrik asko berdin-berdin."
         },
         {
           "speaker": "Bartender/a",
           "es": "Gracias por venir. Les esperamos en otro momento.",
-          "en": "Thank you for coming. We look forward to seeing you another time."
+          "en": "Thank you for coming. We look forward to seeing you another time.",
+          "eu": "Eskerrik asko etortzeagatik. Beste batean itxarongo zaituztegu."
         },
         {
           "speaker": "Cliente",
           "es": "Volveremos mañana.",
-          "en": "We’ll come back tomorrow."
+          "en": "We’ll come back tomorrow.",
+          "eu": "Bihar itzuliko gara."
         },
         {
           "speaker": "Bartender/a",
           "es": "Perfecto, abrimos a las 17:00.",
-          "en": "Perfect, we open at 5 p.m."
+          "en": "Perfect, we open at 5 p.m.",
+          "eu": "Bikain, 17:00etan irekitzen dugu."
         },
         {
           "speaker": "Cliente",
           "es": "Hasta mañana.",
-          "en": "See you tomorrow."
+          "en": "See you tomorrow.",
+          "eu": "Bihar arte."
         },
         {
           "speaker": "Bartender/a",
           "es": "Hasta mañana, que tengan buena noche.",
-          "en": "See you tomorrow, have a good night."
+          "en": "See you tomorrow, have a good night.",
+          "eu": "Bihar arte, gau ona izan."
         }
-      ]
+      ],
+      "title_eu": "Diru-kutxa ixtea: azken deia eta uko adeitsua",
+      "scenario_eu": "Taberna ixten ari da eta bartenderrak ez dela edari gehiagorik zerbitzatzen azaltzen du."
     },
     {
       "id": "conv39",
@@ -1928,34 +2261,42 @@
         {
           "speaker": "Cliente",
           "es": "Disculpe, mi plato está frío.",
-          "en": "Excuse me, my dish is cold."
+          "en": "Excuse me, my dish is cold.",
+          "eu": "Barkatu, nire platera hotz dago."
         },
         {
           "speaker": "Camarero/a",
           "es": "Lo siento mucho, voy a pedir que lo recalienten.",
-          "en": "I’m very sorry, I’ll have it reheated."
+          "en": "I’m very sorry, I’ll have it reheated.",
+          "eu": "Asko sentitzen dut, berotzeko eskatuko dut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias, preferiría que estuviera caliente como corresponde.",
-          "en": "Thanks, I’d prefer it hot as it should be."
+          "en": "Thanks, I’d prefer it hot as it should be.",
+          "eu": "Eskerrik asko, nahiago nuke dagokion bezala bero egotea."
         },
         {
           "speaker": "Camarero/a",
           "es": "Enseguida lo solucionamos, no tardará.",
-          "en": "We’ll fix it right away, it won’t take long."
+          "en": "We’ll fix it right away, it won’t take long.",
+          "eu": "Berehala konponduko dugu, ez du asko deituko."
         },
         {
           "speaker": "Cliente",
           "es": "Perfecto, espero un momento.",
-          "en": "Perfect, I’ll wait a moment."
+          "en": "Perfect, I’ll wait a moment.",
+          "eu": "Bikain, une bat itxarongo dut."
         },
         {
           "speaker": "Camarero/a",
           "es": "Aquí lo tiene de nuevo, caliente y recién salido.",
-          "en": "Here it is again, hot and fresh out."
+          "en": "Here it is again, hot and fresh out.",
+          "eu": "Hemen duzu berriro, bero eta atera berria."
         }
-      ]
+      ],
+      "title_eu": "Kexa: platera hotz",
+      "scenario_eu": "Bezeroak plater hotz bat jaso du eta kexatu egin da."
     },
     {
       "id": "conv40",
@@ -1970,34 +2311,42 @@
         {
           "speaker": "Cliente",
           "es": "Perdone, llevamos más de 30 minutos esperando.",
-          "en": "Excuse me, we’ve been waiting over 30 minutes."
+          "en": "Excuse me, we’ve been waiting over 30 minutes.",
+          "eu": "Barkatu, 30 minutu baino gehiago daramatzagu zain."
         },
         {
           "speaker": "Camarero/a",
           "es": "Lamento la demora, la cocina está saturada.",
-          "en": "I’m sorry for the delay, the kitchen is very busy."
+          "en": "I’m sorry for the delay, the kitchen is very busy.",
+          "eu": "Sentitzen dut atzerapena, sukaldea gainezka dago."
         },
         {
           "speaker": "Cliente",
           "es": "¿Cuánto más tendremos que esperar?",
-          "en": "How much longer will it take?"
+          "en": "How much longer will it take?",
+          "eu": "Zenbat gehiago itxaron beharko dugu?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Unos 10 minutos más, si lo desea puedo traerle pan y bebida ahora.",
-          "en": "About 10 more minutes, if you like I can bring you bread and drinks now."
+          "en": "About 10 more minutes, if you like I can bring you bread and drinks now.",
+          "eu": "10 minutu inguru gehiago, nahi baduzu ogia eta edaria ekar diezazkizuket orain."
         },
         {
           "speaker": "Cliente",
           "es": "Sí, por favor.",
-          "en": "Yes, please."
+          "en": "Yes, please.",
+          "eu": "Bai, mesedez."
         },
         {
           "speaker": "Camarero/a",
           "es": "De inmediato, y supervisaré que su pedido salga lo antes posible.",
-          "en": "Right away, and I’ll make sure your order comes out as soon as possible."
+          "en": "Right away, and I’ll make sure your order comes out as soon as possible.",
+          "eu": "Berehala, eta gainbegiratuko dut zure eskaera ahalik eta lasterren atera dadin."
         }
-      ]
+      ],
+      "title_eu": "Kexa: zerbitzu-atzerapena",
+      "scenario_eu": "Bezeroa kexatu da bere eskaerak gehiegi deitzen duelako."
     },
     {
       "id": "conv41",
@@ -2012,34 +2361,42 @@
         {
           "speaker": "Cliente",
           "es": "Creo que este no es mi plato, yo pedí pasta.",
-          "en": "I think this isn’t my dish, I ordered pasta."
+          "en": "I think this isn’t my dish, I ordered pasta.",
+          "eu": "Uste dut hau ez dela nire platera, nik pasta eskatu nuen."
         },
         {
           "speaker": "Camarero/a",
           "es": "Lo siento, le han traído la orden equivocada.",
-          "en": "I’m sorry, they brought the wrong order."
+          "en": "I’m sorry, they brought the wrong order.",
+          "eu": "Sentitzen dut, okerreko eskaera ekarri dizute."
         },
         {
           "speaker": "Cliente",
           "es": "Es la segunda vez que ocurre.",
-          "en": "It’s the second time this happens."
+          "en": "It’s the second time this happens.",
+          "eu": "Bigarren aldia da gertatzen dena."
         },
         {
           "speaker": "Camarero/a",
           "es": "Voy a corregirlo inmediatamente, y la casa le invita a un postre.",
-          "en": "I’ll fix it right away, and the house will offer you a dessert."
+          "en": "I’ll fix it right away, and the house will offer you a dessert.",
+          "eu": "Berehala zuzenduko dut, eta etxeak postre batera gonbidatzen zaitu."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias, lo aprecio.",
-          "en": "Thanks, I appreciate it."
+          "en": "Thanks, I appreciate it.",
+          "eu": "Eskerrik asko, estimatzen dut."
         },
         {
           "speaker": "Camarero/a",
           "es": "Ya mismo tendrá su pasta correcta.",
-          "en": "You’ll have your correct pasta right away."
+          "en": "You’ll have your correct pasta right away.",
+          "eu": "Oraintxe bertan izango duzu zure pasta zuzena."
         }
-      ]
+      ],
+      "title_eu": "Kexa: okerreko eskaera",
+      "scenario_eu": "Bezeroak eskatu duenaren ezberdina den plater bat jaso du."
     },
     {
       "id": "conv42",
@@ -2054,34 +2411,42 @@
         {
           "speaker": "Cliente",
           "es": "Perdone, hay un cargo que no corresponde.",
-          "en": "Excuse me, there’s a charge that doesn’t belong."
+          "en": "Excuse me, there’s a charge that doesn’t belong.",
+          "eu": "Barkatu, dagokion ez den kargu bat dago."
         },
         {
           "speaker": "Camarero/a",
           "es": "Déjeme revisar, tiene razón, es un error.",
-          "en": "Let me check, you’re right, it’s a mistake."
+          "en": "Let me check, you’re right, it’s a mistake.",
+          "eu": "Utzi iezadazu berrikusten, arrazoi duzu, akats bat da."
         },
         {
           "speaker": "Cliente",
           "es": "Agradezco que lo corrija.",
-          "en": "I appreciate you correcting it."
+          "en": "I appreciate you correcting it.",
+          "eu": "Eskertzen dut zuzentzea."
         },
         {
           "speaker": "Camarero/a",
           "es": "Ya está corregido, y le traigo la cuenta actualizada.",
-          "en": "It’s corrected, here’s the updated bill."
+          "en": "It’s corrected, here’s the updated bill.",
+          "eu": "Zuzenduta dago jada, eta kontu eguneratua ekarriko dizut."
         },
         {
           "speaker": "Cliente",
           "es": "Perfecto, gracias.",
-          "en": "Perfect, thank you."
+          "en": "Perfect, thank you.",
+          "eu": "Bikain, eskerrik asko."
         },
         {
           "speaker": "Camarero/a",
           "es": "Gracias a usted por señalarlo.",
-          "en": "Thank you for pointing it out."
+          "en": "Thank you for pointing it out.",
+          "eu": "Eskerrik asko zuri adierazteagatik."
         }
-      ]
+      ],
+      "title_eu": "Kexa: akatsa kontuan",
+      "scenario_eu": "Bezeroak aparteko kargu bat sumatu du kontuan."
     },
     {
       "id": "conv43",
@@ -2096,34 +2461,42 @@
         {
           "speaker": "Cliente",
           "es": "Nos falta una bebida de lo que pedimos.",
-          "en": "We’re missing one drink from what we ordered."
+          "en": "We’re missing one drink from what we ordered.",
+          "eu": "Eskatu dugunetik edari bat falta zaigu."
         },
         {
           "speaker": "Camarero/a",
           "es": "Disculpas, se quedó en la barra. La traigo ahora mismo.",
-          "en": "Sorry, it was left at the bar. I’ll bring it right away."
+          "en": "Sorry, it was left at the bar. I’ll bring it right away.",
+          "eu": "Barkatu, barran geratu da. Oraintxe bertan ekarriko dut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias, solo queríamos recordarlo.",
-          "en": "Thanks, we just wanted to remind you."
+          "en": "Thanks, we just wanted to remind you.",
+          "eu": "Eskerrik asko, gogorarazi besterik ez genuen nahi."
         },
         {
           "speaker": "Camarero/a",
           "es": "Aquí está su bebida, perdón por la omisión.",
-          "en": "Here’s your drink, sorry for the oversight."
+          "en": "Here’s your drink, sorry for the oversight.",
+          "eu": "Hemen duzu zure edaria, barkatu ahanzturagatik."
         },
         {
           "speaker": "Cliente",
           "es": "Todo bien, gracias.",
-          "en": "All good, thank you."
+          "en": "All good, thank you.",
+          "eu": "Dena ondo, eskerrik asko."
         },
         {
           "speaker": "Camarero/a",
           "es": "A ustedes, disfruten.",
-          "en": "You’re welcome, enjoy."
+          "en": "You’re welcome, enjoy.",
+          "eu": "Zuei, on egin/gozatu."
         }
-      ]
+      ],
+      "title_eu": "Kexa: eskaeraren zati bat ahaztuta",
+      "scenario_eu": "Bezeroak esan du eskatu duenaren zati bat falta dela."
     },
     {
       "id": "conv44",
@@ -2138,34 +2511,42 @@
         {
           "speaker": "Cliente",
           "es": "Este vino no sabe bien, parece pasado.",
-          "en": "This wine doesn’t taste right, it seems off."
+          "en": "This wine doesn’t taste right, it seems off.",
+          "eu": "Ardo honek ez du zapore onik, pasatuta dagoela dirudi."
         },
         {
           "speaker": "Camarero/a",
           "es": "Lo lamento, traeré otra botella.",
-          "en": "I’m sorry, I’ll bring another bottle."
+          "en": "I’m sorry, I’ll bring another bottle.",
+          "eu": "Sentitzen dut, beste botila bat ekarriko dut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias, prefiero no arriesgarme.",
-          "en": "Thanks, I’d rather not risk it."
+          "en": "Thanks, I’d rather not risk it.",
+          "eu": "Eskerrik asko, nahiago dut ez arriskatu."
         },
         {
           "speaker": "Camarero/a",
           "es": "Abriré una nueva botella para usted.",
-          "en": "I’ll open a new bottle for you."
+          "en": "I’ll open a new bottle for you.",
+          "eu": "Botila berri bat irekiko dut zuretzat."
         },
         {
           "speaker": "Cliente",
           "es": "Perfecto, se lo agradezco.",
-          "en": "Perfect, I appreciate it."
+          "en": "Perfect, I appreciate it.",
+          "eu": "Bikain, eskertzen dizut."
         },
         {
           "speaker": "Camarero/a",
           "es": "Con gusto, queremos que disfrute.",
-          "en": "My pleasure, we want you to enjoy."
+          "en": "My pleasure, we want you to enjoy.",
+          "eu": "Atseginez, gozatzea nahi dugu."
         }
-      ]
+      ],
+      "title_eu": "Kexa: ardoa pasatuta",
+      "scenario_eu": "Bezeroa kexatu da ardoak zapore txarra duelako."
     },
     {
       "id": "conv45",
@@ -2180,34 +2561,42 @@
         {
           "speaker": "Cliente",
           "es": "Esta silla está inestable.",
-          "en": "This chair is wobbly."
+          "en": "This chair is wobbly.",
+          "eu": "Aulki hau ez dago egonkor."
         },
         {
           "speaker": "Camarero/a",
           "es": "Lo siento mucho, voy a cambiarla de inmediato.",
-          "en": "I’m very sorry, I’ll replace it right away."
+          "en": "I’m very sorry, I’ll replace it right away.",
+          "eu": "Asko sentitzen dut, berehala aldatuko dut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias, es incómodo sentarse así.",
-          "en": "Thanks, it’s uncomfortable to sit like this."
+          "en": "Thanks, it’s uncomfortable to sit like this.",
+          "eu": "Eskerrik asko, deserosoa da horrela esertzea."
         },
         {
           "speaker": "Camarero/a",
           "es": "Aquí tiene otra silla en buen estado.",
-          "en": "Here’s another chair in good condition."
+          "en": "Here’s another chair in good condition.",
+          "eu": "Hemen duzu egoera onean dagoen beste aulki bat."
         },
         {
           "speaker": "Cliente",
           "es": "Mucho mejor, gracias.",
-          "en": "Much better, thanks."
+          "en": "Much better, thanks.",
+          "eu": "Oso ondo, eskerrik asko."
         },
         {
           "speaker": "Camarero/a",
           "es": "Encantado de resolverlo.",
-          "en": "Glad to fix it."
+          "en": "Glad to fix it.",
+          "eu": "Pozten naiz konpontzeaz."
         }
-      ]
+      ],
+      "title_eu": "Kexa: aulki hautsia",
+      "scenario_eu": "Bezeroa aulki akastun batez kexatu da."
     },
     {
       "id": "conv46",
@@ -2222,34 +2611,42 @@
         {
           "speaker": "Cliente",
           "es": "Hay demasiado ruido, casi no podemos hablar.",
-          "en": "It’s too noisy, we can hardly talk."
+          "en": "It’s too noisy, we can hardly talk.",
+          "eu": "Zarata gehiegi dago, ia ezin dugu hitz egin."
         },
         {
           "speaker": "Camarero/a",
           "es": "Comprendo, puedo ofrecerles una mesa más tranquila.",
-          "en": "I understand, I can offer you a quieter table."
+          "en": "I understand, I can offer you a quieter table.",
+          "eu": "Ulertzen dut, mahai lasaiago bat eskain diezazueket."
         },
         {
           "speaker": "Cliente",
           "es": "Eso estaría bien.",
-          "en": "That would be nice."
+          "en": "That would be nice.",
+          "eu": "Hori ondo egongo litzateke."
         },
         {
           "speaker": "Camarero/a",
           "es": "Les traslado ahora mismo.",
-          "en": "I’ll move you right away."
+          "en": "I’ll move you right away.",
+          "eu": "Oraintxe bertan lekualdatuko zaituztet."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias por la atención.",
-          "en": "Thanks for the attention."
+          "en": "Thanks for the attention.",
+          "eu": "Eskerrik asko arretagatik."
         },
         {
           "speaker": "Camarero/a",
           "es": "Queremos que estén cómodos.",
-          "en": "We want you to be comfortable."
+          "en": "We want you to be comfortable.",
+          "eu": "Eroso egotea nahi dugu."
         }
-      ]
+      ],
+      "title_eu": "Kexa: gehiegizko zarata",
+      "scenario_eu": "Bezeroa zaratagatik kexatu da."
     },
     {
       "id": "conv47",
@@ -2264,34 +2661,42 @@
         {
           "speaker": "Cliente",
           "es": "La carne está poco hecha para mi gusto.",
-          "en": "The meat is undercooked for my taste."
+          "en": "The meat is undercooked for my taste.",
+          "eu": "Haragia gutxi eginda dago nire gusturako."
         },
         {
           "speaker": "Camarero/a",
           "es": "Lo siento, ¿quiere que la pasen un poco más?",
-          "en": "I’m sorry, would you like it cooked a bit more?"
+          "en": "I’m sorry, would you like it cooked a bit more?",
+          "eu": "Sentitzen dut, gehiago egitea nahi duzu?"
         },
         {
           "speaker": "Cliente",
           "es": "Sí, por favor.",
-          "en": "Yes, please."
+          "en": "Yes, please.",
+          "eu": "Bai, mesedez."
         },
         {
           "speaker": "Camarero/a",
           "es": "Enseguida se la devuelvo más hecha.",
-          "en": "I’ll return it cooked more right away."
+          "en": "I’ll return it cooked more right away.",
+          "eu": "Berehala itzuliko dizut gehiago eginda."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias.",
-          "en": "Thanks."
+          "en": "Thanks.",
+          "eu": "Eskerrik asko."
         },
         {
           "speaker": "Camarero/a",
           "es": "De nada, disculpe la molestia.",
-          "en": "You’re welcome, sorry for the inconvenience."
+          "en": "You’re welcome, sorry for the inconvenience.",
+          "eu": "Ez horregatik, barkatu eragozpena."
         }
-      ]
+      ],
+      "title_eu": "Kexa: janaria gutxi eginda",
+      "scenario_eu": "Bezeroak esan du haragia ez dagoela ondo eginda."
     },
     {
       "id": "conv48",
@@ -2306,34 +2711,42 @@
         {
           "speaker": "Cliente",
           "es": "Mi café está frío.",
-          "en": "My coffee is cold."
+          "en": "My coffee is cold.",
+          "eu": "Nire kafea hotz dago."
         },
         {
           "speaker": "Camarero/a",
           "es": "Lamento mucho eso, prepararé uno nuevo.",
-          "en": "I’m very sorry, I’ll make a new one."
+          "en": "I’m very sorry, I’ll make a new one.",
+          "eu": "Asko sentitzen dut hori, berri bat prestatuko dut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias, me gustaría que esté caliente.",
-          "en": "Thanks, I’d like it hot."
+          "en": "Thanks, I’d like it hot.",
+          "eu": "Eskerrik asko, bero egotea nahi nuke."
         },
         {
           "speaker": "Camarero/a",
           "es": "Por supuesto, en un minuto.",
-          "en": "Of course, in a minute."
+          "en": "Of course, in a minute.",
+          "eu": "Jakina, minutu batean."
         },
         {
           "speaker": "Cliente",
           "es": "Perfecto.",
-          "en": "Perfect."
+          "en": "Perfect.",
+          "eu": "Bikain."
         },
         {
           "speaker": "Camarero/a",
           "es": "Aquí lo tiene recién hecho.",
-          "en": "Here it is freshly made."
+          "en": "Here it is freshly made.",
+          "eu": "Hemen duzu egin berria."
         }
-      ]
+      ],
+      "title_eu": "Kexa: kafe hotza",
+      "scenario_eu": "Bezeroa kafe hotzagatik kexatu da."
     },
     {
       "id": "conv49",
@@ -2348,34 +2761,42 @@
         {
           "speaker": "Cliente",
           "es": "Nos han cobrado un plato que no pedimos.",
-          "en": "We’ve been charged for a dish we didn’t order."
+          "en": "We’ve been charged for a dish we didn’t order.",
+          "eu": "Eskatu ez dugun plater bat kobratu digute."
         },
         {
           "speaker": "Camarero/a",
           "es": "Lo reviso… tiene razón, fue un error.",
-          "en": "I’ll check… you’re right, it was a mistake."
+          "en": "I’ll check… you’re right, it was a mistake.",
+          "eu": "Berrikusiko dut... arrazoi duzu, akats bat izan da."
         },
         {
           "speaker": "Cliente",
           "es": "Por favor elimínelo.",
-          "en": "Please remove it."
+          "en": "Please remove it.",
+          "eu": "Mesedez, ezabatu."
         },
         {
           "speaker": "Camarero/a",
           "es": "Hecho, ya está corregido.",
-          "en": "Done, it’s corrected."
+          "en": "Done, it’s corrected.",
+          "eu": "Egina, zuzenduta dago jada."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias por la rapidez.",
-          "en": "Thanks for the quick fix."
+          "en": "Thanks for the quick fix.",
+          "eu": "Eskerrik asko azkartasunagatik."
         },
         {
           "speaker": "Camarero/a",
           "es": "Disculpas por el error.",
-          "en": "Sorry for the mistake."
+          "en": "Sorry for the mistake.",
+          "eu": "Barkatu akatsagatik."
         }
-      ]
+      ],
+      "title_eu": "Kexa: eskatu gabeko gainkargua",
+      "scenario_eu": "Bezeroak eskatu gabeko zerbaitengatik kargua ikusi du."
     },
     {
       "id": "conv50",
@@ -2390,34 +2811,42 @@
         {
           "speaker": "Cliente",
           "es": "¿El postre tardará mucho más?",
-          "en": "Will the dessert take much longer?"
+          "en": "Will the dessert take much longer?",
+          "eu": "Postreak asko gehiago deituko du?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Lo siento, se retrasó en cocina.",
-          "en": "I’m sorry, it was delayed in the kitchen."
+          "en": "I’m sorry, it was delayed in the kitchen.",
+          "eu": "Sentitzen dut, sukaldean atzeratu da."
         },
         {
           "speaker": "Cliente",
           "es": "¿Puede comprobarlo?",
-          "en": "Could you check on it?"
+          "en": "Could you check on it?",
+          "eu": "Egiaztatu dezakezu?"
         },
         {
           "speaker": "Camarero/a",
           "es": "Sí, lo haré de inmediato.",
-          "en": "Yes, I’ll check right away."
+          "en": "Yes, I’ll check right away.",
+          "eu": "Bai, berehala egingo dut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias.",
-          "en": "Thanks."
+          "en": "Thanks.",
+          "eu": "Eskerrik asko."
         },
         {
           "speaker": "Camarero/a",
           "es": "Aquí está su postre, disculpe la espera.",
-          "en": "Here’s your dessert, sorry for the wait."
+          "en": "Here’s your dessert, sorry for the wait.",
+          "eu": "Hemen daukazu zure postrea, barkatu itxaronaldia."
         }
-      ]
+      ],
+      "title_eu": "Kexa: postrea berandu",
+      "scenario_eu": "Bezeroak gehiegi itxaron du postrearengatik."
     },
     {
       "id": "conv51",
@@ -2432,34 +2861,42 @@
         {
           "speaker": "Cliente",
           "es": "Quiero hablar con el encargado, por favor.",
-          "en": "I’d like to speak to the manager, please."
+          "en": "I’d like to speak to the manager, please.",
+          "eu": "Arduradunarekin hitz egin nahi dut, mesedez."
         },
         {
           "speaker": "Camarero/a",
           "es": "Por supuesto, ahora mismo se lo llamo.",
-          "en": "Of course, I’ll call them right away."
+          "en": "Of course, I’ll call them right away.",
+          "eu": "Jakina, oraintxe bertan deituko diot."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias.",
-          "en": "Thanks."
+          "en": "Thanks.",
+          "eu": "Eskerrik asko."
         },
         {
           "speaker": "Camarero/a",
           "es": "Aquí está el encargado, atenderá su queja.",
-          "en": "Here’s the manager, they’ll handle your complaint."
+          "en": "Here’s the manager, they’ll handle your complaint.",
+          "eu": "Hemen dago arduraduna, zure kexaz arduratuko da."
         },
         {
           "speaker": "Cliente",
           "es": "Muy amable.",
-          "en": "Very kind."
+          "en": "Very kind.",
+          "eu": "Oso atsegina."
         },
         {
           "speaker": "Camarero/a",
           "es": "A usted.",
-          "en": "You’re welcome."
+          "en": "You’re welcome.",
+          "eu": "Zuri."
         }
-      ]
+      ],
+      "title_eu": "Kexa: arduradunarekin hitz egin",
+      "scenario_eu": "Bezeroak arduradunarekin hitz egitea eskatu du."
     },
     {
       "id": "conv52",
@@ -2474,34 +2911,42 @@
         {
           "speaker": "Cliente",
           "es": "El baño está sucio, deberían revisarlo.",
-          "en": "The restroom is dirty, you should check it."
+          "en": "The restroom is dirty, you should check it.",
+          "eu": "Komuna zikin dago, berrikusi beharko zenukete."
         },
         {
           "speaker": "Camarero/a",
           "es": "Gracias por avisar, mandaré a alguien a limpiarlo.",
-          "en": "Thank you for letting us know, I’ll send someone to clean it."
+          "en": "Thank you for letting us know, I’ll send someone to clean it.",
+          "eu": "Eskerrik asko abisatzeagatik, norbait bidaliko dut garbitzera."
         },
         {
           "speaker": "Cliente",
           "es": "Por favor, es importante.",
-          "en": "Please, it’s important."
+          "en": "Please, it’s important.",
+          "eu": "Mesedez, garrantzitsua da."
         },
         {
           "speaker": "Camarero/a",
           "es": "Lo entiendo, se resolverá en minutos.",
-          "en": "I understand, it will be fixed in minutes."
+          "en": "I understand, it will be fixed in minutes.",
+          "eu": "Ulertzen dut, minutu gutxian konponduko da."
         },
         {
           "speaker": "Cliente",
           "es": "Muy bien, gracias.",
-          "en": "Very well, thanks."
+          "en": "Very well, thanks.",
+          "eu": "Oso ondo, eskerrik asko."
         },
         {
           "speaker": "Camarero/a",
           "es": "Gracias por su paciencia.",
-          "en": "Thank you for your patience."
+          "en": "Thank you for your patience.",
+          "eu": "Eskerrik asko zure pazientziagatik."
         }
-      ]
+      ],
+      "title_eu": "Kexa: garbiketa komunean",
+      "scenario_eu": "Bezeroa komunaren egoeragatik kexatu da."
     },
     {
       "id": "conv53",
@@ -2516,34 +2961,42 @@
         {
           "speaker": "Cliente",
           "es": "Hubo varios errores en nuestro servicio hoy.",
-          "en": "There were several mistakes in our service today."
+          "en": "There were several mistakes in our service today.",
+          "eu": "Hainbat akats egon dira gure zerbitzuan gaur."
         },
         {
           "speaker": "Camarero/a",
           "es": "Lamento mucho lo ocurrido.",
-          "en": "I’m very sorry about what happened."
+          "en": "I’m very sorry about what happened.",
+          "eu": "Asko sentitzen dut gertatutakoa."
         },
         {
           "speaker": "Cliente",
           "es": "Esperábamos una experiencia más fluida.",
-          "en": "We expected a smoother experience."
+          "en": "We expected a smoother experience.",
+          "eu": "Esperientzia arinagoa espero genuen."
         },
         {
           "speaker": "Camarero/a",
           "es": "Como disculpa, la casa les invita a las bebidas.",
-          "en": "As an apology, the house will cover your drinks."
+          "en": "As an apology, the house will cover your drinks.",
+          "eu": "Barkamen gisa, etxeak edarietara gonbidatzen zaituzte."
         },
         {
           "speaker": "Cliente",
           "es": "Lo aprecio mucho.",
-          "en": "I really appreciate that."
+          "en": "I really appreciate that.",
+          "eu": "Asko estimatzen dut."
         },
         {
           "speaker": "Camarero/a",
           "es": "Esperamos que vuelvan y disfruten la próxima vez.",
-          "en": "We hope you come back and enjoy next time."
+          "en": "We hope you come back and enjoy next time.",
+          "eu": "Hurrengoan itzultzea eta gozatzea espero dugu."
         }
-      ]
+      ],
+      "title_eu": "Ebazpena etxeko gonbidapenarekin",
+      "scenario_eu": "Zerbitzariak eragozpen bat etxeko xehetasun batekin konpentsatzen du."
     },
     {
       "id": "conv_bar_01",
@@ -2558,44 +3011,54 @@
         {
           "speaker": "Cliente",
           "es": "Buenas noches, ¿me pone una cerveza, por favor?",
-          "en": "Good evening, can I have a beer, please?"
+          "en": "Good evening, can I have a beer, please?",
+          "eu": "Gabon, garagardo bat jarriko didazu, mesedez?"
         },
         {
           "speaker": "Bartender",
           "es": "Claro, ¿quiere caña o pinta?",
-          "en": "Of course, would you like a half pint or a pint?"
+          "en": "Of course, would you like a half pint or a pint?",
+          "eu": "Jakina, kaña ala pinta nahi duzu?"
         },
         {
           "speaker": "Cliente",
           "es": "Una pinta, por favor.",
-          "en": "A pint, please."
+          "en": "A pint, please.",
+          "eu": "Pinta bat, mesedez."
         },
         {
           "speaker": "Bartender",
           "es": "Aquí tiene, son 4 euros.",
-          "en": "Here you go, that will be 4 euros."
+          "en": "Here you go, that will be 4 euros.",
+          "eu": "Hemen duzu, 4 euro dira."
         },
         {
           "speaker": "Cliente",
           "es": "¿Puedo pagar con tarjeta?",
-          "en": "Can I pay by card?"
+          "en": "Can I pay by card?",
+          "eu": "Txartelarekin ordaindu dezaket?"
         },
         {
           "speaker": "Bartender",
           "es": "Sí, introduzca su tarjeta aquí.",
-          "en": "Yes, please insert your card here."
+          "en": "Yes, please insert your card here.",
+          "eu": "Bai, sartu zure txartela hemen."
         },
         {
           "speaker": "Cliente",
           "es": "Perfecto, gracias.",
-          "en": "Perfect, thank you."
+          "en": "Perfect, thank you.",
+          "eu": "Bikain, eskerrik asko."
         },
         {
           "speaker": "Bartender",
           "es": "Gracias a usted, que lo disfrute.",
-          "en": "Thank you, enjoy."
+          "en": "Thank you, enjoy.",
+          "eu": "Zuri eskerrik asko, on egin."
         }
-      ]
+      ],
+      "title_eu": "Garagardo bat eskatzen barran",
+      "scenario_eu": "Bezero batek garagardo bat eskatzen du taberna jendetsu batean."
     },
     {
       "id": "conv_bar_02",
@@ -2610,44 +3073,54 @@
         {
           "speaker": "Cliente",
           "es": "Buenas tardes, ¿me prepara un mojito, por favor?",
-          "en": "Good evening, could you make me a mojito, please?"
+          "en": "Good evening, could you make me a mojito, please?",
+          "eu": "Arratsalde on, mojito bat prestatuko didazu, mesedez?"
         },
         {
           "speaker": "Bartender",
           "es": "Por supuesto, ¿lo quiere con más o menos azúcar?",
-          "en": "Of course, would you like it with more or less sugar?"
+          "en": "Of course, would you like it with more or less sugar?",
+          "eu": "Jakina, azukre gehiagorekin ala gutxiagorekin nahi duzu?"
         },
         {
           "speaker": "Cliente",
           "es": "Con poco azúcar, gracias.",
-          "en": "With less sugar, please."
+          "en": "With less sugar, please.",
+          "eu": "Azukre gutxirekin, eskerrik asko."
         },
         {
           "speaker": "Bartender",
           "es": "¿Desea ron blanco o dorado?",
-          "en": "Would you like white or golden rum?"
+          "en": "Would you like white or golden rum?",
+          "eu": "Ron zuria ala urre-kolorekoa nahi duzu?"
         },
         {
           "speaker": "Cliente",
           "es": "Ron blanco, por favor.",
-          "en": "White rum, please."
+          "en": "White rum, please.",
+          "eu": "Ron zuria, mesedez."
         },
         {
           "speaker": "Bartender",
           "es": "Perfecto, enseguida lo preparo.",
-          "en": "Perfect, I’ll prepare it right away."
+          "en": "Perfect, I’ll prepare it right away.",
+          "eu": "Bikain, berehala prestatuko dut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias, se ve muy bien.",
-          "en": "Thank you, it looks great."
+          "en": "Thank you, it looks great.",
+          "eu": "Eskerrik asko, oso itxura ona du."
         },
         {
           "speaker": "Bartender",
           "es": "Que lo disfrute.",
-          "en": "Enjoy it."
+          "en": "Enjoy it.",
+          "eu": "On egin."
         }
-      ]
+      ],
+      "title_eu": "Koktel klasiko bat eskatzen",
+      "scenario_eu": "Bezero batek koktel bat eskatzen du barran."
     },
     {
       "id": "conv_bar_03",
@@ -2662,12 +3135,14 @@
         {
           "speaker": "Cliente",
           "es": "Hola, ¿puedo dejar la cuenta abierta?",
-          "en": "Hi, can I keep a tab open?"
+          "en": "Hi, can I keep a tab open?",
+          "eu": "Kaixo, kontua irekita utzi dezaket?"
         },
         {
           "speaker": "Bartender",
           "es": "Sí, ¿me deja su tarjeta de crédito como garantía?",
-          "en": "Yes, may I keep your credit card as a guarantee?"
+          "en": "Yes, may I keep your credit card as a guarantee?",
+          "eu": "Bai, zure kreditu-txartela utziko didazu berme gisa?"
         },
         {
           "speaker": "Cliente",
@@ -2678,29 +3153,36 @@
         {
           "speaker": "Bartender",
           "es": "Perfecto, ¿qué le sirvo para empezar?",
-          "en": "Perfect, what can I get you to start with?"
+          "en": "Perfect, what can I get you to start with?",
+          "eu": "Bikain, zer jarriko dizut hasteko?"
         },
         {
           "speaker": "Cliente",
           "es": "Una copa de vino tinto.",
-          "en": "A glass of red wine."
+          "en": "A glass of red wine.",
+          "eu": "Ardo beltz kopa bat."
         },
         {
           "speaker": "Bartender",
           "es": "Aquí tiene. ¿Algo más de momento?",
-          "en": "Here you go. Anything else for now?"
+          "en": "Here you go. Anything else for now?",
+          "eu": "Hemen duzu. Beste zerbait momentuz?"
         },
         {
           "speaker": "Cliente",
           "es": "No, gracias.",
-          "en": "No, thank you."
+          "en": "No, thank you.",
+          "eu": "Ez, eskerrik asko."
         },
         {
           "speaker": "Bartender",
           "es": "Perfecto, cuando pida otra ronda, solo dígame su nombre.",
-          "en": "Perfect, when you order another round, just tell me your name."
+          "en": "Perfect, when you order another round, just tell me your name.",
+          "eu": "Bikain, beste erronda bat eskatzen duzunean, esan besterik ez zure izena."
         }
-      ]
+      ],
+      "title_eu": "Kontu irekia",
+      "scenario_eu": "Bezeroak hainbat errondatarako kontua irekita utzi nahi du."
     },
     {
       "id": "conv_bar_04",
@@ -2715,34 +3197,42 @@
         {
           "speaker": "Cliente",
           "es": "Buenas, ¿tiene cócteles sin alcohol?",
-          "en": "Hello, do you have non-alcoholic cocktails?"
+          "en": "Hello, do you have non-alcoholic cocktails?",
+          "eu": "Kaixo, alkoholik gabeko koktelik baduzue?"
         },
         {
           "speaker": "Bartender",
           "es": "Sí, tenemos mojito sin alcohol, piña colada sin alcohol y varios zumos.",
-          "en": "Yes, we have virgin mojito, virgin piña colada and several juices."
+          "en": "Yes, we have virgin mojito, virgin piña colada and several juices.",
+          "eu": "Bai, alkoholik gabeko mojitoa, piña colada eta hainbat zuku ditugu."
         },
         {
           "speaker": "Cliente",
           "es": "Me apetece un mojito sin alcohol.",
-          "en": "I feel like a virgin mojito."
+          "en": "I feel like a virgin mojito.",
+          "eu": "Alkoholik gabeko mojito bat nahi dut."
         },
         {
           "speaker": "Bartender",
           "es": "Muy bien, enseguida se lo preparo.",
-          "en": "Very well, I’ll prepare it right away."
+          "en": "Very well, I’ll prepare it right away.",
+          "eu": "Oso ondo, berehala prestatuko dut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias, tiene muy buena pinta.",
-          "en": "Thanks, it looks very nice."
+          "en": "Thanks, it looks very nice.",
+          "eu": "Eskerrik asko, oso itxura ona du."
         },
         {
           "speaker": "Bartender",
           "es": "De nada, disfrútelo.",
-          "en": "You’re welcome, enjoy."
+          "en": "You’re welcome, enjoy.",
+          "eu": "Ez horregatik, on egin."
         }
-      ]
+      ],
+      "title_eu": "Alkoholik gabeko koktel bat",
+      "scenario_eu": "Bezeroak alkoholik gabeko koktel bat eskatzen du."
     },
     {
       "id": "conv_bar_05",
@@ -2757,32 +3247,38 @@
         {
           "speaker": "Cliente",
           "es": "Buenas, ¿qué tapas tienen hoy?",
-          "en": "Hello, what tapas do you have today?"
+          "en": "Hello, what tapas do you have today?",
+          "eu": "Kaixo, zer tapa dituzue gaur?"
         },
         {
           "speaker": "Bartender",
           "es": "Tenemos tortilla, aceitunas, calamares y croquetas.",
-          "en": "We have omelette, olives, calamari, and croquettes."
+          "en": "We have omelette, olives, calamari, and croquettes.",
+          "eu": "Tortilla, olibak, kalamarrak eta kroketak ditugu."
         },
         {
           "speaker": "Cliente",
           "es": "Me pone una ración de croquetas, por favor.",
-          "en": "Can I have a portion of croquettes, please?"
+          "en": "Can I have a portion of croquettes, please?",
+          "eu": "Kroketa errazio bat jarriko didazu, mesedez."
         },
         {
           "speaker": "Bartender",
           "es": "Claro, ¿algo más para acompañar?",
-          "en": "Sure, anything else to go with it?"
+          "en": "Sure, anything else to go with it?",
+          "eu": "Jakina, beste zerbait laguntzeko?"
         },
         {
           "speaker": "Cliente",
           "es": "Unas aceitunas también.",
-          "en": "Some olives as well."
+          "en": "Some olives as well.",
+          "eu": "Oliba batzuk ere bai."
         },
         {
           "speaker": "Bartender",
           "es": "Perfecto, enseguida lo saco.",
-          "en": "Perfect, I’ll bring it right away."
+          "en": "Perfect, I’ll bring it right away.",
+          "eu": "Bikain, berehala aterako dut."
         },
         {
           "speaker": "Cliente",
@@ -2793,9 +3289,12 @@
         {
           "speaker": "Bartender",
           "es": "De nada, disfrute de las tapas.",
-          "en": "You’re welcome, enjoy the tapas."
+          "en": "You’re welcome, enjoy the tapas.",
+          "eu": "Ez horregatik, gozatu tapekin."
         }
-      ]
+      ],
+      "title_eu": "Tapak eskatzen barran",
+      "scenario_eu": "Bezeroak edariarekin tapak hartzen ditu."
     },
     {
       "id": "conv_bar_06",
@@ -2810,44 +3309,54 @@
         {
           "speaker": "Cliente",
           "es": "No sé qué tomar, ¿qué me recomienda?",
-          "en": "I don’t know what to drink, what do you recommend?"
+          "en": "I don’t know what to drink, what do you recommend?",
+          "eu": "Ez dakit zer hartu, zer gomendatzen didazu?"
         },
         {
           "speaker": "Bartender",
           "es": "Si le gusta lo dulce, el daiquiri es una buena opción.",
-          "en": "If you like sweet drinks, the daiquiri is a good option."
+          "en": "If you like sweet drinks, the daiquiri is a good option.",
+          "eu": "Gozoa gustuko baduzu, daiquiria aukera ona da."
         },
         {
           "speaker": "Cliente",
           "es": "Prefiero algo más fuerte.",
-          "en": "I prefer something stronger."
+          "en": "I prefer something stronger.",
+          "eu": "Nahiago dut zerbait indartsuagoa."
         },
         {
           "speaker": "Bartender",
           "es": "Entonces quizás un whisky solo o con hielo.",
-          "en": "Then maybe a whisky neat or on the rocks."
+          "en": "Then maybe a whisky neat or on the rocks.",
+          "eu": "Orduan agian whisky bat bakarrik edo izotzarekin."
         },
         {
           "speaker": "Cliente",
           "es": "Vale, me pondré un whisky con hielo.",
-          "en": "Okay, I’ll have a whisky on the rocks."
+          "en": "Okay, I’ll have a whisky on the rocks.",
+          "eu": "Ados, whisky bat jarriko dut izotzarekin."
         },
         {
           "speaker": "Bartender",
           "es": "Enseguida se lo traigo.",
-          "en": "I’ll bring it right away."
+          "en": "I’ll bring it right away.",
+          "eu": "Berehala ekarriko dizut."
         },
         {
           "speaker": "Cliente",
           "es": "Perfecto, gracias.",
-          "en": "Perfect, thank you."
+          "en": "Perfect, thank you.",
+          "eu": "Bikain, eskerrik asko."
         },
         {
           "speaker": "Bartender",
           "es": "A usted.",
-          "en": "You’re welcome."
+          "en": "You’re welcome.",
+          "eu": "Zuri."
         }
-      ]
+      ],
+      "title_eu": "Bezero zalantzatia",
+      "scenario_eu": "Bezeroak ez daki zein edari aukeratu."
     },
     {
       "id": "conv_bar_07",
@@ -2862,12 +3371,14 @@
         {
           "speaker": "Bartender",
           "es": "Aviso, esta es la última ronda.",
-          "en": "Last call, this is the final round."
+          "en": "Last call, this is the final round.",
+          "eu": "Oharra, hau da azken erronda."
         },
         {
           "speaker": "Cliente",
           "es": "Entonces me pone otra cerveza, por favor.",
-          "en": "Then I’ll have another beer, please."
+          "en": "Then I’ll have another beer, please.",
+          "eu": "Orduan beste garagardo bat jarri, mesedez."
         },
         {
           "speaker": "Bartender",
@@ -2878,29 +3389,36 @@
         {
           "speaker": "Cliente",
           "es": "¿Le da tiempo a prepararme también un gin-tonic?",
-          "en": "Do you have time to make me a gin and tonic as well?"
+          "en": "Do you have time to make me a gin and tonic as well?",
+          "eu": "Denbora ematen dizu gin-tonic bat ere prestatzeko?"
         },
         {
           "speaker": "Bartender",
           "es": "Sí, pero será la última.",
-          "en": "Yes, but it will be the last one."
+          "en": "Yes, but it will be the last one.",
+          "eu": "Bai, baina azkena izango da."
         },
         {
           "speaker": "Cliente",
           "es": "Perfecto, gracias.",
-          "en": "Perfect, thank you."
+          "en": "Perfect, thank you.",
+          "eu": "Bikain, eskerrik asko."
         },
         {
           "speaker": "Bartender",
           "es": "Que los disfrute.",
-          "en": "Enjoy them."
+          "en": "Enjoy them.",
+          "eu": "Gozatu itzazu."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias, buenas noches.",
-          "en": "Thank you, good night."
+          "en": "Thank you, good night.",
+          "eu": "Eskerrik asko, gabon."
         }
-      ]
+      ],
+      "title_eu": "Azken erronda",
+      "scenario_eu": "Taberna ixtear dago."
     },
     {
       "id": "conv_bar_08",
@@ -2915,44 +3433,54 @@
         {
           "speaker": "Cliente",
           "es": "¿Me puede dar la carta de bebidas?",
-          "en": "Can I have the drinks menu?"
+          "en": "Can I have the drinks menu?",
+          "eu": "Edarien karta eman diezadakezu?"
         },
         {
           "speaker": "Bartender",
           "es": "Por supuesto, aquí tiene.",
-          "en": "Of course, here it is."
+          "en": "Of course, here it is.",
+          "eu": "Jakina, hemen duzu."
         },
         {
           "speaker": "Cliente",
           "es": "¿Tienen cervezas artesanas?",
-          "en": "Do you have craft beers?"
+          "en": "Do you have craft beers?",
+          "eu": "Artisau-garagardorik baduzue?"
         },
         {
           "speaker": "Bartender",
           "es": "Sí, tenemos IPA y una lager local.",
-          "en": "Yes, we have an IPA and a local lager."
+          "en": "Yes, we have an IPA and a local lager.",
+          "eu": "Bai, IPA bat eta tokiko lager bat ditugu."
         },
         {
           "speaker": "Cliente",
           "es": "Entonces probaré la IPA.",
-          "en": "Then I’ll try the IPA."
+          "en": "Then I’ll try the IPA.",
+          "eu": "Orduan IPA probatuko dut."
         },
         {
           "speaker": "Bartender",
           "es": "Muy bien, enseguida se la traigo.",
-          "en": "Very well, I’ll bring it right away."
+          "en": "Very well, I’ll bring it right away.",
+          "eu": "Oso ondo, berehala ekarriko dizut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias.",
-          "en": "Thank you."
+          "en": "Thank you.",
+          "eu": "Eskerrik asko."
         },
         {
           "speaker": "Bartender",
           "es": "A usted.",
-          "en": "You’re welcome."
+          "en": "You’re welcome.",
+          "eu": "Zuri."
         }
-      ]
+      ],
+      "title_eu": "Bezeroak edarien karta eskatzen du",
+      "scenario_eu": "Bezero batek aukera guztiak ikusi nahi ditu."
     },
     {
       "id": "conv_bar_09",
@@ -2967,44 +3495,54 @@
         {
           "speaker": "Cliente",
           "es": "¿Nos pone cinco chupitos de tequila, por favor?",
-          "en": "Can we have five shots of tequila, please?"
+          "en": "Can we have five shots of tequila, please?",
+          "eu": "Bost tequila txupito jarriko dizkiguzu, mesedez?"
         },
         {
           "speaker": "Bartender",
           "es": "Claro, ¿quiere sal y limón también?",
-          "en": "Sure, would you like salt and lemon as well?"
+          "en": "Sure, would you like salt and lemon as well?",
+          "eu": "Jakina, gatza eta limoia ere nahi dituzu?"
         },
         {
           "speaker": "Cliente",
           "es": "Sí, por favor.",
-          "en": "Yes, please."
+          "en": "Yes, please.",
+          "eu": "Bai, mesedez."
         },
         {
           "speaker": "Bartender",
           "es": "Aquí tiene, todo listo.",
-          "en": "Here you go, all set."
+          "en": "Here you go, all set.",
+          "eu": "Hemen duzu, dena prest."
         },
         {
           "speaker": "Cliente",
           "es": "¿Cuánto es en total?",
-          "en": "How much is it altogether?"
+          "en": "How much is it altogether?",
+          "eu": "Zenbat da guztira?"
         },
         {
           "speaker": "Bartender",
           "es": "Son 15 euros.",
-          "en": "That will be 15 euros."
+          "en": "That will be 15 euros.",
+          "eu": "15 euro dira."
         },
         {
           "speaker": "Cliente",
           "es": "Perfecto, aquí tiene.",
-          "en": "Perfect, here you are."
+          "en": "Perfect, here you are.",
+          "eu": "Bikain, hemen duzu."
         },
         {
           "speaker": "Bartender",
           "es": "Gracias, que lo pasen bien.",
-          "en": "Thank you, have a great time."
+          "en": "Thank you, have a great time.",
+          "eu": "Eskerrik asko, ondo pasa."
         }
-      ]
+      ],
+      "title_eu": "Txupitoak eskatzen",
+      "scenario_eu": "Talde batek txupitoak eskatzen ditu barran."
     },
     {
       "id": "conv_bar_10",
@@ -3019,44 +3557,54 @@
         {
           "speaker": "Cliente",
           "es": "Hola, lo de siempre, por favor.",
-          "en": "Hi, the usual, please."
+          "en": "Hi, the usual, please.",
+          "eu": "Kaixo, betikoa mesedez."
         },
         {
           "speaker": "Bartender",
           "es": "Claro, una caña y unas aceitunas, ¿verdad?",
-          "en": "Sure, a beer and some olives, right?"
+          "en": "Sure, a beer and some olives, right?",
+          "eu": "Jakina, kaña bat eta oliba batzuk, ezta?"
         },
         {
           "speaker": "Cliente",
           "es": "Exacto, gracias.",
-          "en": "Exactly, thank you."
+          "en": "Exactly, thank you.",
+          "eu": "Hala da, eskerrik asko."
         },
         {
           "speaker": "Bartender",
           "es": "Enseguida se lo pongo.",
-          "en": "I’ll get it right away."
+          "en": "I’ll get it right away.",
+          "eu": "Berehala jarriko dizut."
         },
         {
           "speaker": "Cliente",
           "es": "Siempre muy atento, gracias.",
-          "en": "Always very attentive, thank you."
+          "en": "Always very attentive, thank you.",
+          "eu": "Beti oso adi, eskerrik asko."
         },
         {
           "speaker": "Bartender",
           "es": "Es un placer verle cada vez.",
-          "en": "It’s a pleasure to see you each time."
+          "en": "It’s a pleasure to see you each time.",
+          "eu": "Plazer bat da zu bakoitzean ikustea."
         },
         {
           "speaker": "Cliente",
           "es": "Igualmente, hasta la próxima.",
-          "en": "Likewise, see you next time."
+          "en": "Likewise, see you next time.",
+          "eu": "Berdin, hurrengora arte."
         },
         {
           "speaker": "Bartender",
           "es": "Hasta luego.",
-          "en": "See you later."
+          "en": "See you later.",
+          "eu": "Gero arte."
         }
-      ]
+      ],
+      "title_eu": "Ohiko bezeroa",
+      "scenario_eu": "Bezero batek betikoa eskatzen du."
     },
     {
       "id": "conv_room_01",
@@ -3071,32 +3619,38 @@
         {
           "speaker": "Huésped",
           "es": "Buenas tardes, me gustaría pedir comida a la habitación.",
-          "en": "Good afternoon, I would like to order room service."
+          "en": "Good afternoon, I would like to order room service.",
+          "eu": "Arratsalde on, gelara janaria eskatu nahi nuke."
         },
         {
           "speaker": "Room Service",
           "es": "Claro, señor. ¿Qué desea ordenar?",
-          "en": "Of course, sir. What would you like to order?"
+          "en": "Of course, sir. What would you like to order?",
+          "eu": "Jakina, jauna. Zer eskatu nahi duzu?"
         },
         {
           "speaker": "Huésped",
           "es": "Quiero una hamburguesa con patatas fritas.",
-          "en": "I’d like a burger with fries."
+          "en": "I’d like a burger with fries.",
+          "eu": "Hanburgesa bat patata frijituekin nahi dut."
         },
         {
           "speaker": "Room Service",
           "es": "¿Desea bebida con su pedido?",
-          "en": "Would you like a drink with your order?"
+          "en": "Would you like a drink with your order?",
+          "eu": "Edaririk nahi duzu zure eskaerarekin?"
         },
         {
           "speaker": "Huésped",
           "es": "Sí, una Coca-Cola, por favor.",
-          "en": "Yes, a Coke, please."
+          "en": "Yes, a Coke, please.",
+          "eu": "Bai, Coca-Cola bat, mesedez."
         },
         {
           "speaker": "Room Service",
           "es": "Perfecto. Su pedido llegará en 20 minutos.",
-          "en": "Perfect. Your order will arrive in 20 minutes."
+          "en": "Perfect. Your order will arrive in 20 minutes.",
+          "eu": "Bikain. Zure eskaera 20 minututan iritsiko da."
         },
         {
           "speaker": "Huésped",
@@ -3107,9 +3661,12 @@
         {
           "speaker": "Room Service",
           "es": "Con mucho gusto, que tenga buena tarde.",
-          "en": "You’re welcome, have a nice afternoon."
+          "en": "You’re welcome, have a nice afternoon.",
+          "eu": "Atseginez, arratsalde ona izan."
         }
-      ]
+      ],
+      "title_eu": "Janaria telefonoz eskatzen",
+      "scenario_eu": "Ostalari batek gelara janaria eskatzeko deitzen du."
     },
     {
       "id": "conv_room_02",
@@ -3124,34 +3681,42 @@
         {
           "speaker": "Huésped",
           "es": "Buenas noches, ¿podrían traerme toallas limpias?",
-          "en": "Good evening, could you bring me some clean towels?"
+          "en": "Good evening, could you bring me some clean towels?",
+          "eu": "Gabon, toaila garbiak ekar diezazkigukezue?"
         },
         {
           "speaker": "Room Service",
           "es": "Sí, señor. ¿Cuántas necesita?",
-          "en": "Yes, sir. How many do you need?"
+          "en": "Yes, sir. How many do you need?",
+          "eu": "Bai, jauna. Zenbat behar dituzu?"
         },
         {
           "speaker": "Huésped",
           "es": "Dos, por favor.",
-          "en": "Two, please."
+          "en": "Two, please.",
+          "eu": "Bi, mesedez."
         },
         {
           "speaker": "Room Service",
           "es": "De acuerdo, se las llevaremos en unos minutos.",
-          "en": "Alright, we will bring them to your room in a few minutes."
+          "en": "Alright, we will bring them to your room in a few minutes.",
+          "eu": "Ados, minutu gutxi barru eramango dizkizugu."
         },
         {
           "speaker": "Huésped",
           "es": "Gracias por la rapidez.",
-          "en": "Thank you for the quick service."
+          "en": "Thank you for the quick service.",
+          "eu": "Eskerrik asko azkartasunagatik."
         },
         {
           "speaker": "Room Service",
           "es": "Con mucho gusto.",
-          "en": "You’re welcome."
+          "en": "You’re welcome.",
+          "eu": "Atseginez."
         }
-      ]
+      ],
+      "title_eu": "Toaila garbiak eskatzen",
+      "scenario_eu": "Ostalari batek toaila gehiago behar dituelako deitzen du."
     },
     {
       "id": "conv_room_03",
@@ -3166,34 +3731,42 @@
         {
           "speaker": "Huésped",
           "es": "Buenos días, me gustaría pedir el desayuno en la habitación.",
-          "en": "Good morning, I’d like to order breakfast in my room."
+          "en": "Good morning, I’d like to order breakfast in my room.",
+          "eu": "Egun on, gosaria gelan eskatu nahi nuke."
         },
         {
           "speaker": "Room Service",
           "es": "Claro, ¿qué le gustaría?",
-          "en": "Of course, what would you like?"
+          "en": "Of course, what would you like?",
+          "eu": "Jakina, zer nahiko zenuke?"
         },
         {
           "speaker": "Huésped",
           "es": "Café con leche y tostadas.",
-          "en": "Coffee with milk and toast."
+          "en": "Coffee with milk and toast.",
+          "eu": "Kafesnea eta txigorkiak."
         },
         {
           "speaker": "Room Service",
           "es": "¿Desea huevos o fruta?",
-          "en": "Would you like eggs or fruit?"
+          "en": "Would you like eggs or fruit?",
+          "eu": "Arrautzak ala fruta nahi duzu?"
         },
         {
           "speaker": "Huésped",
           "es": "Sí, unos huevos revueltos.",
-          "en": "Yes, some scrambled eggs."
+          "en": "Yes, some scrambled eggs.",
+          "eu": "Bai, arrautza nahasi batzuk."
         },
         {
           "speaker": "Room Service",
           "es": "Muy bien, se lo subimos en 15 minutos.",
-          "en": "Very well, we’ll bring it up in 15 minutes."
+          "en": "Very well, we’ll bring it up in 15 minutes.",
+          "eu": "Oso ondo, 15 minututan igoko dizugu."
         }
-      ]
+      ],
+      "title_eu": "Gosaria eskatzen",
+      "scenario_eu": "Ostalariak gosaria eskatzen du gelara."
     },
     {
       "id": "conv_room_04",
@@ -3208,24 +3781,30 @@
         {
           "speaker": "Huésped",
           "es": "Buenas, ¿pueden recoger la bandeja de la cena?",
-          "en": "Hello, can you collect the dinner tray?"
+          "en": "Hello, can you collect the dinner tray?",
+          "eu": "Kaixo, afariaren erretilua jaso dezakezue?"
         },
         {
           "speaker": "Room Service",
           "es": "Sí, ¿podría dejarla fuera de la habitación?",
-          "en": "Yes, could you leave it outside the room?"
+          "en": "Yes, could you leave it outside the room?",
+          "eu": "Bai, gelatik kanpo utzi al zenuke?"
         },
         {
           "speaker": "Huésped",
           "es": "Por supuesto, la dejaré en el pasillo.",
-          "en": "Of course, I’ll leave it in the hallway."
+          "en": "Of course, I’ll leave it in the hallway.",
+          "eu": "Jakina, korridorean utziko dut."
         },
         {
           "speaker": "Room Service",
           "es": "Perfecto, la recogeremos en unos minutos.",
-          "en": "Perfect, we’ll pick it up in a few minutes."
+          "en": "Perfect, we’ll pick it up in a few minutes.",
+          "eu": "Bikain, minutu gutxi barru jasoko dugu."
         }
-      ]
+      ],
+      "title_eu": "Erretiluak kentzea",
+      "scenario_eu": "Ostalariak erabilitako erretilua kentzeko deitzen du."
     },
     {
       "id": "conv_room_05",
@@ -3240,24 +3819,30 @@
         {
           "speaker": "Huésped",
           "es": "Buenas tardes, ¿me pueden traer dos cervezas frías?",
-          "en": "Good afternoon, can you bring me two cold beers?"
+          "en": "Good afternoon, can you bring me two cold beers?",
+          "eu": "Arratsalde on, bi garagardo hotz ekar diezazkigukezue?"
         },
         {
           "speaker": "Room Service",
           "es": "Por supuesto, ¿a qué número de habitación?",
-          "en": "Of course, to which room number?"
+          "en": "Of course, to which room number?",
+          "eu": "Jakina, zein gela-zenbakira?"
         },
         {
           "speaker": "Huésped",
           "es": "La 305.",
-          "en": "Room 305."
+          "en": "Room 305.",
+          "eu": "305.a."
         },
         {
           "speaker": "Room Service",
           "es": "Perfecto, en 10 minutos las tendrá.",
-          "en": "Perfect, you’ll have them in 10 minutes."
+          "en": "Perfect, you’ll have them in 10 minutes.",
+          "eu": "Bikain, 10 minututan izango dituzue."
         }
-      ]
+      ],
+      "title_eu": "Edariak eskatzen",
+      "scenario_eu": "Ostalariak edariak eskatzen ditu gelara."
     },
     {
       "id": "conv_room_06",
@@ -3272,24 +3857,30 @@
         {
           "speaker": "Huésped",
           "es": "Disculpe, ¿podrían traerme una manta extra?",
-          "en": "Excuse me, could you bring me an extra blanket?"
+          "en": "Excuse me, could you bring me an extra blanket?",
+          "eu": "Barkatu, manta osagarri bat ekar diezadakezue?"
         },
         {
           "speaker": "Room Service",
           "es": "Sí, señor. Se la llevaremos enseguida.",
-          "en": "Yes, sir. We’ll bring it right away."
+          "en": "Yes, sir. We’ll bring it right away.",
+          "eu": "Bai, jauna. Berehala eramango dizugu."
         },
         {
           "speaker": "Huésped",
           "es": "Muchas gracias, hace un poco de frío.",
-          "en": "Thank you very much, it’s a bit cold."
+          "en": "Thank you very much, it’s a bit cold.",
+          "eu": "Eskerrik asko, hotz pixka bat egiten du."
         },
         {
           "speaker": "Room Service",
           "es": "No hay problema, llegaremos en unos minutos.",
-          "en": "No problem, we’ll be there in a few minutes."
+          "en": "No problem, we’ll be there in a few minutes.",
+          "eu": "Arazorik ez, minutu gutxi barru iritsiko gara."
         }
-      ]
+      ],
+      "title_eu": "Manta osagarriak eskatzen",
+      "scenario_eu": "Ostalari batek manta gehiago behar ditu."
     },
     {
       "id": "conv_room_07",
@@ -3304,24 +3895,30 @@
         {
           "speaker": "Huésped",
           "es": "Hola, el aire acondicionado no funciona.",
-          "en": "Hello, the air conditioning isn’t working."
+          "en": "Hello, the air conditioning isn’t working.",
+          "eu": "Kaixo, aire girotuak ez du funtzionatzen."
         },
         {
           "speaker": "Room Service",
           "es": "Lamentamos el inconveniente. Enviaremos a mantenimiento.",
-          "en": "We’re sorry for the inconvenience. We’ll send maintenance."
+          "en": "We’re sorry for the inconvenience. We’ll send maintenance.",
+          "eu": "Sentitzen dugu eragozpena. Mantentze-lanean bidaliko dugu."
         },
         {
           "speaker": "Huésped",
           "es": "¿Saben cuánto tardarán?",
-          "en": "Do you know how long it will take?"
+          "en": "Do you know how long it will take?",
+          "eu": "Badakizue zenbat deituko duten?"
         },
         {
           "speaker": "Room Service",
           "es": "En unos 15 minutos debería estar allí.",
-          "en": "In about 15 minutes they should be there."
+          "en": "In about 15 minutes they should be there.",
+          "eu": "15 minutu inguru barru han egon beharko luke."
         }
-      ]
+      ],
+      "title_eu": "Aire girotuarekin arazoa",
+      "scenario_eu": "Ostalari batek aire girotuarekin arazo bat dagoela jakinarazten du."
     },
     {
       "id": "conv_room_08",
@@ -3336,24 +3933,30 @@
         {
           "speaker": "Huésped",
           "es": "Hola, pedí comida hace 20 minutos. ¿A qué hora llegará exactamente?",
-          "en": "Hello, I ordered food 20 minutes ago. What time will it arrive exactly?"
+          "en": "Hello, I ordered food 20 minutes ago. What time will it arrive exactly?",
+          "eu": "Kaixo, janaria duela 20 minutu eskatu nuen. Noiz iritsiko da zehazki?"
         },
         {
           "speaker": "Room Service",
           "es": "Estamos en camino, llegará en 5 minutos.",
-          "en": "We’re on our way, it will arrive in 5 minutes."
+          "en": "We’re on our way, it will arrive in 5 minutes.",
+          "eu": "Bidean gaude, 5 minututan iritsiko da."
         },
         {
           "speaker": "Huésped",
           "es": "Perfecto, gracias por avisar.",
-          "en": "Perfect, thanks for letting me know."
+          "en": "Perfect, thanks for letting me know.",
+          "eu": "Bikain, eskerrik asko abisatzeagatik."
         },
         {
           "speaker": "Room Service",
           "es": "Con gusto, señor.",
-          "en": "You’re welcome, sir."
+          "en": "You’re welcome, sir.",
+          "eu": "Atseginez, jauna."
         }
-      ]
+      ],
+      "title_eu": "Entregatzeko ordutegia baieztatzea",
+      "scenario_eu": "Ostalariak bere eskaera entregatzeko ordu zehatza baieztatu nahi du."
     },
     {
       "id": "conv_room_09",
@@ -3368,24 +3971,30 @@
         {
           "speaker": "Huésped",
           "es": "Buenas tardes, ¿tienen postres disponibles?",
-          "en": "Good afternoon, do you have desserts available?"
+          "en": "Good afternoon, do you have desserts available?",
+          "eu": "Arratsalde on, postrerik baduzue erabilgarri?"
         },
         {
           "speaker": "Room Service",
           "es": "Sí, tenemos tarta de queso y helado.",
-          "en": "Yes, we have cheesecake and ice cream."
+          "en": "Yes, we have cheesecake and ice cream.",
+          "eu": "Bai, gazta-tarta eta izozkia ditugu."
         },
         {
           "speaker": "Huésped",
           "es": "Entonces tráigame una tarta de queso.",
-          "en": "Then bring me a cheesecake."
+          "en": "Then bring me a cheesecake.",
+          "eu": "Orduan ekarri iezadazu gazta-tarta bat."
         },
         {
           "speaker": "Room Service",
           "es": "Muy bien, llegará en unos minutos.",
-          "en": "Very well, it will arrive in a few minutes."
+          "en": "Very well, it will arrive in a few minutes.",
+          "eu": "Oso ondo, minutu gutxi barru iritsiko da."
         }
-      ]
+      ],
+      "title_eu": "Postre-eskaera",
+      "scenario_eu": "Ostalariak postre bat eskatzen du gelara."
     },
     {
       "id": "conv_room_10",
@@ -3400,24 +4009,30 @@
         {
           "speaker": "Huésped",
           "es": "Por favor, necesito una ambulancia.",
-          "en": "Please, I need an ambulance."
+          "en": "Please, I need an ambulance.",
+          "eu": "Mesedez, anbulantzia bat behar dut."
         },
         {
           "speaker": "Room Service",
           "es": "¿Qué ha ocurrido, señor?",
-          "en": "What happened, sir?"
+          "en": "What happened, sir?",
+          "eu": "Zer gertatu da, jauna?"
         },
         {
           "speaker": "Huésped",
           "es": "Mi compañero se ha desmayado.",
-          "en": "My partner has fainted."
+          "en": "My partner has fainted.",
+          "eu": "Nire kidea konortegabetu egin da."
         },
         {
           "speaker": "Room Service",
           "es": "Llamaremos inmediatamente a emergencias.",
-          "en": "We will immediately call the emergency services."
+          "en": "We will immediately call the emergency services.",
+          "eu": "Berehala deituko dugu larrialdietara."
         }
-      ]
+      ],
+      "title_eu": "Larrialdi medikoa",
+      "scenario_eu": "Ostalariak larrialdi mediko bat dela eta deitzen du."
     },
     {
       "id": "conv_compl_01",
@@ -3432,44 +4047,54 @@
         {
           "speaker": "Cliente",
           "es": "Disculpe, mi sopa está fría.",
-          "en": "Excuse me, my soup is cold."
+          "en": "Excuse me, my soup is cold.",
+          "eu": "Barkatu, nire sopa hotza dago."
         },
         {
           "speaker": "Camarero",
           "es": "Lamento lo ocurrido. ¿Desea que se la calentemos o le traigo una nueva?",
-          "en": "I’m sorry about that. Would you like us to heat it up or bring you a new one?"
+          "en": "I’m sorry about that. Would you like us to heat it up or bring you a new one?",
+          "eu": "Gertatutakoa sentitzen dut. Berotzea nahi duzu ala berri bat ekarriko dizut?"
         },
         {
           "speaker": "Cliente",
           "es": "Prefiero una nueva, por favor.",
-          "en": "I’d prefer a new one, please."
+          "en": "I’d prefer a new one, please.",
+          "eu": "Nahiago dut berri bat, mesedez."
         },
         {
           "speaker": "Camarero",
           "es": "Por supuesto, se la cambiaré de inmediato.",
-          "en": "Of course, I’ll replace it right away."
+          "en": "Of course, I’ll replace it right away.",
+          "eu": "Jakina, berehala aldatuko dizut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias. También me gustaría un poco de pan caliente.",
-          "en": "Thank you. I’d also like some warm bread."
+          "en": "Thank you. I’d also like some warm bread.",
+          "eu": "Eskerrik asko. Ogi bero pixka bat ere nahiko nuke."
         },
         {
           "speaker": "Camarero",
           "es": "Enseguida le traigo pan recién hecho.",
-          "en": "I’ll bring you freshly baked bread right away."
+          "en": "I’ll bring you freshly baked bread right away.",
+          "eu": "Berehala ekarriko dizut ogi egin berria."
         },
         {
           "speaker": "Cliente",
           "es": "Agradezco la rapidez.",
-          "en": "I appreciate the quick service."
+          "en": "I appreciate the quick service.",
+          "eu": "Azkartasuna eskertzen dut."
         },
         {
           "speaker": "Camarero",
           "es": "De nuevo, disculpe las molestias.",
-          "en": "Once again, I apologize for the inconvenience."
+          "en": "Once again, I apologize for the inconvenience.",
+          "eu": "Berriro ere, barkatu eragozpenak."
         }
-      ]
+      ],
+      "title_eu": "Sopa hotza dago",
+      "scenario_eu": "Bezero bat kexatu da sopa hotza dagoela hoteleko jatetxean."
     },
     {
       "id": "conv_compl_02",
@@ -3484,44 +4109,54 @@
         {
           "speaker": "Huésped",
           "es": "Buenas noches, hay mucho ruido cerca de mi habitación.",
-          "en": "Good evening, there is a lot of noise near my room."
+          "en": "Good evening, there is a lot of noise near my room.",
+          "eu": "Gabon, zarata handia dago nire gelatik gertu."
         },
         {
           "speaker": "Recepción",
           "es": "Lamentamos la molestia. ¿Podría indicarnos su número de habitación?",
-          "en": "We’re sorry for the disturbance. Could you tell us your room number?"
+          "en": "We’re sorry for the disturbance. Could you tell us your room number?",
+          "eu": "Sentitzen dugu eragozpena. Zure gela-zenbakia adieraziko diguzu?"
         },
         {
           "speaker": "Huésped",
           "es": "Estoy en la 412.",
-          "en": "I’m in room 412."
+          "en": "I’m in room 412.",
+          "eu": "412.ean nago."
         },
         {
           "speaker": "Recepción",
           "es": "Gracias. Enviaremos a seguridad para que verifique y pediremos silencio.",
-          "en": "Thank you. We’ll send security to check and ask for quiet."
+          "en": "Thank you. We’ll send security to check and ask for quiet.",
+          "eu": "Eskerrik asko. Segurtasuna bidaliko dugu egiaztatzeko eta isiltasuna eskatuko dugu."
         },
         {
           "speaker": "Huésped",
           "es": "Si no mejora, ¿podrían cambiarme de habitación?",
-          "en": "If it doesn’t improve, could you move me to another room?"
+          "en": "If it doesn’t improve, could you move me to another room?",
+          "eu": "Hobetzen ez bada, gelaz aldatu ahal didazue?"
         },
         {
           "speaker": "Recepción",
           "es": "Por supuesto, tenemos disponibilidad. Podemos ofrecerle una habitación en una planta más alta.",
-          "en": "Of course, we have availability. We can offer you a room on a higher floor."
+          "en": "Of course, we have availability. We can offer you a room on a higher floor.",
+          "eu": "Jakina, badugu erabilgarritasuna. Solairu altuago batean gela bat eskain diezazuekegu."
         },
         {
           "speaker": "Huésped",
           "es": "Se lo agradecería.",
-          "en": "I’d appreciate that."
+          "en": "I’d appreciate that.",
+          "eu": "Eskertuko nuke."
         },
         {
           "speaker": "Recepción",
           "es": "Nos ocupamos ahora mismo. Disculpe las molestias.",
-          "en": "We’ll take care of it right now. Sorry for the inconvenience."
+          "en": "We’ll take care of it right now. Sorry for the inconvenience.",
+          "eu": "Oraintxe bertan arduratuko gara. Barkatu eragozpenak."
         }
-      ]
+      ],
+      "title_eu": "Gela zaratatsua",
+      "scenario_eu": "Ostalaria bere gelatik gertu dagoen zaratagatik kexatu da."
     },
     {
       "id": "conv_compl_03",
@@ -3536,44 +4171,54 @@
         {
           "speaker": "Cliente",
           "es": "Llevamos esperando más de 30 minutos.",
-          "en": "We’ve been waiting for over 30 minutes."
+          "en": "We’ve been waiting for over 30 minutes.",
+          "eu": "30 minutu baino gehiago daramatzagu zain."
         },
         {
           "speaker": "Camarero",
           "es": "Lo siento mucho. Voy a comprobar el estado de su pedido en cocina.",
-          "en": "I’m very sorry. I’ll check the status of your order in the kitchen."
+          "en": "I’m very sorry. I’ll check the status of your order in the kitchen.",
+          "eu": "Asko sentitzen dut. Zure eskaeraren egoera egiaztatuko dut sukaldean."
         },
         {
           "speaker": "Cliente",
           "es": "Agradecería una actualización.",
-          "en": "I’d appreciate an update."
+          "en": "I’d appreciate an update.",
+          "eu": "Eguneratze bat eskertuko nuke."
         },
         {
           "speaker": "Camarero",
           "es": "Su pedido estará listo en cinco minutos. Le invitamos a una bebida por la espera.",
-          "en": "Your order will be ready in five minutes. We’ll offer you a complimentary drink for the wait."
+          "en": "Your order will be ready in five minutes. We’ll offer you a complimentary drink for the wait.",
+          "eu": "Zure eskaera bost minututan prest egongo da. Edari batera gonbidatzen zaituztegu itxaronaldiagatik."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias, aceptaré una limonada.",
-          "en": "Thank you, I’ll have a lemonade."
+          "en": "Thank you, I’ll have a lemonade.",
+          "eu": "Eskerrik asko, limonada bat onartuko dut."
         },
         {
           "speaker": "Camarero",
           "es": "Perfecto, se la traigo enseguida.",
-          "en": "Perfect, I’ll bring it right away."
+          "en": "Perfect, I’ll bring it right away.",
+          "eu": "Bikain, berehala ekarriko dizut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias por solucionarlo.",
-          "en": "Thanks for sorting it out."
+          "en": "Thanks for sorting it out.",
+          "eu": "Eskerrik asko konpontzeagatik."
         },
         {
           "speaker": "Camarero",
           "es": "De nuevo, disculpe el retraso.",
-          "en": "Again, we apologize for the delay."
+          "en": "Again, we apologize for the delay.",
+          "eu": "Berriro ere, barkatu atzerapena."
         }
-      ]
+      ],
+      "title_eu": "Zerbitzu-atzerapena",
+      "scenario_eu": "Bezeroa janariaren atzerapenagatik kexatu da."
     },
     {
       "id": "conv_compl_04",
@@ -3588,44 +4233,54 @@
         {
           "speaker": "Cliente",
           "es": "Perdone, creo que hay un cargo que no corresponde.",
-          "en": "Excuse me, I think there is a charge that doesn’t belong."
+          "en": "Excuse me, I think there is a charge that doesn’t belong.",
+          "eu": "Barkatu, uste dut dagokion ez den kargu bat dagoela."
         },
         {
           "speaker": "Cajero",
           "es": "Déjeme revisar. ¿Se refiere a las dos bebidas adicionales?",
-          "en": "Let me check. Are you referring to the two additional drinks?"
+          "en": "Let me check. Are you referring to the two additional drinks?",
+          "eu": "Utzi iezadazu berrikusten. Bi edari osagarriei buruz ari zara?"
         },
         {
           "speaker": "Cliente",
           "es": "Sí, solo pedimos una.",
-          "en": "Yes, we only ordered one."
+          "en": "Yes, we only ordered one.",
+          "eu": "Bai, bakarra eskatu dugu."
         },
         {
           "speaker": "Cajero",
           "es": "Tiene razón, fue un error de registro. Lo corrijo ahora mismo.",
-          "en": "You’re right, it was a recording error. I’ll correct it right now."
+          "en": "You’re right, it was a recording error. I’ll correct it right now.",
+          "eu": "Arrazoi duzu, erregistro-akats bat izan da. Oraintxe bertan zuzenduko dut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias por la rapidez.",
-          "en": "Thank you for the prompt fix."
+          "en": "Thank you for the prompt fix.",
+          "eu": "Eskerrik asko azkartasunagatik."
         },
         {
           "speaker": "Cajero",
           "es": "Aquí tiene la cuenta actualizada.",
-          "en": "Here is the updated bill."
+          "en": "Here is the updated bill.",
+          "eu": "Hemen duzu kontu eguneratua."
         },
         {
           "speaker": "Cliente",
           "es": "Ahora está correcto.",
-          "en": "Now it’s correct."
+          "en": "Now it’s correct.",
+          "eu": "Orain zuzen dago."
         },
         {
           "speaker": "Cajero",
           "es": "Lamentamos la confusión ocasionada.",
-          "en": "We apologize for the confusion caused."
+          "en": "We apologize for the confusion caused.",
+          "eu": "Barkatu sortutako nahasmena."
         }
-      ]
+      ],
+      "title_eu": "Akatsa kontuan",
+      "scenario_eu": "Bezeroak okerreko kargu bat aurkitu du kontuan."
     },
     {
       "id": "conv_compl_05",
@@ -3640,44 +4295,54 @@
         {
           "speaker": "Huésped",
           "es": "Buenas, el aire acondicionado no enfría.",
-          "en": "Hello, the air conditioning isn’t cooling."
+          "en": "Hello, the air conditioning isn’t cooling.",
+          "eu": "Kaixo, aire girotuak ez du hozten."
         },
         {
           "speaker": "Recepción",
           "es": "Sentimos el inconveniente. Enviaremos a mantenimiento de inmediato.",
-          "en": "We’re sorry for the inconvenience. We’ll send maintenance immediately."
+          "en": "We’re sorry for the inconvenience. We’ll send maintenance immediately.",
+          "eu": "Sentitzen dugu eragozpena. Mantentze-lanean bidaliko dugu berehala."
         },
         {
           "speaker": "Huésped",
           "es": "¿Podrían avisarme cuando vengan?",
-          "en": "Could you let me know when they come?"
+          "en": "Could you let me know when they come?",
+          "eu": "Abisatuko didazue datozenean?"
         },
         {
           "speaker": "Recepción",
           "es": "Por supuesto, le llamaremos antes.",
-          "en": "Of course, we’ll call you beforehand."
+          "en": "Of course, we’ll call you beforehand.",
+          "eu": "Jakina, lehenago deituko dizuegu."
         },
         {
           "speaker": "Huésped",
           "es": "Gracias. Si no se soluciona, necesitaré cambiar de habitación.",
-          "en": "Thank you. If it isn’t fixed, I’ll need to change rooms."
+          "en": "Thank you. If it isn’t fixed, I’ll need to change rooms.",
+          "eu": "Eskerrik asko. Konpontzen ez bada, gelaz aldatu beharko dut."
         },
         {
           "speaker": "Recepción",
           "es": "Tenemos habitaciones disponibles. Le ofreceremos una alternativa si fuera necesario.",
-          "en": "We have rooms available. We’ll offer you an alternative if needed."
+          "en": "We have rooms available. We’ll offer you an alternative if needed.",
+          "eu": "Gelak libre ditugu. Alternatiba bat eskainiko dizugu beharrezkoa bada."
         },
         {
           "speaker": "Huésped",
           "es": "De acuerdo, espero su llamada.",
-          "en": "Alright, I’ll wait for your call."
+          "en": "Alright, I’ll wait for your call.",
+          "eu": "Ados, zure deiaren zain nago."
         },
         {
           "speaker": "Recepción",
           "es": "Gracias por su paciencia.",
-          "en": "Thank you for your patience."
+          "en": "Thank you for your patience.",
+          "eu": "Eskerrik asko zure pazientziagatik."
         }
-      ]
+      ],
+      "title_eu": "Aire girotuak ez du hozten",
+      "scenario_eu": "Ostalariak jakinarazi du aireak ez duela ondo funtzionatzen."
     },
     {
       "id": "conv_compl_06",
@@ -3692,44 +4357,54 @@
         {
           "speaker": "Huésped",
           "es": "Buenas tardes, mi habitación no está bien limpia.",
-          "en": "Good afternoon, my room isn’t properly cleaned."
+          "en": "Good afternoon, my room isn’t properly cleaned.",
+          "eu": "Arratsalde on, nire gela ez dago ondo garbituta."
         },
         {
           "speaker": "Recepción",
           "es": "Lamentamos mucho escuchar eso. Enviaremos al servicio de limpieza de inmediato.",
-          "en": "We’re very sorry to hear that. We’ll send housekeeping right away."
+          "en": "We’re very sorry to hear that. We’ll send housekeeping right away.",
+          "eu": "Asko sentitzen dugu hori entzutea. Garbiketa-zerbitzua bidaliko dugu berehala."
         },
         {
           "speaker": "Huésped",
           "es": "Hay polvo en la mesa y el baño no está en condiciones.",
-          "en": "There’s dust on the table and the bathroom isn’t in good condition."
+          "en": "There’s dust on the table and the bathroom isn’t in good condition.",
+          "eu": "Hautsa dago mahaian eta bainugela ez dago egoera onean."
         },
         {
           "speaker": "Recepción",
           "es": "Tomamos nota. Haremos una limpieza a fondo y revisaremos el control de calidad.",
-          "en": "Understood. We’ll do a deep cleaning and review quality control."
+          "en": "Understood. We’ll do a deep cleaning and review quality control.",
+          "eu": "Oharra hartzen dugu. Garbiketa sakon bat egingo dugu eta kalitate-kontrola berrikusiko dugu."
         },
         {
           "speaker": "Huésped",
           "es": "Gracias. ¿Cuánto tardarán?",
-          "en": "Thank you. How long will it take?"
+          "en": "Thank you. How long will it take?",
+          "eu": "Eskerrik asko. Zenbat deituko duzue?"
         },
         {
           "speaker": "Recepción",
           "es": "Aproximadamente 20 minutos.",
-          "en": "Approximately 20 minutes."
+          "en": "Approximately 20 minutes.",
+          "eu": "20 minutu inguru."
         },
         {
           "speaker": "Huésped",
           "es": "De acuerdo, esperaré.",
-          "en": "Alright, I’ll wait."
+          "en": "Alright, I’ll wait.",
+          "eu": "Ados, itxarongo dut."
         },
         {
           "speaker": "Recepción",
           "es": "Sentimos las molestias ocasionadas.",
-          "en": "We apologize for the inconvenience."
+          "en": "We apologize for the inconvenience.",
+          "eu": "Sentitzen dugu sortutako eragozpenak."
         }
-      ]
+      ],
+      "title_eu": "Garbiketa nahikoa ez",
+      "scenario_eu": "Ostalaria kexatu da gela ez dagoela garbi."
     },
     {
       "id": "conv_compl_07",
@@ -3744,44 +4419,54 @@
         {
           "speaker": "Huésped",
           "es": "Mi reserva incluía desayuno y vista al mar, pero no aparece así.",
-          "en": "My booking included breakfast and sea view, but it doesn’t show that way."
+          "en": "My booking included breakfast and sea view, but it doesn’t show that way.",
+          "eu": "Nire erreserbak gosaria eta itsasorako begirada barne hartzen zituen, baina ez da horrela agertzen."
         },
         {
           "speaker": "Recepción",
           "es": "Permítame verificar en el sistema.",
-          "en": "Let me check in the system."
+          "en": "Let me check in the system.",
+          "eu": "Utzi iezadazu sisteman egiaztatzen."
         },
         {
           "speaker": "Huésped",
           "es": "Aquí tengo el correo de confirmación.",
-          "en": "I have the confirmation email here."
+          "en": "I have the confirmation email here.",
+          "eu": "Hemen dut baieztapen-mezua."
         },
         {
           "speaker": "Recepción",
           "es": "Gracias. Tiene razón; actualizaremos su reserva y añadiremos el desayuno sin coste.",
-          "en": "Thank you. You’re right; we’ll update your booking and add breakfast at no cost."
+          "en": "Thank you. You’re right; we’ll update your booking and add breakfast at no cost.",
+          "eu": "Eskerrik asko. Arrazoi duzu; zure erreserba eguneratuko dugu eta gosaria doan gehituko dugu."
         },
         {
           "speaker": "Huésped",
           "es": "¿Y la vista al mar?",
-          "en": "And the sea view?"
+          "en": "And the sea view?",
+          "eu": "Eta itsasorako begirada?"
         },
         {
           "speaker": "Recepción",
           "es": "Podemos ofrecerle una habitación con vista parcial hoy y vista completa mañana.",
-          "en": "We can offer you a partial sea view today and full sea view tomorrow."
+          "en": "We can offer you a partial sea view today and full sea view tomorrow.",
+          "eu": "Gaur begirada partziala duen gela bat eskain diezazugu eta bihar begirada osoko bat."
         },
         {
           "speaker": "Huésped",
           "es": "Acepto la solución.",
-          "en": "I accept the solution."
+          "en": "I accept the solution.",
+          "eu": "Irtenbidea onartzen dut."
         },
         {
           "speaker": "Recepción",
           "es": "Gracias por su comprensión y disculpe el error.",
-          "en": "Thank you for your understanding and sorry for the mistake."
+          "en": "Thank you for your understanding and sorry for the mistake.",
+          "eu": "Eskerrik asko zure ulermenagatik eta barkatu akatsa."
         }
-      ]
+      ],
+      "title_eu": "Erreserba gaizki kudeatuta",
+      "scenario_eu": "Ostalariak dio bere erreserba ez datorrela bat kontratatutakoarekin."
     },
     {
       "id": "conv_compl_08",
@@ -3796,44 +4481,54 @@
         {
           "speaker": "Cliente",
           "es": "Perdón, pedí sin frutos secos y este postre los tiene.",
-          "en": "Sorry, I asked for no nuts and this dessert has them."
+          "en": "Sorry, I asked for no nuts and this dessert has them.",
+          "eu": "Barkatu, fruitu lehorrik gabe eskatu nuen eta postre honek baditu."
         },
         {
           "speaker": "Camarero",
           "es": "Lo siento mucho. Prepararemos un postre seguro para usted.",
-          "en": "I’m very sorry. We’ll prepare a safe dessert for you."
+          "en": "I’m very sorry. We’ll prepare a safe dessert for you.",
+          "eu": "Oso sentitzen dut. Zuretzat postre seguru bat prestatuko dugu."
         },
         {
           "speaker": "Cliente",
           "es": "Necesito que lo confirmen con cocina, por favor.",
-          "en": "I need you to confirm it with the kitchen, please."
+          "en": "I need you to confirm it with the kitchen, please.",
+          "eu": "Mesedez, sukaldean baieztatu dezazuela behar dut."
         },
         {
           "speaker": "Camarero",
           "es": "Ahora mismo hablo con el chef y le traigo una alternativa sin alérgenos.",
-          "en": "I’ll speak to the chef right now and bring you an allergen-free alternative."
+          "en": "I’ll speak to the chef right now and bring you an allergen-free alternative.",
+          "eu": "Oraintxe bertan hitz egingo dut chefarekin eta alergenorik gabeko alternatiba bat ekarriko dizut."
         },
         {
           "speaker": "Cliente",
           "es": "Gracias por atenderlo.",
-          "en": "Thank you for taking care of it."
+          "en": "Thank you for taking care of it.",
+          "eu": "Eskerrik asko horretaz arduratzeagatik."
         },
         {
           "speaker": "Camarero",
           "es": "También revisaremos los procedimientos para evitar que se repita.",
-          "en": "We’ll also review procedures to prevent it from happening again."
+          "en": "We’ll also review procedures to prevent it from happening again.",
+          "eu": "Prozedurak ere berrikusiko ditugu berriro gerta ez dadin."
         },
         {
           "speaker": "Cliente",
           "es": "Me quedo más tranquilo.",
-          "en": "That makes me feel more comfortable."
+          "en": "That makes me feel more comfortable.",
+          "eu": "Lasaiago geratzen naiz."
         },
         {
           "speaker": "Camarero",
           "es": "Disculpe las molestias ocasionadas.",
-          "en": "We apologize for the inconvenience."
+          "en": "We apologize for the inconvenience.",
+          "eu": "Barkatu sortutako eragozpenak."
         }
-      ]
+      ],
+      "title_eu": "Arreta gabeko alergia",
+      "scenario_eu": "Bezeroak esan du ez dela kontuan hartu bere elikadura-alergia."
     },
     {
       "id": "conv_compl_09",
@@ -3848,44 +4543,54 @@
         {
           "speaker": "Huésped",
           "es": "El Wi‑Fi no me deja conectar.",
-          "en": "The Wi‑Fi won’t let me connect."
+          "en": "The Wi‑Fi won’t let me connect.",
+          "eu": "Wi-Fiak ez dit konektatzen uzten."
         },
         {
           "speaker": "Recepción",
           "es": "Vamos a ayudarle. ¿Le aparece la red del hotel?",
-          "en": "We’ll help you. Do you see the hotel’s network?"
+          "en": "We’ll help you. Do you see the hotel’s network?",
+          "eu": "Lagunduko dizugu. Hotelaren sarea agertzen zaizu?"
         },
         {
           "speaker": "Huésped",
           "es": "Sí, pero dice contraseña incorrecta.",
-          "en": "Yes, but it says incorrect password."
+          "en": "Yes, but it says incorrect password.",
+          "eu": "Bai, baina pasahitz okerra dio."
         },
         {
           "speaker": "Recepción",
           "es": "La contraseña actual es ‘Hotel2025!’. ¿Puede probar de nuevo?",
-          "en": "The current password is ‘Hotel2025!’. Could you try again?"
+          "en": "The current password is ‘Hotel2025!’. Could you try again?",
+          "eu": "Oraingo pasahitza ‘Hotel2025!’ da. Berriro probatu al dezakezu?"
         },
         {
           "speaker": "Huésped",
           "es": "Ahora sí conecta, gracias.",
-          "en": "It connects now, thank you."
+          "en": "It connects now, thank you.",
+          "eu": "Orain bai konektatzen du, eskerrik asko."
         },
         {
           "speaker": "Recepción",
           "es": "Si vuelve a fallar, podemos reiniciar el punto de acceso de su planta.",
-          "en": "If it fails again, we can restart the access point on your floor."
+          "en": "If it fails again, we can restart the access point on your floor.",
+          "eu": "Berriro huts egiten badu, zure solairuko sarbide-puntua berrabiarazi dezakegu."
         },
         {
           "speaker": "Huésped",
           "es": "Perfecto.",
-          "en": "Perfect."
+          "en": "Perfect.",
+          "eu": "Bikain."
         },
         {
           "speaker": "Recepción",
           "es": "Estamos a su disposición para cualquier otra cosa.",
-          "en": "We’re at your disposal for anything else."
+          "en": "We’re at your disposal for anything else.",
+          "eu": "Zure esanetara gaude beste edozein gauzetarako."
         }
-      ]
+      ],
+      "title_eu": "Wi-Fiak ez du funtzionatzen",
+      "scenario_eu": "Ostalariak esan du Wi-Fiak ez duela konektatzen."
     },
     {
       "id": "conv_compl_10",
@@ -3900,44 +4605,54 @@
         {
           "speaker": "Huésped",
           "es": "He esperado más de veinte minutos para hacer el check‑in.",
-          "en": "I waited more than twenty minutes to check in."
+          "en": "I waited more than twenty minutes to check in.",
+          "eu": "Hogei minutu baino gehiago itxaron dut sarrera (check-in) egiteko."
         },
         {
           "speaker": "Recepción",
           "es": "Sentimos la espera. Hoy hemos tenido varias llegadas al mismo tiempo.",
-          "en": "We’re sorry for the wait. We had several arrivals at the same time today."
+          "en": "We’re sorry for the wait. We had several arrivals at the same time today.",
+          "eu": "Sentitzen dugu itxaronaldia. Gaur hainbat iritsiera izan ditugu aldi berean."
         },
         {
           "speaker": "Huésped",
           "es": "Entiendo, pero ha sido incómodo.",
-          "en": "I understand, but it was inconvenient."
+          "en": "I understand, but it was inconvenient.",
+          "eu": "Ulertzen dut, baina deserosoa izan da."
         },
         {
           "speaker": "Recepción",
           "es": "Para compensar, le ofrecemos salida tardía sin coste.",
-          "en": "To compensate, we can offer you a late checkout at no cost."
+          "en": "To compensate, we can offer you a late checkout at no cost.",
+          "eu": "Konpentsatzeko, irteera berantiarra doan eskaintzen dizugu."
         },
         {
           "speaker": "Huésped",
           "es": "Gracias, lo aprecio.",
-          "en": "Thank you, I appreciate it."
+          "en": "Thank you, I appreciate it.",
+          "eu": "Eskerrik asko, estimatzen dut."
         },
         {
           "speaker": "Recepción",
           "es": "Además, aceleraremos su check‑in ahora mismo.",
-          "en": "We’ll also speed up your check-in right now."
+          "en": "We’ll also speed up your check-in right now.",
+          "eu": "Gainera, zure sarrera (check-in) azkartuko dugu oraintxe bertan."
         },
         {
           "speaker": "Huésped",
           "es": "Perfecto, gracias por la solución.",
-          "en": "Perfect, thanks for the solution."
+          "en": "Perfect, thanks for the solution.",
+          "eu": "Bikain, eskerrik asko irtenbideagatik."
         },
         {
           "speaker": "Recepción",
           "es": "Bienvenido al hotel y que disfrute su estancia.",
-          "en": "Welcome to the hotel, and enjoy your stay."
+          "en": "Welcome to the hotel, and enjoy your stay.",
+          "eu": "Ongi etorri hotelera eta ondo pasa egonaldia."
         }
-      ]
+      ],
+      "title_eu": "Itxaronaldia check-inean",
+      "scenario_eu": "Ostalaria harreran gehiegi itxaroteagatik kexatu da."
     }
   ]
 }

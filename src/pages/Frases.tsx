@@ -147,11 +147,18 @@ export default function Frases() {
                     <option value="Nuevas" className="bg-primary-dark">
                       Nuevas (Sin estudiar)
                     </option>
-                    {categories.map(category => (
-                      <option key={category} value={category} className="bg-primary-dark">
-                        {category}
-                      </option>
-                    ))}
+                    {categories.map(category => {
+                      let label = category;
+                      if (category === 'Jatetxea') label = 'Restaurante';
+                      if (category === 'Harrera') label = 'Recepción';
+                      if (category === 'Kexak') label = 'Quejas';
+                      if (category === 'Kexak eta erreklamazioak') label = 'Quejas y Reclamaciones';
+                      return (
+                        <option key={category} value={category} className="bg-primary-dark">
+                          {label}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
               </div>
