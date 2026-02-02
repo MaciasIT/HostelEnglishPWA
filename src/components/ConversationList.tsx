@@ -24,8 +24,6 @@ const ConversationList: React.FC<ConversationListProps> = ({ conversations, onSe
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="conversation-list">
       {conversations.map(conv => {
-        const title = targetLanguage === 'eu' && (conv as any).title_eu ? (conv as any).title_eu : conv.title;
-        const description = targetLanguage === 'eu' && (conv as any).description_eu ? (conv as any).description_eu : conv.description;
         return (
           <button
             key={conv.id}
@@ -44,8 +42,8 @@ const ConversationList: React.FC<ConversationListProps> = ({ conversations, onSe
               </div>
             </div>
 
-            <h3 className="text-xl font-black text-white mb-2 leading-tight">{title}</h3>
-            <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">{description}</p>
+            <h3 className="text-xl font-black text-white mb-2 leading-tight">{conv.title}</h3>
+            <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">{conv.description}</p>
 
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-black uppercase tracking-widest text-accent bg-accent/10 px-3 py-1 rounded-full border border-accent/20">
