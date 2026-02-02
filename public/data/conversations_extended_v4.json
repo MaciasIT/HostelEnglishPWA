@@ -260,7 +260,7 @@
       "id": "conv6",
       "title": "Gestión de quejas: comida fría y cobro incorrecto",
       "scenario": "El cliente inicia la queja y el camarero ofrece soluciones y revisa la cuenta.",
-      "categoria": "Quejas",
+      "categoria": "Quejas y Reclamaciones",
       "participants": [
         "Cliente",
         "Camarero/a"
@@ -2252,7 +2252,7 @@
       "id": "conv39",
       "title": "Queja: plato frío",
       "scenario": "Cliente recibe un plato frío y se queja.",
-      "categoria": "Quejas",
+      "categoria": "Quejas y Reclamaciones",
       "participants": [
         "Cliente",
         "Camarero/a"
@@ -2302,7 +2302,7 @@
       "id": "conv40",
       "title": "Queja: retraso en servicio",
       "scenario": "Cliente se queja de que su pedido tarda demasiado.",
-      "categoria": "Quejas",
+      "categoria": "Quejas y Reclamaciones",
       "participants": [
         "Cliente",
         "Camarero/a"
@@ -2352,7 +2352,7 @@
       "id": "conv41",
       "title": "Queja: pedido equivocado",
       "scenario": "Cliente recibe un plato distinto al que pidió.",
-      "categoria": "Quejas",
+      "categoria": "Quejas y Reclamaciones",
       "participants": [
         "Cliente",
         "Camarero/a"
@@ -2402,7 +2402,7 @@
       "id": "conv42",
       "title": "Queja: error en la cuenta",
       "scenario": "Cliente nota un cobro extra en la cuenta.",
-      "categoria": "Quejas",
+      "categoria": "Quejas y Reclamaciones",
       "participants": [
         "Cliente",
         "Camarero/a"
@@ -2452,7 +2452,7 @@
       "id": "conv43",
       "title": "Queja: parte del pedido olvidada",
       "scenario": "Cliente indica que falta parte de lo que pidió.",
-      "categoria": "Quejas",
+      "categoria": "Quejas y Reclamaciones",
       "participants": [
         "Cliente",
         "Camarero/a"
@@ -2502,7 +2502,7 @@
       "id": "conv44",
       "title": "Queja: vino pasado",
       "scenario": "Cliente se queja de que el vino sabe mal.",
-      "categoria": "Quejas",
+      "categoria": "Quejas y Reclamaciones",
       "participants": [
         "Cliente",
         "Camarero/a"
@@ -2552,7 +2552,7 @@
       "id": "conv45",
       "title": "Queja: silla rota",
       "scenario": "Cliente se queja de una silla defectuosa.",
-      "categoria": "Quejas",
+      "categoria": "Quejas y Reclamaciones",
       "participants": [
         "Cliente",
         "Camarero/a"
@@ -2602,7 +2602,7 @@
       "id": "conv46",
       "title": "Queja: ruido excesivo",
       "scenario": "Cliente se queja del ruido.",
-      "categoria": "Quejas",
+      "categoria": "Quejas y Reclamaciones",
       "participants": [
         "Cliente",
         "Camarero/a"
@@ -2652,7 +2652,7 @@
       "id": "conv47",
       "title": "Queja: comida poco hecha",
       "scenario": "Cliente indica que la carne no está bien cocinada.",
-      "categoria": "Quejas",
+      "categoria": "Quejas y Reclamaciones",
       "participants": [
         "Cliente",
         "Camarero/a"
@@ -2702,7 +2702,7 @@
       "id": "conv48",
       "title": "Queja: café frío",
       "scenario": "Cliente se queja de café frío.",
-      "categoria": "Quejas",
+      "categoria": "Quejas y Reclamaciones",
       "participants": [
         "Cliente",
         "Camarero/a"
@@ -2752,7 +2752,7 @@
       "id": "conv49",
       "title": "Queja: sobrecargo no pedido",
       "scenario": "Cliente ve un cargo por algo no pedido.",
-      "categoria": "Quejas",
+      "categoria": "Quejas y Reclamaciones",
       "participants": [
         "Cliente",
         "Camarero/a"
@@ -2802,7 +2802,7 @@
       "id": "conv50",
       "title": "Queja: tardanza en postre",
       "scenario": "Cliente espera demasiado el postre.",
-      "categoria": "Quejas",
+      "categoria": "Quejas y Reclamaciones",
       "participants": [
         "Cliente",
         "Camarero/a"
@@ -2852,7 +2852,7 @@
       "id": "conv51",
       "title": "Queja: hablar con encargado",
       "scenario": "Cliente pide hablar con encargado.",
-      "categoria": "Quejas",
+      "categoria": "Quejas y Reclamaciones",
       "participants": [
         "Cliente",
         "Camarero/a"
@@ -2902,7 +2902,7 @@
       "id": "conv52",
       "title": "Queja: limpieza en baño",
       "scenario": "Cliente se queja del estado del baño.",
-      "categoria": "Quejas",
+      "categoria": "Quejas y Reclamaciones",
       "participants": [
         "Cliente",
         "Camarero/a"
@@ -2952,7 +2952,7 @@
       "id": "conv53",
       "title": "Resolución con invitación de la casa",
       "scenario": "El camarero compensa una molestia con un detalle de la casa.",
-      "categoria": "Quejas",
+      "categoria": "Quejas y Reclamaciones",
       "participants": [
         "Cliente",
         "Camarero/a"
@@ -3002,7 +3002,7 @@
       "id": "conv_bar_01",
       "title": "Pidiendo una cerveza en la barra",
       "scenario": "Un cliente pide una cerveza en un bar concurrido.",
-      "categoria": "Barra",
+      "categoria": "Bar",
       "participants": [
         "Cliente",
         "Bartender"
@@ -3064,7 +3064,7 @@
       "id": "conv_bar_02",
       "title": "Pidiendo un cóctel clásico",
       "scenario": "Un cliente pide un cóctel en la barra.",
-      "categoria": "Barra",
+      "categoria": "Bar",
       "participants": [
         "Cliente",
         "Bartender"
@@ -3126,7 +3126,7 @@
       "id": "conv_bar_03",
       "title": "Cuenta abierta",
       "scenario": "El cliente quiere dejar la cuenta abierta para varias rondas.",
-      "categoria": "Barra",
+      "categoria": "Bar",
       "participants": [
         "Cliente",
         "Bartender"
@@ -3188,7 +3188,7 @@
       "id": "conv_bar_04",
       "title": "Un cóctel sin alcohol",
       "scenario": "El cliente pide un cóctel sin alcohol.",
-      "categoria": "Barra",
+      "categoria": "Bar",
       "participants": [
         "Cliente",
         "Bartender"
@@ -3238,7 +3238,7 @@
       "id": "conv_bar_05",
       "title": "Pidiendo tapas en la barra",
       "scenario": "El cliente acompaña la bebida con tapas.",
-      "categoria": "Barra",
+      "categoria": "Bar",
       "participants": [
         "Cliente",
         "Bartender"
@@ -3300,7 +3300,7 @@
       "id": "conv_bar_06",
       "title": "Cliente indeciso",
       "scenario": "El cliente no sabe qué bebida elegir.",
-      "categoria": "Barra",
+      "categoria": "Bar",
       "participants": [
         "Cliente",
         "Bartender"
@@ -3362,7 +3362,7 @@
       "id": "conv_bar_07",
       "title": "Última ronda",
       "scenario": "El bar está a punto de cerrar.",
-      "categoria": "Barra",
+      "categoria": "Bar",
       "participants": [
         "Cliente",
         "Bartender"
@@ -3424,7 +3424,7 @@
       "id": "conv_bar_08",
       "title": "Cliente pide la carta de bebidas",
       "scenario": "Un cliente quiere ver todas las opciones.",
-      "categoria": "Barra",
+      "categoria": "Bar",
       "participants": [
         "Cliente",
         "Bartender"
@@ -3486,7 +3486,7 @@
       "id": "conv_bar_09",
       "title": "Pidiendo chupitos",
       "scenario": "Un grupo pide chupitos en la barra.",
-      "categoria": "Barra",
+      "categoria": "Bar",
       "participants": [
         "Cliente",
         "Bartender"
@@ -3548,7 +3548,7 @@
       "id": "conv_bar_10",
       "title": "Cliente habitual",
       "scenario": "Un cliente pide lo de siempre.",
-      "categoria": "Barra",
+      "categoria": "Bar",
       "participants": [
         "Cliente",
         "Bartender"

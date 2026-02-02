@@ -27,6 +27,11 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
     - Solución de problemas de sincronización en la reproducción de diálogos.
     - Mejora de la persistencia de los ajustes de voz por categoría.
 
+- **[✅ COMPLETADO] Coherencia y Reorganización de Datasets:**
+    - **Unificación de Categorías**: Fusión de "Barra" -> "Bar" y unificación de nomenclaturas para "Quejas y Reclamaciones".
+    - **Re-categorización Inteligente**: Reubicación de +60 frases mal categorizadas (Bar, Mantenimiento, Limpieza) para asegurar que todos los "Mundos" del Quiz tengan contenido relevante.
+    - **Sincronización Total**: Alineación de categorías entre el dataset de frases y el de diálogos para una experiencia de usuario sin fisuras.
+
 ---
 
 ## ✨ Unificación de Idioma, Accesibilidad y Solución de Deuda Técnica
