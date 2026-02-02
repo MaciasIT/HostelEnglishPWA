@@ -4,6 +4,7 @@ import useSpeechRecognition from '@/hooks/useSpeechRecognition';
 import VoiceSettings from '@/components/VoiceSettings';
 import useAudioControl from '@/hooks/useAudioControl';
 import { useAppStore, Phrase } from '../store/useAppStore';
+import { playAudio } from '@/utils/audio';
 import PageContainer from '@/components/layout/PageContainer';
 import CollapsibleSection from '@/components/CollapsibleSection';
 import ModuleIntro from '@/components/ModuleIntro';
@@ -52,27 +53,19 @@ const Dictation: React.FC = () => {
 
   const targetLanguage = useAppStore((state) => state.prefs.targetLanguage);
 
-  const handlePlayAudio = () => {
+  const handlePlayAudio = async () => {
     if (currentPhrase) {
       cancelSpeech();
       const textToSpeak = targetLanguage === 'eu' ? currentPhrase.eu : currentPhrase.en;
-      const voiceLang = targetLanguage === 'eu' ? 'eu-ES' : 'en-US';
+      const langCode = targetLanguage === 'eu' ? 'eu' : 'en';
 
       if (!textToSpeak?.trim()) return;
 
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
-      utterance.lang = voiceLang;
-      utterance.rate = phraseSettings.rate;
-      utterance.pitch = phraseSettings.pitch;
-
-      if (phraseSettings.voiceURI) {
-        // Only use the saved voice if it matches the current target language
-        const voice = window.speechSynthesis.getVoices().find(v => v.voiceURI === phraseSettings.voiceURI);
-        if (voice && voice.lang.startsWith(targetLanguage === 'eu' ? 'eu' : 'en')) {
-          utterance.voice = voice;
-        }
-      }
-      window.speechSynthesis.speak(utterance);
+      await playAudio(textToSpeak, langCode as 'en' | 'eu', {
+        rate: phraseSettings.rate,
+        pitch: phraseSettings.pitch,
+        voiceURI: phraseSettings.voiceURI
+      });
     }
   };
 

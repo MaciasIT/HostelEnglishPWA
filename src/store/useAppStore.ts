@@ -136,9 +136,10 @@ export const useAppStore = create<State & Actions>()(
       loadFrases: async () => {
         if (get().frasesLoaded) return;
         try {
-          const res = await fetch(`${import.meta.env.BASE_URL}data/hostelenglish_dataset_clean.json`);
+          const res = await fetch(`${import.meta.env.BASE_URL}data/hostelenglish_dataset_clean.json?v=${Date.now()}`);
           const data = await res.json();
           set({ frases: data.phrases || [], frasesLoaded: true });
+          get().initializeCategories();
         } catch (e) {
           console.warn("No se pudo cargar el dataset de frases.", e);
         }
@@ -146,9 +147,10 @@ export const useAppStore = create<State & Actions>()(
       loadConversations: async () => {
         if (get().conversationsLoaded) return;
         try {
-          const res = await fetch(`${import.meta.env.BASE_URL}data/conversations_extended_v4.json`);
+          const res = await fetch(`${import.meta.env.BASE_URL}data/conversations_extended_v4.json?v=${Date.now()}`);
           const data = await res.json();
           set({ conversations: data.conversations || [], conversationsLoaded: true });
+          get().initializeCategories();
         } catch (e) {
           console.warn("No se pudo cargar el dataset de conversaciones.", e);
         }

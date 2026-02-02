@@ -13,7 +13,8 @@ import {
   PencilSquareIcon,
   ChartBarIcon,
   Squares2X2Icon,
-  XMarkIcon
+  XMarkIcon,
+  Cog6ToothIcon
 } from '@heroicons/react/24/outline';
 
 type NavItemProps = {
@@ -92,6 +93,9 @@ const SideNav: React.FC = () => {
           <NavItem to="/estudio" icon={BookOpenIcon} label="Estudio" />
           <NavItem to="/examen" icon={PencilSquareIcon} label="Examen" />
           <NavItem to="/progreso" icon={ChartBarIcon} label="Mi Progreso" />
+
+          <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mt-8 mb-4 px-4">Preferencias</p>
+          <NavItem to="/configuracion" icon={Cog6ToothIcon} label="Ajustes" />
         </nav>
 
         <div className="p-4 border-t border-white/5 bg-black/10">

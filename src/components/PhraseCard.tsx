@@ -4,8 +4,10 @@ import {
   SpeakerWaveIcon,
   CheckIcon,
   ArrowPathIcon,
-  BookmarkIcon
+  BookmarkIcon,
+  ExclamationCircleIcon
 } from '@heroicons/react/24/outline';
+import { playAudio } from '@/utils/audio';
 
 type Phrase = {
   id: number | string;
@@ -32,37 +34,21 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
     targetLanguage: state.prefs.targetLanguage,
   }));
 
-  const handlePlayAudio = (lang: 'es' | 'target') => {
-    window.speechSynthesis.cancel();
-
-    // Determine target text and language based on store setting
+  const handlePlayAudio = async (lang: 'es' | 'target') => {
     const targetText = targetLanguage === 'eu' ? phrase.eu : phrase.en;
-    const targetVoiceLang = targetLanguage === 'eu' ? 'eu-ES' : 'en-US';
-
     const textToSpeak = lang === 'es' ? phrase.es : targetText;
-    const speechLang = lang === 'es' ? 'es-ES' : targetVoiceLang;
+    const langCode = lang === 'es' ? 'es' : (targetLanguage === 'eu' ? 'eu' : 'en');
 
     if (!textToSpeak?.trim()) {
       console.warn(`Missing translation for ${lang} in ${targetLanguage}`);
       return;
     }
 
-    const utterance = new SpeechSynthesisUtterance(textToSpeak);
-    utterance.lang = speechLang;
-
-    if (lang === 'target') {
-      utterance.rate = phraseSettings.rate;
-      utterance.pitch = phraseSettings.pitch;
-      if (phraseSettings.voiceURI) {
-        // Only use the saved voice if it matches the current target language
-        const voice = window.speechSynthesis.getVoices().find(v => v.voiceURI === phraseSettings.voiceURI);
-        if (voice && voice.lang.startsWith(targetLanguage === 'eu' ? 'eu' : 'en')) {
-          utterance.voice = voice;
-        }
-      }
-    }
-
-    window.speechSynthesis.speak(utterance);
+    await playAudio(textToSpeak, langCode as 'en' | 'eu', {
+      rate: phraseSettings.rate,
+      pitch: phraseSettings.pitch,
+      voiceURI: phraseSettings.voiceURI
+    });
   };
 
   const statusConfig = {

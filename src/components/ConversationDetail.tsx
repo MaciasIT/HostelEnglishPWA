@@ -10,6 +10,7 @@ import {
   UserCircleIcon,
   Cog6ToothIcon
 } from '@heroicons/react/24/outline';
+import { playAudio } from '@/utils/audio';
 
 interface ConversationDetailProps {
   conversation: Conversation;
@@ -56,30 +57,23 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
     };
   }, []);
 
-  const handlePlayTurn = (turn: ConversationTurn) => {
+  const handlePlayTurn = async (turn: ConversationTurn) => {
     isPlayingAllRef.current = false;
     setIsPlaying(false);
     window.speechSynthesis.cancel();
 
     const textToSpeak = targetLanguage === 'eu' ? turn.eu : turn.en;
-    const voiceLang = targetLanguage === 'eu' ? 'eu-ES' : 'en-US';
+    const langCode = targetLanguage === 'eu' ? 'eu' : 'en';
 
     if (!textToSpeak?.trim()) return;
 
     const participantSettings = conversationSettings[turn.speaker] || { voiceURI: '', rate: 1, pitch: 1 };
-    const selectedVoice = availableVoices.find(voice => voice.voiceURI === participantSettings.voiceURI);
 
-    const utterance = new SpeechSynthesisUtterance(textToSpeak);
-    utterance.lang = voiceLang;
-    utterance.rate = participantSettings.rate;
-    utterance.pitch = participantSettings.pitch;
-
-    // Only use the saved voice if it matches the current target language
-    if (selectedVoice && selectedVoice.lang.startsWith(targetLanguage === 'eu' ? 'eu' : 'en')) {
-      utterance.voice = selectedVoice;
-    }
-
-    window.speechSynthesis.speak(utterance);
+    await playAudio(textToSpeak, langCode as 'en' | 'eu', {
+      rate: participantSettings.rate,
+      pitch: participantSettings.pitch,
+      voiceURI: participantSettings.voiceURI
+    });
   };
 
   const handlePlayAll = useCallback(() => {
@@ -88,31 +82,28 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
     setIsPlaying(true);
 
     let i = 0;
-    const playNextTurn = () => {
+    const playNextTurn = async () => {
       if (!isPlayingAllRef.current) return;
       if (i < conversation.dialogue.length) {
         const turn = conversation.dialogue[i];
         const textToSpeak = targetLanguage === 'eu' ? turn.eu : turn.en;
-        const voiceLang = targetLanguage === 'eu' ? 'eu-ES' : 'en-US';
+        const langCode = targetLanguage === 'eu' ? 'eu' : 'en';
 
         if (!textToSpeak?.trim()) { i++; playNextTurn(); return; }
 
         const participantSettings = conversationSettings[turn.speaker] || { voiceURI: '', rate: 1, pitch: 1 };
-        const selectedVoice = availableVoices.find(voice => voice.voiceURI === participantSettings.voiceURI);
 
-        const utterance = new SpeechSynthesisUtterance(textToSpeak);
-        utterance.lang = voiceLang;
-        utterance.rate = participantSettings.rate;
-        utterance.pitch = participantSettings.pitch;
-
-        if (selectedVoice && selectedVoice.lang.startsWith(targetLanguage === 'eu' ? 'eu' : 'en')) {
-          utterance.voice = selectedVoice;
+        try {
+          await playAudio(textToSpeak, langCode as 'en' | 'eu', {
+            rate: participantSettings.rate,
+            pitch: participantSettings.pitch,
+            voiceURI: participantSettings.voiceURI
+          });
+          if (isPlayingAllRef.current) { i++; playNextTurn(); }
+        } catch (e) {
+          console.error("Error playing dialogue turn", e);
+          if (isPlayingAllRef.current) { i++; playNextTurn(); }
         }
-
-        utterance.onend = () => { if (isPlayingAllRef.current) { i++; playNextTurn(); } };
-        utterance.onerror = () => { if (isPlayingAllRef.current) { i++; playNextTurn(); } };
-
-        window.speechSynthesis.speak(utterance);
       } else {
         isPlayingAllRef.current = false;
         setIsPlaying(false);
