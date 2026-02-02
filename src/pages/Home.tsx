@@ -9,12 +9,12 @@ import {
 } from '@heroicons/react/24/outline';
 
 const FeatureCard = ({ title, description, icon: Icon }: { title: string, description: string, icon: any }) => (
-  <div className="bg-white/5 backdrop-blur-xl p-8 rounded-[2rem] border border-white/10 hover:bg-white/10 transition-all hover:-translate-y-2 group shadow-2xl">
-    <div className="bg-accent/20 w-14 h-14 rounded-2xl flex items-center justify-center text-accent mb-6 group-hover:scale-110 transition-transform">
-      <Icon className="w-8 h-8" />
+  <div className="bg-white/5 backdrop-blur-xl p-6 sm:p-8 lg:p-6 rounded-[2rem] border border-white/10 hover:bg-white/10 transition-all hover:-translate-y-2 group shadow-2xl">
+    <div className="bg-accent/20 w-12 h-12 sm:w-14 sm:h-14 lg:w-12 lg:h-12 rounded-2xl flex items-center justify-center text-accent mb-4 sm:mb-6 lg:mb-4 group-hover:scale-110 transition-transform">
+      <Icon className="w-6 h-6 sm:w-8 sm:h-8 lg:w-6 lg:h-6" />
     </div>
-    <h3 className="text-xl font-black text-white mb-3">{title}</h3>
-    <p className="text-gray-400 leading-relaxed text-sm">{description}</p>
+    <h3 className="text-lg sm:text-xl font-black text-white mb-2 sm:mb-3 lg:mb-2">{title}</h3>
+    <p className="text-gray-400 leading-relaxed text-xs sm:text-sm">{description}</p>
   </div>
 );
 
@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <div className="text-white min-h-screen bg-primary-dark overflow-x-hidden">
       {/* Hero Section with Glassmorphism */}
-      <section className="relative pt-32 pb-24 px-6 overflow-hidden">
+      <section className="relative pt-24 sm:pt-32 lg:pt-20 pb-16 sm:pb-24 lg:pb-16 px-6 overflow-hidden">
         {/* Animated Background Orbs */}
         <div className="absolute top-0 -left-20 w-96 h-96 bg-accent opacity-20 blur-[120px] rounded-full animate-pulse"></div>
         <div className="absolute bottom-0 -right-20 w-96 h-96 bg-blue-500 opacity-20 blur-[120px] rounded-full animate-pulse delay-1000"></div>
@@ -35,27 +35,27 @@ export default function Home() {
             La forma más rápida de hablar {targetLanguage === 'eu' ? 'euskera' : 'inglés'}
           </div>
 
-          <h1 className="text-6xl sm:text-8xl font-black mb-8 tracking-tighter leading-[0.9] animate-in fade-in slide-in-from-top-8 duration-700 delay-100">
+          <h1 className="text-5xl sm:text-8xl lg:text-6xl font-black mb-6 sm:mb-8 lg:mb-6 tracking-tighter leading-[0.9] animate-in fade-in slide-in-from-top-8 duration-700 delay-100">
             Hostel<span className="text-accent">English</span><br />
             Professional <span className="text-gray-500">App</span>
           </h1>
 
-          <p className="text-xl sm:text-2xl mb-12 text-gray-400 max-w-2xl mx-auto leading-relaxed animate-in fade-in slide-in-from-top-12 duration-700 delay-200">
+          <p className="text-lg sm:text-2xl lg:text-xl mb-8 sm:mb-12 lg:mb-8 text-gray-400 max-w-2xl mx-auto leading-relaxed animate-in fade-in slide-in-from-top-12 duration-700 delay-200">
             Domina el vocabulario y las expresiones esenciales para destacar en el mundo de la hostelería profesional.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 animate-in fade-in slide-in-from-top-16 duration-700 delay-300">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 animate-in fade-in slide-in-from-top-16 duration-700 delay-300">
             <Link
               to="/dashboard"
-              className="w-full sm:w-auto bg-accent hover:brightness-110 text-white font-black py-5 px-12 rounded-2xl text-xl shadow-2xl transform active:scale-95 transition-all text-center tracking-widest"
+              className="w-full sm:w-auto bg-accent hover:brightness-110 text-white font-black py-4 sm:py-5 lg:py-4 px-10 sm:px-12 lg:px-10 rounded-2xl text-lg sm:text-xl lg:text-lg shadow-2xl transform active:scale-95 transition-all text-center tracking-widest"
             >
               EMPEZAR AHORA
             </Link>
             <Link
               to="/progreso"
-              className="w-full sm:w-auto bg-white/5 hover:bg-white/10 text-white font-bold py-5 px-12 rounded-2xl text-xl border border-white/10 transition-all text-center tracking-widest"
+              className="w-full sm:w-auto bg-white/5 hover:bg-white/10 text-white font-bold py-4 sm:py-5 lg:py-4 px-10 sm:px-12 lg:px-10 rounded-2xl text-lg sm:text-xl lg:text-lg border border-white/10 transition-all text-center tracking-widest"
             >
-              VER MI PROGRESO
+              MI PROGRESO
             </Link>
           </div>
 
@@ -72,13 +72,13 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-24 px-6 bg-white/[0.02]">
+      <section className="py-16 sm:py-24 lg:py-16 px-6 bg-white/[0.02]">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl sm:text-5xl font-black text-white mb-6">
+          <div className="text-center mb-12 sm:mb-20 lg:mb-12">
+            <h2 className="text-3xl sm:text-5xl lg:text-4xl font-black text-white mb-4 sm:mb-6 lg:mb-4">
               Diseñado para Hostelería
             </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto text-lg">
+            <p className="text-gray-400 max-w-2xl mx-auto text-base sm:text-lg">
               Olvida los cursos genéricos. Aprende lo que realmente necesitas para trabajar en hoteles, restaurantes y eventos.
             </p>
           </div>
@@ -109,11 +109,11 @@ export default function Home() {
       </section>
 
       {/* Social Proof / Stats */}
-      <section className="py-24 px-6 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+      <section className="py-16 sm:py-24 lg:py-16 px-6 relative overflow-hidden">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 text-center">
           <div>
-            <p className="text-5xl font-black text-accent mb-2">500+</p>
-            <p className="text-xs uppercase tracking-widest text-gray-500 font-bold">
+            <p className="text-4xl sm:text-5xl lg:text-4xl font-black text-accent mb-2">500+</p>
+            <p className="text-[10px] sm:text-xs uppercase tracking-widest text-gray-500 font-bold">
               Frases Útiles
             </p>
           </div>
