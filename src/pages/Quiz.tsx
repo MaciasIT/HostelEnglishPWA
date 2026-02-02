@@ -4,7 +4,16 @@ import PageContainer from '@/components/layout/PageContainer';
 import CollapsibleSection from '@/components/CollapsibleSection';
 import VoiceSettings from '@/components/VoiceSettings';
 import ModuleIntro from '@/components/ModuleIntro';
-import { AcademicCapIcon } from '@heroicons/react/24/outline';
+import {
+  AcademicCapIcon,
+  XMarkIcon,
+  HeartIcon,
+  FireIcon,
+  CheckCircleIcon,
+  ArrowPathIcon,
+  SparklesIcon
+} from '@heroicons/react/24/outline';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type QuizMode = 'multiple' | 'truefalse' | 'scramble';
 
@@ -28,11 +37,25 @@ export default function Quiz() {
 
   const [quizActive, setQuizActive] = useState(false);
   const [selectedMode, setSelectedMode] = useState<QuizMode>('multiple');
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
   const [score, setScore] = useState(0);
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [feedback, setFeedback] = useState<{ isCorrect: boolean, message: string } | null>(null);
   const [showWelcome, setShowWelcome] = useState(true);
+
+  // Filtered phrases for the selected world
+  const filteredFrases = selectedCategory
+    ? frases.filter(f => f.categoria === selectedCategory)
+    : frases;
+
+  // New Gamification States
+  const [lives, setLives] = useState(3);
+  const [streak, setStreak] = useState(0);
+  const [questionsHandledInLevel, setQuestionsHandledInLevel] = useState(0);
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [isLevelComplete, setIsLevelComplete] = useState(false);
+  const QUESTIONS_PER_LEVEL = 10;
 
   const [scrambleAnswers, setScrambleAnswers] = useState<ScrambledWord[]>([]);
 
@@ -62,16 +85,16 @@ export default function Quiz() {
   }, [phraseSettings, targetLanguage]);
 
   const generateQuestion = useCallback(() => {
-    if (frases.length < 4) return;
+    if (filteredFrases.length < 4) return;
 
-    const target = frases[Math.floor(Math.random() * frases.length)];
+    const target = filteredFrases[Math.floor(Math.random() * filteredFrases.length)];
     const getTargetText = (f: Phrase) => (targetLanguage === 'eu' ? f.eu : f.en) || f.en;
     const targetText = getTargetText(target);
 
     if (selectedMode === 'multiple') {
       const distractors: string[] = [];
       while (distractors.length < 3) {
-        const randomFrase = frases[Math.floor(Math.random() * frases.length)];
+        const randomFrase = filteredFrases[Math.floor(Math.random() * filteredFrases.length)];
         const distactorText = getTargetText(randomFrase);
         if (randomFrase.id !== target.id && !distractors.includes(distactorText)) {
           distractors.push(distactorText);
@@ -85,7 +108,7 @@ export default function Quiz() {
       if (!shouldBeCorrect) {
         let randomFrase;
         do {
-          randomFrase = frases[Math.floor(Math.random() * frases.length)];
+          randomFrase = filteredFrases[Math.floor(Math.random() * filteredFrases.length)];
         } while (randomFrase.id === target.id);
         tfTranslation = getTargetText(randomFrase);
       }
@@ -98,13 +121,18 @@ export default function Quiz() {
     }
 
     setFeedback(null);
-  }, [frases, selectedMode, targetLanguage]);
+  }, [filteredFrases, selectedMode, targetLanguage]);
 
   const handleStartQuiz = () => {
     setShowWelcome(false);
     setQuizActive(true);
     setScore(0);
     setTotalQuestions(0);
+    setLives(3);
+    setStreak(0);
+    setQuestionsHandledInLevel(0);
+    setIsGameOver(false);
+    setIsLevelComplete(false);
     generateQuestion();
   };
 
@@ -124,6 +152,7 @@ export default function Quiz() {
 
     if (isCorrect) {
       setScore(s => s + 1);
+      setStreak(s => s + 1);
       setFeedback({ isCorrect: true, message: '¡Correcto!' });
 
       // Advance progress if correct
@@ -131,9 +160,16 @@ export default function Quiz() {
         advancePhraseProgress(String(currentQuestion.target.id));
       }
     } else {
+      const newLives = lives - 1;
+      setLives(newLives);
+      setStreak(0);
       setFeedback({ isCorrect: false, message: `Incorrecto. Era: ${targetText}` });
+      if (newLives <= 0) {
+        // We'll handle GameOver transition in handleNextQuestion
+      }
     }
     setTotalQuestions(t => t + 1);
+    setQuestionsHandledInLevel(q => q + 1);
     playAudio(targetText);
   };
 
@@ -148,6 +184,14 @@ export default function Quiz() {
   };
 
   const handleNextQuestion = () => {
+    if (lives <= 0) {
+      setIsGameOver(true);
+      return;
+    }
+    if (questionsHandledInLevel >= QUESTIONS_PER_LEVEL) {
+      setIsLevelComplete(true);
+      return;
+    }
     generateQuestion();
   };
 
@@ -170,35 +214,85 @@ export default function Quiz() {
   }
 
   if (!quizActive) {
+    const categoriesList = [...new Set(frases.map(f => f.categoria).filter(Boolean))] as string[];
+
+    // Sort categories to keep them stable
+    const sortedCategories = categoriesList.sort();
+
     return (
-      <PageContainer title="Elige tu desafío">
-        <div className="max-w-4xl mx-auto py-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {[
-              { id: 'multiple', title: 'Opción Múltiple', desc: 'Elige la traducción correcta.', color: 'bg-blue-500' },
-              { id: 'truefalse', title: 'Verdadero/Falso', desc: '¿Es correcta la traducción?', color: 'bg-purple-500' },
-              { id: 'scramble', title: 'Ordenar Frase', desc: 'Reconstruye la frase original.', color: 'bg-orange-500' }
-            ].map((mode) => (
-              <button
-                key={mode.id}
-                onClick={() => setSelectedMode(mode.id as QuizMode)}
-                className={`p-8 rounded-3xl text-center border-2 transition-all transform hover:scale-105 ${selectedMode === mode.id ? 'bg-white/10 border-accent shadow-2xl' : 'bg-white/5 border-white/10'}`}
-              >
-                <div className={`w-12 h-12 ${mode.color} rounded-2xl mx-auto mb-4 flex items-center justify-center text-white font-black shadow-lg`}>
-                  {mode.id === 'multiple' ? 'ABC' : mode.id === 'truefalse' ? '✓✗' : '...'}
-                </div>
-                <h3 className="text-xl font-bold text-white mb-2">{mode.title}</h3>
-                <p className="text-sm text-gray-400">{mode.desc}</p>
-              </button>
-            ))}
+      <PageContainer title="Selecciona un Mundo">
+        <div className="max-w-5xl mx-auto py-4">
+
+          <div className="mb-12">
+            <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-6 px-2">1. Elige tu especialidad (Mundo)</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {sortedCategories.map((cat) => {
+                const catPhrases = frases.filter(f => f.categoria === cat);
+                const masteredCount = catPhrases.filter(f => (progress[f.id] || 0) >= 2).length;
+                const percent = Math.round((masteredCount / catPhrases.length) * 100);
+
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`relative p-6 rounded-[2rem] text-left border-2 transition-all overflow-hidden group ${selectedCategory === cat ? 'bg-accent/10 border-accent shadow-xl' : 'bg-white/5 border-white/5 hover:border-white/20'}`}
+                  >
+                    <div className="relative z-10">
+                      <h3 className="text-lg font-black text-white mb-1">{cat}</h3>
+                      <p className="text-[10px] text-gray-500 font-bold uppercase mb-4">{catPhrases.length} Frases</p>
+
+                      <div className="flex items-center gap-3">
+                        <div className="flex-grow h-1.5 bg-black/40 rounded-full overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: `${percent}%` }}
+                            className="h-full bg-accent"
+                          />
+                        </div>
+                        <span className="text-[10px] font-black text-accent">{percent}%</span>
+                      </div>
+                    </div>
+                    {selectedCategory === cat && (
+                      <div className="absolute top-4 right-4 text-accent">
+                        <CheckCircleIcon className="w-5 h-5" />
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="flex justify-center">
+          <div className="mb-12">
+            <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest mb-6 px-2">2. Elige el modo de juego</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                { id: 'multiple', title: 'Opción Múltiple', icon: 'ABC', color: 'bg-blue-500' },
+                { id: 'truefalse', title: 'Verdadero/Falso', icon: '✓✗', color: 'bg-purple-500' },
+                { id: 'scramble', title: 'Ordenar Frase', icon: '...', color: 'bg-orange-500' }
+              ].map((mode) => (
+                <button
+                  key={mode.id}
+                  onClick={() => setSelectedMode(mode.id as QuizMode)}
+                  className={`p-6 rounded-[2rem] text-center border-2 transition-all ${selectedMode === mode.id ? 'bg-white/10 border-accent shadow-lg' : 'bg-white/5 border-white/5 hover:border-white/10'}`}
+                >
+                  <div className={`w-10 h-10 ${mode.color} rounded-xl mx-auto mb-3 flex items-center justify-center text-white font-black text-xs shadow-lg`}>
+                    {mode.icon}
+                  </div>
+                  <h3 className="text-sm font-bold text-white tracking-tight">{mode.title}</h3>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex justify-center pt-4">
             <button
               onClick={handleStartQuiz}
-              className="bg-accent hover:brightness-110 text-white font-black py-5 px-16 rounded-2xl text-2xl shadow-2xl transform active:scale-95 transition-all"
+              disabled={!selectedCategory}
+              className={`bg-accent hover:brightness-110 text-white font-black py-5 px-16 rounded-2xl text-xl shadow-2xl transform active:scale-95 transition-all tracking-widest flex items-center gap-3 ${!selectedCategory ? 'opacity-30 grayscale cursor-not-allowed' : ''}`}
             >
-              COMENZAR DESAFÍO
+              <SparklesIcon className="w-6 h-6" />
+              INICIAR DESAFÍO
             </button>
           </div>
 
@@ -219,23 +313,30 @@ export default function Quiz() {
   return (
     <PageContainer title={`Quiz: ${selectedMode === 'multiple' ? 'Opción Múltiple' : selectedMode === 'truefalse' ? 'Verdadero o Falso' : 'Ordenar Frase'}`}>
       <div className="max-w-xl mx-auto px-4">
-        <div className="flex gap-3 mb-6">
-          <button
-            onClick={() => { setQuizActive(false); setShowWelcome(true); }}
-            className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-gray-400 hover:text-white hover:bg-red-500/20 hover:border-red-500/30 transition-all text-[10px] font-black uppercase tracking-widest flex items-center gap-2"
-          >
-            <span>Finalizar</span>
-          </button>
-          <div className="flex-grow flex justify-between items-center bg-white/5 border border-white/10 p-3 rounded-2xl shadow-lg backdrop-blur-md">
-            <p className="text-xs font-bold">Pregunta <span className="text-accent">#{totalQuestions + (feedback ? 0 : 1)}</span></p>
-            <div className="flex gap-2">
-              <div className="bg-green-500/20 px-3 py-1 rounded-full border border-green-500/30">
-                <p className="text-[10px] font-bold text-green-400">Puntos: {score}</p>
-              </div>
-              <div className="bg-accent/20 px-3 py-1 rounded-full border border-accent/30">
-                <p className="text-[10px] font-bold text-accent">{totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0}%</p>
-              </div>
+        <div className="flex flex-col gap-4 mb-6">
+          <div className="flex justify-between items-center bg-white/5 border border-white/10 p-4 rounded-2xl shadow-lg backdrop-blur-md overflow-hidden relative">
+            <button
+              onClick={() => { setQuizActive(false); setShowWelcome(true); }}
+              className="p-2 text-gray-500 hover:text-white"
+            >
+              <XMarkIcon className="w-6 h-6" />
+            </button>
+
+            {/* Lives */}
+            <div className="flex gap-1">
+              {[...Array(3)].map((_, i) => (
+                <HeartIcon key={i} className={`w-6 h-6 ${i < lives ? 'text-red-500 fill-red-500' : 'text-gray-700'}`} />
+              ))}
             </div>
+
+            {/* Streak */}
+            <div className={`flex items-center gap-1 transition-all ${streak >= 3 ? 'text-orange-500 scale-110' : 'text-gray-500'}`}>
+              <FireIcon className="w-5 h-5" />
+              <span className="font-black text-sm">{streak}</span>
+            </div>
+
+            {/* Progress Bar */}
+            <div className="absolute bottom-0 left-0 h-1 bg-accent transition-all duration-500" style={{ width: `${(questionsHandledInLevel / QUESTIONS_PER_LEVEL) * 100}%` }}></div>
           </div>
         </div>
 
@@ -361,22 +462,130 @@ export default function Quiz() {
             )}
 
             {/* Feedback Fixed Modal Overlay */}
-            {feedback && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-primary-dark/60 backdrop-blur-md animate-in fade-in duration-300">
-                <div data-testid="quiz-feedback" className={`max-w-md w-full p-8 rounded-[2.5rem] text-center shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] border-2 ${feedback.isCorrect ? 'bg-green-600/95 border-green-400' : 'bg-red-600/95 border-red-400'} animate-in zoom-in-95 duration-300`}>
-                  <p className="text-2xl font-black mb-2">{feedback.isCorrect ? '✨ ¡EXCELENTE! ✨' : '🤔 ¡Casi lo tienes!'}</p>
-                  <p className="text-lg opacity-90 mb-8 font-medium italic">
-                    {feedback.isCorrect ? 'Respuesta perfecta.' : `La respuesta correcta era: ${targetLanguage === 'eu' ? currentQuestion.target.eu : currentQuestion.target.en}`}
-                  </p>
-                  <button
-                    onClick={handleNextQuestion}
-                    className="bg-white text-primary-dark font-black py-4 px-12 rounded-2xl hover:bg-accent hover:text-white transition-all duration-300 shadow-2xl active:scale-95 w-full uppercase tracking-widest"
+            <AnimatePresence>
+              {feedback && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-primary-dark/80 backdrop-blur-md"
+                >
+                  <motion.div
+                    initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                    animate={{ scale: 1, opacity: 1, y: 0 }}
+                    className={`max-w-md w-full p-8 rounded-[2.5rem] text-center shadow-2xl border-2 ${feedback.isCorrect ? 'bg-green-600 border-green-400' : 'bg-red-600 border-red-400'}`}
                   >
-                    Siguiente Nivel
-                  </button>
-                </div>
-              </div>
-            )}
+                    <div className="mb-4">
+                      {feedback.isCorrect ? (
+                        <CheckCircleIcon className="w-16 h-16 text-white mx-auto animate-bounce" />
+                      ) : (
+                        <XMarkIcon className="w-16 h-16 text-white mx-auto" />
+                      )}
+                    </div>
+                    <p className="text-2xl font-black mb-2">{feedback.isCorrect ? '¡MUY BIEN!' : '¡OUCH!'}</p>
+                    <p className="text-lg opacity-90 mb-8 font-medium italic">
+                      {feedback.isCorrect ? (streak > 2 ? `¡Racha de ${streak} aciertos! 🔥` : '¡Sigue así!') : `La respuesta correcta era: ${targetLanguage === 'eu' ? currentQuestion.target.eu : currentQuestion.target.en}`}
+                    </p>
+                    <button
+                      onClick={handleNextQuestion}
+                      className="bg-white text-primary-dark font-black py-4 px-12 rounded-2xl hover:bg-black hover:text-white transition-all shadow-2xl active:scale-95 w-full uppercase tracking-widest"
+                    >
+                      {lives <= 0 ? 'Ver Resultados' : (questionsHandledInLevel >= QUESTIONS_PER_LEVEL ? 'Ver Victoria' : 'Continuar')}
+                    </button>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Game Over Screen */}
+            <AnimatePresence>
+              {isGameOver && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-[60] flex items-center justify-center p-6 bg-primary-dark/95 backdrop-blur-xl"
+                >
+                  <div className="max-w-md w-full p-10 bg-white/5 rounded-[3rem] border border-white/10 text-center shadow-2xl">
+                    <div className="w-20 h-20 bg-red-500/20 text-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <XMarkIcon className="w-12 h-12" />
+                    </div>
+                    <h2 className="text-4xl font-black text-white mb-2 tracking-tighter">FIN DEL JUEGO</h2>
+                    <p className="text-gray-400 mb-8">¡No te rindas! La práctica hace al maestro.</p>
+
+                    <div className="grid grid-cols-2 gap-4 mb-8">
+                      <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
+                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1">Puntos</p>
+                        <p className="text-2xl font-black text-white">{score}</p>
+                      </div>
+                      <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
+                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1">Máxima Racha</p>
+                        <p className="text-2xl font-black text-orange-500">{streak}</p>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={handleStartQuiz}
+                      className="w-full bg-accent text-white font-black py-5 rounded-2xl shadow-xl flex items-center justify-center gap-2 hover:brightness-110 active:scale-95 transition-all"
+                    >
+                      <ArrowPathIcon className="w-6 h-6" />
+                      REINTENTAR
+                    </button>
+                    <button
+                      onClick={() => { setQuizActive(false); setShowWelcome(true); }}
+                      className="w-full mt-4 text-gray-500 font-bold py-3 hover:text-white transition-all"
+                    >
+                      SALIR AL MENÚ
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Level Complete / Victory Screen */}
+            <AnimatePresence>
+              {isLevelComplete && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 z-[60] flex items-center justify-center p-6 bg-primary-dark/95 backdrop-blur-xl"
+                >
+                  <div className="max-w-md w-full p-10 bg-white/5 rounded-[3rem] border border-white/10 text-center shadow-2xl relative overflow-hidden">
+                    <div className="absolute inset-0 bg-accent/5 pointer-events-none"></div>
+                    <div className="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6 relative">
+                      <SparklesIcon className="w-12 h-12" />
+                    </div>
+                    <h2 className="text-4xl font-black text-white mb-2 tracking-tighter">¡MISIÓN CUMPLIDA!</h2>
+                    <p className="text-gray-400 mb-8">Has completado el set de {QUESTIONS_PER_LEVEL} preguntas con éxito.</p>
+
+                    <div className="grid grid-cols-2 gap-4 mb-8">
+                      <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
+                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1">Puntos</p>
+                        <p className="text-2xl font-black text-white">{score} / {totalQuestions}</p>
+                      </div>
+                      <div className="bg-white/5 p-4 rounded-2xl border border-white/10">
+                        <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1">Vidas Restantes</p>
+                        <p className="text-2xl font-black text-red-500">{lives}</p>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={handleStartQuiz}
+                      className="w-full bg-green-600 text-white font-black py-5 rounded-2xl shadow-xl flex items-center justify-center gap-2 hover:brightness-110 active:scale-95 transition-all"
+                    >
+                      SIGUIENTE NIVEL
+                    </button>
+                    <button
+                      onClick={() => { setQuizActive(false); setShowWelcome(true); }}
+                      className="w-full mt-4 text-gray-500 font-bold py-3 hover:text-white transition-all"
+                    >
+                      VER OTROS MODOS
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center p-20">
