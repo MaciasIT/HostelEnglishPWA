@@ -218,15 +218,23 @@ export default function Quiz() {
 
   return (
     <PageContainer title={`Quiz: ${selectedMode === 'multiple' ? 'Opción Múltiple' : selectedMode === 'truefalse' ? 'Verdadero o Falso' : 'Ordenar Frase'}`}>
-      <div className="max-w-2xl mx-auto">
-        <div className="flex justify-between items-center mb-6 bg-white/5 border border-white/10 p-4 rounded-2xl shadow-lg backdrop-blur-md">
-          <p className="text-lg font-bold">Pregunta <span className="text-accent">#{totalQuestions + (feedback ? 0 : 1)}</span></p>
-          <div className="flex gap-4">
-            <div className="bg-green-500/20 px-4 py-1 rounded-full border border-green-500/30">
-              <p className="text-sm font-bold text-green-400">Puntos: {score}</p>
-            </div>
-            <div className="bg-accent/20 px-4 py-1 rounded-full border border-accent/30">
-              <p className="text-sm font-bold text-accent">{totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0}%</p>
+      <div className="max-w-xl mx-auto px-4">
+        <div className="flex gap-3 mb-6">
+          <button
+            onClick={() => { setQuizActive(false); setShowWelcome(true); }}
+            className="px-4 py-2 bg-white/5 border border-white/10 rounded-xl text-gray-400 hover:text-white hover:bg-red-500/20 hover:border-red-500/30 transition-all text-[10px] font-black uppercase tracking-widest flex items-center gap-2"
+          >
+            <span>Finalizar</span>
+          </button>
+          <div className="flex-grow flex justify-between items-center bg-white/5 border border-white/10 p-3 rounded-2xl shadow-lg backdrop-blur-md">
+            <p className="text-xs font-bold">Pregunta <span className="text-accent">#{totalQuestions + (feedback ? 0 : 1)}</span></p>
+            <div className="flex gap-2">
+              <div className="bg-green-500/20 px-3 py-1 rounded-full border border-green-500/30">
+                <p className="text-[10px] font-bold text-green-400">Puntos: {score}</p>
+              </div>
+              <div className="bg-accent/20 px-3 py-1 rounded-full border border-accent/30">
+                <p className="text-[10px] font-bold text-accent">{totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0}%</p>
+              </div>
             </div>
           </div>
         </div>
@@ -235,12 +243,12 @@ export default function Quiz() {
           <div className="bg-white/10 p-8 rounded-3xl shadow-2xl backdrop-blur-xl border border-white/20 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-48 h-48 bg-accent opacity-5 blur-3xl rounded-full"></div>
 
-            <h2 className="text-[10px] uppercase tracking-[0.2em] text-accent font-black mb-6 flex items-center gap-2">
+            <h2 className="text-[10px] uppercase tracking-[0.2em] text-accent font-black mb-4 flex items-center gap-2">
               <span className="w-6 h-[1px] bg-accent"></span>
               {selectedMode === 'truefalse' ? 'Identifica si es correcto' : `Traduce al ${targetLanguage === 'eu' ? 'euskera' : 'inglés'}`}
             </h2>
 
-            <p data-testid="quiz-question" className="text-3xl sm:text-5xl font-black mb-12 text-white italic leading-[1.1]">
+            <p data-testid="quiz-question" className="text-2xl sm:text-3xl font-black mb-10 text-white italic leading-[1.1] text-center">
               "{currentQuestion.target.es}"
             </p>
 
@@ -250,15 +258,15 @@ export default function Quiz() {
                   <button
                     key={idx}
                     onClick={() => checkAnswer(option)}
-                    className={`p-6 text-left rounded-2xl transition-all duration-300 border-2 flex items-center ${feedback
+                    className={`p-5 text-left rounded-2xl transition-all duration-300 border-2 flex items-center ${feedback
                       ? (option === (targetLanguage === 'eu' ? currentQuestion.target.eu : currentQuestion.target.en)
-                        ? 'bg-green-500 border-green-400 scale-[1.02] shadow-xl z-10'
+                        ? 'bg-green-500 border-green-400 scale-[1.02] shadow-xl z-20'
                         : (feedback.isCorrect ? 'bg-white/5 border-white/10 opacity-30 scale-95' : 'bg-red-500 border-red-400'))
                       : 'bg-white/5 border-white/10 hover:bg-white/20 hover:border-accent active:scale-98'
-                      } text-white text-lg font-bold`}
+                      } text-white text-base font-bold`}
                     disabled={!!feedback}
                   >
-                    <span className="w-10 h-10 rounded-xl bg-white/10 text-center leading-10 mr-5 text-sm font-black border border-white/20">
+                    <span className="w-8 h-8 rounded-xl bg-white/10 text-center leading-8 mr-4 text-xs font-black border border-white/20">
                       {String.fromCharCode(65 + idx)}
                     </span>
                     {option}
@@ -352,19 +360,21 @@ export default function Quiz() {
               </div>
             )}
 
-            {/* Feedback & Navigation */}
+            {/* Feedback Fixed Modal Overlay */}
             {feedback && (
-              <div data-testid="quiz-feedback" className={`mt-12 p-8 rounded-3xl text-center shadow-2xl border ${feedback.isCorrect ? 'bg-green-600/90 border-green-400' : 'bg-red-600/90 border-red-400'} animate-in slide-in-from-bottom-8 duration-500 backdrop-blur-xl`}>
-                <p className="text-3xl font-black mb-2">{feedback.isCorrect ? '✨ ¡EXCELENTE! ✨' : '🤔 ¡Casi lo tienes!'}</p>
-                <p className="text-xl opacity-90 mb-8 font-medium">
-                  {feedback.isCorrect ? 'Respuesta perfecta.' : `Era: ${targetLanguage === 'eu' ? currentQuestion.target.eu : currentQuestion.target.en}`}
-                </p>
-                <button
-                  onClick={handleNextQuestion}
-                  className="bg-white text-primary font-black py-5 px-12 rounded-2xl hover:bg-accent hover:text-white transition-all duration-300 shadow-2xl active:scale-95 w-full uppercase tracking-widest"
-                >
-                  Siguiente Nivel
-                </button>
+              <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-primary-dark/60 backdrop-blur-md animate-in fade-in duration-300">
+                <div data-testid="quiz-feedback" className={`max-w-md w-full p-8 rounded-[2.5rem] text-center shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] border-2 ${feedback.isCorrect ? 'bg-green-600/95 border-green-400' : 'bg-red-600/95 border-red-400'} animate-in zoom-in-95 duration-300`}>
+                  <p className="text-2xl font-black mb-2">{feedback.isCorrect ? '✨ ¡EXCELENTE! ✨' : '🤔 ¡Casi lo tienes!'}</p>
+                  <p className="text-lg opacity-90 mb-8 font-medium italic">
+                    {feedback.isCorrect ? 'Respuesta perfecta.' : `La respuesta correcta era: ${targetLanguage === 'eu' ? currentQuestion.target.eu : currentQuestion.target.en}`}
+                  </p>
+                  <button
+                    onClick={handleNextQuestion}
+                    className="bg-white text-primary-dark font-black py-4 px-12 rounded-2xl hover:bg-accent hover:text-white transition-all duration-300 shadow-2xl active:scale-95 w-full uppercase tracking-widest"
+                  >
+                    Siguiente Nivel
+                  </button>
+                </div>
               </div>
             )}
           </div>
@@ -375,12 +385,7 @@ export default function Quiz() {
           </div>
         )}
 
-        <button
-          onClick={() => { setQuizActive(false); setShowWelcome(true); }}
-          className="mt-12 text-gray-600 hover:text-white transition-all font-black uppercase tracking-tighter block mx-auto text-xs"
-        >
-          Abandonar práctica
-        </button>
+
       </div>
     </PageContainer>
   );
