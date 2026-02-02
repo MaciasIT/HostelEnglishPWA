@@ -1,7 +1,7 @@
 # HostelInglés PWA
 
 ![CI/CD](https://github.com/m1txel/HostelEnglishPWA/actions/workflows/deploy.yml/badge.svg)
-[![Version](https://img.shields.io/badge/version-2.1.0-orange?style=for-the-badge)](https://github.com/m1txel/HostelEnglishPWA/releases)
+[![Version](https://img.shields.io/badge/version-2.2.0-orange?style=for-the-badge)](https://github.com/m1txel/HostelEnglishPWA/releases)
 [![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-5.2.0-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.2.2-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
@@ -28,10 +28,11 @@ Recientemente hemos implementado el soporte para **Euskera**.
 -   💬 **Módulo de Conversaciones**: Simula diálogos reales (check-in, bar, etc.) y practica tu rol.
 -   ✍️ **Módulo de Dictado**: Pon a prueba tu comprensión auditiva y escritura con reconocimiento de voz.
 -   🃏 **Módulo de Flashcards**: Memoriza vocabulario de forma rápida con tarjetas interactivas.
--   🧠 **Módulo de Quiz y Estudio**: Desafía tu conocimiento con tests y lecciones guiadas.
--   🎓 **Módulo de Examen**: Certifica tus habilidades y obtén resultados detallados.
+-   🧠 **Módulo de Quiz**: Gamificado con **Mundos (categorías)**, niveles de 10 preguntas, sistema de 3 vidas y rachas de aciertos.
+-   🎓 **Módulo de Examen**: Certifica tus habilidades con resultados detallados y revisión de errores en modal.
 -   ⚙️ **Configuración de Voz**: Personaliza la voz, velocidad y tono.
 -   📊 **Progreso Persistente**: Dashboard visual con tus estadísticas guardadas en IndexedDB.
+-   🖥️ **Optimización Desktop**: Interfaz compacta para PC (escala 80%) para una mejor visibilidad sin scroll excesivo.
 -   📱 **Instalable (PWA)**: Añade la aplicación a tu pantalla de inicio y úsala sin conexión.
 
 ## 🚀 Arquitectura y Diseño
