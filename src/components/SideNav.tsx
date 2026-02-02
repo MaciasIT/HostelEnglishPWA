@@ -37,13 +37,13 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon: Icon, label }) => {
     <Link
       to={to}
       onClick={handleClick}
-      className={`flex items-center p-4 rounded-2xl transition-all mb-1 group ${isActive
+      className={`flex items-center p-3 rounded-2xl transition-all mb-0.5 group ${isActive
         ? 'bg-accent text-white shadow-lg shadow-accent/20 font-black'
         : 'text-gray-400 hover:bg-white/5 hover:text-white'
         }`}
     >
-      <Icon className={`w-6 h-6 mr-4 transition-transform group-hover:scale-110 ${isActive ? 'text-white' : 'text-gray-500 group-hover:text-accent'}`} />
-      <span className="text-sm uppercase tracking-widest">{label}</span>
+      <Icon className={`w-5 h-5 mr-3 transition-transform group-hover:scale-110 ${isActive ? 'text-white' : 'text-gray-500 group-hover:text-accent'}`} />
+      <span className="text-xs uppercase tracking-widest">{label}</span>
     </Link>
   );
 };
@@ -62,9 +62,9 @@ const SideNav: React.FC = () => {
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed top-0 left-0 h-full w-72 bg-primary-dark/95 backdrop-blur-2xl border-r border-white/10 transform ${isSideNavOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-500 ease-in-out z-50 flex flex-col`}>
-        <div className="p-8 flex items-center justify-between">
-          <h2 className="text-2xl font-black text-white tracking-tighter">
+      <aside className={`fixed top-0 left-0 h-full w-72 lg:w-64 bg-primary-dark/95 backdrop-blur-2xl border-r border-white/10 transform ${isSideNavOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-500 ease-in-out z-50 flex flex-col`}>
+        <div className="p-6 flex items-center justify-between">
+          <h2 className="text-xl font-black text-white tracking-tighter">
             Hostel<span className="text-accent">English</span>
           </h2>
           <button
@@ -103,14 +103,14 @@ const SideNav: React.FC = () => {
           <LanguageSelector />
         </div>
 
-        <div className="p-8 border-t border-white/5 bg-black/20">
+        <div className="p-6 border-t border-white/5 bg-black/20">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center text-white font-black shadow-lg">
+            <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center text-white font-black shadow-lg text-xs">
               H
             </div>
             <div>
-              <p className="text-xs font-black text-white">Versión 2.1</p>
-              <p className="text-[10px] text-gray-500">HostelEnglish MultiLang</p>
+              <p className="text-[10px] font-black text-white">Versión 2.1</p>
+              <p className="text-[8px] text-gray-500 italic">HostelEnglish MultiLang</p>
             </div>
           </div>
         </div>

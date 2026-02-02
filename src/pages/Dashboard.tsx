@@ -79,12 +79,12 @@ export default function Dashboard() {
       <div className="max-w-6xl mx-auto space-y-10 pb-12">
 
         {/* Welcome Section */}
-        <section className="bg-gradient-to-br from-primary-light to-primary-dark p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden border border-white/10">
+        <section className="bg-gradient-to-br from-primary-light to-primary-dark p-6 sm:p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden border border-white/10">
           <div className="relative z-10">
-            <h1 className="text-4xl sm:text-5xl font-black text-white mb-4">
+            <h1 className="text-3xl sm:text-5xl font-black text-white mb-4">
               ¡Hola de nuevo! 🏨
             </h1>
-            <p className="text-xl text-gray-300 mb-8 max-w-xl">
+            <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-xl">
               Continúa tu formación en {targetLanguage === 'eu' ? 'euskera' : 'inglés'} para hostelería. Tu camino hacia la fluidez profesional empieza aquí.
             </p>
 
@@ -151,13 +151,13 @@ export default function Dashboard() {
               <Link
                 key={idx}
                 to={mod.path}
-                className="group bg-white/5 hover:bg-white/10 p-8 rounded-[2rem] border border-white/10 transition-all hover:scale-[1.02] hover:shadow-2xl active:scale-95 flex flex-col items-center text-center"
+                className="group bg-white/5 hover:bg-white/10 p-6 sm:p-8 rounded-[2rem] border border-white/10 transition-all hover:scale-[1.02] hover:shadow-2xl active:scale-95 flex flex-col items-center text-center"
               >
-                <div className={`${mod.color} w-16 h-16 rounded-2xl flex items-center justify-center text-white mb-6 shadow-xl group-hover:rotate-6 transition-transform`}>
-                  <mod.icon className="w-8 h-8" />
+                <div className={`${mod.color} w-12 h-12 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center text-white mb-4 sm:mb-6 shadow-xl group-hover:rotate-6 transition-transform`}>
+                  <mod.icon className="w-6 h-6 sm:w-8 sm:h-8" />
                 </div>
-                <h3 className="text-xl font-black text-white mb-2">{mod.title}</h3>
-                <p className="text-gray-400 text-sm">{mod.desc}</p>
+                <h3 className="text-lg sm:text-xl font-black text-white mb-2">{mod.title}</h3>
+                <p className="text-gray-400 text-xs sm:text-sm">{mod.desc}</p>
               </Link>
             ))}
           </div>

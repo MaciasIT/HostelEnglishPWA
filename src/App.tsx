@@ -12,8 +12,10 @@ export default function App() {
         <SideNav />
 
         {/* Main Content Area */}
-        <main className="flex-grow w-full max-w-full transition-all duration-500 ease-in-out pt-20">
-          <AppRouter />
+        <main className="flex-grow w-full max-w-full transition-all duration-500 ease-in-out pt-20 lg:pt-16">
+          <div className="max-w-[1600px] mx-auto w-full h-full flex flex-col">
+            <AppRouter />
+          </div>
         </main>
 
         {/* Global Bottom Padding for PWA/Mobile Navigation if needed */}
