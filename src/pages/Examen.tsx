@@ -2,8 +2,16 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { useAppStore, Phrase } from '@/store/useAppStore';
 import PageContainer from '@/components/layout/PageContainer';
 import ModuleIntro from '@/components/ModuleIntro';
-import { ClipboardDocumentCheckIcon, TrophyIcon, ShieldCheckIcon } from '@heroicons/react/24/outline';
+import {
+  ClipboardDocumentCheckIcon,
+  TrophyIcon,
+  ShieldCheckIcon,
+  SparklesIcon,
+  FireIcon,
+  XMarkIcon
+} from '@heroicons/react/24/outline';
 import { shuffle } from '@/utils/shuffle';
+import { motion, AnimatePresence } from 'framer-motion';
 
 type ExamResult = {
   score: number;
@@ -31,6 +39,7 @@ export default function Examen() {
   const [results, setResults] = useState<ExamResult>({ score: 0, total: 0, correctIds: [], incorrectIds: [] });
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
+  const [showImprovementModal, setShowImprovementModal] = useState(false);
 
   useEffect(() => {
     if (!frasesLoaded) loadFrases();
@@ -195,61 +204,151 @@ export default function Examen() {
     const passed = results.score >= results.total * 0.8;
     return (
       <PageContainer title="Resultados del Examen">
-        <div className="max-w-2xl mx-auto text-center space-y-8 animate-fade-in">
-          <div className={`p-10 rounded-[3rem] border shadow-2xl backdrop-blur-xl ${passed ? 'bg-green-500/10 border-green-500/30' : 'bg-red-500/10 border-red-500/30'}`}>
-            <div className={`w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 ${passed ? 'bg-green-500' : 'bg-red-500'}`}>
-              {passed ? <TrophyIcon className="w-12 h-12 text-white" /> : <ShieldCheckIcon className="w-12 h-12 text-white opacity-50" />}
-            </div>
-            <h2 className="text-4xl font-black text-white mb-2">
-              {passed ? '¡APROBADO!' : 'NO SUPERADO'}
-            </h2>
-            <p className="text-gray-400 mb-8">
-              Has acertado <span className="text-white font-bold">{results.score}</span> de <span className="text-white font-bold">{results.total}</span> preguntas.
-            </p>
-
-            <div className="flex justify-center gap-4 mb-8">
-              <div className="bg-white/5 p-4 rounded-2xl border border-white/10 w-32">
-                <p className="text-[10px] uppercase font-bold text-gray-500">Correctas</p>
-                <p className="text-2xl font-black text-green-500">{results.score}</p>
+        <div className="max-w-2xl mx-auto space-y-8">
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            className={`p-10 rounded-[3rem] border-2 shadow-2xl backdrop-blur-xl text-center relative overflow-hidden ${passed ? 'bg-green-500/10 border-green-500/30' : 'bg-red-500/10 border-red-500/30'}`}
+          >
+            {passed && (
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-green-500/5 to-transparent"></div>
               </div>
-              <div className="bg-white/5 p-4 rounded-2xl border border-white/10 w-32">
-                <p className="text-[10px] uppercase font-bold text-gray-500">Nota</p>
-                <p className="text-2xl font-black text-accent">{Math.round((results.score / results.total) * 100)}%</p>
-              </div>
+            )}
+
+            <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className={`w-28 h-28 rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl ${passed ? 'bg-green-500 animate-bounce' : 'bg-red-500'}`}
+            >
+              {passed ? <TrophyIcon className="w-14 h-14 text-white" /> : <ShieldCheckIcon className="w-14 h-14 text-white opacity-50" />}
+            </motion.div>
+
+            <motion.h2
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="text-5xl font-black text-white mb-2 tracking-tighter"
+            >
+              {passed ? '¡APROBADO!' : 'INTÉNTALO DE NUEVO'}
+            </motion.h2>
+
+            <motion.p
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="text-gray-400 mb-10 text-lg"
+            >
+              {passed
+                ? '¡Increíble! Has demostrado un gran dominio de la lengua.'
+                : 'Casi lo tienes. Un poco más de estudio y lo conseguirás.'}
+            </motion.p>
+
+            <div className="grid grid-cols-2 gap-4 mb-10">
+              <motion.div
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="bg-white/5 p-6 rounded-3xl border border-white/10"
+              >
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <FireIcon className="w-4 h-4 text-orange-500" />
+                  <p className="text-[10px] uppercase font-black text-gray-500 tracking-widest">Puntuación</p>
+                </div>
+                <p className="text-4xl font-black text-white">{results.score}<span className="text-lg text-gray-600 font-bold">/{results.total}</span></p>
+              </motion.div>
+              <motion.div
+                initial={{ x: 20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="bg-white/5 p-6 rounded-3xl border border-white/10"
+              >
+                <div className="flex items-center justify-center gap-2 mb-1">
+                  <SparklesIcon className="w-4 h-4 text-accent" />
+                  <p className="text-[10px] uppercase font-black text-gray-500 tracking-widest">Precisión</p>
+                </div>
+                <p className="text-4xl font-black text-accent">{Math.round((results.score / results.total) * 100)}%</p>
+              </motion.div>
             </div>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-4">
               <button
                 onClick={() => setExamState('setup')}
-                className="bg-accent text-white font-black py-4 rounded-2xl text-lg shadow-lg hover:brightness-110"
+                className="bg-accent text-white font-black py-5 rounded-2xl text-xl shadow-2xl hover:brightness-110 active:scale-95 transition-all tracking-widest uppercase"
               >
-                Intentar de Nuevo
+                Comenzar Nuevo Examen
               </button>
+
+              {results.incorrectIds.length > 0 && (
+                <button
+                  onClick={() => setShowImprovementModal(true)}
+                  className="bg-red-500/20 text-red-400 font-bold py-4 rounded-2xl hover:bg-red-500/30 transition-all flex items-center justify-center gap-2 border border-red-500/20"
+                >
+                  <ShieldCheckIcon className="w-5 h-5" />
+                  VER ERRORES ({results.incorrectIds.length})
+                </button>
+              )}
+
               <button
                 onClick={() => setShowWelcome(true)}
-                className="bg-white/5 text-white font-bold py-3 rounded-2xl hover:bg-white/10"
+                className="bg-white/5 text-white font-bold py-4 rounded-2xl hover:bg-white/10 active:scale-95 transition-all uppercase tracking-widest text-xs"
               >
-                Volver al Inicio
+                Volver al Menú Principal
               </button>
             </div>
-          </div>
+          </motion.div>
 
-          {results.incorrectIds.length > 0 && (
-            <div className="bg-white/5 p-8 rounded-[2rem] border border-white/10 text-left">
-              <h3 className="text-lg font-bold text-white mb-4">Repasa estos conceptos:</h3>
-              <div className="space-y-4">
-                {results.incorrectIds.map(id => {
-                  const p = frases.find(f => f.id === id);
-                  return p ? (
-                    <div key={id} className="p-4 bg-red-500/5 rounded-xl border border-red-500/10">
-                      <p className="text-sm text-gray-400 italic mb-1">"{p.es}"</p>
-                      <p className="text-white font-bold">{getTargetText(p)}</p>
-                    </div>
-                  ) : null;
-                })}
-              </div>
-            </div>
-          )}
+          {/* Improvement Modal Overlay */}
+          <AnimatePresence>
+            {showImprovementModal && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[70] flex items-center justify-center p-6 bg-primary-dark/90 backdrop-blur-xl"
+              >
+                <motion.div
+                  initial={{ scale: 0.9, y: 20 }}
+                  animate={{ scale: 1, y: 0 }}
+                  exit={{ scale: 0.9, y: 20 }}
+                  className="max-w-2xl w-full max-h-[80vh] bg-white/5 rounded-[3rem] border border-white/10 p-10 shadow-2xl overflow-y-auto flex flex-col"
+                >
+                  <div className="flex justify-between items-center mb-8">
+                    <h3 className="text-2xl font-black text-white flex items-center gap-3">
+                      <ShieldCheckIcon className="w-8 h-8 text-red-500" />
+                      Frases a Repasar
+                    </h3>
+                    <button
+                      onClick={() => setShowImprovementModal(false)}
+                      className="p-2 hover:bg-white/10 rounded-full text-gray-400 hover:text-white transition-all"
+                    >
+                      <XMarkIcon className="w-6 h-6" />
+                    </button>
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-4">
+                    {results.incorrectIds.map(id => {
+                      const p = frases.find(phrase => String(phrase.id) === id);
+                      return p ? (
+                        <div key={id} className="p-6 bg-black/40 rounded-2xl border border-white/5 group">
+                          <p className="text-sm text-gray-500 italic mb-2">"{p.es}"</p>
+                          <p className="text-white font-black text-lg tracking-tight">{getTargetText(p)}</p>
+                        </div>
+                      ) : null;
+                    })}
+                  </div>
+
+                  <button
+                    onClick={() => setShowImprovementModal(false)}
+                    className="mt-8 w-full bg-white text-primary-dark font-black py-4 rounded-2xl shadow-xl hover:bg-accent hover:text-white transition-all uppercase tracking-widest"
+                  >
+                    Entendido
+                  </button>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </PageContainer>
     );
