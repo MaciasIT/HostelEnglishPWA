@@ -42,17 +42,22 @@ export const playAudio = async (text: string, lang: 'en' | 'eu', settings: { rat
     }
 
     // MÉTODO NATIVO (Fallback)
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = voiceLang;
-    utterance.rate = settings.rate;
-    utterance.pitch = settings.pitch;
+    return new Promise<void>((resolve) => {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = voiceLang;
+        utterance.rate = settings.rate;
+        utterance.pitch = settings.pitch;
 
-    if (settings.voiceURI) {
-        const voice = window.speechSynthesis.getVoices().find(v => v.voiceURI === settings.voiceURI);
-        if (voice && voice.lang.startsWith(lang)) {
-            utterance.voice = voice;
+        if (settings.voiceURI) {
+            const voice = window.speechSynthesis.getVoices().find(v => v.voiceURI === settings.voiceURI);
+            if (voice && voice.lang.startsWith(lang)) {
+                utterance.voice = voice;
+            }
         }
-    }
 
-    window.speechSynthesis.speak(utterance);
+        utterance.onend = () => resolve();
+        utterance.onerror = () => resolve();
+
+        window.speechSynthesis.speak(utterance);
+    });
 };
