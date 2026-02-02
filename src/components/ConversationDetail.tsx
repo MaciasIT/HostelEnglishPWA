@@ -257,7 +257,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
                     <p className="text-xl font-bold text-white mb-2 leading-tight">
                       {targetLanguage === 'eu' ? (turn.eu || '...') : turn.en}
                     </p>
-                    <p className="text-gray-400 text-sm leading-relaxed">{turn.es}</p>
+                    <p className="text-gray-300 text-base font-medium leading-relaxed border-t border-white/5 pt-2 mt-2">{turn.es}</p>
                   </>
                 )}
               </div>
