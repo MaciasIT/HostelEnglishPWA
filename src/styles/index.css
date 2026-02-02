@@ -11,6 +11,13 @@
   --primary-light: #7f8c8d;
 }
 
+/* Global desktop scaling to simulate 80% zoom */
+@media (min-width: 1024px) {
+  :root {
+    font-size: 85%; /* Scales down rem-based values (text, padding, etc.) */
+  }
+}
+
 body {
   @apply min-h-screen w-full max-w-full overflow-x-hidden bg-primary-dark text-white font-sans;
 }
