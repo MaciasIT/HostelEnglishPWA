@@ -96,7 +96,7 @@ export default function Home() {
             />
             <FeatureCard
               icon={SparklesIcon}
-              title="Ahotsa eta Ahoskera"
+              title="Voz y Pronunciación"
               description="Ajusta la velocidad y tono de las voces para entrenar tu oído según tu nivel."
             />
             <FeatureCard

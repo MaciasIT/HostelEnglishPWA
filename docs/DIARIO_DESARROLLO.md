@@ -6,6 +6,16 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
 
 ---
 
+## ✨ Limpieza de Documentación y Deuda Técnica
+*Fecha: 05-02-2026*
+
+- **[✅ COMPLETADO] Depuración de la carpeta `docs/`:**
+    - Se han eliminado todos los documentos de diseño inicial, requerimientos e historias de usuario en formato PDF y PNG.
+    - **Motivo**: Los documentos eran redundantes y no reflejaban el estado actual de la aplicación, la cual ya ha superado el 100% de su visión inicial.
+    - Se mantiene únicamente `DIARIO_DESARROLLO.md` como la fuente de verdad y registro histórico de la evolución del proyecto.
+
+---
+
 ## ✨ Gamificación, Optimización Desktop y UX Premium
 *Fecha: 02-02-2026*
 
