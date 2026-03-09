@@ -147,8 +147,11 @@ describe('<Conversaciones />', () => {
 		// Seleccionar el rol 'Guest' vía botón
 		await user.click(screen.getByText(/Ser Guest/i));
 
+        // Switch to list view so all turns are rendered
+        await user.click(screen.getByText(/Lista/i));
+
 		// El texto del Guest debería estar oculto y reemplazado
-		expect(screen.getByText(/TU TURNO/i)).toBeInTheDocument();
+		expect(screen.getAllByText(/TU TURNO/i).length).toBeGreaterThan(0);
 		expect(screen.queryByText('I have a reservation.')).not.toBeInTheDocument();
 		// El texto del Staff debería seguir visible
 		expect(screen.getByText('Welcome! How can I help?')).toBeInTheDocument();

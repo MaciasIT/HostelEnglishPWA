@@ -28,6 +28,7 @@ export type Conversation = {
 };
 
 type State = {
+  version: number;
   frases: Phrase[];
   conversations: Conversation[];
   categories: string[];
@@ -108,6 +109,7 @@ type Actions = {
 export const useAppStore = create<State & Actions>()(
   persist(
     (set, get) => ({
+      version: 1,
       frases: [],
       conversations: [],
       categories: ['Estudiadas', 'Aprendidas'],
@@ -260,8 +262,27 @@ export const useAppStore = create<State & Actions>()(
       name: "hostelenglish-storage",
       storage: createJSONStorage(() => ({
         getItem: async (name) => {
-          const value = await get(name);
-          return value ? JSON.stringify(value) : null;
+          const raw = await get(name);
+          if (!raw) return null;
+
+          // Recuperar estado desde IndexedDB
+          let data = raw as any;
+
+          // 1. Snapshot de seguridad si es legacy (v0)
+          if (!data.version) {
+            const { DataMigrator } = await import('../db/DataMigrator');
+            await DataMigrator.ensureBackup(data);
+            
+            // 2. Migración semántica
+            console.log('🔄 Migrando datos legacy a v1...');
+            data = DataMigrator.migrate(data);
+          }
+
+          // 3. Validación Zod (Blindaje) y Soft Reset
+          const { DataValidator } = await import('../db/DataValidator');
+          const validatedData = DataValidator.validateAndRepair(data);
+
+          return JSON.stringify(validatedData);
         },
         setItem: async (name, value) => {
           await set(name, JSON.parse(value));
@@ -271,6 +292,7 @@ export const useAppStore = create<State & Actions>()(
         },
       })),
       partialize: (state) => ({
+        version: state.version,
         progress: state.progress,
         prefs: state.prefs,
         dailyActivity: state.dailyActivity,

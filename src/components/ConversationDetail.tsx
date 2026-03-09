@@ -296,6 +296,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
                             <button
                               onClick={() => handlePlayTurn(turn)}
                               className="p-2 bg-white/5 rounded-full text-accent hover:bg-accent hover:text-white transition-all"
+                              aria-label="Reproducir frase"
                             >
                               <SpeakerWaveIcon className="w-5 h-5" />
                             </button>
