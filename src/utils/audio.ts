@@ -15,15 +15,36 @@ export const playAudio = async (text: string, lang: 'en' | 'eu' | 'es', settings
 
     const voiceLang = langMap[lang] || 'en-US';
 
+    // Phonetic mapping for Basque to sound acceptable on a Spanish TTS Voice
+    const euToEsPhonetic = (texto: string) => {
+        return texto
+            .replace(/tx/gi, 'ch')
+            .replace(/ts/gi, 's') 
+            .replace(/tz/gi, 'ts')
+            .replace(/x/gi, 'ch') 
+            .replace(/j/gi, 'y')  // Jota vasca moderna
+            .replace(/z/gi, 's')  // Zeta vasca -> S fricativa
+            .replace(/ge/gi, 'gue') // 'ge' en Euskera -> 'gue' en Castellano
+            .replace(/gi/gi, 'gui')
+            .replace(/ke/gi, 'que') 
+            .replace(/ki/gi, 'qui');
+    };
+
+    // Aplicar el parche fonético si es euskera (afecta tanto a Google como al Nativo)
+    const processedText = lang === 'eu' ? euToEsPhonetic(text) : text;
+
     // Lógica de Google Translate TTS (Unofficial API)
     const useGoogleFallback = lang === 'eu';
 
     if (useGoogleFallback) {
-        const chunks = text.match(/.{1,200}(\s|$)/g) || [text];
+        const chunks = processedText.match(/.{1,200}(\s|$)/g) || [processedText];
 
         try {
             for (const chunk of chunks) {
-                const url = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(chunk)}&tl=${lang}&client=tw-ob`;
+                // Si pasamos el texto procesado (fonética española), igual conviene forzar tl=es
+                // para que el motor de Google lo lea exactamente con el parche.
+                const tlParam = 'es'; // Forzamos voz española de Google para que lea la fonética
+                const url = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(chunk)}&tl=${tlParam}&client=tw-ob`;
                 const audio = new Audio(url);
                 audio.playbackRate = settings.rate;
                 await new Promise((resolve, reject) => {
@@ -40,35 +61,17 @@ export const playAudio = async (text: string, lang: 'en' | 'eu' | 'es', settings
 
     // MÉTODO NATIVO (Fallback)
     return new Promise<void>((resolve) => {
-        // Phonetic mapping for Basque to sound acceptable on a Spanish TTS Voice
-        const euToEsPhonetic = (texto: string) => {
-            return texto
-                .replace(/tx/gi, 'ch')
-                .replace(/ts/gi, 's') 
-                .replace(/tz/gi, 'ts')
-                .replace(/x/gi, 'ch') 
-                .replace(/j/gi, 'y')  // Jota vasca moderna
-                .replace(/z/gi, 's')  // Evitar que lea la Z como C/Z de España (que se lea fricativa como S)
-                .replace(/ge/gi, 'gue') // 'ge' en Euskera -> 'gue' en Castellano
-                .replace(/gi/gi, 'gui')
-                .replace(/ke/gi, 'que') 
-                .replace(/ki/gi, 'qui');
-        };
-
         const voices = window.speechSynthesis.getVoices();
         
         // Determinar qué idioma usar para la voz nativa
         let finalVoiceLang = voiceLang;
         let finalNativeText = text;
 
-        // Si es Euskera, intentamos buscar si hay una voz de Euskera real instalada
         if (lang === 'eu') {
             const hasEuVoice = voices.some(v => v.lang.startsWith('eu'));
             if (!hasEuVoice) {
-                // Si NO hay voz en Euskera instalada, engañamos al motor para que lea el Euskera 
-                // con reglas fonéticas españolas usando una voz española (para que suene decente).
-                finalNativeText = euToEsPhonetic(text);
-                finalVoiceLang = 'es-ES'; // Forzamos voz española para el apaño fonético
+                finalNativeText = processedText;
+                finalVoiceLang = 'es-ES'; 
             }
         }
 
