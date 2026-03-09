@@ -18,19 +18,25 @@ export default function useSpeech(): UseSpeechResult { // Cambiado a named expor
     }
   }, []);
 
-  const speak = (text: string, lang: string = 'en-US', rate: number = 1, pitch: number = 1) => {
+  const speak = (text: string, lang: string = 'en', rate: number = 1, pitch: number = 1) => {
     if (!supported) {
       console.warn("Speech synthesis not supported in this browser.");
       return;
     }
 
     // Cancel any ongoing speech before starting a new one
-    if (window.speechSynthesis.speaking) {
-      window.speechSynthesis.cancel();
-    }
+    window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = lang;
+    
+    // Map simplified codes to full locale codes
+    const langMap: Record<string, string> = {
+      'en': 'en-US',
+      'es': 'es-ES',
+      'eu': 'eu-ES'
+    };
+    
+    utterance.lang = langMap[lang] || lang;
     utterance.rate = rate;
     utterance.pitch = pitch;
 
@@ -41,7 +47,7 @@ export default function useSpeech(): UseSpeechResult { // Cambiado a named expor
       setSpeaking(false);
     };
 
-    utteranceRef.current = utterance; // Store reference to the current utterance
+    utteranceRef.current = utterance;
     window.speechSynthesis.speak(utterance);
   };
 

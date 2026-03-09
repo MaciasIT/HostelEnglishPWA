@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import useSpeech from './useSpeech'; // Importar useSpeech
 
 interface UseAudioResult {
-  playAudio: (url: string, speed?: number, useTTSFallback?: boolean) => void;
+  playAudio: (url: string, speed?: number, useTTSFallback?: boolean, lang?: string) => void;
   stopAudio: () => void;
   playing: boolean;
 }
@@ -29,7 +29,7 @@ export function useAudio(): UseAudioResult { // Cambiado a named export
     };
   }, [audio, cancelSpeech]);
 
-  const playAudio = (url: string, speed: number = 1, useTTSFallback: boolean = false) => {
+  const playAudio = (url: string, speed: number = 1, useTTSFallback: boolean = false, lang: string = 'en') => {
     stopAudio(); // Detener cualquier audio o TTS anterior
     cancelSpeech();
 
@@ -40,11 +40,11 @@ export function useAudio(): UseAudioResult { // Cambiado a named export
       audio.play().catch(e => {
         console.warn("Error playing audio from URL, falling back to TTS:", e);
         if (useTTSFallback) {
-          speak(url, 'en-US'); // Si falla el audio, intenta TTS con el texto de la URL
+          speak(url, lang); // Si falla el audio, intenta TTS con el texto de la URL
         }
       });
     } else if (useTTSFallback) {
-      speak(url, 'en-US'); // Si se fuerza TTS o no hay URL, usa TTS
+      speak(url, lang); // Si se fuerza TTS o no hay URL, usa TTS
     }
   };
 

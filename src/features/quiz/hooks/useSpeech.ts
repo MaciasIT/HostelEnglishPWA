@@ -1,27 +1,22 @@
 import { useCallback } from 'react';
 import { useAppStore } from '@/store/useAppStore';
+import { playAudio } from '@/utils/audio';
 
 export const useSpeech = () => {
     const { prefs } = useAppStore();
     const { phraseSettings, targetLanguage } = prefs;
 
-    const speak = useCallback((text: string) => {
-        window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = targetLanguage === 'eu' ? 'eu-ES' : 'en-US';
-        utterance.rate = phraseSettings.rate;
-        utterance.pitch = phraseSettings.pitch;
+    const speak = useCallback(async (text: string, lang?: 'en' | 'eu' | 'es') => {
+        // Correctly identify language if not provided
+        // In Quiz, we usually play the target language (en/eu)
+        // But if we want to support Spanish playback in the future, we need this check.
+        const langCode = lang || (targetLanguage === 'eu' ? 'eu' : 'en');
 
-        if (phraseSettings.voiceURI) {
-            const voices = window.speechSynthesis.getVoices();
-            const voice = voices.find(v => v.voiceURI === phraseSettings.voiceURI);
-            const langPrefix = targetLanguage === 'eu' ? 'eu' : 'en';
-            if (voice && (voice.lang.startsWith(langPrefix) || (langPrefix === 'en' && voice.lang.startsWith('en')))) {
-                utterance.voice = voice;
-            }
-        }
-
-        window.speechSynthesis.speak(utterance);
+        await playAudio(text, langCode, {
+            rate: phraseSettings.rate,
+            pitch: phraseSettings.pitch,
+            voiceURI: langCode === 'es' ? undefined : phraseSettings.voiceURI
+        });
     }, [phraseSettings, targetLanguage]);
 
     const cancel = useCallback(() => {

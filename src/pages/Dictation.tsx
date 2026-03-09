@@ -61,7 +61,7 @@ const Dictation: React.FC = () => {
 
       if (!textToSpeak?.trim()) return;
 
-      await playAudio(textToSpeak, langCode as 'en' | 'eu', {
+      await playAudio(textToSpeak, langCode as 'en' | 'eu' | 'es', {
         rate: phraseSettings.rate,
         pitch: phraseSettings.pitch,
         voiceURI: phraseSettings.voiceURI

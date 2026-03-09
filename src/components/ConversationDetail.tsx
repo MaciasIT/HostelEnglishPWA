@@ -77,7 +77,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
 
     const participantSettings = conversationSettings[turn.speaker] || { voiceURI: '', rate: 1, pitch: 1 };
 
-    await playAudio(textToSpeak, langCode as 'en' | 'eu', {
+    await playAudio(textToSpeak, langCode as 'en' | 'eu' | 'es', {
       rate: participantSettings.rate,
       pitch: participantSettings.pitch,
       voiceURI: participantSettings.voiceURI
@@ -111,7 +111,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
 
         try {
           // Now playAudio is properly awaited also for native speech
-          await playAudio(textToSpeak, langCode as 'en' | 'eu', {
+          await playAudio(textToSpeak, langCode as 'en' | 'eu' | 'es', {
             rate: participantSettings.rate,
             pitch: participantSettings.pitch,
             voiceURI: participantSettings.voiceURI
