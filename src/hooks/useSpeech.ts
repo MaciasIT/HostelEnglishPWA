@@ -1,62 +1,30 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useCallback, useRef } from 'react';
+import { playAudio } from '@/utils/audio';
 
 interface UseSpeechResult {
-  speak: (text: string, lang?: string, rate?: number, pitch?: number) => void;
+  speak: (text: string, lang?: 'en' | 'eu' | 'es', rate?: number, pitch?: number) => Promise<void>;
   cancel: () => void;
   speaking: boolean;
   supported: boolean;
 }
 
-export default function useSpeech(): UseSpeechResult { // Cambiado a named export
+export default function useSpeech(): UseSpeechResult {
   const [speaking, setSpeaking] = useState(false);
-  const [supported, setSupported] = useState(false);
-  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const [supported] = useState('speechSynthesis' in window);
 
-  useEffect(() => {
-    if ('speechSynthesis' in window) {
-      setSupported(true);
+  const speak = useCallback(async (text: string, lang: 'en' | 'eu' | 'es' = 'en', rate: number = 1, pitch: number = 1) => {
+    setSpeaking(true);
+    try {
+      await playAudio(text, lang, { rate, pitch });
+    } finally {
+      setSpeaking(false);
     }
   }, []);
 
-  const speak = (text: string, lang: string = 'en', rate: number = 1, pitch: number = 1) => {
-    if (!supported) {
-      console.warn("Speech synthesis not supported in this browser.");
-      return;
-    }
-
-    // Cancel any ongoing speech before starting a new one
+  const cancel = useCallback(() => {
     window.speechSynthesis.cancel();
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    
-    // Map simplified codes to full locale codes
-    const langMap: Record<string, string> = {
-      'en': 'en-US',
-      'es': 'es-ES',
-      'eu': 'eu-ES'
-    };
-    
-    utterance.lang = langMap[lang] || lang;
-    utterance.rate = rate;
-    utterance.pitch = pitch;
-
-    utterance.onstart = () => setSpeaking(true);
-    utterance.onend = () => setSpeaking(false);
-    utterance.onerror = (event) => {
-      console.error("Speech synthesis error:", event);
-      setSpeaking(false);
-    };
-
-    utteranceRef.current = utterance;
-    window.speechSynthesis.speak(utterance);
-  };
-
-  const cancel = () => {
-    if (supported && window.speechSynthesis.speaking) {
-      window.speechSynthesis.cancel();
-      setSpeaking(false);
-    }
-  };
+    setSpeaking(false);
+  }, []);
 
   return { speak, cancel, speaking, supported };
 }

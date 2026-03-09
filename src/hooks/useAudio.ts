@@ -40,11 +40,11 @@ export function useAudio(): UseAudioResult { // Cambiado a named export
       audio.play().catch(e => {
         console.warn("Error playing audio from URL, falling back to TTS:", e);
         if (useTTSFallback) {
-          speak(url, lang); // Si falla el audio, intenta TTS con el texto de la URL
+          speak(url, lang as 'en' | 'eu' | 'es'); // Si falla el audio, intenta TTS con el texto de la URL
         }
       });
     } else if (useTTSFallback) {
-      speak(url, lang); // Si se fuerza TTS o no hay URL, usa TTS
+      speak(url, lang as 'en' | 'eu' | 'es'); // Si se fuerza TTS o no hay URL, usa TTS
     }
   };
 

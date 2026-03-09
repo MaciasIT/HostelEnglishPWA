@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useAppStore } from '@/store/useAppStore';
 
 interface SpeechRecognitionHook {
   isListening: boolean;
@@ -24,6 +25,8 @@ const useSpeechRecognition = (): SpeechRecognitionHook => {
   const [error, setError] = useState<string | null>(null);
   const [requestingPermission, setRequestingPermission] = useState(false);
   const recognitionRef = useRef<any | null>(null);
+  
+  const targetLanguage = useAppStore(state => state.prefs.targetLanguage);
 
   const browserSupportsSpeechRecognition =
     typeof window !== 'undefined' &&
@@ -40,7 +43,7 @@ const useSpeechRecognition = (): SpeechRecognitionHook => {
     recognitionRef.current = new SpeechRecognition();
     recognitionRef.current.continuous = false; // Stop after first result
     recognitionRef.current.interimResults = true; // Get interim results
-    recognitionRef.current.lang = 'en-US'; // English language
+    recognitionRef.current.lang = targetLanguage === 'eu' ? 'eu-ES' : 'en-US';
 
     recognitionRef.current.onresult = (event: any) => {
       let interimTranscript = '';
@@ -93,7 +96,7 @@ const useSpeechRecognition = (): SpeechRecognitionHook => {
         recognitionRef.current.stop();
       }
     };
-  }, [browserSupportsSpeechRecognition]);
+  }, [browserSupportsSpeechRecognition, targetLanguage]);
 
   const startListening = () => {
     if (recognitionRef.current && !isListening) {
