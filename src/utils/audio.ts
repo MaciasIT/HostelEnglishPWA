@@ -40,13 +40,45 @@ export const playAudio = async (text: string, lang: 'en' | 'eu' | 'es', settings
 
     // MÉTODO NATIVO (Fallback)
     return new Promise<void>((resolve) => {
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = voiceLang;
+        // Phonetic mapping for Basque to sound acceptable on a Spanish TTS Voice
+        const euToEsPhonetic = (texto: string) => {
+            return texto
+                .replace(/tx/gi, 'ch')
+                .replace(/ts/gi, 's') 
+                .replace(/tz/gi, 'ts')
+                .replace(/x/gi, 'ch') 
+                .replace(/j/gi, 'y')  // Jota vasca moderna
+                .replace(/z/gi, 's')  // Evitar que lea la Z como C/Z de España (que se lea fricativa como S)
+                .replace(/ge/gi, 'gue') // 'ge' en Euskera -> 'gue' en Castellano
+                .replace(/gi/gi, 'gui')
+                .replace(/ke/gi, 'que') 
+                .replace(/ki/gi, 'qui');
+        };
+
+        const voices = window.speechSynthesis.getVoices();
+        
+        // Determinar qué idioma usar para la voz nativa
+        let finalVoiceLang = voiceLang;
+        let finalNativeText = text;
+
+        // Si es Euskera, intentamos buscar si hay una voz de Euskera real instalada
+        if (lang === 'eu') {
+            const hasEuVoice = voices.some(v => v.lang.startsWith('eu'));
+            if (!hasEuVoice) {
+                // Si NO hay voz en Euskera instalada, engañamos al motor para que lea el Euskera 
+                // con reglas fonéticas españolas usando una voz española (para que suene decente).
+                finalNativeText = euToEsPhonetic(text);
+                finalVoiceLang = 'es-ES'; // Forzamos voz española para el apaño fonético
+            }
+        }
+
+        const utterance = new SpeechSynthesisUtterance(finalNativeText);
+        utterance.lang = finalVoiceLang;
         utterance.rate = settings.rate;
         utterance.pitch = settings.pitch;
 
         if (settings.voiceURI) {
-            const voice = window.speechSynthesis.getVoices().find(v => v.voiceURI === settings.voiceURI);
+            const voice = voices.find(v => v.voiceURI === settings.voiceURI);
             // Basic check: if the selected voice language strictly matches or is a prefix
             if (voice && (voice.lang.startsWith(lang) || (lang === 'en' && voice.lang.startsWith('en')))) {
                 utterance.voice = voice;
