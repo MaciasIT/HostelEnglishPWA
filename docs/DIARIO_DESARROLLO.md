@@ -6,6 +6,20 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
 
 ---
 
+## ✨ Sistema Híbrido de Text-to-Speech (TTS) y Parche Fonético (Euskera)
+*Fecha: 09-03-2026*
+
+- **[✅ COMPLETADO] Refactorización Multi-Idioma del Audio:**
+    - Se refactorizaron completamente los hooks `useSpeech.ts` y `useAudio.ts` así como el utilitario `utils/audio.ts`.
+    - Ahora todos los módulos (Dictado, Quiz, Conversaciones, Flashcards, Frases) aceptan enrutamiento dinámico de audios (`es`, `en`, `eu`), solucionando la lectura de español con voz inglesa.
+
+- **[✅ COMPLETADO] Parche de Reconocimiento y TTS Híbrido:**
+    - Al carecer nativamente de paquetes de voz para Euskera (`eu-ES`) en navegadores estándar y ser bloqueado el servicio de Google Translate por CSP, se arreglaron los encabezados `Content-Security-Policy` introduciendo `media-src` para el TTS un-oficial de Google.
+    - **Innovación - Traductor Fonético Dinámico:** Función embebida (`euToEsPhonetic`) que transforma el texto en Euskera (`tz`, `tx`, `j`, `z`, etc.) para simular su pronunciación normativizada, obligando al TTS (tanto Google offline adaptado como TTS Nativo de Español) a leerlo con una fricativa /s/ y los acentos correspondientes, garantizando un soporte impecable en Euskera incluso sin el paquete real instalado.
+    - Se actualizó también `useSpeechRecognition.ts` para capturar el lenguaje activo (incluyendo Euskera para el Módulo de Dictado).
+
+---
+
 ## ✨ Limpieza de Documentación y Deuda Técnica
 *Fecha: 05-02-2026*
 

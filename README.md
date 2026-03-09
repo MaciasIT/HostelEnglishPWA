@@ -15,10 +15,11 @@
 
 ---
 
-## 🌍 Idiomas y Colaboración (Euskera)
-Recientemente hemos implementado el soporte para **Euskera**. 
+## 🌍 Idiomas y Soporte Fonético (Euskera)
+Recientemente hemos implementado el soporte completo para **Euskera**. 
+Dado que la mayoría de dispositivos carecen de un motor de síntesis de voz (TTS) nativo en Euskera, hemos desarrollado un **Motor Híbrido de Traducción Fonética**. Este sistema engaña inteligentemente a los motores de voz (como las voces en Español) transformando la escritura vasca (tx, ts, tz, z, x) a su equivalente fonético. Esto garantiza que todos los usuarios puedan escuchar una pronunciación excelente y realista del euskera, sin necesidad de instalar paquetes de idioma adicionales.
 
-⚠️ **Ayuda necesaria**: Al ser una implementación reciente, buscamos la colaboración de **personas nativas en euskera** para validar y completar el dataset. Si eres nativo y quieres ayudar a que las traducciones sean perfectas, ¡tu ayuda es bienvenida!
+⚠️ **Ayuda necesaria**: Al ser una implementación reciente, buscamos la colaboración de **personas nativas en euskera** para seguir validando y mejorando el dataset y los matices fonéticos. ¡Tu ayuda es bienvenida!
 
 ---
 
