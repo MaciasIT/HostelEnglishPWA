@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAppStore } from '@/store/useAppStore';
 import { SpeakerWaveIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
+import { playAudio } from '@/utils/audio';
 
 type Phrase = {
   id: number | string;
@@ -26,36 +27,20 @@ const Flashcard: React.FC<FlashcardProps> = ({ phrase }) => {
     setIsFlipped(!isFlipped);
   };
 
-  const handlePlayAudio = (lang: 'es' | 'target', e: React.MouseEvent) => {
+  const handlePlayAudio = async (lang: 'es' | 'target', e: React.MouseEvent) => {
     e.stopPropagation();
-    window.speechSynthesis.cancel();
 
-    // Determine target text and language based on store setting
     const targetText = targetLanguage === 'eu' ? phrase.eu : phrase.en;
-    const targetVoiceLang = targetLanguage === 'eu' ? 'eu-ES' : 'en-US';
-
     const textToSpeak = (lang === 'es' ? phrase.es : targetText) || '';
-    const speechLang = lang === 'es' ? 'es-ES' : targetVoiceLang;
+    const langCode = lang === 'es' ? 'es' : (targetLanguage === 'eu' ? 'eu' : 'en');
 
     if (!textToSpeak.trim()) return;
 
-    const utterance = new SpeechSynthesisUtterance(textToSpeak);
-    utterance.lang = speechLang;
-
-    if (lang === 'target') {
-      utterance.rate = phraseSettings.rate;
-      utterance.pitch = phraseSettings.pitch;
-      if (phraseSettings.voiceURI) {
-        // Only use the saved voice if it matches the current target language
-        const voice = window.speechSynthesis.getVoices().find(v => v.voiceURI === phraseSettings.voiceURI);
-        // Basic check: if saved voice language starts with target language code
-        if (voice && voice.lang.startsWith(targetLanguage === 'eu' ? 'eu' : 'en')) {
-          utterance.voice = voice;
-        }
-      }
-    }
-
-    window.speechSynthesis.speak(utterance);
+    await playAudio(textToSpeak, langCode as 'en' | 'eu' | 'es', {
+      rate: phraseSettings.rate,
+      pitch: phraseSettings.pitch,
+      voiceURI: lang === 'target' ? phraseSettings.voiceURI : undefined
+    });
   };
 
   return (

@@ -15,7 +15,8 @@ export const useSpeech = () => {
         if (phraseSettings.voiceURI) {
             const voices = window.speechSynthesis.getVoices();
             const voice = voices.find(v => v.voiceURI === phraseSettings.voiceURI);
-            if (voice && voice.lang.startsWith(targetLanguage === 'eu' ? 'eu' : 'en')) {
+            const langPrefix = targetLanguage === 'eu' ? 'eu' : 'en';
+            if (voice && (voice.lang.startsWith(langPrefix) || (langPrefix === 'en' && voice.lang.startsWith('en')))) {
                 utterance.voice = voice;
             }
         }
