@@ -22,12 +22,15 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({ lives, streak, progress, onExit
         {/* Lives */}
         <div className="flex gap-1">
           {[...Array(3)].map((_, i) => (
-            <HeartIcon key={i} className={`w-6 h-6 ${i < lives ? 'text-red-500 fill-red-500' : 'text-gray-700'}`} />
+            <HeartIcon 
+              key={i} 
+              className={`w-6 h-6 transition-all duration-300 ${i < lives ? 'text-red-500 fill-red-500' : 'text-gray-700'} ${lives <= 1 && i < lives ? 'heart-pulse' : ''}`} 
+            />
           ))}
         </div>
 
         {/* Streak */}
-        <div className={`flex items-center gap-1 transition-all ${streak >= 3 ? 'text-orange-500 scale-110' : 'text-gray-500'}`}>
+        <div className={`flex items-center gap-1 transition-all p-2 rounded-xl ${streak >= 3 ? 'text-orange-500 scale-110 streak-pulse bg-orange-500/10' : 'text-gray-500 bg-white/5'}`}>
           <FireIcon className="w-5 h-5" />
           <span className="font-black text-sm">{streak}</span>
         </div>
