@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { motion, LayoutGroup } from 'framer-motion';
+import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { QuizMode, ScrambledWord } from './types';
 import { useQuizLogic } from './hooks/useQuizLogic';
 import { useSpeech } from './hooks/useSpeech';
@@ -67,53 +67,75 @@ const QuizContainer: React.FC<QuizContainerProps> = ({ category, mode, onExit })
           layout
           className="bg-white/10 p-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] backdrop-blur-2xl border border-white/20 relative overflow-hidden"
         >
-          <div className="absolute top-0 right-0 w-48 h-48 bg-accent opacity-5 blur-3xl rounded-full"></div>
+          {/* Animated background element */}
+          <motion.div 
+            animate={{ 
+              rotate: 360,
+              scale: [1, 1.1, 1],
+              opacity: [0.05, 0.08, 0.05]
+            }}
+            transition={{ 
+              rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+              scale: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+              opacity: { duration: 8, repeat: Infinity, ease: "easeInOut" }
+            }}
+            className="absolute -top-24 -right-24 w-64 h-64 bg-accent rounded-full blur-[80px] pointer-events-none"
+          />
 
           <motion.h2 layout className="text-[10px] uppercase tracking-[0.2em] text-accent font-black mb-4 flex items-center gap-2">
             <span className="w-6 h-[1px] bg-accent"></span>
             {mode === 'truefalse' ? 'Identifica si es correcto' : `Traduce al ${state.targetLanguage === 'eu' ? 'euskera' : 'inglés'}`}
           </motion.h2>
 
-          {state.currentQuestion && (
-            <motion.p 
-              layout
-              data-testid="quiz-question" 
-              className="text-2xl sm:text-3xl font-black mb-10 text-white italic leading-[1.1] text-center"
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={state.currentQuestion?.id || 'empty'}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
             >
-              "{state.currentQuestion.target.es}"
-            </motion.p>
-          )}
+              {state.currentQuestion && (
+                <p 
+                  data-testid="quiz-question" 
+                  className="text-2xl sm:text-3xl font-black mb-10 text-white italic leading-[1.1] text-center"
+                >
+                  "{state.currentQuestion.target.es}"
+                </p>
+              )}
 
-          <motion.div layout>
-            {mode === 'multiple' && state.currentQuestion && (
-              <MultipleChoiceMode 
-                currentQuestion={state.currentQuestion}
-                feedback={state.feedback}
-                targetLanguage={state.targetLanguage}
-                onAnswer={handleAnswer}
-              />
-            )}
+              <div className="relative min-h-[200px]">
+                {mode === 'multiple' && state.currentQuestion && (
+                  <MultipleChoiceMode 
+                    currentQuestion={state.currentQuestion}
+                    feedback={state.feedback}
+                    targetLanguage={state.targetLanguage}
+                    onAnswer={handleAnswer}
+                  />
+                )}
 
-            {mode === 'truefalse' && state.currentQuestion && (
-              <TrueFalseMode 
-                currentQuestion={state.currentQuestion}
-                feedback={state.feedback}
-                onAnswer={handleAnswer}
-              />
-            )}
+                {mode === 'truefalse' && state.currentQuestion && (
+                  <TrueFalseMode 
+                    currentQuestion={state.currentQuestion}
+                    feedback={state.feedback}
+                    onAnswer={handleAnswer}
+                  />
+                )}
 
-            {mode === 'scramble' && state.currentQuestion && (
-              <ScrambleMode 
-                currentQuestion={state.currentQuestion}
-                feedback={state.feedback}
-                scrambleAnswers={state.scrambleAnswers}
-                onAnswer={handleAnswer}
-                onSelectWord={handleScrambleSelect}
-                onRemoveWord={handleScrambleRemove}
-                onReset={() => actions.setScrambleAnswers([])}
-              />
-            )}
-          </motion.div>
+                {mode === 'scramble' && state.currentQuestion && (
+                  <ScrambleMode 
+                    currentQuestion={state.currentQuestion}
+                    feedback={state.feedback}
+                    scrambleAnswers={state.scrambleAnswers}
+                    onAnswer={handleAnswer}
+                    onSelectWord={handleScrambleSelect}
+                    onRemoveWord={handleScrambleRemove}
+                    onReset={() => actions.setScrambleAnswers([])}
+                  />
+                )}
+              </div>
+            </motion.div>
+          </AnimatePresence>
 
           <FeedbackOverlay 
             feedback={state.feedback}
@@ -144,3 +166,4 @@ const QuizContainer: React.FC<QuizContainerProps> = ({ category, mode, onExit })
 };
 
 export default QuizContainer;
+

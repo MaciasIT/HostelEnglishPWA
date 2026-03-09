@@ -8,6 +8,7 @@ export type ScrambledWord = {
 };
 
 export type Question = {
+  id: string;
   target: Phrase;
   options: string[];
   tfTranslation?: string;
