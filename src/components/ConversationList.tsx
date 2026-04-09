@@ -1,5 +1,4 @@
-import React from 'react';
-import { useAppStore, Conversation } from '@/store/useAppStore';
+import { Conversation } from '@/store/useAppStore';
 import { ChatBubbleLeftRightIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 interface ConversationListProps {
@@ -7,8 +6,8 @@ interface ConversationListProps {
   onSelectConversation: (conversation: Conversation) => void;
 }
 
-const ConversationList: React.FC<ConversationListProps> = ({ conversations, onSelectConversation }) => {
-  const { targetLanguage } = useAppStore(state => ({ targetLanguage: state.prefs.targetLanguage }));
+const ConversationList = ({ conversations, onSelectConversation }: ConversationListProps) => {
+  // targetLanguage was unused here
 
   if (conversations.length === 0) {
     return (

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useAppStore, Conversation, ConversationTurn } from '@/store/useAppStore';
 import CollapsibleSection from '@/components/CollapsibleSection';
 import VoiceSettings from '@/components/VoiceSettings';
@@ -8,7 +8,6 @@ import {
   PauseIcon,
   SpeakerWaveIcon,
   UserCircleIcon,
-  Cog6ToothIcon,
   ViewColumnsIcon,
   Bars3BottomLeftIcon
 } from '@heroicons/react/24/outline';
@@ -21,7 +20,7 @@ interface ConversationDetailProps {
   onConversationEnd: () => void;
 }
 
-const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, onBack, onConversationEnd }) => {
+const ConversationDetail = ({ conversation, onBack, onConversationEnd }: ConversationDetailProps) => {
   const isPlayingAllRef = useRef(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const { conversationSettings, setConversationParticipantSetting, targetLanguage } = useAppStore((state) => ({
@@ -33,7 +32,6 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
   const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [isFocusMode, setIsFocusMode] = useState(true);
   const [currentTurnIndex, setCurrentTurnIndex] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const getSortedVoices = useCallback((voices: SpeechSynthesisVoice[]) => {
     const langCode = targetLanguage === 'eu' ? 'eu' : 'en';
@@ -50,6 +48,7 @@ const ConversationDetail: React.FC<ConversationDetailProps> = ({ conversation, o
 
     if (window.speechSynthesis.getVoices().length > 0) {
       populateVoices();
+      return;
     } else {
       window.speechSynthesis.onvoiceschanged = populateVoices;
       return () => { window.speechSynthesis.onvoiceschanged = null; };

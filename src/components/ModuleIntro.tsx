@@ -60,7 +60,7 @@ const ModuleIntro: React.FC<ModuleIntroProps> = ({
                 onClick={onStart}
                 className={`${color} text-white font-black py-5 px-14 rounded-[2rem] text-2xl shadow-[0_20px_40px_-10px_rgba(230,126,34,0.5)] flex items-center gap-4 uppercase tracking-widest`}
             >
-                Empezar
+                Empezar Ahora
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
@@ -76,27 +76,6 @@ const ModuleIntro: React.FC<ModuleIntroProps> = ({
                     <span className="text-xs uppercase tracking-tighter">Voces Reales</span>
                 </div>
             </div>
-
-            <style dangerouslySetInnerHTML={{
-                __html: `
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.8s ease-out forwards;
-        }
-        .pulse-slow {
-          animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        @keyframes pulse {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: .3; transform: scale(1.5); }
-        }
-        .animation-delay-500 {
-          animation-delay: 500ms;
-        }
-      `}} />
         </div>
     );
 };

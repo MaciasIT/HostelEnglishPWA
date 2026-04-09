@@ -1,5 +1,5 @@
 import React from 'react';
-import { useBeforeInstallPrompt } from './useBeforeInstallPrompt';
+import { useBeforeInstallPrompt } from '@/hooks/useBeforeInstallPrompt';
 
 const InstallPWAButton: React.FC = () => {
   const [deferredPrompt, setDeferredPrompt] = useBeforeInstallPrompt();

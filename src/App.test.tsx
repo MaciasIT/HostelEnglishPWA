@@ -2,7 +2,6 @@ import { render, screen, cleanup } from '@testing-library/react';
 import App from './App';
 import '@testing-library/jest-dom';
 import { vi, describe, it, expect, afterEach } from 'vitest';
-import React from 'react';
 import { useAppStore } from '@/store/useAppStore';
 
 // Mock matchMedia for tests

@@ -1,11 +1,9 @@
-import React from 'react';
 import { useAppStore } from '@/store/useAppStore';
 import {
   SpeakerWaveIcon,
   CheckIcon,
   ArrowPathIcon,
-  BookmarkIcon,
-  ExclamationCircleIcon
+  BookmarkIcon
 } from '@heroicons/react/24/outline';
 import { playAudio } from '@/utils/audio';
 
@@ -24,11 +22,11 @@ interface PhraseCardProps {
   progressLevel: number; // 0: unseen, 1: studied, 2: learned
 }
 
-const PhraseCard: React.FC<PhraseCardProps> = ({
+const PhraseCard = ({
   phrase,
   onAdvanceProgress,
   progressLevel,
-}) => {
+}: PhraseCardProps) => {
   const { phraseSettings, targetLanguage } = useAppStore((state) => ({
     phraseSettings: state.prefs.phraseSettings,
     targetLanguage: state.prefs.targetLanguage,
@@ -77,7 +75,6 @@ const PhraseCard: React.FC<PhraseCardProps> = ({
     icon: BookmarkIcon
   };
 
-  const targetText = targetLanguage === 'eu' ? (phrase.eu || '...') : phrase.en;
   const targetLabel = targetLanguage === 'eu' ? 'EUSKERA' : 'INGLÉS';
 
   return (

@@ -1,9 +1,8 @@
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, vi, afterEach } from 'vitest';
 import Frases from './Frases';
 import { useAppStore } from '@/store/useAppStore';
 import { MemoryRouter } from 'react-router-dom';
-import React from 'react';
 
 // Mock a parte del store para evitar warnings de Zustand
 vi.mock('@/store/useAppStore');

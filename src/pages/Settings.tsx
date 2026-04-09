@@ -1,23 +1,19 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import PageContainer from '@/components/layout/PageContainer';
 import { useAppStore } from '@/store/useAppStore';
 import {
-    Cog6ToothIcon,
     SpeakerWaveIcon,
     BeakerIcon,
-    CheckCircleIcon,
     ExclamationTriangleIcon,
     CommandLineIcon
 } from '@heroicons/react/24/outline';
 
-const Settings: React.FC = () => {
-    const { targetLanguage } = useAppStore(state => ({
-        targetLanguage: state.prefs.targetLanguage
-    }));
+const Settings = () => {
+    const { prefs } = useAppStore();
+    const targetLanguage = prefs.targetLanguage;
 
     const [allVoices, setAllVoices] = useState<SpeechSynthesisVoice[]>([]);
     const [testText, setTestText] = useState('Kaixo, hau euskera ahotsaren testa da. Ondo entzuten al da?');
-    const [selectedVoiceURI, setSelectedVoiceURI] = useState('');
     const [isTesting, setIsTesting] = useState(false);
 
     useEffect(() => {

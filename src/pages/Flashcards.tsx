@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useAppStore } from '@/store/useAppStore';
 import Flashcard from '@/components/Flashcard';
 import PageContainer from '@/components/layout/PageContainer';

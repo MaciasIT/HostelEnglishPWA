@@ -1,14 +1,16 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useAppStore, Phrase } from '@/store/useAppStore';
 import PageContainer from '@/components/layout/PageContainer';
 import ModuleIntro from '@/components/ModuleIntro';
+import { getTargetText } from '@/utils/language';
 import {
   ClipboardDocumentCheckIcon,
   TrophyIcon,
   ShieldCheckIcon,
   SparklesIcon,
   FireIcon,
-  XMarkIcon
+  XMarkIcon,
+  CheckBadgeIcon
 } from '@heroicons/react/24/outline';
 import { shuffle } from '@/utils/shuffle';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -34,7 +36,6 @@ export default function Examen() {
     loadFrases: state.loadFrases,
     targetLanguage: state.prefs.targetLanguage,
   }));
-  const phraseSettings = useAppStore((state) => state.prefs.phraseSettings);
 
   const [showWelcome, setShowWelcome] = useState(true);
   const [examState, setExamState] = useState<'setup' | 'active' | 'results'>('setup');
@@ -49,16 +50,14 @@ export default function Examen() {
     if (!frasesLoaded) loadFrases();
   }, [frasesLoaded, loadFrases]);
 
-  const getTargetText = (f: Phrase) => (targetLanguage === 'eu' ? f.eu : f.en) || f.en;
-
   const generateOptions = useCallback((target: Phrase) => {
-    const targetText = getTargetText(target);
+    const correctText = getTargetText(target, targetLanguage);
     const distractors = frases
       .filter(f => f.id !== target.id)
       .sort(() => Math.random() - 0.5)
       .slice(0, 3)
-      .map(f => getTargetText(f));
-    return shuffle([...distractors, targetText]);
+      .map(f => getTargetText(f, targetLanguage));
+    return shuffle([...distractors, correctText]);
   }, [frases, targetLanguage]);
 
   useEffect(() => {
@@ -68,10 +67,6 @@ export default function Examen() {
     }
   }, [currentIndex, examState, examPhrases, generateOptions]);
 
-  /**
-   * Initializes a set of random phrases for the exam.
-   * Default is 10 phrases. Accuracy goal is 80%.
-   */
   const startExam = (limit: number = 10) => {
     const subset = shuffle([...frases]).slice(0, limit);
     setExamPhrases(subset);
@@ -85,8 +80,8 @@ export default function Examen() {
     setSelectedOption(option);
 
     const current = examPhrases[currentIndex];
-    const targetText = getTargetText(current);
-    const isCorrect = option === targetText;
+    const correctText = getTargetText(current, targetLanguage);
+    const isCorrect = option === correctText;
 
     setTimeout(() => {
       if (isCorrect) {
@@ -167,6 +162,9 @@ export default function Examen() {
 
   if (examState === 'active') {
     const current = examPhrases[currentIndex];
+    const correctText = getTargetText(current, targetLanguage);
+    const isCorrect = selectedOption === correctText;
+
     return (
       <PageContainer title={`Examen en progreso: ${currentIndex + 1}/${examPhrases.length}`}>
         <div className="max-w-2xl mx-auto">
@@ -189,9 +187,9 @@ export default function Examen() {
                   key={i}
                   onClick={() => handleAnswer(opt)}
                   className={`p-6 text-left rounded-2xl font-bold border-2 transition-all ${selectedOption === opt
-                    ? (opt === getTargetText(current) ? 'bg-green-500 border-green-400' : 'bg-red-500 border-red-400')
+                    ? (opt === correctText ? 'bg-green-500 border-green-400' : 'bg-red-500 border-red-400')
                     : 'bg-white/5 border-white/10 hover:border-accent hover:bg-white/10'
-                    } ${selectedOption && opt !== selectedOption && opt !== getTargetText(current) ? 'opacity-30' : ''}`}
+                    } ${selectedOption && opt !== selectedOption && opt !== correctText ? 'opacity-30' : ''}`}
                   disabled={!!selectedOption}
                 >
                   {opt}
@@ -199,6 +197,27 @@ export default function Examen() {
               ))}
             </div>
           </div>
+
+          {selectedOption && (
+            <div className={`mt-8 p-6 rounded-[2rem] border-2 animate-in slide-in-from-bottom-4 ${isCorrect ? 'bg-green-500/10 border-green-500/30' : 'bg-red-500/10 border-red-500/30'}`}>
+              <div className="flex items-start gap-4">
+                <div className={`p-3 rounded-full ${isCorrect ? 'bg-green-500' : 'bg-red-500'}`}>
+                  {isCorrect ? <CheckBadgeIcon className="w-8 h-8 text-white" /> : <XMarkIcon className="w-8 h-8 text-white" />}
+                </div>
+                <div>
+                  <h3 className={`text-xl font-black ${isCorrect ? 'text-green-400' : 'text-red-400'}`}>
+                    {isCorrect ? '¡Correcto!' : 'Incorrecto'}
+                  </h3>
+                  {!isCorrect && (
+                    <div className="mt-2 text-gray-300">
+                      La respuesta correcta era:
+                      <p className="text-white font-black text-lg tracking-tight">{correctText}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
 
           <p className="text-center mt-8 text-gray-500 text-xs uppercase tracking-widest font-bold">
             Pregunta #{currentIndex + 1}
@@ -341,7 +360,7 @@ export default function Examen() {
                       return p ? (
                         <div key={id} className="p-6 bg-black/40 rounded-2xl border border-white/5 group">
                           <p className="text-sm text-gray-500 italic mb-2">"{p.es}"</p>
-                          <p className="text-white font-black text-lg tracking-tight">{getTargetText(p)}</p>
+                          <p className="text-white font-black text-lg tracking-tight">{getTargetText(p, targetLanguage)}</p>
                         </div>
                       ) : null;
                     })}

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { useAppStore, Phrase } from '@/store/useAppStore';
+import { useState, useEffect, useMemo } from 'react';
+import { useAppStore } from '@/store/useAppStore';
 import PageContainer from '@/components/layout/PageContainer';
 import ModuleIntro from '@/components/ModuleIntro';
 import { AcademicCapIcon, BookOpenIcon, StarIcon } from '@heroicons/react/24/outline';
@@ -7,7 +7,7 @@ import PhraseCard from '@/components/PhraseCard';
 
 export default function Estudio() {
   const { frases, categories, progress, advancePhraseProgress, frasesLoaded, loadFrases } = useAppStore();
-  const targetLanguage = useAppStore(state => state.prefs.targetLanguage);
+
 
   const [showWelcome, setShowWelcome] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);

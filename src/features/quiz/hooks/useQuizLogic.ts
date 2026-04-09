@@ -1,6 +1,7 @@
 import { useState, useCallback, useMemo } from 'react';
-import { useAppStore, Phrase } from '@/store/useAppStore';
-import { Question, QuizMode, ScrambledWord, Feedback, QuizGameState } from '../types';
+import { useAppStore } from '@/store/useAppStore';
+import { Question, QuizMode, ScrambledWord, Feedback } from '../types';
+import { getTargetText } from '@/utils/language';
 
 export const useQuizLogic = (category: string | null, mode: QuizMode) => {
   const { frases, progress, advancePhraseProgress, prefs } = useAppStore();
@@ -27,20 +28,19 @@ export const useQuizLogic = (category: string | null, mode: QuizMode) => {
     if (filteredFrases.length < 4) return;
 
     const target = filteredFrases[Math.floor(Math.random() * filteredFrases.length)];
-    const getTargetText = (f: Phrase) => (targetLanguage === 'eu' ? f.eu : f.en) || f.en;
-    const targetText = getTargetText(target);
+    const targetText = getTargetText(target, targetLanguage);
 
     if (mode === 'multiple') {
       const distractors: string[] = [];
       while (distractors.length < 3) {
         const randomFrase = filteredFrases[Math.floor(Math.random() * filteredFrases.length)];
-        const distactorText = getTargetText(randomFrase);
+        const distactorText = getTargetText(randomFrase, targetLanguage);
         if (randomFrase.id !== target.id && !distractors.includes(distactorText)) {
           distractors.push(distactorText);
         }
       }
       const options = [...distractors, targetText].sort(() => Math.random() - 0.5);
-      setCurrentQuestion({ target, options });
+      setCurrentQuestion({ id: String(target.id), target, options });
     } else if (mode === 'truefalse') {
       const shouldBeCorrect = Math.random() > 0.5;
       let tfTranslation = targetText;
@@ -49,13 +49,19 @@ export const useQuizLogic = (category: string | null, mode: QuizMode) => {
         do {
           randomFrase = filteredFrases[Math.floor(Math.random() * filteredFrases.length)];
         } while (randomFrase.id === target.id);
-        tfTranslation = getTargetText(randomFrase);
+        tfTranslation = getTargetText(randomFrase, targetLanguage);
       }
-      setCurrentQuestion({ target, options: [], tfTranslation, tfIsCorrect: shouldBeCorrect });
+      setCurrentQuestion({ 
+        id: String(target.id), 
+        target, 
+        options: [], 
+        tfTranslation, 
+        tfIsCorrect: shouldBeCorrect 
+      });
     } else if (mode === 'scramble') {
       const words = targetText.split(' ');
       const scrambledWords = words.map((w, i) => ({ id: `${i}-${w}`, text: w })).sort(() => Math.random() - 0.5);
-      setCurrentQuestion({ target, options: [], scrambledWords });
+      setCurrentQuestion({ id: String(target.id), target, options: [], scrambledWords });
       setScrambleAnswers([]);
     }
 

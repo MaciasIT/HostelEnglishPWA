@@ -1,10 +1,10 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import ConversationList from '@/components/ConversationList';
 import ConversationDetail from '@/components/ConversationDetail';
 import { useAppStore, Conversation } from '@/store/useAppStore';
 import PageContainer from '@/components/layout/PageContainer';
 import ModuleIntro from '@/components/ModuleIntro';
-import { ChatBubbleLeftRightIcon, FunnelIcon, TrophyIcon, ArrowRightIcon, ViewColumnsIcon } from '@heroicons/react/24/outline';
+import { ChatBubbleLeftRightIcon, FunnelIcon, TrophyIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 
 export default function Conversaciones() {
   const { conversations, categories, conversationsLoaded, loadConversations } = useAppStore((state) => ({

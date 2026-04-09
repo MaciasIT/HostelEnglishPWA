@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
 
+/**
+ * Custom hook to capture the 'beforeinstallprompt' event.
+ * Allows the app to trigger the PWA installation prompt manually.
+ */
 export function useBeforeInstallPrompt() {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
 
@@ -15,5 +19,5 @@ export function useBeforeInstallPrompt() {
   return [deferredPrompt, setDeferredPrompt] as const;
 }
 
-// Solo para test
-export const __setDeferredPrompt = (prompt: any) => {};
+// Only for testing purposes to mock the prompt state
+export const __setDeferredPrompt = (_prompt: any) => {};

@@ -151,3 +151,24 @@ body {
 .heart-pulse {
   animation: heart-pulse 1.2s infinite ease-in-out;
 }
+
+/* Flashcard 3D effects */
+.perspective-1000 { perspective: 1000px; }
+.preserve-3d { transform-style: preserve-3d; }
+.backface-hidden { backface-visibility: hidden; }
+.rotate-y-180 { transform: rotateY(180deg); }
+
+/* Additional Animations from Home and ModuleIntro */
+@keyframes slide-in-from-top { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes zoom-in { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.animate-in { animation-fill-mode: both; }
+.slide-in-from-top-4 { animation-name: slide-in-from-top; }
+.duration-700 { animation-duration: 700ms; }
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-500 { animation-delay: 500ms; }
+.animation-delay-500 { animation-delay: 500ms; }
+.rotate-3 { transform: rotate(3deg); }
+.fade-in { animation: fadeIn 0.8s ease-out forwards; }

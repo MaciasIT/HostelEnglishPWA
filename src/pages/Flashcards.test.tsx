@@ -4,7 +4,6 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { MemoryRouter } from 'react-router-dom';
 import Flashcards from './Flashcards';
 import { useAppStore } from '@/store/useAppStore';
-import React from 'react';
 
 // Mock del store de Zustand
 vi.mock('@/store/useAppStore');

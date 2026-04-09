@@ -12,7 +12,7 @@ describe('CSP Security Policy', () => {
         const content = fs.readFileSync(indexPath, 'utf-8');
         
         // Expected CSP string (normalized)
-        const expectedCSP = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://*.googleapis.com https://*.google.com; font-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none';";
+        const expectedCSP = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://*.googleapis.com https://*.google.com; media-src 'self' https://translate.google.com; font-src 'self'; form-action 'self'; base-uri 'self'; object-src 'none';";
         
         const cspMatch = content.match(/<meta http-equiv="Content-Security-Policy"\s+content="([^"]+)"/);
         

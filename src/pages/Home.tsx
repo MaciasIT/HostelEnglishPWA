@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAppStore } from '@/store/useAppStore';
 import {
@@ -148,23 +147,6 @@ export default function Home() {
           © {new Date().getFullYear()} HostellinglésApp. Todos los derechos reservados.
         </p>
       </footer>
-
-      {/* Global CSS for animations if not in index.css */}
-      <style dangerouslySetInnerHTML={{
-        __html: `
-        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slide-in-from-top { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        @keyframes zoom-in { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        .animate-in { animation-fill-mode: both; }
-        .fade-in { animation-name: fade-in; }
-        .slide-in-from-top-4 { animation-name: slide-in-from-top; }
-        .duration-700 { animation-duration: 700ms; }
-        .delay-100 { animation-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; }
-        .delay-300 { animation-delay: 300ms; }
-        .delay-500 { animation-delay: 500ms; }
-        .rotate-3 { transform: rotate(3deg); }
-      `}} />
     </div>
   );
 }

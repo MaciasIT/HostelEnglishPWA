@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useAppStore } from '@/store/useAppStore';
 import PhraseCard from '@/components/PhraseCard';
 import VoiceSettings from '@/components/VoiceSettings';
@@ -31,7 +31,7 @@ export default function Frases() {
     setPhraseSetting: state.setPhraseSetting,
   }));
 
-  const targetLanguage = useAppStore(state => state.prefs.targetLanguage);
+
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showWelcome, setShowWelcome] = useState(true);
@@ -44,7 +44,7 @@ export default function Frases() {
     return () => window.speechSynthesis.cancel();
   }, [frases.length, loadFrases]);
 
-  const displayCategories = ['all', ...categories];
+
 
   const filteredFrases = useMemo(() => {
     return frases.filter(phrase => {

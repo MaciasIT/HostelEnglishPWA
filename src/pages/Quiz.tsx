@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppStore } from '@/store/useAppStore';
 import PageContainer from '@/components/layout/PageContainer';
 import CollapsibleSection from '@/components/CollapsibleSection';
@@ -9,7 +9,7 @@ import QuizContainer from '@/features/quiz/QuizContainer';
 import { QuizMode } from '@/features/quiz/types';
 
 export default function Quiz() {
-  const { frases, loadFrases, frasesLoaded, categories, prefs, setPhraseSetting } = useAppStore();
+  const { loadFrases, frasesLoaded, categories, prefs, setPhraseSetting } = useAppStore();
   const phraseSettings = prefs.phraseSettings;
   
   const [quizActive, setQuizActive] = useState(false);

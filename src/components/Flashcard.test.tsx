@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, it, expect, vi } from 'vitest';
 import Flashcard from './Flashcard';
-import React from 'react';
 
 // Mock de useAppStore para aislar el componente
 vi.mock('@/store/useAppStore', () => ({

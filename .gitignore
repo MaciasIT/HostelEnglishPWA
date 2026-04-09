@@ -55,5 +55,6 @@ texto.txt
 
 # AI / Temporary
 .gemini/
+cerebro/
 sw.js
 workbox-*.js

@@ -2,7 +2,7 @@ import { describe, it, vi, expect, beforeEach } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 
-vi.mock('./useBeforeInstallPrompt', () => {
+vi.mock('@/hooks/useBeforeInstallPrompt', () => {
   let deferredPrompt: any = null;
   return {
     useBeforeInstallPrompt: () => {
@@ -15,7 +15,7 @@ vi.mock('./useBeforeInstallPrompt', () => {
   };
 });
 
-import { __setDeferredPrompt } from './useBeforeInstallPrompt';
+import { __setDeferredPrompt } from '@/hooks/useBeforeInstallPrompt';
 import InstallPWAButton from './InstallPWAButton';
 
 describe('InstallPWAButton', () => {
