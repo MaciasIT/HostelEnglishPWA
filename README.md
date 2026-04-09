@@ -1,7 +1,8 @@
 # HostelInglés PWA
 
 ![CI/CD](https://github.com/m1txel/HostelEnglishPWA/actions/workflows/deploy.yml/badge.svg)
-[![Version](https://img.shields.io/badge/version-2.2.0-orange?style=for-the-badge)](https://github.com/m1txel/HostelEnglishPWA/releases)
+[![Version](https://img.shields.io/badge/version-2.3.0-orange?style=for-the-badge)](https://github.com/m1txel/HostelEnglishPWA/releases)
+[![Security](https://img.shields.io/badge/Security-Audit_Passed-green?style=for-the-badge&logo=shield)](./AUDITORIA_360_HostelEnglishPWA.md)
 [![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-5.2.0-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.2.2-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
@@ -64,10 +65,11 @@ La aplicación sigue una arquitectura basada en componentes con React, promovien
 ├── public/              # Archivos estáticos, iconos, manifest y datasets
 ├── src/
 │   ├── components/      # Componentes de UI reutilizables
+│   ├── features/        # Módulos de lógica y UI encapsulados (Quiz, Examen)
 │   ├── db/              # Lógica de persistencia (IndexedDB)
 │   ├── hooks/           # Hooks personalizados
 │   ├── pages/           # Vistas principales de cada módulo
-│   ├── store/           # Estado global (Zustand)
+│   ├── store/           # Estado global modularizado (Zustand Slices)
 │   └── utils/           # Funciones de utilidad
 └── ...
 ```
