@@ -75,7 +75,7 @@ describe('<Dictation />', () => {
     renderComponent();
     await user.click(screen.getByRole('button', { name: /Empezar Ahora/i }));
 
-    const playButton = await screen.findByRole('button', { name: /reproducir audio/i });
+    const playButton = await screen.findByRole('button', { name: /Reproducir frase para dictado/i });
     await user.click(playButton);
 
     expect(window.speechSynthesis.speak).toHaveBeenCalled();
@@ -88,7 +88,7 @@ describe('<Dictation />', () => {
     await user.click(screen.getByRole('button', { name: /Empezar Ahora/i }));
     const input = await screen.findByPlaceholderText(/Escribe lo que has oído/i);
     await user.type(input, mockFrases[0].en);
-    const checkButton = screen.getByRole('button', { name: /COMPROBAR/i });
+    const checkButton = screen.getByRole('button', { name: /Comprobar respuesta/i });
     await user.click(checkButton);
     expect(await screen.findByText(/¡Absolutamente correcto!/i)).toBeInTheDocument();
   });
@@ -98,12 +98,27 @@ describe('<Dictation />', () => {
     await user.click(screen.getByRole('button', { name: /Empezar Ahora/i }));
     const input = await screen.findByPlaceholderText(/Escribe lo que has oído/i);
     await user.type(input, 'wrong answer');
-    const checkButton = screen.getByRole('button', { name: /COMPROBAR/i });
+    const checkButton = screen.getByRole('button', { name: /Comprobar respuesta/i });
     await user.click(checkButton);
     expect(await screen.findByText(/¡Casi! Inténtalo una vez más/i)).toBeInTheDocument();
   });
 
   it('should process spoken input and show success message', async () => {
+    // 1. Start listening
+    const { rerender } = renderComponent();
+    vi.mocked(useSpeechRecognition).mockReturnValue({
+      isListening: true,
+      transcript: 'Hello',
+      startListening: vi.fn(),
+      stopListening: vi.fn(),
+      browserSupportsSpeechRecognition: true,
+      error: null,
+      requestingPermission: false,
+    });
+
+    await user.click(screen.getByRole('button', { name: /Empezar Ahora/i }));
+
+    // 2. Stop listening (this should trigger the useEffect in useDictationLogic)
     vi.mocked(useSpeechRecognition).mockReturnValue({
       isListening: false,
       transcript: 'Hello',
@@ -114,11 +129,13 @@ describe('<Dictation />', () => {
       requestingPermission: false,
     });
 
-    renderComponent();
-    await user.click(screen.getByRole('button', { name: /Empezar Ahora/i }));
+    // Re-render to pick up new mock values
+    rerender(
+      <MemoryRouter>
+        <Dictation />
+      </MemoryRouter>
+    );
 
-    // El useEffect en Dictation.tsx reacciona a transcript cuando isListening pasa a false
-    // Como ya empieza así, debería activarse.
     expect(await screen.findByText(/¡Absolutamente correcto!/i)).toBeInTheDocument();
   });
 });

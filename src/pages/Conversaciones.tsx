@@ -1,12 +1,12 @@
-import { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import ConversationList from '@/components/ConversationList';
-import ConversationDetail from '@/components/ConversationDetail';
+import ConversationUI from '@/features/conversations/components/ConversationUI';
 import { useAppStore, Conversation } from '@/store/useAppStore';
 import PageContainer from '@/components/layout/PageContainer';
 import ModuleIntro from '@/components/ModuleIntro';
 import { ChatBubbleLeftRightIcon, FunnelIcon, TrophyIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 
-export default function Conversaciones() {
+const Conversaciones: React.FC = () => {
   const { conversations, categories, conversationsLoaded, loadConversations } = useAppStore((state) => ({
     conversations: state.conversations,
     categories: state.categories,
@@ -22,8 +22,6 @@ export default function Conversaciones() {
   useEffect(() => {
     if (!conversationsLoaded) loadConversations();
   }, [conversationsLoaded, loadConversations]);
-
-  const displayCategories = ['all', ...categories];
 
   const filteredConversations = useMemo(() => {
     return conversations.filter(conversation => {
@@ -77,9 +75,9 @@ export default function Conversaciones() {
 
   return (
     <PageContainer title={!selectedConversation ? "Diálogos Profesionales" : undefined}>
-      <div className="max-w-6xl mx-auto space-y-8 animate-fade-in">
+      <div className="max-w-6xl mx-auto animate-fade-in">
         {selectedConversation ? (
-          <ConversationDetail
+          <ConversationUI
             conversation={selectedConversation}
             onBack={handleBackToList}
             onConversationEnd={handleConversationEnd}
@@ -100,28 +98,22 @@ export default function Conversaciones() {
 
               <div className="relative w-full md:w-80 group">
                 <select
-                  className="w-full pl-6 pr-10 py-4 bg-white/5 border border-white/10 rounded-2xl text-white font-bold appearance-none focus:ring-2 focus:ring-accent outline-none transition-all group-hover:bg-white/10"
+                  id="category-filter"
+                  className="w-full pl-6 pr-10 py-4 bg-white/5 border border-white/10 rounded-2xl text-white font-bold appearance-none focus:ring-2 focus:ring-accent outline-none transition-all group-hover:bg-white/10 cursor-pointer"
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value)}
                   aria-label="Filtrar por categoría"
                 >
-                  {displayCategories.map(category => {
-                    let label = category;
-                    if (category === 'all') label = 'Todas las situaciones';
-                    // Ensure categories stay in Spanish if they were translated in data
-                    if (category === 'Jatetxea') label = 'Restaurante';
-                    if (category === 'Harrera') label = 'Recepción';
-                    if (category === 'Kexak') label = 'Quejas';
-                    if (category === 'Kexak eta erreklamazioak') label = 'Quejas y Reclamaciones';
-
-                    return (
-                      <option key={category} value={category} className="bg-primary-dark">
-                        {label}
-                      </option>
-                    );
-                  })}
+                  <option value="all" className="bg-primary-dark">Todas las situaciones</option>
+                  {categories.map(category => (
+                    <option key={category} value={category} className="bg-primary-dark">
+                      {category}
+                    </option>
+                  ))}
                 </select>
-                <ArrowRightIcon className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none group-hover:text-accent transition-colors rotate-90 md:rotate-0" />
+                <div className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none group-hover:text-accent transition-colors" aria-hidden="true">
+                  <ArrowRightIcon className="w-full h-full rotate-90" />
+                </div>
               </div>
             </div>
 
@@ -133,15 +125,20 @@ export default function Conversaciones() {
         )}
 
         {showPostConversationOptions && (
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-[100] p-4 animate-fade-in">
+          <div 
+            className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-[100] p-4 animate-fade-in"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="success-title"
+          >
             <div className="bg-gradient-to-b from-primary-dark to-black p-10 rounded-[3rem] shadow-2xl text-center text-white border border-white/10 max-w-md w-full relative overflow-hidden">
-              <div className="absolute -top-10 -right-10 w-32 h-32 bg-accent opacity-10 blur-3xl rounded-full"></div>
+              <div className="absolute -top-10 -right-10 w-32 h-32 bg-accent opacity-10 blur-3xl rounded-full" aria-hidden="true"></div>
 
               <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl">
                 <TrophyIcon className="w-10 h-10 text-white" />
               </div>
 
-              <h2 className="text-3xl font-black mb-2">¡Misión Cumplida!</h2>
+              <h2 id="success-title" className="text-3xl font-black mb-2">¡Misión Cumplida!</h2>
               <p className="mb-10 text-gray-400 font-medium leading-relaxed">Has completado el escenario con éxito. Tu fluidez está mejorando notablemente.</p>
 
               <div className="flex flex-col gap-3">
@@ -164,4 +161,6 @@ export default function Conversaciones() {
       </div>
     </PageContainer>
   );
-}
+};
+
+export default Conversaciones;

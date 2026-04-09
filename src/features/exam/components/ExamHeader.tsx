@@ -25,7 +25,14 @@ export default function ExamHeader({ currentIndex, total, onExit }: ExamHeaderPr
         </button>
       </div>
 
-      <div className="h-2 bg-white/5 rounded-full overflow-hidden mb-2">
+      <div 
+        className="h-2 bg-white/5 rounded-full overflow-hidden mb-2"
+        role="progressbar"
+        aria-valuenow={Math.round(progress)}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label="Progreso del examen"
+      >
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${progress}%` }}

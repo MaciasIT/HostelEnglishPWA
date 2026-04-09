@@ -1,55 +1,16 @@
-import { useState, useEffect, useMemo } from 'react';
-import { useAppStore } from '@/store/useAppStore';
-import Flashcard from '@/components/Flashcard';
+import React, { useState } from 'react';
+import { useFlashcardsLogic } from '@/features/flashcards/hooks/useFlashcardsLogic';
+import FlashcardItem from '@/features/flashcards/components/FlashcardItem';
+import FlashcardControls from '@/features/flashcards/components/FlashcardControls';
 import PageContainer from '@/components/layout/PageContainer';
 import CollapsibleSection from '@/components/CollapsibleSection';
 import VoiceSettings from '@/components/VoiceSettings';
 import ModuleIntro from '@/components/ModuleIntro';
 import { Square2StackIcon } from '@heroicons/react/24/outline';
 
-export default function Flashcards() {
-  const { frases, loadFrases, frasesLoaded, categories, setPhraseSetting } = useAppStore();
-  const phraseSettings = useAppStore((state) => state.prefs.phraseSettings);
-  const targetLanguage = useAppStore(state => state.prefs.targetLanguage);
-
-  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
-  const [selectedCategory, setSelectedCategory] = useState('all');
+const Flashcards: React.FC = () => {
   const [showWelcome, setShowWelcome] = useState(true);
-
-  useEffect(() => {
-    if (!frasesLoaded) {
-      loadFrases();
-    }
-  }, [frasesLoaded, loadFrases]);
-
-  const displayCategories = ['all', ...categories];
-
-  const filteredFrases = useMemo(() => {
-    return frases.filter(phrase => {
-      const hasText = phrase.es && (targetLanguage === 'eu' ? phrase.eu : phrase.en);
-      const matchesCategory = selectedCategory === 'all' || phrase.categoria === selectedCategory;
-      return hasText && matchesCategory;
-    });
-  }, [frases, selectedCategory, targetLanguage]);
-
-  useEffect(() => {
-    setCurrentPhraseIndex(0);
-  }, [filteredFrases]);
-
-  const handleNext = () => {
-    setCurrentPhraseIndex((prevIndex) => (prevIndex + 1) % filteredFrases.length);
-  };
-
-  const handlePrev = () => {
-    setCurrentPhraseIndex((prevIndex) =>
-      prevIndex === 0 ? filteredFrases.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleShuffle = () => {
-    const shuffledIndex = Math.floor(Math.random() * filteredFrases.length);
-    setCurrentPhraseIndex(shuffledIndex);
-  };
+  const { state, actions } = useFlashcardsLogic();
 
   if (showWelcome) {
     return (
@@ -60,8 +21,8 @@ export default function Flashcards() {
           icon={Square2StackIcon}
           onStart={() => setShowWelcome(false)}
           stats={[
-            { label: 'Tarjetas', value: frases.length },
-            { label: 'Categorías', value: categories.length },
+            { label: 'Tarjetas', value: state.filteredFrases.length },
+            { label: 'Categorías', value: state.categories.length },
             { label: 'Método', value: 'Repetición' }
           ]}
         />
@@ -69,10 +30,10 @@ export default function Flashcards() {
     );
   }
 
-  if (!frasesLoaded) {
+  if (!state.frasesLoaded) {
     return (
       <PageContainer title="Flashcards">
-        <div className="flex flex-col items-center justify-center p-20">
+        <div className="flex flex-col items-center justify-center p-20" role="status" aria-live="polite">
           <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
           <p className="mt-4 text-gray-400">Cargando vocabulario...</p>
         </div>
@@ -80,16 +41,17 @@ export default function Flashcards() {
     );
   }
 
-  if (filteredFrases.length === 0) {
+  if (state.filteredFrases.length === 0) {
     return (
       <PageContainer title="Flashcards">
         <div className="text-center py-20 px-4">
-          <p className="text-xl text-gray-400 mb-6">
+          <p className="text-xl text-gray-400 mb-6 font-medium">
             No hay tarjetas disponibles para esta selección.
           </p>
           <button
-            onClick={() => setSelectedCategory('all')}
-            className="bg-accent text-white px-8 py-3 rounded-2xl font-bold"
+            onClick={() => actions.setSelectedCategory('all')}
+            className="bg-accent text-white px-8 py-3 rounded-2xl font-bold shadow-lg hover:brightness-110 active:scale-95 transition-all"
+            aria-label="Volver a mostrar todas las categorías"
           >
             Ver todas las categorías
           </button>
@@ -98,67 +60,67 @@ export default function Flashcards() {
     );
   }
 
-  const currentPhrase = filteredFrases[currentPhraseIndex];
-
   return (
     <PageContainer title="Flashcards">
-      <div className="max-w-md mx-auto w-full flex flex-col items-center">
+      <div className="max-w-md mx-auto w-full flex flex-col items-center animate-fade-in">
         <div className="w-full mb-8">
-          <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-black">
+          <label 
+            htmlFor="category-select"
+            className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-black"
+          >
             Categoría
           </label>
           <select
-            className="w-full p-4 bg-white/5 border border-white/10 rounded-2xl text-white font-bold appearance-none shadow-xl focus:ring-2 focus:ring-accent outline-none transition-all"
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
+            id="category-select"
+            className="w-full p-4 bg-white/5 border border-white/10 rounded-2xl text-white font-bold appearance-none shadow-xl focus:ring-2 focus:ring-accent outline-none transition-all cursor-pointer"
+            value={state.selectedCategory}
+            onChange={(e) => actions.setSelectedCategory(e.target.value)}
           >
-            {displayCategories.map(category => (
+            <option value="all" className="bg-primary-dark text-white">Todas las categorías</option>
+            {state.categories.map(category => (
               <option key={category} value={category} className="bg-primary-dark text-white">
-                {category === 'all' ? 'Todas las categorías' : category}
+                {category}
               </option>
             ))}
           </select>
         </div>
 
         <div className="w-full mb-10 relative perspective-1000">
-          <Flashcard phrase={currentPhrase} />
+          {state.currentPhrase && (
+            <FlashcardItem 
+              phrase={state.currentPhrase}
+              targetLanguage={state.targetLanguage}
+              phraseSettings={state.phraseSettings}
+            />
+          )}
         </div>
 
-        <div className="grid grid-cols-3 gap-4 w-full mb-12">
-          <button
-            onClick={handlePrev}
-            className="p-4 bg-white/5 border border-white/10 rounded-2xl text-white font-bold hover:bg-white/10 active:scale-95 transition-all text-sm uppercase tracking-tighter"
-          >
-            Anterior
-          </button>
-          <button
-            onClick={handleShuffle}
-            className="p-4 bg-accent text-white rounded-2xl font-bold hover:brightness-110 active:scale-95 transition-all shadow-lg text-sm uppercase tracking-tighter"
-          >
-            Mezclar
-          </button>
-          <button
-            onClick={handleNext}
-            className="p-4 bg-white/5 border border-white/10 rounded-2xl text-white font-bold hover:bg-white/10 active:scale-95 transition-all text-sm uppercase tracking-tighter"
-          >
-            Siguiente
-          </button>
-        </div>
+        <FlashcardControls 
+          onNext={actions.handleNext}
+          onPrev={actions.handlePrev}
+          onShuffle={actions.handleShuffle}
+        />
 
         <div className="w-full">
           <CollapsibleSection title="Ajustes de Voz">
             <VoiceSettings
-              settings={phraseSettings}
-              onSettingChange={setPhraseSetting}
+              settings={state.phraseSettings}
+              onSettingChange={actions.setPhraseSetting}
               showTitle={false}
             />
           </CollapsibleSection>
         </div>
 
-        <div className="mt-8 text-center text-gray-500 text-sm">
-          Tarjeta {currentPhraseIndex + 1} / {filteredFrases.length}
+        <div 
+          className="mt-8 text-center text-gray-500 text-xs font-black uppercase tracking-widest"
+          role="status"
+          aria-live="polite"
+        >
+          Tarjeta {state.currentPhraseIndex + 1} de {state.totalFrases}
         </div>
       </div>
     </PageContainer>
   );
-}
+};
+
+export default Flashcards;

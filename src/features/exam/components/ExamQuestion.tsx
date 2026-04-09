@@ -25,8 +25,8 @@ export default function ExamQuestion({
         animate={{ opacity: 1, y: 0 }}
         className="bg-white/10 p-10 rounded-[2.5rem] shadow-2xl border border-white/20 backdrop-blur-md"
       >
-        <p className="text-[10px] uppercase font-black text-accent tracking-[0.2em] mb-4">Traduce esta frase:</p>
-        <h3 className="text-3xl sm:text-4xl font-black text-white mb-12 italic leading-tight">
+        <p id="question-label" className="text-[10px] uppercase font-black text-accent tracking-[0.2em] mb-4">Traduce esta frase:</p>
+        <h3 id="current-question" className="text-3xl sm:text-4xl font-black text-white mb-12 italic leading-tight">
           "{question}"
         </h3>
 
@@ -53,6 +53,8 @@ export default function ExamQuestion({
                 whileTap={!isAnswered ? { scale: 0.98 } : {}}
                 onClick={() => onAnswer(opt)}
                 disabled={isAnswered}
+                aria-label={`Opción ${i + 1}: ${opt}${isSelected ? (isCorrect ? ", Correcta" : ", Incorrecta") : ""}`}
+                aria-describedby="current-question"
                 className={`p-6 text-left rounded-2xl font-bold border-2 transition-all ${btnClass}`}
               >
                 <div className="flex justify-between items-center">
@@ -74,6 +76,8 @@ export default function ExamQuestion({
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
+          role="alert"
+          aria-live="polite"
           className={`p-6 rounded-[2rem] border-2 ${
             selectedOption === correctAnswer 
               ? 'bg-green-500/10 border-green-500/30' 

@@ -49,6 +49,7 @@ export default function ExamResults({
           className={`w-28 h-28 rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl ${
             passed ? 'bg-green-500' : 'bg-red-500'
           }`}
+          aria-hidden="true"
         >
           {passed ? (
             <TrophyIcon className="w-14 h-14 text-white" />
@@ -57,7 +58,11 @@ export default function ExamResults({
           )}
         </motion.div>
 
-        <h2 className="text-5xl font-black text-white mb-2 tracking-tighter uppercase">
+        <h2 
+          className="text-5xl font-black text-white mb-2 tracking-tighter uppercase"
+          role="status"
+          aria-live="assertive"
+        >
           {passed ? '¡APROBADO!' : 'CASI LO TIENES'}
         </h2>
 
@@ -124,14 +129,21 @@ export default function ExamResults({
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="modal-title"
               className="max-w-2xl w-full max-h-[80vh] bg-white/5 rounded-[3rem] border border-white/10 p-10 shadow-2xl overflow-y-auto"
             >
               <div className="flex justify-between items-center mb-8">
-                <h3 className="text-2xl font-black text-white flex items-center gap-3">
-                  <ShieldCheckIcon className="w-8 h-8 text-red-500" />
+                <h3 id="modal-title" className="text-2xl font-black text-white flex items-center gap-3">
+                  <ShieldCheckIcon className="w-8 h-8 text-red-500" aria-hidden="true" />
                   Repaso Crítico
                 </h3>
-                <button onClick={() => setShowErrors(false)} className="text-gray-500 hover:text-white">
+                <button 
+                  onClick={() => setShowErrors(false)} 
+                  className="text-gray-500 hover:text-white"
+                  aria-label="Cerrar modal de errores"
+                >
                   <XMarkIcon className="w-8 h-8" />
                 </button>
               </div>

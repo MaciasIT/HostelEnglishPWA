@@ -1,6 +1,7 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAppStore } from '@/store/useAppStore';
+import { useDashboardLogic } from '@/features/dashboard/hooks/useDashboardLogic';
+import DashboardModule from '@/features/dashboard/components/DashboardModule';
 import PageContainer from '@/components/layout/PageContainer';
 import {
   ChatBubbleLeftRightIcon,
@@ -9,25 +10,12 @@ import {
   MicrophoneIcon,
   Square2StackIcon,
   ChartBarIcon,
-  BookmarkIcon
+  BookmarkIcon,
+  ArrowRightIcon
 } from '@heroicons/react/24/outline';
 
-export default function Dashboard() {
-  const { frases, progress, loadFrases, frasesLoaded } = useAppStore();
-  const targetLanguage = useAppStore(state => state.prefs.targetLanguage);
-
-  React.useEffect(() => {
-    if (!frasesLoaded) loadFrases();
-  }, [frasesLoaded, loadFrases]);
-
-  const stats = useMemo(() => {
-    const total = frases.length;
-    const studied = Object.values(progress).filter(v => v === 1).length;
-    const learned = Object.values(progress).filter(v => v === 2).length;
-    // Calculate progress: Learned = 100%, Studied = 50%
-    const percent = total > 0 ? Math.round(((studied * 0.5 + learned) / total) * 100) : 0;
-    return { total, studied, learned, percent };
-  }, [frases, progress]);
+const Dashboard: React.FC = () => {
+  const { stats, targetLanguage } = useDashboardLogic();
 
   const modules = [
     {
@@ -75,135 +63,143 @@ export default function Dashboard() {
   ];
 
   return (
-    <PageContainer title="Dashboard">
-      <div className="max-w-6xl mx-auto space-y-10 pb-12">
+    <PageContainer title="Dashboard de Usuario">
+      <div className="max-w-6xl mx-auto space-y-12 pb-12 animate-fade-in">
 
         {/* Welcome Section */}
-        <section className="bg-gradient-to-br from-primary-light to-primary-dark p-6 sm:p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden border border-white/10">
+        <section 
+          className="bg-gradient-to-br from-primary-light to-primary-dark p-8 sm:p-12 rounded-[3.5rem] shadow-2xl relative overflow-hidden border border-white/10"
+          aria-labelledby="welcome-heading"
+        >
           <div className="relative z-10">
-            <h1 className="text-3xl sm:text-5xl font-black text-white mb-4">
+            <h1 id="welcome-heading" className="text-4xl sm:text-6xl font-black text-white mb-6 tracking-tighter">
               ¡Hola de nuevo! 🏨
             </h1>
-            <p className="text-lg sm:text-xl text-gray-300 mb-8 max-w-xl">
-              Continúa tu formación en {targetLanguage === 'eu' ? 'euskera' : 'inglés'} para hostelería. Tu camino hacia la fluidez profesional empieza aquí.
+            <p className="text-xl sm:text-2xl text-gray-300 mb-10 max-w-2xl font-medium leading-relaxed">
+              Continúa tu formación en <span className="text-accent font-black uppercase text-lg">{targetLanguage === 'eu' ? 'euskera' : 'inglés'}</span> para hostelería.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center gap-6">
-              <div className="bg-black/20 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/10 flex items-center gap-3">
-                <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center text-white shadow-lg">
-                  <AcademicCapIcon className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase font-bold text-gray-400">
-                    Nivel Actual
-                  </p>
-                  <p className="text-white font-black">
-                    Principiante Pro
-                  </p>
-                </div>
-              </div>
-
-              <div className="bg-black/20 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/10 flex items-center gap-3">
-                <div className="w-10 h-10 bg-yellow-500 rounded-xl flex items-center justify-center text-white shadow-lg">
-                  <BookmarkIcon className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase font-bold text-gray-400">
-                    En Estudio
-                  </p>
-                  <p className="text-white font-black">
-                    {stats.studied} frases
-                  </p>
-                </div>
-              </div>
-
-              <div className="bg-black/20 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/10 flex items-center gap-3">
-                <div className="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center text-white shadow-lg">
-                  <CheckBadgeIcon className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="text-[10px] uppercase font-bold text-gray-400">
-                    Aprendidas
-                  </p>
-                  <p className="text-white font-black">
-                    {stats.learned} frases
-                  </p>
-                </div>
-              </div>
+            <div className="flex flex-wrap items-center gap-4">
+              <StatBadge 
+                icon={AcademicCapIcon} 
+                label="Nivel Actual" 
+                value="Principiante Pro" 
+                color="bg-accent" 
+              />
+              <StatBadge 
+                icon={BookmarkIcon} 
+                label="En Estudio" 
+                value={`${stats.studied} frases`} 
+                color="bg-yellow-500" 
+              />
+              <StatBadge 
+                icon={CheckBadgeIcon} 
+                label="Aprendidas" 
+                value={`${stats.learned} frases`} 
+                color="bg-green-500" 
+              />
             </div>
           </div>
 
-          {/* Decorative element */}
-          <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-accent opacity-10 blur-[100px] rounded-full"></div>
+          <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-accent opacity-10 blur-[100px] rounded-full" aria-hidden="true"></div>
         </section>
 
-        {/* Learning Modules Grid */}
-        <section>
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-black text-white flex items-center gap-3">
-              <span className="w-3 h-8 bg-accent rounded-full"></span>
-              Módulos de Aprendizaje
-            </h2>
+        {/* Modules Grid */}
+        <section aria-labelledby="modules-heading">
+          <div className="flex items-center gap-3 mb-10">
+            <span className="w-2 h-10 bg-accent rounded-full" aria-hidden="true"></span>
+            <h2 id="modules-heading" className="text-3xl font-black text-white tracking-tight">Módulos de Entrenamiento</h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {modules.map((mod, idx) => (
-              <Link
-                key={idx}
-                to={mod.path}
-                className="group bg-white/5 hover:bg-white/10 p-6 sm:p-8 rounded-[2rem] border border-white/10 transition-all hover:scale-[1.02] hover:shadow-2xl active:scale-95 flex flex-col items-center text-center"
-              >
-                <div className={`${mod.color} w-12 h-12 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center text-white mb-4 sm:mb-6 shadow-xl group-hover:rotate-6 transition-transform`}>
-                  <mod.icon className="w-6 h-6 sm:w-8 sm:h-8" />
-                </div>
-                <h3 className="text-lg sm:text-xl font-black text-white mb-2">{mod.title}</h3>
-                <p className="text-gray-400 text-xs sm:text-sm">{mod.desc}</p>
-              </Link>
+              <DashboardModule 
+                key={mod.title} 
+                {...mod} 
+                index={idx} 
+              />
             ))}
           </div>
         </section>
 
-        {/* Quick Progress Summary */}
-        <section className="bg-white/5 p-8 rounded-[2rem] border border-white/10 backdrop-blur-md">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-center md:text-left">
-              <h3 className="text-xl font-black text-white">
-                Tu Progreso Global
-              </h3>
-              <p className="text-gray-400 text-sm">
-                Vas por muy buen camino. ¡Sigue así!
-              </p>
+        {/* Progress Tracker */}
+        <section 
+          className="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border border-white/10 shadow-2xl relative group overflow-hidden"
+          aria-labelledby="progress-heading"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true"></div>
+          
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-10 relative z-10">
+            <div className="text-center lg:text-left">
+              <h2 id="progress-heading" className="text-2xl font-black text-white mb-2">Dominio Global</h2>
+              <p className="text-gray-400 font-medium tracking-wide">¡Sigue así! Estás a punto de alcanzar tu próximo nivel.</p>
             </div>
-            <div className="flex-grow max-w-xl w-full">
-              <div className="flex justify-between text-xs font-black uppercase text-accent mb-2 tracking-widest">
-                <span>Dominio del curso</span>
-                <span>{stats.percent}%</span>
+
+            <div className="flex-grow max-w-2xl w-full">
+              <div className="flex justify-between text-xs font-black uppercase text-accent mb-3 tracking-[0.2em]">
+                <span>Progreso del Curso</span>
+                <span aria-hidden="true">{stats.percent}%</span>
               </div>
-              <div className="w-full h-3 bg-white/5 rounded-full overflow-hidden">
+              <div 
+                className="w-full h-4 bg-white/5 rounded-full overflow-hidden border border-white/5 shadow-inner"
+                role="progressbar"
+                aria-valuenow={stats.percent}
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-label={`Progreso total del curso: ${stats.percent} por ciento`}
+              >
                 <div
-                  className="h-full bg-gradient-to-r from-accent to-blue-500 rounded-full"
+                  className="h-full bg-gradient-to-r from-accent to-blue-400 rounded-full transition-all duration-1000 ease-out shadow-[0_0_20px_rgba(59,130,246,0.3)]"
                   style={{ width: `${stats.percent}%` }}
                 ></div>
               </div>
             </div>
+
             <Link
               to="/progreso"
-              className="whitespace-nowrap bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-xl font-bold transition-all"
+              className="group flex items-center gap-3 bg-white/5 hover:bg-accent text-white px-8 py-4 rounded-2xl font-black transition-all shadow-xl active:scale-95"
             >
-              Ver estadísticas
+              Ver Estadísticas
+              <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </section>
-
       </div>
     </PageContainer>
+  );
+};
+
+interface StatBadgeProps {
+  icon: React.ElementType;
+  label: string;
+  value: string;
+  color: string;
+}
+
+function StatBadge({ icon: Icon, label, value, color }: StatBadgeProps) {
+  return (
+    <div className="bg-black/20 backdrop-blur-md px-6 py-4 rounded-[1.5rem] border border-white/10 flex items-center gap-4 shadow-lg hover:bg-black/30 transition-colors">
+      <div className={`w-12 h-12 ${color} rounded-2xl flex items-center justify-center text-white shadow-xl`}>
+        <Icon className="w-6 h-6" />
+      </div>
+      <div>
+        <p className="text-[10px] uppercase font-black text-gray-400 tracking-widest leading-none mb-1">
+          {label}
+        </p>
+        <p className="text-white font-black text-lg leading-tight">
+          {value}
+        </p>
+      </div>
+    </div>
   );
 }
 
 function CheckBadgeIcon(props: any) {
   return (
-    <svg {...props} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+    <svg {...props} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
     </svg>
-  )
+  );
 }
+
+export default Dashboard;
