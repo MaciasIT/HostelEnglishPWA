@@ -1,7 +1,7 @@
 # HostelInglés PWA
 
 ![CI/CD](https://github.com/m1txel/HostelEnglishPWA/actions/workflows/deploy.yml/badge.svg)
-[![Version](https://img.shields.io/badge/version-2.3.0-orange?style=for-the-badge)](https://github.com/m1txel/HostelEnglishPWA/releases)
+[![Version](https://img.shields.io/badge/version-2.4.0-orange?style=for-the-badge)](https://github.com/m1txel/HostelEnglishPWA/releases)
 [![Security](https://img.shields.io/badge/Security-Audit_Passed-green?style=for-the-badge&logo=shield)](./AUDITORIA_360_HostelEnglishPWA.md)
 [![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-5.2.0-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
@@ -37,14 +37,9 @@ Dado que la mayoría de dispositivos carecen de un motor de síntesis de voz (TT
 -   🖥️ **Optimización Desktop**: Interfaz compacta para PC (escala 80%) para una mejor visibilidad sin scroll excesivo.
 -   📱 **Instalable (PWA)**: Añade la aplicación a tu pantalla de inicio y úsala sin conexión.
 
-## 🚀 Arquitectura y Diseño
-
-La aplicación sigue una arquitectura basada en componentes con React, promoviendo la reutilización y la modularidad.
-
--   **Gestión de Estado**: Se utiliza [Zustand](https://github.com/pmndrs/zustand) para una gestión eficiente y reactiva.
--   **Enrutamiento**: [React Router](https://reactrouter.com/) gestiona las diferentes vistas.
--   **Estilado**: [Tailwind CSS](https://tailwindcss.com/) para un diseño responsivo "Mobile First".
--   **PWA**: Configurada con [vite-plugin-pwa](https://vite-pwa-org.netlify.app/) para capacidades offline.
+-   **Arquitectura**: [Feature-Based Architecture](https://feature-sliced.design/docs/get-started/tutorial). La lógica y los componentes están agrupados por dominios funcionales (Dictado, Frases, Conversaciones, etc.) para una escalabilidad máxima.
+-   **Accesibilidad (A11y)**: Diseño universal siguiendo estándares WCAG. Incorpora anuncios dinámicos `aria-live`, navegación optimizada por teclado y visualización de datos accesible para lectores de pantalla.
+-   **Gestión de Estado**: Se utiliza [Zustand](https://github.com/pmndrs/zustand) con un sistema de slices modularizado.
 
 ## 🛠️ Stack Tecnológico
 
@@ -65,11 +60,13 @@ La aplicación sigue una arquitectura basada en componentes con React, promovien
 ├── public/              # Archivos estáticos, iconos, manifest y datasets
 ├── src/
 │   ├── components/      # Componentes de UI reutilizables
-│   ├── features/        # Módulos de lógica y UI encapsulados (Quiz, Examen)
-│   ├── db/              # Lógica de persistencia (IndexedDB)
-│   ├── hooks/           # Hooks personalizados
-│   ├── pages/           # Vistas principales de cada módulo
-│   ├── store/           # Estado global modularizado (Zustand Slices)
+│   ├── features/        # Dominios de negocio (Quiz, Examen, Dictation, etc.)
+│   │   ├── .../components/
+│   │   └── .../hooks/
+│   ├── db/              # Capa de persistencia (IndexedDB)
+│   ├── hooks/           # Hooks transversales de UI
+│   ├── pages/           # Ensambladores de páginas
+│   ├── store/           # Estado global (Zustand Slices)
 │   └── utils/           # Funciones de utilidad
 └── ...
 ```

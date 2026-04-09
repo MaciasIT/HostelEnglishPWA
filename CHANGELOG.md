@@ -5,6 +5,22 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2026-04-09
+
+### Añadido
+- **Accesibilidad Total (A11y)**: Cumplimiento de estándares de accesibilidad avanzado en toda la aplicación.
+  - Implementación de anuncios `aria-live` para feedback inmediato en Dictado, Frases y Diálogos.
+  - Etiquetas descriptivas `aria-label` y roles ARIA en todos los elementos interactivos.
+  - **Gráficos Accesibles**: Tablas de datos ocultas (`sr-only`) que narran la evolución del usuario a lectores de pantalla.
+- **Arquitectura de Características (Features)**: Finalizada la migración modular.
+  - Módulos de **Dictado**, **Flashcards**, **Diálogos** y **Frases** desacoplados en componentes atómicos y Hooks.
+  - Mejora de la lógica de renderizado en el **Dashboard** y **Progreso**.
+
+### Corregido
+- **Sincronización de Audio**: Corregido un bucle infinito en el hook de dictado (`useDictationLogic`) mediante un sistema de guardas con `useRef`.
+- **Integridad de Tests**: Suite de tests actualizada para validar selectores de accesibilidad (`getByRole`, `getByLabelText`).
+- **Navegación Circular**: Corregida la lógica de carrusel en Flashcards y Frases para evitar desbordamientos de índice.
+
 ## [2.3.0] - 2026-04-09
 
 ### Añadido
