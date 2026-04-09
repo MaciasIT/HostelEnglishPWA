@@ -83,7 +83,7 @@ const PhraseCard = ({
       <div className="absolute -right-20 -top-20 w-40 h-40 bg-accent opacity-5 blur-3xl rounded-full"></div>
 
       <div className="flex flex-col items-center">
-        <span className={`px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border ${statusConfig.btnColor}`}>
+        <span className={`px-4 py-1 rounded-full text-[10px] font-semibold uppercase tracking-widest mb-6 border ${statusConfig.btnColor}`}>
           {statusConfig.label}
         </span>
 

@@ -68,7 +68,7 @@ export default function Quiz() {
                 </CollapsibleSection>
 
                 <div className="bg-white/5 p-6 rounded-3xl border border-white/10 space-y-4">
-                   <h3 className="text-xs font-black text-gray-500 uppercase tracking-widest">Modo de Juego</h3>
+                   <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest">Modo de Juego</h3>
                    <div className="flex flex-col gap-2">
                       {[
                         { id: 'multiple', label: 'Opción Múltiple', desc: '4 opciones, 1 respuesta' },
@@ -81,7 +81,7 @@ export default function Quiz() {
                           className={`p-4 rounded-2xl text-left transition-all border-2 ${selectedMode === m.id ? 'bg-accent border-accent shadow-xl' : 'bg-white/5 border-transparent hover:border-white/20'}`}
                         >
                           <p className={`font-black ${selectedMode === m.id ? 'text-white' : 'text-gray-300'}`}>{m.label}</p>
-                          <p className={`text-[10px] ${selectedMode === m.id ? 'text-white/80' : 'text-gray-500'}`}>{m.desc}</p>
+                          <p className={`text-[10px] ${selectedMode === m.id ? 'text-white/80' : 'text-gray-400'}`}>{m.desc}</p>
                         </button>
                       ))}
                    </div>
@@ -91,7 +91,7 @@ export default function Quiz() {
               {/* Category Grid */}
               <div className="lg:col-span-2">
                 <div className="bg-white/5 p-8 rounded-[2.5rem] border border-white/10">
-                  <h3 className="text-xs font-black text-gray-500 uppercase tracking-widest mb-6">Selecciona una Categoría</h3>
+                  <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-6">Selecciona una Categoría</h3>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <button
                       onClick={() => setSelectedCategory(null)}

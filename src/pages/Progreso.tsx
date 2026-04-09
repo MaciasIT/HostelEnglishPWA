@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useProgressLogic } from '@/features/progress/hooks/useProgressLogic';
 import AchievementBadge from '@/features/progress/components/AchievementBadge';
 import PageContainer from '@/components/layout/PageContainer';
@@ -96,9 +97,9 @@ const Progreso: React.FC = () => {
             <div className="flex justify-between items-center mb-10">
               <div>
                 <h2 id="evolution-heading" className="text-2xl font-black text-white tracking-tight">Evolución Semanal</h2>
-                <p className="text-gray-500 text-sm font-medium">Frases practicadas por día</p>
+                <p className="text-gray-400 text-sm font-medium">Frases practicadas por día</p>
               </div>
-              <div className="bg-accent/20 px-6 py-2 rounded-full text-accent text-xs font-black uppercase tracking-[0.2em]" aria-hidden="true">
+              <div className="bg-accent/20 px-6 py-2 rounded-full text-accent text-xs font-bold uppercase tracking-[0.2em]" aria-hidden="true">
                 Tendencia
               </div>
             </div>
@@ -179,7 +180,7 @@ const Progreso: React.FC = () => {
 
               {state.achievements.length === 0 && (
                 <div className="py-12 text-center bg-white/5 rounded-3xl border border-dashed border-white/5 shadow-inner" role="status">
-                  <p className="text-sm text-gray-500 font-bold uppercase tracking-widest px-4">
+                  <p className="text-sm text-gray-400 font-semibold uppercase tracking-widest px-4">
                     Completa exámenes para ganar medallas
                   </p>
                 </div>
@@ -272,7 +273,7 @@ function StatCard({ icon: Icon, label, value, color, delay }: any) {
       <div className={`${color} w-16 h-16 rounded-[1.5rem] flex items-center justify-center text-white mb-6 shadow-xl group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500`}>
         <Icon className="w-8 h-8" />
       </div>
-      <p className="text-[11px] uppercase tracking-[0.25em] text-gray-400 font-black mb-2">{label}</p>
+      <p className="text-[11px] uppercase tracking-[0.25em] text-gray-400 font-semibold mb-2">{label}</p>
       <p className="text-4xl font-black text-white tracking-tighter">{value}</p>
     </motion.div>
   );

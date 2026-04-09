@@ -1,4 +1,3 @@
-import React from 'react';
 import { MagnifyingGlassIcon, FunnelIcon } from '@heroicons/react/24/outline';
 import VoiceSettings from '@/components/VoiceSettings';
 import CollapsibleSection from '@/components/CollapsibleSection';

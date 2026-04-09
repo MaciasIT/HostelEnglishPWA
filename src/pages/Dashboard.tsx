@@ -108,7 +108,7 @@ const Dashboard: React.FC = () => {
         <section aria-labelledby="modules-heading">
           <div className="flex items-center gap-3 mb-10">
             <span className="w-2 h-10 bg-accent rounded-full" aria-hidden="true"></span>
-            <h2 id="modules-heading" className="text-3xl font-black text-white tracking-tight">Módulos de Entrenamiento</h2>
+            <h2 id="modules-heading" className="text-3xl font-bold text-white tracking-tight">Módulos de Entrenamiento</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -131,12 +131,12 @@ const Dashboard: React.FC = () => {
           
           <div className="flex flex-col lg:flex-row items-center justify-between gap-10 relative z-10">
             <div className="text-center lg:text-left">
-              <h2 id="progress-heading" className="text-2xl font-black text-white mb-2">Dominio Global</h2>
+              <h2 id="progress-heading" className="text-2xl font-bold text-white mb-2">Dominio Global</h2>
               <p className="text-gray-400 font-medium tracking-wide">¡Sigue así! Estás a punto de alcanzar tu próximo nivel.</p>
             </div>
 
             <div className="flex-grow max-w-2xl w-full">
-              <div className="flex justify-between text-xs font-black uppercase text-accent mb-3 tracking-[0.2em]">
+              <div className="flex justify-between text-xs font-bold uppercase text-accent mb-3 tracking-[0.2em]">
                 <span>Progreso del Curso</span>
                 <span aria-hidden="true">{stats.percent}%</span>
               </div>
@@ -183,10 +183,10 @@ function StatBadge({ icon: Icon, label, value, color }: StatBadgeProps) {
         <Icon className="w-6 h-6" />
       </div>
       <div>
-        <p className="text-[10px] uppercase font-black text-gray-400 tracking-widest leading-none mb-1">
+        <p className="text-[10px] uppercase font-semibold text-gray-400 tracking-widest leading-none mb-1">
           {label}
         </p>
-        <p className="text-white font-black text-lg leading-tight">
+        <p className="text-white font-bold text-lg leading-tight">
           {value}
         </p>
       </div>

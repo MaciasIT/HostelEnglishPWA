@@ -69,7 +69,7 @@ export default function Estudio() {
                     <div className="p-3 bg-accent/20 rounded-xl group-hover:scale-110 transition-transform">
                       <AcademicCapIcon className="w-6 h-6 text-accent" />
                     </div>
-                    <span className="text-[10px] uppercase font-black tracking-widest text-gray-500 bg-white/5 px-3 py-1 rounded-full">
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-gray-500 bg-white/5 px-3 py-1 rounded-full">
                       {catPhrases.length} frases
                     </span>
                   </div>
@@ -100,11 +100,11 @@ export default function Estudio() {
         <div className="w-full flex justify-between items-center mb-10">
           <button
             onClick={() => setSelectedCategory(null)}
-            className="text-gray-400 hover:text-white transition-all text-sm font-bold flex items-center gap-2"
+            className="text-gray-400 hover:text-white transition-all text-sm font-semibold flex items-center gap-2"
           >
             ← Cambiar Lección
           </button>
-          <div className="px-4 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300 font-bold">
+          <div className="px-4 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300 font-semibold">
             {currentIndex + 1} / {filteredFrases.length}
           </div>
         </div>
@@ -122,14 +122,14 @@ export default function Estudio() {
         <div className="flex gap-6 w-full max-w-sm">
           <button
             onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
-            className="flex-1 py-4 bg-white/5 border border-white/10 rounded-2xl text-white font-black hover:bg-white/10 disabled:opacity-30"
+            className="flex-1 py-4 bg-white/5 border border-white/10 rounded-2xl text-white font-bold hover:bg-white/10 disabled:opacity-30"
             disabled={currentIndex === 0}
           >
             ANTERIOR
           </button>
           <button
             onClick={() => setCurrentIndex(prev => Math.min(filteredFrases.length - 1, prev + 1))}
-            className="flex-1 py-4 bg-accent text-white rounded-2xl font-black hover:brightness-110 disabled:opacity-30 shadow-xl"
+            className="flex-1 py-4 bg-accent text-white rounded-2xl font-bold hover:brightness-110 disabled:opacity-30 shadow-xl"
             disabled={currentIndex === filteredFrases.length - 1}
           >
             SIGUIENTE

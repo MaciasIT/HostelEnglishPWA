@@ -92,7 +92,7 @@ const Conversaciones: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-white font-black text-lg">Filtrar Escenarios</h3>
-                  <p className="text-gray-500 text-xs uppercase tracking-widest font-bold">Selecciona una categoría</p>
+                  <p className="text-[10px] text-gray-400 uppercase font-semibold tracking-widest">Selecciona una categoría</p>
                 </div>
               </div>
 

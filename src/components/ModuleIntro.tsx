@@ -48,7 +48,7 @@ const ModuleIntro: React.FC<ModuleIntroProps> = ({
                             className="bg-white/5 backdrop-blur-xl rounded-[2rem] p-6 border border-white/10 shadow-xl"
                         >
                             <div className="text-3xl font-black text-white mb-1">{stat.value}</div>
-                            <div className="text-[10px] text-accent font-black uppercase tracking-[0.2em]">{stat.label}</div>
+                            <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-widest">{stat.label}</p>
                         </motion.div>
                     ))}
                 </div>

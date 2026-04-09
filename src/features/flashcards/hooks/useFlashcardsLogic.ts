@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { useAppStore, Phrase } from '@/store/useAppStore';
+import { useAppStore } from '@/store/useAppStore';
 
 export function useFlashcardsLogic() {
   const { frases, loadFrases, frasesLoaded, categories, setPhraseSetting } = useAppStore();

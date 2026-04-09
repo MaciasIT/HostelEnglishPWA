@@ -43,7 +43,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon: Icon, label }) => {
         }`}
     >
       <Icon className={`w-5 h-5 mr-3 transition-transform group-hover:scale-110 ${isActive ? 'text-white' : 'text-gray-500 group-hover:text-accent'}`} />
-      <span className="text-xs uppercase tracking-widest">{label}</span>
+      <span className="text-xs uppercase tracking-widest font-semibold">{label}</span>
     </Link>
   );
 };
@@ -76,30 +76,30 @@ const SideNav: React.FC = () => {
         </div>
 
         <nav className="flex-grow overflow-y-auto px-4 custom-scrollbar">
-          <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4 px-4">Menu Principal</p>
+          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4 px-4">Menu Principal</p>
           <NavItem to="/" icon={HomeIcon} label="Inicio" />
           <NavItem to="/dashboard" icon={Squares2X2Icon} label="Dashboard" />
 
-          <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mt-8 mb-4 px-4">Aprendizaje</p>
+          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-8 mb-4 px-4">Aprendizaje</p>
           <NavItem to="/frases" icon={ChatBubbleLeftRightIcon} label="Frases" />
           <NavItem to="/conversaciones" icon={ChatBubbleBottomCenterTextIcon} label="Diálogos" />
           <NavItem to="/dictado" icon={MicrophoneIcon} label="Dictado" />
 
-          <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mt-8 mb-4 px-4">Práctica</p>
+          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-8 mb-4 px-4">Práctica</p>
           <NavItem to="/flashcards" icon={Square2StackIcon} label="Flashcards" />
           <NavItem to="/quiz" icon={AcademicCapIcon} label="Quiz" />
 
-          <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mt-8 mb-4 px-4">Evaluación</p>
+          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-8 mb-4 px-4">Evaluación</p>
           <NavItem to="/estudio" icon={BookOpenIcon} label="Estudio" />
           <NavItem to="/examen" icon={PencilSquareIcon} label="Examen" />
           <NavItem to="/progreso" icon={ChartBarIcon} label="Mi Progreso" />
 
-          <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mt-8 mb-4 px-4">Preferencias</p>
+          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-8 mb-4 px-4">Preferencias</p>
           <NavItem to="/configuracion" icon={Cog6ToothIcon} label="Ajustes" />
         </nav>
 
         <div className="p-4 border-t border-white/5 bg-black/10">
-          <p className="text-[10px] font-black text-gray-600 uppercase tracking-widest mb-3 px-2">Idioma de Aprendizaje</p>
+          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3 px-2">Idioma de Aprendizaje</p>
           <LanguageSelector />
         </div>
 
@@ -109,8 +109,8 @@ const SideNav: React.FC = () => {
               H
             </div>
             <div>
-              <p className="text-[10px] font-black text-white">Versión 2.2.0</p>
-              <p className="text-[8px] text-gray-500 italic uppercase tracking-widest mt-1">HostelEnglish MultiLang</p>
+              <p className="text-[10px] font-bold text-white">Versión 2.2.0</p>
+              <p className="text-[8px] text-gray-400 italic uppercase tracking-widest mt-1">HostelEnglish MultiLang</p>
             </div>
           </div>
         </div>

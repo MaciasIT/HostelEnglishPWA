@@ -66,7 +66,7 @@ const Flashcards: React.FC = () => {
         <div className="w-full mb-8">
           <label 
             htmlFor="category-select"
-            className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-black"
+            className="block text-xs uppercase tracking-widest text-gray-400 mb-2 font-bold"
           >
             Categoría
           </label>
@@ -112,7 +112,7 @@ const Flashcards: React.FC = () => {
         </div>
 
         <div 
-          className="mt-8 text-center text-gray-500 text-xs font-black uppercase tracking-widest"
+          className="mt-8 text-center text-gray-400 text-xs font-bold uppercase tracking-widest"
           role="status"
           aria-live="polite"
         >

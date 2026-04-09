@@ -12,7 +12,7 @@ const ConversationList = ({ conversations, onSelectConversation }: ConversationL
   if (conversations.length === 0) {
     return (
       <div className="text-center py-20 bg-white/5 rounded-[2rem] border border-white/10">
-        <ChatBubbleLeftRightIcon className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+        <ChatBubbleLeftRightIcon className="w-16 h-16 text-gray-400 mx-auto mb-4" />
         <p className="text-gray-400 font-bold uppercase tracking-widest text-sm">
           No hay conversaciones disponibles
         </p>
@@ -45,7 +45,7 @@ const ConversationList = ({ conversations, onSelectConversation }: ConversationL
             <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">{conv.description}</p>
 
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-black uppercase tracking-widest text-accent bg-accent/10 px-3 py-1 rounded-full border border-accent/20">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-accent bg-accent/10 px-3 py-1 rounded-full border border-accent/20">
                 {(() => {
                   const cat = conv.categoria || 'General';
                   if (cat === 'Jatetxea') return 'Restaurante';
@@ -55,7 +55,7 @@ const ConversationList = ({ conversations, onSelectConversation }: ConversationL
                   return cat;
                 })()}
               </span>
-              <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
                 {conv.dialogue.length} Mensajes
               </span>
             </div>

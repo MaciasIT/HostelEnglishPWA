@@ -9,18 +9,21 @@ const LanguageSelector: React.FC = () => {
 
     const languages = [
         { code: 'en', label: 'English', flag: '🇬🇧' },
-        { code: 'eu', label: 'Euskera', flag: '🏳️' }, // Using white flag or Basque flag if compatible
+        { code: 'eu', label: 'Euskera', flag: '🏳️' },
     ];
 
     return (
-        <div className="flex bg-white/5 border border-white/10 p-1 rounded-2xl w-full">
+        <div className="flex bg-white/5 border border-white/10 p-1 rounded-2xl w-full" role="radiogroup" aria-label="Idioma de aprendizaje">
             {languages.map((lang) => (
                 <button
                     key={lang.code}
                     onClick={() => setTargetLanguage(lang.code as 'en' | 'eu')}
-                    className={`flex-1 py-2 px-3 rounded-xl text-xs font-black uppercase tracking-widest flex items-center justify-center gap-2 transition-all ${targetLanguage === lang.code
+                    role="radio"
+                    aria-checked={targetLanguage === lang.code}
+                    aria-label={`Aprender en ${lang.label}`}
+                    className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-all ${targetLanguage === lang.code
                             ? 'bg-accent text-white shadow-lg'
-                            : 'text-gray-500 hover:text-white hover:bg-white/5'
+                            : 'text-gray-400 hover:text-white hover:bg-white/5'
                         }`}
                 >
                     <span className="text-sm">{lang.flag}</span>

@@ -36,8 +36,8 @@ export function useConversationLogic(conversation: Conversation, onConversationE
       populateVoices();
     } else {
       window.speechSynthesis.onvoiceschanged = populateVoices;
-      return () => { window.speechSynthesis.onvoiceschanged = null; };
     }
+    return () => { window.speechSynthesis.onvoiceschanged = null; };
   }, [getSortedVoices]);
 
   useEffect(() => {

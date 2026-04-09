@@ -125,7 +125,7 @@ export default function Frases() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="relative">
-                  <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                  <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <input
                     type="text"
                     placeholder="Buscar frase..."
@@ -135,7 +135,7 @@ export default function Frases() {
                   />
                 </div>
                 <div className="relative">
-                  <FunnelIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                  <FunnelIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <select
                     className="w-full pl-12 pr-10 py-4 bg-white/5 border border-white/10 rounded-2xl text-white appearance-none focus:ring-2 focus:ring-accent outline-none transition-all font-bold"
                     value={selectedCategory}
@@ -249,7 +249,7 @@ export default function Frases() {
               </button>
             </div>
 
-            <p className="text-center text-xs text-gray-600 uppercase tracking-widest font-black">
+            <p className="text-center text-xs text-gray-400 uppercase tracking-widest font-semibold">
               Desliza o usa las flechas para navegar
             </p>
           </div>

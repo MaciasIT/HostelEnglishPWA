@@ -2,6 +2,7 @@ import { HashRouter } from 'react-router-dom';
 import AppRouter from "@/router/AppRouter";
 import TopNav from "@/components/TopNav";
 import SideNav from "@/components/SideNav";
+import BottomNav from "@/components/BottomNav";
 
 export default function App() {
   return (
@@ -18,8 +19,11 @@ export default function App() {
           </div>
         </main>
 
-        {/* Global Bottom Padding for PWA/Mobile Navigation if needed */}
-        <div className="h-10 sm:h-0"></div>
+        {/* Bottom Padding: accounts for BottomNav on mobile, none on desktop */}
+        <div className="h-20 sm:h-0"></div>
+
+        {/* Mobile Bottom Tab Navigation */}
+        <BottomNav />
       </div>
     </HashRouter>
   );

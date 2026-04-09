@@ -2,33 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================
+   DESIGN TOKEN SYSTEM — HostelEnglish v3.0
+   ============================================ */
 :root {
   color-scheme: light dark;
+
+  /* === BACKGROUNDS === */
+  --bg-base: #1a252f;
+  --bg-surface: #2c3e50;
+  --bg-elevated: rgba(255, 255, 255, 0.05);
+  --bg-hover: rgba(255, 255, 255, 0.10);
+
+  /* === ACCENT === */
   --accent: #e67e22;
   --accent-hsl: 28, 80%, 52%;
+  --accent-hover: #f39c12;
+  --accent-glow: rgba(230, 126, 34, 0.3);
+
+  /* === LEGACY COMPAT === */
   --primary: #34495e;
   --primary-dark: #2c3e50;
   --primary-light: #7f8c8d;
+
+  /* === RADIUS SYSTEM === */
+  --radius-sm: 1rem;
+  --radius-md: 1.5rem;
+  --radius-lg: 2rem;
+
+  /* === TYPOGRAPHY === */
+  --font-primary: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* Global desktop scaling to simulate 80% zoom */
 @media (min-width: 1024px) {
   :root {
-    font-size: 85%; /* Scales down rem-based values (text, padding, etc.) */
+    font-size: 85%;
   }
 }
 
 body {
-  @apply min-h-screen w-full max-w-full overflow-x-hidden bg-primary-dark text-white font-sans;
+  font-family: var(--font-primary);
+  @apply min-h-screen w-full max-w-full overflow-x-hidden bg-primary-dark text-white;
 }
 
-/* Custom Scrollbar */
+/* ============================================
+   FOCUS ACCESSIBILITY
+   ============================================ */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/* Remove default outline, rely on focus-visible */
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+select:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a252f;
+  background: var(--bg-base);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -37,44 +81,40 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #e67e22;
+  background: var(--accent);
 }
 
-/* Global Animations */
+/* ============================================
+   GLOBAL ANIMATIONS
+   ============================================ */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 @keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
 
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
 
-  50% {
-    opacity: 0.7;
-    transform: scale(1.05);
-  }
+@keyframes slideInBottom {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideOutBottom {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(100%); opacity: 0; }
 }
 
 .animate-fade-in {
@@ -85,26 +125,48 @@ body {
   animation: slideUp 0.8s ease-out forwards;
 }
 
-/* Glassmorphism Utilities */
+/* ============================================
+   SKELETON LOADING
+   ============================================ */
+.skeleton {
+  background: linear-gradient(90deg,
+    rgba(255, 255, 255, 0.03) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+
+/* ============================================
+   GLASSMORPHISM UTILITIES
+   ============================================ */
 .glass {
   @apply bg-white/10 backdrop-blur-xl border border-white/10 shadow-2xl;
 }
 
-/* Text Enhancements */
+/* ============================================
+   TEXT ENHANCEMENTS
+   ============================================ */
 .text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-blue-500;
 }
 
-/* Custom components classes */
+/* ============================================
+   BUTTON SYSTEM
+   ============================================ */
 .btn-primary {
-  @apply bg-accent hover:brightness-110 text-white font-black py-4 px-10 rounded-2xl shadow-xl transition-all active:scale-95;
+  @apply bg-accent hover:brightness-110 text-white font-bold py-4 px-10 rounded-2xl shadow-xl transition-all active:scale-95;
 }
 
 .btn-secondary {
-  @apply bg-white/5 hover:bg-white/10 text-white font-bold py-3 px-8 rounded-2xl border border-white/10 transition-all;
+  @apply bg-white/5 hover:bg-white/10 text-white font-semibold py-3 px-8 rounded-2xl border border-white/10 transition-all;
 }
 
-/* Custom Scrollbar Utility */
+/* ============================================
+   CUSTOM SCROLLBAR UTILITY
+   ============================================ */
 .custom-scrollbar::-webkit-scrollbar {
   width: 4px;
 }
@@ -118,22 +180,26 @@ body {
   border-radius: 10px;
 }
 
-/* Premium Gradients */
+/* ============================================
+   PREMIUM GRADIENTS (Feedback States)
+   ============================================ */
 .correct-gradient {
-  background: radial-gradient(circle at center, #2ecc71 0%, #27ae60 100%);
+  background: radial-gradient(circle at center, #22c55e 0%, #16a34a 100%);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .error-gradient {
-  background: radial-gradient(circle at center, #e74c3c 0%, #c0392b 100%);
+  background: radial-gradient(circle at center, #ef4444 0%, #dc2626 100%);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Premium Animations */
+/* ============================================
+   PREMIUM ANIMATIONS
+   ============================================ */
 @keyframes streak-pulse {
-  0% { transform: scale(1); filter: drop-shadow(0 0 0px #e67e22); }
-  50% { transform: scale(1.15); filter: drop-shadow(0 0 15px #e67e22); }
-  100% { transform: scale(1); filter: drop-shadow(0 0 0px #e67e22); }
+  0% { transform: scale(1); filter: drop-shadow(0 0 0px var(--accent)); }
+  50% { transform: scale(1.15); filter: drop-shadow(0 0 15px var(--accent)); }
+  100% { transform: scale(1); filter: drop-shadow(0 0 0px var(--accent)); }
 }
 
 .streak-pulse {
@@ -152,15 +218,26 @@ body {
   animation: heart-pulse 1.2s infinite ease-in-out;
 }
 
-/* Flashcard 3D effects */
+/* ============================================
+   FLASHCARD 3D EFFECTS
+   ============================================ */
 .perspective-1000 { perspective: 1000px; }
 .preserve-3d { transform-style: preserve-3d; }
 .backface-hidden { backface-visibility: hidden; }
 .rotate-y-180 { transform: rotateY(180deg); }
 
-/* Additional Animations from Home and ModuleIntro */
-@keyframes slide-in-from-top { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-@keyframes zoom-in { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+/* ============================================
+   ADDITIONAL ANIMATIONS
+   ============================================ */
+@keyframes slide-in-from-top {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes zoom-in {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
 
 .animate-in { animation-fill-mode: both; }
 .slide-in-from-top-4 { animation-name: slide-in-from-top; }
@@ -172,3 +249,21 @@ body {
 .animation-delay-500 { animation-delay: 500ms; }
 .rotate-3 { transform: rotate(3deg); }
 .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+
+/* ============================================
+   TOAST NOTIFICATIONS
+   ============================================ */
+.toast-enter {
+  animation: slideInBottom 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.toast-exit {
+  animation: slideOutBottom 0.3s ease-in forwards;
+}
+
+/* ============================================
+   SAFE AREA (Bottom Navigation on iPhone)
+   ============================================ */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 8px);
+}

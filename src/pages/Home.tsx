@@ -112,25 +112,25 @@ export default function Home() {
         <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 text-center">
           <div>
             <p className="text-4xl sm:text-5xl lg:text-4xl font-black text-accent mb-2">500+</p>
-            <p className="text-[10px] sm:text-xs uppercase tracking-widest text-gray-500 font-bold">
+            <p className="text-[10px] sm:text-xs uppercase tracking-widest text-gray-400 font-semibold">
               Frases Útiles
             </p>
           </div>
           <div>
             <p className="text-5xl font-black text-accent mb-2">20+</p>
-            <p className="text-xs uppercase tracking-widest text-gray-500 font-bold">
+            <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold">
               Escenarios
             </p>
           </div>
           <div>
             <p className="text-5xl font-black text-accent mb-2">100%</p>
-            <p className="text-xs uppercase tracking-widest text-gray-500 font-bold">
+            <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold">
               Gratis
             </p>
           </div>
           <div>
             <p className="text-5xl font-black text-accent mb-2">PWA</p>
-            <p className="text-xs uppercase tracking-widest text-gray-500 font-bold">Native Feeling</p>
+            <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold">Native Feeling</p>
           </div>
         </div>
       </section>
@@ -140,10 +140,10 @@ export default function Home() {
         <Link to="/" className="text-2xl font-black text-white mb-6 block">
           Hostel<span className="text-accent">English</span>
         </Link>
-        <p className="text-gray-500 text-sm max-w-sm mx-auto mb-8">
+        <p className="text-gray-400 text-sm max-w-sm mx-auto mb-8">
           Transformando la comunicación en el sector hostelero a través de la tecnología y el aprendizaje interactivo.
         </p>
-        <p className="text-xs text-gray-600">
+        <p className="text-xs text-gray-400">
           © {new Date().getFullYear()} HostellinglésApp. Todos los derechos reservados.
         </p>
       </footer>

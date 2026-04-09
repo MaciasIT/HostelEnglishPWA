@@ -63,7 +63,7 @@ const Settings = () => {
                         </div>
                         <div>
                             <h2 className="text-2xl font-black text-white">Laboratorio de Voces</h2>
-                            <p className="text-gray-500 text-xs uppercase tracking-widest font-bold">Diagnóstico de Text-to-Speech (TTS)</p>
+                            <p className="text-gray-400 text-xs uppercase tracking-widest font-semibold">Diagnóstico de Text-to-Speech (TTS)</p>
                         </div>
                     </div>
 
@@ -93,7 +93,7 @@ const Settings = () => {
                             </div>
 
                             <div className="space-y-4">
-                                <label className="text-[10px] uppercase font-black text-gray-500 tracking-widest ml-2">Frase de Prueba</label>
+                                <label className="text-[10px] uppercase font-semibold text-gray-400 tracking-widest ml-2">Frase de Prueba</label>
                                 <textarea
                                     className="w-full p-4 bg-white/5 border border-white/10 rounded-2xl text-sm text-white focus:ring-2 focus:ring-accent outline-none min-h-[100px] transition-all"
                                     value={testText}
@@ -103,12 +103,12 @@ const Settings = () => {
                         </div>
 
                         <div className="lg:col-span-2 space-y-6">
-                            <h3 className="text-sm font-black text-white uppercase tracking-widest ml-2">Voces Disponibles en tu Navegador</h3>
+                            <h3 className="text-sm font-bold text-white uppercase tracking-widest ml-2">Voces Disponibles en tu Navegador</h3>
 
                             <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
                                 {recommendedVoices.length > 0 && (
                                     <div className="mb-4">
-                                        <p className="text-[10px] text-accent font-black mb-2 uppercase tracking-widest">Recomendadas (Euskera)</p>
+                                        <p className="text-[10px] text-accent font-bold mb-2 uppercase tracking-widest">Recomendadas (Euskera)</p>
                                         <div className="space-y-2">
                                             {recommendedVoices.map(voice => (
                                                 <VoiceCard
@@ -123,7 +123,7 @@ const Settings = () => {
                                 )}
 
                                 <div>
-                                    <p className="text-[10px] text-gray-500 font-black mb-2 uppercase tracking-widest">Resto de Voces del Sistema</p>
+                                    <p className="text-[10px] text-gray-400 font-bold mb-2 uppercase tracking-widest">Resto de Voces del Sistema</p>
                                     <div className="space-y-2">
                                         {allVoices
                                             .filter(v => !recommendedVoices.includes(v))
@@ -168,7 +168,7 @@ const VoiceCard = ({ voice, onTest, isTesting }: { voice: SpeechSynthesisVoice, 
     <div className="flex items-center justify-between p-4 bg-white/5 border border-white/5 rounded-2xl hover:bg-white/10 transition-all group">
         <div className="flex flex-col">
             <span className="text-sm font-bold text-white group-hover:text-accent transition-colors">{voice.name}</span>
-            <span className="text-[10px] text-gray-500 font-mono">{voice.lang} {voice.localService ? '(Local)' : '(Network)'}</span>
+            <span className="text-[10px] text-gray-400 font-mono">{voice.lang} {voice.localService ? '(Local)' : '(Network)'}</span>
         </div>
         <button
             onClick={() => onTest(voice.voiceURI)}
