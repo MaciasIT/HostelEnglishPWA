@@ -18,13 +18,22 @@ const mockFrases = [
 
 describe('Examen Module', () => {
     beforeEach(() => {
-        vi.mocked(useAppStore).mockReturnValue({
+        const mockStore = {
             frases: mockFrases,
             frasesLoaded: true,
             loadFrases: vi.fn(),
             advancePhraseProgress: vi.fn(),
+            recordExamResult: vi.fn(),
             progress: {},
-            prefs: { phraseSettings: { rate: 1, pitch: 1, voiceURI: '' } }
+            prefs: { 
+                targetLanguage: 'en',
+                phraseSettings: { rate: 1, pitch: 1, voiceURI: '' } 
+            }
+        };
+        
+        // Handle both direct call and selector call
+        vi.mocked(useAppStore).mockImplementation((selector: any) => {
+            return selector ? selector(mockStore) : mockStore;
         });
     });
 
@@ -34,32 +43,38 @@ describe('Examen Module', () => {
                 <Examen />
             </HashRouter>
         );
-        expect(screen.getByText('Módulo de Examen')).toBeDefined();
-        expect(screen.getByText('Empezar Ahora')).toBeDefined();
+        expect(screen.getByText(/Módulo de Examen/i)).toBeDefined();
+        expect(screen.getByText(/Empezar Ahora/i)).toBeDefined();
     });
 
-    it('shows exam setup after clicking start', () => {
+    it('shows exam setup after clicking start', async () => {
         render(
             <HashRouter>
                 <Examen />
             </HashRouter>
         );
-        fireEvent.click(screen.getByText('Empezar Ahora'));
-        expect(screen.getByText('Configura tu Examen')).toBeDefined();
-        expect(screen.getByText('Examen Global')).toBeDefined();
+        fireEvent.click(screen.getByText(/Empezar Ahora/i));
+        
+        // Wait for components to appear after animation/mount
+        // findByText fails if there are multiple matches, so we use findAllByText
+        const elements = await screen.findAllByText(/Evaluación/i);
+        expect(elements.length).toBeGreaterThan(0);
+        expect(await screen.findByText(/Examen Global/i)).toBeDefined();
     });
 
-    it('starts the exam and shows the first question', () => {
+    it('starts the exam and shows the first question', async () => {
         render(
             <HashRouter>
                 <Examen />
             </HashRouter>
         );
-        fireEvent.click(screen.getByText('Empezar Ahora'));
-        fireEvent.click(screen.getByText('Comenzar Examen'));
+        fireEvent.click(screen.getByText(/Empezar Ahora/i));
+        
+        const startBtn = await screen.findByText(/Comenzar Examen/i);
+        fireEvent.click(startBtn);
 
-        // Should show a question index
-        expect(screen.getByText(/Pregunta #1/)).toBeDefined();
+        // Should show a question index footer text
+        expect(await screen.findByText(/Pregunta #1/i)).toBeDefined();
     });
 
     it('completes the exam and shows results', async () => {

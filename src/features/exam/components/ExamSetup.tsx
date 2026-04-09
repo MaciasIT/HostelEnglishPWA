@@ -24,7 +24,7 @@ export default function ExamSetup({ onStart, onBack, targetLanguage }: ExamSetup
             onClick={() => onStart(10)}
             className="w-full bg-accent hover:brightness-110 text-white font-black py-4 rounded-2xl text-xl shadow-lg transition-all active:scale-95"
           >
-            Comenzar Evaluación
+            Comenzar Examen
           </button>
           <button
             onClick={onBack}

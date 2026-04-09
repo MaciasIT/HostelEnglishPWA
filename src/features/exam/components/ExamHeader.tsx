@@ -39,7 +39,7 @@ export default function ExamHeader({ currentIndex, total, onExit }: ExamHeaderPr
           {Math.round(progress)}% Completado
         </span>
         <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">
-          Pregunta {currentIndex + 1} de {total}
+          Pregunta #{currentIndex + 1} de {total}
         </span>
       </div>
     </div>
