@@ -42,70 +42,80 @@ export const playAudio = async (text: string, lang: 'en' | 'eu' | 'es', settings
         try {
             for (const chunk of chunks) {
                 const tlParam = 'es'; 
-                const url = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(chunk)}&tl=${tlParam}&client=tw-ob`;
+                // Cambiamos client=tw-ob por client=gtx (Google Translate Extension) que es más estable
+                const url = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(chunk)}&tl=${tlParam}&client=gtx`;
                 
                 const audio = new Audio();
                 audio.src = url;
                 audio.playbackRate = settings.rate;
-                audio.crossOrigin = "anonymous"; // Intentar evitar problemas de CORS si el servidor lo permite
 
                 await new Promise((resolve, reject) => {
-                    audio.onended = resolve;
+                    const timeout = setTimeout(() => {
+                        console.warn("Google TTS chunk timeout");
+                        reject(new Error("Timeout"));
+                    }, 5000);
+
+                    audio.onended = () => {
+                        clearTimeout(timeout);
+                        resolve(null);
+                    };
                     audio.onerror = (err) => {
+                        clearTimeout(timeout);
                         console.error("Audio error on chunk:", chunk, err);
                         reject(err);
                     };
                     
-                    // Pequeño timeout para no saturar si hay muchos chunks
-                    const playPromise = audio.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(error => {
-                            console.error("Playback failed:", error);
-                            reject(error);
-                        });
-                    }
+                    audio.play().catch(error => {
+                        clearTimeout(timeout);
+                        console.error("Playback failed:", error);
+                        reject(error);
+                    });
                 });
             }
             return;
         } catch (e) {
             console.warn("Google TTS Fallback failed, reverting to native speech", e);
-            // Si falla Google, el flujo continuará al método nativo de abajo
         }
     }
 
     // MÉTODO NATIVO (Fallback)
     return new Promise<void>((resolve) => {
-        // Asegurarse de que las voces estén cargadas
-        let voices = window.speechSynthesis.getVoices();
-        
-        // Determinar qué idioma usar para la voz nativa
-        let finalVoiceLang = voiceLang;
-        let finalNativeText = text;
+        const getVoiceAndSpeak = () => {
+            const voices = window.speechSynthesis.getVoices();
+            
+            let finalVoiceLang = voiceLang;
+            let finalNativeText = text;
 
-        if (lang === 'eu') {
-            const hasEuVoice = voices.some(v => v.lang.startsWith('eu'));
-            if (!hasEuVoice) {
-                finalNativeText = processedText;
-                finalVoiceLang = 'es-ES'; 
+            if (lang === 'eu') {
+                const hasEuVoice = voices.some(v => v.lang.startsWith('eu'));
+                if (!hasEuVoice) {
+                    finalNativeText = processedText;
+                    finalVoiceLang = 'es-ES'; 
+                }
             }
-        }
 
-        const utterance = new SpeechSynthesisUtterance(finalNativeText);
-        utterance.lang = finalVoiceLang;
-        utterance.rate = settings.rate;
-        utterance.pitch = settings.pitch;
+            const utterance = new SpeechSynthesisUtterance(finalNativeText);
+            utterance.lang = finalVoiceLang;
+            utterance.rate = settings.rate;
+            utterance.pitch = settings.pitch;
 
-        if (settings.voiceURI) {
-            const voice = voices.find(v => v.voiceURI === settings.voiceURI);
-            // Basic check: if the selected voice language strictly matches or is a prefix
-            if (voice && (voice.lang.startsWith(lang) || (lang === 'en' && voice.lang.startsWith('en')))) {
-                utterance.voice = voice;
+            if (settings.voiceURI) {
+                const voice = voices.find(v => v.voiceURI === settings.voiceURI);
+                if (voice && (voice.lang.startsWith(lang) || (lang === 'en' && voice.lang.startsWith('en')))) {
+                    utterance.voice = voice;
+                }
             }
+
+            utterance.onend = () => resolve();
+            utterance.onerror = () => resolve();
+
+            window.speechSynthesis.speak(utterance);
+        };
+
+        if (window.speechSynthesis.getVoices().length === 0) {
+            window.speechSynthesis.onvoiceschanged = getVoiceAndSpeak;
+        } else {
+            getVoiceAndSpeak();
         }
-
-        utterance.onend = () => resolve();
-        utterance.onerror = () => resolve();
-
-        window.speechSynthesis.speak(utterance);
     });
 };
