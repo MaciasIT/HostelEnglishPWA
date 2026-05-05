@@ -1,14 +1,14 @@
 # HostelInglés PWA
 
 ![CI/CD](https://github.com/m1txel/HostelEnglishPWA/actions/workflows/deploy.yml/badge.svg)
-[![Version](https://img.shields.io/badge/version-2.4.0-orange?style=for-the-badge)](https://github.com/m1txel/HostelEnglishPWA/releases)
+[![Version](https://img.shields.io/badge/version-2.5.0-orange?style=for-the-badge)](https://github.com/m1txel/HostelEnglishPWA/releases)
 [![Security](https://img.shields.io/badge/Security-Audit_Passed-green?style=for-the-badge&logo=shield)](./AUDITORIA_360_HostelEnglishPWA.md)
 [![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-5.2.0-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.2.2-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-7.1.7-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=for-the-badge)](https://www.gnu.org/licenses/agpl-3.0)
 
-**HostelInglés** es una Progressive Web App (PWA) interactiva, diseñada para ayudar al personal de hostelería a dominar el inglés esencial para su trabajo diario.
+**HostelInglés** es una Progressive Web App (PWA) interactiva de nivel profesional, diseñada para ayudar al personal de hostelería a dominar el inglés y el euskera esenciales para su trabajo diario.
 
 ➡️ **[Visita la Demo (m1txel)](https://m1txel.github.io/HostelEnglishPWA/)** ⬅️
 
@@ -17,69 +17,50 @@
 ---
 
 ## 🌍 Idiomas y Soporte Fonético (Euskera)
-Recientemente hemos implementado el soporte completo para **Euskera**. 
-Dado que la mayoría de dispositivos carecen de un motor de síntesis de voz (TTS) nativo en Euskera, hemos desarrollado un **Motor Híbrido de Traducción Fonética**. Este sistema engaña inteligentemente a los motores de voz (como las voces en Español) transformando la escritura vasca (tx, ts, tz, z, x) a su equivalente fonético. Esto garantiza que todos los usuarios puedan escuchar una pronunciación excelente y realista del euskera, sin necesidad de instalar paquetes de idioma adicionales.
-
-⚠️ **Ayuda necesaria**: Al ser una implementación reciente, buscamos la colaboración de **personas nativas en euskera** para seguir validando y mejorando el dataset y los matices fonéticos. ¡Tu ayuda es bienvenida!
+Hemos implementado una solución de vanguardia para el **Euskera**. 
+Dado que la mayoría de dispositivos carecen de un motor de síntesis de voz (TTS) nativo en Euskera, hemos desarrollado un **Motor Híbrido de Traducción Fonética**. Este sistema transforma dinámicamente la escritura vasca (tx, ts, tz, z, x) a su equivalente fonético para el motor de voz en español. El resultado es una pronunciación realista y excelente del euskera sin necesidad de descargas adicionales.
 
 ---
 
 ## ✨ Funcionalidades Clave
 
--   🗣️ **Módulo de Frases**: Filtra frases por categoría y elige el tamaño de tu sesión de estudio.
--   💬 **Módulo de Conversaciones**: Simula diálogos reales (check-in, bar, etc.) y practica tu rol.
--   ✍️ **Módulo de Dictado**: Pon a prueba tu comprensión auditiva y escritura con reconocimiento de voz.
--   🃏 **Módulo de Flashcards**: Memoriza vocabulario de forma rápida con tarjetas interactivas.
--   🧠 **Módulo de Quiz**: Gamificado con **Mundos (categorías)**, niveles de 10 preguntas, sistema de 3 vidas y rachas de aciertos.
--   🎓 **Módulo de Examen**: Certifica tus habilidades con resultados detallados y revisión de errores en modal.
--   ⚙️ **Configuración de Voz**: Personaliza la voz, velocidad y tono.
--   📊 **Progreso Persistente**: Dashboard visual con tus estadísticas guardadas en IndexedDB.
--   🖥️ **Optimización Desktop**: Interfaz compacta para PC (escala 80%) para una mejor visibilidad sin scroll excesivo.
--   📱 **Instalable (PWA)**: Añade la aplicación a tu pantalla de inicio y úsala sin conexión.
+-   📊 **Dataset Premium (640+ frases)**: Un corpus lingüístico masivo y saneado que cubre Recepción, Bar, Restaurante, Limpieza, Mantenimiento y más.
+-   🗣️ **Módulo de Frases**: Sesiones de estudio personalizadas (10, 25 o modo maratón) con audio secuencial.
+-   💬 **Módulo de Conversaciones**: 90+ diálogos interactivos de nivel profesional (A2/B1) que incluyen gestión de conflictos y alérgenos.
+-   ✍️ **Módulo de Dictado**: Reconocimiento de voz en tiempo real para validar tu pronunciación y escritura.
+-   🧠 **Módulo de Quiz Gamificado**: Sistema de "Mundos", 3 vidas, rachas de aciertos y niveles progresivos.
+-   🎓 **Certificación de Examen**: Evalúa tus habilidades con reportes detallados y revisión inteligente de errores.
+-   📱 **Experiencia Mobile-First (PWA)**: Barra de navegación inferior, feedback háptico, notificaciones Toast y soporte 100% offline.
+-   🖥️ **Optimización Desktop**: Interfaz compacta (escala 80%) diseñada para la máxima productividad en PC.
 
--   **Arquitectura**: [Feature-Based Architecture](https://feature-sliced.design/docs/get-started/tutorial). La lógica y los componentes están agrupados por dominios funcionales (Dictado, Frases, Conversaciones, etc.) para una escalabilidad máxima.
--   **Accesibilidad (A11y)**: Diseño universal siguiendo estándares WCAG. Incorpora anuncios dinámicos `aria-live`, navegación optimizada por teclado y visualización de datos accesible para lectores de pantalla.
--   **Gestión de Estado**: Se utiliza [Zustand](https://github.com/pmndrs/zustand) con un sistema de slices modularizado.
+---
+
+## 🏗️ Arquitectura y Calidad de Código
+
+-   **Frontend**: React con **TypeScript Strict Mode** para una seguridad total.
+-   **Arquitectura**: [Feature-Based Architecture](https://feature-sliced.design/docs/get-started/tutorial). Lógica modularizada por dominios funcionales.
+-   **Gestión de Estado**: **Zustand con Slices**, garantizando escalabilidad y el cumplimiento del principio de responsabilidad única (SRP).
+-   **Persistencia**: IndexedDB para un almacenamiento de progreso robusto y persistente en el dispositivo.
+-   **Accesibilidad (A11y)**: Cumplimiento de estándares WCAG AA, con navegación por teclado optimizada y roles ARIA completos.
 
 ## 🛠️ Stack Tecnológico
 
-| Área                | Tecnología                                                                                             |
-| ------------------- | ------------------------------------------------------------------------------------------------------ |
-| **Framework**       | [React](https://reactjs.org/) con [TypeScript](https://www.typescriptlang.org/)                          |
-| **Build Tool**      | [Vite](https://vitejs.dev/)                                                                            |
-| **Estilos**         | [Tailwind CSS](https://tailwindcss.com/)                                                               |
-| **Gestión de Estado** | [Zustand](https://github.com/pmndrs/zustand)                                                           |
-| **Routing**         | [React Router](https://reactrouter.com/)                                                               |
-| **Testing**         | [Vitest](https://vitest.dev/) + [React Testing Library](https://testing-library.com/)                    |
-| **PWA & Offline**   | [vite-plugin-pwa](https://vite-pwa-org.netlify.app/) (con Workbox) + [idb](https://github.com/jakearchibald/idb) |
-
-## 📂 Estructura del Proyecto
-
-```
-/
-├── public/              # Archivos estáticos, iconos, manifest y datasets
-├── src/
-│   ├── components/      # Componentes de UI reutilizables
-│   ├── features/        # Dominios de negocio (Quiz, Examen, Dictation, etc.)
-│   │   ├── .../components/
-│   │   └── .../hooks/
-│   ├── db/              # Capa de persistencia (IndexedDB)
-│   ├── hooks/           # Hooks transversales de UI
-│   ├── pages/           # Ensambladores de páginas
-│   ├── store/           # Estado global (Zustand Slices)
-│   └── utils/           # Funciones de utilidad
-└── ...
-```
-
-## 🧪 Estrategia de Testing
-
-Se ha implementado una estrategia de pruebas robusta utilizando **Vitest** y **React Testing Library**. Priorizamos el enfoque **TDD** (Test-Driven Development) para asegurar la calidad de cada nueva funcionalidad.
+| Área | Tecnología |
+|---|---|
+| **Core** | React 18 + TypeScript (Strict) |
+| **Build Tool** | Vite 7 |
+| **Estilos** | Tailwind CSS 3 (Design Tokens) |
+| **Estado** | Zustand 4 (Sliced) |
+| **Animaciones** | Framer Motion |
+| **PWA & Offline** | vite-plugin-pwa (Workbox) + idb |
+| **Testing** | Vitest + React Testing Library |
 
 ---
-Para un historial detallado de las decisiones técnicas y mejoras implementadas, consulta el [Diario de Desarrollo](docs/DIARIO_DESARROLLO.md).
+Para un historial detallado de las decisiones técnicas y hitos de desarrollo, consulta el [Diario de Desarrollo](docs/DIARIO_DESARROLLO.md).
 
 ## 📄 Licencia
 
-Este proyecto está bajo la licencia **GNU Affero General Public License v3.0 (AGPL-3.0)**. Esta licencia garantiza que el software siga siendo libre y abierto para todos los usuarios, incluso cuando se utiliza a través de una red.
+Este proyecto está bajo la licencia **GNU Affero General Public License v3.0 (AGPL-3.0)**. 
 
-Puedes leer el texto completo en el archivo [LICENSE](./LICENSE).
+---
+*Desarrollado con ❤️ por Michel Macias y Nex-OS.*
