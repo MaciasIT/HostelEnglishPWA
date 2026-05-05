@@ -41,27 +41,42 @@ export const playAudio = async (text: string, lang: 'en' | 'eu' | 'es', settings
 
         try {
             for (const chunk of chunks) {
-                // Si pasamos el texto procesado (fonética española), igual conviene forzar tl=es
-                // para que el motor de Google lo lea exactamente con el parche.
-                const tlParam = 'es'; // Forzamos voz española de Google para que lea la fonética
+                const tlParam = 'es'; 
                 const url = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodeURIComponent(chunk)}&tl=${tlParam}&client=tw-ob`;
-                const audio = new Audio(url);
+                
+                const audio = new Audio();
+                audio.src = url;
                 audio.playbackRate = settings.rate;
+                audio.crossOrigin = "anonymous"; // Intentar evitar problemas de CORS si el servidor lo permite
+
                 await new Promise((resolve, reject) => {
                     audio.onended = resolve;
-                    audio.onerror = reject;
-                    audio.play().catch(reject);
+                    audio.onerror = (err) => {
+                        console.error("Audio error on chunk:", chunk, err);
+                        reject(err);
+                    };
+                    
+                    // Pequeño timeout para no saturar si hay muchos chunks
+                    const playPromise = audio.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(error => {
+                            console.error("Playback failed:", error);
+                            reject(error);
+                        });
+                    }
                 });
             }
             return;
         } catch (e) {
             console.warn("Google TTS Fallback failed, reverting to native speech", e);
+            // Si falla Google, el flujo continuará al método nativo de abajo
         }
     }
 
     // MÉTODO NATIVO (Fallback)
     return new Promise<void>((resolve) => {
-        const voices = window.speechSynthesis.getVoices();
+        // Asegurarse de que las voces estén cargadas
+        let voices = window.speechSynthesis.getVoices();
         
         // Determinar qué idioma usar para la voz nativa
         let finalVoiceLang = voiceLang;
