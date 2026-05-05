@@ -58,3 +58,6 @@ texto.txt
 cerebro/
 sw.js
 workbox-*.js
+
+# Privatizar información comercial
+docs/comercial/
