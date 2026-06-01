@@ -37,7 +37,7 @@
     "typescript": "^5.4.5",
     "vite": "^7.1.7",
     "vite-plugin-pwa": "^1.2.0",
-    "vitest": "^3.2.4"
+    "vitest": "^4.1.0"
   },
   "overrides": {
     "serialize-javascript": "^7.0.5"
