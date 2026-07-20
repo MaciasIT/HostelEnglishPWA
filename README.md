@@ -60,7 +60,7 @@ Para un historial detallado de las decisiones técnicas y hitos de desarrollo, c
 
 Este proyecto está bajo la licencia **GNU Affero General Public License v3.0 (AGPL-3.0)**. Esta licencia garantiza que el software siga siendo libre y abierto para todos los usuarios.
 
-⚠️ **Nota Comercial**: Para usos comerciales o despliegues privados sin liberación de código, por favor contacte con el autor para obtener una licencia comercial.
+⚠️ **Nota Comercial**: Para usos comerciales o despliegues privados sin liberación de código, consulta la [Licencia Comercial](docs/LICENCIA-COMERCIAL.md) o contacta con el autor.
 
 ---
 *Desarrollado con ❤️ por Michel Macias y Nex-OS.*
