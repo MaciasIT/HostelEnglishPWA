@@ -1,18 +1,16 @@
 # HostelInglés PWA
 
-![CI/CD](https://github.com/m1txel/HostelEnglishPWA/actions/workflows/deploy.yml/badge.svg)
-[![Version](https://img.shields.io/badge/version-2.5.0-orange?style=for-the-badge)](https://github.com/m1txel/HostelEnglishPWA/releases)
+![CI/CD](https://github.com/MaciasIT/HostelEnglishPWA/actions/workflows/deploy.yml/badge.svg)
+[![Version](https://img.shields.io/badge/version-2.5.0-orange?style=for-the-badge)](https://github.com/MaciasIT/HostelEnglishPWA/releases)
 [![Security](https://img.shields.io/badge/Security-Audit_Passed-green?style=for-the-badge&logo=shield)](./AUDITORIA_360_HostelEnglishPWA.md)
 [![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-7.1.7-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+[![Vite](https://img.shields.io/badge/Vite-8.0.16-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=for-the-badge)](https://www.gnu.org/licenses/agpl-3.0)
 
 **HostelInglés** es una Progressive Web App (PWA) interactiva de nivel profesional, diseñada para ayudar al personal de hostelería a dominar el inglés y el euskera esenciales para su trabajo diario.
 
-➡️ **[Visita la Demo (m1txel)](https://m1txel.github.io/HostelEnglishPWA/)** ⬅️
-
-➡️ **[Visita la Demo (maciasit)](https://maciasit.github.io/HostelEnglishPWA/)** ⬅️
+➡️ **[Visita la Demo](https://maciasit.github.io/HostelEnglishPWA/)** ⬅️
 
 ---
 
@@ -48,7 +46,7 @@ Dado que la mayoría de dispositivos carecen de un motor de síntesis de voz (TT
 | Área | Tecnología |
 |---|---|
 | **Core** | React 18 + TypeScript (Strict) |
-| **Build Tool** | Vite 7 |
+| **Build Tool** | Vite 8 |
 | **Estilos** | Tailwind CSS 3 (Design Tokens) |
 | **Estado** | Zustand 4 (Sliced) |
 | **Animaciones** | Framer Motion |

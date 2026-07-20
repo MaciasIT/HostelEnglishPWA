@@ -1,8 +1,30 @@
 # 📖 Diario de Desarrollo – HostelInglésApp
 
-*Última actualización: 05-05-2026*
+*Última actualización: 20-07-2026*
 
 Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por hitos temporales para reflejar la evolución técnica del proyecto.
+
+---
+
+## ✨ UX Polish, Actualización de Dependencias y Estabilización (V2.5.0)
+*Fecha: 20-07-2026*
+
+- **[✅ COMPLETADO] UX Polish:**
+    - Botón "Instalar App" ahora se oculta al hacer scroll hacia abajo y reaparece al subir (patrón estándar móvil).
+    - Número de versión corregido en sidebar (2.2.0 → 2.5.0).
+
+- **[✅ COMPLETADO] Actualización Masiva de Dependencias:**
+    - Vite 7 → 8 (Rolldown en vez de esbuild), @vitejs/plugin-react 4 → 6 (sin Babel).
+    - React Router 6.23 → 6.30, Vitest 3 → 4, PostCSS 8.5.9 → 8.5.20, ws 8.19 → 8.21.
+    - 7 PRs de Dependabot mergeadas y verificadas (build + 75 tests OK).
+
+- **[✅ CORREGIDO] Test de Dictado en CI:**
+    - El mock de `speechSynthesis.getVoices()` devolvía array vacío → el hook de audio esperaba evento `onvoiceschanged` que nunca llegaba → test fallaba en GitHub Actions.
+    - Solución: devolver una voz mock en `setupTests.ts`.
+
+- **[✅ CORREGIDO] Documentación:**
+    - README actualizado (badges Vite 8, enlaces MaciasIT, demo unificada).
+    - CHANGELOG al día con todos los cambios acumulados.
 
 ---
 
@@ -68,5 +90,5 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
 ## 🚀 Visión y Estrategia
 
 - **Objetivo:** Convertir una app de escritorio en una PWA móvil, offline-first, de nivel comercial.
-- **Stack Tecnológico:** React 18, TypeScript (Strict), Vite 7, TailwindCSS 3, Zustand (Sliced), IndexedDB, Vitest.
+- **Stack Tecnológico:** React 18, TypeScript (Strict), Vite 8, TailwindCSS 3, Zustand (Sliced), IndexedDB, Vitest 4.
 - **Licencia:** GNU Affero General Public License v3.0 (AGPL-3.0).
