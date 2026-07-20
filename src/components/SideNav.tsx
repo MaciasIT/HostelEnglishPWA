@@ -109,7 +109,7 @@ const SideNav: React.FC = () => {
               H
             </div>
             <div>
-              <p className="text-[10px] font-bold text-white">Versión 2.2.0</p>
+              <p className="text-[10px] font-bold text-white">Versión 2.5.0</p>
               <p className="text-[8px] text-gray-400 italic uppercase tracking-widest mt-1">HostelEnglish MultiLang</p>
             </div>
           </div>

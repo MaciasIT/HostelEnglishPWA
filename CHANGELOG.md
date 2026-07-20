@@ -5,6 +5,16 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.0] - 2026-07-20
+
+### Cambios
+- **Versión 2.5.0**: Expansión masiva del dataset (538→640 frases, +8 conversaciones B1), purga de calidad, validación fonética del euskera.
+- **UX**: Botón "Instalar App" ahora se oculta al hacer scroll hacia abajo y reaparece al subir.
+- **Dependencias**: Actualización masiva (Vite 8, @vitejs/plugin-react 6, React Router 6.30, Vitest 4, PostCSS 8.5.20, ws 8.21.1).
+- **Tests**: Corregido mock de `speechSynthesis.getVoices` en setupTests para que el test de Dictado funcione en CI.
+
+---
+
 ## [2.4.0] - 2026-04-09
 
 ### Añadido
