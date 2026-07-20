@@ -6,7 +6,7 @@ Object.defineProperty(window, 'speechSynthesis', {
   value: {
     cancel: vi.fn(),
     speak: vi.fn(),
-    getVoices: vi.fn(() => []),
+    getVoices: vi.fn(() => [{ name: 'Mock Voice', lang: 'en-US', default: true }]),
     pause: vi.fn(),
     resume: vi.fn(),
     paused: false,
