@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /openspec/
+
+Sitemap: https://maciasit.github.io/HostelEnglishPWA/sitemap.xml
