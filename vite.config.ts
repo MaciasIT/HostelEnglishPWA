@@ -52,5 +52,15 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
-  server: { port: 5173 },
+  server: {
+    port: 5173,
+    headers: {
+      'Cross-Origin-Embedder-Policy': 'require-corp',
+      'Cross-Origin-Opener-Policy': 'same-origin',
+      'X-Frame-Options': 'DENY',
+      'X-Content-Type-Options': 'nosniff',
+      'Referrer-Policy': 'strict-origin-when-cross-origin',
+      'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=()',
+    },
+  },
 });
