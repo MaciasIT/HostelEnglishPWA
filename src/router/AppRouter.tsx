@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import Home from '@/pages/Home';
@@ -35,11 +35,9 @@ const AnimatedPage: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 );
 
 const AppRouter: React.FC = () => {
-  const location = useLocation();
-
   return (
     <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
+      <Routes>
         <Route path="/" element={<AnimatedPage><Home /></AnimatedPage>} />
         <Route path="/frases" element={<AnimatedPage><Frases /></AnimatedPage>} />
         <Route path="/conversaciones" element={<AnimatedPage><Conversaciones /></AnimatedPage>} />
