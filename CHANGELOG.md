@@ -5,58 +5,55 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.5.1] - 2026-07-27
+### Added
+- CI/CD quality gates workflow (`ci.yml`) to validate TypeScript, lint, tests, and build on every push/PR.
+- Sentry monitoring initialization (`src/monitoring/sentry.ts`) for production error tracking.
+### Changed
+- Upgraded `react-router` and `react-router-dom` to v7.x and updated routing migration in `AppRouter.tsx`.
+### Fixed
+- Security hardening: added HTTP security headers (X-Frame-Options, COOP/COEP, Referrer-Policy, Permissions-Policy) and removed legacy anti-clickjacking fallback.
+
 ## [2.5.0] - 2026-07-20
-
-### Cambios
-- **Versión 2.5.0**: Expansión masiva del dataset (538→640 frases, +8 conversaciones B1), purga de calidad, validación fonética del euskera.
-- **UX**: Botón "Instalar App" ahora se oculta al hacer scroll hacia abajo y reaparece al subir.
-- **Dependencias**: Actualización masiva (Vite 8, @vitejs/plugin-react 6, React Router 6.30, Vitest 4, PostCSS 8.5.20, ws 8.21.1).
-- **Tests**: Corregido mock de `speechSynthesis.getVoices` en setupTests para que el test de Dictado funcione en CI.
-
----
+### Added
+- **Dataset Expansion**: Expanded phrase and dialogue datasets to cover more intermediate vocabulary.
+- **UX Polish**: Install button visibility behavior refined to hide while scrolling down and reappear on scroll up.
+### Changed
+- **Dependencies**: Major dependency updates including Vite 8, @vitejs/plugin-react 6, React Router 6.30, Vitest 4, and PostCSS 8.5.20.
+- **Stability**: Multiple maintenance updates from Dependabot.
+### Fixed
+- **Dictation Test CI**: Fixed `speechSynthesis.getVoices` mocking so the Dictation module works reliably in CI.
+- **License Cleanup**: Clarified AGPL + Commercial dual-license model and cleaned licensing docs.
+- **Design Validation**: Completed PWA design validation pass and cleaned leftover assets/config.
 
 ## [2.4.0] - 2026-04-09
-
-### Añadido
-- **Accesibilidad Total (A11y)**: Cumplimiento de estándares de accesibilidad avanzado en toda la aplicación.
-  - Implementación de anuncios `aria-live` para feedback inmediato en Dictado, Frases y Diálogos.
-  - Etiquetas descriptivas `aria-label` y roles ARIA en todos los elementos interactivos.
-  - **Gráficos Accesibles**: Tablas de datos ocultas (`sr-only`) que narran la evolución del usuario a lectores de pantalla.
-- **Arquitectura de Características (Features)**: Finalizada la migración modular.
-  - Módulos de **Dictado**, **Flashcards**, **Diálogos** y **Frases** desacoplados en componentes atómicos y Hooks.
-  - Mejora de la lógica de renderizado en el **Dashboard** y **Progreso**.
-
-### Corregido
-- **Sincronización de Audio**: Corregido un bucle infinito en el hook de dictado (`useDictationLogic`) mediante un sistema de guardas con `useRef`.
-- **Integridad de Tests**: Suite de tests actualizada para validar selectores de accesibilidad (`getByRole`, `getByLabelText`).
-- **Navegación Circular**: Corregida la lógica de carrusel en Flashcards y Frases para evitar desbordamientos de índice.
+### Added
+- **Accessibility**: Full A11y coverage with `aria-live`, labels, roles, and screen-reader-friendly data tables.
+- **Modular Architecture**: Migration to a feature-based architecture for Dictation, Flashcards, Dialogues, and Phrases.
+### Changed
+- **Type Safety**: Enabled TypeScript Strict Mode across the project.
+- **State Management**: Zustand slices modularized into `data`, `prefs`, `progress`, and `ui`.
+### Fixed
+- **Audio Sync Loop**: Fixed an infinite loop in `useDictationLogic` with ref-based guards.
+- **Test Stability**: Updated selector strategy in tests to use accessible roles and labels.
+- **Navigation**: Fixed carousel index overflow behavior in Flashcards and Phrases.
 
 ## [2.3.0] - 2026-04-09
+### Added
+- New feature-based architecture under `features/`.
+- Modularized **Examen** module with dedicated presentation and logic hooks.
+- Technical audit and refactor roadmap document (`AUDITORIA_360_HostelEnglishPWA.md`).
+### Changed
+- Enabled TypeScript Strict Mode.
+- Centralized logic through `useExamLogic` to reduce duplication.
+### Fixed
+- **Security**: Fixed critical RCE/DoS issues via forced `serialize-javascript@7.0.5`.
+- **XSS Risk**: Removed `dangerouslySetInnerHTML` usage in exposed components.
+- **CI/CD**: Added mandatory `npm test` gate before deployment.
+- **50+ Typing Issues**: Resolved strict-mode type errors after enabling strict TypeScript checks.
+- **Euskera Phonetics**: Corrected sibilant combination handling in phonetic engine.
 
-### Añadido
-- Nueva arquitectura modular basada en `features/`.
-- Módulo de **Examen** completamente modularizado (`ExamHeader`, `ExamQuestion`, etc.).
-- Hook de lógica centralizada `useExamLogic` para el módulo de examen.
-- Audit técnico 360° con hoja de ruta de refactorización (`AUDITORIA_360_HostelEnglishPWA.md`).
-
-### Seguridad
-- **Fix Crítico**: Resueltas vulnerabilidades (RCE y DoS) en `serialize-javascript` (vía `@rollup/plugin-terser`) forzando la versión `7.0.5` en `package.json`.
-- Eliminación de `dangerouslySetInnerHTML` en componentes clave para mitigar riesgos XSS.
-- Blindaje del pipeline de CI/CD añadiendo paso obligatorio de `npm test` antes del despliegue.
-
-### Cambios en TS y Arquitectura
-- Habilitado el modo **TypeScript Strict** (`strict: true`) en toda la aplicación.
-- Modularización del **God Store** (Zustand) en slices independientes: `data`, `prefs`, `progress`, `ui`.
-- Limpieza masiva de imports no utilizados y migración a React Context/Hooks modernos.
-- Refactorización de `initNotifications` para evitar spam de notificaciones en cada carga.
-
-### Corregido
-- Corregidos más de 50 errores de tipado latentes tras activar el modo estricto.
-- Reposicionado el hook `useBeforeInstallPrompt.ts` en la carpeta `hooks/` correspondiente.
-- Error fonético en el motor de Euskera para ciertas combinaciones de sibilantes.
-
----
-## [2.2.0] - Anterior
-- Versión inicial estable con soporte multi-idioma (ES, EN, EU).
-- Persistencia local con IndexedDB.
-- Funcionalidades básicas de Quiz, Frases y Conversaciones.
+## [2.2.0] - Prior release
+- Initial stable release with multi-language support (ES, EN, EU).
+- Local persistence via IndexedDB.
+- Core features: Quiz, Phrases, and Conversations.
