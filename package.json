@@ -2,7 +2,7 @@
   "name": "hostel-ingles-app",
   "private": false,
   "license": "AGPL-3.0-only",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "type": "module",
   "scripts": {
     "start": "vite",

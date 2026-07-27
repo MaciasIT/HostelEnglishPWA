@@ -27,6 +27,15 @@ jobs:
 
       - run: npm ci
 
+      - name: TypeScript check
+        run: npx tsc -b
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Unit/Integration tests
+        run: npx vitest run --coverage
+
       - name: Build
         run: npm run build
 
