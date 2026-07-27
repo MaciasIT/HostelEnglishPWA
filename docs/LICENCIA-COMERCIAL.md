@@ -95,3 +95,43 @@ derecho de uso del código base, no el desarrollo de funcionalidades nuevas.
 
 *Precios válidos para 2026. Sujeto a cambios para nuevos clientes.*
 *Todos los precios no incluyen IVA.*
+
+---
+
+## Preguntas frecuentes para el usuario
+
+**¿Qué es HostelEnglishPWA?**
+Una aplicación web progresiva (PWA) que enseña inglés práctico para profesionales de hostelería. No requiere registro ni cuenta de usuario.
+
+**¿Necesito crear una cuenta o iniciar sesión?**
+No. La app funciona sin registro ni login. Abre y empieza a aprender directamente.
+
+**¿Funciona sin conexión a Internet?**
+Sí. Una vez instalada, todas las funcionalidades — frases, quizzes, flashcards y dictation — están disponibles offline. El progreso se guarda localmente en tu dispositivo.
+
+**¿Cómo instalo HostelEnglishPWA como aplicación?**
+Abre la app en tu navegador móvil o de escritorio. Pulsa el menú del navegador (⋮) y selecciona "Instalar app" o "Añadir a pantalla de inicio". También puedes usar el botón de instalar que aparece en la propia app.
+
+**¿En qué dispositivos funciona?**
+En cualquier dispositivo con navegador moderno: móviles, tablets y ordenadores de escritorio. Está optimizada para usar en pantalla vertical (móvil/tablet primero).
+
+**¿Qué idiomas puedo elegir para aprender?**
+Puedes seleccionar el idioma en el que quieres recibir las instrucciones y explicaciones dentro de la app, independientemente del idioma que estés aprendiendo (inglés para hostelería).
+
+**¿Qué tipo de contenido incluye?**
+Frases organizadas por categorías laborales de hostelería, ejercicios de quiz para repasar, flashcards de vocabulario y una herramienta de dictation con audio (TTS) que escucha y corrige tu pronunciación.
+
+**¿Puedo controlar la velocidad y el tono del audio?**
+Sí. En la sección de dictation y audio puedes ajustar la velocidad de reproducción y el tono (pitch) para adaptar el ritmo a tu nivel de aprendizaje.
+
+**¿Mi progreso se guarda?**
+Sí. Todo tu progreso — frases completadas, puntuaciones de quiz y tarjetas memorizadas — se almacena de forma local en tu dispositivo. Si borras los datos de la app o reinstalas, el progreso se perderá.
+
+**¿Es gratuita?**
+Sí. HostelEnglishPWA es una herramienta gratuita orientada a profesionales de hostelería que quieren mejorar su inglés de manera práctica y autónoma.
+
+**¿Para qué profesionales de hostelería es útil?**
+Para recepcionistas, camareros, cocineros, personal de limpieza, guías turísticos y cualquier trabajador del sector que necesite comunicarse en inglés con huéspedes o compañeros.
+
+**¿Tiene anuncios o seguimiento externo?**
+La app está diseñada para un uso profesional sin distracciones. No se incluyen anuncios ni sistemas de analítica de terceros.
