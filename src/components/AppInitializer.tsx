@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import InstallPWAButton from './InstallPWAButton';
 import { useAppStore } from '@/store/useAppStore';
 import { initNotifications } from '@/pushNotifications';
+import { initSentry } from '@/monitoring/sentry';
 
 const AppInitializer = () => {
     const [hasHydrated, setHasHydrated] = useState(false);
@@ -12,11 +13,10 @@ const AppInitializer = () => {
             setHasHydrated(true);
         });
         
-        // Si ya hidrató (ej. HMR)
         if (useAppStore.persist.hasHydrated()) setHasHydrated(true);
 
-        // Initialize Browser Notifications
         initNotifications();
+        initSentry();
 
         return () => unsub();
     }, []);
