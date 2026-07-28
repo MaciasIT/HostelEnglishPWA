@@ -7,12 +7,13 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ## [2.5.1] - 2026-07-27
 ### Added
-- CI/CD quality gates workflow (`ci.yml`) to validate TypeScript, lint, tests, and build on every push/PR.
-- Sentry monitoring initialization (`src/monitoring/sentry.ts`) for production error tracking.
+- Deploy hardening for GitHub Pages: `public/_headers`, `robots.txt`, `sitemap.xml`, and `404.html` fallback to improve public exposure control and offline behavior.
+- OpenSpec change `openspec/changes/cve-react-router-v8` documenting the react-router v8 CVE and the explicit decision not to migrate while the app stays on React 18.
 ### Changed
-- Upgraded `react-router` and `react-router-dom` to v7.x and updated routing migration in `AppRouter.tsx`.
+- Package and release metadata aligned to version `2.5.1`.
 ### Fixed
-- Security hardening: added HTTP security headers (X-Frame-Options, COOP/COEP, Referrer-Policy, Permissions-Policy) and removed legacy anti-clickjacking fallback.
+- CI quality gates hardened around TypeScript, lint, tests, and build validation.
+- Security header baseline documented for Pages deployment.
 
 ## [2.5.0] - 2026-07-20
 ### Added

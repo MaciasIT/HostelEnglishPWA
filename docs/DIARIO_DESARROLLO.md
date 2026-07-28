@@ -1,8 +1,25 @@
 # 📖 Diario de Desarrollo – HostelInglésApp
 
-*Última actualización: 20-07-2026*
+*Última actualización: 27-07-2026*
 
 Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por hitos temporales para reflejar la evolución técnica del proyecto.
+
+---
+
+## ✨ Release Segura, Hardening de Deploy y CVE Documentado (V2.5.1)
+*Fecha: 27-07-2026*
+
+- **[✅ COMPLETADO] Release v2.5.1:**
+    - Alineación de metadatos de paquete y release para `2.5.1`.
+    - CI endurecida con quality gates estructurados alrededor de TypeScript, lint, tests y build.
+- **[✅ COMPLETADO] Hardening de Deploy en GitHub Pages:**
+    - Añadidos `public/_headers`, `robots.txt`, `sitemap.xml` y `404.html` para controlar exposición pública y comportamiento offline.
+- **[✅ COMPLETADO] CVE y decisión de migración registrada:**
+    - Creado OpenSpec `openspec/changes/cve-react-router-v8`.
+    - Documentado issue de seguridad y la decisión explícita de NO migrar a `react-router` v8 mientras la base permanezca en React 18.
+    - Riesgo aceptado formalmente y trazado en repo para evitar reintentos sin plan de React 19.
+- **[✅ PENDIENTE] Revisión visual/UI de la app desplegada:**
+    - Queda pendiente una pasada de UX/UI con capturas reales para definir modificaciones concretas.
 
 ---
 

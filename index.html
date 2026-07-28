@@ -32,6 +32,15 @@
 <body>
   <div id="root"></div>
   <script type="module" src="./src/main.tsx"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/HostelEnglishPWA/sw.js', { scope: '/HostelEnglishPWA/' }).catch((err) => {
+          console.error('[PWA] SW registration failed:', err);
+        });
+      });
+    }
+  </script>
 </body>
 
 </html>

@@ -12,7 +12,8 @@
     "test": "vitest",
     "test:run": "vitest run",
     "lint": "eslint . --ext ts,tsx --max-warnings 0 || true",
-    "ci:check": "npm run test:run && npm run build"
+    "ci:check": "npm run test:run && npm run build",
+    "pwa:clean-cache": "echo 'Abre en Chrome/Android: chrome://serviceworker-internals/?deviceId=DEVICE_ID y elimina el SW de HostelEnglishPWA; alternativamente desinstala la PWA y vuelve a instalar desde https://maciasit.github.io/HostelEnglishPWA/'"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

@@ -15,12 +15,14 @@ export default defineConfig({
       },
       includeAssets: ["favicon.ico", "icons/icono.png", "icons/pwa-192x192.png", "icons/pwa-512x512.png"],
       manifest: {
+        id: "/HostelEnglishPWA/",
         name: "HostelEnglish PWA",
         short_name: "HostelEnglish",
         description: "Aplicación para aprender inglés para hostelería",
         theme_color: "#2c3e50",
         background_color: "#2c3e50",
         display: "standalone",
+        orientation: "portrait",
         scope: "/HostelEnglishPWA/",
         start_url: "/HostelEnglishPWA/",
         icons: [

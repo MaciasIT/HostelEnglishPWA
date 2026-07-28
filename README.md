@@ -1,7 +1,7 @@
 # HostelInglés PWA
 
 ![CI/CD](https://github.com/MaciasIT/HostelEnglishPWA/actions/workflows/deploy.yml/badge.svg)
-[![Version](https://img.shields.io/badge/version-2.5.0-orange?style=for-the-badge)](https://github.com/MaciasIT/HostelEnglishPWA/releases)
+[![Version](https://img.shields.io/badge/version-2.5.1-orange?style=for-the-badge)](https://github.com/MaciasIT/HostelEnglishPWA/releases)
 [![Security](https://img.shields.io/badge/Security-Audit_Passed-green?style=for-the-badge&logo=shield)](./AUDITORIA_360_HostelEnglishPWA.md)
 [![React](https://img.shields.io/badge/React-18.2.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8.0.16-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
