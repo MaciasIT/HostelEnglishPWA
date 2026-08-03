@@ -1,8 +1,23 @@
 # 📖 Diario de Desarrollo – HostelInglésApp
 
-*Última actualización: 27-07-2026*
+*Última actualización: 03-08-2026*
 
 Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por hitos temporales para reflejar la evolución técnica del proyecto.
+
+---
+
+## 🔧 Fix Pantalla Negra en Modo Standalone PWA (V2.5.2)
+*Fecha: 03-08-2026*
+
+- **[✅ COMPLETADO] Recovery de hidratación en AppInitializer:**
+    - Añadido timeout de hidratación de 4s (`HYDRATION_TIMEOUT_MS`): si el store de Zustand no hidrata a tiempo, se muestra estado de sincronización en vez de quedarse en negro.
+    - Detección de pantalla negra persistente (`BLACK_SCREEN_DELAY_MS` 2s) con pantalla de error y dos acciones: "Recargar" y "Continuar sin datos guardados" (limpia `useAppStore.persist.clearStorage()` y recarga).
+    - Listener de `visibilitychange`: si la app vuelve a visible con el store ya hidratado, se recupera automáticamente sin pantalla de error.
+- **[✅ COMPLETADO] Verificación local:**
+    - `npm run build` verde (SW + precache 20 entries).
+    - `npm run test -- --run` verde (22 ficheros / 75 tests).
+- **[⬜ PENDIENTE] Validación en GitHub Pages:** fix en rama `feat/pwa-black-screen-fix`; pendiente merge a main y verificación en producción.
+- **[⬜ PENDIENTE] Revisión visual/UI de la app desplegada:** pasada de UX/UI con capturas reales para definir modificaciones concretas.
 
 ---
 
