@@ -40,7 +40,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@56afc609e7402658d3ffba0e8f6dda462b719fa  # v3
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa  # v3
         with:
           path: dist
 
@@ -67,7 +67,7 @@ jobs:
       - name: Build
         run: npm run build
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@56afc609e7402658d3ffba0e8f6dda462b719fa  # v3
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa  # v3
         with:
           path: dist
       - name: Deploy to GitHub Pages
