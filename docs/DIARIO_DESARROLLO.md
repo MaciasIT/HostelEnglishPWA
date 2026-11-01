@@ -1,8 +1,31 @@
 # 📖 Diario de Desarrollo – HostelInglésApp
 
-*Última actualización: 03-08-2026*
+*Última actualización: 01-11-2026*
 
 Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por hitos temporales para reflejar la evolución técnica del proyecto.
+
+---
+
+## 🎯 Cierre de Fase A: Modernización de Stack y Resiliencia Offline Definitiva
+*Fecha: 01-11-2026*
+
+- **[✅ COMPLETADO] ADR y cierre de Fase A:**
+    - Documentado `docs/adr/ADR-2026-001-stack-upgrade.md` con estado Aceptado.
+    - Auditoría de calidad final: 103 tests unitarios verdes, build de producción limpio (20 assets, SW generado).
+- **[✅ COMPLETADO] Upgrades de infraestructura:**
+    - **React 19 + Router v8**: desbloqueo de CVE en react-router; migración a `react-router/dom`.
+    - **Tailwind CSS v4**: compilación con Lightning CSS, arquitectura `@theme`.
+    - **Zustand 5**: slices tipados con persistencia IndexedDB controlada.
+    - **PWA Workbox 7**: offline-first definitivo con estrategias granulares y Background Sync.
+- **[✅ COMPLETADO] Funcionalidades transversales:**
+    - **Web Workers**: búsqueda tokenizada y métricas de retención fuera del hilo principal, con fallback síncrono en tests.
+    - **Licencias offline**: validador Ed25519 nativo con Web Crypto API y slice Zustand dedicado.
+    - **E2E móvil**: suite Playwright (offline, hidratación, navegación) en Chromium Pixel 7 headless.
+- **[✅ COMPLETADO] Calidad:**
+    - `npm run test:run`: 103 tests verdes.
+    - `npm run build`: build limpio en 509ms, SW + precache 20 entries.
+- **[⬜ PENDIENTE] Fase B:** renovación UI/UX sobre esta base.
+- **[⬜ PENDIENTE] Fase C:** módulos de IA (audio, transcripción, recomendaciones) sobre arquitectura offline-first.
 
 ---
 
@@ -122,5 +145,5 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
 ## 🚀 Visión y Estrategia
 
 - **Objetivo:** Convertir una app de escritorio en una PWA móvil, offline-first, de nivel comercial.
-- **Stack Tecnológico:** React 18, TypeScript (Strict), Vite 8, TailwindCSS 3, Zustand (Sliced), IndexedDB, Vitest 4.
+- **Stack Tecnológico:** React 19, TypeScript (Strict), Vite 8, TailwindCSS 4, Zustand 5 (Sliced), IndexedDB, Vitest 4, Playwright.
 - **Licencia:** GNU Affero General Public License v3.0 (AGPL-3.0).
