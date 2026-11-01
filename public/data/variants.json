@@ -1,0 +1,717 @@
+{
+  "variants": [
+    {
+      "id": "bill-check",
+      "concept": "la cuenta (restaurante)",
+      "category": "restaurante",
+      "uk": {
+        "term": "bill",
+        "ipa": "bɪl"
+      },
+      "us": {
+        "term": "check",
+        "ipa": "tʃek"
+      },
+      "aus": {
+        "term": "bill",
+        "ipa": "bɪl"
+      },
+      "note": "En bares de EE. UU. se usa 'tab'; en Reino Unido 'bill' es también factura."
+    },
+    {
+      "id": "aubergine-eggplant",
+      "concept": "berenjena",
+      "category": "cocina",
+      "uk": {
+        "term": "aubergine",
+        "ipa": "ˈəʊbəʒiːn"
+      },
+      "us": {
+        "term": "eggplant",
+        "ipa": "ˈeɡplænt"
+      },
+      "aus": {
+        "term": "eggplant",
+        "ipa": "ˈeɡplɑːnt"
+      },
+      "note": "EE. UU. /ˈeɡplænt/, Australia /ˈeɡplɑːnt/."
+    },
+    {
+      "id": "coriander-cilantro",
+      "concept": "cilantro",
+      "category": "cocina",
+      "uk": {
+        "term": "coriander",
+        "ipa": "ˌkɒriˈændə"
+      },
+      "us": {
+        "term": "cilantro",
+        "ipa": "sɪˈlæntroʊ"
+      },
+      "aus": {
+        "term": "coriander",
+        "ipa": "ˌkɔriˈændə"
+      },
+      "note": "UK 'coriander' = hoja y semilla; US 'cilantro' = hoja, 'coriander' = semilla."
+    },
+    {
+      "id": "chips-fries-crisps",
+      "concept": "patatas fritas / patatas de bolsa",
+      "category": "restaurante",
+      "uk": {
+        "term": "chips",
+        "ipa": "tʃɪps"
+      },
+      "us": {
+        "term": "fries",
+        "ipa": "fraɪz"
+      },
+      "aus": {
+        "term": "chips",
+        "ipa": "tʃɪps"
+      },
+      "note": "UK 'chips' = patatas fritas calientes, 'crisps' = de bolsa; US 'fries' = calientes, 'chips' = de bolsa; AUS 'chips' vale para ambas."
+    },
+    {
+      "id": "dessert-pudding-sweet",
+      "concept": "postre",
+      "category": "restaurante",
+      "uk": {
+        "term": "pudding",
+        "ipa": "ˈpʊdɪŋ"
+      },
+      "us": {
+        "term": "dessert",
+        "ipa": "dɪˈzɜːrt"
+      },
+      "aus": {
+        "term": "dessert",
+        "ipa": "dɪˈzɜːt"
+      },
+      "note": "'Sweet' = postre (informal UK); 'pudding' en US es solo un tipo concreto (flan de pan)."
+    },
+    {
+      "id": "starter-appetizer",
+      "concept": "entrante / primer plato",
+      "category": "restaurante",
+      "uk": {
+        "term": "starter",
+        "ipa": "ˈstɑːtə"
+      },
+      "us": {
+        "term": "appetizer",
+        "ipa": "ˈæpɪtaɪzər"
+      },
+      "aus": {
+        "term": "entree",
+        "ipa": "ˈɒntreɪ"
+      },
+      "note": "Ojo: en AUS 'entrée' = entrante, pero en US 'entrée' = plato principal."
+    },
+    {
+      "id": "lift-elevator",
+      "concept": "ascensor",
+      "category": "general",
+      "uk": {
+        "term": "lift",
+        "ipa": "lɪft"
+      },
+      "us": {
+        "term": "elevator",
+        "ipa": "ˈelɪveɪtər"
+      },
+      "aus": {
+        "term": "lift",
+        "ipa": "lɪft"
+      }
+    },
+    {
+      "id": "tap-faucet",
+      "concept": "grifo",
+      "category": "mantenimiento",
+      "uk": {
+        "term": "tap",
+        "ipa": "tæp"
+      },
+      "us": {
+        "term": "faucet",
+        "ipa": "ˈfɔːsɪt"
+      },
+      "aus": {
+        "term": "tap",
+        "ipa": "tæp"
+      }
+    },
+    {
+      "id": "serviette-napkin",
+      "concept": "servilleta",
+      "category": "restaurante",
+      "uk": {
+        "term": "serviette",
+        "ipa": "ˌsɜːviˈet"
+      },
+      "us": {
+        "term": "napkin",
+        "ipa": "ˈnæpkɪn"
+      },
+      "aus": {
+        "term": "serviette",
+        "ipa": "ˌsɜːviˈet"
+      },
+      "note": "En UK 'napkin' se reserva para el pañal de tela; en US 'napkin' es lo habitual."
+    },
+    {
+      "id": "toilet-restroom",
+      "concept": "aseo / servicio",
+      "category": "general",
+      "uk": {
+        "term": "toilet",
+        "ipa": "ˈtɔɪlət"
+      },
+      "us": {
+        "term": "restroom",
+        "ipa": "ˈrestruːm"
+      },
+      "aus": {
+        "term": "toilet",
+        "ipa": "ˈtɔɪlət"
+      },
+      "note": "US 'bathroom' en locales públicos; UK 'loo' es informal."
+    },
+    {
+      "id": "takeaway-takeout",
+      "concept": "comida para llevar",
+      "category": "restaurante",
+      "uk": {
+        "term": "takeaway",
+        "ipa": "ˈteɪkəweɪ"
+      },
+      "us": {
+        "term": "takeout",
+        "ipa": "ˈteɪkaʊt"
+      },
+      "aus": {
+        "term": "takeaway",
+        "ipa": "ˈteɪkəweɪ"
+      }
+    },
+    {
+      "id": "fizzy-soda",
+      "concept": "refresco con gas",
+      "category": "bar",
+      "uk": {
+        "term": "fizzy drink",
+        "ipa": "ˈfɪzi drɪŋk"
+      },
+      "us": {
+        "term": "soda",
+        "ipa": "ˈsoʊdə"
+      },
+      "aus": {
+        "term": "soft drink",
+        "ipa": "sɒft drɪŋk"
+      }
+    },
+    {
+      "id": "sweets-candy",
+      "concept": "dulces / golosinas",
+      "category": "general",
+      "uk": {
+        "term": "sweets",
+        "ipa": "swiːts"
+      },
+      "us": {
+        "term": "candy",
+        "ipa": "ˈkændi"
+      },
+      "aus": {
+        "term": "lollies",
+        "ipa": "ˈlɒliz"
+      }
+    },
+    {
+      "id": "biscuit-cookie",
+      "concept": "galleta",
+      "category": "restaurante",
+      "uk": {
+        "term": "biscuit",
+        "ipa": "ˈbɪskɪt"
+      },
+      "us": {
+        "term": "cookie",
+        "ipa": "ˈkʊki"
+      },
+      "aus": {
+        "term": "biscuit",
+        "ipa": "ˈbɪskɪt"
+      },
+      "note": "En US 'biscuit' es un bollo de pan tipo scone salado."
+    },
+    {
+      "id": "jam-jelly",
+      "concept": "mermelada",
+      "category": "restaurante",
+      "uk": {
+        "term": "jam",
+        "ipa": "dʒæm"
+      },
+      "us": {
+        "term": "jelly",
+        "ipa": "ˈdʒeli"
+      },
+      "aus": {
+        "term": "jam",
+        "ipa": "dʒæm"
+      },
+      "note": "En UK 'jelly' es la gelatina de postre (US 'jello')."
+    },
+    {
+      "id": "courgette-zucchini",
+      "concept": "calabacín",
+      "category": "cocina",
+      "uk": {
+        "term": "courgette",
+        "ipa": "kʊəˈʒet"
+      },
+      "us": {
+        "term": "zucchini",
+        "ipa": "zuːˈkiːni"
+      },
+      "aus": {
+        "term": "zucchini",
+        "ipa": "zuːˈkiːni"
+      }
+    },
+    {
+      "id": "rocket-arugula",
+      "concept": "rúcula",
+      "category": "cocina",
+      "uk": {
+        "term": "rocket",
+        "ipa": "ˈrɒkɪt"
+      },
+      "us": {
+        "term": "arugula",
+        "ipa": "əˈruːɡələ"
+      },
+      "aus": {
+        "term": "rocket",
+        "ipa": "ˈrɒkɪt"
+      }
+    },
+    {
+      "id": "spring-onion-scallion",
+      "concept": "cebolleta / cebollino",
+      "category": "cocina",
+      "uk": {
+        "term": "spring onion",
+        "ipa": "ˌsprɪŋ ˈʌnjən"
+      },
+      "us": {
+        "term": "scallion",
+        "ipa": "ˈskæliən"
+      },
+      "aus": {
+        "term": "shallot",
+        "ipa": "ʃəˈlɒt"
+      }
+    },
+    {
+      "id": "grill-broil",
+      "concept": "asar / gratinar (calor superior)",
+      "category": "cocina",
+      "uk": {
+        "term": "grill",
+        "ipa": "ɡrɪl"
+      },
+      "us": {
+        "term": "broil",
+        "ipa": "brɔɪl"
+      },
+      "aus": {
+        "term": "grill",
+        "ipa": "ɡrɪl"
+      },
+      "note": "UK 'grill' = parrilla superior; US 'broil' = calor superior, 'grill' = parrilla inferior."
+    },
+    {
+      "id": "car-park-parking-lot",
+      "concept": "aparcamiento",
+      "category": "recepcion",
+      "uk": {
+        "term": "car park",
+        "ipa": "ˈkɑː pɑːk"
+      },
+      "us": {
+        "term": "parking lot",
+        "ipa": "ˈpɑːrkɪŋ lɑːt"
+      },
+      "aus": {
+        "term": "car park",
+        "ipa": "ˈkɑː pɑːk"
+      }
+    },
+    {
+      "id": "queue-line",
+      "concept": "cola (fila)",
+      "category": "general",
+      "uk": {
+        "term": "queue",
+        "ipa": "kjuː"
+      },
+      "us": {
+        "term": "line",
+        "ipa": "laɪn"
+      },
+      "aus": {
+        "term": "queue",
+        "ipa": "kjuː"
+      }
+    },
+    {
+      "id": "ground-first-floor",
+      "concept": "planta baja / primera planta",
+      "category": "general",
+      "uk": {
+        "term": "ground floor",
+        "ipa": "ˈɡraʊnd flɔː"
+      },
+      "us": {
+        "term": "first floor",
+        "ipa": "ˈfɜːrst flɔːr"
+      },
+      "aus": {
+        "term": "ground floor",
+        "ipa": "ˈɡraʊnd flɔː"
+      },
+      "note": "US 'first floor' = planta baja; UK 'first floor' = primer piso (US 'second floor')."
+    },
+    {
+      "id": "mobile-cell",
+      "concept": "teléfono móvil",
+      "category": "general",
+      "uk": {
+        "term": "mobile",
+        "ipa": "ˈməʊbaɪl"
+      },
+      "us": {
+        "term": "cell phone",
+        "ipa": "ˈsel foʊn"
+      },
+      "aus": {
+        "term": "mobile",
+        "ipa": "ˈməʊbaɪl"
+      }
+    },
+    {
+      "id": "holiday-vacation",
+      "concept": "vacaciones",
+      "category": "general",
+      "uk": {
+        "term": "holiday",
+        "ipa": "ˈhɒlɪdeɪ"
+      },
+      "us": {
+        "term": "vacation",
+        "ipa": "veɪˈkeɪʃən"
+      },
+      "aus": {
+        "term": "holiday",
+        "ipa": "ˈhɒlɪdeɪ"
+      }
+    },
+    {
+      "id": "nappy-diaper",
+      "concept": "pañal",
+      "category": "limpieza",
+      "uk": {
+        "term": "nappy",
+        "ipa": "ˈnæpi"
+      },
+      "us": {
+        "term": "diaper",
+        "ipa": "ˈdaɪpər"
+      },
+      "aus": {
+        "term": "nappy",
+        "ipa": "ˈnæpi"
+      }
+    },
+    {
+      "id": "cot-crib",
+      "concept": "cuna",
+      "category": "limpieza",
+      "uk": {
+        "term": "cot",
+        "ipa": "kɒt"
+      },
+      "us": {
+        "term": "crib",
+        "ipa": "krɪb"
+      },
+      "aus": {
+        "term": "cot",
+        "ipa": "kɒt"
+      }
+    },
+    {
+      "id": "dummy-pacifier",
+      "concept": "chupete",
+      "category": "limpieza",
+      "uk": {
+        "term": "dummy",
+        "ipa": "ˈdʌmi"
+      },
+      "us": {
+        "term": "pacifier",
+        "ipa": "ˈpæsɪfaɪər"
+      },
+      "aus": {
+        "term": "dummy",
+        "ipa": "ˈdʌmi"
+      }
+    },
+    {
+      "id": "torch-flashlight",
+      "concept": "linterna",
+      "category": "mantenimiento",
+      "uk": {
+        "term": "torch",
+        "ipa": "tɔːtʃ"
+      },
+      "us": {
+        "term": "flashlight",
+        "ipa": "ˈflæʃlaɪt"
+      },
+      "aus": {
+        "term": "torch",
+        "ipa": "tɔːtʃ"
+      }
+    },
+    {
+      "id": "spanner-wrench",
+      "concept": "llave inglesa",
+      "category": "mantenimiento",
+      "uk": {
+        "term": "spanner",
+        "ipa": "ˈspænə"
+      },
+      "us": {
+        "term": "wrench",
+        "ipa": "rentʃ"
+      },
+      "aus": {
+        "term": "spanner",
+        "ipa": "ˈspænə"
+      }
+    },
+    {
+      "id": "plaster-band-aid",
+      "concept": "tirita",
+      "category": "mantenimiento",
+      "uk": {
+        "term": "plaster",
+        "ipa": "ˈplɑːstə"
+      },
+      "us": {
+        "term": "band-aid",
+        "ipa": "ˈbænd eɪd"
+      },
+      "aus": {
+        "term": "band-aid",
+        "ipa": "ˈbænd eɪd"
+      }
+    },
+    {
+      "id": "wardrobe-closet",
+      "concept": "armario",
+      "category": "limpieza",
+      "uk": {
+        "term": "wardrobe",
+        "ipa": "ˈwɔːdrəʊb"
+      },
+      "us": {
+        "term": "closet",
+        "ipa": "ˈklɒzɪt"
+      },
+      "aus": {
+        "term": "wardrobe",
+        "ipa": "ˈwɔːdrəʊb"
+      }
+    },
+    {
+      "id": "bin-trash-can",
+      "concept": "papelera / cubo de basura",
+      "category": "limpieza",
+      "uk": {
+        "term": "bin",
+        "ipa": "bɪn"
+      },
+      "us": {
+        "term": "trash can",
+        "ipa": "ˈtræʃ kæn"
+      },
+      "aus": {
+        "term": "bin",
+        "ipa": "bɪn"
+      }
+    },
+    {
+      "id": "jug-pitcher",
+      "concept": "jarra",
+      "category": "restaurante",
+      "uk": {
+        "term": "jug",
+        "ipa": "dʒʌɡ"
+      },
+      "us": {
+        "term": "pitcher",
+        "ipa": "ˈpɪtʃər"
+      },
+      "aus": {
+        "term": "jug",
+        "ipa": "dʒʌɡ"
+      }
+    },
+    {
+      "id": "main-entree",
+      "concept": "plato principal",
+      "category": "restaurante",
+      "uk": {
+        "term": "main course",
+        "ipa": "ˈmeɪn kɔːs"
+      },
+      "us": {
+        "term": "entree",
+        "ipa": "ˈɑːntreɪ"
+      },
+      "aus": {
+        "term": "main",
+        "ipa": "meɪn"
+      },
+      "note": "US 'entrée' = principal; AUS 'entrée' = entrante. Confusión habitual."
+    },
+    {
+      "id": "cutlery-silverware",
+      "concept": "cubertería",
+      "category": "restaurante",
+      "uk": {
+        "term": "cutlery",
+        "ipa": "ˈkʌtləri"
+      },
+      "us": {
+        "term": "silverware",
+        "ipa": "ˈsɪlvərweər"
+      },
+      "aus": {
+        "term": "cutlery",
+        "ipa": "ˈkʌtləri"
+      }
+    },
+    {
+      "id": "mince-ground-beef",
+      "concept": "carne picada",
+      "category": "cocina",
+      "uk": {
+        "term": "mince",
+        "ipa": "mɪns"
+      },
+      "us": {
+        "term": "ground beef",
+        "ipa": "ˈɡraʊnd biːf"
+      },
+      "aus": {
+        "term": "mince",
+        "ipa": "mɪns"
+      }
+    },
+    {
+      "id": "tea-dinner-supper",
+      "concept": "cena (comida de la tarde/noche)",
+      "category": "general",
+      "uk": {
+        "term": "tea",
+        "ipa": "tiː"
+      },
+      "us": {
+        "term": "dinner",
+        "ipa": "ˈdɪnər"
+      },
+      "aus": {
+        "term": "dinner",
+        "ipa": "ˈdɪnə"
+      },
+      "note": "En el norte de Inglaterra 'tea' es la cena; 'dinner' designa la comida principal."
+    },
+    {
+      "id": "bfast-full-english",
+      "concept": "desayuno inglés completo",
+      "category": "restaurante",
+      "uk": {
+        "term": "full English",
+        "ipa": "ˌfʊl ˈɪŋɡlɪʃ"
+      },
+      "us": {
+        "term": "big breakfast",
+        "ipa": "ˌbɪɡ ˈbrekfəst"
+      },
+      "aus": {
+        "term": "big brekkie",
+        "ipa": "ˌbɪɡ ˈbreki"
+      },
+      "note": "'Brekkie' es registro coloquial australiano."
+    },
+    {
+      "id": "booking-reservation",
+      "concept": "reserva",
+      "category": "recepcion",
+      "uk": {
+        "term": "booking",
+        "ipa": "ˈbʊkɪŋ"
+      },
+      "us": {
+        "term": "reservation",
+        "ipa": "ˌrezərˈveɪʃən"
+      },
+      "aus": {
+        "term": "booking",
+        "ipa": "ˈbʊkɪŋ"
+      }
+    },
+    {
+      "id": "service-charge-tip",
+      "concept": "propina / cargo por servicio",
+      "category": "restaurante",
+      "uk": {
+        "term": "service charge",
+        "ipa": "ˈsɜːvɪs tʃɑːdʒ"
+      },
+      "us": {
+        "term": "tip",
+        "ipa": "tɪp"
+      },
+      "aus": {
+        "term": "tip",
+        "ipa": "tɪp"
+      },
+      "note": "En UK el service charge suele ir incluido; en US/AUS se deja tip."
+    },
+    {
+      "id": "trolley-cart",
+      "concept": "carrito (maletas / servicio)",
+      "category": "recepcion",
+      "uk": {
+        "term": "trolley",
+        "ipa": "ˈtrɒli"
+      },
+      "us": {
+        "term": "cart",
+        "ipa": "kɑːrt"
+      },
+      "aus": {
+        "term": "trolley",
+        "ipa": "ˈtrɒli"
+      }
+    }
+  ]
+}

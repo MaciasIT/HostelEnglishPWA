@@ -45,6 +45,10 @@ next-env.d.ts
 # Vite
 .vite
 
+# Python (scripts de datos FD-02)
+__pycache__/
+*.pyc
+
 # Project Specific Ignored Files
 GEMINI.md
 patch.lock

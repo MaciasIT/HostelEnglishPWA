@@ -19,7 +19,7 @@ const norm = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').t
 const ROLE_CATEGORIES: Record<Exclude<JobRole, 'general'>, string[]> = {
   recepcion: ['recepcion', 'harrera', 'quejas y reclamaciones', 'kexak', 'kexak eta erreklamazioak', 'general'],
   bar: ['bar', 'general'],
-  restaurante: ['restaurante', 'jatetxea', 'room service', 'general'],
+  restaurante: ['restaurante', 'jatetxea', 'room service', 'cocina', 'sukaldea', 'general'],
   limpieza: ['limpieza', 'general'],
   mantenimiento: ['mantenimiento', 'general'],
 };

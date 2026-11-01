@@ -4,6 +4,10 @@ export type Phrase = {
   en: string;
   eu?: string;
   categoria?: string;
+  /** Transcripción fonética IPA (RP) de `en`. FD-02. */
+  ipa?: string;
+  /** Fuente de origen del dato (p. ej. "frases.pdf" o "FD-02"). */
+  source?: string;
 };
 
 export type ConversationTurn = {
@@ -12,6 +16,8 @@ export type ConversationTurn = {
   es: string;
   eu?: string;
   audio?: string;
+  /** Transcripción fonética IPA (RP) de `en`. FD-02. */
+  ipa?: string;
 };
 
 export type Conversation = {
@@ -107,4 +113,33 @@ export type DailyChallenge = {
   streakReward: number;
   completed: boolean;
   claimed: boolean;
+};
+
+/* ── Variantes regionales UK / US / AUS (FD-02) ─────────────────────── */
+
+export type VariantRegion = 'uk' | 'us' | 'aus';
+
+export type VariantTerm = {
+  /** Término en la variante regional. */
+  term: string;
+  /** Transcripción fonética IPA del término. */
+  ipa: string;
+};
+
+export type ConceptVariant = {
+  /** Identificador estable del concepto (slug). */
+  id: string;
+  /** Glosa en español del concepto. */
+  concept: string;
+  /** Dominio: restaurante | bar | recepcion | cocina | limpieza | mantenimiento | general. */
+  category?: string;
+  uk: VariantTerm;
+  us: VariantTerm;
+  aus: VariantTerm;
+  /** Aclaración opcional (diferencias de sentido o pronunciación). */
+  note?: string;
+};
+
+export type VariantsFile = {
+  variants: ConceptVariant[];
 };

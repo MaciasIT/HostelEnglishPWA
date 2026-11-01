@@ -126,3 +126,74 @@ export const AppStateSchema = z.object({
 export type AppStateV1 = z.infer<typeof AppStateSchema>;
 export type ProgressData = z.infer<typeof ProgressSchema>;
 export type UserPrefs = z.infer<typeof PrefsSchema>;
+
+/* ── Esquemas de datasets de contenido (FD-02) ──────────────────────── */
+
+/**
+ * Cadena IPA válida: símbolos fonéticos (ASCII + glifos IPA), marcas de acento
+ * (`ˈ` primario, `ˌ` secundario), marca de longitud (`ː`) y espacios entre
+ * palabras. Sin barras ni corchetes. Cubre tanto el RP británico como las
+ * variantes US/AUS (p. ej. `oʊ`, `ər`) para el mapa de variantes.
+ */
+const IPA_PATTERN = /^[a-zæɑɒɔəɜɛɪʊʌθðʃʒŋɹɡʧʤːˈˌ ]+$/;
+
+export const IpaSchema = z.string().min(1).regex(IPA_PATTERN);
+
+/** Una frase trilingüe (es/en/eu) con transcripción IPA opcional. */
+export const PhraseSchema = z.object({
+  id: z.union([z.number().int().nonnegative(), z.string().min(1)]),
+  es: z.string().min(1),
+  en: z.string().min(1),
+  eu: z.string().nullable().optional(),
+  categoria: z.string().optional(),
+  ipa: IpaSchema.optional(),
+  source: z.string().optional(),
+});
+export type PhraseData = z.infer<typeof PhraseSchema>;
+
+/** Turno de diálogo de una conversación. */
+export const ConversationTurnSchema = z.object({
+  speaker: z.string().min(1),
+  en: z.string().min(1),
+  es: z.string().min(1),
+  eu: z.string().nullable().optional(),
+  audio: z.string().optional(),
+  ipa: IpaSchema.optional(),
+});
+
+/** Conversación trilingüe completa con título y escenario traducidos. */
+export const ConversationSchema = z.object({
+  id: z.union([z.number().int().nonnegative(), z.string().min(1)]),
+  title: z.string().min(1),
+  title_eu: z.string().min(1),
+  description: z.string().optional(),
+  scenario: z.string().min(1),
+  scenario_eu: z.string().min(1),
+  categoria: z.string().optional(),
+  participants: z.array(z.string().min(1)).min(1),
+  dialogue: z.array(ConversationTurnSchema).min(1),
+});
+export type ConversationData = z.infer<typeof ConversationSchema>;
+
+/** Término en una variante regional con su IPA. */
+export const VariantTermSchema = z.object({
+  term: z.string().min(1),
+  ipa: IpaSchema,
+});
+
+/** Concepto con equivalencias UK / US / AUS. */
+export const ConceptVariantSchema = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/),
+  concept: z.string().min(1),
+  category: z.string().optional(),
+  uk: VariantTermSchema,
+  us: VariantTermSchema,
+  aus: VariantTermSchema,
+  note: z.string().optional(),
+});
+export type ConceptVariantData = z.infer<typeof ConceptVariantSchema>;
+
+/** Archivo de variantes regionales (`public/data/variants.json`). */
+export const VariantsFileSchema = z.object({
+  variants: z.array(ConceptVariantSchema).min(1),
+});
