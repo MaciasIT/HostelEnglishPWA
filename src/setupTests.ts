@@ -1,6 +1,15 @@
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 
+// Proveer fake-indexeddb para tests que usan IndexedDB directamente
+import 'fake-indexeddb/auto';
+
+// Asegurar que indexedDB es accesible como variable global para librerías ESM
+// como idb, que lo consultan como indexedDB.open(...) en vez de globalThis.indexedDB.
+if (typeof indexedDB === 'undefined' && globalThis.indexedDB) {
+  (globalThis as any).indexedDB = globalThis.indexedDB;
+}
+
 // Mock de la API de Síntesis de Voz del navegador para el entorno JSDOM
 Object.defineProperty(window, 'speechSynthesis', {
   value: {
