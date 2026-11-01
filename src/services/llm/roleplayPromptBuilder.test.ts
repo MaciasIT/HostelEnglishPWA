@@ -8,7 +8,7 @@ import {
 describe('ROLEPLAY_SCENARIOS', () => {
   it('define los escenarios canónicos de hostelería', () => {
     expect(Object.keys(ROLEPLAY_SCENARIOS).sort()).toEqual(
-      ['bar', 'checkin', 'checkout', 'complaint', 'restaurant', 'room_service'],
+      ['bar', 'checkin', 'checkout', 'complaint', 'maintenance', 'restaurant', 'room_service'],
     );
   });
 

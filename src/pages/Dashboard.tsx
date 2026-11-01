@@ -9,6 +9,7 @@ import PageContainer from '@/components/layout/PageContainer';
 import {
   ChatBubbleLeftRightIcon,
   AcademicCapIcon,
+  FaceSmileIcon,
   MapIcon,
   MicrophoneIcon,
   Square2StackIcon,
@@ -42,6 +43,13 @@ const Dashboard: React.FC = () => {
       icon: MapIcon,
       color: 'bg-success',
       desc: 'Simulaciones reales'
+    },
+    {
+      title: 'Roleplay',
+      path: '/roleplay',
+      icon: FaceSmileIcon,
+      color: 'bg-pink-500',
+      desc: 'IA como cliente real'
     },
     {
       title: 'Dictado',

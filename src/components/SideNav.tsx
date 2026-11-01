@@ -14,6 +14,7 @@ import {
   PencilSquareIcon,
   ChartBarIcon,
   Squares2X2Icon,
+  FaceSmileIcon,
   XMarkIcon,
   Cog6ToothIcon,
   ChevronDoubleLeftIcon,
@@ -122,6 +123,7 @@ const SideNav: React.FC = () => {
 
           <Section title="Práctica" expanded={expanded} />
           <NavItem to="/flashcards" icon={Square2StackIcon} label="Flashcards" expanded={expanded} />
+          <NavItem to="/roleplay" icon={FaceSmileIcon} label="Roleplay" expanded={expanded} />
           <NavItem to="/quiz" icon={AcademicCapIcon} label="Quiz" expanded={expanded} />
 
           <Section title="Evaluación" expanded={expanded} />

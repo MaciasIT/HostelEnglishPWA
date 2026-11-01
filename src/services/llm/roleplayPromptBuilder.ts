@@ -14,7 +14,8 @@ export type RoleplayScenarioKey =
   | 'complaint'
   | 'checkout'
   | 'restaurant'
-  | 'bar';
+  | 'bar'
+  | 'maintenance';
 
 export interface RoleplayScenario {
   key: RoleplayScenarioKey;
@@ -74,6 +75,15 @@ export const ROLEPLAY_SCENARIOS: Record<RoleplayScenarioKey, RoleplayScenario> =
     situation:
       'El cliente pide un cóctel clásico y desea recomendación de tapas locales. ' +
       'El alumno debe describir la carta y sugerir maridajes.',
+  },
+  maintenance: {
+    key: 'maintenance',
+    title: 'Aire acondicionado con fuga de agua',
+    persona: 'Cliente preocupado por su habitación y con prisa por una solución técnica.',
+    situation:
+      'El aire acondicionado de la habitación gotea agua sobre el suelo. ' +
+      'El alumno debe registrar la incidencia, tranquilizar al huésped y confirmar ' +
+      'que un técnico acudirá a revisar la fuga.',
   },
 };
 

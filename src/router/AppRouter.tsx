@@ -11,6 +11,7 @@ import Estudio from '@/pages/Estudio';
 import Examen from '@/pages/Examen';
 import Dashboard from '@/pages/Dashboard';
 import Dictation from '@/pages/Dictation';
+import Roleplay from '@/pages/Roleplay';
 import Settings from '@/pages/Settings';
 import { PageSkeleton } from '@/components/Skeleton';
 
@@ -42,6 +43,7 @@ const AppRouter: React.FC = () => {
         <Route path="/frases" element={<AnimatedPage><Frases /></AnimatedPage>} />
         <Route path="/conversaciones" element={<AnimatedPage><Conversaciones /></AnimatedPage>} />
         <Route path="/dictado" element={<AnimatedPage><Dictation /></AnimatedPage>} />
+        <Route path="/roleplay" element={<AnimatedPage><Roleplay /></AnimatedPage>} />
         <Route path="/progreso" element={
           <AnimatedPage>
             <Suspense fallback={<PageSkeleton />}>
