@@ -226,19 +226,23 @@ textarea:focus:not(:focus-visible) {
 }
 
 /* Scrollbar personalizada */
+.custom-scrollbar::-webkit-scrollbar,
 ::-webkit-scrollbar {
   width: 6px;
 }
 
+.custom-scrollbar::-webkit-scrollbar-track,
 ::-webkit-scrollbar-track {
   background: var(--bg-base);
 }
 
+.custom-scrollbar::-webkit-scrollbar-thumb,
 ::-webkit-scrollbar-thumb {
   background: var(--color-border);
   border-radius: 10px;
 }
 
+.custom-scrollbar::-webkit-scrollbar-thumb:hover,
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
 }
