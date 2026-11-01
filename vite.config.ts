@@ -102,6 +102,14 @@ export default defineConfig({
       },
     }),
   ],
+  // WebLLM (@mlc-ai/web-llm) no debe pre-bundearse: carga WASM y pesos
+  // dinámicamente. Excluirlo evita errores de resolución en dev y build.
+  optimizeDeps: {
+    exclude: ["@mlc-ai/web-llm"],
+  },
+  build: {
+    chunkSizeWarningLimit: 6000,
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
