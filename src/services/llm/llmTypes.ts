@@ -90,12 +90,23 @@ export type LLMErrorCode =
   | 'GENERATION_FAILED'
   | 'WORKER_UNAVAILABLE'
   | 'ABORTED'
+  // --- Códigos añadidos por FC-08 (fallback cloud) ---
+  /** El endpoint proxy no está configurado (falta VITE_LLM_PROXY_URL). */
+  | 'NO_ENDPOINT'
+  /** Sin conexión o fallo de red (incluye desconexión durante el streaming). */
+  | 'NETWORK'
+  /** Respuesta HTTP no satisfactoria (4xx/5xx) del proxy. */
+  | 'HTTP_ERROR'
+  /** Respuesta o stream malformado que no se puede parsear. */
+  | 'INVALID_RESPONSE'
   | 'UNKNOWN';
 
 export interface LLMError {
   id?: string;
   code: LLMErrorCode;
   message: string;
+  /** `true` si el error es transitorio y admite reintento (FC-08 fallback cloud). */
+  retryable?: boolean;
 }
 
 /* ------------------------------------------------------------------------- */
