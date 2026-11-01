@@ -174,3 +174,142 @@ describe('useRoleplayController', () => {
     expect(mockStopListening).toHaveBeenCalledTimes(1);
   });
 });
+
+describe('useRoleplayController — asistencia (FC-04)', () => {
+  it('muestra la pista pasados 8 segundos de inactividad en fase de espera', async () => {
+    vi.useFakeTimers();
+    try {
+      const { result } = renderHook(() => useRoleplayController(ownScenario));
+      await act(async () => {
+        await result.current.actions.start();
+      });
+
+      expect(result.current.phase).toBe('prompting');
+      expect(result.current.hintVisible).toBe(false);
+
+      act(() => {
+        vi.advanceTimersByTime(8000);
+      });
+
+      expect(result.current.hintVisible).toBe(true);
+      expect(result.current.hint).not.toBeNull();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('no muestra la pista antes de los 8 segundos', async () => {
+    vi.useFakeTimers();
+    try {
+      const { result } = renderHook(() => useRoleplayController(ownScenario));
+      await act(async () => {
+        await result.current.actions.start();
+      });
+
+      act(() => {
+        vi.advanceTimersByTime(3000);
+      });
+
+      expect(result.current.hintVisible).toBe(false);
+      expect(result.current.hint).toBeNull();
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('descartar la pista la oculta', async () => {
+    vi.useFakeTimers();
+    try {
+      const { result } = renderHook(() => useRoleplayController(ownScenario));
+      await act(async () => {
+        await result.current.actions.start();
+      });
+
+      act(() => {
+        vi.advanceTimersByTime(8000);
+      });
+      expect(result.current.hintVisible).toBe(true);
+
+      act(() => result.current.actions.dismissHint());
+      expect(result.current.hintVisible).toBe(false);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('oculta la pista al recibir un turno del alumno', async () => {
+    vi.useFakeTimers();
+    try {
+      const { result } = renderHook(() => useRoleplayController(ownScenario));
+      await act(async () => {
+        await result.current.actions.start();
+      });
+
+      act(() => {
+        vi.advanceTimersByTime(8000);
+      });
+      expect(result.current.hintVisible).toBe(true);
+
+      act(() => {
+        result.current.actions.submitText('Could I see your reservation?');
+      });
+      expect(result.current.hintVisible).toBe(false);
+    } finally {
+      vi.useRealTimers();
+    }
+  });
+
+  it('detecta una descortesía y expone la corrección post-turno', async () => {
+    const { result } = renderHook(() => useRoleplayController(ownScenario));
+    await act(async () => {
+      await result.current.actions.start();
+    });
+
+    await act(async () => {
+      result.current.actions.submitText('Give me the menu.');
+    });
+
+    expect(result.current.turnFeedback).not.toBeNull();
+    expect(result.current.turnFeedback?.issues).toEqual(
+      expect.arrayContaining([expect.objectContaining({ label: 'give me' })]),
+    );
+  });
+
+  it('no emite corrección cuando el turno es cortés', async () => {
+    const { result } = renderHook(() => useRoleplayController(ownScenario));
+    await act(async () => {
+      await result.current.actions.start();
+    });
+
+    await act(async () => {
+      result.current.actions.submitText('Could you please help me find my reservation?');
+    });
+
+    expect(result.current.turnFeedback).toBeNull();
+  });
+
+  it('calcula el resumen de feedback al completar la sesión', async () => {
+    const { result } = renderHook(() => useRoleplayController(ownScenario));
+    await act(async () => {
+      await result.current.actions.start();
+    });
+
+    await act(async () => {
+      result.current.actions.submitText('Could I see your reservation and passport?');
+    });
+    await act(async () => {
+      result.current.actions.submitText('Let me check the availability of a room.');
+    });
+    await act(async () => {
+      result.current.actions.submitText(
+        "We have a room available and I apologise. Here is your confirmation.",
+      );
+    });
+
+    expect(result.current.phase).toBe('completed');
+    expect(result.current.feedbackSummary).not.toBeNull();
+    expect(result.current.feedbackSummary?.technicalVocabularyUsed).toEqual(
+      expect.arrayContaining(['room', 'apologise', 'confirmation', 'reservation', 'passport']),
+    );
+  });
+});

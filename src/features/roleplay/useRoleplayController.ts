@@ -1,5 +1,5 @@
 /**
- * Orquestador React del roleplay (FC-03).
+ * Orquestador React del roleplay (FC-03 + FC-04).
  *
  * Conecta las tres piezas del contrato de integración:
  *  - `useLocalLLM` (FC-07): motor SLM on-device para la respuesta del cliente.
@@ -8,6 +8,11 @@
  *
  * Orquesta la máquina de estados (`stateMachine`) y el verificador de objetivo
  * (`goalChecker`) con los efectos asíncronos (carga, generación, síntesis).
+ *
+ * FC-04 añade el motor de asistencia en tiempo real:
+ *  - detección de inactividad (> 8 s) con pista discreta (`hintService`);
+ *  - corrección de cortesía tras cada turno (`courtesyEvaluator`);
+ *  - resumen de feedback al completar (`feedbackSummary`).
  */
 
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -20,10 +25,16 @@ import { buildRoleplayMessages } from '@/services/llm/roleplayPromptBuilder';
 import type { LLMChatMessage, LLMLoadProgress } from '@/services/llm/llmTypes';
 import type { WaveformState } from '@/components/AudioWaveform';
 
-import { checkObjective } from './goalChecker';
+import { checkObjective, checkObjectiveAcrossTurns } from './goalChecker';
 import { shouldComplete } from './stateMachine';
 import type { RoleplayPhase, RoleplayResult, RoleplayTurn } from './stateMachine';
 import type { RoleplayScenario } from './schema';
+import { evaluatePoliteness } from './courtesyEvaluator';
+import type { CourtesyEvaluation } from './courtesyEvaluator';
+import { buildHint, INACTIVITY_HINT_THRESHOLD_MS } from './hintService';
+import type { RoleplayHint } from './hintService';
+import { buildFeedbackSummary } from './feedbackSummary';
+import type { FeedbackSummary } from './feedbackSummary';
 
 export interface RoleplayController {
   phase: RoleplayPhase;
@@ -37,10 +48,19 @@ export interface RoleplayController {
   isListening: boolean;
   asrSupported: boolean;
   asrError: string | null;
+  /** Pista sugerida tras inactividad; `null` si aún no se ha generado. */
+  hint: RoleplayHint | null;
+  /** Si la pista debe mostrarse (inactividad detectada y no descartada). */
+  hintVisible: boolean;
+  /** Corrección de cortesía del último turno del alumno. */
+  turnFeedback: CourtesyEvaluation | null;
+  /** Resumen de feedback, disponible al completar la sesión. */
+  feedbackSummary: FeedbackSummary | null;
   actions: {
     start: () => Promise<void>;
     toggleListening: () => void;
     submitText: (text: string) => void;
+    dismissHint: () => void;
     reset: () => Promise<void>;
   };
 }
@@ -71,20 +91,40 @@ export function useRoleplayController(scenario: RoleplayScenario): RoleplayContr
   const [result, setResult] = useState<RoleplayResult | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  // Estado del motor de asistencia (FC-04).
+  const [hint, setHint] = useState<RoleplayHint | null>(null);
+  const [hintVisible, setHintVisible] = useState(false);
+  const [turnFeedback, setTurnFeedback] = useState<CourtesyEvaluation | null>(null);
+  const [feedbackSummary, setFeedbackSummary] = useState<FeedbackSummary | null>(null);
+
   // Fuente única del historial que se envía al LLM.
   const messagesRef = useRef<LLMChatMessage[]>([]);
   const userTurnCountRef = useRef(0);
   const scenarioRef = useRef(scenario);
+  // Turnos del alumno ya emitidos, para el cálculo acumulado de feedback.
+  const userTurnsRef = useRef<string[]>([]);
+  const hintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     scenarioRef.current = scenario;
   }, [scenario]);
 
+  useEffect(() => {
+    return () => {
+      if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
+    };
+  }, []);
+
   const start = useCallback(async () => {
     setError(null);
     setResult(null);
     setTurns([]);
+    setHint(null);
+    setHintVisible(false);
+    setTurnFeedback(null);
+    setFeedbackSummary(null);
     userTurnCountRef.current = 0;
+    userTurnsRef.current = [];
     messagesRef.current = buildInitialMessages(scenarioRef.current);
     setPhase('loading');
 
@@ -106,10 +146,17 @@ export function useRoleplayController(scenario: RoleplayScenario): RoleplayContr
       const trimmed = text.trim();
       if (!trimmed || phase === 'completed') return;
 
+      // El alumno ha respondido: se descarta cualquier pista pendiente (FC-04).
+      setHintVisible(false);
       setPhase('thinking');
       setTurns((prev) => [...prev, { role: 'user', text: trimmed }]);
       messagesRef.current.push({ role: 'user', content: trimmed });
       userTurnCountRef.current += 1;
+      userTurnsRef.current.push(trimmed);
+
+      // Corrección de cortesía del turno (FC-04), siempre que haya algo que señalar.
+      const courtesy = evaluatePoliteness(trimmed);
+      setTurnFeedback(courtesy.issues.length > 0 ? courtesy : null);
 
       const scenarioData = scenarioRef.current;
       const goal = checkObjective(scenarioData, trimmed);
@@ -121,6 +168,17 @@ export function useRoleplayController(scenario: RoleplayScenario): RoleplayContr
       });
 
       if (done) {
+        // Resumen acumulado de feedback de toda la sesión (FC-04).
+        const cumulativeGoal = checkObjectiveAcrossTurns(
+          scenarioData,
+          userTurnsRef.current,
+        );
+        setFeedbackSummary(
+          buildFeedbackSummary({
+            userTurns: userTurnsRef.current,
+            goal: cumulativeGoal,
+          }),
+        );
         setResult({
           objectiveMet: goal.met,
           turnsUsed: userTurnCountRef.current,
@@ -165,6 +223,23 @@ export function useRoleplayController(scenario: RoleplayScenario): RoleplayContr
     }
   }, [asr, phase, handleUserTurn]);
 
+  // Detección de inactividad (FC-04): tras >8 s esperando respuesta y sin estar
+  // grabando, se ofrece una pista discreta.
+  useEffect(() => {
+    const isWaiting = phase === 'prompting' && !asr.isListening;
+    if (!isWaiting) {
+      if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
+      return;
+    }
+    hintTimerRef.current = setTimeout(() => {
+      setHint(buildHint(scenarioRef.current, userTurnsRef.current));
+      setHintVisible(true);
+    }, INACTIVITY_HINT_THRESHOLD_MS);
+    return () => {
+      if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
+    };
+  }, [phase, asr.isListening, turns.length]);
+
   const toggleListening = useCallback(() => {
     if (asr.isListening) asr.stopListening();
     else asr.startListening();
@@ -177,15 +252,26 @@ export function useRoleplayController(scenario: RoleplayScenario): RoleplayContr
     [handleUserTurn],
   );
 
+  const dismissHint = useCallback(() => {
+    setHintVisible(false);
+    if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
+  }, []);
+
   const reset = useCallback(async () => {
     cancel();
     await resetLLM();
     messagesRef.current = [];
     userTurnCountRef.current = 0;
+    userTurnsRef.current = [];
     lastTranscriptRef.current = '';
+    if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
     setTurns([]);
     setResult(null);
     setError(null);
+    setHint(null);
+    setHintVisible(false);
+    setTurnFeedback(null);
+    setFeedbackSummary(null);
     setPhase('idle');
   }, [cancel, resetLLM]);
 
@@ -201,6 +287,10 @@ export function useRoleplayController(scenario: RoleplayScenario): RoleplayContr
     isListening: asr.isListening,
     asrSupported: asr.browserSupportsSpeechRecognition,
     asrError: asr.error,
-    actions: { start, toggleListening, submitText, reset },
+    hint,
+    hintVisible,
+    turnFeedback,
+    feedbackSummary,
+    actions: { start, toggleListening, submitText, dismissHint, reset },
   };
 }

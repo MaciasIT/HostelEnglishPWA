@@ -10,6 +10,9 @@ import type { RoleplayScenario } from '@/features/roleplay/schema';
 import RoleplayScenarioPicker from '@/features/roleplay/components/RoleplayScenarioPicker';
 import RoleplayChat from '@/features/roleplay/components/RoleplayChat';
 import RoleplayControls from '@/features/roleplay/components/RoleplayControls';
+import RoleplayHint from '@/features/roleplay/components/RoleplayHint';
+import RoleplayCorrection from '@/features/roleplay/components/RoleplayCorrection';
+import RoleplayFeedbackCard from '@/features/roleplay/components/RoleplayFeedbackCard';
 
 const Roleplay: React.FC = () => {
   const [showIntro, setShowIntro] = useState(true);
@@ -168,22 +171,8 @@ function RoleplaySession({ scenario, onExit }: RoleplaySessionProps) {
                 ? 'Conseguiste los términos clave y resolviste la situación.'
                 : 'Se alcanzó el número máximo de turnos. Repasa el vocabulario e inténtalo de nuevo.'}
             </p>
-            {r && r.foundVocabulary.length > 0 && (
-              <div className="space-y-2 max-w-md mx-auto text-left">
-                <p className="text-xs uppercase tracking-widest text-secondary font-bold">
-                  Vocabulario utilizado
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {r.foundVocabulary.map((term) => (
-                    <span
-                      key={term}
-                      className="bg-success/15 text-success text-xs font-bold px-3 py-1 rounded-full border border-success/20"
-                    >
-                      {term}
-                    </span>
-                  ))}
-                </div>
-              </div>
+            {ctrl.feedbackSummary && (
+              <RoleplayFeedbackCard summary={ctrl.feedbackSummary} />
             )}
             <p className="text-sm text-secondary" role="status">
               {r?.turnsUsed ?? 0} / {r?.maxTurns ?? scenario.targetTurns.max} turnos
@@ -238,7 +227,20 @@ function RoleplaySession({ scenario, onExit }: RoleplaySessionProps) {
             typing={ctrl.phase === 'thinking'}
           />
 
+          {ctrl.turnFeedback &&
+            (ctrl.phase === 'thinking' || ctrl.phase === 'prompting') && (
+              <div className="mb-4">
+                <RoleplayCorrection feedback={ctrl.turnFeedback} />
+              </div>
+            )}
+
           <AudioWaveform state={waveformState} height={48} className="mb-4" />
+
+          {ctrl.hintVisible && ctrl.hint && (
+            <div className="mb-3">
+              <RoleplayHint hint={ctrl.hint} onDismiss={ctrl.actions.dismissHint} />
+            </div>
+          )}
 
           <RoleplayControls
             isListening={ctrl.isListening}

@@ -1,5 +1,5 @@
 /**
- * Punto de entrada público del módulo de roleplay (FC-03).
+ * Punto de entrada público del módulo de roleplay (FC-03 + FC-04).
  */
 
 export { RoleplayScenarioSchema, DepartmentSchema, TurnRangeSchema, parseScenarios } from './schema';
@@ -26,3 +26,12 @@ export type {
 
 export { useRoleplayController } from './useRoleplayController';
 export type { RoleplayController } from './useRoleplayController';
+
+export { evaluatePoliteness, courtesyLevelFor, COURTESY_LEVEL_LABELS } from './courtesyEvaluator';
+export type { CourtesyEvaluation, CourtesyIssue, CourtesyLevel } from './courtesyEvaluator';
+
+export { buildHint, INACTIVITY_HINT_THRESHOLD_MS } from './hintService';
+export type { RoleplayHint } from './hintService';
+
+export { buildFeedbackSummary } from './feedbackSummary';
+export type { FeedbackSummary } from './feedbackSummary';
