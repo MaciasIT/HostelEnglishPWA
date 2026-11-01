@@ -10,11 +10,12 @@ import { PrefsSlice, createPrefsSlice } from "./slices/prefsSlice";
 import { ProgressSlice, createProgressSlice } from "./slices/progressSlice";
 import { UISlice, createUISlice } from "./slices/uiSlice";
 import { LicenseSlice, createLicenseSlice } from "./slices/licenseSlice";
+import { ReviewSlice, createReviewSlice } from "./slices/reviewSlice";
 
 /**
  * Unified application state type combining all slices
  */
-export type AppState = DataSlice & PrefsSlice & ProgressSlice & UISlice & LicenseSlice & {
+export type AppState = DataSlice & PrefsSlice & ProgressSlice & UISlice & LicenseSlice & ReviewSlice & {
   version: number;
 };
 
@@ -31,6 +32,7 @@ export const useAppStore = create<AppState>()(
       ...createProgressSlice(...a),
       ...createUISlice(...a),
       ...createLicenseSlice(...a),
+      ...createReviewSlice(...a),
     }),
     {
       name: "hostelenglish-storage",
@@ -93,6 +95,7 @@ export const useAppStore = create<AppState>()(
         achievements: state.achievements,
         isPremium: state.isPremium,
         licenseInfo: state.licenseInfo,
+        reviewItems: state.reviewItems,
       }),
     }
   )

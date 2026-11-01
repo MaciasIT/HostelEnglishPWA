@@ -1,5 +1,31 @@
 import { z } from 'zod';
 
+export type ReviewItem = {
+  id: string;
+  dueDate: string;
+  difficulty: number;
+  stability: number;
+  retrievability: number;
+  lapses: number;
+  reps: number;
+  state: 'new' | 'learning' | 'review' | 'relearning';
+};
+
+export type ReviewItems = Record<string, ReviewItem>;
+
+export const ReviewItemSchema: z.ZodType<ReviewItem> = z.object({
+  id: z.string(),
+  dueDate: z.string(),
+  difficulty: z.number().min(1).max(10),
+  stability: z.number().nonnegative(),
+  retrievability: z.number().min(0).max(1),
+  lapses: z.number().int().nonnegative(),
+  reps: z.number().int().nonnegative(),
+  state: z.enum(['new', 'learning', 'review', 'relearning']),
+});
+
+export const ReviewItemsSchema = z.record(z.string(), ReviewItemSchema);
+
 /**
  * Progress data: Mastery level (0-3) for phrases.
  * Keys are phrase IDs (must be strings).
@@ -42,6 +68,7 @@ export const ExamEntrySchema = z.object({
 export const AppStateSchema = z.object({
   version: z.literal(1).default(1),
   progress: ProgressSchema.default({}),
+  reviewItems: ReviewItemsSchema.default({}),
   prefs: PrefsSchema.default({
     targetLanguage: 'en',
     theme: 'light',

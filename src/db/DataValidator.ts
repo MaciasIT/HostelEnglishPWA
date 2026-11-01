@@ -3,6 +3,7 @@ import { AppStateSchema, AppStateV1 } from '../models/schemas';
 const initialState: AppStateV1 = {
   version: 1,
   progress: {},
+  reviewItems: {},
   prefs: {
     targetLanguage: 'en',
     theme: 'light',
@@ -36,6 +37,11 @@ export class DataValidator {
       try {
         result.progress = AppStateSchema.shape.progress.parse(data.progress);
       } catch (per) { console.warn("Omitiendo progreso corrupto"); }
+
+      // Rescatar reviewItems si es válido
+      try {
+        result.reviewItems = AppStateSchema.shape.reviewItems.parse(data.reviewItems);
+      } catch (ri) { console.warn("Omitiendo reviewItems corruptos"); }
 
       // Rescatar preferencias si son válidas
       try {

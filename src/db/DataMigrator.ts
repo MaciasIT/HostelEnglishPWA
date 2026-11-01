@@ -1,10 +1,12 @@
 import { get, set } from './index';
+import { migrateFromProgress } from '@/services/fsrsScheduler';
 
 export class DataMigrator {
   /**
    * Transforms legacy data to V1 format.
    * - Normalizes progress keys to strings.
    * - Injects version: 1.
+   * - Migrates progress levels to FSRS reviewItems.
    */
   static migrate(data: any): any {
     if (!data) return data;
@@ -17,9 +19,16 @@ export class DataMigrator {
       });
     }
 
+    // Migración a FSRS reviewItems
+    const reviewItems: Record<string, any> = {};
+    for (const [phraseId, level] of Object.entries(normalizedProgress)) {
+      reviewItems[phraseId] = migrateFromProgress(phraseId, level as number);
+    }
+
     return {
       ...data,
       progress: normalizedProgress,
+      reviewItems,
       version: 1,
     };
   }
