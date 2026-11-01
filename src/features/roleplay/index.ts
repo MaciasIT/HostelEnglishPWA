@@ -12,6 +12,8 @@ export {
   resolveScenarioMeta,
 } from './scenarios';
 
+export { loadRoleplayCatalog, groupByDepartment, filterScenarios } from './catalog';
+
 export { checkObjective, checkObjectiveAcrossTurns } from './goalChecker';
 export type { GoalCheckResult } from './goalChecker';
 

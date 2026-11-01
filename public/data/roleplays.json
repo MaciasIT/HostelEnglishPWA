@@ -1,0 +1,530 @@
+[
+  {
+    "key": "checkin",
+    "department": "recepcion",
+    "objective": "Verifica la identidad del cliente, busca su reserva o disponibilidad y ofrece una solución de alojamiento para esta noche.",
+    "expectedVocabulary": [
+      "reservation",
+      "booking",
+      "passport",
+      "availability",
+      "apologise",
+      "room",
+      "confirmation",
+      "id"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Good evening. I have a reservation, but I don't see it in your system. Can you help me?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "checkout",
+    "department": "recepcion",
+    "objective": "Revisa los cargos, explica el concepto discutido, corrige el error si procede y cobra la cuenta.",
+    "expectedVocabulary": [
+      "invoice",
+      "charge",
+      "minibar",
+      "check out",
+      "receipt",
+      "card",
+      "refund",
+      "total"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "I'm in a hurry. There's a charge on my bill I don't recognise. What is it for?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "overbooking",
+    "department": "recepcion",
+    "objective": "Pide disculpas por el overbooking, ofrece un hotel alternativo con transporte y una compensación, y confirma los detalles.",
+    "expectedVocabulary": [
+      "overbooked",
+      "apologise",
+      "alternative",
+      "compensation",
+      "transfer",
+      "upgrade",
+      "confirm",
+      "inconvenience"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "I have a confirmed booking for three nights, and you are telling me there is no room?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "tourist_directions",
+    "department": "recepcion",
+    "objective": "Recomienda lugares de interés, explica cómo llegar a pie o en transporte público y entrega un mapa.",
+    "expectedVocabulary": [
+      "map",
+      "turn left",
+      "turn right",
+      "straight ahead",
+      "opposite",
+      "bus",
+      "five minutes",
+      "landmark"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Hi! Could you tell me how to get to the old town from here? I'd like to see the cathedral.",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "restaurant",
+    "department": "restaurante",
+    "objective": "Identifica los alérgenos de la carta y recomienda platos seguros sin gluten ni frutos secos.",
+    "expectedVocabulary": [
+      "gluten",
+      "allergy",
+      "allergen",
+      "nuts",
+      "menu",
+      "ingredients",
+      "recommend",
+      "safe"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Good evening. I have a gluten intolerance and a nut allergy. What can I order from the menu?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "order_taking",
+    "department": "restaurante",
+    "objective": "Toma la comanda completa (entrante, principal, bebida), aclara dudas del menú y repite el pedido para confirmarlo.",
+    "expectedVocabulary": [
+      "starter",
+      "main course",
+      "would you like",
+      "steak",
+      "medium",
+      "anything to drink",
+      "order",
+      "side dish"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Hi, I think we're ready to order. What would you recommend for the main course?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "wine_recommendation",
+    "department": "restaurante",
+    "objective": "Recomienda un vino adecuado al maridaje, describe sus características y ofrece una alternativa por copa.",
+    "expectedVocabulary": [
+      "red wine",
+      "white wine",
+      "dry",
+      "full-bodied",
+      "glass",
+      "bottle",
+      "pair with",
+      "vintage"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "We're having the sea bass and the lamb. Which wine on your list would go well with both?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "cold_food_complaint",
+    "department": "restaurante",
+    "objective": "Pide disculpas, retira el plato, ofrece reponerlo caliente cuanto antes y ofrece un detalle de compensación.",
+    "expectedVocabulary": [
+      "sorry",
+      "cold",
+      "replace",
+      "kitchen",
+      "fresh",
+      "immediately",
+      "apologise",
+      "on the house"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Excuse me, my pasta is cold. I'm afraid I can't eat it like this.",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "split_bill",
+    "department": "restaurante",
+    "objective": "Divide la cuenta como piden, aclara el método de pago de cada uno y entrega los tickets.",
+    "expectedVocabulary": [
+      "bill",
+      "split",
+      "separately",
+      "cash",
+      "card",
+      "receipt",
+      "total",
+      "each"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Could we have the bill, please? We'd like to split it between the four of us.",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "bar",
+    "department": "bar",
+    "objective": "Toma un pedido de coctelería concreto y sugiere tapas locales que maridan con la bebida.",
+    "expectedVocabulary": [
+      "cocktail",
+      "martini",
+      "gin",
+      "tapas",
+      "recommend",
+      "local",
+      "pairing",
+      "bitters"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Hi! I'd like a dry martini, please. And could you recommend some local tapas to go with it?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "terrace_rush",
+    "department": "bar",
+    "objective": "Toma el pedido con rapidez, ofrece opciones listas al instante y confirma el tiempo de espera.",
+    "expectedVocabulary": [
+      "terrace",
+      "quick",
+      "right away",
+      "order",
+      "table",
+      "drink",
+      "wait",
+      "minutes"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Excuse me! I have a train in twenty minutes. Can I get a coffee and a sandwich quickly?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "tapas_allergens",
+    "department": "bar",
+    "objective": "Informa de los alérgenos de cada tapa, advierte de contaminación cruzada y recomienda opciones seguras.",
+    "expectedVocabulary": [
+      "allergy",
+      "shellfish",
+      "lactose",
+      "contains",
+      "ingredients",
+      "cross-contamination",
+      "safe",
+      "tapas"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "I'm allergic to shellfish and I can't have dairy. Which of your tapas are safe for me?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "specialty_coffee",
+    "department": "bar",
+    "objective": "Explica los tipos de café y leches disponibles, confirma tamaño y extras, y repite el pedido.",
+    "expectedVocabulary": [
+      "flat white",
+      "oat milk",
+      "decaf",
+      "espresso",
+      "size",
+      "extra shot",
+      "skimmed milk",
+      "to take away"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Hi there. What kind of coffees do you have? I usually have a flat white with oat milk.",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "tips_payment",
+    "department": "bar",
+    "objective": "Cobra la cuenta con tarjeta, explica que la propina es voluntaria y gestiona la propina si el cliente la deja.",
+    "expectedVocabulary": [
+      "tip",
+      "service charge",
+      "card",
+      "contactless",
+      "receipt",
+      "change",
+      "optional",
+      "keep the change"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Can I pay by card? And how do I leave a tip here?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "complaint",
+    "department": "limpieza",
+    "objective": "Pide disculpas, ofrece una solución inmediata (enviar toallas y amenities) y confirma cuándo llegarán.",
+    "expectedVocabulary": [
+      "apologise",
+      "sorry",
+      "towels",
+      "toiletries",
+      "amenities",
+      "immediately",
+      "send",
+      "room"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Excuse me, there are no towels or toiletries in my room. This is really disappointing.",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "iron_crib_request",
+    "department": "limpieza",
+    "objective": "Confirma la disponibilidad de plancha y cuna, explica cuándo se entregarán y comprueba las normas de seguridad.",
+    "expectedVocabulary": [
+      "iron",
+      "ironing board",
+      "crib",
+      "baby",
+      "bring",
+      "available",
+      "safety",
+      "minutes"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Hello, could we have an iron and a baby crib in our room, please?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "lost_item",
+    "department": "limpieza",
+    "objective": "Toma los datos de la habitación y del objeto, confirma si se ha encontrado y explica cómo recuperarlo o enviarlo.",
+    "expectedVocabulary": [
+      "lost property",
+      "charger",
+      "left behind",
+      "room number",
+      "describe",
+      "found",
+      "send",
+      "courier"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Hi, I checked out an hour ago and I think I left my phone charger in room 214.",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "cleaning_schedule",
+    "department": "limpieza",
+    "objective": "Acuerda un horario de limpieza, explica el cartel de no molestar y confirma si se repondrán toallas.",
+    "expectedVocabulary": [
+      "housekeeping",
+      "do not disturb",
+      "schedule",
+      "clean",
+      "fresh towels",
+      "come back",
+      "later",
+      "change the sheets"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Hi, could you tell me when the cleaning happens? I'd prefer not to be disturbed this morning.",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "breakage_report",
+    "department": "limpieza",
+    "objective": "Tranquiliza al huésped, registra la rotura, explica si hay cargo y confirma que se limpiará de forma segura.",
+    "expectedVocabulary": [
+      "broken",
+      "lamp",
+      "accident",
+      "report",
+      "charge",
+      "glass",
+      "sweep",
+      "replace"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "I'm so sorry, I accidentally broke the lamp in my room. What should I do?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "maintenance",
+    "department": "mantenimiento",
+    "objective": "Registra la incidencia, tranquiliza al huésped y confirma que un técnico acudirá a revisar la fuga.",
+    "expectedVocabulary": [
+      "air conditioning",
+      "leak",
+      "water",
+      "technician",
+      "engineer",
+      "fix",
+      "inspect",
+      "room number"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Hello, the air conditioning in my room is leaking water onto the floor. Can you send someone to fix it?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "elevator_breakdown",
+    "department": "mantenimiento",
+    "objective": "Tranquiliza al huésped, pregunta si está herido, avisa al técnico y confirma el tiempo estimado de rescate.",
+    "expectedVocabulary": [
+      "elevator",
+      "stuck",
+      "calm",
+      "technician",
+      "emergency",
+      "help",
+      "button",
+      "minutes"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Hello? The elevator has stopped between floors and I'm stuck inside. Please help me!",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "bathroom_leak",
+    "department": "mantenimiento",
+    "objective": "Registra la avería, indica cerrar el agua o usar toallas, envía un fontanero y propone cambio de habitación si procede.",
+    "expectedVocabulary": [
+      "leak",
+      "sink",
+      "plumber",
+      "water",
+      "towels",
+      "bathroom",
+      "fix",
+      "change rooms"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "There's water all over my bathroom floor. I think the sink is leaking.",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "power_outage",
+    "department": "mantenimiento",
+    "objective": "Comprueba si el corte es general, sugiere revisar el cuadro o la tarjeta, envía a mantenimiento y ofrece una linterna.",
+    "expectedVocabulary": [
+      "power cut",
+      "fuse",
+      "electrician",
+      "torch",
+      "dark",
+      "key card",
+      "check",
+      "back on"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "Hi, all the lights in my room just went out. Is there a power cut?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "keycard_lock",
+    "department": "mantenimiento",
+    "objective": "Verifica la identidad, reprograma la tarjeta, comprueba la cerradura y explica el procedimiento de seguridad.",
+    "expectedVocabulary": [
+      "key card",
+      "lock",
+      "reprogram",
+      "door",
+      "identity",
+      "new key",
+      "battery",
+      "security"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "My key card isn't opening the door. I've tried three times and the light stays red.",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  }
+]

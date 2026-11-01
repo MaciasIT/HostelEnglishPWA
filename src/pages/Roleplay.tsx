@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PageContainer from '@/components/layout/PageContainer';
 import ModuleIntro from '@/components/ModuleIntro';
 import AudioWaveform, { type WaveformState } from '@/components/AudioWaveform';
@@ -7,6 +7,8 @@ import { ArrowLeftIcon, ArrowPathIcon, FaceSmileIcon, CheckBadgeIcon } from '@he
 import { useRoleplayController } from '@/features/roleplay/useRoleplayController';
 import { resolveScenarioMeta, ROLEPLAY_DEPARTMENT_LABELS } from '@/features/roleplay/scenarios';
 import type { RoleplayScenario } from '@/features/roleplay/schema';
+import { CANONICAL_ROLEPLAY_SCENARIOS } from '@/features/roleplay/scenarios';
+import { loadRoleplayCatalog } from '@/features/roleplay/catalog';
 import RoleplayScenarioPicker from '@/features/roleplay/components/RoleplayScenarioPicker';
 import RoleplayChat from '@/features/roleplay/components/RoleplayChat';
 import RoleplayControls from '@/features/roleplay/components/RoleplayControls';
@@ -17,6 +19,17 @@ import RoleplayFeedbackCard from '@/features/roleplay/components/RoleplayFeedbac
 const Roleplay: React.FC = () => {
   const [showIntro, setShowIntro] = useState(true);
   const [scenario, setScenario] = useState<RoleplayScenario | null>(null);
+  const [catalog, setCatalog] = useState<RoleplayScenario[]>(CANONICAL_ROLEPLAY_SCENARIOS);
+
+  useEffect(() => {
+    let cancelled = false;
+    void loadRoleplayCatalog().then((loaded) => {
+      if (!cancelled) setCatalog(loaded);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   if (showIntro) {
     return (
@@ -28,7 +41,7 @@ const Roleplay: React.FC = () => {
           onStart={() => setShowIntro(false)}
           color="bg-accent"
           stats={[
-            { label: 'Escenarios', value: 5 },
+            { label: 'Escenarios', value: catalog.length },
             { label: 'Turnos', value: '3–5' },
             { label: 'Voz', value: 'ASR + TTS' },
           ]}
@@ -44,7 +57,7 @@ const Roleplay: React.FC = () => {
           <p className="text-tertiary text-center mb-8 max-w-xl mx-auto">
             Elige una situación. La IA adoptará el rol de cliente y evaluará tu capacidad de resolución.
           </p>
-          <RoleplayScenarioPicker onSelect={setScenario} />
+          <RoleplayScenarioPicker onSelect={setScenario} scenarios={catalog} />
         </div>
       </PageContainer>
     );

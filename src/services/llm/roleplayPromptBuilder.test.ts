@@ -7,9 +7,18 @@ import {
 
 describe('ROLEPLAY_SCENARIOS', () => {
   it('define los escenarios canónicos de hostelería', () => {
-    expect(Object.keys(ROLEPLAY_SCENARIOS).sort()).toEqual(
-      ['bar', 'checkin', 'checkout', 'complaint', 'maintenance', 'restaurant', 'room_service'],
+    expect(Object.keys(ROLEPLAY_SCENARIOS)).toEqual(
+      expect.arrayContaining([
+        'bar',
+        'checkin',
+        'checkout',
+        'complaint',
+        'maintenance',
+        'restaurant',
+        'room_service',
+      ]),
     );
+    expect(Object.keys(ROLEPLAY_SCENARIOS).length).toBeGreaterThanOrEqual(20);
   });
 
   it('cada escenario tiene persona y situación', () => {

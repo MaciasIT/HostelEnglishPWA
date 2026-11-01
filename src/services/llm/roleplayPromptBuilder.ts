@@ -15,7 +15,25 @@ export type RoleplayScenarioKey =
   | 'checkout'
   | 'restaurant'
   | 'bar'
-  | 'maintenance';
+  | 'maintenance'
+  | 'overbooking'
+  | 'tourist_directions'
+  | 'order_taking'
+  | 'wine_recommendation'
+  | 'cold_food_complaint'
+  | 'split_bill'
+  | 'terrace_rush'
+  | 'tapas_allergens'
+  | 'specialty_coffee'
+  | 'tips_payment'
+  | 'iron_crib_request'
+  | 'lost_item'
+  | 'cleaning_schedule'
+  | 'breakage_report'
+  | 'elevator_breakdown'
+  | 'bathroom_leak'
+  | 'power_outage'
+  | 'keycard_lock';
 
 export interface RoleplayScenario {
   key: RoleplayScenarioKey;
@@ -84,6 +102,132 @@ export const ROLEPLAY_SCENARIOS: Record<RoleplayScenarioKey, RoleplayScenario> =
       'El aire acondicionado de la habitación gotea agua sobre el suelo. ' +
       'El alumno debe registrar la incidencia, tranquilizar al huésped y confirmar ' +
       'que un técnico acudirá a revisar la fuga.',
+  },
+  overbooking: {
+    key: 'overbooking',
+    title: 'Overbooking: no hay habitación disponible',
+    persona: 'Cliente alemán directo, molesto porque llega con reserva confirmada.',
+    situation:
+      'El hotel está completo por overbooking. El alumno debe disculparse, ofrecer alojamiento alternativo y compensar al huésped.',
+  },
+  tourist_directions: {
+    key: 'tourist_directions',
+    title: 'Indicaciones turísticas en recepción',
+    persona: 'Turista canadiense curioso que quiere aprovechar el día en la ciudad.',
+    situation:
+      'El cliente pide recomendaciones y cómo llegar a la catedral y al casco antiguo. El alumno debe dar indicaciones claras.',
+  },
+  order_taking: {
+    key: 'order_taking',
+    title: 'Toma de comanda',
+    persona: 'Cliente estadounidense relajado que pide con muchas dudas.',
+    situation:
+      'El cliente está listo para pedir y duda entre varios platos. El alumno debe tomar la comanda completa y confirmarla.',
+  },
+  wine_recommendation: {
+    key: 'wine_recommendation',
+    title: 'Recomendación de vinos',
+    persona: 'Cliente francés aficionado al vino, exigente pero amable.',
+    situation:
+      'El cliente pide un vino para acompañar pescado y carne. El alumno debe recomendar y describir vinos de la carta.',
+  },
+  cold_food_complaint: {
+    key: 'cold_food_complaint',
+    title: 'Queja por comida fría',
+    persona: 'Cliente británico educado pero visiblemente contrariado.',
+    situation:
+      'El plato principal llega frío. El alumno debe disculparse, retirar el plato y ofrecer una solución rápida.',
+  },
+  split_bill: {
+    key: 'split_bill',
+    title: 'Cobro con división de cuenta',
+    persona: 'Grupo de cuatro amigos que quiere dividir la cuenta de formas distintas.',
+    situation:
+      'El grupo quiere pagar por separado, uno en efectivo y otros con tarjeta. El alumno debe gestionar el cobro.',
+  },
+  terrace_rush: {
+    key: 'terrace_rush',
+    title: 'Servicio en terraza con prisa',
+    persona: 'Cliente italiano impaciente con muy poco tiempo antes de su tren.',
+    situation:
+      'La terraza está llena y el cliente tiene prisa. El alumno debe tomar el pedido rápido y dar un tiempo realista.',
+  },
+  tapas_allergens: {
+    key: 'tapas_allergens',
+    title: 'Alérgenos en tapas',
+    persona: 'Cliente irlandés alérgico al marisco y a la lactosa.',
+    situation:
+      'El cliente quiere tapear pero debe evitar marisco y lactosa. El alumno debe informar de los alérgenos y sugerir opciones seguras.',
+  },
+  specialty_coffee: {
+    key: 'specialty_coffee',
+    title: 'Cafés especiales',
+    persona: 'Cliente australiano amante del café de especialidad.',
+    situation:
+      'El cliente pregunta por tipos de café, leches y tamaños. El alumno debe explicar la carta y preparar el pedido correcto.',
+  },
+  tips_payment: {
+    key: 'tips_payment',
+    title: 'Cobro y propinas',
+    persona: 'Cliente estadounidense acostumbrado a dejar propina en todos sitios.',
+    situation:
+      'El cliente paga con tarjeta y quiere añadir propina. El alumno debe cobrar y explicar cómo funciona la propina en España.',
+  },
+  iron_crib_request: {
+    key: 'iron_crib_request',
+    title: 'Solicitud de plancha y cuna',
+    persona: 'Huésped con un bebé que necesita equipamiento extra.',
+    situation:
+      'El huésped pide una plancha y una cuna para su habitación. El alumno debe gestionar la petición y dar plazos.',
+  },
+  lost_item: {
+    key: 'lost_item',
+    title: 'Objeto olvidado en habitación',
+    persona: 'Cliente británico apurado que acaba de dejar el hotel.',
+    situation:
+      'El cliente llama porque olvidó un objeto en su habitación. El alumno debe tomar los datos y explicar el procedimiento de objetos perdidos.',
+  },
+  cleaning_schedule: {
+    key: 'cleaning_schedule',
+    title: 'Mantenimiento de la limpieza',
+    persona: 'Cliente estadounidense que quiere tranquilidad durante su estancia.',
+    situation:
+      'El cliente pregunta por el horario de limpieza y solicita que no se entre en su habitación hoy. El alumno debe acordar un horario.',
+  },
+  breakage_report: {
+    key: 'breakage_report',
+    title: 'Reporte de rotura',
+    persona: 'Huésped avergonzado que ha roto algo de la habitación.',
+    situation:
+      'El huésped rompe una lámpara y lo comunica. El alumno debe tranquilizarlo, registrar la rotura y explicar el procedimiento.',
+  },
+  elevator_breakdown: {
+    key: 'elevator_breakdown',
+    title: 'Avería de ascensor',
+    persona: 'Cliente mayor atrapado en el ascensor, nervioso.',
+    situation:
+      'El ascensor se ha detenido con un huésped dentro. El alumno debe tranquilizarlo y coordinar la ayuda.',
+  },
+  bathroom_leak: {
+    key: 'bathroom_leak',
+    title: 'Fuga en el baño',
+    persona: 'Cliente preocupado por el agua en el suelo.',
+    situation:
+      'Hay una fuga bajo el lavabo del baño. El alumno debe registrar la avería y ofrecer una solución inmediata.',
+  },
+  power_outage: {
+    key: 'power_outage',
+    title: 'Corte de luz en la habitación',
+    persona: 'Cliente tranquilo pero desorientado en una habitación a oscuras.',
+    situation:
+      'Se ha ido la luz en la habitación. El alumno debe indicar cómo comprobarlo, enviar a alguien y ofrecer una alternativa.',
+  },
+  keycard_lock: {
+    key: 'keycard_lock',
+    title: 'Cambio de cerradura electrónica',
+    persona: 'Cliente cansado cuya tarjeta no abre la puerta.',
+    situation:
+      'La tarjeta no abre la cerradura electrónica. El alumno debe verificar la identidad, reprogramar la tarjeta o cambiar la cerradura.',
   },
 };
 
