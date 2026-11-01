@@ -114,7 +114,7 @@ export function useWorkerSearch({
   const workerRef = useRef<Worker | null>(null);
   const queryRef = useRef<string>('');
   const categoryRef = useRef<string | undefined>(undefined);
-  const debounceRef = useRef<ReturnType<typeof setTimeout>>();
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const phrasesRef = useRef(phrases);
   const progressRef = useRef(progress);
   const workerAvailableRef = useRef(false);

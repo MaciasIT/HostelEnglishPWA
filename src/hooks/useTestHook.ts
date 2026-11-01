@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 
 export function useTestHook({ value = 0 }: { value?: number }) {
   const [state, setState] = useState(value);
