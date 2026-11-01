@@ -19,10 +19,10 @@ const UpgradeProButton: React.FC<Props> = ({ className = '', label }) => {
         type="button"
         onClick={() => setOpen(true)}
         aria-label={isPremium ? 'Licencia Pro activa' : 'Activar o comprar Pro'}
-        className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border transition-colors ${
+        className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border transition-[color,border-color,box-shadow] ${
           isPremium
-            ? 'text-accent border-accent/40'
-            : 'text-tertiary border-border/20 hover:text-accent hover:border-accent/40'
+            ? 'text-accent border-accent/40 shadow-[0_0_14px_-2px_var(--accent-glow)]'
+            : 'text-tertiary border-border/20 hover:text-accent hover:border-accent/40 hover:shadow-[0_0_12px_-3px_var(--accent-glow)]'
         } ${className}`}
       >
         <SparklesIcon className="w-4 h-4" />

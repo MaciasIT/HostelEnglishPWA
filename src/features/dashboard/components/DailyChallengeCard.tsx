@@ -103,9 +103,9 @@ export default function DailyChallengeCard() {
             <GiftIcon className="w-5 h-5 text-yellow-400" />
             <span className="text-sm font-bold text-primary">+{challenge.xpReward} XP</span>
           </div>
-          <div className="flex items-center gap-2 bg-background/20 px-4 py-2 rounded-2xl border border-border/10">
-            <FireIcon className="w-5 h-5 text-emerald-400" />
-            <span className="text-sm font-black text-emerald-400">+{challenge.streakReward} 🔥 DÍAS</span>
+          <div className="flex items-center gap-2 bg-background/20 px-4 py-2 rounded-2xl border border-accent/30 shadow-[0_0_14px_-4px_var(--accent-glow)]">
+            <FireIcon className="w-5 h-5 text-accent animate-flame" aria-hidden="true" />
+            <span className="text-sm font-black text-accent" data-testid="daily-streak">+{challenge.streakReward} días de racha</span>
           </div>
         </div>
       </div>
@@ -130,7 +130,7 @@ export default function DailyChallengeCard() {
           aria-label={`Progreso del reto diario: ${progressPct}%`}
         >
           <div
-            className="h-full bg-gradient-to-r from-accent to-yellow-400 rounded-full transition-all duration-700 ease-out"
+            className="h-full bg-gradient-to-r from-accent to-accent-hover rounded-full transition-all duration-700 ease-out shadow-[0_0_12px_var(--accent-glow)]"
             style={{ width: `${progressPct}%` }}
           />
         </div>

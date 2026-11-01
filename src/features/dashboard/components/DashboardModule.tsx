@@ -14,12 +14,13 @@ export default function DashboardModule({ title, path, icon: Icon, color, desc, 
   return (
     <Link
       to={path}
-      className="group bg-surface/5 hover:bg-surface/10 p-6 sm:p-8 rounded-[2.5rem] border border-border/10 transition-all hover:scale-[1.02] hover:shadow-2xl active:scale-95 flex flex-col items-center text-center animate-in fade-in slide-in-from-bottom-4"
+      className="group bg-surface/5 hover:bg-surface/10 p-6 sm:p-8 rounded-[2.5rem] border border-border/10 hover:border-accent/30 transition-all hover:scale-[1.02] hover:shadow-2xl active:scale-95 flex flex-col items-center text-center animate-in fade-in slide-in-from-bottom-4 focus-visible:outline-offset-4"
       style={{ animationDelay: `${index * 50}ms` }}
       aria-label={`Ir al módulo de ${title}: ${desc}`}
     >
-      <div className={`${color} w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center text-primary mb-4 sm:mb-6 shadow-xl group-hover:rotate-6 transition-transform`}>
-        <Icon className="w-7 h-7 sm:w-8 sm:h-8" />
+      {/* Badge luminoso: icono oscuro sobre acento (7:1+ AAA) + resplandor en hover */}
+      <div className={`${color} w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center text-on-accent mb-4 sm:mb-6 ring-1 ring-white/10 shadow-[0_0_18px_-4px_var(--accent-glow)] group-hover:shadow-[0_0_28px_-2px_var(--accent-glow)] group-hover:-rotate-6 transition-all`}>
+        <Icon className="w-7 h-7 sm:w-8 sm:h-8" aria-hidden="true" />
       </div>
       <h3 className="text-lg sm:text-xl font-black text-primary mb-2 tracking-tight group-hover:text-accent transition-colors">{title}</h3>
       <p className="text-tertiary text-xs sm:text-sm font-medium leading-relaxed">{desc}</p>

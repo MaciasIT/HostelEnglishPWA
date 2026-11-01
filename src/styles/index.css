@@ -54,9 +54,9 @@
   /* ── Texto de lectura (claro sobre fondo oscuro) ────── */
   --color-primary: var(--ds-primary);     /* Lectura principal — AAA (≈14:1 sobre surface) */
   --color-secondary: var(--ds-secondary); /* Subtítulos, metadatos — AAA ≥7:1 en bg/surface/elevated */
-  --color-tertiary: var(--ds-tertiary);   /* Timestamps, badges — AA ≥5.9:1 en todas las superficies */
+  --color-tertiary: var(--ds-tertiary);   /* Timestamps, badges — AAA ≥7:1 en bg/surface/elevated/surface-hover */
   --color-disabled: var(--ds-disabled);   /* Exento de contraste (WCAG: componentes deshabilitados) */
-  --color-on-accent: var(--ds-on-accent); /* Texto sobre acento naranja: 6.5:1 (blanco daba 2.85:1) */
+  --color-on-accent: var(--ds-on-accent); /* Texto sobre acento esmeralda: 7.5:1 AAA (blanco daba 2.6:1) */
   --color-focus-ring: var(--ds-focus-ring); /* Anillo de foco 2px ≥3:1 (WCAG 1.4.11) */
 
   /* ── Marca / identidad ─────────────────────────────── */
@@ -118,10 +118,10 @@
   --ds-surface-hover: #1a2430;
   --ds-surface-elevated: #16202c;
   --ds-primary: #f0f4f8;
-  --ds-secondary: #b8c4d6;
-  --ds-tertiary: #a0aec0;
+  --ds-secondary: #bcc8d9;       /* 8.9:1 sobre surface-hover — AAA */
+  --ds-tertiary: #aab8cb;        /* 7.8:1 sobre surface-hover — AAA */
   --ds-disabled: #475569;
-  --ds-on-accent: #022c22;
+  --ds-on-accent: #00140e;
   --ds-focus-ring: #10b981;
   --ds-border: rgba(255, 255, 255, 0.08);
   --ds-border-subtle: rgba(255, 255, 255, 0.06);
@@ -172,10 +172,10 @@
   --ds-surface-hover: #f1f5f9;
   --ds-surface-elevated: #ffffff;
   --ds-primary: #0f172a;         /* 16.6:1 sobre background */
-  --ds-secondary: #475569;       /* 7.1:1 sobre background — AAA */
-  --ds-tertiary: #5b6b82;        /* 5.1:1 sobre background — AA */
+  --ds-secondary: #334155;       /* ≥10:1 sobre background — AAA */
+  --ds-tertiary: #475569;        /* 7.1:1 sobre background — AAA */
   --ds-disabled: #94a3b8;
-  --ds-on-accent: #022c22;
+  --ds-on-accent: #00140e;
   --ds-focus-ring: #047857;      /* ≥5:1 sobre blanco (el verde de marca da 2.5:1) */
   --ds-border: rgba(0, 0, 0, 0.12);
   --ds-border-subtle: rgba(0, 0, 0, 0.06);
@@ -191,7 +191,7 @@
   --text-secondary:     #475569;
   --text-tertiary:      #94a3b8;
   --text-disabled:      #cbd5e1;
-  --text-on-accent:     #022c22;
+  --text-on-accent:     #00140e;
 
   --accent:             #10b981;
   --accent-hover:       #34d399;
@@ -305,6 +305,18 @@ textarea:focus:not(:focus-visible) {
 /* Cursor para elementos interactivos */
 button, [role="button"] { cursor: pointer; }
 input, select, textarea { cursor: text; }
+
+/* Llama animada de racha (DailyChallengeCard). Se desactiva con
+   prefers-reduced-motion mediante la regla global de arriba. */
+@keyframes ds-flame {
+  0%, 100% { transform: scale(1) rotate(-2deg); filter: drop-shadow(0 0 2px rgba(16, 185, 129, 0.4)); }
+  50% { transform: scale(1.12) rotate(2deg); filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.8)); }
+}
+
+.animate-flame {
+  animation: ds-flame 1.6s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
 
 /* Skeleton loading (gradient shimmer) */
 .skeleton {

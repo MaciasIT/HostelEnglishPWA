@@ -34,49 +34,49 @@ const Dashboard: React.FC = () => {
       title: 'Frases',
       path: '/frases',
       icon: ChatBubbleLeftRightIcon,
-      color: 'bg-info',
+      color: 'bg-cyan-400',
       desc: personalized ? `Frases de ${roleLabel}` : 'Esenciales del día a día'
     },
     {
       title: 'Diálogos',
       path: '/conversaciones',
       icon: MapIcon,
-      color: 'bg-success',
+      color: 'bg-accent',
       desc: 'Simulaciones reales'
     },
     {
       title: 'Roleplay',
       path: '/roleplay',
       icon: FaceSmileIcon,
-      color: 'bg-pink-500',
+      color: 'bg-accent-hover',
       desc: 'IA como cliente real'
     },
     {
       title: 'Dictado',
       path: '/dictado',
       icon: MicrophoneIcon,
-      color: 'bg-error',
+      color: 'bg-cyan-400',
       desc: 'Entrena tu oído'
     },
     {
       title: 'Flashcards',
       path: '/flashcards',
       icon: Square2StackIcon,
-      color: 'bg-yellow-600',
+      color: 'bg-accent',
       desc: 'Memorización rápida'
     },
     {
       title: 'Quiz',
       path: '/quiz',
       icon: AcademicCapIcon,
-      color: 'bg-purple-500',
+      color: 'bg-cyan-400',
       desc: '¡Ponte a prueba!'
     },
     {
       title: 'Progreso',
       path: '/progreso',
       icon: ChartBarIcon,
-      color: 'bg-teal-500',
+      color: 'bg-accent-hover',
       desc: 'Mira tus logros'
     },
   ];
@@ -183,7 +183,7 @@ const Dashboard: React.FC = () => {
                 aria-label={`Progreso total del curso: ${stats.percent} por ciento`}
               >
                 <div
-                  className="h-full bg-gradient-to-r from-accent to-blue-400 rounded-full transition-all duration-1000 ease-out shadow-[0_0_20px_rgba(59,130,246,0.3)]"
+                  className="h-full bg-gradient-to-r from-accent to-cyan-400 rounded-full transition-all duration-1000 ease-out shadow-[0_0_20px_rgba(34,211,238,0.35)]"
                   style={{ width: `${stats.percent}%` }}
                 ></div>
               </div>
