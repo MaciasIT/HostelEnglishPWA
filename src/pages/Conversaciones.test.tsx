@@ -5,7 +5,35 @@ import { MemoryRouter } from 'react-router';
 import Conversaciones from './Conversaciones';
 import { useAppStore } from '@/store/useAppStore';
 
-vi.mock('@/store/useAppStore');
+vi.mock('@/store/useAppStore', () => {
+  const mockState = {
+    conversations: [],
+    conversationsLoaded: false,
+    categories: [],
+    prefs: {
+      targetLanguage: 'en',
+      theme: 'light',
+      audioSpeed: 1,
+      conversationSettings: {},
+    },
+    setConversationParticipantSetting: vi.fn(),
+    loadConversations: vi.fn(),
+    loadFrases: vi.fn(),
+    initializeCategories: vi.fn(),
+    advancePhraseProgress: vi.fn(),
+    setTheme: vi.fn(),
+    setAudioSpeed: vi.fn(),
+    toggleSideNav: vi.fn(),
+  };
+
+  return {
+    useAppStore: vi.fn((selector: (state: any) => any) => {
+      if (typeof selector === 'function') return selector(mockState);
+      return mockState;
+    }),
+    useShallow: (fn: (state: any) => any) => fn,
+  };
+});
 
 const mockConversations = [
 	{

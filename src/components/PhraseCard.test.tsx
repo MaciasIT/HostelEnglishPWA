@@ -4,18 +4,23 @@ import PhraseCard from './PhraseCard';
 import { describe, it, expect, vi } from 'vitest';
 
 // Mock de useAppStore para evitar errores en el test
-vi.mock('@/store/useAppStore', () => ({
-  useAppStore: vi.fn((selector) => {
-    const mockState = {
-      prefs: {
-        audioSpeed: 1,
-        phraseSettings: { rate: 1, pitch: 1, voiceURI: '' },
-        targetLanguage: 'en',
-      },
-    };
-    return selector(mockState);
-  }),
-}));
+vi.mock('@/store/useAppStore', () => {
+  const mockState = {
+    prefs: {
+      audioSpeed: 1,
+      phraseSettings: { rate: 1, pitch: 1, voiceURI: '' },
+      targetLanguage: 'en',
+    },
+  };
+
+  return {
+    useAppStore: vi.fn((selector: (state: any) => any) => {
+      if (typeof selector === 'function') return selector(mockState);
+      return mockState;
+    }),
+    useShallow: (fn: (state: any) => any) => fn,
+  };
+});
 
 describe('<PhraseCard />', () => {
   const mockPhrase = {

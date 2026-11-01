@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { useAppStore, Conversation, ConversationTurn } from '@/store/useAppStore';
+import { useAppStore, useShallow } from '@/store/useAppStore';
+import type { Conversation, ConversationTurn } from '@/store/types';
 import CollapsibleSection from '@/components/CollapsibleSection';
 import VoiceSettings from '@/components/VoiceSettings';
 import {
@@ -23,11 +24,13 @@ interface ConversationDetailProps {
 const ConversationDetail = ({ conversation, onBack, onConversationEnd }: ConversationDetailProps) => {
   const isPlayingAllRef = useRef(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const { conversationSettings, setConversationParticipantSetting, targetLanguage } = useAppStore((state) => ({
-    conversationSettings: state.prefs.conversationSettings,
-    setConversationParticipantSetting: state.setConversationParticipantSetting,
-    targetLanguage: state.prefs.targetLanguage,
-  }));
+  const { conversationSettings, setConversationParticipantSetting, targetLanguage } = useAppStore(
+    useShallow((state) => ({
+      conversationSettings: state.prefs.conversationSettings,
+      setConversationParticipantSetting: state.setConversationParticipantSetting,
+      targetLanguage: state.prefs.targetLanguage,
+    })),
+  );
   const [selectedRole, setSelectedRole] = useState('Todos');
   const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [isFocusMode, setIsFocusMode] = useState(true);

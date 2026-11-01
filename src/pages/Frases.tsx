@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useAppStore } from '@/store/useAppStore';
+import { useAppStore, useShallow } from '@/store/useAppStore';
 import PhraseCard from '@/components/PhraseCard';
 import VoiceSettings from '@/components/VoiceSettings';
 import CollapsibleSection from '@/components/CollapsibleSection';
@@ -26,10 +26,12 @@ export default function Frases() {
     setActivePhraseSet,
   } = useAppStore();
 
-  const { phraseSettings, setPhraseSetting } = useAppStore((state) => ({
-    phraseSettings: state.prefs.phraseSettings,
-    setPhraseSetting: state.setPhraseSetting,
-  }));
+  const { phraseSettings, setPhraseSetting } = useAppStore(
+    useShallow((state) => ({
+      phraseSettings: state.prefs.phraseSettings,
+      setPhraseSetting: state.setPhraseSetting,
+    })),
+  );
 
 
   const [searchTerm, setSearchTerm] = useState('');

@@ -1,11 +1,13 @@
 import React from 'react';
-import { useAppStore } from '@/store/useAppStore';
+import { useAppStore, useShallow } from '@/store/useAppStore';
 
 const LanguageSelector: React.FC = () => {
-    const { targetLanguage, setTargetLanguage } = useAppStore((state) => ({
+    const { targetLanguage, setTargetLanguage } = useAppStore(
+      useShallow((state) => ({
         targetLanguage: state.prefs.targetLanguage,
         setTargetLanguage: state.setTargetLanguage,
-    }));
+      })),
+    );
 
     const languages = [
         { code: 'en', label: 'English', flag: '🇬🇧' },

@@ -1,18 +1,20 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import ConversationList from '@/components/ConversationList';
 import ConversationUI from '@/features/conversations/components/ConversationUI';
-import { useAppStore, Conversation } from '@/store/useAppStore';
+import { useAppStore, useShallow, Conversation } from '@/store/useAppStore';
 import PageContainer from '@/components/layout/PageContainer';
 import ModuleIntro from '@/components/ModuleIntro';
 import { ChatBubbleLeftRightIcon, FunnelIcon, TrophyIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
 
 const Conversaciones: React.FC = () => {
-  const { conversations, categories, conversationsLoaded, loadConversations } = useAppStore((state) => ({
-    conversations: state.conversations,
-    categories: state.categories,
-    conversationsLoaded: state.conversationsLoaded,
-    loadConversations: state.loadConversations,
-  }));
+  const { conversations, categories, conversationsLoaded, loadConversations } = useAppStore(
+    useShallow((state) => ({
+      conversations: state.conversations,
+      categories: state.categories,
+      conversationsLoaded: state.conversationsLoaded,
+      loadConversations: state.loadConversations,
+    })),
+  );
 
   const [selectedConversation, setSelectedConversation] = useState<Conversation | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('all');

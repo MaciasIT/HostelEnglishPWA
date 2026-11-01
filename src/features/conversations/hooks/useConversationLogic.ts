@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { useAppStore, Conversation, ConversationTurn } from '@/store/useAppStore';
+import { useAppStore, useShallow, Conversation, ConversationTurn } from '@/store/useAppStore';
 import { playAudio } from '@/utils/audio';
 
 export function useConversationLogic(conversation: Conversation, onConversationEnd: () => void) {
@@ -10,11 +10,13 @@ export function useConversationLogic(conversation: Conversation, onConversationE
   const [isFocusMode, setIsFocusMode] = useState(true);
   const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([]);
 
-  const { conversationSettings, setConversationParticipantSetting, targetLanguage } = useAppStore((state) => ({
-    conversationSettings: state.prefs.conversationSettings,
-    setConversationParticipantSetting: state.setConversationParticipantSetting,
-    targetLanguage: state.prefs.targetLanguage,
-  }));
+  const { conversationSettings, setConversationParticipantSetting, targetLanguage } = useAppStore(
+    useShallow((state) => ({
+      conversationSettings: state.prefs.conversationSettings,
+      setConversationParticipantSetting: state.setConversationParticipantSetting,
+      targetLanguage: state.prefs.targetLanguage,
+    })),
+  );
 
   const getSortedVoices = useCallback((voices: SpeechSynthesisVoice[]) => {
     const langCode = targetLanguage === 'eu' ? 'eu' : 'en';

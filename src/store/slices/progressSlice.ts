@@ -1,5 +1,6 @@
 import { StateCreator } from 'zustand';
 import { ExamResult } from '../types';
+import { queueProgressEvent, type ProgressEvent } from '@/services/syncService';
 
 export interface ProgressSlice {
   progress: Record<string, number>;
@@ -26,6 +27,8 @@ export const createProgressSlice: StateCreator<ProgressSlice> = (set, get) => ({
       };
     });
     get().recordActivity();
+    const evt: ProgressEvent = { type: 'advance_phrase', payload: { phraseId } };
+    queueProgressEvent(evt).catch(() => {});
   },
 
   recordActivity: () => {
@@ -36,9 +39,11 @@ export const createProgressSlice: StateCreator<ProgressSlice> = (set, get) => ({
         [today]: (state.dailyActivity[today] || 0) + 1,
       },
     }));
+    const evt: ProgressEvent = { type: 'record_activity', payload: { date: today } };
+    queueProgressEvent(evt).catch(() => {});
   },
 
-  recordExamResult: (score, total) => {
+  recordExamResult: (score: number, total: number) => {
     const today = new Date().toISOString().split('T')[0];
     const newResult = { date: today, score, total };
 
@@ -61,5 +66,7 @@ export const createProgressSlice: StateCreator<ProgressSlice> = (set, get) => ({
         achievements: newAchievements,
       };
     });
+    const evt: ProgressEvent = { type: 'record_exam', payload: { score, total } };
+    queueProgressEvent(evt).catch(() => {});
   },
 });

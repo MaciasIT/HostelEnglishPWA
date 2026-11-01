@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
-import { useAppStore } from '@/store/useAppStore';
+import { useAppStore, useShallow } from '@/store/useAppStore';
 import { shuffle } from '@/utils/shuffle';
 
 export function usePhrasesLogic() {
@@ -12,16 +12,18 @@ export function usePhrasesLogic() {
     setActivePhraseSet,
     phraseSettings,
     setPhraseSetting
-  } = useAppStore((state) => ({
-    frases: state.frases,
-    loadFrases: state.loadFrases,
-    progress: state.progress,
-    advancePhraseProgress: state.advancePhraseProgress,
-    categories: state.categories,
-    setActivePhraseSet: state.setActivePhraseSet,
-    phraseSettings: state.prefs.phraseSettings,
-    setPhraseSetting: state.setPhraseSetting,
-  }));
+  } = useAppStore(
+    useShallow((state) => ({
+      frases: state.frases,
+      loadFrases: state.loadFrases,
+      progress: state.progress,
+      advancePhraseProgress: state.advancePhraseProgress,
+      categories: state.categories,
+      setActivePhraseSet: state.setActivePhraseSet,
+      phraseSettings: state.prefs.phraseSettings,
+      setPhraseSetting: state.setPhraseSetting,
+    })),
+  );
 
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');

@@ -1,14 +1,16 @@
 import { useMemo } from 'react';
-import { useAppStore } from '@/store/useAppStore';
+import { useAppStore, useShallow } from '@/store/useAppStore';
 
 export function useProgressLogic() {
-  const { frases, progress, dailyActivity, achievements, prefs } = useAppStore((state) => ({
-    frases: state.frases,
-    progress: state.progress,
-    dailyActivity: state.dailyActivity,
-    achievements: state.achievements,
-    prefs: state.prefs,
-  }));
+  const { frases, progress, dailyActivity, achievements, prefs } = useAppStore(
+    useShallow((state) => ({
+      frases: state.frases,
+      progress: state.progress,
+      dailyActivity: state.dailyActivity,
+      achievements: state.achievements,
+      prefs: state.prefs,
+    })),
+  );
 
   const targetLanguage = prefs.targetLanguage;
 

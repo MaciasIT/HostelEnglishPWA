@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import { get, set, del } from "../db";
 import { Phrase, Conversation, ConversationTurn, ExamResult, AppPrefs } from "./types";
+import { useShallow } from "zustand/react/shallow";
 
 // Slices
 import { DataSlice, createDataSlice } from "./slices/dataSlice";
@@ -16,8 +17,9 @@ export type AppState = DataSlice & PrefsSlice & ProgressSlice & UISlice & {
   version: number;
 };
 
-// Re-export types for convenience
+// Re-export types and shallow selector helper for convenience
 export type { Phrase, Conversation, ConversationTurn, ExamResult, AppPrefs };
+export { useShallow };
 
 export const useAppStore = create<AppState>()(
   persist(
@@ -32,32 +34,48 @@ export const useAppStore = create<AppState>()(
       name: "hostelenglish-storage",
       storage: createJSONStorage(() => ({
         getItem: async (name) => {
-          const raw = await get(name);
-          if (!raw) return null;
+          try {
+            const raw = await get(name);
+            if (!raw) return null;
 
-          let data = raw as any;
+            let data = raw as any;
 
-          // 1. Security snapshot if legacy (v0)
-          if (!data.version) {
-            const { DataMigrator } = await import('../db/DataMigrator');
-            await DataMigrator.ensureBackup(data);
-            
-            // 2. Semantic Migration
-            console.log('🔄 Migrando datos legacy a v1...');
-            data = DataMigrator.migrate(data);
+            // 1. Security snapshot if legacy (v0)
+            if (!data.version) {
+              const { DataMigrator } = await import('../db/DataMigrator');
+              await DataMigrator.ensureBackup(data);
+
+              // 2. Semantic Migration
+              console.log('🔄 Migrando datos legacy a v1...');
+              data = DataMigrator.migrate(data);
+            }
+
+            // 3. Zod Validation (Shielding) and Soft Repair
+            const { DataValidator } = await import('../db/DataValidator');
+            const validatedData = DataValidator.validateAndRepair(data);
+
+            // createJSONStorage serializa internamente; devolvemos string para cumplir
+            // con la firma tipada de Zustand 5.
+            return JSON.stringify(validatedData);
+          } catch (err) {
+            console.warn('[store] No se pudo leer de IndexedDB, usando estado por defecto:', err);
+            return null;
           }
-
-          // 3. Zod Validation (Shielding) and Soft Repair
-          const { DataValidator } = await import('../db/DataValidator');
-          const validatedData = DataValidator.validateAndRepair(data);
-
-          return JSON.stringify(validatedData);
         },
         setItem: async (name, value) => {
-          await set(name, JSON.parse(value));
+          try {
+            // value llega como string desde createJSONStorage; parseamos antes de guardar
+            await set(name, JSON.parse(value));
+          } catch (err) {
+            console.warn('[store] No se pudo escribir en IndexedDB:', err);
+          }
         },
         removeItem: async (name) => {
-          await del(name);
+          try {
+            await del(name);
+          } catch (err) {
+            console.warn('[store] No se pudo eliminar de IndexedDB:', err);
+          }
         },
       })),
       /**

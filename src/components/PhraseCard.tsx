@@ -1,4 +1,4 @@
-import { useAppStore } from '@/store/useAppStore';
+import { useAppStore, useShallow } from '@/store/useAppStore';
 import {
   SpeakerWaveIcon,
   CheckIcon,
@@ -27,10 +27,12 @@ const PhraseCard = ({
   onAdvanceProgress,
   progressLevel,
 }: PhraseCardProps) => {
-  const { phraseSettings, targetLanguage } = useAppStore((state) => ({
-    phraseSettings: state.prefs.phraseSettings,
-    targetLanguage: state.prefs.targetLanguage,
-  }));
+  const { phraseSettings, targetLanguage } = useAppStore(
+    useShallow((state) => ({
+      phraseSettings: state.prefs.phraseSettings,
+      targetLanguage: state.prefs.targetLanguage,
+    })),
+  );
 
   const handlePlayAudio = async (lang: 'es' | 'target') => {
     const targetText = targetLanguage === 'eu' ? phrase.eu : phrase.en;

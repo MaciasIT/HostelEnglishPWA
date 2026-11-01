@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
 import { VitePWA } from "vite-plugin-pwa";
 
@@ -7,6 +8,7 @@ export default defineConfig({
   base: "/HostelEnglishPWA/", // Necesario para despliegue en GitHub Pages
   plugins: [
     react(),
+    tailwindcss(),
     VitePWA({
       registerType: "autoUpdate",
       injectRegister: "script",

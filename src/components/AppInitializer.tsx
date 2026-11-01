@@ -3,6 +3,7 @@ import InstallPWAButton from './InstallPWAButton';
 import { useAppStore } from '@/store/useAppStore';
 import { initNotifications } from '@/pushNotifications';
 import { initSentry } from '@/monitoring/sentry';
+import { initSync } from '@/services/syncService';
 
 const HYDRATION_TIMEOUT_MS = 4000;
 const BLACK_SCREEN_DELAY_MS = 2000;
@@ -48,12 +49,13 @@ const AppInitializer = () => {
 
         initNotifications();
         initSentry();
+        initSync();
 
         return () => {
             unsub();
             clearTimeout(timeout);
         };
-    }, [finish, hasHydrated]);
+        }, [finish, hasHydrated]);
 
     useEffect(() => {
         if (!hasHydrated) return;

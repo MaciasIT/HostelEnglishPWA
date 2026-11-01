@@ -1,14 +1,16 @@
 import { useMemo, useEffect } from 'react';
-import { useAppStore } from '@/store/useAppStore';
+import { useAppStore, useShallow } from '@/store/useAppStore';
 
 export function useDashboardLogic() {
-  const { frases, progress, loadFrases, frasesLoaded, prefs } = useAppStore((state) => ({
-    frases: state.frases,
-    progress: state.progress,
-    loadFrases: state.loadFrases,
-    frasesLoaded: state.frasesLoaded,
-    prefs: state.prefs,
-  }));
+  const { frases, progress, loadFrases, frasesLoaded, prefs } = useAppStore(
+    useShallow((state) => ({
+      frases: state.frases,
+      progress: state.progress,
+      loadFrases: state.loadFrases,
+      frasesLoaded: state.frasesLoaded,
+      prefs: state.prefs,
+    })),
+  );
 
   const targetLanguage = prefs.targetLanguage;
 

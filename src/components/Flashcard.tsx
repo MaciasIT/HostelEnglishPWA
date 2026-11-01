@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAppStore } from '@/store/useAppStore';
+import { useAppStore, useShallow } from '@/store/useAppStore';
 import { SpeakerWaveIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
 import { playAudio } from '@/utils/audio';
 
@@ -18,10 +18,12 @@ interface FlashcardProps {
 
 const Flashcard: React.FC<FlashcardProps> = ({ phrase }) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const { phraseSettings, targetLanguage } = useAppStore((state) => ({
-    phraseSettings: state.prefs.phraseSettings,
-    targetLanguage: state.prefs.targetLanguage,
-  }));
+  const { phraseSettings, targetLanguage } = useAppStore(
+    useShallow((state) => ({
+      phraseSettings: state.prefs.phraseSettings,
+      targetLanguage: state.prefs.targetLanguage,
+    })),
+  );
 
   const handleFlip = () => {
     setIsFlipped(!isFlipped);
