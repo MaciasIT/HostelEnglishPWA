@@ -48,7 +48,7 @@ const QuizContainer: React.FC<QuizContainerProps> = ({ category, mode, onExit })
     return (
       <div className="flex flex-col items-center justify-center p-20">
         <div className="w-16 h-16 border-4 border-accent border-t-transparent rounded-full animate-spin shadow-2xl"></div>
-        <p className="mt-6 text-gray-500 font-bold uppercase tracking-widest">Preparando el desafío...</p>
+        <p className="mt-6 text-tertiary font-bold uppercase tracking-widest">Preparando el desafío...</p>
       </div>
     );
   }
@@ -65,7 +65,7 @@ const QuizContainer: React.FC<QuizContainerProps> = ({ category, mode, onExit })
 
         <motion.div 
           layout
-          className="bg-white/10 p-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] backdrop-blur-2xl border border-white/20 relative overflow-hidden"
+          className="bg-surface/10 p-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] backdrop-blur-2xl border border-border/20 relative overflow-hidden"
         >
           {/* Animated background element */}
           <motion.div 
@@ -98,7 +98,7 @@ const QuizContainer: React.FC<QuizContainerProps> = ({ category, mode, onExit })
               {state.currentQuestion && (
                 <p 
                   data-testid="quiz-question" 
-                  className="text-2xl sm:text-3xl font-black mb-10 text-white italic leading-[1.1] text-center"
+                  className="text-2xl sm:text-3xl font-black mb-10 text-primary italic leading-[1.1] text-center"
                 >
                   "{state.currentQuestion.target.es}"
                 </p>

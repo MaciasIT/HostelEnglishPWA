@@ -53,9 +53,9 @@ const MultipleChoiceMode: React.FC<MultipleChoiceModeProps> = ({
           className={`p-5 text-left rounded-[1.5rem] transition-all duration-300 border-2 flex items-center shadow-lg relative overflow-hidden group ${feedback
             ? (option === targetText
               ? 'bg-green-600 border-green-400 scale-[1.02] shadow-[0_0_20px_rgba(34,197,94,0.4)] z-10'
-              : (feedback.isCorrect ? 'bg-white/5 border-white/10 opacity-30 scale-95' : 'bg-red-600 border-red-400'))
-            : 'bg-white/5 border-white/10 hover:bg-white/20 hover:border-accent active:scale-[0.98]'
-            } text-white text-base font-bold`}
+              : (feedback.isCorrect ? 'bg-surface/5 border-border/10 opacity-30 scale-95' : 'bg-red-600 border-red-400'))
+            : 'bg-surface/5 border-border/10 hover:bg-surface/20 hover:border-accent active:scale-[0.98]'
+            } text-primary text-base font-bold`}
           disabled={!!feedback}
         >
           {/* Subtle glow on hover */}
@@ -65,8 +65,8 @@ const MultipleChoiceMode: React.FC<MultipleChoiceModeProps> = ({
 
           <span className={`w-8 h-8 rounded-xl flex items-center justify-center mr-4 text-xs font-black border transition-colors ${
             feedback && option === targetText 
-              ? 'bg-white/20 border-white/40 text-white' 
-              : 'bg-white/10 border-white/20 text-gray-300'
+              ? 'bg-surface/20 border-border/40 text-primary' 
+              : 'bg-surface/10 border-border/20 text-secondary'
           }`}>
             {String.fromCharCode(65 + idx)}
           </span>

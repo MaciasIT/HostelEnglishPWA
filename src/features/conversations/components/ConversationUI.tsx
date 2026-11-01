@@ -39,18 +39,18 @@ export default function ConversationUI({ conversation, onBack, onConversationEnd
       <div className="flex items-center justify-between mb-8">
         <button
           onClick={() => { actions.handleStop(); onBack(); }}
-          className="p-3 bg-white/5 border border-white/10 rounded-2xl text-white hover:bg-white/10 transition-all active:scale-90"
+          className="p-3 bg-surface/5 border border-border/10 rounded-2xl text-primary hover:bg-surface/10 transition-all active:scale-90"
           aria-label="Volver al listado de diálogos"
         >
           <ArrowLeftIcon className="w-6 h-6" />
         </button>
         <div className="text-center">
-          <h1 className="text-2xl font-black text-white leading-tight">{conversation.title}</h1>
+          <h1 className="text-2xl font-black text-primary leading-tight">{conversation.title}</h1>
           <p className="text-xs text-accent font-bold uppercase tracking-widest">{categoryLabel}</p>
         </div>
         <button
           onClick={() => actions.setIsFocusMode(!state.isFocusMode)}
-          className={`p-3 border rounded-2xl transition-all active:scale-90 flex items-center gap-2 ${state.isFocusMode ? 'bg-accent border-accent text-white shadow-lg' : 'bg-white/5 border-white/10 text-gray-400'}`}
+          className={`p-3 border rounded-2xl transition-all active:scale-90 flex items-center gap-2 ${state.isFocusMode ? 'bg-accent border-accent text-primary shadow-lg' : 'bg-surface/5 border-border/10 text-tertiary'}`}
           aria-pressed={state.isFocusMode}
           aria-label={state.isFocusMode ? "Cambiar a vista de lista completa" : "Cambiar a vista de enfoque interactivo"}
         >
@@ -59,21 +59,21 @@ export default function ConversationUI({ conversation, onBack, onConversationEnd
         </button>
       </div>
 
-      <p className="text-gray-400 text-center mb-10 max-w-xl mx-auto italic font-medium">
+      <p className="text-tertiary text-center mb-10 max-w-xl mx-auto italic font-medium">
         "{conversation.description}"
       </p>
 
       {/* Profile & Controls */}
-      <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 mb-10 shadow-2xl relative overflow-hidden">
+      <div className="bg-surface/5 backdrop-blur-xl border border-border/10 rounded-[2.5rem] p-8 mb-10 shadow-2xl relative overflow-hidden">
         <div className="absolute -right-10 -top-10 w-40 h-40 bg-accent opacity-5 blur-3xl rounded-full" aria-hidden="true"></div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative z-10">
           <div>
-            <label className="block text-[10px] uppercase font-black tracking-[0.2em] text-gray-500 mb-4">Elige tu personaje</label>
+            <label className="block text-[10px] uppercase font-black tracking-[0.2em] text-tertiary mb-4">Elige tu personaje</label>
             <div className="flex flex-wrap gap-3" role="radiogroup" aria-label="Selecciona tu rol en la conversación">
               <button
                 onClick={() => { actions.handleStop(); actions.setSelectedRole('Todos'); }}
-                className={`px-6 py-3 rounded-2xl font-bold transition-all border ${state.selectedRole === 'Todos' ? 'bg-accent border-accent text-white shadow-lg scale-105' : 'bg-white/5 border-white/10 text-gray-400 hover:bg-white/10'}`}
+                className={`px-6 py-3 rounded-2xl font-bold transition-all border ${state.selectedRole === 'Todos' ? 'bg-accent border-accent text-primary shadow-lg scale-105' : 'bg-surface/5 border-border/10 text-tertiary hover:bg-surface/10'}`}
                 aria-checked={state.selectedRole === 'Todos'}
                 role="radio"
               >
@@ -83,7 +83,7 @@ export default function ConversationUI({ conversation, onBack, onConversationEnd
                 <button
                   key={p}
                   onClick={() => { actions.handleStop(); actions.setSelectedRole(p); }}
-                  className={`px-6 py-3 rounded-2xl font-bold transition-all border ${state.selectedRole === p ? 'bg-accent border-accent text-white shadow-lg scale-105' : 'bg-white/5 border-white/10 text-gray-400 hover:bg-white/10'}`}
+                  className={`px-6 py-3 rounded-2xl font-bold transition-all border ${state.selectedRole === p ? 'bg-accent border-accent text-primary shadow-lg scale-105' : 'bg-surface/5 border-border/10 text-tertiary hover:bg-surface/10'}`}
                   aria-checked={state.selectedRole === p}
                   role="radio"
                 >
@@ -97,7 +97,7 @@ export default function ConversationUI({ conversation, onBack, onConversationEnd
             {!state.isPlaying ? (
               <button
                 onClick={actions.handlePlayAll}
-                className="bg-accent hover:brightness-110 text-white font-black py-4 px-10 rounded-2xl shadow-xl transition-all active:scale-95 flex items-center gap-3 group"
+                className="bg-accent hover:brightness-110 text-primary font-black py-4 px-10 rounded-2xl shadow-xl transition-all active:scale-95 flex items-center gap-3 group"
                 aria-label="Reproducir conversación completa automáticamente"
               >
                 <PlayIcon className="w-5 h-5 fill-current group-hover:scale-110 transition-transform" />
@@ -106,7 +106,7 @@ export default function ConversationUI({ conversation, onBack, onConversationEnd
             ) : (
               <button
                 onClick={actions.handleStop}
-                className="bg-red-500 hover:brightness-110 text-white font-black py-4 px-10 rounded-2xl shadow-xl transition-all active:scale-95 flex items-center gap-3"
+                className="bg-error hover:brightness-110 text-primary font-black py-4 px-10 rounded-2xl shadow-xl transition-all active:scale-95 flex items-center gap-3"
                 aria-label="Detener reproducción"
               >
                 <PauseIcon className="w-5 h-5 fill-current animate-pulse" />
@@ -116,12 +116,12 @@ export default function ConversationUI({ conversation, onBack, onConversationEnd
           </div>
         </div>
 
-        <div className="mt-8 border-t border-white/5 pt-6">
+        <div className="mt-8 border-t border-border/5 pt-6">
           <CollapsibleSection title="Ajustes de Voces">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
               {conversation.participants.map(participant => (
-                <div key={participant} className="bg-white/10 p-6 rounded-3xl border border-white/10 shadow-inner">
-                  <h4 className="flex items-center gap-2 font-black text-white mb-4 uppercase text-xs tracking-widest text-accent">
+                <div key={participant} className="bg-surface/10 p-6 rounded-3xl border border-border/10 shadow-inner">
+                  <h4 className="flex items-center gap-2 font-black text-primary mb-4 uppercase text-xs tracking-widest text-accent">
                     <UserCircleIcon className="w-5 h-5" />
                     {participant}
                   </h4>
@@ -160,22 +160,22 @@ export default function ConversationUI({ conversation, onBack, onConversationEnd
                   isFocusMode={true}
                 />
 
-                <div className="flex items-center gap-8 mt-12 bg-white/5 p-4 rounded-3xl border border-white/5 backdrop-blur-sm shadow-xl">
+                <div className="flex items-center gap-8 mt-12 bg-surface/5 p-4 rounded-3xl border border-border/5 backdrop-blur-sm shadow-xl">
                   <button
                     disabled={state.currentTurnIndex === 0}
                     onClick={actions.goToPrevTurn}
-                    className="p-4 bg-white/5 border border-white/10 rounded-2xl text-white disabled:opacity-10 hover:bg-white/10 transition-all active:scale-90"
+                    className="p-4 bg-surface/5 border border-border/10 rounded-2xl text-primary disabled:opacity-10 hover:bg-surface/10 transition-all active:scale-90"
                     aria-label="Frase anterior"
                   >
                     <ArrowLeftIcon className="w-6 h-6" />
                   </button>
-                  <span className="text-sm font-black text-white px-4 min-w-[100px] text-center" role="status">
+                  <span className="text-sm font-black text-primary px-4 min-w-[100px] text-center" role="status">
                     {state.currentTurnIndex + 1} / {conversation.dialogue.length}
                   </span>
                   <button
                     disabled={state.currentTurnIndex === conversation.dialogue.length - 1}
                     onClick={actions.goToNextTurn}
-                    className="p-4 bg-white/5 border border-white/10 rounded-2xl text-white disabled:opacity-10 hover:bg-white/10 transition-all active:scale-90"
+                    className="p-4 bg-surface/5 border border-border/10 rounded-2xl text-primary disabled:opacity-10 hover:bg-surface/10 transition-all active:scale-90"
                     aria-label="Siguiente frase"
                   >
                     <ArrowLeftIcon className="w-6 h-6 rotate-180" />

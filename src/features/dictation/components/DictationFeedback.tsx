@@ -19,7 +19,7 @@ export default function DictationFeedback({
   return (
     <div 
       className={`mt-10 p-8 rounded-[2rem] text-center animate-in zoom-in-95 duration-500 border-2 ${
-        feedback.isCorrect ? 'bg-green-500/10 border-green-500/20' : 'bg-red-500/10 border-red-500/20'
+        feedback.isCorrect ? 'bg-success/10 border-green-500/20' : 'bg-error/10 border-red-500/20'
       }`}
     >
       <div className="flex flex-col items-center">
@@ -34,14 +34,14 @@ export default function DictationFeedback({
       </div>
 
       {correctAnswer && !feedback.isCorrect && (
-        <div className="mt-6 pt-6 border-t border-white/5">
-          <p className="text-[10px] text-gray-500 uppercase font-black mb-2">Respuesta Correcta:</p>
-          <p className="text-xl text-white font-black italic">"{correctAnswer}"</p>
+        <div className="mt-6 pt-6 border-t border-border/5">
+          <p className="text-[10px] text-tertiary uppercase font-black mb-2">Respuesta Correcta:</p>
+          <p className="text-xl text-primary font-black italic">"{correctAnswer}"</p>
         </div>
       )}
 
       {showTranslation && currentPhrase?.es && (
-        <div className="mt-4 flex items-center justify-center gap-2 text-gray-400">
+        <div className="mt-4 flex items-center justify-center gap-2 text-tertiary">
           <LanguageIcon className="w-4 h-4" aria-hidden="true" />
           <p className="text-sm italic font-medium">{currentPhrase.es}</p>
         </div>

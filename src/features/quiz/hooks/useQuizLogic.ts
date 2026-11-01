@@ -108,6 +108,7 @@ export const useQuizLogic = (category: string | null, mode: QuizMode) => {
     setQuestionsHandledInLevel(q => q + 1);
   }, [currentQuestion, feedback, lives, streak, mode, progress, targetLanguage, advancePhraseProgress]);
 
+
   const handleNextQuestion = useCallback(() => {
     if (lives <= 0) {
       setIsGameOver(true);

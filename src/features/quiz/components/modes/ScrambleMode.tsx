@@ -45,7 +45,7 @@ const ScrambleMode: React.FC<ScrambleModeProps> = ({
       {/* Answers Zone */}
       <motion.div 
         layout
-        className="min-h-[140px] p-8 bg-black/40 rounded-[2rem] border-2 border-dashed border-white/10 flex flex-wrap gap-3 shadow-inner relative"
+        className="min-h-[140px] p-8 bg-background/40 rounded-[2rem] border-2 border-dashed border-border/10 flex flex-wrap gap-3 shadow-inner relative"
       >
         <AnimatePresence>
           {scrambleAnswers.map((word) => (
@@ -53,7 +53,7 @@ const ScrambleMode: React.FC<ScrambleModeProps> = ({
               layoutId={`word-${word.id}`}
               key={word.id}
               onClick={() => onRemoveWord(word)}
-              className="px-5 py-3 bg-accent rounded-xl font-black text-white shadow-xl hover:bg-red-500 transition-colors z-10"
+              className="px-5 py-3 bg-accent rounded-xl font-black text-primary shadow-xl hover:bg-error transition-colors z-10"
               disabled={!!feedback}
             >
               {word.text}
@@ -64,7 +64,7 @@ const ScrambleMode: React.FC<ScrambleModeProps> = ({
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.4 }}
-            className="text-white italic text-center w-full mt-4 pointer-events-none"
+            className="text-primary italic text-center w-full mt-4 pointer-events-none"
           >
             Toca las palabras para construir la frase
           </motion.p>
@@ -88,7 +88,7 @@ const ScrambleMode: React.FC<ScrambleModeProps> = ({
                 key={word.id}
                 variants={itemVariants}
                 onClick={() => onSelectWord(word)}
-                className="px-5 py-3 bg-white/10 border border-white/10 rounded-xl font-black text-white hover:bg-white/20 active:scale-90 transition-all shadow-md"
+                className="px-5 py-3 bg-surface/10 border border-border/10 rounded-xl font-black text-primary hover:bg-surface/20 active:scale-90 transition-all shadow-md"
                 disabled={!!feedback}
               >
                 {word.text}
@@ -108,7 +108,7 @@ const ScrambleMode: React.FC<ScrambleModeProps> = ({
         </motion.button>
         <button
           onClick={onReset}
-          className="text-xs text-gray-500 hover:text-white uppercase tracking-widest font-black transition-all"
+          className="text-xs text-tertiary hover:text-primary uppercase tracking-widest font-black transition-all"
           disabled={!!feedback}
         >
           Resetear frase

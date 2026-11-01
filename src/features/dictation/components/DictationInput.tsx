@@ -22,7 +22,7 @@ export default function DictationInput({
   return (
     <div className="space-y-6">
       <div className="relative">
-        <p className="text-[10px] uppercase font-black text-gray-500 tracking-[0.3em] mb-4 text-center">
+        <p className="text-[10px] uppercase font-black text-tertiary tracking-[0.3em] mb-4 text-center">
           Paso 2: Escribe o Dicta
         </p>
         <div className="relative group">
@@ -31,10 +31,10 @@ export default function DictationInput({
             value={isListening ? transcript : value}
             onChange={(e) => onChange(e.target.value)}
             placeholder={isListening ? "Escuchando voz..." : "Escribe lo que has oído..."}
-            className={`w-full p-6 bg-white/5 border-2 rounded-2xl text-white text-xl focus:outline-none transition-all placeholder-gray-600 font-medium ${
+            className={`w-full p-6 bg-surface/5 border-2 rounded-2xl text-primary text-xl focus:outline-none transition-all placeholder-gray-600 font-medium ${
               isListening 
                 ? 'border-red-500/50 ring-4 ring-red-500/10' 
-                : 'border-white/10 focus:border-accent'
+                : 'border-border/10 focus:border-accent'
             }`}
             disabled={isListening}
             aria-label="Tu respuesta al dictado"
@@ -42,7 +42,7 @@ export default function DictationInput({
           {isListening && (
             <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center gap-2" aria-hidden="true">
               <span className="text-[10px] font-black text-red-500 animate-pulse">LIVE</span>
-              <div className="w-3 h-3 bg-red-500 rounded-full animate-ping"></div>
+              <div className="w-3 h-3 bg-error rounded-full animate-ping"></div>
             </div>
           )}
         </div>
@@ -51,7 +51,7 @@ export default function DictationInput({
       <div className="flex gap-4">
         <button
           onClick={onCheck}
-          className="flex-[2] bg-accent hover:brightness-110 text-white font-black py-5 px-6 rounded-2xl text-lg transition-all shadow-xl active:scale-95 flex items-center justify-center gap-3"
+          className="flex-[2] bg-accent hover:brightness-110 text-primary font-black py-5 px-6 rounded-2xl text-lg transition-all shadow-xl active:scale-95 flex items-center justify-center gap-3"
           aria-label="Comprobar respuesta"
         >
           <CheckCircleIcon className="w-6 h-6" aria-hidden="true" />
@@ -61,8 +61,8 @@ export default function DictationInput({
           onClick={onToggleListening}
           className={`flex-1 p-5 rounded-2xl transition-all shadow-xl active:scale-95 flex items-center justify-center border-2 ${
             isListening 
-              ? 'bg-red-500/20 border-red-500 text-red-500' 
-              : 'bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20'
+              ? 'bg-error/20 border-red-500 text-red-500' 
+              : 'bg-info/10 border-blue-500/30 text-blue-400 hover:bg-info/20'
           }`}
           disabled={!browserSupportsSpeechRecognition}
           aria-label={isListening ? "Detener dictado por voz" : "Iniciar dictado por voz"}

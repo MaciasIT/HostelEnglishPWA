@@ -83,7 +83,7 @@ export default function DailyChallengeCard() {
 
   return (
     <section
-      className={`bg-gradient-to-br ${ROLE_GRADIENTS[challenge.role] || ROLE_GRADIENTS.bar} backdrop-blur-md p-6 sm:p-8 rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden`}
+      className={`bg-gradient-to-br ${ROLE_GRADIENTS[challenge.role] || ROLE_GRADIENTS.bar} backdrop-blur-md p-6 sm:p-8 rounded-[2.5rem] border border-border/10 shadow-2xl relative overflow-hidden`}
       aria-labelledby="daily-challenge-heading"
     >
       {/* Header */}
@@ -92,37 +92,37 @@ export default function DailyChallengeCard() {
           <p className="text-[10px] uppercase font-bold text-accent tracking-[0.2em] mb-1">
             Reto Diario · {ROLE_LABELS[challenge.role] ?? challenge.role}
           </p>
-          <h2 id="daily-challenge-heading" className="text-xl sm:text-2xl font-black text-white tracking-tight">
+          <h2 id="daily-challenge-heading" className="text-xl sm:text-2xl font-black text-primary tracking-tight">
             {challenge.title}
           </h2>
         </div>
 
         <div className="flex items-center gap-3">
           {/* Rewards */}
-          <div className="flex items-center gap-2 bg-black/20 px-4 py-2 rounded-2xl border border-white/10">
+          <div className="flex items-center gap-2 bg-background/20 px-4 py-2 rounded-2xl border border-border/10">
             <GiftIcon className="w-5 h-5 text-yellow-400" />
-            <span className="text-sm font-bold text-white">+{challenge.xpReward} XP</span>
+            <span className="text-sm font-bold text-primary">+{challenge.xpReward} XP</span>
           </div>
-          <div className="flex items-center gap-2 bg-black/20 px-4 py-2 rounded-2xl border border-white/10">
+          <div className="flex items-center gap-2 bg-background/20 px-4 py-2 rounded-2xl border border-border/10">
             <FireIcon className="w-5 h-5 text-orange-400" />
-            <span className="text-sm font-bold text-white">+{challenge.streakReward} 🔥</span>
+            <span className="text-sm font-bold text-primary">+{challenge.streakReward} 🔥</span>
           </div>
         </div>
       </div>
 
       {/* Description */}
-      <p className="text-gray-300 font-medium text-sm leading-relaxed mb-6 relative z-10">
+      <p className="text-secondary font-medium text-sm leading-relaxed mb-6 relative z-10">
         {challenge.description}
       </p>
 
       {/* Progress bar */}
       <div className="mb-6 relative z-10">
-        <div className="flex justify-between text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">
+        <div className="flex justify-between text-xs font-bold uppercase tracking-widest text-tertiary mb-2">
           <span>Progreso</span>
           <span aria-hidden="true">{progress.completed}/{progress.total} · {progressPct}%</span>
         </div>
         <div
-          className="w-full h-3 bg-white/5 rounded-full overflow-hidden border border-white/5 shadow-inner"
+          className="w-full h-3 bg-surface/5 rounded-full overflow-hidden border border-border/5 shadow-inner"
           role="progressbar"
           aria-valuenow={progressPct}
           aria-valuemin={0}
@@ -150,8 +150,8 @@ export default function DailyChallengeCard() {
                 className={`w-full text-left flex items-start gap-4 p-4 rounded-2xl border transition-all
                   ${
                     done
-                      ? 'bg-green-500/10 border-green-500/30 opacity-70'
-                      : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20 active:scale-[0.98]'
+                      ? 'bg-success/10 border-green-500/30 opacity-70'
+                      : 'bg-surface/5 border-border/10 hover:bg-surface/10 hover:border-border/20 active:scale-[0.98]'
                   }
                   ${isClaimed ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
                 `}
@@ -160,14 +160,14 @@ export default function DailyChallengeCard() {
                   {done ? (
                     <CheckCircleIcon className="w-6 h-6 text-green-400" aria-hidden="true" />
                   ) : (
-                    <span className="w-6 h-6 rounded-full border-2 border-white/20 flex items-center justify-center">
-                      <span className="text-xs font-bold text-white/60">{idx + 1}</span>
+                    <span className="w-6 h-6 rounded-full border-2 border-border/20 flex items-center justify-center">
+                      <span className="text-xs font-bold text-primary/60">{idx + 1}</span>
                     </span>
                   )}
                 </span>
                 <span
                   className={`text-sm font-medium leading-relaxed ${
-                    done ? 'text-green-300 line-through' : 'text-white'
+                    done ? 'text-green-300 line-through' : 'text-primary'
                   }`}
                 >
                   {step.description}
@@ -184,7 +184,7 @@ export default function DailyChallengeCard() {
           <button
             type="button"
             onClick={handleClaimReward}
-            className="w-full py-4 bg-gradient-to-r from-yellow-500 to-accent text-white font-black rounded-2xl shadow-xl active:scale-95 transition-all hover:shadow-2xl flex items-center justify-center gap-2"
+            className="w-full py-4 bg-gradient-to-r from-yellow-500 to-accent text-primary font-black rounded-2xl shadow-xl active:scale-95 transition-all hover:shadow-2xl flex items-center justify-center gap-2"
           >
             <GiftIcon className="w-5 h-5" aria-hidden="true" />
             Reclamar Recompensa

@@ -50,7 +50,7 @@ const GameStatusOverlay: React.FC<GameStatusOverlayProps> = ({
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="fixed inset-0 z-[60] flex items-center justify-center p-6 bg-primary-dark/95 backdrop-blur-xl overflow-hidden"
+          className="fixed inset-0 z-[60] flex items-center justify-center p-6 bg-background/95 backdrop-blur-xl overflow-hidden"
         >
           {/* Death Aura */}
           <motion.div 
@@ -61,27 +61,27 @@ const GameStatusOverlay: React.FC<GameStatusOverlayProps> = ({
 
           <motion.div
             variants={contentVariants}
-            className="max-w-md w-full p-10 bg-gradient-to-br from-gray-900 to-black rounded-[3rem] border border-white/10 text-center shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative z-10"
+            className="max-w-md w-full p-10 bg-gradient-to-br from-gray-900 to-black rounded-[3rem] border border-border/10 text-center shadow-[0_30px_60px_rgba(0,0,0,0.8)] relative z-10"
           >
             <motion.div 
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ delay: 0.2, type: "spring" }}
-              className="w-24 h-24 bg-red-500/20 text-red-500 rounded-full flex items-center justify-center mx-auto mb-6 border border-red-500/30"
+              className="w-24 h-24 bg-error/20 text-red-500 rounded-full flex items-center justify-center mx-auto mb-6 border border-red-500/30"
             >
               <XMarkIcon className="w-14 h-14 drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
             </motion.div>
             
-            <h2 className="text-4xl font-black text-white mb-2 tracking-tighter">FIN DEL JUEGO</h2>
-            <p className="text-gray-400 mb-10 font-medium">¡No te rindas! Cada error es un paso más hacia la maestría.</p>
+            <h2 className="text-4xl font-black text-primary mb-2 tracking-tighter">FIN DEL JUEGO</h2>
+            <p className="text-tertiary mb-10 font-medium">¡No te rindas! Cada error es un paso más hacia la maestría.</p>
 
             <div className="grid grid-cols-2 gap-4 mb-10">
-              <div className="bg-white/5 p-5 rounded-[2rem] border border-white/5 shadow-inner">
-                <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em] mb-1">Puntos</p>
-                <p className="text-3xl font-black text-white">{score}</p>
+              <div className="bg-surface/5 p-5 rounded-[2rem] border border-border/5 shadow-inner">
+                <p className="text-[10px] text-tertiary font-black uppercase tracking-[0.2em] mb-1">Puntos</p>
+                <p className="text-3xl font-black text-primary">{score}</p>
               </div>
-              <div className="bg-white/5 p-5 rounded-[2rem] border border-white/5 shadow-inner">
-                <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em] mb-1">Mejor Racha</p>
+              <div className="bg-surface/5 p-5 rounded-[2rem] border border-border/5 shadow-inner">
+                <p className="text-[10px] text-tertiary font-black uppercase tracking-[0.2em] mb-1">Mejor Racha</p>
                 <p className="text-3xl font-black text-orange-500 drop-shadow-[0_0_8px_rgba(249,115,22,0.4)]">{streak}</p>
               </div>
             </div>
@@ -90,14 +90,14 @@ const GameStatusOverlay: React.FC<GameStatusOverlayProps> = ({
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={onRetry}
-              className="w-full bg-accent text-white font-black py-5 rounded-2xl shadow-[0_10px_30px_rgba(230,126,34,0.4)] flex items-center justify-center gap-3 hover:brightness-110 transition-all uppercase tracking-widest text-lg"
+              className="w-full bg-accent text-primary font-black py-5 rounded-2xl shadow-[0_10px_30px_rgba(230,126,34,0.4)] flex items-center justify-center gap-3 hover:brightness-110 transition-all uppercase tracking-widest text-lg"
             >
               <ArrowPathIcon className="w-6 h-6" />
               REINTENTAR
             </motion.button>
             <button
               onClick={onExit}
-              className="w-full mt-6 text-gray-500 font-black py-2 hover:text-white transition-all uppercase tracking-widest text-xs"
+              className="w-full mt-6 text-tertiary font-black py-2 hover:text-primary transition-all uppercase tracking-widest text-xs"
             >
               SALIR AL MENÚ
             </button>
@@ -111,7 +111,7 @@ const GameStatusOverlay: React.FC<GameStatusOverlayProps> = ({
           initial="hidden"
           animate="visible"
           exit="exit"
-          className="fixed inset-0 z-[60] flex items-center justify-center p-6 bg-primary-dark/95 backdrop-blur-xl overflow-hidden"
+          className="fixed inset-0 z-[60] flex items-center justify-center p-6 bg-background/95 backdrop-blur-xl overflow-hidden"
         >
           {/* Victory Aura */}
           <motion.div 
@@ -133,16 +133,16 @@ const GameStatusOverlay: React.FC<GameStatusOverlayProps> = ({
               <SparklesIcon className="w-14 h-14" />
             </motion.div>
 
-            <h2 className="text-4xl font-black text-white mb-2 tracking-tighter">¡MISIÓN CUMPLIDA!</h2>
-            <p className="text-gray-400 mb-10 font-medium">Impresionante. Has dominado este set de {questionsPerLevel} preguntas.</p>
+            <h2 className="text-4xl font-black text-primary mb-2 tracking-tighter">¡MISIÓN CUMPLIDA!</h2>
+            <p className="text-tertiary mb-10 font-medium">Impresionante. Has dominado este set de {questionsPerLevel} preguntas.</p>
 
             <div className="grid grid-cols-2 gap-4 mb-10">
-              <div className="bg-white/5 p-5 rounded-[2rem] border border-white/5 shadow-inner">
-                <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em] mb-1">Puntos</p>
-                <p className="text-3xl font-black text-white">{score} / {totalQuestions}</p>
+              <div className="bg-surface/5 p-5 rounded-[2rem] border border-border/5 shadow-inner">
+                <p className="text-[10px] text-tertiary font-black uppercase tracking-[0.2em] mb-1">Puntos</p>
+                <p className="text-3xl font-black text-primary">{score} / {totalQuestions}</p>
               </div>
-              <div className="bg-white/5 p-5 rounded-[2rem] border border-white/5 shadow-inner">
-                <p className="text-[10px] text-gray-500 font-black uppercase tracking-[0.2em] mb-1">Vidas</p>
+              <div className="bg-surface/5 p-5 rounded-[2rem] border border-border/5 shadow-inner">
+                <p className="text-[10px] text-tertiary font-black uppercase tracking-[0.2em] mb-1">Vidas</p>
                 <p className="text-3xl font-black text-red-500 drop-shadow-[0_0_8px_rgba(239,68,68,0.3)]">{lives}</p>
               </div>
             </div>
@@ -151,14 +151,14 @@ const GameStatusOverlay: React.FC<GameStatusOverlayProps> = ({
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               onClick={onRetry}
-              className="w-full bg-green-600 text-white font-black py-5 rounded-2xl shadow-[0_10px_30px_rgba(22,163,74,0.4)] flex items-center justify-center gap-3 hover:brightness-110 transition-all uppercase tracking-widest text-lg"
+              className="w-full bg-green-600 text-primary font-black py-5 rounded-2xl shadow-[0_10px_30px_rgba(22,163,74,0.4)] flex items-center justify-center gap-3 hover:brightness-110 transition-all uppercase tracking-widest text-lg"
             >
               <HomeIcon className="w-6 h-6" />
               SIGUIENTE NIVEL
             </motion.button>
             <button
               onClick={onExit}
-              className="w-full mt-6 text-gray-500 font-black py-2 hover:text-white transition-all uppercase tracking-widest text-xs"
+              className="w-full mt-6 text-tertiary font-black py-2 hover:text-primary transition-all uppercase tracking-widest text-xs"
             >
               VER OTROS MUNDOS
             </button>

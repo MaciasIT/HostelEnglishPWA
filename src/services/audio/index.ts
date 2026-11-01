@@ -46,3 +46,18 @@ export type {
   SpeakResult,
   SpeechLanguage,
 } from './types';
+
+// Scoring fonético (FC-05): fonemizador ligero + DTW + catálogo de errores.
+export { scorePronunciation } from './phoneticScorer';
+export type {
+  PronunciationIssue,
+  PhoneticScores,
+  PhoneticScoreResult,
+  ScorePronunciationOptions,
+} from './phoneticScorer';
+export { phonemize } from './phonemizer';
+export type { ScoringLanguage } from './phonemizer';
+export { alignPhonemes } from './dtw';
+export type { DTWResult, AlignmentStep } from './dtw';
+export { HISPANOPHONE_CONFUSIONS, substitutionCost, findConfusion } from './pronunciationCatalog';
+export type { ConfusionRule, ErrorCategory } from './pronunciationCatalog';

@@ -31,14 +31,14 @@ const FeedbackOverlay: React.FC<FeedbackOverlayProps> = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-primary-dark/80 backdrop-blur-md overflow-hidden"
+          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-background/80 backdrop-blur-md overflow-hidden"
         >
           {/* Background Aura */}
           <motion.div 
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 2, opacity: 0.6 }}
             className={`absolute w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none ${
-              feedback.isCorrect ? 'bg-green-500/30' : 'bg-red-500/30'
+              feedback.isCorrect ? 'bg-success/30' : 'bg-error/30'
             }`}
           />
 
@@ -59,17 +59,17 @@ const FeedbackOverlay: React.FC<FeedbackOverlayProps> = ({
               className="mb-6 flex justify-center"
             >
               {feedback.isCorrect ? (
-                <div className="p-4 bg-white/20 rounded-full" aria-hidden="true">
-                  <CheckCircleIcon className="w-20 h-20 text-white drop-shadow-lg" />
+                <div className="p-4 bg-surface/20 rounded-full" aria-hidden="true">
+                  <CheckCircleIcon className="w-20 h-20 text-primary drop-shadow-lg" />
                 </div>
               ) : (
-                <div className="p-4 bg-white/20 rounded-full" aria-hidden="true">
-                  <XMarkIcon className="w-20 h-20 text-white drop-shadow-lg" />
+                <div className="p-4 bg-surface/20 rounded-full" aria-hidden="true">
+                  <XMarkIcon className="w-20 h-20 text-primary drop-shadow-lg" />
                 </div>
               )}
             </motion.div>
 
-            <h3 className="text-4xl font-black mb-2 text-white tracking-tighter">
+            <h3 className="text-4xl font-black mb-2 text-primary tracking-tighter">
               {feedback.isCorrect ? '¡CORRECTO!' : '¡UPS!'}
             </h3>
 
@@ -78,7 +78,7 @@ const FeedbackOverlay: React.FC<FeedbackOverlayProps> = ({
                 <motion.p 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  className="text-xl text-white/90 font-bold"
+                  className="text-xl text-primary/90 font-bold"
                 >
                   {streak > 2 ? (
                     <motion.span 
@@ -92,8 +92,8 @@ const FeedbackOverlay: React.FC<FeedbackOverlayProps> = ({
                 </motion.p>
               ) : (
                 <div className="space-y-1">
-                  <p className="text-sm text-white/60 uppercase tracking-widest font-black">Era:</p>
-                  <p className="text-2xl text-white font-black italic">
+                  <p className="text-sm text-primary/60 uppercase tracking-widest font-black">Era:</p>
+                  <p className="text-2xl text-primary font-black italic">
                     {targetLanguage === 'eu' ? currentQuestion.target.eu : currentQuestion.target.en}
                   </p>
                 </div>
@@ -104,7 +104,7 @@ const FeedbackOverlay: React.FC<FeedbackOverlayProps> = ({
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={onContinue}
-              className="bg-white text-primary-dark font-black py-5 px-12 rounded-2xl hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] transition-all shadow-2xl w-full uppercase tracking-widest text-lg"
+              className="bg-surface text-primary font-black py-5 px-12 rounded-2xl hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] transition-all shadow-2xl w-full uppercase tracking-widest text-lg"
             >
               {lives <= 0 ? 'Ver Resultados' : (questionsHandled >= totalInLevel ? 'Ver Victoria' : 'Siguiente')}
             </motion.button>
