@@ -29,6 +29,29 @@ export type ExamResult = {
   total: number;
 };
 
+export type CategoryScore = {
+  category: string;
+  total: number;
+  correct: number;
+  accuracy: number;
+};
+
+export type Certification = {
+  id: string;
+  studentName: string;
+  role: 'recepcion' | 'restaurante' | 'limpieza' | 'mantenimiento' | 'bar';
+  roleLabel: string;
+  examDate: string;
+  score: number;
+  total: number;
+  accuracy: number;
+  avgResponseTimeMs: number;
+  categoryScores: CategoryScore[];
+  competencyIndex: number;
+  passed: boolean;
+  verificationCode: string;
+};
+
 export type AppPrefs = {
   targetLanguage: 'en' | 'eu';
   theme: string;
@@ -45,6 +68,8 @@ export type AppPrefs = {
     rate: number;
     pitch: number;
   };
+  preferredRole: 'bar' | 'recepcion' | 'restaurante' | 'mantenimiento' | 'limpieza';
+  studentName: string;
 };
 
 export type LicenseDetails = {
@@ -53,4 +78,25 @@ export type LicenseDetails = {
   type: 'lifetime' | 'annual';
   issuedAt: number;
   expiresAt: number;
+};
+
+export type PreferredRole = 'bar' | 'recepcion' | 'restaurante' | 'mantenimiento' | 'limpieza';
+
+export type ChallengeStep = {
+  id: string;
+  description: string;
+  completed: boolean;
+};
+
+export type DailyChallenge = {
+  id: string;
+  date: string; // YYYY-MM-DD
+  role: PreferredRole;
+  title: string;
+  description: string;
+  steps: ChallengeStep[];
+  xpReward: number;
+  streakReward: number;
+  completed: boolean;
+  claimed: boolean;
 };

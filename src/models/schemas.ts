@@ -50,6 +50,7 @@ export const PrefsSchema = z.object({
   audioSpeed: z.number().min(0.1).max(2),
   conversationSettings: z.record(z.string(), VoiceSettingsSchema),
   phraseSettings: VoiceSettingsSchema,
+  preferredRole: z.enum(['bar', 'recepcion', 'restaurante', 'mantenimiento', 'limpieza']).default('bar'),
 });
 
 /**
@@ -60,6 +61,37 @@ export const ExamEntrySchema = z.object({
   score: z.number().int().nonnegative(),
   total: z.number().int().positive(),
 });
+
+/**
+ * Score breakdown by thematic category.
+ */
+export const CategoryScoreSchema = z.object({
+  category: z.string(),
+  total: z.number().int().positive(),
+  correct: z.number().int().nonnegative(),
+  accuracy: z.number().min(0).max(1),
+});
+
+/**
+ * Certification record for a role-based exam.
+ */
+export const CertificationSchema = z.object({
+  id: z.string(),
+  studentName: z.string(),
+  role: z.enum(['recepcion', 'restaurante', 'limpieza', 'mantenimiento', 'bar']),
+  roleLabel: z.string(),
+  examDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  score: z.number().int(),
+  total: z.number().int(),
+  accuracy: z.number().min(0).max(1),
+  avgResponseTimeMs: z.number().nonnegative(),
+  categoryScores: z.array(CategoryScoreSchema),
+  competencyIndex: z.number().min(0).max(100),
+  passed: z.boolean(),
+  verificationCode: z.string(),
+});
+
+export const CertificationsSchema = z.array(CertificationSchema);
 
 /**
  * Complete Application State (Persistent parts).
@@ -79,10 +111,12 @@ export const AppStateSchema = z.object({
       rate: 1,
       pitch: 1,
     },
+    preferredRole: 'bar',
   }),
   dailyActivity: z.record(z.string(), z.number().int().nonnegative()).default({}),
   examHistory: z.array(ExamEntrySchema).default([]),
   achievements: z.array(z.string()).default([]),
+  certifications: CertificationsSchema.default([]),
 });
 
 export type AppStateV1 = z.infer<typeof AppStateSchema>;

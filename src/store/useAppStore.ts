@@ -11,11 +11,12 @@ import { ProgressSlice, createProgressSlice } from "./slices/progressSlice";
 import { UISlice, createUISlice } from "./slices/uiSlice";
 import { LicenseSlice, createLicenseSlice } from "./slices/licenseSlice";
 import { ReviewSlice, createReviewSlice } from "./slices/reviewSlice";
+import { DailyChallengeSlice, createDailyChallengeSlice } from "./slices/dailyChallengeSlice";
 
 /**
  * Unified application state type combining all slices
  */
-export type AppState = DataSlice & PrefsSlice & ProgressSlice & UISlice & LicenseSlice & ReviewSlice & {
+export type AppState = DataSlice & PrefsSlice & ProgressSlice & UISlice & LicenseSlice & ReviewSlice & DailyChallengeSlice & {
   version: number;
 };
 
@@ -33,6 +34,7 @@ export const useAppStore = create<AppState>()(
       ...createUISlice(...a),
       ...createLicenseSlice(...a),
       ...createReviewSlice(...a),
+      ...createDailyChallengeSlice(...a),
     }),
     {
       name: "hostelenglish-storage",
@@ -96,6 +98,9 @@ export const useAppStore = create<AppState>()(
         isPremium: state.isPremium,
         licenseInfo: state.licenseInfo,
         reviewItems: state.reviewItems,
+        currentChallenge: state.currentChallenge,
+        lastChallengeDate: state.lastChallengeDate,
+        certifications: state.certifications,
       }),
     }
   )

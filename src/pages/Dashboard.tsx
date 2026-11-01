@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import { useDashboardLogic } from '@/features/dashboard/hooks/useDashboardLogic';
 import DashboardModule from '@/features/dashboard/components/DashboardModule';
+import DailyChallengeCard from '@/features/dashboard/components/DailyChallengeCard';
 import PageContainer from '@/components/layout/PageContainer';
 import {
   ChatBubbleLeftRightIcon,
@@ -103,6 +104,9 @@ const Dashboard: React.FC = () => {
 
           <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-accent opacity-10 blur-[100px] rounded-full" aria-hidden="true"></div>
         </section>
+
+        {/* Daily Challenge */}
+        <DailyChallengeCard />
 
         {/* Modules Grid */}
         <section aria-labelledby="modules-heading">

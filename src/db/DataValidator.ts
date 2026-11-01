@@ -14,6 +14,7 @@ const initialState: AppStateV1 = {
       rate: 1,
       pitch: 1,
     },
+    preferredRole: 'bar',
   },
   dailyActivity: {},
   examHistory: [],
