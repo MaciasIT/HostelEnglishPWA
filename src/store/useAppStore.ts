@@ -95,6 +95,7 @@ export const useAppStore = create<AppState>()(
         dailyActivity: state.dailyActivity,
         examHistory: state.examHistory,
         achievements: state.achievements,
+        isSideNavCollapsed: state.isSideNavCollapsed,
         isPremium: state.isPremium,
         licenseInfo: state.licenseInfo,
         reviewItems: state.reviewItems,
