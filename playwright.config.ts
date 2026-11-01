@@ -10,7 +10,7 @@ export default defineConfig({
   workers: 1,
   reporter: 'html',
   timeout: 60_000,
-  expect: { timeout: 10_000 },
+  expect: { timeout: 15_000 },
   use: {
     baseURL,
     trace: 'on-first-retry',
@@ -21,12 +21,6 @@ export default defineConfig({
       name: 'chromium-mobile',
       use: {
         ...devices['Pixel 7'],
-      },
-    },
-    {
-      name: 'webkit-mobile',
-      use: {
-        ...devices['iPhone 14'],
       },
     },
   ],

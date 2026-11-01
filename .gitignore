@@ -60,5 +60,9 @@ cerebro/
 sw.js
 workbox-*.js
 
+# Playwright
+playwright-report/
+test-results/
+
 # Privatizar información comercial
 docs/comercial/
