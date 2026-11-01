@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { useAppStore } from '@/store/useAppStore';
+import UpgradeProButton from '@/components/UpgradeProButton';
 import ThemeToggle from '@/components/ThemeToggle';
 import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 import { Bars3Icon, UserCircleIcon, WifiIcon, SignalSlashIcon } from '@heroicons/react/24/outline';
@@ -39,6 +40,7 @@ const TopNav: React.FC = () => {
           {online ? <WifiIcon className="w-4 h-4" /> : <SignalSlashIcon className="w-4 h-4" />}
           <span className="hidden sm:inline">{online ? 'Online' : 'Offline'}</span>
         </span>
+        <UpgradeProButton />
         <ThemeToggle />
         <Link
           to="/configuracion"

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import PageContainer from '@/components/layout/PageContainer';
 import { useAppStore } from '@/store/useAppStore';
+import UpgradeProButton from '@/components/UpgradeProButton';
 import {
     SpeakerWaveIcon,
     BeakerIcon,
@@ -9,7 +10,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 const Settings = () => {
-    const { prefs } = useAppStore();
+    const { prefs, isPremium, licenseInfo } = useAppStore();
     const targetLanguage = prefs.targetLanguage;
 
     const [allVoices, setAllVoices] = useState<SpeechSynthesisVoice[]>([]);
@@ -52,6 +53,19 @@ const Settings = () => {
     return (
         <PageContainer title="Configuración y Diagnóstico">
             <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
+
+                {/* Suscripción */}
+                <section aria-labelledby="sub-title" className="bg-surface/5 backdrop-blur-xl border border-border/10 rounded-[2rem] p-6 flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <h2 id="sub-title" className="text-xl font-black text-primary">Suscripción</h2>
+                        <p className="text-sm text-tertiary">
+                            {isPremium
+                                ? `Licencia Pro activa${licenseInfo ? ` · ${licenseInfo.email}` : ''}`
+                                : 'Versión gratuita. Activa tu clave o consigue el Pase Pro.'}
+                        </p>
+                    </div>
+                    <UpgradeProButton label={isPremium ? 'Gestionar Pro' : 'Activar Pro'} />
+                </section>
 
                 {/* TTS Diagnostic Section */}
                 <div className="bg-surface/5 backdrop-blur-xl border border-border/10 rounded-[2.5rem] p-8 shadow-2xl relative overflow-hidden">
