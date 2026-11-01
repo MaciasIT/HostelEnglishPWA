@@ -9,6 +9,7 @@
 
 import { playAudio } from '@/utils/audio';
 
+import { createPiperSynth, hasPiperVoice } from './piper';
 import { fragmentKey, type AudioCache, type AudioFragment } from './audioCache';
 import type {
   AudioEngineAdapter,
@@ -63,36 +64,40 @@ export class WebSpeechEngine implements AudioEngineAdapter {
 export type PiperSynth = (text: string, options: SpeakOptions) => Promise<void>;
 
 /**
- * La integración real de Piper (onnxruntime-web + voces ONNX) se añade en una
- * fase posterior (FC-09). Hasta entonces, la síntesis por defecto lanza para
- * forzar la degradación limpia hacia cloud/web-speech.
- */
-const notWiredPiperSynth: PiperSynth = async () => {
-  throw new Error('PiperEngine: síntesis on-device no integrada todavía');
-};
-
-/**
- * PiperEngine — síntesis on-device (primera opción en dispositivos capaces).
+ * PiperEngine — síntesis on-device NATIVA (FC-09).
+ *
+ * Integra la síntesis real de Piper (onnxruntime-web + fonemizador espeak-ng,
+ * ver `./piper`). Da servicio solo a los idiomas con voz Piper empaquetada
+ * (por ahora, euskera: voces Antton y Maider); para el resto (`en`/`es`) se
+ * declara no disponible y el `AudioManager` degrada limpiamente a
+ * cloud/web-speech (cero fallos silenciosos).
  */
 export class PiperEngine implements AudioEngineAdapter {
   readonly type = 'piper' as const;
 
-  constructor(private synth: PiperSynth = notWiredPiperSynth) {}
+  constructor(private synth: PiperSynth = createPiperSynth()) {}
 
-  async isAvailable(caps: DeviceCapabilities): Promise<boolean> {
-    return caps.webgpu && caps.webAudio;
+  async isAvailable(caps: DeviceCapabilities, language?: SpeechLanguage): Promise<boolean> {
+    if (!caps.webgpu || !caps.webAudio) return false;
+    // Sin idioma no podemos descartar por voz; el idioma concreto se valida en
+    // `speak` (que delega en la degradación limpia si no hay voz Piper).
+    return language === undefined || hasPiperVoice(language);
   }
 
   async speak(text: string, options: SpeakOptions): Promise<void> {
+    const language = options.language ?? 'en';
+    if (!hasPiperVoice(language)) {
+      throw new Error(`PiperEngine: sin voz Piper nativa para '${language}'`);
+    }
     await this.synth(text, options);
   }
 
   cancel(): void {
-    // Piper aún no gestiona colas propias; la cancelación la coordina el AudioManager.
+    // Piper no gestiona colas propias; la cancelación la coordina el AudioManager.
   }
 
   async prewarm(): Promise<void> {
-    // Descarga perezosa de voces ONNX: pendiente de la fase Piper.
+    // La descarga de voces ONNX es perezosa y ocurre en la primera síntesis.
   }
 }
 

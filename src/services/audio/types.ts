@@ -39,6 +39,12 @@ export interface SpeakOptions {
   rate?: number;
   pitch?: number;
   voiceURI?: string;
+  /**
+   * Voz Piper concreta (id completo o alias corto, p. ej. `"eu_ES-maider-medium"`
+   * o `"maider"`). Si se omite, el `AudioManager` la resuelve automáticamente en
+   * función del idioma (p. ej. la voz euskaldun por defecto para `eu`).
+   */
+  voice?: string;
 }
 
 /** Resultado de una operación de síntesis (para telemetría local y diagnóstico). */
@@ -55,8 +61,12 @@ export interface SpeakResult {
 /** Contrato que debe cumplir cualquier motor de síntesis. */
 export interface AudioEngineAdapter {
   readonly type: AudioEngineType;
-  /** Devuelve `true` si el motor es usable con las capacidades dadas. */
-  isAvailable(caps: DeviceCapabilities): Promise<boolean>;
+  /**
+   * Devuelve `true` si el motor es usable con las capacidades dadas y, cuando se
+   * especifica, con el idioma solicitado (los motores que solo cubren un idioma
+   * —p. ej. Piper on-device→euskera— se declaran no disponibles para el resto).
+   */
+  isAvailable(caps: DeviceCapabilities, language?: SpeechLanguage): Promise<boolean>;
   /** Sintetiza y reproduce. Debe lanzar `Error` si falla para permitir el fallback. */
   speak(text: string, options: SpeakOptions): Promise<void>;
   /** Cancela la reproducción en curso. */

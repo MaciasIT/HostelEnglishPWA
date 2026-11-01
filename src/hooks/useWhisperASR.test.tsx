@@ -132,6 +132,37 @@ describe('useWhisperASR', () => {
     expect(result.current.status).toBe('ready');
   });
 
+  it('reenvía el idioma euskera (eu) al worker de Whisper', async () => {
+    const { result } = renderHook(() =>
+      useWhisperASR({ detectCapability: () => supportedCapability }),
+    );
+
+    act(() => {
+      void result.current.transcribe(new Float32Array([0.1, 0.2]), 'eu');
+    });
+
+    await waitFor(() =>
+      expect(mockWorker.postMessage).toHaveBeenCalledWith(
+        expect.objectContaining({ action: 'load' }),
+      ),
+    );
+    act(() => {
+      mockWorker.emit({ type: 'ready', model: 'whisper-tiny' });
+    });
+
+    await waitFor(() =>
+      expect(mockWorker.postMessage).toHaveBeenCalledWith(
+        expect.objectContaining({ action: 'transcribe' }),
+        expect.anything(),
+      ),
+    );
+
+    const transcribeCall = mockWorker.postMessage.mock.calls.find(
+      (call) => (call[0] as { action?: string })?.action === 'transcribe',
+    );
+    expect((transcribeCall![0] as { language: string }).language).toBe('eu');
+  });
+
   it('agrega el progreso de descarga 0..100 a partir de eventos por archivo', async () => {
     const { result } = renderHook(() =>
       useWhisperASR({ detectCapability: () => supportedCapability }),

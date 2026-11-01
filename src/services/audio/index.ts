@@ -13,6 +13,23 @@ export { AudioCache, fragmentKey, hashText } from './audioCache';
 export { CloudEngine, PiperEngine, WebSpeechEngine } from './engines';
 export type { CloudEngineOptions, CloudFetcher, PiperSynth } from './engines';
 
+// Piper (FC-09): voces euskaldunas y síntesis on-device (onnxruntime-web + espeak-ng).
+export {
+  createPiperSynth,
+  defaultPiperRuntime,
+  playPcmAudio,
+  PIPER_VOICES,
+  SUPPORTED_PIPER_LANGUAGES,
+  hasPiperVoice,
+  piperConfigUrl,
+  piperModelBaseUrl,
+  piperModelUrl,
+  piperVoicesFor,
+  resolvePiperVoice,
+  float32ToWav,
+} from './piper';
+export type { PiperRuntimeLike, PiperVoiceDescriptor, PiperVoiceId } from './piper';
+
 // ASR (FC-02): detección de capacidades y fallback Web Speech.
 export { detectASRCapability } from './asrCapabilities';
 export type { ASRCapability, ASRCapabilitySource } from './asrCapabilities';

@@ -28,16 +28,31 @@ describe('PiperEngine', () => {
     expect(await engine.isAvailable({ ...baseCaps, webAudio: false })).toBe(false);
   });
 
-  it('lanza en speak (aún no integrado) para forzar la degradación', async () => {
+  it('se declara no disponible para idiomas sin voz Piper (en/es)', async () => {
     const engine = new PiperEngine();
-    await expect(engine.speak('hola', {})).rejects.toThrow(/PiperEngine/);
+    expect(await engine.isAvailable(baseCaps, 'eu')).toBe(true);
+    expect(await engine.isAvailable(baseCaps, 'en')).toBe(false);
+    expect(await engine.isAvailable(baseCaps, 'es')).toBe(false);
+  });
+
+  it('lanza (degrada) al hablar en un idioma sin voz Piper nativa', async () => {
+    const engine = new PiperEngine();
+    await expect(engine.speak('hello', { language: 'en' })).rejects.toThrow(/sin voz Piper nativa/);
+    await expect(engine.speak('hola', { language: 'es' })).rejects.toThrow(/sin voz Piper nativa/);
+  });
+
+  it('sintetiza euskera con la síntesis inyectada', async () => {
+    const synth = vi.fn().mockResolvedValue(undefined);
+    const engine = new PiperEngine(synth);
+    await engine.speak('kaixo', { language: 'eu' });
+    expect(synth).toHaveBeenCalledWith('kaixo', { language: 'eu' });
   });
 
   it('permite inyectar la síntesis para tests de cascada', async () => {
     const synth = vi.fn().mockResolvedValue(undefined);
     const engine = new PiperEngine(synth);
-    await engine.speak('hola', { language: 'es' });
-    expect(synth).toHaveBeenCalledWith('hola', { language: 'es' });
+    await engine.speak('egun on', { language: 'eu', voice: 'maider' });
+    expect(synth).toHaveBeenCalledWith('egun on', { language: 'eu', voice: 'maider' });
   });
 });
 

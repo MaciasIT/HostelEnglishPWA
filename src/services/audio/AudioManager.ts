@@ -10,6 +10,7 @@
 import { detectCapabilities, FALLBACK_ORDER, selectEngine, type EnginePreferences } from './capabilities';
 import { AudioCache } from './audioCache';
 import { CloudEngine, PiperEngine, WebSpeechEngine } from './engines';
+import { resolvePiperVoice } from './piper';
 import type {
   AudioEngineAdapter,
   AudioEngineType,
@@ -89,6 +90,7 @@ export class AudioManager {
 
     this.cancelEngines();
     const gen = ++this.generation;
+    const resolvedOptions = this.resolveVoice(options);
     this.setState('loading');
 
     const attempted: AudioEngineType[] = [];
@@ -99,7 +101,7 @@ export class AudioManager {
 
       let available = false;
       try {
-        available = await engine.isAvailable(this.capabilities);
+        available = await engine.isAvailable(this.capabilities, resolvedOptions.language);
       } catch {
         available = false;
       }
@@ -108,7 +110,7 @@ export class AudioManager {
       attempted.push(engine.type);
       try {
         this.setState('playing');
-        await engine.speak(normalized, options);
+        await engine.speak(normalized, resolvedOptions);
         if (gen !== this.generation) break;
         this.setState('idle');
         return { engine: engine.type, ok: true, attempted };
@@ -155,6 +157,22 @@ export class AudioManager {
     return types
       .map((t) => this.engines.find((e) => e.type === t))
       .filter((e): e is AudioEngineAdapter => Boolean(e));
+  }
+
+  /**
+   * Conmutación automática de voz por idioma (FC-09).
+   *
+   * Cuando se reproduce euskera sin voz explícita, inyecta la voz Piper
+   * euskaldun por defecto (`eu_ES-antton-medium`) para que el `PiperEngine`
+   * la utilice; el resto de idiomas no reciben voz Piper y siguen su ruta
+   * cloud/web-speech.
+   */
+  private resolveVoice(options: SpeakOptions): SpeakOptions {
+    if (options.voice) return options;
+    const language = options.language ?? 'en';
+    const voice = resolvePiperVoice(language);
+    if (!voice) return options;
+    return { ...options, voice: voice.id };
   }
 
   private cancelEngines(): void {

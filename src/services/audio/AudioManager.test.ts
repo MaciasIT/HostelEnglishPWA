@@ -145,6 +145,36 @@ describe('AudioManager — degradación escalonada (cero fallos silenciosos)', (
   });
 });
 
+describe('AudioManager — conmutación automática a voz euskera (FC-09)', () => {
+  it('inyecta la voz Piper euskaldun por defecto al reproducir euskera', async () => {
+    const piper = fakeEngine('piper');
+    const m = new AudioManager({ capabilities: caps(), engines: [piper] });
+
+    await m.speak('kaixo', { language: 'eu' });
+
+    expect(piper.speak).toHaveBeenCalledWith('kaixo', { language: 'eu', voice: 'eu_ES-antton-medium' });
+    expect(piper.isAvailable).toHaveBeenCalledWith(expect.anything(), 'eu');
+  });
+
+  it('no modifica las opciones para idiomas sin voz Piper', async () => {
+    const piper = fakeEngine('piper');
+    const m = new AudioManager({ capabilities: caps(), engines: [piper] });
+
+    await m.speak('hello', { language: 'en' });
+
+    expect(piper.speak).toHaveBeenCalledWith('hello', { language: 'en' });
+  });
+
+  it('respeta una voz explícita proporcionada por el llamante', async () => {
+    const piper = fakeEngine('piper');
+    const m = new AudioManager({ capabilities: caps(), engines: [piper] });
+
+    await m.speak('kaixo', { language: 'eu', voice: 'maider' });
+
+    expect(piper.speak).toHaveBeenCalledWith('kaixo', { language: 'eu', voice: 'maider' });
+  });
+});
+
 describe('AudioManager — estados y ciclo de vida', () => {
   it('emite loading/playing y vuelve a idle tras reproducir', async () => {
     const piper = fakeEngine('piper');
