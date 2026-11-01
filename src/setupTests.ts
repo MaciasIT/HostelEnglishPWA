@@ -10,6 +10,50 @@ if (typeof indexedDB === 'undefined' && globalThis.indexedDB) {
   (globalThis as any).indexedDB = globalThis.indexedDB;
 }
 
+// Si fake-indexeddb no instaló indexedDB como global, construimos un polyfill
+// mínimo suficiente para idb/openDB.
+// ---------------------------------------------------------------------------
+let _fakeIDB: any = null;
+function ensureIndexedDB(): any {
+  if (typeof indexedDB !== 'undefined') return indexedDB;
+  if (_fakeIDB) return _fakeIDB;
+  try {
+    // dynamic import para no fallar si el paquete no está
+    // fake-indexeddb v7 expone FDBDatabase como clase con .open()
+    const mod = require('fake-indexeddb');
+    const FDBDatabase = mod.FDBDatabase || (mod as any).default?.FDBDatabase;
+    if (FDBDatabase) {
+      const db = new FDBDatabase();
+      _fakeIDB = {
+        open: (name: string, version?: number) => {
+          const req = db.open(name, version);
+          return new Promise((resolve, reject) => {
+            req.onsuccess = () => resolve(req.result);
+            req.onerror = () => reject(req.error);
+          });
+        },
+        deleteDatabase: (name: string) => {
+          return new Promise<void>((resolve) => {
+            const req = db.deleteDatabase(name);
+            req.onsuccess = () => resolve();
+            req.onerror = () => resolve();
+          });
+        },
+        databases: () => Promise.resolve([]),
+      };
+      (globalThis as any).indexedDB = _fakeIDB;
+      return _fakeIDB;
+    }
+  } catch { /* ignore */ }
+  return null;
+}
+
+// Export para que tests puedan llamar a ensureIndexedDB si lo necesitan
+export { ensureIndexedDB };
+
+// Ejecutar polyfill al cargar el setup
+try { ensureIndexedDB(); } catch { /* noop */ }
+
 // Mock de la API de Síntesis de Voz del navegador para el entorno JSDOM
 Object.defineProperty(window, 'speechSynthesis', {
   value: {

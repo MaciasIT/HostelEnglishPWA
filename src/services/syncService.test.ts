@@ -2,6 +2,10 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { clear, enqueue, getPending, getAll, updateItem, type OutboxItem } from '@/db/outboxQueue';
 import { initSync, queueProgressEvent, type ProgressEvent } from '@/services/syncService';
 
+// Asegurar indexedDB antes de cualquier operación
+import { ensureIndexedDB } from '@/setupTests';
+ensureIndexedDB();
+
 // Los tests de sync usan fake-indexeddb y necesitan más tiempo
 vi.setConfig({ testTimeout: 20000 });
 
