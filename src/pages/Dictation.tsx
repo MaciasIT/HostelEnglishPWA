@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDictationLogic } from '@/features/dictation/hooks/useDictationLogic';
+import AudioWaveform, { type WaveformState } from '@/components/AudioWaveform';
 import DictationPlayer from '@/features/dictation/components/DictationPlayer';
 import DictationInput from '@/features/dictation/components/DictationInput';
 import DictationFeedback from '@/features/dictation/components/DictationFeedback';
@@ -15,6 +16,24 @@ import {
 const Dictation: React.FC = () => {
   const [showWelcome, setShowWelcome] = useState(true);
   const { state, actions } = useDictationLogic();
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+
+  const handlePlay = async () => {
+    setIsPlayingAudio(true);
+    try {
+      await actions.handlePlayAudio();
+    } finally {
+      setIsPlayingAudio(false);
+    }
+  };
+
+  const waveformState: WaveformState = state.isListening
+    ? 'recording'
+    : isPlayingAudio
+      ? 'playing'
+      : state.feedback
+        ? 'result'
+        : 'idle';
 
   // Initialize first phrase when welcome is dismissed
   useEffect(() => {
@@ -47,7 +66,8 @@ const Dictation: React.FC = () => {
         <div className="bg-surface/10 backdrop-blur-2xl p-10 rounded-[3rem] shadow-2xl border border-border/20 relative overflow-hidden">
           <div className="absolute -right-10 -top-10 w-40 h-40 bg-accent opacity-5 blur-3xl rounded-full" aria-hidden="true"></div>
 
-          <DictationPlayer onPlay={actions.handlePlayAudio} />
+          <DictationPlayer onPlay={handlePlay} />
+          <AudioWaveform state={waveformState} className="mb-8" />
 
           <DictationInput 
             value={state.userAnswer}

@@ -12,6 +12,7 @@ import {
   ViewColumnsIcon,
   Bars3BottomLeftIcon
 } from '@heroicons/react/24/outline';
+import AudioWaveform from '@/components/AudioWaveform';
 import { playAudio } from '@/utils/audio';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -223,6 +224,8 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
               ))}
             </div>
           </div>
+
+          <AudioWaveform state={isPlaying ? 'playing' : 'idle'} height={48} className="md:max-w-xs" />
 
           <div className="flex justify-center md:justify-end gap-3">
             {!isPlaying ? (
