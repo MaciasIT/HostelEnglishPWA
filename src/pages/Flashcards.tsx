@@ -35,7 +35,7 @@ const Flashcards: React.FC = () => {
       <PageContainer title="Flashcards">
         <div className="flex flex-col items-center justify-center p-20" role="status" aria-live="polite">
           <div className="w-12 h-12 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
-          <p className="mt-4 text-gray-400">Cargando vocabulario...</p>
+          <p className="mt-4 text-tertiary">Cargando vocabulario...</p>
         </div>
       </PageContainer>
     );
@@ -45,12 +45,12 @@ const Flashcards: React.FC = () => {
     return (
       <PageContainer title="Flashcards">
         <div className="text-center py-20 px-4">
-          <p className="text-xl text-gray-400 mb-6 font-medium">
+          <p className="text-xl text-tertiary mb-6 font-medium">
             No hay tarjetas disponibles para esta selección.
           </p>
           <button
             onClick={() => actions.setSelectedCategory('all')}
-            className="bg-accent text-white px-8 py-3 rounded-2xl font-bold shadow-lg hover:brightness-110 active:scale-95 transition-all"
+            className="bg-accent text-primary px-8 py-3 rounded-2xl font-bold shadow-lg hover:brightness-110 active:scale-95 transition-all"
             aria-label="Volver a mostrar todas las categorías"
           >
             Ver todas las categorías
@@ -66,19 +66,19 @@ const Flashcards: React.FC = () => {
         <div className="w-full mb-8">
           <label 
             htmlFor="category-select"
-            className="block text-xs uppercase tracking-widest text-gray-400 mb-2 font-bold"
+            className="block text-xs uppercase tracking-widest text-tertiary mb-2 font-bold"
           >
             Categoría
           </label>
           <select
             id="category-select"
-            className="w-full p-4 bg-white/5 border border-white/10 rounded-2xl text-white font-bold appearance-none shadow-xl focus:ring-2 focus:ring-accent outline-none transition-all cursor-pointer"
+            className="w-full p-4 bg-surface/5 border border-border/10 rounded-2xl text-primary font-bold appearance-none shadow-xl focus:ring-2 focus:ring-accent outline-none transition-all cursor-pointer"
             value={state.selectedCategory}
             onChange={(e) => actions.setSelectedCategory(e.target.value)}
           >
-            <option value="all" className="bg-primary-dark text-white">Todas las categorías</option>
+            <option value="all" className="bg-surface text-primary">Todas las categorías</option>
             {state.categories.map(category => (
-              <option key={category} value={category} className="bg-primary-dark text-white">
+              <option key={category} value={category} className="bg-surface text-primary">
                 {category}
               </option>
             ))}
@@ -112,7 +112,7 @@ const Flashcards: React.FC = () => {
         </div>
 
         <div 
-          className="mt-8 text-center text-gray-400 text-xs font-bold uppercase tracking-widest"
+          className="mt-8 text-center text-tertiary text-xs font-bold uppercase tracking-widest"
           role="status"
           aria-live="polite"
         >

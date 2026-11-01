@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { useProgressLogic } from '@/features/progress/hooks/useProgressLogic';
 import AchievementBadge from '@/features/progress/components/AchievementBadge';
 import PageContainer from '@/components/layout/PageContainer';
+import CertificationBadge from '@/components/CertificationBadge';
 import {
   ChartBarIcon,
   CheckBadgeIcon,
@@ -60,7 +61,7 @@ const Progreso: React.FC = () => {
             icon={ChartBarIcon}
             label="Total Frases"
             value={state.stats.total}
-            color="bg-blue-500"
+            color="bg-info"
             delay={0}
           />
           <StatCard
@@ -74,7 +75,7 @@ const Progreso: React.FC = () => {
             icon={CheckBadgeIcon}
             label="Aprendidas"
             value={state.stats.learned}
-            color="bg-green-500"
+            color="bg-success"
             delay={0.2}
           />
           <StatCard
@@ -91,13 +92,13 @@ const Progreso: React.FC = () => {
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="lg:col-span-2 bg-white/5 p-8 rounded-[3rem] border border-white/10 backdrop-blur-md shadow-2xl relative overflow-hidden"
+            className="lg:col-span-2 bg-surface/5 p-8 rounded-[3rem] border border-border/10 backdrop-blur-md shadow-2xl relative overflow-hidden"
             aria-labelledby="evolution-heading"
           >
             <div className="flex justify-between items-center mb-10">
               <div>
-                <h2 id="evolution-heading" className="text-2xl font-black text-white tracking-tight">Evolución Semanal</h2>
-                <p className="text-gray-400 text-sm font-medium">Frases practicadas por día</p>
+                <h2 id="evolution-heading" className="text-2xl font-black text-primary tracking-tight">Evolución Semanal</h2>
+                <p className="text-tertiary text-sm font-medium">Frases practicadas por día</p>
               </div>
               <div className="bg-accent/20 px-6 py-2 rounded-full text-accent text-xs font-bold uppercase tracking-[0.2em]" aria-hidden="true">
                 Tendencia
@@ -161,10 +162,10 @@ const Progreso: React.FC = () => {
           <motion.section
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="bg-white/5 p-8 rounded-[3rem] border border-white/10 backdrop-blur-md shadow-xl"
+            className="bg-surface/5 p-8 rounded-[3rem] border border-border/10 backdrop-blur-md shadow-xl"
             aria-labelledby="achievements-heading"
           >
-            <h2 id="achievements-heading" className="text-2xl font-black text-white mb-8 flex items-center gap-3">
+            <h2 id="achievements-heading" className="text-2xl font-black text-primary mb-8 flex items-center gap-3">
               <TrophyIcon className="w-8 h-8 text-yellow-500 drop-shadow-lg" />
               Medallas
             </h2>
@@ -179,8 +180,8 @@ const Progreso: React.FC = () => {
               ))}
 
               {state.achievements.length === 0 && (
-                <div className="py-12 text-center bg-white/5 rounded-3xl border border-dashed border-white/5 shadow-inner" role="status">
-                  <p className="text-sm text-gray-400 font-semibold uppercase tracking-widest px-4">
+                <div className="py-12 text-center bg-surface/5 rounded-3xl border border-dashed border-border/5 shadow-inner" role="status">
+                  <p className="text-sm text-tertiary font-semibold uppercase tracking-widest px-4">
                     Completa exámenes para ganar medallas
                   </p>
                 </div>
@@ -194,12 +195,12 @@ const Progreso: React.FC = () => {
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white/5 p-10 rounded-[3rem] border border-white/10 shadow-2xl"
+            className="bg-surface/5 p-10 rounded-[3rem] border border-border/10 shadow-2xl"
             aria-labelledby="categories-heading"
           >
             <div className="flex items-center gap-3 mb-10">
               <span className="w-3 h-8 bg-accent rounded-full" aria-hidden="true"></span>
-              <h2 id="categories-heading" className="text-2xl font-black text-white tracking-tight">Dominio por Categoría</h2>
+              <h2 id="categories-heading" className="text-2xl font-black text-primary tracking-tight">Dominio por Categoría</h2>
             </div>
 
             <div className="h-[280px]" role="img" aria-label="Gráfico de barras mostrando el porcentaje de aprendizaje por categoría.">
@@ -233,29 +234,52 @@ const Progreso: React.FC = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
-            className="bg-gradient-to-br from-accent/20 to-blue-600/20 p-10 rounded-[3.5rem] border border-white/10 flex flex-col justify-center items-center text-center backdrop-blur-md relative overflow-hidden group shadow-2xl"
+            className="bg-gradient-to-br from-accent/20 to-blue-600/20 p-10 rounded-[3.5rem] border border-border/10 flex flex-col justify-center items-center text-center backdrop-blur-md relative overflow-hidden group shadow-2xl"
           >
             <div className="absolute top-0 right-0 p-10 opacity-5 group-hover:scale-125 group-hover:rotate-12 transition-transform duration-700" aria-hidden="true">
-              <SparklesIcon className="w-48 h-48 text-white" />
+              <SparklesIcon className="w-48 h-48 text-primary" />
             </div>
 
-            <div className="w-24 h-24 bg-white/10 rounded-[2rem] flex items-center justify-center mb-8 shadow-2xl border border-white/20 rotate-3 group-hover:rotate-0 transition-transform">
-              <AcademicCapIcon className="w-12 h-12 text-white" />
+            <div className="w-24 h-24 bg-surface/10 rounded-[2rem] flex items-center justify-center mb-8 shadow-2xl border border-border/20 rotate-3 group-hover:rotate-0 transition-transform">
+              <AcademicCapIcon className="w-12 h-12 text-primary" />
             </div>
             
-            <h2 className="text-3xl font-black text-white mb-4">¡Vas por buen camino!</h2>
-            <p className="text-gray-300 mb-10 max-w-sm text-lg font-medium leading-relaxed">
+            <h2 className="text-3xl font-black text-primary mb-4">¡Vas por buen camino!</h2>
+            <p className="text-secondary mb-10 max-w-sm text-lg font-medium leading-relaxed">
               Has dominado el <span className="text-accent font-black text-2xl">{state.stats.progressPercent}%</span> del curso. Sigue así y pronto serás bilingüe en el sector hostelero.
             </p>
             
             <Link 
               to="/frases"
-              className="bg-white text-primary-dark px-12 py-5 rounded-[1.5rem] font-black uppercase tracking-widest hover:bg-accent hover:text-white transition-all shadow-2xl active:scale-95 z-10"
+              className="bg-surface text-primary px-12 py-5 rounded-[1.5rem] font-black uppercase tracking-widest hover:bg-accent hover:text-primary transition-all shadow-2xl active:scale-95 z-10"
             >
               Continuar Practicando
             </Link>
           </motion.section>
         </div>
+
+        {/* Certifications History */}
+        {state.certifications.length > 0 && (
+          <motion.section
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="bg-surface/5 p-10 rounded-[3rem] border border-border/10 shadow-2xl"
+            aria-labelledby="certifications-heading"
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <span className="w-3 h-8 bg-yellow-500 rounded-full" aria-hidden="true"></span>
+              <h2 id="certifications-heading" className="text-2xl font-black text-primary tracking-tight">
+                Certificaciones Laborales
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {state.certifications.slice().reverse().map(cert => (
+                <CertificationBadge key={cert.id} certification={cert} compact />
+              ))}
+            </div>
+          </motion.section>
+        )}
+
 
       </div>
     </PageContainer>
@@ -268,13 +292,13 @@ function StatCard({ icon: Icon, label, value, color, delay }: any) {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay }}
-      className="bg-white/5 p-8 rounded-[2.5rem] border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all group flex flex-col items-center text-center shadow-lg"
+      className="bg-surface/5 p-8 rounded-[2.5rem] border border-border/10 backdrop-blur-sm hover:bg-surface/10 transition-all group flex flex-col items-center text-center shadow-lg"
     >
-      <div className={`${color} w-16 h-16 rounded-[1.5rem] flex items-center justify-center text-white mb-6 shadow-xl group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500`}>
+      <div className={`${color} w-16 h-16 rounded-[1.5rem] flex items-center justify-center text-primary mb-6 shadow-xl group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500`}>
         <Icon className="w-8 h-8" />
       </div>
-      <p className="text-[11px] uppercase tracking-[0.25em] text-gray-400 font-semibold mb-2">{label}</p>
-      <p className="text-4xl font-black text-white tracking-tighter">{value}</p>
+      <p className="text-[11px] uppercase tracking-[0.25em] text-tertiary font-semibold mb-2">{label}</p>
+      <p className="text-4xl font-black text-primary tracking-tighter">{value}</p>
     </motion.div>
   );
 }

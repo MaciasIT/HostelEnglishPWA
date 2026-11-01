@@ -63,23 +63,23 @@ export default function Estudio() {
                     setSelectedCategory(cat);
                     setCurrentIndex(0);
                   }}
-                  className="bg-white/5 border border-white/10 p-8 rounded-[2rem] text-left hover:bg-white/10 transition-all group flex flex-col"
+                  className="bg-surface/5 border border-border/10 p-8 rounded-[2rem] text-left hover:bg-surface/10 transition-all group flex flex-col"
                 >
                   <div className="flex justify-between items-start mb-6 w-full">
                     <div className="p-3 bg-accent/20 rounded-xl group-hover:scale-110 transition-transform">
                       <AcademicCapIcon className="w-6 h-6 text-accent" />
                     </div>
-                    <span className="text-[10px] uppercase font-bold tracking-widest text-gray-500 bg-white/5 px-3 py-1 rounded-full">
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-tertiary bg-surface/5 px-3 py-1 rounded-full">
                       {catPhrases.length} frases
                     </span>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-4">{cat}</h3>
+                  <h3 className="text-xl font-bold text-primary mb-4">{cat}</h3>
                   <div className="mt-auto w-full">
                     <div className="flex justify-between text-xs mb-2">
-                      <span className="text-gray-400">Progreso</span>
+                      <span className="text-tertiary">Progreso</span>
                       <span className="text-accent font-bold">{percent}%</span>
                     </div>
-                    <div className="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+                    <div className="w-full h-1.5 bg-surface/5 rounded-full overflow-hidden">
                       <div className="h-full bg-accent" style={{ width: `${percent}%` }}></div>
                     </div>
                   </div>
@@ -100,11 +100,11 @@ export default function Estudio() {
         <div className="w-full flex justify-between items-center mb-10">
           <button
             onClick={() => setSelectedCategory(null)}
-            className="text-gray-400 hover:text-white transition-all text-sm font-semibold flex items-center gap-2"
+            className="text-tertiary hover:text-primary transition-all text-sm font-semibold flex items-center gap-2"
           >
             ← Cambiar Lección
           </button>
-          <div className="px-4 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300 font-semibold">
+          <div className="px-4 py-1 bg-surface/5 border border-border/10 rounded-full text-xs text-secondary font-semibold">
             {currentIndex + 1} / {filteredFrases.length}
           </div>
         </div>
@@ -122,14 +122,14 @@ export default function Estudio() {
         <div className="flex gap-6 w-full max-w-sm">
           <button
             onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
-            className="flex-1 py-4 bg-white/5 border border-white/10 rounded-2xl text-white font-bold hover:bg-white/10 disabled:opacity-30"
+            className="flex-1 py-4 bg-surface/5 border border-border/10 rounded-2xl text-primary font-bold hover:bg-surface/10 disabled:opacity-30"
             disabled={currentIndex === 0}
           >
             ANTERIOR
           </button>
           <button
             onClick={() => setCurrentIndex(prev => Math.min(filteredFrases.length - 1, prev + 1))}
-            className="flex-1 py-4 bg-accent text-white rounded-2xl font-bold hover:brightness-110 disabled:opacity-30 shadow-xl"
+            className="flex-1 py-4 bg-accent text-primary rounded-2xl font-bold hover:brightness-110 disabled:opacity-30 shadow-xl"
             disabled={currentIndex === filteredFrases.length - 1}
           >
             SIGUIENTE
@@ -138,8 +138,8 @@ export default function Estudio() {
 
         <div className="mt-16 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 p-8 rounded-[2rem] border border-yellow-500/20 w-full text-center">
           <StarIcon className="w-8 h-8 text-yellow-500 mx-auto mb-4" />
-          <h4 className="text-white font-bold mb-2">Consejo de Estudio</h4>
-          <p className="text-sm text-gray-400">
+          <h4 className="text-primary font-bold mb-2">Consejo de Estudio</h4>
+          <p className="text-sm text-tertiary">
             Repite la frase en voz alta después de escucharla. La memoria muscular de la boca es clave para hablar con fluidez.
           </p>
         </div>

@@ -15,7 +15,7 @@ const LanguageSelector: React.FC = () => {
     ];
 
     return (
-        <div className="flex bg-white/5 border border-white/10 p-1 rounded-2xl w-full" role="radiogroup" aria-label="Idioma de aprendizaje">
+        <div className="flex bg-surface/5 border border-border/10 p-1 rounded-2xl w-full" role="radiogroup" aria-label="Idioma de aprendizaje">
             {languages.map((lang) => (
                 <button
                     key={lang.code}
@@ -24,8 +24,8 @@ const LanguageSelector: React.FC = () => {
                     aria-checked={targetLanguage === lang.code}
                     aria-label={`Aprender en ${lang.label}`}
                     className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-all ${targetLanguage === lang.code
-                            ? 'bg-accent text-white shadow-lg'
-                            : 'text-gray-400 hover:text-white hover:bg-white/5'
+                            ? 'bg-accent text-primary shadow-lg'
+                            : 'text-tertiary hover:text-primary hover:bg-surface/5'
                         }`}
                 >
                     <span className="text-sm">{lang.flag}</span>

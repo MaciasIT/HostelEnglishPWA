@@ -64,7 +64,7 @@ const InstallPWAButton: React.FC = () => {
     <button
       onClick={handleInstall}
       aria-label="Instalar app en tu dispositivo"
-      className={`fixed bottom-20 sm:bottom-4 right-4 z-50 bg-accent text-white px-6 py-3 rounded-2xl shadow-2xl hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center gap-2 font-bold text-sm border border-white/10 backdrop-blur-xl ${
+      className={`fixed bottom-20 sm:bottom-4 right-4 z-50 bg-accent text-primary px-6 py-3 rounded-2xl shadow-2xl hover:brightness-110 active:scale-95 transition-all duration-300 flex items-center gap-2 font-bold text-sm border border-border/10 backdrop-blur-xl ${
         hidden ? 'translate-y-24 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
       }`}
     >

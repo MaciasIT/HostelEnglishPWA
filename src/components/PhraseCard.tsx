@@ -55,13 +55,13 @@ const PhraseCard = ({
     0: {
       label: 'Pendiente',
       btnText: 'Marcar como Estudiada',
-      btnColor: 'bg-white/5 border-white/10 hover:bg-white/10',
+      btnColor: 'bg-surface/5 border-border/10 hover:bg-surface/10',
       icon: BookmarkIcon
     },
     1: {
       label: 'Estudiada',
       btnText: 'Marcar como Aprendida',
-      btnColor: 'bg-green-500/20 text-green-400 border-green-500/30 hover:bg-green-500/30',
+      btnColor: 'bg-success/20 text-green-400 border-green-500/30 hover:bg-success/30',
       icon: CheckIcon
     },
     2: {
@@ -80,7 +80,7 @@ const PhraseCard = ({
   const targetLabel = targetLanguage === 'eu' ? 'EUSKERA' : 'INGLÉS';
 
   return (
-    <div className="group bg-white/10 backdrop-blur-xl rounded-[2.5rem] border border-white/10 shadow-2xl p-8 sm:p-10 w-full transition-all hover:border-white/20 relative overflow-hidden">
+    <div className="group bg-surface/10 backdrop-blur-xl rounded-[2.5rem] border border-border/10 shadow-2xl p-8 sm:p-10 w-full transition-all hover:border-border/20 relative overflow-hidden">
       {/* Abstract Background Element */}
       <div className="absolute -right-20 -top-20 w-40 h-40 bg-accent opacity-5 blur-3xl rounded-full"></div>
 
@@ -89,11 +89,11 @@ const PhraseCard = ({
           {statusConfig.label}
         </span>
 
-        <h3 className="text-2xl sm:text-3xl font-black text-white mb-4 italic leading-tight text-center">
+        <h3 className="text-2xl sm:text-3xl font-black text-primary mb-4 italic leading-tight text-center">
           "{phrase.es}"
         </h3>
 
-        <p className={`text-lg sm:text-xl font-medium mb-10 text-center ${!phrase[targetLanguage === 'eu' ? 'eu' : 'en'] ? 'text-orange-400 italic' : 'text-gray-400'}`}>
+        <p className={`text-lg sm:text-xl font-medium mb-10 text-center ${!phrase[targetLanguage === 'eu' ? 'eu' : 'en'] ? 'text-orange-400 italic' : 'text-tertiary'}`}>
           {targetLanguage === 'eu' ? (phrase.eu || 'Traducción pendiente...') : phrase.en}
         </p>
 
@@ -101,14 +101,14 @@ const PhraseCard = ({
           <div className="flex gap-2">
             <button
               onClick={() => handlePlayAudio('es')}
-              className="p-4 bg-white/5 border border-white/10 rounded-2xl text-white hover:bg-white/10 active:scale-90 transition-all shadow-lg"
+              className="p-4 bg-surface/5 border border-border/10 rounded-2xl text-primary hover:bg-surface/10 active:scale-90 transition-all shadow-lg"
               title="Escuchar en Español"
             >
               <SpeakerWaveIcon className="w-6 h-6 opacity-70" />
             </button>
             <button
               onClick={() => handlePlayAudio('target')}
-              className="p-4 bg-accent text-white rounded-2xl hover:brightness-110 active:scale-90 transition-all shadow-lg flex items-center gap-2"
+              className="p-4 bg-accent text-primary rounded-2xl hover:brightness-110 active:scale-90 transition-all shadow-lg flex items-center gap-2"
               title={`Escuchar en ${targetLabel}`}
             >
               <SpeakerWaveIcon className="w-6 h-6" />

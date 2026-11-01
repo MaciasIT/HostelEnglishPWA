@@ -21,7 +21,7 @@ const BottomNav: React.FC = () => {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 bg-primary-dark/95 backdrop-blur-xl border-t border-white/10 flex justify-around items-center py-2 z-50 sm:hidden safe-area-bottom"
+      className="fixed bottom-0 left-0 right-0 bg-background/95 backdrop-blur-xl border-t border-border/10 flex justify-around items-center py-2 z-50 sm:hidden safe-area-bottom"
       aria-label="Navegación principal"
       role="navigation"
     >
@@ -34,7 +34,7 @@ const BottomNav: React.FC = () => {
             className={`flex flex-col items-center p-2 min-w-[48px] min-h-[44px] justify-center transition-all ${
               isActive
                 ? 'text-accent scale-110'
-                : 'text-gray-500 hover:text-gray-300'
+                : 'text-tertiary hover:text-secondary'
             }`}
             aria-current={isActive ? 'page' : undefined}
             aria-label={tab.label}

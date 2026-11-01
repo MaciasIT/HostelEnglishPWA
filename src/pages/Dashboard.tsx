@@ -23,21 +23,21 @@ const Dashboard: React.FC = () => {
       title: 'Frases',
       path: '/frases',
       icon: ChatBubbleLeftRightIcon,
-      color: 'bg-blue-500',
+      color: 'bg-info',
       desc: 'Esenciales del día a día'
     },
     {
       title: 'Diálogos',
       path: '/conversaciones',
       icon: MapIcon,
-      color: 'bg-green-500',
+      color: 'bg-success',
       desc: 'Simulaciones reales'
     },
     {
       title: 'Dictado',
       path: '/dictado',
       icon: MicrophoneIcon,
-      color: 'bg-red-500',
+      color: 'bg-error',
       desc: 'Entrena tu oído'
     },
     {
@@ -69,14 +69,14 @@ const Dashboard: React.FC = () => {
 
         {/* Welcome Section */}
         <section 
-          className="bg-gradient-to-br from-primary-light to-primary-dark p-8 sm:p-12 rounded-[3.5rem] shadow-2xl relative overflow-hidden border border-white/10"
+          className="bg-gradient-to-br from-primary-light to-primary-dark p-8 sm:p-12 rounded-[3.5rem] shadow-2xl relative overflow-hidden border border-border/10"
           aria-labelledby="welcome-heading"
         >
           <div className="relative z-10">
-            <h1 id="welcome-heading" className="text-4xl sm:text-6xl font-black text-white mb-6 tracking-tighter">
+            <h1 id="welcome-heading" className="text-4xl sm:text-6xl font-black text-primary mb-6 tracking-tighter">
               ¡Hola de nuevo! 🏨
             </h1>
-            <p className="text-xl sm:text-2xl text-gray-300 mb-10 max-w-2xl font-medium leading-relaxed">
+            <p className="text-xl sm:text-2xl text-secondary mb-10 max-w-2xl font-medium leading-relaxed">
               Continúa tu formación en <span className="text-accent font-black uppercase text-lg">{targetLanguage === 'eu' ? 'euskera' : 'inglés'}</span> para hostelería.
             </p>
 
@@ -97,7 +97,7 @@ const Dashboard: React.FC = () => {
                 icon={CheckBadgeIcon} 
                 label="Aprendidas" 
                 value={`${stats.learned} frases`} 
-                color="bg-green-500" 
+                color="bg-success" 
               />
             </div>
           </div>
@@ -112,7 +112,7 @@ const Dashboard: React.FC = () => {
         <section aria-labelledby="modules-heading">
           <div className="flex items-center gap-3 mb-10">
             <span className="w-2 h-10 bg-accent rounded-full" aria-hidden="true"></span>
-            <h2 id="modules-heading" className="text-3xl font-bold text-white tracking-tight">Módulos de Entrenamiento</h2>
+            <h2 id="modules-heading" className="text-3xl font-bold text-primary tracking-tight">Módulos de Entrenamiento</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -128,15 +128,15 @@ const Dashboard: React.FC = () => {
 
         {/* Progress Tracker */}
         <section 
-          className="bg-white/5 backdrop-blur-md p-10 rounded-[3rem] border border-white/10 shadow-2xl relative group overflow-hidden"
+          className="bg-surface/5 backdrop-blur-md p-10 rounded-[3rem] border border-border/10 shadow-2xl relative group overflow-hidden"
           aria-labelledby="progress-heading"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true"></div>
           
           <div className="flex flex-col lg:flex-row items-center justify-between gap-10 relative z-10">
             <div className="text-center lg:text-left">
-              <h2 id="progress-heading" className="text-2xl font-bold text-white mb-2">Dominio Global</h2>
-              <p className="text-gray-400 font-medium tracking-wide">¡Sigue así! Estás a punto de alcanzar tu próximo nivel.</p>
+              <h2 id="progress-heading" className="text-2xl font-bold text-primary mb-2">Dominio Global</h2>
+              <p className="text-tertiary font-medium tracking-wide">¡Sigue así! Estás a punto de alcanzar tu próximo nivel.</p>
             </div>
 
             <div className="flex-grow max-w-2xl w-full">
@@ -145,7 +145,7 @@ const Dashboard: React.FC = () => {
                 <span aria-hidden="true">{stats.percent}%</span>
               </div>
               <div 
-                className="w-full h-4 bg-white/5 rounded-full overflow-hidden border border-white/5 shadow-inner"
+                className="w-full h-4 bg-surface/5 rounded-full overflow-hidden border border-border/5 shadow-inner"
                 role="progressbar"
                 aria-valuenow={stats.percent}
                 aria-valuemin={0}
@@ -161,7 +161,7 @@ const Dashboard: React.FC = () => {
 
             <Link
               to="/progreso"
-              className="group flex items-center gap-3 bg-white/5 hover:bg-accent text-white px-8 py-4 rounded-2xl font-black transition-all shadow-xl active:scale-95"
+              className="group flex items-center gap-3 bg-surface/5 hover:bg-accent text-primary px-8 py-4 rounded-2xl font-black transition-all shadow-xl active:scale-95"
             >
               Ver Estadísticas
               <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -182,15 +182,15 @@ interface StatBadgeProps {
 
 function StatBadge({ icon: Icon, label, value, color }: StatBadgeProps) {
   return (
-    <div className="bg-black/20 backdrop-blur-md px-6 py-4 rounded-[1.5rem] border border-white/10 flex items-center gap-4 shadow-lg hover:bg-black/30 transition-colors">
-      <div className={`w-12 h-12 ${color} rounded-2xl flex items-center justify-center text-white shadow-xl`}>
+    <div className="bg-background/20 backdrop-blur-md px-6 py-4 rounded-[1.5rem] border border-border/10 flex items-center gap-4 shadow-lg hover:bg-background/30 transition-colors">
+      <div className={`w-12 h-12 ${color} rounded-2xl flex items-center justify-center text-primary shadow-xl`}>
         <Icon className="w-6 h-6" />
       </div>
       <div>
-        <p className="text-[10px] uppercase font-semibold text-gray-400 tracking-widest leading-none mb-1">
+        <p className="text-[10px] uppercase font-semibold text-tertiary tracking-widest leading-none mb-1">
           {label}
         </p>
-        <p className="text-white font-bold text-lg leading-tight">
+        <p className="text-primary font-bold text-lg leading-tight">
           {value}
         </p>
       </div>

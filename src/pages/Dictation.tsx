@@ -44,7 +44,7 @@ const Dictation: React.FC = () => {
   return (
     <PageContainer title="Dictado Interactivo">
       <div className="max-w-2xl mx-auto space-y-8 animate-fade-in">
-        <div className="bg-white/10 backdrop-blur-2xl p-10 rounded-[3rem] shadow-2xl border border-white/20 relative overflow-hidden">
+        <div className="bg-surface/10 backdrop-blur-2xl p-10 rounded-[3rem] shadow-2xl border border-border/20 relative overflow-hidden">
           <div className="absolute -right-10 -top-10 w-40 h-40 bg-accent opacity-5 blur-3xl rounded-full" aria-hidden="true"></div>
 
           <DictationPlayer onPlay={actions.handlePlayAudio} />
@@ -73,7 +73,7 @@ const Dictation: React.FC = () => {
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <button
             onClick={() => { actions.cancelSpeech(); actions.selectNewPhrase(); }}
-            className="bg-white/5 hover:bg-white/10 text-white font-black py-4 px-10 rounded-2xl transition-all active:scale-95 border border-white/10 flex items-center justify-center gap-3"
+            className="bg-surface/5 hover:bg-surface/10 text-primary font-black py-4 px-10 rounded-2xl transition-all active:scale-95 border border-border/10 flex items-center justify-center gap-3"
             aria-label="Cargar siguiente frase aleatoria"
           >
             SIGUIENTE FRASE

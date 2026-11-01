@@ -23,6 +23,8 @@ export default function Examen() {
     shuffledOptions,
     targetLanguage,
     frases,
+    examConfig,
+    certification,
     actions
   } = useExamLogic();
 
@@ -44,9 +46,20 @@ export default function Examen() {
     );
   }
 
+  const roleLabel = examConfig.role ? (() => {
+    const meta: Record<string, string> = { recepcion: 'Recepción', restaurante: 'Restaurante', limpieza: 'Limpieza', mantenimiento: 'Mantenimiento', bar: 'Barra' };
+    return meta[examConfig.role] || '';
+  })() : '';
+
+  const pageTitle = examConfig.role && roleLabel
+    ? `Certificación: ${roleLabel}`
+    : examState === 'active'
+      ? `Examen en progreso: ${currentIndex + 1}/${totalQuestions}`
+      : 'Evaluación';
+
   return (
     <PageContainer 
-      title={examState === 'active' ? `Examen en progreso: ${currentIndex + 1}/${totalQuestions}` : 'Evaluación'}
+      title={pageTitle}
     >
       <AnimatePresence mode="wait">
         {examState === 'setup' && (
@@ -58,7 +71,7 @@ export default function Examen() {
           >
             <ExamSetup 
               targetLanguage={targetLanguage}
-              onStart={actions.startExam}
+              onStart={(config) => actions.startExam(config)}
               onBack={() => setShowWelcome(true)}
             />
           </motion.div>
@@ -102,6 +115,12 @@ export default function Examen() {
               targetLanguage={targetLanguage}
               onRestart={actions.resetExam}
               onExit={() => setShowWelcome(true)}
+              certification={certification}
+              onShare={() => {
+                if (certification) {
+                  navigator.clipboard?.writeText(`Certificación: ${certification.roleLabel} - ${certification.verificationCode}`);
+                }
+              }}
             />
           </motion.div>
         )}

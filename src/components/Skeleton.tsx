@@ -11,7 +11,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({ className = '' }) => (
 
 /** Skeleton for a PhraseCard-shaped loading state */
 export const PhraseCardSkeleton: React.FC = () => (
-  <div className="bg-white/10 rounded-[2rem] border border-white/10 p-8 w-full" aria-hidden="true">
+  <div className="bg-surface/10 rounded-[2rem] border border-border/10 p-8 w-full" aria-hidden="true">
     <div className="flex flex-col items-center">
       <Skeleton className="w-24 h-6 rounded-full mb-6" />
       <Skeleton className="w-3/4 h-8 mb-4" />
@@ -27,7 +27,7 @@ export const PhraseCardSkeleton: React.FC = () => (
 
 /** Skeleton for a DashboardModule card */
 export const ModuleCardSkeleton: React.FC = () => (
-  <div className="bg-white/5 rounded-[2rem] border border-white/10 p-8" aria-hidden="true">
+  <div className="bg-surface/5 rounded-[2rem] border border-border/10 p-8" aria-hidden="true">
     <div className="flex flex-col">
       <Skeleton className="w-14 h-14 rounded-2xl mb-6" />
       <Skeleton className="w-2/3 h-6 mb-3" />
@@ -52,7 +52,7 @@ export const PageSkeleton: React.FC = () => (
 
 /** Skeleton for a stats card */
 export const StatCardSkeleton: React.FC = () => (
-  <div className="bg-white/5 p-8 rounded-[2rem] border border-white/10 flex flex-col items-center text-center" aria-hidden="true">
+  <div className="bg-surface/5 p-8 rounded-[2rem] border border-border/10 flex flex-col items-center text-center" aria-hidden="true">
     <Skeleton className="w-16 h-16 rounded-2xl mb-6" />
     <Skeleton className="w-20 h-4 mb-2" />
     <Skeleton className="w-12 h-8" />

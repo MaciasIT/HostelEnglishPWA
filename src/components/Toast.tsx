@@ -17,9 +17,9 @@ const iconMap: Record<ToastType, React.ElementType> = {
 };
 
 const colorMap: Record<ToastType, string> = {
-  success: 'bg-green-500/20 border-green-500/30 text-green-400',
-  error: 'bg-red-500/20 border-red-500/30 text-red-400',
-  info: 'bg-blue-500/20 border-blue-500/30 text-blue-400',
+  success: 'bg-success/20 border-green-500/30 text-green-400',
+  error: 'bg-error/20 border-red-500/30 text-red-400',
+  info: 'bg-info/20 border-blue-500/30 text-blue-400',
 };
 
 const Toast: React.FC<ToastProps> = ({ message, type = 'success', duration = 3000, onClose }) => {
@@ -43,7 +43,7 @@ const Toast: React.FC<ToastProps> = ({ message, type = 'success', duration = 300
       aria-live="polite"
     >
       <Icon className="w-6 h-6 flex-shrink-0" />
-      <span className="text-sm font-semibold text-white">{message}</span>
+      <span className="text-sm font-semibold text-primary">{message}</span>
     </div>
   );
 };

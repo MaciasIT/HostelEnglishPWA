@@ -165,13 +165,13 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
       <div className="flex items-center justify-between mb-8">
         <button
           onClick={() => { handleStop(); onBack(); }}
-          className="p-3 bg-white/5 border border-white/10 rounded-2xl text-white hover:bg-white/10 transition-all active:scale-90"
+          className="p-3 bg-surface/5 border border-border/10 rounded-2xl text-primary hover:bg-surface/10 transition-all active:scale-90"
           aria-label="Volver"
         >
           <ArrowLeftIcon className="w-6 h-6" />
         </button>
         <div className="text-center">
-          <h1 className="text-2xl font-black text-white leading-tight">{conversation.title}</h1>
+          <h1 className="text-2xl font-black text-primary leading-tight">{conversation.title}</h1>
           <p className="text-xs text-accent font-bold uppercase tracking-widest">
             {(() => {
               const cat = conversation.categoria || 'Lección de Hostelería';
@@ -186,7 +186,7 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
         <div className="flex items-center gap-2">
           <button
             onClick={() => setIsFocusMode(!isFocusMode)}
-            className={`p-3 border rounded-2xl transition-all active:scale-90 flex items-center gap-2 ${isFocusMode ? 'bg-accent border-accent text-white shadow-lg' : 'bg-white/5 border-white/10 text-gray-400'}`}
+            className={`p-3 border rounded-2xl transition-all active:scale-90 flex items-center gap-2 ${isFocusMode ? 'bg-accent border-accent text-primary shadow-lg' : 'bg-surface/5 border-border/10 text-tertiary'}`}
             title={isFocusMode ? "Cambiar a vista de lista" : "Cambiar a vista enfocada"}
           >
             {isFocusMode ? <Bars3BottomLeftIcon className="w-5 h-5" /> : <ViewColumnsIcon className="w-5 h-5" />}
@@ -196,19 +196,19 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
         </div>
       </div>
 
-      <p className="text-gray-400 text-center mb-10 max-w-xl mx-auto italic">
+      <p className="text-tertiary text-center mb-10 max-w-xl mx-auto italic">
         "{conversation.description}"
       </p>
 
       {/* Profile & Controls */}
-      <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2.5rem] p-8 mb-10 shadow-2xl">
+      <div className="bg-surface/5 backdrop-blur-xl border border-border/10 rounded-[2.5rem] p-8 mb-10 shadow-2xl">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
-            <label className="block text-[10px] uppercase font-black tracking-[0.2em] text-gray-500 mb-4">Elige tu personaje</label>
+            <label className="block text-[10px] uppercase font-black tracking-[0.2em] text-tertiary mb-4">Elige tu personaje</label>
             <div className="flex flex-wrap gap-3">
               <button
                 onClick={() => { handleStop(); setSelectedRole('Todos'); }}
-                className={`px-6 py-3 rounded-2xl font-bold transition-all border ${selectedRole === 'Todos' ? 'bg-accent border-accent text-white' : 'bg-white/5 border-white/10 text-gray-400 hover:bg-white/10'}`}
+                className={`px-6 py-3 rounded-2xl font-bold transition-all border ${selectedRole === 'Todos' ? 'bg-accent border-accent text-primary' : 'bg-surface/5 border-border/10 text-tertiary hover:bg-surface/10'}`}
               >
                 Escuchar ambos
               </button>
@@ -216,7 +216,7 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
                 <button
                   key={p}
                   onClick={() => { handleStop(); setSelectedRole(p); }}
-                  className={`px-6 py-3 rounded-2xl font-bold transition-all border ${selectedRole === p ? 'bg-accent border-accent text-white' : 'bg-white/5 border-white/10 text-gray-400 hover:bg-white/10'}`}
+                  className={`px-6 py-3 rounded-2xl font-bold transition-all border ${selectedRole === p ? 'bg-accent border-accent text-primary' : 'bg-surface/5 border-border/10 text-tertiary hover:bg-surface/10'}`}
                 >
                   Ser {p}
                 </button>
@@ -228,7 +228,7 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
             {!isPlaying ? (
               <button
                 onClick={handlePlayAll}
-                className="bg-accent hover:brightness-110 text-white font-black py-4 px-8 rounded-2xl shadow-xl transition-all active:scale-95 flex items-center gap-3"
+                className="bg-accent hover:brightness-110 text-primary font-black py-4 px-8 rounded-2xl shadow-xl transition-all active:scale-95 flex items-center gap-3"
               >
                 <PlayIcon className="w-5 h-5 fill-current" />
                 REPRODUCIR TODO
@@ -236,7 +236,7 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
             ) : (
               <button
                 onClick={handleStop}
-                className="bg-red-500 hover:brightness-110 text-white font-black py-4 px-8 rounded-2xl shadow-xl transition-all active:scale-95 flex items-center gap-3"
+                className="bg-error hover:brightness-110 text-primary font-black py-4 px-8 rounded-2xl shadow-xl transition-all active:scale-95 flex items-center gap-3"
               >
                 <PauseIcon className="w-5 h-5 fill-current" />
                 DETENER
@@ -245,12 +245,12 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
           </div>
         </div>
 
-        <div className="mt-8 border-t border-white/5 pt-6">
+        <div className="mt-8 border-t border-border/5 pt-6">
           <CollapsibleSection title="Ajustes de Voces">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
               {conversation.participants.map(participant => (
-                <div key={participant} className="bg-white/5 p-6 rounded-3xl border border-white/10">
-                  <h4 className="flex items-center gap-2 font-black text-white mb-4">
+                <div key={participant} className="bg-surface/5 p-6 rounded-3xl border border-border/10">
+                  <h4 className="flex items-center gap-2 font-black text-primary mb-4">
                     <UserCircleIcon className="w-5 h-5 text-accent" />
                     {participant}
                   </h4>
@@ -288,16 +288,16 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
                     <div className={`flex flex-col items-center w-full`}>
                       <div className={`w-full max-w-2xl rounded-[2.5rem] p-10 shadow-2xl relative border-2 ${isMyTurn
                         ? 'bg-accent/20 border-accent/40 rounded-br-none'
-                        : (isParticipant0 ? 'bg-white/10 border-white/10' : 'bg-primary-light/10 border-white/10')
+                        : (isParticipant0 ? 'bg-surface/10 border-border/10' : 'bg-surface/10 border-border/10')
                         }`}>
                         <div className="flex items-center justify-center gap-4 mb-6">
-                          <span className={`text-xs font-black uppercase tracking-widest ${isMyTurn ? 'text-accent' : 'text-gray-500'}`}>
+                          <span className={`text-xs font-black uppercase tracking-widest ${isMyTurn ? 'text-accent' : 'text-tertiary'}`}>
                             {turn.speaker} {isMyTurn ? '(TÚ)' : ''}
                           </span>
                           {!isMyTurn && (
                             <button
                               onClick={() => handlePlayTurn(turn)}
-                              className="p-2 bg-white/5 rounded-full text-accent hover:bg-accent hover:text-white transition-all"
+                              className="p-2 bg-surface/5 rounded-full text-accent hover:bg-accent hover:text-primary transition-all"
                               aria-label="Reproducir frase"
                             >
                               <SpeakerWaveIcon className="w-5 h-5" />
@@ -307,15 +307,15 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
 
                         {isMyTurn ? (
                           <div className="py-8 px-6 bg-accent border border-accent rounded-3xl text-center shadow-lg animate-pulse">
-                            <p className="text-xl text-white font-black">¡ES TU TURNO!</p>
-                            <p className="text-white/80 text-sm mt-2">Práctica tu pronunciación ahora</p>
+                            <p className="text-xl text-primary font-black">¡ES TU TURNO!</p>
+                            <p className="text-primary/80 text-sm mt-2">Práctica tu pronunciación ahora</p>
                           </div>
                         ) : (
                           <div className="text-center space-y-6">
-                            <h3 className="text-2xl md:text-3xl font-black text-white leading-tight">
+                            <h3 className="text-2xl md:text-3xl font-black text-primary leading-tight">
                               {targetLanguage === 'eu' ? (turn.eu || '...') : turn.en}
                             </h3>
-                            <p className="text-gray-300 text-lg md:text-xl font-medium leading-relaxed border-t border-white/5 pt-6 italic">
+                            <p className="text-secondary text-lg md:text-xl font-medium leading-relaxed border-t border-border/5 pt-6 italic">
                               {turn.es}
                             </p>
                           </div>
@@ -327,17 +327,17 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
                         <button
                           disabled={currentTurnIndex === 0}
                           onClick={() => { handleStop(); setCurrentTurnIndex(prev => prev - 1); }}
-                          className="p-4 bg-white/5 border border-white/10 rounded-2xl text-white disabled:opacity-20 hover:bg-white/10 transition-all"
+                          className="p-4 bg-surface/5 border border-border/10 rounded-2xl text-primary disabled:opacity-20 hover:bg-surface/10 transition-all"
                         >
                           <ArrowLeftIcon className="w-5 h-5 rotate-0" />
                         </button>
-                        <span className="text-sm font-black text-gray-500 tracking-tighter uppercase">
+                        <span className="text-sm font-black text-tertiary tracking-tighter uppercase">
                           {currentTurnIndex + 1} / {conversation.dialogue.length}
                         </span>
                         <button
                           disabled={currentTurnIndex === conversation.dialogue.length - 1}
                           onClick={() => { handleStop(); setCurrentTurnIndex(prev => prev + 1); }}
-                          className="p-4 bg-white/5 border border-white/10 rounded-2xl text-white disabled:opacity-20 hover:bg-white/10 transition-all"
+                          className="p-4 bg-surface/5 border border-border/10 rounded-2xl text-primary disabled:opacity-20 hover:bg-surface/10 transition-all"
                         >
                           <ArrowLeftIcon className="w-5 h-5 rotate-180" />
                         </button>
@@ -362,16 +362,16 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
                 >
                   <div className={`max-w-[100%] md:max-w-[85%] rounded-[2rem] p-6 shadow-xl relative group ${isMyTurn
                     ? 'bg-accent/20 border-2 border-accent/40 rounded-br-none'
-                    : (isParticipant0 ? 'bg-white/10 rounded-bl-none' : 'bg-primary-light/10 rounded-br-none')
+                    : (isParticipant0 ? 'bg-surface/10 rounded-bl-none' : 'bg-surface/10 rounded-br-none')
                     }`}>
                     <div className="flex items-center gap-2 mb-2">
-                      <span className={`text-[10px] font-black uppercase tracking-widest ${isMyTurn ? 'text-accent' : 'text-gray-500'}`}>
+                      <span className={`text-[10px] font-black uppercase tracking-widest ${isMyTurn ? 'text-accent' : 'text-tertiary'}`}>
                         {turn.speaker} {isMyTurn ? '(TÚ)' : ''}
                       </span>
                       {!isMyTurn && (
                         <button
                           onClick={() => handlePlayTurn(turn, index)}
-                          className="p-1 text-gray-400 hover:text-white transition-all opacity-0 group-hover:opacity-100"
+                          className="p-1 text-tertiary hover:text-primary transition-all opacity-0 group-hover:opacity-100"
                           aria-label="Reproducir frase"
                         >
                           <SpeakerWaveIcon className="w-4 h-4" />
@@ -381,15 +381,15 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
 
                     {isMyTurn ? (
                       <div className="py-4 px-6 bg-accent border border-accent rounded-2xl text-center">
-                        <p className="text-white font-black">¡TU TURNO!</p>
-                        <p className="text-white/60 text-xs mt-1">Lee en voz alta para practicar</p>
+                        <p className="text-primary font-black">¡TU TURNO!</p>
+                        <p className="text-primary/60 text-xs mt-1">Lee en voz alta para practicar</p>
                       </div>
                     ) : (
                       <>
-                        <p className="text-xl font-bold text-white mb-2 leading-tight">
+                        <p className="text-xl font-bold text-primary mb-2 leading-tight">
                           {targetLanguage === 'eu' ? (turn.eu || '...') : turn.en}
                         </p>
-                        <p className="text-gray-300 text-base font-medium leading-relaxed border-t border-white/5 pt-2 mt-2">{turn.es}</p>
+                        <p className="text-secondary text-base font-medium leading-relaxed border-t border-border/5 pt-2 mt-2">{turn.es}</p>
                       </>
                     )}
                   </div>

@@ -56,40 +56,40 @@ const Flashcard: React.FC<FlashcardProps> = ({ phrase }) => {
       >
 
         {/* Front Side (Target Language) */}
-        <div className="absolute inset-0 w-full h-full backface-hidden bg-white/10 backdrop-blur-2xl rounded-[3rem] border border-white/20 shadow-2xl flex flex-col items-center justify-center p-8 text-center overscroll-none">
-          <div className="absolute top-8 right-8 text-white/20">
+        <div className="absolute inset-0 w-full h-full backface-hidden bg-surface/10 backdrop-blur-2xl rounded-[3rem] border border-border/20 shadow-2xl flex flex-col items-center justify-center p-8 text-center overscroll-none">
+          <div className="absolute top-8 right-8 text-primary/20">
             <ArrowPathIcon className="w-8 h-8 rotate-12" />
           </div>
           <p className="text-xs uppercase tracking-[0.3em] font-black text-accent mb-6">Original ({targetLanguage === 'eu' ? 'Euskera' : 'Inglés'})</p>
           <div className="flex-grow flex items-center justify-center w-full px-4">
-            <h2 className={`font-black text-white leading-tight ${phrase.eu?.length && phrase.eu.length > 50 ? 'text-2xl' : 'text-3xl'}`}>
+            <h2 className={`font-black text-primary leading-tight ${phrase.eu?.length && phrase.eu.length > 50 ? 'text-2xl' : 'text-3xl'}`}>
               "{targetLanguage === 'eu' ? (phrase.eu || '...') : phrase.en}"
             </h2>
           </div>
           <button
             onClick={(e) => handlePlayAudio('target', e)}
-            className="p-5 bg-accent text-white rounded-2xl shadow-xl hover:scale-110 active:scale-95 transition-all mb-8"
+            className="p-5 bg-accent text-primary rounded-2xl shadow-xl hover:scale-110 active:scale-95 transition-all mb-8"
           >
             <SpeakerWaveIcon className="w-8 h-8" />
           </button>
-          <p className="absolute bottom-10 text-[10px] text-gray-500 uppercase tracking-widest font-bold">Toca para traducir</p>
+          <p className="absolute bottom-10 text-[10px] text-tertiary uppercase tracking-widest font-bold">Toca para traducir</p>
         </div>
 
         {/* Back Side (Spanish) */}
-        <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-white/5 backdrop-blur-2xl rounded-[3rem] border border-white/10 shadow-2xl flex flex-col items-center justify-center p-8 text-center">
+        <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-surface/5 backdrop-blur-2xl rounded-[3rem] border border-border/10 shadow-2xl flex flex-col items-center justify-center p-8 text-center">
           <p className="text-xs uppercase tracking-[0.3em] font-black text-blue-400 mb-6">Traducción</p>
           <div className="flex-grow flex items-center justify-center w-full px-4">
-            <h2 className={`font-black text-white leading-tight ${phrase.es.length > 50 ? 'text-2xl' : 'text-3xl'}`}>
+            <h2 className={`font-black text-primary leading-tight ${phrase.es.length > 50 ? 'text-2xl' : 'text-3xl'}`}>
               "{phrase.es}"
             </h2>
           </div>
           <button
             onClick={(e) => handlePlayAudio('es', e)}
-            className="p-5 bg-white/10 text-white rounded-2xl shadow-xl hover:bg-white/20 active:scale-110 transition-all border border-white/10 mb-8"
+            className="p-5 bg-surface/10 text-primary rounded-2xl shadow-xl hover:bg-surface/20 active:scale-110 transition-all border border-border/10 mb-8"
           >
             <SpeakerWaveIcon className="w-8 h-8 opacity-70" />
           </button>
-          <p className="absolute bottom-10 text-[10px] text-gray-500 uppercase tracking-widest font-bold">Toca para volver</p>
+          <p className="absolute bottom-10 text-[10px] text-tertiary uppercase tracking-widest font-bold">Toca para volver</p>
         </div>
 
       </div>

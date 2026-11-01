@@ -1,71 +1,222 @@
+/* ==========================================================================
+   HOSTELENGLISH — Unificado de Tokens de Diseño (Fase B)
+   ============================================================================
+   Un único punto de verdad para colores, radios, sombras y tipografía.
+
+   Arquitectura:
+   ───────────────────────────
+   ┌─ @theme  (Tailwind CSS v4) ───────────────────────────────┐
+   │  Variables de diseño → generan utilidades Tailwind        │
+   │  bg-surface, text-primary, border-border, text-xs…       │
+   └───────────────────────────────────────────────────────────┘
+   ┌─ CSS variables semánticas ────────────────────────────────┐
+   │  :root   → dark  (predeterminado, app shell)              │
+   │  .light  → light (activable desde Settings)               │
+   │  ── Usadas por components via var() o utilities Tailwind ─┘
+   ───────────────────────────
+
+   Uso en components:
+     <div className="bg-surface text-primary border border-border" />
+
+   Referencia: docs/plan-2026/02_SISTEMA_DISENO_Y_UX_2026.md
+   ========================================================================== */
+
 @import "tailwindcss";
 
+/* ==========================================================================
+   1. PALETA DE COLORES — @theme (Tailwind v4)
+   ==========================================================================
+   Regla de contraste WCAG AAA (modo oscuro):
+   ─────────────────────────────
+   • Texto normal: ratio ≥ 7:1
+     --text-primary #f0f4f8 sobre #0f1419 (bg-base) ≈ 18.5:1  ✅
+   • Texto grande (≥18px bold): ≥ 4.5:1
+   • Elementos interactivos: foco ≥ 3:1 contra fondo adyacente
+
+   Nota de uso de colores:
+   ───────────────────────────
+   • --color-primary  → texto de lectura principal (claro)
+   • --color-secondary → texto secundario
+   • --color-tertiary  → texto terciario
+   • --color-disabled  → texto deshabilitado
+   • --color-on-accent → texto sobre fondos de acento
+   ========================================================================== */
 @theme {
-  --color-primary: #2c3e50;
-  --color-primary-dark: #1a252f;
-  --color-primary-light: #7f8c8d;
-  --color-surface: #2c3e50;
-  --color-accent: #f39c12;
-  --color-accent-dark: #e67e22;
+  /* ── Fondos ─────────────────────────────────────────── */
+  --color-background: #0f1419;      /* Fondo raíz (dark) */
+  --color-surface: #1a2332;         /* Cards, sheets, panels */
+  --color-surface-hover: #1d2836;   /* Hover ligeramente claro */
+  --color-surface-elevated: #243044; /* Modals, dropdowns, popovers */
 
-  --radius-sm: 1rem;
-  --radius-md: 1.5rem;
-  --radius-lg: 2rem;
+  /* ── Texto de lectura (claro sobre fondo oscuro) ────── */
+  --color-primary: #f0f4f8;    /* Lectura principal — AAA (≈18.5:1) */
+  --color-secondary: #94a3b8;  /* Subtítulos, metadatos */
+  --color-tertiary: #64748b;   /* Timestamps, badges inactivos */
+  --color-disabled: #475569;
+  --color-on-accent: #ffffff;  /* Texto sobre fondos de acento */
 
+  /* ── Marca / identidad ─────────────────────────────── */
+  --color-accent: #e67e22;        /* Warm orange — identidad */
+  --color-accent-hover: #f59e0b;
+  --color-accent-soft: rgba(230, 126, 34, 0.15);
+  --color-accent-glow: rgba(230, 126, 34, 0.35);
+
+  /* ── Bordes ─────────────────────────────────────────── */
+  --color-border: rgba(255, 255, 255, 0.12);  /* Borde por defecto (dark) */
+  --color-border-subtle: rgba(255, 255, 255, 0.06);
+  --color-border-focus: rgba(255, 255, 255, 0.25);
+
+  /* ── Estado de UI ───────────────────────────────────── */
+  --color-success: #10b981;
+  --color-success-soft: rgba(16, 185, 129, 0.15);
+  --color-warning: #f59e0b;
+  --color-warning-soft: rgba(245, 158, 11, 0.15);
+  --color-error: #ef4444;
+  --color-error-soft: rgba(239, 68, 68, 0.15);
+  --color-info: #3b82f6;
+  --color-info-soft: rgba(59, 130, 246, 0.15);
+
+  /* ── Radios ─────────────────────────────────────────── */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* ── Sombras / elevaciones (Glassmorphism) ──────────── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 30px var(--color-accent-glow);
+
+  /* ── Blur ───────────────────────────────────────────── */
+  --blur-sm: 8px;
+  --blur-md: 16px;
+  --blur-lg: 24px;
+
+  /* ── Tipografía ─────────────────────────────────────── */
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
+/* ==========================================================================
+   2. VARIABLES CSS SEMÁNTICAS
+   ──────────────────────────────────────────────────────────────────────────
+   :root   → dark  (predeterminado, app shell)
+   .light  → light (activable desde Settings)
+   ────────────────────────────────────────────────────────────────────────── */
 :root {
   color-scheme: light dark;
 
-  /* === BACKGROUNDS === */
-  --bg-base: #1a252f;
-  --bg-surface: #2c3e50;
-  --bg-elevated: rgba(255, 255, 255, 0.05);
-  --bg-hover: rgba(255, 255, 255, 0.10);
+  /* Fondos */
+  --bg-base:            var(--color-background);
+  --bg-surface:         var(--color-surface);
+  --bg-elevated:        var(--color-surface-elevated);
+  --bg-hover:           rgba(255, 255, 255, 0.06);
+  --bg-pressed:         rgba(255, 255, 255, 0.10);
 
-  /* === ACCENT === */
-  --accent: #e67e22;
-  --accent-hsl: 28, 80%, 52%;
-  --accent-hover: #f39c12;
-  --accent-glow: rgba(230, 126, 34, 0.3);
+  /* Texto */
+  --text-primary:       var(--color-primary);
+  --text-secondary:     var(--color-secondary);
+  --text-tertiary:      var(--color-tertiary);
+  --text-disabled:      var(--color-disabled);
+  --text-on-accent:     var(--color-on-accent);
 
-  /* === LEGACY COMPAT === */
-  --primary: #34495e;
-  --primary-dark: #2c3e50;
-  --primary-light: #7f8c8d;
+  /* Marca */
+  --accent:             var(--color-accent);
+  --accent-hover:       var(--color-accent-hover);
+  --accent-soft:        var(--color-accent-soft);
+  --accent-glow:        var(--color-accent-glow);
 
-  /* === RADIUS SYSTEM === */
-  --radius-sm: 1rem;
-  --radius-md: 1.5rem;
-  --radius-lg: 2rem;
+  /* Bordes */
+  --border-subtle:      var(--color-border-subtle);
+  --border-default:     var(--color-border);
+  --border-focus:       var(--color-border-focus);
 
-  /* === TYPOGRAPHY === */
-  --font-primary: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Radios */
+  --radius-sm:          var(--radius-sm);
+  --radius-md:          var(--radius-md);
+  --radius-lg:          var(--radius-lg);
+  --radius-xl:          var(--radius-xl);
+
+  /* Tipografía */
+  --font-sans:          var(--font-sans);
 }
 
-/* Global desktop scaling to simulate 80% zoom */
-@media (min-width: 1024px) {
-  :root {
-    font-size: 85%;
-  }
+/* Modo CLARO */
+.light {
+  color-scheme: light;
+
+  --bg-base:            #f5f7fa;
+  --bg-surface:         #ffffff;
+  --bg-elevated:        #ffffff;
+  --bg-hover:           rgba(0, 0, 0, 0.04);
+  --bg-pressed:         rgba(0, 0, 0, 0.08);
+
+  --text-primary:       #0f172a;   /* AAA sobre bg-surface (#ffffff) */
+  --text-secondary:     #475569;
+  --text-tertiary:      #94a3b8;
+  --text-disabled:      #cbd5e1;
+  --text-on-accent:     #ffffff;
+
+  --accent:             #e67e22;
+  --accent-hover:       #f59e0b;
+  --accent-soft:        rgba(230, 126, 34, 0.15);
+  --accent-glow:        rgba(230, 126, 34, 0.3);
+
+  --border-subtle:      rgba(0, 0, 0, 0.06);
+  --border-default:     rgba(0, 0, 0, 0.12);
+  --border-focus:       rgba(0, 0, 0, 0.25);
+
+  --radius-sm:          8px;
+  --radius-md:          12px;
+  --radius-lg:          16px;
+  --radius-xl:          24px;
+
+  --font-sans:          var(--font-sans);
 }
+
+/* ==========================================================================
+   3. UTILIDADES TAILWIND BASADAS EN TOKENS
+   ──────────────────────────────────────────────────────────────────────────
+   Nota sobre opacity modifiers:
+   ─────────────────────────────
+   bg-surface/10, border-border/10, bg-accent/80, etc. se compilan a
+   color-mix(in oklab, var(--color-surface) 10%, transparent) y funcionan
+   con variables personalizadas definidas en @theme.
+   ========================================================================== */
+
+/* Glassmorphism */
+.glass {
+  @apply bg-surface border-border shadow-lg backdrop-blur-xl;
+}
+
+/* Botones base */
+.btn-primary {
+  @apply bg-accent text-on-accent font-bold py-4 px-10 rounded-lg shadow-lg transition-all hover:bg-accent-hover active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2;
+}
+
+.btn-secondary {
+  @apply bg-surface/5 border border-border text-primary font-semibold py-3 px-8 rounded-lg transition-all hover:bg-surface/10 hover:border-border-focus focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2;
+}
+
+/* ==========================================================================
+   4. EGGS GLOBALES Y ESTILOS
+   ========================================================================== */
 
 body {
-  font-family: var(--font-primary);
-  @apply min-h-screen w-full max-w-full overflow-x-hidden bg-primary-dark text-white;
+  font-family: var(--font-sans);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  @apply min-h-screen w-full max-w-full overflow-x-hidden;
 }
 
-/* ============================================
-   FOCUS ACCESSIBILITY
-   ============================================ */
+/* Focus accessibility */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
   border-radius: 0.5rem;
 }
 
-/* Remove default outline, rely on focus-visible */
 button:focus:not(:focus-visible),
 a:focus:not(:focus-visible),
 input:focus:not(:focus-visible),
@@ -74,9 +225,7 @@ textarea:focus:not(:focus-visible) {
   outline: none;
 }
 
-/* ============================================
-   CUSTOM SCROLLBAR
-   ============================================ */
+/* Scrollbar personalizada */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -86,7 +235,7 @@ textarea:focus:not(:focus-visible) {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #34495e;
+  background: var(--color-border);
   border-radius: 10px;
 }
 
@@ -94,50 +243,11 @@ textarea:focus:not(:focus-visible) {
   background: var(--accent);
 }
 
-/* ============================================
-   GLOBAL ANIMATIONS
-   ============================================ */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
+/* Cursor para elementos interactivos */
+button, [role="button"] { cursor: pointer; }
+input, select, textarea { cursor: text; }
 
-@keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes pulse-slow {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.05); }
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-@keyframes slideInBottom {
-  from { transform: translateY(100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes slideOutBottom {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(100%); opacity: 0; }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.8s ease-out forwards;
-}
-
-.animate-slide-up {
-  animation: slideUp 0.8s ease-out forwards;
-}
-
-/* ============================================
-   SKELETON LOADING
-   ============================================ */
+/* Skeleton loading (gradient shimmer) */
 .skeleton {
   background: linear-gradient(90deg,
     rgba(255, 255, 255, 0.03) 25%,
@@ -149,50 +259,14 @@ textarea:focus:not(:focus-visible) {
   border-radius: var(--radius-sm);
 }
 
-/* ============================================
-   GLASSMORPHISM UTILITIES
-   ============================================ */
-.glass {
-  @apply bg-white/10 backdrop-blur-xl border border-white/10 shadow-2xl;
-}
-
-/* ============================================
-   TEXT ENHANCEMENTS
-   ============================================ */
+/* Texto con degradado */
 .text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-accent to-blue-500;
 }
 
-/* ============================================
-   BUTTON SYSTEM
-   ============================================ */
-.btn-primary {
-  @apply bg-accent hover:brightness-110 text-white font-bold py-4 px-10 rounded-2xl shadow-xl transition-all active:scale-95;
-}
-
-.btn-secondary {
-  @apply bg-white/5 hover:bg-white/10 text-white font-semibold py-3 px-8 rounded-2xl border border-white/10 transition-all;
-}
-
-/* ============================================
-   CUSTOM SCROLLBAR UTILITY
-   ============================================ */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-}
-
-/* ============================================
+/* ==========================================
    PREMIUM GRADIENTS (Feedback States)
-   ============================================ */
+   ========================================== */
 .correct-gradient {
   background: radial-gradient(circle at center, #22c55e 0%, #16a34a 100%);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -203,77 +277,15 @@ textarea:focus:not(:focus-visible) {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* ============================================
-   PREMIUM ANIMATIONS
-   ============================================ */
-@keyframes streak-pulse {
-  0% { transform: scale(1); filter: drop-shadow(0 0 0px var(--accent)); }
-  50% { transform: scale(1.15); filter: drop-shadow(0 0 15px var(--accent)); }
-  100% { transform: scale(1); filter: drop-shadow(0 0 0px var(--accent)); }
-}
-
-.streak-pulse {
-  animation: streak-pulse 1.5s infinite ease-in-out;
-}
-
-@keyframes heart-pulse {
-  0% { transform: scale(1); }
-  15% { transform: scale(1.3); }
-  30% { transform: scale(1); }
-  45% { transform: scale(1.3); }
-  100% { transform: scale(1); }
-}
-
-.heart-pulse {
-  animation: heart-pulse 1.2s infinite ease-in-out;
-}
-
-/* ============================================
-   FLASHCARD 3D EFFECTS
-   ============================================ */
+/* Flashcard 3D */
 .perspective-1000 { perspective: 1000px; }
 .preserve-3d { transform-style: preserve-3d; }
 .backface-hidden { backface-visibility: hidden; }
 .rotate-y-180 { transform: rotateY(180deg); }
 
-/* ============================================
-   ADDITIONAL ANIMATIONS
-   ============================================ */
-@keyframes slide-in-from-top {
-  from { transform: translateY(-20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
+/* Toast */
+.toast-enter { animation: slideInBottom 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.toast-exit { animation: slideOutBottom 0.3s ease-in forwards; }
 
-@keyframes zoom-in {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
-
-.animate-in { animation-fill-mode: both; }
-.slide-in-from-top-4 { animation-name: slide-in-from-top; }
-.duration-700 { animation-duration: 700ms; }
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-500 { animation-delay: 500ms; }
-.animation-delay-500 { animation-delay: 500ms; }
-.rotate-3 { transform: rotate(3deg); }
-.fade-in { animation: fadeIn 0.8s ease-out forwards; }
-
-/* ============================================
-   TOAST NOTIFICATIONS
-   ============================================ */
-.toast-enter {
-  animation: slideInBottom 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.toast-exit {
-  animation: slideOutBottom 0.3s ease-in forwards;
-}
-
-/* ============================================
-   SAFE AREA (Bottom Navigation on iPhone)
-   ============================================ */
-.safe-area-bottom {
-  padding-bottom: env(safe-area-inset-bottom, 8px);
-}
+/* Safe area bottom */
+.safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 8px); }

@@ -49,7 +49,7 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({
   return (
     <div className="space-y-6">
       {showTitle && (
-        <h3 className="text-xl font-black text-white flex items-center gap-2 mb-6">
+        <h3 className="text-xl font-black text-primary flex items-center gap-2 mb-6">
           <SparklesIcon className="w-5 h-5 text-accent" />
           {title}
         </h3>
@@ -58,31 +58,31 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Voice Selector */}
         <div className="space-y-4">
-          <label htmlFor="voice-select" className="block text-[10px] uppercase font-black text-gray-500 tracking-widest">
+          <label htmlFor="voice-select" className="block text-[10px] uppercase font-black text-tertiary tracking-widest">
             Voz del sistema
           </label>
           <div className="relative group">
             <select
               id="voice-select"
-              className="w-full pl-4 pr-10 py-4 bg-white/5 border border-white/10 rounded-2xl text-white font-bold appearance-none focus:ring-2 focus:ring-accent outline-none transition-all group-hover:bg-white/10"
+              className="w-full pl-4 pr-10 py-4 bg-surface/5 border border-border/10 rounded-2xl text-primary font-bold appearance-none focus:ring-2 focus:ring-accent outline-none transition-all group-hover:bg-surface/10"
               value={settings.voiceURI}
               onChange={handleVoiceChange}
             >
-              <option value="" className="bg-primary-dark">Voz por defecto</option>
+              <option value="" className="bg-surface">Voz por defecto</option>
               {voices.map(voice => (
-                <option key={voice.voiceURI} value={voice.voiceURI} className="bg-primary-dark">
+                <option key={voice.voiceURI} value={voice.voiceURI} className="bg-surface">
                   {voice.name}
                 </option>
               ))}
             </select>
-            <ChevronDownIcon className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none group-hover:text-accent transition-colors" />
+            <ChevronDownIcon className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-tertiary pointer-events-none group-hover:text-accent transition-colors" />
           </div>
         </div>
 
         {/* Rate Slider */}
         <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <label htmlFor="rate-slider" className="text-[10px] uppercase font-black text-gray-500 tracking-widest">
+            <label htmlFor="rate-slider" className="text-[10px] uppercase font-black text-tertiary tracking-widest">
               Velocidad
             </label>
             <span className="text-accent font-black text-xs bg-accent/10 px-2 py-0.5 rounded-md">{settings.rate}x</span>
@@ -95,9 +95,9 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({
             step="0.1"
             value={settings.rate}
             onChange={(e) => onSettingChange('rate', Number(e.target.value))}
-            className="w-full h-2 bg-white/5 border border-white/10 rounded-lg appearance-none cursor-pointer accent-accent"
+            className="w-full h-2 bg-surface/5 border border-border/10 rounded-lg appearance-none cursor-pointer accent-accent"
           />
-          <div className="flex justify-between text-[8px] text-gray-600 font-black uppercase">
+          <div className="flex justify-between text-[8px] text-secondary font-black uppercase">
             <span>Lento</span>
             <span>Rápido</span>
           </div>
@@ -106,7 +106,7 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({
         {/* Pitch Slider */}
         <div className="space-y-4">
           <div className="flex justify-between items-center">
-            <label htmlFor="pitch-slider" className="text-[10px] uppercase font-black text-gray-500 tracking-widest">
+            <label htmlFor="pitch-slider" className="text-[10px] uppercase font-black text-tertiary tracking-widest">
               Tono
             </label>
             <span className="text-accent font-black text-xs bg-accent/10 px-2 py-0.5 rounded-md">{settings.pitch}</span>
@@ -119,9 +119,9 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({
             step="0.1"
             value={settings.pitch}
             onChange={(e) => onSettingChange('pitch', Number(e.target.value))}
-            className="w-full h-2 bg-white/5 border border-white/10 rounded-lg appearance-none cursor-pointer accent-accent"
+            className="w-full h-2 bg-surface/5 border border-border/10 rounded-lg appearance-none cursor-pointer accent-accent"
           />
-          <div className="flex justify-between text-[8px] text-gray-600 font-black uppercase">
+          <div className="flex justify-between text-[8px] text-secondary font-black uppercase">
             <span>Grave</span>
             <span>Agudo</span>
           </div>
