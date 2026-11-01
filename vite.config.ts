@@ -57,7 +57,6 @@ export default defineConfig({
         // runtimes y superan el límite por defecto de 2 MiB. Se amplía para
         // poderlos pre-cachear y que el ASR/LLM funcionen offline.
         maximumFileSizeToCacheInBytes: 12 * 1024 * 1024,
-        navigateFallback: "/HostelEnglishPWA/",
         runtimeCaching: [
           {
             urlPattern: /\/data\/.*\.json$/,
