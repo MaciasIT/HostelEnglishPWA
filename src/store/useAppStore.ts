@@ -38,31 +38,38 @@ export const useAppStore = create<AppState>()(
     }),
     {
       name: "hostelenglish-storage",
+      version: 0, // versión de zustand persist (distinta de state.version de la app)
+      migrate: (persisted) => persisted as AppState,
       storage: createJSONStorage(() => ({
         getItem: async (name) => {
           try {
             const raw = await get(name);
             if (!raw) return null;
 
-            let data = raw as any;
+            const stored = raw as any;
+            // Contrato zustand persist: { state, version }. Los datos legacy (v0)
+            // se guardaron planos, sin envoltorio.
+            const isEnvelope =
+              stored && typeof stored === 'object' && stored.state && typeof stored.state === 'object';
+            const zustandVersion: number =
+              isEnvelope && typeof stored.version === 'number' ? stored.version : 0;
+            let data: any = isEnvelope ? stored.state : stored;
 
-            // 1. Security snapshot if legacy (v0)
+            // 1. Security snapshot + migración semántica si el estado es legacy (sin version de app)
             if (!data.version) {
               const { DataMigrator } = await import('../db/DataMigrator');
               await DataMigrator.ensureBackup(data);
-
-              // 2. Semantic Migration
               console.log('🔄 Migrando datos legacy a v1...');
               data = DataMigrator.migrate(data);
             }
 
-            // 3. Zod Validation (Shielding) and Soft Repair
+            // 2. Validación Zod + reparación. Zod descarta claves desconocidas
+            // (isPremium, licenseInfo, retos...), así que se conservan las originales.
             const { DataValidator } = await import('../db/DataValidator');
-            const validatedData = DataValidator.validateAndRepair(data);
+            const validated = DataValidator.validateAndRepair(data);
+            const state = { ...data, ...validated };
 
-            // createJSONStorage serializa internamente; devolvemos string para cumplir
-            // con la firma tipada de Zustand 5.
-            return JSON.stringify(validatedData);
+            return JSON.stringify({ state, version: zustandVersion });
           } catch (err) {
             console.warn('[store] No se pudo leer de IndexedDB, usando estado por defecto:', err);
             return null;

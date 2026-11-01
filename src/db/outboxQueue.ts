@@ -1,7 +1,7 @@
 import { openDB, type IDBPDatabase } from 'idb';
 
-const DB_NAME = 'hostelenglish-v1';
-const DB_VERSION = 2;
+import { DB_NAME_SHARED as DB_NAME, DB_VERSION, upgradeHostelDB } from './index';
+
 const STORE_NAME = 'outboxQueue';
 
 export interface OutboxItem {
@@ -25,16 +25,7 @@ export interface OutboxDB extends IDBPDatabase {
 
 export const initOutboxDB = async (): Promise<IDBPDatabase<OutboxDB>> => {
   return openDB<OutboxDB>(DB_NAME, DB_VERSION, {
-    upgrade(db) {
-      if (!db.objectStoreNames.contains(STORE_NAME)) {
-        const store = db.createObjectStore(STORE_NAME, {
-          keyPath: 'id',
-          autoIncrement: true,
-        });
-        store.createIndex('by-timestamp', 'timestamp');
-        store.createIndex('by-status', 'status');
-      }
-    },
+    upgrade: upgradeHostelDB,
   });
 };
 

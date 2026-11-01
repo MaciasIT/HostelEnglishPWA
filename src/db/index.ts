@@ -1,8 +1,23 @@
 import { openDB, IDBPDatabase } from 'idb';
 
 const DB_NAME = 'hostelenglish-v1';
-const DB_VERSION = 1;
-const STORE_NAME = 'appState'; // Una única store para todo el estado de la app
+export const DB_NAME_SHARED = DB_NAME;
+// v3: appState + outboxQueue se crean en un único upgrade compartido por ambos módulos.
+export const DB_VERSION = 3;
+const STORE_NAME = 'appState'; // Store para el estado persistido de la app
+const OUTBOX_STORE = 'outboxQueue';
+
+/** Upgrade único compartido por appState y outboxQueue (misma BD, misma versión). */
+export const upgradeHostelDB = (db: IDBPDatabase<any>): void => {
+  if (!db.objectStoreNames.contains(STORE_NAME)) {
+    db.createObjectStore(STORE_NAME);
+  }
+  if (!db.objectStoreNames.contains(OUTBOX_STORE)) {
+    const store = db.createObjectStore(OUTBOX_STORE, { keyPath: 'id', autoIncrement: true });
+    store.createIndex('by-timestamp', 'timestamp');
+    store.createIndex('by-status', 'status');
+  }
+};
 
 interface MyDB extends IDBPDatabase {
   schemas: {
@@ -12,11 +27,7 @@ interface MyDB extends IDBPDatabase {
 
 export const initDB = async (): Promise<IDBPDatabase<MyDB>> => {
   return openDB<MyDB>(DB_NAME, DB_VERSION, {
-    upgrade(db) {
-      if (!db.objectStoreNames.contains(STORE_NAME)) {
-        db.createObjectStore(STORE_NAME);
-      }
-    },
+    upgrade: upgradeHostelDB,
   });
 };
 
