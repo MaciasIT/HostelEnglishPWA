@@ -1,8 +1,60 @@
 # 📖 Diario de Desarrollo – HostelInglésApp
 
-*Última actualización: 01-11-2026*
+*Última actualización: 02-11-2026*
 
 Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por hitos temporales para reflejar la evolución técnica del proyecto.
+
+---
+
+## 🚀 Release v2.6.0: Rediseño «Cyber-Hospitality», Expansión de Datasets e IA Procedural (Fase D)
+*Fecha: 02-11-2026*
+
+- **[✅ COMPLETADO] Rediseño Visual «Cyber-Hospitality & Tech»:**
+    - Identidad visual completa: paleta dark-carbon (`#090D12`), superficies estructuradas en `#121820`/`#182230` y acentos verde esmeralda eléctrico (`#10B981` / hover `#34D399`) con toques cian.
+    - Reemplazo de la portada estática anterior por una Home interactiva con métricas en tiempo real, selector de departamento y acceso ágil a modos de estudio.
+    - Pulido del Dashboard con badges de racha en llamas y contraste verificado bajo estándares WCAG AAA.
+    - Documentado en `docs/plan-2026/05_REDISENO_VISUAL_OPCION_2.md` y auditado por QA en `docs/plan-2026/06_AUDITORIA_QA_FASE_UI_03.md`.
+
+- **[✅ COMPLETADO] Expansión Masiva de Datasets y Variantes Regionales (FD-02):**
+    - Corpus ampliado a **770+ frases** (+132 frases operativas) y **100+ diálogos interactivos** (+10 situaciones de alta complejidad).
+    - Matriz de **41 variantes regionales UK / US / AUS** en `public/data/variants.json` para terminología clave de hostelería (*bill/check*, *chips/fries*, *aubergine/eggplant*).
+    - Transcripción fonética IPA curada en todas las frases nuevas y turnos de diálogo.
+    - Matriz de 30 situaciones hosteleras críticas documentada en `docs/plan-2026/06_DATASETS_Y_SITUACIONES_COMPLEJAS.md`.
+
+- **[✅ COMPLETADO] Motor de Roleplay Procedural e IA de Cortesía (FD-03 / FD-04):**
+    - Generador procedural de imprevistos hosteleros no guionizados (`proceduralRoleplayGenerator.ts`) para 5 áreas departamentales con perfiles de cliente y grados de dificultad.
+    - Evaluador de cortesía profesional (`politenessEvaluator.ts`) con análisis instantáneo de diplomacia hostelera (*Polite Hospitality English*).
+    - Integración completa en la interfaz de `Roleplay.tsx` con selector de acentos lingüísticos (UK, US, AUS, Internacional) y panel dinámico de retroalimentación.
+
+- **[✅ COMPLETADO] Modernización de CI/CD y Calidad:**
+    - Workflows actualizados a **Node.js 22 LTS** con auditoría `npm audit --audit-level=critical`.
+    - Resolución de inconsistencias de tipos en `src/hooks/useTestHook.ts` y `src/hooks/useWorkerSearch.ts`.
+    - **545 tests unitarios e integración pasando al 100%** (83 suites de Vitest).
+    - Compilación limpia con Vite 8 en ~1.3s y pipelines de GitHub Actions (Quality Gates y Deploy a GitHub Pages) 100% en verde.
+
+---
+
+## 🧠 Cierre de Fase C: Capa de IA y Audio On-Device
+*Fecha: 01-11-2026*
+
+- **[✅ COMPLETADO] Arquitectura de Audio Jerárquica (FC-01 a FC-04):**
+    - `AudioManager` centralizado con selección adaptativa según dispositivo (`navigator.gpu`, memoria RAM).
+    - Soporte de síntesis local ultra-realista con modelos **Piper TTS** (WebGPU/WASM), streaming cloud híbrido y fallback nativo a Web Speech API.
+    - Pre-caché PWA ampliado a 12 MiB en Workbox para pesos de modelos ONNX.
+- **[✅ COMPLETADO] Reconocimiento Fonético y Whisper ASR (FC-05 a FC-06):**
+    - Transcripción fonética local mediante `@huggingface/transformers` y alineación temporal DTW (*Dynamic Time Warping*) para el módulo de dictado.
+- **[✅ COMPLETADO] Inferencia LLM Local y Cloudflare Fallback (FC-07 / FC-08):**
+    - Runtimes WebLLM (`@mlc-ai/web-llm`) acelerados por WebGPU con fallback a Cloudflare Workers AI documentados en `docs/plan-2026/FC-07_LLM_ON_DEVICE.md` y `docs/plan-2026/FC-08_FALLBACK_LLM_CLOUD.md`.
+
+---
+
+## 🎨 Cierre de Fase B: Renovación UI/UX y Sistema de Diseño 2026
+*Fecha: 01-11-2026*
+
+- **[✅ COMPLETADO] Sistema de Diseño y Tokens Modernos:**
+    - Arquitectura de tokens `@theme` en Tailwind CSS v4 con variables CSS normalizadas.
+    - Rediseño de componentes base, tipografía Inter y micro-interacciones con Framer Motion 12.
+    - Informe de cierre formal registrado en `docs/plan-2026/INFORME_CIERRE_FASE_B.md`.
 
 ---
 
@@ -24,8 +76,7 @@ Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por
 - **[✅ COMPLETADO] Calidad:**
     - `npm run test:run`: 103 tests verdes.
     - `npm run build`: build limpio en 509ms, SW + precache 20 entries.
-- **[⬜ PENDIENTE] Fase B:** renovación UI/UX sobre esta base.
-- **[⬜ PENDIENTE] Fase C:** módulos de IA (audio, transcripción, recomendaciones) sobre arquitectura offline-first.
+- **[✅ COMPLETADO] Fases Siguientes:** Completadas con éxito en Fase B (UI/UX), Fase C (Capa IA/Audio) y Fase D (Roleplay Procedural & Datasets).
 
 ---
 
