@@ -2,7 +2,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import Examen from './Examen';
 import { useAppStore } from '@/store/useAppStore';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router';
 
 // Mock the store
 vi.mock('@/store/useAppStore', () => ({

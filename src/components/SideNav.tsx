@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router';
 import { useAppStore } from '@/store/useAppStore';
 import LanguageSelector from './LanguageSelector';
 import {

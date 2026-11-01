@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import Home from '@/pages/Home';

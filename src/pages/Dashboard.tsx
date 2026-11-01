@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { useDashboardLogic } from '@/features/dashboard/hooks/useDashboardLogic';
 import DashboardModule from '@/features/dashboard/components/DashboardModule';
 import PageContainer from '@/components/layout/PageContainer';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { useProgressLogic } from '@/features/progress/hooks/useProgressLogic';
 import AchievementBadge from '@/features/progress/components/AchievementBadge';
 import PageContainer from '@/components/layout/PageContainer';

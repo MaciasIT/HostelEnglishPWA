@@ -1,4 +1,4 @@
-import { HashRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router';
 import AppRouter from "@/router/AppRouter";
 import TopNav from "@/components/TopNav";
 import SideNav from "@/components/SideNav";

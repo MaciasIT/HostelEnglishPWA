@@ -1,7 +1,7 @@
 import { vi, expect, describe, it, beforeEach, beforeAll } from 'vitest';
 import { render } from '@testing-library/react';
 import Frases from './Frases';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router';
 
 // Mock completo de idb para evitar errores de indexedDB en tests
 vi.mock('idb', () => ({
