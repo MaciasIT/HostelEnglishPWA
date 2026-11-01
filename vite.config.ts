@@ -13,7 +13,12 @@ export default defineConfig({
       devOptions: {
         enabled: true,
       },
-      includeAssets: ["favicon.ico", "icons/icono.png", "icons/pwa-192x192.png", "icons/pwa-512x512.png"],
+      includeAssets: [
+        "favicon.ico",
+        "icons/icono.png",
+        "icons/pwa-192x192.png",
+        "icons/pwa-512x512.png",
+      ],
       manifest: {
         id: "/HostelEnglishPWA/",
         name: "HostelEnglish PWA",
@@ -46,6 +51,52 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,json,webmanifest}"],
+        navigateFallback: "/HostelEnglishPWA/",
+        runtimeCaching: [
+          {
+            urlPattern: /\/data\/.*\.json$/,
+            handler: "NetworkFirst",
+            options: {
+              cacheName: "hostel-json-data",
+              networkTimeoutSeconds: 3,
+              expiration: {
+                maxEntries: 20,
+                maxAgeSeconds: 7 * 24 * 60 * 60,
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+          {
+            urlPattern: /\.(?:mp3|webm|opus)$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "hostel-audio",
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+          {
+            urlPattern: /\.(?:png|svg|ico|jpg|jpeg|webp)$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "hostel-images",
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
+        ],
       },
     }),
   ],
@@ -57,12 +108,12 @@ export default defineConfig({
   server: {
     port: 5173,
     headers: {
-      'Cross-Origin-Embedder-Policy': 'require-corp',
-      'Cross-Origin-Opener-Policy': 'same-origin',
-      'X-Frame-Options': 'DENY',
-      'X-Content-Type-Options': 'nosniff',
-      'Referrer-Policy': 'strict-origin-when-cross-origin',
-      'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=()',
+      "Cross-Origin-Embedder-Policy": "require-corp",
+      "Cross-Origin-Opener-Policy": "same-origin",
+      "X-Frame-Options": "DENY",
+      "X-Content-Type-Options": "nosniff",
+      "Referrer-Policy": "strict-origin-when-cross-origin",
+      "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
     },
   },
 });
