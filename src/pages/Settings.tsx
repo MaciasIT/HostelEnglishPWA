@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import PageContainer from '@/components/layout/PageContainer';
 import { useAppStore } from '@/store/useAppStore';
+import RoleSelectionModal from '@/components/RoleSelectionModal';
+import { ROLE_LABELS } from '@/utils/roleFilter';
 import UpgradeProButton from '@/components/UpgradeProButton';
 import {
     SpeakerWaveIcon,
@@ -12,6 +14,8 @@ import {
 const Settings = () => {
     const { prefs, isPremium, licenseInfo } = useAppStore();
     const targetLanguage = prefs.targetLanguage;
+    const selectedRole = prefs.selectedRole;
+    const [roleModalOpen, setRoleModalOpen] = useState(false);
 
     const [allVoices, setAllVoices] = useState<SpeechSynthesisVoice[]>([]);
     const [testText, setTestText] = useState('Kaixo, hau euskera ahotsaren testa da. Ondo entzuten al da?');
@@ -53,6 +57,24 @@ const Settings = () => {
     return (
         <PageContainer title="Configuración y Diagnóstico">
             <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
+
+                {/* Rol laboral */}
+                <div className="bg-surface/5 backdrop-blur-xl border border-border/10 rounded-[2.5rem] p-8 shadow-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <h2 className="text-2xl font-black text-primary">Rol laboral</h2>
+                        <p className="text-tertiary text-sm">
+                            Actual: <span data-testid="current-role" className="font-bold text-accent">{selectedRole ? ROLE_LABELS[selectedRole] : 'Sin elegir'}</span>
+                        </p>
+                    </div>
+                    <button
+                        type="button"
+                        onClick={() => setRoleModalOpen(true)}
+                        className="bg-accent text-primary px-6 py-3 rounded-2xl font-black shadow-lg hover:brightness-110 active:scale-95 transition-all"
+                    >
+                        Cambiar rol
+                    </button>
+                </div>
+                {roleModalOpen && <RoleSelectionModal open onClose={() => setRoleModalOpen(false)} />}
 
                 {/* Suscripción */}
                 <section aria-labelledby="sub-title" className="bg-surface/5 backdrop-blur-xl border border-border/10 rounded-[2rem] p-6 flex flex-wrap items-center justify-between gap-4">

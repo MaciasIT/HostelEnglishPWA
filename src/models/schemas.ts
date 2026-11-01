@@ -51,6 +51,7 @@ export const PrefsSchema = z.object({
   conversationSettings: z.record(z.string(), VoiceSettingsSchema),
   phraseSettings: VoiceSettingsSchema,
   preferredRole: z.enum(['bar', 'recepcion', 'restaurante', 'mantenimiento', 'limpieza']).default('bar'),
+  selectedRole: z.enum(['recepcion', 'bar', 'restaurante', 'limpieza', 'mantenimiento', 'general']).nullable().optional(),
   studentName: z.string().default(''),
   hapticsEnabled: z.boolean().optional(),
 });

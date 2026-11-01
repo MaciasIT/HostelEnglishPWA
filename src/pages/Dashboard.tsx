@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router';
+import { useAppStore } from '@/store/useAppStore';
+import { ROLE_LABELS, filterByRole } from '@/utils/roleFilter';
 import { useDashboardLogic } from '@/features/dashboard/hooks/useDashboardLogic';
 import DashboardModule from '@/features/dashboard/components/DashboardModule';
 import DailyChallengeCard from '@/features/dashboard/components/DailyChallengeCard';
@@ -17,6 +19,14 @@ import {
 
 const Dashboard: React.FC = () => {
   const { stats, targetLanguage } = useDashboardLogic();
+  const selectedRole = useAppStore((s) => s.prefs.selectedRole);
+  const frases = useAppStore((s) => s.frases);
+  const roleLabel = selectedRole ? ROLE_LABELS[selectedRole] : null;
+  const roleFrasesCount = useMemo(
+    () => filterByRole(frases, selectedRole).length,
+    [frases, selectedRole]
+  );
+  const personalized = !!selectedRole && selectedRole !== 'general';
 
   const modules = [
     {
@@ -24,7 +34,7 @@ const Dashboard: React.FC = () => {
       path: '/frases',
       icon: ChatBubbleLeftRightIcon,
       color: 'bg-info',
-      desc: 'Esenciales del día a día'
+      desc: personalized ? `Frases de ${roleLabel}` : 'Esenciales del día a día'
     },
     {
       title: 'Diálogos',
@@ -79,6 +89,18 @@ const Dashboard: React.FC = () => {
             <p className="text-xl sm:text-2xl text-secondary mb-10 max-w-2xl font-medium leading-relaxed">
               Continúa tu formación en <span className="text-accent font-black uppercase text-lg">{targetLanguage === 'eu' ? 'euskera' : 'inglés'}</span> para hostelería.
             </p>
+
+            {roleLabel && (
+              <p className="mb-8 flex flex-wrap items-center gap-3 text-secondary" data-testid="dashboard-role">
+                <span className="bg-accent/20 text-accent font-black px-4 py-1 rounded-full text-sm">
+                  Tu ruta: {roleLabel}
+                </span>
+                {roleFrasesCount > 0 && (
+                  <span className="text-sm">{roleFrasesCount} frases para tu puesto</span>
+                )}
+                <Link to="/configuracion" className="text-sm underline hover:text-accent">Cambiar rol</Link>
+              </p>
+            )}
 
             <div className="flex flex-wrap items-center gap-4">
               <StatBadge 

@@ -6,6 +6,7 @@ import BottomNav from "@/components/BottomNav";
 import { useAppStore } from "@/store/useAppStore";
 import { useHydration } from "@/contexts/HydrationContext";
 import { PageSkeleton } from "@/components/Skeleton";
+import RoleSelectionModal from "@/components/RoleSelectionModal";
 
 const AppContent: React.FC = () => {
   const { isHydrating } = useHydration();
@@ -33,6 +34,9 @@ const AppContent: React.FC = () => {
 
       {/* Mobile Bottom Tab Navigation */}
       <BottomNav />
+
+      {/* Onboarding de rol laboral (primer arranque) */}
+      {!isHydrating && <RoleSelectionModal />}
     </div>
   );
 };

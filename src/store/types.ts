@@ -71,6 +71,8 @@ export type AppPrefs = {
     pitch: number;
   };
   preferredRole: 'bar' | 'recepcion' | 'restaurante' | 'mantenimiento' | 'limpieza';
+  /** Rol laboral elegido en onboarding. null/ausente = aún sin elegir. */
+  selectedRole?: JobRole | null;
   studentName: string;
   /** Vibración háptica. Ausente = activada. */
   hapticsEnabled?: boolean;
@@ -83,6 +85,8 @@ export type LicenseDetails = {
   issuedAt: number;
   expiresAt: number;
 };
+
+export type JobRole = 'recepcion' | 'bar' | 'restaurante' | 'limpieza' | 'mantenimiento' | 'general';
 
 export type PreferredRole = 'bar' | 'recepcion' | 'restaurante' | 'mantenimiento' | 'limpieza';
 

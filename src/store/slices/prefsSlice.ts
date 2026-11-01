@@ -1,5 +1,5 @@
 import { StateCreator } from 'zustand';
-import { AppPrefs, ThemePreference } from '../types';
+import { AppPrefs, ThemePreference, JobRole } from '../types';
 
 export interface PrefsSlice {
   prefs: AppPrefs;
@@ -7,6 +7,7 @@ export interface PrefsSlice {
   setAudioSpeed: (speed: number) => void;
   setTargetLanguage: (lang: 'en' | 'eu') => void;
   setPreferredRole: (role: 'bar' | 'recepcion' | 'restaurante' | 'mantenimiento' | 'limpieza') => void;
+  setSelectedRole: (role: JobRole) => void;
   setStudentName: (name: string) => void;
   setConversationParticipantSetting: (
     participant: string,
@@ -31,6 +32,7 @@ export const createPrefsSlice: StateCreator<PrefsSlice> = (set) => ({
       pitch: 1,
     },
     preferredRole: 'bar',
+    selectedRole: null,
     studentName: '',
   },
 
@@ -48,6 +50,15 @@ export const createPrefsSlice: StateCreator<PrefsSlice> = (set) => ({
 
   setPreferredRole: (role) => set((state) => ({
     prefs: { ...state.prefs, preferredRole: role }
+  })),
+
+  setSelectedRole: (role) => set((state) => ({
+    prefs: {
+      ...state.prefs,
+      selectedRole: role,
+      // 'general' conserva el rol de retos previo (los retos no tienen plantilla general)
+      preferredRole: role === 'general' ? state.prefs.preferredRole : role,
+    }
   })),
 
   setStudentName: (name) => set((state) => ({

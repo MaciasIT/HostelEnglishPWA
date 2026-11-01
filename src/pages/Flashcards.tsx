@@ -6,6 +6,7 @@ import PageContainer from '@/components/layout/PageContainer';
 import CollapsibleSection from '@/components/CollapsibleSection';
 import VoiceSettings from '@/components/VoiceSettings';
 import ModuleIntro from '@/components/ModuleIntro';
+import RoleScopeTabs from '@/components/RoleScopeTabs';
 import { Square2StackIcon } from '@heroicons/react/24/outline';
 
 const Flashcards: React.FC = () => {
@@ -45,6 +46,9 @@ const Flashcards: React.FC = () => {
     return (
       <PageContainer title="Flashcards">
         <div className="text-center py-20 px-4">
+          <div className="max-w-md mx-auto">
+            <RoleScopeTabs role={state.selectedRole} scope={state.scope} onChange={actions.setScope} />
+          </div>
           <p className="text-xl text-tertiary mb-6 font-medium">
             No hay tarjetas disponibles para esta selección.
           </p>
@@ -63,6 +67,9 @@ const Flashcards: React.FC = () => {
   return (
     <PageContainer title="Flashcards">
       <div className="max-w-md mx-auto w-full flex flex-col items-center animate-fade-in">
+        <div className="w-full">
+          <RoleScopeTabs role={state.selectedRole} scope={state.scope} onChange={actions.setScope} />
+        </div>
         <div className="w-full mb-8">
           <label 
             htmlFor="category-select"

@@ -15,6 +15,8 @@ import {
 import { shuffle } from '@/utils/shuffle';
 import PageContainer from '@/components/layout/PageContainer';
 import ModuleIntro from '@/components/ModuleIntro';
+import RoleScopeTabs, { type RoleScope } from '@/components/RoleScopeTabs';
+import { roleMatchesCategory } from '@/utils/roleFilter';
 
 export default function Frases() {
   const {
@@ -35,6 +37,8 @@ export default function Frases() {
 
 
   const [searchTerm, setSearchTerm] = useState('');
+  const selectedRole = useAppStore((state) => state.prefs.selectedRole);
+  const [scope, setScope] = useState<RoleScope>('role');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showWelcome, setShowWelcome] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -78,9 +82,11 @@ export default function Frases() {
           break;
       }
 
-      return matchesCategory && matchesSearch;
+      const matchesRole = scope === 'all' || roleMatchesCategory(selectedRole, phrase.categoria);
+
+      return matchesCategory && matchesSearch && matchesRole;
     });
-  }, [frases, searchTerm, selectedCategory, progress]);
+  }, [frases, searchTerm, selectedCategory, progress, scope, selectedRole]);
 
   const startStudySession = (size: number | 'all') => {
     const phrasesToStudy = shuffle([...filteredFrases]);
@@ -124,6 +130,7 @@ export default function Frases() {
           <div className="space-y-6">
             <div className="bg-surface/5 backdrop-blur-xl p-8 rounded-[2.5rem] border border-border/10 shadow-2xl relative overflow-hidden">
               <div className="absolute -right-10 -top-10 w-32 h-32 bg-accent opacity-5 blur-2xl rounded-full"></div>
+              <RoleScopeTabs role={selectedRole} scope={scope} onChange={setScope} />
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="relative">

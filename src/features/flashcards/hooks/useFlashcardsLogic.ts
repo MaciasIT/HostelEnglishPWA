@@ -1,5 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import { useAppStore } from '@/store/useAppStore';
+import { roleMatchesCategory } from '@/utils/roleFilter';
+import type { RoleScope } from '@/components/RoleScopeTabs';
 
 export function useFlashcardsLogic() {
   const { frases, loadFrases, frasesLoaded, categories, setPhraseSetting } = useAppStore();
@@ -8,6 +10,8 @@ export function useFlashcardsLogic() {
 
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const selectedRole = useAppStore((state) => state.prefs.selectedRole);
+  const [scope, setScope] = useState<RoleScope>('role');
 
   useEffect(() => {
     if (!frasesLoaded) {
@@ -19,9 +23,10 @@ export function useFlashcardsLogic() {
     return frases.filter(phrase => {
       const hasText = phrase.es && (targetLanguage === 'eu' ? phrase.eu : phrase.en);
       const matchesCategory = selectedCategory === 'all' || phrase.categoria === selectedCategory;
-      return hasText && matchesCategory;
+      const matchesRole = scope === 'all' || roleMatchesCategory(selectedRole, phrase.categoria);
+      return hasText && matchesCategory && matchesRole;
     });
-  }, [frases, selectedCategory, targetLanguage]);
+  }, [frases, selectedCategory, targetLanguage, scope, selectedRole]);
 
   // Reset index when filtration changes
   useEffect(() => {
@@ -54,12 +59,15 @@ export function useFlashcardsLogic() {
       targetLanguage,
       currentPhraseIndex,
       selectedCategory,
+      selectedRole,
+      scope,
       filteredFrases,
       currentPhrase: filteredFrases[currentPhraseIndex] || null,
       totalFrases: filteredFrases.length
     },
     actions: {
       setSelectedCategory,
+      setScope,
       setCurrentPhraseIndex,
       handleNext,
       handlePrev,
