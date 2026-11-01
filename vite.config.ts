@@ -53,6 +53,10 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ["**/*.{js,css,html,ico,png,svg,json,webmanifest}"],
+        // Los workers on-device (Whisper/Transformers.js y WebLLM) embeben sus
+        // runtimes y superan el límite por defecto de 2 MiB. Se amplía para
+        // poderlos pre-cachear y que el ASR/LLM funcionen offline.
+        maximumFileSizeToCacheInBytes: 12 * 1024 * 1024,
         navigateFallback: "/HostelEnglishPWA/",
         runtimeCaching: [
           {
@@ -98,14 +102,32 @@ export default defineConfig({
               },
             },
           },
+          {
+            // Pesos y runtimes de los modelos on-device (Whisper/Transformers.js,
+            // WebLLM). Descargados de los CDNs oficiales; se cachean CacheFirst
+            // para que el ASR/LLM funcionen offline tras la primera descarga.
+            urlPattern: /https:\/\/(huggingface\.co|cdn\.jsdelivr\.net|cjs\.dev|unpkg\.com)\/.*\.(?:onnx|wasm|json|bin|model|tiktoken)$/,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "hostel-ai-models",
+              expiration: {
+                maxEntries: 80,
+                maxAgeSeconds: 60 * 24 * 60 * 60,
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
+              },
+            },
+          },
         ],
       },
     }),
   ],
-  // WebLLM (@mlc-ai/web-llm) no debe pre-bundearse: carga WASM y pesos
-  // dinámicamente. Excluirlo evita errores de resolución en dev y build.
+  // WebLLM (@mlc-ai/web-llm) y Transformers.js (@huggingface/transformers) no
+  // deben pre-bundearse en dev: cargan WASM y pesos dinámicamente. Excluirlos
+  // evita errores de resolución en dev y build.
   optimizeDeps: {
-    exclude: ["@mlc-ai/web-llm"],
+    exclude: ["@mlc-ai/web-llm", "@huggingface/transformers"],
   },
   build: {
     chunkSizeWarningLimit: 6000,

@@ -13,6 +13,13 @@ export { AudioCache, fragmentKey, hashText } from './audioCache';
 export { CloudEngine, PiperEngine, WebSpeechEngine } from './engines';
 export type { CloudEngineOptions, CloudFetcher, PiperSynth } from './engines';
 
+// ASR (FC-02): detección de capacidades y fallback Web Speech.
+export { detectASRCapability } from './asrCapabilities';
+export type { ASRCapability, ASRCapabilitySource } from './asrCapabilities';
+
+export { getSpeechRecognitionCtor, transcribeWithWebSpeech } from './webSpeechASR';
+export type { WebSpeechTranscriber } from './webSpeechASR';
+
 export type {
   AudioEngineAdapter,
   AudioEngineType,

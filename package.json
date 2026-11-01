@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@huggingface/transformers": "^3.8.1",
     "@mlc-ai/web-llm": "^0.2.87",
     "@sentry/react": "^10.68.0",
     "@testing-library/dom": "^10.4.2",
