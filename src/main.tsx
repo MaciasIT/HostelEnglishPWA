@@ -5,11 +5,10 @@ import App from "./App";
 import "./styles/index.css";
 import AppInitializer from "./components/AppInitializer";
 
-
-
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <AppInitializer />
-    <App />
+    <AppInitializer>
+      <App />
+    </AppInitializer>
   </React.StrictMode>
 );
