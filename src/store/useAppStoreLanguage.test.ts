@@ -17,7 +17,9 @@ describe('useAppStore - Language Support', () => {
                 theme: 'light',
                 audioSpeed: 1,
                 conversationSettings: {},
-                phraseSettings: { voiceURI: '', rate: 1, pitch: 1 }
+                phraseSettings: { voiceURI: '', rate: 1, pitch: 1 },
+                preferredRole: 'bar',
+                studentName: ''
             }
         });
     });

@@ -52,9 +52,11 @@ export type Certification = {
   verificationCode: string;
 };
 
+export type ThemePreference = 'dark' | 'light' | 'auto';
+
 export type AppPrefs = {
   targetLanguage: 'en' | 'eu';
-  theme: string;
+  theme: ThemePreference;
   audioSpeed: number;
   conversationSettings: {
     [participant: string]: {
@@ -70,6 +72,8 @@ export type AppPrefs = {
   };
   preferredRole: 'bar' | 'recepcion' | 'restaurante' | 'mantenimiento' | 'limpieza';
   studentName: string;
+  /** Vibración háptica. Ausente = activada. */
+  hapticsEnabled?: boolean;
 };
 
 export type LicenseDetails = {

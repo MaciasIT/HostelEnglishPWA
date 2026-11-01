@@ -2,6 +2,10 @@ import { useState, useCallback, useMemo } from 'react';
 import { useAppStore } from '@/store/useAppStore';
 import { Question, QuizMode, ScrambledWord, Feedback } from '../types';
 import { getTargetText } from '@/utils/language';
+import { haptics } from '@/utils/haptics';
+
+/** Racha que dispara el patrón STREAK (y cada múltiplo posterior). */
+const STREAK_MILESTONE = 7;
 
 export const useQuizLogic = (category: string | null, mode: QuizMode) => {
   const { frases, progress, advancePhraseProgress, prefs } = useAppStore();
@@ -83,9 +87,11 @@ export const useQuizLogic = (category: string | null, mode: QuizMode) => {
     }
 
     if (isCorrect) {
+      const nextStreak = streak + 1;
       setScore(s => s + 1);
-      setStreak(s => s + 1);
+      setStreak(nextStreak);
       setFeedback({ isCorrect: true, message: '¡Correcto!' });
+      haptics.trigger(nextStreak >= STREAK_MILESTONE && nextStreak % STREAK_MILESTONE === 0 ? 'STREAK' : 'SUCCESS');
 
       if ((progress[currentQuestion.target.id] || 0) < 2) {
         advancePhraseProgress(String(currentQuestion.target.id));
@@ -95,10 +101,12 @@ export const useQuizLogic = (category: string | null, mode: QuizMode) => {
       setLives(newLives);
       setStreak(0);
       setFeedback({ isCorrect: false, message: `Incorrecto. Era: ${targetText}` });
+      // Cada fallo en quiz cuesta una vida ❤️ → patrón de error.
+      haptics.trigger('ERROR');
     }
     setTotalQuestions(t => t + 1);
     setQuestionsHandledInLevel(q => q + 1);
-  }, [currentQuestion, feedback, lives, mode, progress, targetLanguage, advancePhraseProgress]);
+  }, [currentQuestion, feedback, lives, streak, mode, progress, targetLanguage, advancePhraseProgress]);
 
   const handleNextQuestion = useCallback(() => {
     if (lives <= 0) {
@@ -107,6 +115,7 @@ export const useQuizLogic = (category: string | null, mode: QuizMode) => {
     }
     if (questionsHandledInLevel >= QUESTIONS_PER_LEVEL) {
       setIsLevelComplete(true);
+      haptics.trigger('STREAK'); // subida de nivel 🔥
       return;
     }
     generateQuestion();

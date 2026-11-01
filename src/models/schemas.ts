@@ -51,6 +51,7 @@ export const PrefsSchema = z.object({
   conversationSettings: z.record(z.string(), VoiceSettingsSchema),
   phraseSettings: VoiceSettingsSchema,
   preferredRole: z.enum(['bar', 'recepcion', 'restaurante', 'mantenimiento', 'limpieza']).default('bar'),
+  studentName: z.string().default(''),
 });
 
 /**
@@ -112,6 +113,7 @@ export const AppStateSchema = z.object({
       pitch: 1,
     },
     preferredRole: 'bar',
+    studentName: '',
   }),
   dailyActivity: z.record(z.string(), z.number().int().nonnegative()).default({}),
   examHistory: z.array(ExamEntrySchema).default([]),

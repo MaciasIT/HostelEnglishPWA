@@ -14,20 +14,20 @@ export default function AchievementBadge({ title, desc, icon: Icon, color, isUnl
     <div
       className={`flex items-center gap-4 p-4 rounded-2xl border transition-all ${
         isUnlocked 
-          ? 'bg-white/10 border-white/10 shadow-lg' 
-          : 'bg-black/20 border-white/5 opacity-40 grayscale'
+          ? 'bg-surface/10 border-border/10 shadow-lg' 
+          : 'bg-background/20 border-border/5 opacity-40 grayscale'
       }`}
       role="listitem"
       aria-label={`${title}: ${isUnlocked ? 'Desbloqueado' : 'Bloqueado'}. ${desc}`}
     >
       <div className={`w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br ${color} shadow-lg shadow-black/20`}>
-        <Icon className="w-6 h-6 text-white" />
+        <Icon className="w-6 h-6 text-primary" />
       </div>
       <div>
-        <h4 className="text-sm font-bold text-white uppercase tracking-tight">
+        <h4 className="text-sm font-bold text-primary uppercase tracking-tight">
           {title}
         </h4>
-        <p className="text-[10px] text-gray-400 font-medium">
+        <p className="text-[10px] text-tertiary font-medium">
           {desc}
         </p>
       </div>

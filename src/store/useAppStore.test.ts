@@ -34,6 +34,8 @@ describe('useAppStore - Conversation Settings', () => {
           rate: 1,
           pitch: 1,
         },
+        preferredRole: 'bar',
+        studentName: '',
       },
     });
     // Clear all mocks for idb functions

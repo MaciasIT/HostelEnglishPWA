@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SpeakerWaveIcon, ArrowPathIcon } from '@heroicons/react/24/outline';
 import { playAudio } from '@/utils/audio';
+import { haptics } from '@/utils/haptics';
 import { Phrase } from '@/store/useAppStore';
 
 interface FlashcardItemProps {
@@ -22,6 +23,7 @@ const FlashcardItem: React.FC<FlashcardItemProps> = ({ phrase, targetLanguage, p
   }, [phrase.id]);
 
   const handleFlip = () => {
+    haptics.trigger('SELECTION');
     setIsFlipped(!isFlipped);
   };
 

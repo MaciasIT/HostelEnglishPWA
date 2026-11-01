@@ -1,11 +1,13 @@
 import { StateCreator } from 'zustand';
-import { AppPrefs } from '../types';
+import { AppPrefs, ThemePreference } from '../types';
 
 export interface PrefsSlice {
   prefs: AppPrefs;
-  setTheme: (theme: string) => void;
+  setTheme: (theme: ThemePreference) => void;
   setAudioSpeed: (speed: number) => void;
   setTargetLanguage: (lang: 'en' | 'eu') => void;
+  setPreferredRole: (role: 'bar' | 'recepcion' | 'restaurante' | 'mantenimiento' | 'limpieza') => void;
+  setStudentName: (name: string) => void;
   setConversationParticipantSetting: (
     participant: string,
     setting: 'voiceURI' | 'rate' | 'pitch',
@@ -20,7 +22,7 @@ export interface PrefsSlice {
 export const createPrefsSlice: StateCreator<PrefsSlice> = (set) => ({
   prefs: {
     targetLanguage: 'en',
-    theme: "light",
+    theme: 'dark',
     audioSpeed: 1,
     conversationSettings: {},
     phraseSettings: {
@@ -28,6 +30,8 @@ export const createPrefsSlice: StateCreator<PrefsSlice> = (set) => ({
       rate: 1,
       pitch: 1,
     },
+    preferredRole: 'bar',
+    studentName: '',
   },
 
   setTheme: (theme) => set((state) => ({
@@ -40,6 +44,14 @@ export const createPrefsSlice: StateCreator<PrefsSlice> = (set) => ({
 
   setTargetLanguage: (lang) => set((state) => ({
     prefs: { ...state.prefs, targetLanguage: lang }
+  })),
+
+  setPreferredRole: (role) => set((state) => ({
+    prefs: { ...state.prefs, preferredRole: role }
+  })),
+
+  setStudentName: (name) => set((state) => ({
+    prefs: { ...state.prefs, studentName: name }
   })),
 
   setConversationParticipantSetting: (participant, setting, value) => set((state) => ({

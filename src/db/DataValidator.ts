@@ -15,10 +15,12 @@ const initialState: AppStateV1 = {
       pitch: 1,
     },
     preferredRole: 'bar',
+    studentName: '',
   },
   dailyActivity: {},
   examHistory: [],
   achievements: [],
+  certifications: [],
 };
 
 export class DataValidator {

@@ -1,5 +1,5 @@
 import { StateCreator } from 'zustand';
-import { ExamResult } from '../types';
+import { ExamResult, Certification } from '../types';
 import { queueProgressEvent, type ProgressEvent } from '@/services/syncService';
 
 export interface ProgressSlice {
@@ -7,16 +7,20 @@ export interface ProgressSlice {
   dailyActivity: Record<string, number>;
   examHistory: ExamResult[];
   achievements: string[];
+  certifications: Certification[];
   advancePhraseProgress: (phraseId: string) => void;
   recordActivity: () => void;
   recordExamResult: (score: number, total: number) => void;
+  recordCertification: (cert: Certification) => void;
 }
 
 export const createProgressSlice: StateCreator<ProgressSlice> = (set, get) => ({
+
   progress: {},
   dailyActivity: {},
   examHistory: [],
   achievements: [],
+  certifications: [],
 
   advancePhraseProgress: (phraseId: string) => {
     set((state) => {
@@ -68,5 +72,13 @@ export const createProgressSlice: StateCreator<ProgressSlice> = (set, get) => ({
     });
     const evt: ProgressEvent = { type: 'record_exam', payload: { score, total } };
     queueProgressEvent(evt).catch(() => {});
+  },
+
+  recordCertification: (cert: Certification) => {
+    set((state) => ({
+      certifications: [...state.certifications, cert],
+    }));
+    // Also record as exam result for backwards-compat achievements
+    get().recordExamResult(cert.score, cert.total);
   },
 });

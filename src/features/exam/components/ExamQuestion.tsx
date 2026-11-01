@@ -23,10 +23,10 @@ export default function ExamQuestion({
       <motion.div 
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white/10 p-10 rounded-[2.5rem] shadow-2xl border border-white/20 backdrop-blur-md"
+        className="bg-surface/10 p-10 rounded-[2.5rem] shadow-2xl border border-border/20 backdrop-blur-md"
       >
         <p id="question-label" className="text-[10px] uppercase font-black text-accent tracking-[0.2em] mb-4">Traduce esta frase:</p>
-        <h3 id="current-question" className="text-3xl sm:text-4xl font-black text-white mb-12 italic leading-tight">
+        <h3 id="current-question" className="text-3xl sm:text-4xl font-black text-primary mb-12 italic leading-tight">
           "{question}"
         </h3>
 
@@ -35,15 +35,15 @@ export default function ExamQuestion({
             const isCorrect = opt === correctAnswer;
             const isSelected = selectedOption === opt;
             
-            let btnClass = "bg-white/5 border-white/10 hover:border-accent hover:bg-white/10";
+            let btnClass = "bg-surface/5 border-border/10 hover:border-accent hover:bg-surface/10";
             if (isSelected) {
               btnClass = isCorrect 
-                ? "bg-green-500 border-green-400 text-white" 
-                : "bg-red-500 border-red-400 text-white";
+                ? "bg-success border-green-400 text-primary" 
+                : "bg-error border-red-400 text-primary";
             } else if (isAnswered) {
               btnClass = isCorrect 
-                ? "bg-green-500/20 border-green-500/30 text-green-200" 
-                : "bg-white/5 border-white/5 opacity-30";
+                ? "bg-success/20 border-green-500/30 text-green-200" 
+                : "bg-surface/5 border-border/5 opacity-30";
             }
 
             return (
@@ -80,15 +80,15 @@ export default function ExamQuestion({
           aria-live="polite"
           className={`p-6 rounded-[2rem] border-2 ${
             selectedOption === correctAnswer 
-              ? 'bg-green-500/10 border-green-500/30' 
-              : 'bg-red-500/10 border-red-500/30'
+              ? 'bg-success/10 border-green-500/30' 
+              : 'bg-error/10 border-red-500/30'
           }`}
         >
           <div className="flex items-start gap-4">
-            <div className={`p-3 rounded-full ${selectedOption === correctAnswer ? 'bg-green-500' : 'bg-red-500'}`}>
+            <div className={`p-3 rounded-full ${selectedOption === correctAnswer ? 'bg-success' : 'bg-error'}`}>
               {selectedOption === correctAnswer 
-                ? <CheckBadgeIcon className="w-6 h-6 text-white" /> 
-                : <XMarkIcon className="w-6 h-6 text-white" />
+                ? <CheckBadgeIcon className="w-6 h-6 text-primary" /> 
+                : <XMarkIcon className="w-6 h-6 text-primary" />
               }
             </div>
             <div>
@@ -96,9 +96,9 @@ export default function ExamQuestion({
                 {selectedOption === correctAnswer ? '¡Correcto!' : 'Oh, no es exacto'}
               </h3>
               {selectedOption !== correctAnswer && (
-                <div className="mt-1 text-gray-300">
+                <div className="mt-1 text-secondary">
                   La respuesta correcta es:
-                  <p className="text-white font-black text-lg tracking-tight">{correctAnswer}</p>
+                  <p className="text-primary font-black text-lg tracking-tight">{correctAnswer}</p>
                 </div>
               )}
             </div>

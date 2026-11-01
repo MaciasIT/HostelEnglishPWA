@@ -24,8 +24,14 @@ describe('Examen Module', () => {
             loadFrases: vi.fn(),
             advancePhraseProgress: vi.fn(),
             recordExamResult: vi.fn(),
+            recordCertification: vi.fn(),
+            setPreferredRole: vi.fn(),
+            setStudentName: vi.fn(),
             progress: {},
-            prefs: { 
+            prefs: {
+                preferredRole: 'bar',
+                studentName: '',
+                
                 targetLanguage: 'en',
                 phraseSettings: { rate: 1, pitch: 1, voiceURI: '' } 
             }
@@ -70,7 +76,7 @@ describe('Examen Module', () => {
         );
         fireEvent.click(screen.getByText(/Empezar Ahora/i));
         
-        const startBtn = await screen.findByText(/Comenzar Examen/i);
+        const startBtn = await screen.findByText(/(Comenzar Examen|Iniciar Certificación)/i);
         fireEvent.click(startBtn);
 
         // Should show a question index footer text

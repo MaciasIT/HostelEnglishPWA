@@ -46,12 +46,12 @@ export default function Examen() {
     );
   }
 
-  const roleLabel = examConfig.role ? (() => {
+  const roleLabel = examConfig?.role ? (() => {
     const meta: Record<string, string> = { recepcion: 'Recepción', restaurante: 'Restaurante', limpieza: 'Limpieza', mantenimiento: 'Mantenimiento', bar: 'Barra' };
     return meta[examConfig.role] || '';
   })() : '';
 
-  const pageTitle = examConfig.role && roleLabel
+  const pageTitle = examConfig?.role && roleLabel
     ? `Certificación: ${roleLabel}`
     : examState === 'active'
       ? `Examen en progreso: ${currentIndex + 1}/${totalQuestions}`

@@ -9,8 +9,12 @@ import {
 } from '@heroicons/react/24/outline';
 import { Phrase } from '@/store/useAppStore';
 import { getTargetText } from '@/utils/language';
+import CertificationBadge from '@/components/CertificationBadge';
+import type { Certification } from '@/store/types';
 
 interface ExamResultsProps {
+  certification?: Certification | null;
+  onShare?: () => void;
   score: number;
   total: number;
   incorrectIds: string[];
@@ -27,7 +31,9 @@ export default function ExamResults({
   phrases,
   targetLanguage,
   onRestart,
-  onExit
+  onExit,
+  certification,
+  onShare
 }: ExamResultsProps) {
   const [showErrors, setShowErrors] = useState(false);
   const passed = score >= total * 0.8;
@@ -39,7 +45,7 @@ export default function ExamResults({
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         className={`p-10 rounded-[3rem] border-2 shadow-2xl backdrop-blur-xl text-center relative overflow-hidden ${
-          passed ? 'bg-green-500/10 border-green-500/30' : 'bg-red-500/10 border-red-500/30'
+          passed ? 'bg-success/10 border-green-500/30' : 'bg-error/10 border-red-500/30'
         }`}
       >
         <motion.div
@@ -47,40 +53,40 @@ export default function ExamResults({
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
           className={`w-28 h-28 rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl ${
-            passed ? 'bg-green-500' : 'bg-red-500'
+            passed ? 'bg-success' : 'bg-error'
           }`}
           aria-hidden="true"
         >
           {passed ? (
-            <TrophyIcon className="w-14 h-14 text-white" />
+            <TrophyIcon className="w-14 h-14 text-primary" />
           ) : (
-            <ShieldCheckIcon className="w-14 h-14 text-white opacity-50" />
+            <ShieldCheckIcon className="w-14 h-14 text-primary opacity-50" />
           )}
         </motion.div>
 
         <h2 
-          className="text-5xl font-black text-white mb-2 tracking-tighter uppercase"
+          className="text-5xl font-black text-primary mb-2 tracking-tighter uppercase"
           role="status"
           aria-live="assertive"
         >
           {passed ? '¡APROBADO!' : 'CASI LO TIENES'}
         </h2>
 
-        <p className="text-gray-400 mb-10 text-lg">
+        <p className="text-tertiary mb-10 text-lg">
           {passed
             ? 'Has demostrado un gran dominio de la lengua.'
             : 'Un poco más de estudio y lo conseguirás.'}
         </p>
 
         <div className="grid grid-cols-2 gap-4 mb-10">
-          <div className="bg-white/5 p-6 rounded-3xl border border-white/10">
+          <div className="bg-surface/5 p-6 rounded-3xl border border-border/10">
             <div className="flex items-center justify-center gap-2 mb-1">
               <FireIcon className="w-4 h-4 text-orange-500" />
               <p className="text-[10px] uppercase font-black text-gray-500 tracking-widest">Puntuación</p>
             </div>
-            <p className="text-4xl font-black text-white">{score}<span className="text-lg text-gray-600 font-bold">/{total}</span></p>
+            <p className="text-4xl font-black text-primary">{score}<span className="text-lg text-secondary font-bold">/{total}</span></p>
           </div>
-          <div className="bg-white/5 p-6 rounded-3xl border border-white/10">
+          <div className="bg-surface/5 p-6 rounded-3xl border border-border/10">
             <div className="flex items-center justify-center gap-2 mb-1">
               <SparklesIcon className="w-4 h-4 text-accent" />
               <p className="text-[10px] uppercase font-black text-gray-500 tracking-widest">Precisión</p>
@@ -89,10 +95,16 @@ export default function ExamResults({
           </div>
         </div>
 
+        {certification && (
+          <div className="mb-10">
+            <CertificationBadge certification={certification} onShare={onShare} />
+          </div>
+        )}
+
         <div className="flex flex-col gap-4">
           <button
             onClick={onRestart}
-            className="bg-accent text-white font-black py-5 rounded-2xl text-xl shadow-2xl hover:brightness-110 active:scale-95 transition-all tracking-widest uppercase"
+            className="bg-accent text-primary font-black py-5 rounded-2xl text-xl shadow-2xl hover:brightness-110 active:scale-95 transition-all tracking-widest uppercase"
           >
             Nuevo Examen
           </button>
@@ -100,7 +112,7 @@ export default function ExamResults({
           {incorrectIds.length > 0 && (
             <button
               onClick={() => setShowErrors(true)}
-              className="bg-red-500/20 text-red-400 font-bold py-4 rounded-2xl hover:bg-red-500/30 transition-all flex items-center justify-center gap-2 border border-red-500/20"
+              className="bg-error/20 text-red-400 font-bold py-4 rounded-2xl hover:bg-error/30 transition-all flex items-center justify-center gap-2 border border-red-500/20"
             >
               <ShieldCheckIcon className="w-5 h-5" />
               VER ERRORES ({incorrectIds.length})
@@ -109,7 +121,7 @@ export default function ExamResults({
 
           <button
             onClick={onExit}
-            className="bg-white/5 text-white font-bold py-4 rounded-2xl hover:bg-white/10 active:scale-95 transition-all uppercase tracking-widest text-xs"
+            className="bg-surface/5 text-primary font-bold py-4 rounded-2xl hover:bg-surface/10 active:scale-95 transition-all uppercase tracking-widest text-xs"
           >
             Volver al Inicio
           </button>
@@ -123,7 +135,7 @@ export default function ExamResults({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[70] flex items-center justify-center p-6 bg-primary-dark/95 backdrop-blur-xl"
+            className="fixed inset-0 z-[70] flex items-center justify-center p-6 bg-background/95 backdrop-blur-xl"
           >
             <motion.div
               initial={{ scale: 0.9, y: 20 }}
@@ -132,16 +144,16 @@ export default function ExamResults({
               role="dialog"
               aria-modal="true"
               aria-labelledby="modal-title"
-              className="max-w-2xl w-full max-h-[80vh] bg-white/5 rounded-[3rem] border border-white/10 p-10 shadow-2xl overflow-y-auto"
+              className="max-w-2xl w-full max-h-[80vh] bg-surface/5 rounded-[3rem] border border-border/10 p-10 shadow-2xl overflow-y-auto"
             >
               <div className="flex justify-between items-center mb-8">
-                <h3 id="modal-title" className="text-2xl font-black text-white flex items-center gap-3">
+                <h3 id="modal-title" className="text-2xl font-black text-primary flex items-center gap-3">
                   <ShieldCheckIcon className="w-8 h-8 text-red-500" aria-hidden="true" />
                   Repaso Crítico
                 </h3>
                 <button 
                   onClick={() => setShowErrors(false)} 
-                  className="text-gray-500 hover:text-white"
+                  className="text-gray-500 hover:text-primary"
                   aria-label="Cerrar modal de errores"
                 >
                   <XMarkIcon className="w-8 h-8" />
@@ -153,9 +165,9 @@ export default function ExamResults({
                   const p = phrases.find(item => String(item.id) === id);
                   if (!p) return null;
                   return (
-                    <div key={id} className="p-6 bg-black/40 rounded-2xl border border-white/5">
+                    <div key={id} className="p-6 bg-background/40 rounded-2xl border border-border/5">
                       <p className="text-sm text-gray-500 italic mb-2">"{p.es}"</p>
-                      <p className="text-white font-black text-lg">{getTargetText(p, targetLanguage)}</p>
+                      <p className="text-primary font-black text-lg">{getTargetText(p, targetLanguage)}</p>
                     </div>
                   );
                 })}
@@ -163,7 +175,7 @@ export default function ExamResults({
 
               <button
                 onClick={() => setShowErrors(false)}
-                className="mt-8 w-full bg-white text-primary-dark font-black py-4 rounded-2xl uppercase tracking-widest"
+                className="mt-8 w-full bg-surface text-primary font-black py-4 rounded-2xl uppercase tracking-widest"
               >
                 Cerrar Repaso
               </button>

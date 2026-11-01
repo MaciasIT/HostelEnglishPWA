@@ -13,12 +13,12 @@ export default function ExamHeader({ currentIndex, total, onExit }: ExamHeaderPr
   return (
     <div className="mb-8">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-white/40 text-xs uppercase tracking-[0.3em] font-black">
+        <h2 className="text-primary/40 text-xs uppercase tracking-[0.3em] font-black">
           Evaluación en progreso
         </h2>
         <button
           onClick={onExit}
-          className="p-2 hover:bg-white/5 rounded-xl text-gray-500 hover:text-white transition-all group"
+          className="p-2 hover:bg-surface/5 rounded-xl text-tertiary hover:text-primary transition-all group"
           aria-label="Salir del examen"
         >
           <XMarkIcon className="w-6 h-6 group-active:scale-90 transition-transform" />
@@ -26,7 +26,7 @@ export default function ExamHeader({ currentIndex, total, onExit }: ExamHeaderPr
       </div>
 
       <div 
-        className="h-2 bg-white/5 rounded-full overflow-hidden mb-2"
+        className="h-2 bg-surface/5 rounded-full overflow-hidden mb-2"
         role="progressbar"
         aria-valuenow={Math.round(progress)}
         aria-valuemin={0}
@@ -45,7 +45,7 @@ export default function ExamHeader({ currentIndex, total, onExit }: ExamHeaderPr
         <span className="text-[10px] font-black text-accent uppercase tracking-widest">
           {Math.round(progress)}% Completado
         </span>
-        <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">
+        <span className="text-[10px] font-black text-tertiary uppercase tracking-widest">
           Pregunta #{currentIndex + 1} de {total}
         </span>
       </div>

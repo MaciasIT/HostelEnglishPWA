@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router';
+import { haptics } from '../utils/haptics';
 import {
   HomeIcon,
   Squares2X2Icon,
@@ -38,6 +39,7 @@ const BottomNav: React.FC = () => {
             }`}
             aria-current={isActive ? 'page' : undefined}
             aria-label={tab.label}
+            onClick={() => { if (!isActive) haptics.trigger('SELECTION'); }}
           >
             <tab.icon className={`w-5 h-5 transition-transform ${isActive ? 'drop-shadow-[0_0_6px_rgba(230,126,34,0.5)]' : ''}`} />
             <span className={`text-[9px] mt-1 uppercase tracking-wider transition-colors ${isActive ? 'font-bold' : 'font-medium'}`}>
