@@ -1,5 +1,6 @@
 import React from 'react';
 import { useAppStore } from '@/store/useAppStore';
+import ThemeToggle from '@/components/ThemeToggle';
 import { Bars3Icon } from '@heroicons/react/24/outline';
 
 const TopNav: React.FC = () => {
@@ -18,9 +19,7 @@ const TopNav: React.FC = () => {
         Hostel<span className="text-accent">English</span>
       </h1>
 
-      <div className="w-10 h-10 bg-accent/20 rounded-full flex items-center justify-center text-accent text-xs font-black border border-accent/20">
-        HE
-      </div>
+      <ThemeToggle />
     </nav>
   );
 };

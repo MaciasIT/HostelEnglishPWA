@@ -76,6 +76,15 @@
       50% { opacity: 0.5; }
     }
   </style>
+  <script>
+    /* Anti-FOUC: aplica el tema antes del primer pintado */
+    (function () {
+      try {
+        var t = localStorage.getItem("he-theme");
+        if (t === "light" || (t === "auto" && window.matchMedia("(prefers-color-scheme: light)").matches)) document.documentElement.classList.add("light");
+      } catch (e) {}
+    })();
+  </script>
 </head>
 
 <body>
