@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export type WaveformState = 'idle' | 'listening' | 'playing' | 'recording' | 'processing' | 'result';
+export type WaveformState = 'idle' | 'listening' | 'playing' | 'recording' | 'processing' | 'result' | 'error';
 
 export interface AudioWaveformProps {
   state: WaveformState;
@@ -21,6 +21,7 @@ const LABELS: Record<WaveformState, string> = {
   recording: 'Grabando tu voz',
   processing: 'Analizando audio',
   result: 'Resultado del audio',
+  error: 'Error de audio',
 };
 
 type AudioCtxCtor = typeof AudioContext;
@@ -79,7 +80,8 @@ export default function AudioWaveform({
 
     const accent = cssColor(canvas, '--color-accent', '#e67e22');
     const success = cssColor(canvas, '--color-success', '#2ecc71');
-    const color = state === 'result' ? success : accent;
+    const danger = cssColor(canvas, '--color-danger', '#e74c3c');
+    const color = state === 'result' ? success : state === 'error' ? danger : accent;
 
     const cleanup = () => {
       cancelAnimationFrame(raf);
@@ -137,6 +139,8 @@ export default function AudioWaveform({
         }
         case 'result':
           return 0.12 + 0.12 * Math.sin(phase * Math.PI);
+        case 'error':
+          return 0.08 + (reduceMotion ? 0 : 0.03 * (1 + Math.sin(t / 1400 + i * 0.5)));
         default:
           return 0.06 + (reduceMotion ? 0 : 0.04 * (1 + Math.sin(t / 900 + i * 0.4)));
       }

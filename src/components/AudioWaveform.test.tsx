@@ -43,6 +43,12 @@ describe('<AudioWaveform />', () => {
     expect(getByRole('img')).toHaveAttribute('data-state', 'processing');
   });
 
+  it('expone el estado de error con su etiqueta accesible', () => {
+    const { getByRole } = render(<AudioWaveform state="error" />);
+    expect(getByRole('img')).toHaveAttribute('aria-label', 'Error de audio');
+    expect(getByRole('img')).toHaveAttribute('data-state', 'error');
+  });
+
   it('idle no crea AudioContext', async () => {
     render(<AudioWaveform state="idle" />);
     await flush();
