@@ -45,11 +45,11 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon: Icon, label, expanded }) =>
       aria-label={label}
       aria-current={isActive ? 'page' : undefined}
       className={`flex items-center p-3 rounded-2xl transition-all mb-0.5 group ${expanded ? '' : 'justify-center'} ${isActive
-        ? 'bg-accent text-primary shadow-lg shadow-accent/20 font-black'
+        ? 'bg-accent text-on-accent shadow-lg shadow-accent/20 font-black'
         : 'text-tertiary hover:bg-surface/5 hover:text-primary'
         }`}
     >
-      <Icon className={`w-5 h-5 shrink-0 ${expanded ? 'mr-3' : ''} transition-transform group-hover:scale-110 ${isActive ? 'text-primary' : 'text-tertiary group-hover:text-accent'}`} />
+      <Icon className={`w-5 h-5 shrink-0 ${expanded ? 'mr-3' : ''} transition-transform group-hover:scale-110 ${isActive ? 'text-on-accent' : 'text-tertiary group-hover:text-accent'}`} />
       {expanded && <span className="text-xs uppercase tracking-widest font-semibold whitespace-nowrap">{label}</span>}
     </Link>
   );
@@ -90,6 +90,7 @@ const SideNav: React.FC = () => {
 
       <aside
         data-testid="sidenav"
+        inert={!visible}
         data-expanded={expanded}
         aria-label="Menú lateral"
         className={`fixed top-0 left-0 h-full ${expanded ? 'w-72' : 'w-20'} bg-background/95 backdrop-blur-2xl border-r border-border/10 transform ${visible ? 'translate-x-0' : '-translate-x-full'} transition-[width,transform] duration-300 ease-in-out z-50 flex flex-col overflow-hidden`}
@@ -109,7 +110,7 @@ const SideNav: React.FC = () => {
           )}
         </div>
 
-        <nav className="flex-grow overflow-y-auto overflow-x-hidden px-4 custom-scrollbar">
+        <nav aria-label="Secciones de la aplicación" className="flex-grow overflow-y-auto overflow-x-hidden px-4 custom-scrollbar">
           <Section title="Menu Principal" expanded={expanded} first />
           <NavItem to="/" icon={HomeIcon} label="Inicio" expanded={expanded} />
           <NavItem to="/dashboard" icon={Squares2X2Icon} label="Dashboard" expanded={expanded} />

@@ -5,6 +5,7 @@ import DictationPlayer from '@/features/dictation/components/DictationPlayer';
 import DictationInput from '@/features/dictation/components/DictationInput';
 import DictationFeedback from '@/features/dictation/components/DictationFeedback';
 import VoiceSettings from '@/components/VoiceSettings';
+import AudioStatusRegion from '@/components/AudioStatusRegion';
 import PageContainer from '@/components/layout/PageContainer';
 import CollapsibleSection from '@/components/CollapsibleSection';
 import ModuleIntro from '@/components/ModuleIntro';
@@ -62,6 +63,10 @@ const Dictation: React.FC = () => {
 
   return (
     <PageContainer title="Dictado Interactivo">
+      <AudioStatusRegion
+        status={waveformState}
+        isCorrect={state.feedback?.isCorrect}
+      />
       <div className="max-w-2xl mx-auto space-y-8 animate-fade-in">
         <div className="bg-surface/10 backdrop-blur-2xl p-10 rounded-[3rem] shadow-2xl border border-border/20 relative overflow-hidden">
           <div className="absolute -right-10 -top-10 w-40 h-40 bg-accent opacity-5 blur-3xl rounded-full" aria-hidden="true"></div>

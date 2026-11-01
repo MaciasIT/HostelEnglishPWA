@@ -21,8 +21,6 @@ export default function DictationFeedback({
       className={`mt-10 p-8 rounded-[2rem] text-center animate-in zoom-in-95 duration-500 border-2 ${
         feedback.isCorrect ? 'bg-green-500/10 border-green-500/20' : 'bg-red-500/10 border-red-500/20'
       }`}
-      role="status"
-      aria-live="polite"
     >
       <div className="flex flex-col items-center">
         {feedback.isCorrect ? (

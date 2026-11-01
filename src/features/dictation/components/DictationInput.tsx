@@ -38,7 +38,6 @@ export default function DictationInput({
             }`}
             disabled={isListening}
             aria-label="Tu respuesta al dictado"
-            aria-live="polite"
           />
           {isListening && (
             <div className="absolute right-6 top-1/2 -translate-y-1/2 flex items-center gap-2" aria-hidden="true">

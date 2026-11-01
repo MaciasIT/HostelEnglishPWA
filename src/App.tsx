@@ -6,6 +6,8 @@ import BottomNav from "@/components/BottomNav";
 import { useAppStore } from "@/store/useAppStore";
 import { useHydration } from "@/contexts/HydrationContext";
 import { PageSkeleton } from "@/components/Skeleton";
+import SkipToContent from "@/components/SkipToContent";
+import { MotionConfig } from "framer-motion";
 import RoleSelectionModal from "@/components/RoleSelectionModal";
 
 const AppContent: React.FC = () => {
@@ -14,12 +16,14 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-surface text-primary flex flex-col relative">
+      <SkipToContent />
+
       {/* Navigation Layers */}
       <TopNav />
       <SideNav />
 
       {/* Main Content Area */}
-      <main className={`flex-grow w-full max-w-full transition-[padding] duration-300 ease-in-out pt-16 ${isSideNavCollapsed ? 'md:pl-20' : 'md:pl-20 xl:pl-72'}`}>
+      <main id="main-content" tabIndex={-1} className={`flex-grow w-full max-w-full transition-[padding] duration-300 ease-in-out pt-16 ${isSideNavCollapsed ? 'md:pl-20' : 'md:pl-20 xl:pl-72'}`}>
         <div className="max-w-7xl mx-auto w-full h-full flex flex-col">
           {isHydrating ? (
             <PageSkeleton />
@@ -42,9 +46,12 @@ const AppContent: React.FC = () => {
 };
 
 export default function App() {
+  // reducedMotion="user": Framer Motion respeta prefers-reduced-motion.
   return (
-    <HashRouter>
-      <AppContent />
-    </HashRouter>
+    <MotionConfig reducedMotion="user">
+      <HashRouter>
+        <AppContent />
+      </HashRouter>
+    </MotionConfig>
   );
 }

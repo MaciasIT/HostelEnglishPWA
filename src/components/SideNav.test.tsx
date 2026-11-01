@@ -49,9 +49,11 @@ describe('SideNav responsive', () => {
     expect(screen.getByTestId('sidenav').className).toContain('w-20');
   });
 
-  it('móvil cerrado: fuera de pantalla', () => {
+  it('móvil cerrado: fuera de pantalla e inerte (no enfocable)', () => {
     setViewport(false, false);
     renderNav();
-    expect(screen.getByTestId('sidenav').className).toContain('-translate-x-full');
+    const aside = screen.getByTestId('sidenav');
+    expect(aside.className).toContain('-translate-x-full');
+    expect(aside.hasAttribute('inert')).toBe(true);
   });
 });

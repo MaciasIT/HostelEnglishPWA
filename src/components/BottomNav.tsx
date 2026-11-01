@@ -55,7 +55,6 @@ const BottomNav: React.FC = () => {
       transition={{ type: 'spring', stiffness: 380, damping: 36 }}
       className="fixed bottom-0 left-0 right-0 bg-surface/80 backdrop-blur-md border-t border-border/10 z-40 md:hidden pb-[env(safe-area-inset-bottom)]"
       aria-label="Navegación principal"
-      role="navigation"
     >
       <div className="flex justify-around items-center h-16 px-2">
         {bottomNavTabs.map(tab => {

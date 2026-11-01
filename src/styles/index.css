@@ -43,17 +43,21 @@
    ========================================================================== */
 @theme {
   /* ── Fondos ─────────────────────────────────────────── */
-  --color-background: #0f1419;      /* Fondo raíz (dark) */
-  --color-surface: #1a2332;         /* Cards, sheets, panels */
-  --color-surface-hover: #1d2836;   /* Hover ligeramente claro */
-  --color-surface-elevated: #243044; /* Modals, dropdowns, popovers */
+  /* Los colores que cambian entre temas apuntan a --ds-* (runtime), no a hex.
+     Si fueran hex literales, Tailwind incrusta el valor oscuro en utilities
+     con opacidad (bg-surface/10…) y el modo claro no los cambiaría. */
+  --color-background: var(--ds-background);      /* Fondo raíz */
+  --color-surface: var(--ds-surface);            /* Cards, sheets, panels */
+  --color-surface-hover: var(--ds-surface-hover);
+  --color-surface-elevated: var(--ds-surface-elevated); /* Modals, dropdowns, popovers */
 
   /* ── Texto de lectura (claro sobre fondo oscuro) ────── */
-  --color-primary: #f0f4f8;    /* Lectura principal — AAA (≈18.5:1) */
-  --color-secondary: #94a3b8;  /* Subtítulos, metadatos */
-  --color-tertiary: #64748b;   /* Timestamps, badges inactivos */
-  --color-disabled: #475569;
-  --color-on-accent: #ffffff;  /* Texto sobre fondos de acento */
+  --color-primary: var(--ds-primary);     /* Lectura principal — AAA (≈14:1 sobre surface) */
+  --color-secondary: var(--ds-secondary); /* Subtítulos, metadatos — AAA ≥7:1 en bg/surface/elevated */
+  --color-tertiary: var(--ds-tertiary);   /* Timestamps, badges — AA ≥5.9:1 en todas las superficies */
+  --color-disabled: var(--ds-disabled);   /* Exento de contraste (WCAG: componentes deshabilitados) */
+  --color-on-accent: var(--ds-on-accent); /* Texto sobre acento naranja: 6.5:1 (blanco daba 2.85:1) */
+  --color-focus-ring: var(--ds-focus-ring); /* Anillo de foco 2px ≥3:1 (WCAG 1.4.11) */
 
   /* ── Marca / identidad ─────────────────────────────── */
   --color-accent: #e67e22;        /* Warm orange — identidad */
@@ -62,9 +66,9 @@
   --color-accent-glow: rgba(230, 126, 34, 0.35);
 
   /* ── Bordes ─────────────────────────────────────────── */
-  --color-border: rgba(255, 255, 255, 0.12);  /* Borde por defecto (dark) */
-  --color-border-subtle: rgba(255, 255, 255, 0.06);
-  --color-border-focus: rgba(255, 255, 255, 0.25);
+  --color-border: var(--ds-border);           /* Borde por defecto */
+  --color-border-subtle: var(--ds-border-subtle);
+  --color-border-focus: var(--ds-border-focus);
 
   /* ── Estado de UI ───────────────────────────────────── */
   --color-success: #10b981;
@@ -104,8 +108,24 @@
    :root   → dark  (predeterminado, app shell)
    .light  → light (activable desde Settings)
    ────────────────────────────────────────────────────────────────────────── */
+/* Valores de tema (dark por defecto). Las variables --ds-* son las que
+   cambian en .light; @theme las referencia. */
 :root {
   color-scheme: light dark;
+
+  --ds-background: #0f1419;
+  --ds-surface: #1a2332;
+  --ds-surface-hover: #1d2836;
+  --ds-surface-elevated: #243044;
+  --ds-primary: #f0f4f8;
+  --ds-secondary: #b8c4d6;
+  --ds-tertiary: #a0aec0;
+  --ds-disabled: #475569;
+  --ds-on-accent: #0f1419;
+  --ds-focus-ring: #e67e22;
+  --ds-border: rgba(255, 255, 255, 0.12);
+  --ds-border-subtle: rgba(255, 255, 255, 0.06);
+  --ds-border-focus: rgba(255, 255, 255, 0.25);
 
   /* Fondos */
   --bg-base:            var(--color-background);
@@ -145,6 +165,21 @@
 /* Modo CLARO */
 .light {
   color-scheme: light;
+
+  /* Tokens de tema claro: los utilities de Tailwind leen --color-* → --ds-*. */
+  --ds-background: #f5f7fa;
+  --ds-surface: #ffffff;
+  --ds-surface-hover: #f1f5f9;
+  --ds-surface-elevated: #ffffff;
+  --ds-primary: #0f172a;         /* 16.6:1 sobre background */
+  --ds-secondary: #475569;       /* 7.1:1 sobre background — AAA */
+  --ds-tertiary: #5b6b82;        /* 5.1:1 sobre background — AA */
+  --ds-disabled: #94a3b8;
+  --ds-on-accent: #0f1419;
+  --ds-focus-ring: #9a3412;      /* 7.3:1 sobre blanco (el naranja de marca da 2.9:1) */
+  --ds-border: rgba(0, 0, 0, 0.12);
+  --ds-border-subtle: rgba(0, 0, 0, 0.06);
+  --ds-border-focus: rgba(0, 0, 0, 0.25);
 
   --bg-base:            #f5f7fa;
   --bg-surface:         #ffffff;
@@ -210,11 +245,31 @@ body {
   @apply min-h-screen w-full max-w-full overflow-x-hidden;
 }
 
-/* Focus accessibility */
+/* Focus accessibility — anillo sólido de 2px con offset de 2px en todo
+   elemento interactivo. Es una regla sin capa, así que gana a los utilities
+   `focus:outline-none` de Tailwind cuando el foco es por teclado. */
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--color-focus-ring);
   outline-offset: 2px;
   border-radius: 0.5rem;
+}
+
+/* El <main> es destino del skip-link: recibe foco programático, sin anillo. */
+main#main-content:focus {
+  outline: none;
+}
+
+/* prefers-reduced-motion: CSS. Las animaciones de Framer Motion se
+   desactivan en App.tsx con <MotionConfig reducedMotion="user">. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 button:focus:not(:focus-visible),
