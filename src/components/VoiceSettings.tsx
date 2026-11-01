@@ -77,6 +77,11 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({
             </select>
             <ChevronDownIcon className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-tertiary pointer-events-none group-hover:text-accent transition-colors" />
           </div>
+          {targetLanguage === 'eu' && voices.length === 0 && (
+            <p className="text-[10px] text-accent/80 font-medium leading-relaxed">
+              ✨ Síntesis neuronal de alta fidelidad activa (con adaptación fonética automática si estás sin conexión).
+            </p>
+          )}
         </div>
 
         {/* Rate Slider */}

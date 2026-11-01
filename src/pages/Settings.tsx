@@ -10,6 +10,7 @@ import {
     ExclamationTriangleIcon,
     CommandLineIcon
 } from '@heroicons/react/24/outline';
+import { playAudio } from '@/utils/audio';
 
 const Settings = () => {
     const { prefs, isPremium, licenseInfo } = useAppStore();
@@ -135,6 +136,22 @@ const Settings = () => {
                                     value={testText}
                                     onChange={(e) => setTestText(e.target.value)}
                                 />
+                                <button
+                                    type="button"
+                                    onClick={async () => {
+                                        setIsTesting(true);
+                                        try {
+                                            await playAudio(testText, targetLanguage === 'eu' ? 'eu' : 'en', { rate: 1, pitch: 1 });
+                                        } finally {
+                                            setIsTesting(false);
+                                        }
+                                    }}
+                                    disabled={isTesting}
+                                    className="w-full py-3 px-4 bg-accent text-primary rounded-xl font-bold flex items-center justify-center gap-2 hover:brightness-110 active:scale-95 transition-all shadow-md disabled:opacity-50"
+                                >
+                                    <SpeakerWaveIcon className="w-5 h-5" />
+                                    <span>{isTesting ? 'Reproduciendo...' : `Probar motor TTS (${targetLanguage === 'eu' ? 'Euskera' : 'Inglés'})`}</span>
+                                </button>
                             </div>
                         </div>
 

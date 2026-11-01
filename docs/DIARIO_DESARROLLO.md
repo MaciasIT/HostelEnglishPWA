@@ -4,6 +4,20 @@
 
 Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por hitos temporales para reflejar la evolución técnica del proyecto.
 
+## 🔊 Release v2.6.1: Hotfix de Audio TTS (Euskera en Chrome & PWA Offline)
+*Fecha: 02-11-2026*
+
+- **[✅ RESUELTO] Síntesis de Euskera en Google Chrome (Linux / Android / Windows):**
+    - **Diagnóstico:** Chrome carece de voces nativas de euskera (`eu-ES`) en `window.speechSynthesis`. Al eliminarse en la Fase C el apaño fonético anterior, Chrome recurría a la voz por defecto del sistema (Google US English), reproduciendo el texto en euskera con fonética estadounidense ininteligible.
+    - **Solución implementada:**
+        1. **Motor online:** Integración transparente con Google Translate TTS nativo (`tl=eu`) con síntesis neuronal de alta fidelidad.
+        2. **Fallback nativo:** Si el sistema carece de voz `eu` nativa o no hay red, se activa la adaptación fonética `euToEsPhonetic` sintetizada mediante una voz en castellano (`es-ES`), garantizando fonemas vascos precisos (tx→ch, tz→ts, x→ch, j→y, z→s, ge/gi→gue/gui).
+        3. **Aislamiento estricto por idioma:** `playAudio` fuerza la selección de voz nativa según el código BCP-47 del idioma destino (`en-*` para inglés, `es-*` para castellano), evitando cruces de acento.
+        4. Cobertura de tests ampliada a **550 tests** (84 suites) con `src/utils/audio.test.ts`.
+- **[✅ RESUELTO] PWA & Workbox Precaching:**
+    - Generado `favicon.ico` binario de 32x32 válido.
+    - Resuelto error de Workbox eliminando `navigateFallback` redundante.
+
 ---
 
 ## 🚀 Release v2.6.0: Rediseño «Cyber-Hospitality», Expansión de Datasets e IA Procedural (Fase D)

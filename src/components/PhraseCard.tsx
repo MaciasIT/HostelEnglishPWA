@@ -47,7 +47,7 @@ const PhraseCard = ({
     await playAudio(textToSpeak, langCode as 'en' | 'eu' | 'es', {
       rate: phraseSettings.rate,
       pitch: phraseSettings.pitch,
-      voiceURI: phraseSettings.voiceURI
+      voiceURI: lang === 'target' ? phraseSettings.voiceURI : undefined
     });
   };
 
