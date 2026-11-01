@@ -52,6 +52,7 @@ export const PrefsSchema = z.object({
   phraseSettings: VoiceSettingsSchema,
   preferredRole: z.enum(['bar', 'recepcion', 'restaurante', 'mantenimiento', 'limpieza']).default('bar'),
   studentName: z.string().default(''),
+  hapticsEnabled: z.boolean().optional(),
 });
 
 /**
