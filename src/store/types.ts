@@ -46,3 +46,11 @@ export type AppPrefs = {
     pitch: number;
   };
 };
+
+export type LicenseDetails = {
+  email: string;
+  tier: 'pro';
+  type: 'lifetime' | 'annual';
+  issuedAt: number;
+  expiresAt: number;
+};
