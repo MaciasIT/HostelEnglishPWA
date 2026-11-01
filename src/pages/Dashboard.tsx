@@ -138,6 +138,20 @@ const Dashboard: React.FC = () => {
         {/* Daily Challenge */}
         <DailyChallengeCard />
 
+        {/* Reto de Cortesía del Día (FD-04) */}
+        <Link
+          to="/roleplay?reto=cortesia"
+          className="group flex items-center justify-between gap-4 bg-surface/5 hover:bg-surface/10 border border-accent/30 rounded-[2rem] p-6 shadow-xl transition-all"
+          data-testid="politeness-challenge-link"
+        >
+          <span>
+            <span className="block text-[10px] uppercase tracking-widest font-black text-accent">Práctica libre</span>
+            <span className="block text-xl font-black text-primary">Reto de Cortesía del Día</span>
+            <span className="block text-sm text-tertiary">Una situación inesperada con un cliente exigente. ¿Mantienes la diplomacia?</span>
+          </span>
+          <ArrowRightIcon className="w-6 h-6 text-accent group-hover:translate-x-1 transition-transform shrink-0" aria-hidden="true" />
+        </Link>
+
         {/* Modules Grid */}
         <section aria-labelledby="modules-heading">
           <div className="flex items-center gap-3 mb-10">

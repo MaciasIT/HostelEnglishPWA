@@ -35,6 +35,17 @@ import { buildHint, INACTIVITY_HINT_THRESHOLD_MS } from './hintService';
 import type { RoleplayHint } from './hintService';
 import { buildFeedbackSummary } from './feedbackSummary';
 import type { FeedbackSummary } from './feedbackSummary';
+import { evaluateHospitality } from '@/services/ai';
+import type { PolitenessEvaluation } from '@/services/ai';
+import { getClientAccent } from './accents';
+import type { ClientAccent } from './accents';
+
+/** Opciones de sesión (FD-04): escenario procedural y acento del cliente. */
+export interface RoleplayControllerOptions {
+  /** System prompt completo (escenarios procedurales). */
+  systemPrompt?: string;
+  accent?: ClientAccent;
+}
 
 export interface RoleplayController {
   phase: RoleplayPhase;
@@ -54,6 +65,8 @@ export interface RoleplayController {
   hintVisible: boolean;
   /** Corrección de cortesía del último turno del alumno. */
   turnFeedback: CourtesyEvaluation | null;
+  /** Evaluación de cortesía hostelera del último turno (FD-04). */
+  politeness: PolitenessEvaluation | null;
   /** Resumen de feedback, disponible al completar la sesión. */
   feedbackSummary: FeedbackSummary | null;
   actions: {
@@ -66,15 +79,34 @@ export interface RoleplayController {
 }
 
 /** Construye el historial LLM: system + línea de apertura (asistente). */
-function buildInitialMessages(scenario: RoleplayScenario): LLMChatMessage[] {
-  return buildRoleplayMessages(
+function buildInitialMessages(
+  scenario: RoleplayScenario,
+  options: RoleplayControllerOptions,
+): LLMChatMessage[] {
+  if (options.systemPrompt) {
+    return [
+      { role: 'system', content: options.systemPrompt },
+      { role: 'assistant', content: scenario.openingLine },
+    ];
+  }
+  const base = buildRoleplayMessages(
     scenario.key,
     { level: scenario.level, language: 'en', allowHints: true },
     scenario.openingLine,
   );
+  if (options.accent) {
+    base[0] = {
+      ...base[0],
+      content: `${base[0].content}\n${getClientAccent(options.accent).promptInstruction}`,
+    };
+  }
+  return base;
 }
 
-export function useRoleplayController(scenario: RoleplayScenario): RoleplayController {
+export function useRoleplayController(
+  scenario: RoleplayScenario,
+  options: RoleplayControllerOptions = {},
+): RoleplayController {
   const {
     status: llmStatus,
     progress: loadProgress,
@@ -96,22 +128,33 @@ export function useRoleplayController(scenario: RoleplayScenario): RoleplayContr
   const [hintVisible, setHintVisible] = useState(false);
   const [turnFeedback, setTurnFeedback] = useState<CourtesyEvaluation | null>(null);
   const [feedbackSummary, setFeedbackSummary] = useState<FeedbackSummary | null>(null);
+  const [politeness, setPoliteness] = useState<PolitenessEvaluation | null>(null);
 
   // Fuente única del historial que se envía al LLM.
   const messagesRef = useRef<LLMChatMessage[]>([]);
   const userTurnCountRef = useRef(0);
   const scenarioRef = useRef(scenario);
+  const optionsRef = useRef(options);
   // Turnos del alumno ya emitidos, para el cálculo acumulado de feedback.
   const userTurnsRef = useRef<string[]>([]);
   const hintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     scenarioRef.current = scenario;
-  }, [scenario]);
+    optionsRef.current = options;
+  }, [scenario, options]);
 
   useEffect(() => {
     return () => {
       if (hintTimerRef.current) clearTimeout(hintTimerRef.current);
+    };
+  }, []);
+
+  const speakOptions = useCallback(() => {
+    const accent = optionsRef.current.accent;
+    return {
+      language: 'en' as const,
+      ...(accent ? { rate: getClientAccent(accent).speechRate } : {}),
     };
   }, []);
 
@@ -123,9 +166,10 @@ export function useRoleplayController(scenario: RoleplayScenario): RoleplayContr
     setHintVisible(false);
     setTurnFeedback(null);
     setFeedbackSummary(null);
+    setPoliteness(null);
     userTurnCountRef.current = 0;
     userTurnsRef.current = [];
-    messagesRef.current = buildInitialMessages(scenarioRef.current);
+    messagesRef.current = buildInitialMessages(scenarioRef.current, optionsRef.current);
     setPhase('loading');
 
     try {
@@ -138,8 +182,8 @@ export function useRoleplayController(scenario: RoleplayScenario): RoleplayContr
 
     setTurns([{ role: 'client', text: scenarioRef.current.openingLine }]);
     setPhase('prompting');
-    void speak(scenarioRef.current.openingLine, { language: 'en' });
-  }, [load, speak]);
+    void speak(scenarioRef.current.openingLine, speakOptions());
+  }, [load, speak, speakOptions]);
 
   const handleUserTurn = useCallback(
     async (text: string) => {
@@ -157,6 +201,7 @@ export function useRoleplayController(scenario: RoleplayScenario): RoleplayContr
       // Corrección de cortesía del turno (FC-04), siempre que haya algo que señalar.
       const courtesy = evaluatePoliteness(trimmed);
       setTurnFeedback(courtesy.issues.length > 0 ? courtesy : null);
+      setPoliteness(evaluateHospitality(trimmed));
 
       const scenarioData = scenarioRef.current;
       const goal = checkObjective(scenarioData, trimmed);
@@ -199,13 +244,13 @@ export function useRoleplayController(scenario: RoleplayScenario): RoleplayContr
         setTurns((prev) => [...prev, { role: 'client', text: reply }]);
         messagesRef.current.push({ role: 'assistant', content: reply });
         setPhase('prompting');
-        void speak(reply, { language: 'en' });
+        void speak(reply, speakOptions());
       } catch (err) {
         setError(err instanceof Error ? err.message : 'La IA no pudo responder.');
         setPhase('error');
       }
     },
-    [phase, generate, speak],
+    [phase, generate, speak, speakOptions],
   );
 
   // Consume la transcripción final del ASR como un turno del alumno.
@@ -272,6 +317,7 @@ export function useRoleplayController(scenario: RoleplayScenario): RoleplayContr
     setHintVisible(false);
     setTurnFeedback(null);
     setFeedbackSummary(null);
+    setPoliteness(null);
     setPhase('idle');
   }, [cancel, resetLLM]);
 
@@ -290,6 +336,7 @@ export function useRoleplayController(scenario: RoleplayScenario): RoleplayContr
     hint,
     hintVisible,
     turnFeedback,
+    politeness,
     feedbackSummary,
     actions: { start, toggleListening, submitText, dismissHint, reset },
   };

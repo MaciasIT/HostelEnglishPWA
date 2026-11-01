@@ -1,8 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useSearchParams } from 'react-router';
 import PageContainer from '@/components/layout/PageContainer';
 import ModuleIntro from '@/components/ModuleIntro';
 import AudioWaveform, { type WaveformState } from '@/components/AudioWaveform';
-import { ArrowLeftIcon, ArrowPathIcon, FaceSmileIcon, CheckBadgeIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftIcon, ArrowPathIcon, BoltIcon, FaceSmileIcon, CheckBadgeIcon } from '@heroicons/react/24/outline';
+import { DEFAULT_CLIENT_ACCENT, getClientAccent } from '@/features/roleplay/accents';
+import type { ClientAccent } from '@/features/roleplay/accents';
+import { createProceduralSession, dailyPolitenessSeed } from '@/features/roleplay/proceduralSession';
+import type { SessionScenario } from '@/features/roleplay/proceduralSession';
+import RoleplayAccentSelector from '@/features/roleplay/components/RoleplayAccentSelector';
+import RoleplayPolitenessPanel from '@/features/roleplay/components/RoleplayPolitenessPanel';
 
 import { useRoleplayController } from '@/features/roleplay/useRoleplayController';
 import { resolveScenarioMeta, ROLEPLAY_DEPARTMENT_LABELS } from '@/features/roleplay/scenarios';
@@ -16,10 +23,44 @@ import RoleplayHint from '@/features/roleplay/components/RoleplayHint';
 import RoleplayCorrection from '@/features/roleplay/components/RoleplayCorrection';
 import RoleplayFeedbackCard from '@/features/roleplay/components/RoleplayFeedbackCard';
 
+/** Pausa mínima del esqueleto de carga para que el cambio de estado sea perceptible. */
+const GENERATION_SKELETON_MS = 450;
+
 const Roleplay: React.FC = () => {
-  const [showIntro, setShowIntro] = useState(true);
-  const [scenario, setScenario] = useState<RoleplayScenario | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const isDailyChallenge = searchParams.get('reto') === 'cortesia';
+
+  const [showIntro, setShowIntro] = useState(!isDailyChallenge);
+  const [session, setSession] = useState<SessionScenario | null>(null);
+  const [sessionId, setSessionId] = useState(0);
+  const [accent, setAccent] = useState<ClientAccent>(DEFAULT_CLIENT_ACCENT);
+  const [generating, setGenerating] = useState(false);
   const [catalog, setCatalog] = useState<RoleplayScenario[]>(CANONICAL_ROLEPLAY_SCENARIOS);
+  const dailyLaunchedRef = useRef(false);
+
+  const launchProcedural = useCallback(
+    async (seed?: number) => {
+      setGenerating(true);
+      await new Promise((resolve) => setTimeout(resolve, GENERATION_SKELETON_MS));
+      setSession(createProceduralSession(accent, seed));
+      setSessionId((n) => n + 1);
+      setGenerating(false);
+    },
+    [accent],
+  );
+
+  // «Reto de Cortesía del Día»: lanza un escenario procedural determinista por fecha.
+  useEffect(() => {
+    if (!isDailyChallenge || dailyLaunchedRef.current) return;
+    dailyLaunchedRef.current = true;
+    setSearchParams({}, { replace: true });
+    void launchProcedural(dailyPolitenessSeed());
+  }, [isDailyChallenge, launchProcedural, setSearchParams]);
+
+  const setScenario = (scenario: RoleplayScenario | null) => {
+    setSession(scenario ? { scenario } : null);
+    setSessionId((n) => n + 1);
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -50,13 +91,51 @@ const Roleplay: React.FC = () => {
     );
   }
 
-  if (!scenario) {
+  if (generating) {
+    return (
+      <PageContainer title="Roleplay Conversacional">
+        <div
+          className="max-w-2xl mx-auto py-16 text-center animate-fade-in"
+          role="status"
+          aria-live="polite"
+          data-testid="scenario-skeleton"
+        >
+          <div className="w-12 h-12 mx-auto mb-6 rounded-full border-4 border-accent/30 border-t-accent animate-spin" aria-hidden="true" />
+          <p className="text-primary font-black text-xl mb-6">Generando situación inesperada…</p>
+          <div className="space-y-3 animate-pulse" aria-hidden="true">
+            <div className="h-4 bg-surface/10 rounded-full w-3/4 mx-auto" />
+            <div className="h-4 bg-surface/10 rounded-full w-1/2 mx-auto" />
+            <div className="h-24 bg-surface/5 rounded-3xl" />
+          </div>
+        </div>
+      </PageContainer>
+    );
+  }
+
+  if (!session) {
     return (
       <PageContainer title="Roleplay Conversacional">
         <div className="max-w-4xl mx-auto animate-fade-in">
-          <p className="text-tertiary text-center mb-8 max-w-xl mx-auto">
+          <p className="text-tertiary text-center mb-6 max-w-xl mx-auto">
             Elige una situación. La IA adoptará el rol de cliente y evaluará tu capacidad de resolución.
           </p>
+          <div className="mb-6 space-y-2">
+            <p className="text-center text-[10px] uppercase tracking-widest font-black text-tertiary">
+              Tipo de cliente / acento
+            </p>
+            <RoleplayAccentSelector value={accent} onChange={setAccent} />
+          </div>
+          <div className="text-center mb-10">
+            <button
+              type="button"
+              onClick={() => void launchProcedural()}
+              className="inline-flex items-center gap-2 bg-accent hover:brightness-110 text-on-accent font-black py-4 px-8 rounded-2xl shadow-xl transition-all active:scale-95"
+            >
+              <BoltIcon className="w-5 h-5" aria-hidden="true" />
+              Generar Situación Inesperada
+            </button>
+            <p className="text-xs text-tertiary mt-2">Práctica libre infinita: cada pulsación crea un escenario nuevo.</p>
+          </div>
           <RoleplayScenarioPicker onSelect={setScenario} scenarios={catalog} />
         </div>
       </PageContainer>
@@ -65,21 +144,33 @@ const Roleplay: React.FC = () => {
 
   return (
     <RoleplaySession
-      key={scenario.key}
-      scenario={scenario}
-      onExit={() => setScenario(null)}
+      key={sessionId}
+      session={session}
+      accent={accent}
+      onExit={() => setSession(null)}
+      onRegenerate={session.procedural ? () => void launchProcedural() : undefined}
     />
   );
 };
 
 interface RoleplaySessionProps {
-  scenario: RoleplayScenario;
+  session: SessionScenario;
+  accent: ClientAccent;
   onExit: () => void;
+  onRegenerate?: () => void;
 }
 
-function RoleplaySession({ scenario, onExit }: RoleplaySessionProps) {
-  const ctrl = useRoleplayController(scenario);
-  const meta = resolveScenarioMeta(scenario.key);
+function RoleplaySession({ session, accent, onExit, onRegenerate }: RoleplaySessionProps) {
+  const { scenario } = session;
+  const controllerOptions = useMemo(
+    () => ({ systemPrompt: session.systemPrompt, accent }),
+    [session.systemPrompt, accent],
+  );
+  const ctrl = useRoleplayController(scenario, controllerOptions);
+  const meta = session.title
+    ? { title: session.title }
+    : resolveScenarioMeta(scenario.key);
+  const accentDef = getClientAccent(accent);
 
   const waveformState: WaveformState = ctrl.isListening
     ? 'listening'
@@ -104,6 +195,10 @@ function RoleplaySession({ scenario, onExit }: RoleplaySessionProps) {
         <h2 className="text-lg font-black text-primary truncate">{meta.title}</h2>
         <p className="text-[10px] uppercase tracking-widest text-accent font-bold">
           {ROLEPLAY_DEPARTMENT_LABELS[scenario.department]}
+          {' · '}
+          <span aria-label={`Acento: ${accentDef.label}`}>
+            {accentDef.flag} {accentDef.label}
+          </span>
         </p>
       </div>
     </div>
@@ -184,6 +279,7 @@ function RoleplaySession({ scenario, onExit }: RoleplaySessionProps) {
                 ? 'Conseguiste los términos clave y resolviste la situación.'
                 : 'Se alcanzó el número máximo de turnos. Repasa el vocabulario e inténtalo de nuevo.'}
             </p>
+            {ctrl.politeness && <RoleplayPolitenessPanel evaluation={ctrl.politeness} />}
             {ctrl.feedbackSummary && (
               <RoleplayFeedbackCard summary={ctrl.feedbackSummary} />
             )}
@@ -204,6 +300,15 @@ function RoleplaySession({ scenario, onExit }: RoleplaySessionProps) {
               >
                 OTRO ESCENARIO
               </button>
+              {onRegenerate && (
+                <button
+                  onClick={onRegenerate}
+                  className="bg-surface/5 hover:bg-surface/10 text-primary font-bold py-3 px-8 rounded-2xl border border-border/15 transition-all active:scale-95 flex items-center gap-2"
+                >
+                  <BoltIcon className="w-5 h-5" aria-hidden="true" />
+                  NUEVA SITUACIÓN
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -239,6 +344,13 @@ function RoleplaySession({ scenario, onExit }: RoleplaySessionProps) {
             userLabel="Tú"
             typing={ctrl.phase === 'thinking'}
           />
+
+          {ctrl.politeness &&
+            (ctrl.phase === 'thinking' || ctrl.phase === 'prompting') && (
+              <div className="mb-4">
+                <RoleplayPolitenessPanel evaluation={ctrl.politeness} />
+              </div>
+            )}
 
           {ctrl.turnFeedback &&
             (ctrl.phase === 'thinking' || ctrl.phase === 'prompting') && (

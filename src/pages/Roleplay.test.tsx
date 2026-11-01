@@ -113,4 +113,46 @@ describe('<Roleplay />', () => {
       expect.objectContaining({ language: 'en' }),
     );
   });
+
+  it('«Generar Situación Inesperada» muestra esqueleto y luego un escenario procedural', async () => {
+    const user = userEvent.setup();
+    renderPage();
+
+    await user.click(screen.getByRole('button', { name: /Empezar Ahora/i }));
+    await user.click(screen.getByRole('radio', { name: /Australiano/i }));
+    await user.click(screen.getByRole('button', { name: /Generar Situación Inesperada/i }));
+
+    expect(screen.getByTestId('scenario-skeleton')).toBeInTheDocument();
+    expect(
+      await screen.findByRole('button', { name: /COMENZAR CONVERSACIÓN/i }),
+    ).toBeInTheDocument();
+    expect(screen.getByLabelText(/Acento: Australiano/i)).toBeInTheDocument();
+  });
+
+  it('el reto de cortesía (?reto=cortesia) lanza un escenario sin pasar por la intro', async () => {
+    render(
+      <MemoryRouter initialEntries={['/roleplay?reto=cortesia']}>
+        <Roleplay />
+      </MemoryRouter>,
+    );
+
+    expect(
+      await screen.findByRole('button', { name: /COMENZAR CONVERSACIÓN/i }),
+    ).toBeInTheDocument();
+  });
+
+  it('muestra el panel de cortesía tras responder en un turno', async () => {
+    const user = userEvent.setup();
+    renderPage();
+
+    await user.click(screen.getByRole('button', { name: /Empezar Ahora/i }));
+    await user.click(screen.getByRole('button', { name: new RegExp(checkinTitle, 'i') }));
+    await user.click(screen.getByRole('button', { name: /COMENZAR CONVERSACIÓN/i }));
+    await screen.findByText(checkin.openingLine);
+
+    await user.type(screen.getByRole('textbox'), 'Wait.');
+    await user.keyboard('{Enter}');
+
+    expect(await screen.findByTestId('politeness-panel')).toBeInTheDocument();
+  });
 });
