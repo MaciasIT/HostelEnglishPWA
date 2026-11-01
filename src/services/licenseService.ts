@@ -40,7 +40,7 @@ export interface LicenseVerifyResult {
 }
 
 const EMBEDDED_PUBLIC_KEY_BASE64 =
-  'MCowBQYDK2VwAyEA8grsuVbuWwR8wfDx4pRNPaHj0B/Y5qB2gYb/2xfB/Tk=';
+  'MCowBQYDK2VwAyEADIhWQNJi5zPVNMlCgqPh9OaJ4h3CPQme5Bib/HW/Gq8=';
 
 let cachedPublicKey: CryptoKey | null = null;
 let testPublicKeyOverride: CryptoKey | null = null;

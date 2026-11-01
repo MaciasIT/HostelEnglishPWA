@@ -71,3 +71,4 @@ docs/comercial/
 # El manifest.json (metadatos + checksums) sí se versiona.
 /public/models/piper/eu/
 /public/models/piper/**/*.onnx
+scripts/.license_private_key.pem
