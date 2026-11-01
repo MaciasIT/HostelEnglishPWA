@@ -102,7 +102,7 @@ const SideNav: React.FC = () => {
               Hostel<span className="text-accent">English</span>
             </h2>
           ) : (
-            <div className="w-9 h-9 bg-accent rounded-xl flex items-center justify-center text-primary font-black text-sm">H</div>
+            <div className="w-9 h-9 bg-accent rounded-xl flex items-center justify-center text-on-accent font-black text-sm shadow-lg shadow-accent/30">H</div>
           )}
           {expanded && !isDesktop && (
             <button onClick={closeSideNav} aria-label="Cerrar menú" className="p-2 text-tertiary hover:text-primary transition-all">

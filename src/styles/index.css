@@ -60,10 +60,10 @@
   --color-focus-ring: var(--ds-focus-ring); /* Anillo de foco 2px ≥3:1 (WCAG 1.4.11) */
 
   /* ── Marca / identidad ─────────────────────────────── */
-  --color-accent: #e67e22;        /* Warm orange — identidad */
-  --color-accent-hover: #f59e0b;
-  --color-accent-soft: rgba(230, 126, 34, 0.15);
-  --color-accent-glow: rgba(230, 126, 34, 0.35);
+  --color-accent: #10b981;        /* Verde esmeralda / menta eléctrico — identidad 2026 */
+  --color-accent-hover: #34d399;
+  --color-accent-soft: rgba(16, 185, 129, 0.15);
+  --color-accent-glow: rgba(16, 185, 129, 0.35);
 
   /* ── Bordes ─────────────────────────────────────────── */
   --color-border: var(--ds-border);           /* Borde por defecto */
@@ -113,17 +113,17 @@
 :root {
   color-scheme: light dark;
 
-  --ds-background: #0f1419;
-  --ds-surface: #1a2332;
-  --ds-surface-hover: #1d2836;
-  --ds-surface-elevated: #243044;
+  --ds-background: #090d12;
+  --ds-surface: #111720;
+  --ds-surface-hover: #1a2430;
+  --ds-surface-elevated: #16202c;
   --ds-primary: #f0f4f8;
   --ds-secondary: #b8c4d6;
   --ds-tertiary: #a0aec0;
   --ds-disabled: #475569;
-  --ds-on-accent: #0f1419;
-  --ds-focus-ring: #e67e22;
-  --ds-border: rgba(255, 255, 255, 0.12);
+  --ds-on-accent: #022c22;
+  --ds-focus-ring: #10b981;
+  --ds-border: rgba(255, 255, 255, 0.08);
   --ds-border-subtle: rgba(255, 255, 255, 0.06);
   --ds-border-focus: rgba(255, 255, 255, 0.25);
 
@@ -175,8 +175,8 @@
   --ds-secondary: #475569;       /* 7.1:1 sobre background — AAA */
   --ds-tertiary: #5b6b82;        /* 5.1:1 sobre background — AA */
   --ds-disabled: #94a3b8;
-  --ds-on-accent: #0f1419;
-  --ds-focus-ring: #9a3412;      /* 7.3:1 sobre blanco (el naranja de marca da 2.9:1) */
+  --ds-on-accent: #022c22;
+  --ds-focus-ring: #047857;      /* ≥5:1 sobre blanco (el verde de marca da 2.5:1) */
   --ds-border: rgba(0, 0, 0, 0.12);
   --ds-border-subtle: rgba(0, 0, 0, 0.06);
   --ds-border-focus: rgba(0, 0, 0, 0.25);
@@ -191,12 +191,12 @@
   --text-secondary:     #475569;
   --text-tertiary:      #94a3b8;
   --text-disabled:      #cbd5e1;
-  --text-on-accent:     #ffffff;
+  --text-on-accent:     #022c22;
 
-  --accent:             #e67e22;
-  --accent-hover:       #f59e0b;
-  --accent-soft:        rgba(230, 126, 34, 0.15);
-  --accent-glow:        rgba(230, 126, 34, 0.3);
+  --accent:             #10b981;
+  --accent-hover:       #34d399;
+  --accent-soft:        rgba(16, 185, 129, 0.15);
+  --accent-glow:        rgba(16, 185, 129, 0.3);
 
   --border-subtle:      rgba(0, 0, 0, 0.06);
   --border-default:     rgba(0, 0, 0, 0.12);

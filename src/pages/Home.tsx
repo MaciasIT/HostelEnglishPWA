@@ -1,150 +1,206 @@
+import { useState } from 'react';
 import { Link } from 'react-router';
-import { useAppStore } from '@/store/useAppStore';
 import {
-  SparklesIcon,
-  UserGroupIcon,
-  MapPinIcon,
-  AcademicCapIcon
+  MicrophoneIcon,
+  BellAlertIcon,
+  BeakerIcon,
+  HomeModernIcon,
+  ArrowRightIcon,
 } from '@heroicons/react/24/outline';
 
-const FeatureCard = ({ title, description, icon: Icon }: { title: string, description: string, icon: any }) => (
-  <div className="bg-surface/5 backdrop-blur-xl p-6 sm:p-8 lg:p-6 rounded-[2rem] border border-border/10 hover:bg-surface/10 transition-all hover:-translate-y-2 group shadow-2xl">
-    <div className="bg-accent/20 w-12 h-12 sm:w-14 sm:h-14 lg:w-12 lg:h-12 rounded-2xl flex items-center justify-center text-accent mb-4 sm:mb-6 lg:mb-4 group-hover:scale-110 transition-transform">
-      <Icon className="w-6 h-6 sm:w-8 sm:h-8 lg:w-6 lg:h-6" />
-    </div>
-    <h3 className="text-lg sm:text-xl font-black text-primary mb-2 sm:mb-3 lg:mb-2">{title}</h3>
-    <p className="text-tertiary leading-relaxed text-xs sm:text-sm">{description}</p>
-  </div>
-);
+const DEPARTMENTS = [
+  { title: 'Sala & Comedor', desc: 'Comandas, alérgenos y trato en mesa.', to: '/frases', emoji: '🍽️' },
+  { title: 'Barra & Coctelería', desc: 'Pedidos, cócteles y servicio rápido.', to: '/frases', icon: BeakerIcon },
+  { title: 'Recepción', desc: 'Check-in, reservas y quejas.', to: '/roleplay', icon: BellAlertIcon },
+  { title: 'Cocina', desc: 'Órdenes, seguridad y coordinación.', to: '/frases', icon: HomeModernIcon },
+] as const;
 
-export default function Home() {
-  const targetLanguage = useAppStore(state => state.prefs.targetLanguage);
+const METRICS = [
+  { value: '100%', label: 'On-Device (Zero Server Lag)' },
+  { value: 'FSRS-6', label: 'Algoritmo FSRS-6' },
+  { value: '20+', label: 'Escenarios Roleplay' },
+  { value: 'QR', label: 'Certificaciones QR' },
+];
+
+const WAVE = [8, 18, 12, 26, 16, 30, 20];
+const RING_LENGTH = 2 * Math.PI * 42;
+
+function HeroShowcase() {
+  const [listening, setListening] = useState(false);
 
   return (
-    <div className="text-primary min-h-screen bg-surface overflow-x-hidden">
-      {/* Hero Section with Glassmorphism */}
-      <section className="relative pt-24 sm:pt-32 lg:pt-20 pb-16 sm:pb-24 lg:pb-16 px-6 overflow-hidden">
-        {/* Animated Background Orbs */}
-        <div className="absolute top-0 -left-20 w-96 h-96 bg-accent opacity-20 blur-[120px] rounded-full animate-pulse"></div>
-        <div className="absolute bottom-0 -right-20 w-96 h-96 bg-info opacity-20 blur-[120px] rounded-full animate-pulse delay-1000"></div>
+    <div className="relative mx-auto w-full max-w-md">
+      <div className="absolute -inset-6 bg-accent/20 blur-3xl rounded-full" aria-hidden="true" />
 
-        <div className="max-w-6xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-surface/5 border border-border/10 rounded-full text-xs font-black uppercase tracking-[0.2em] text-accent mb-8 animate-in fade-in slide-in-from-top-4 duration-700">
-            <SparklesIcon className="w-4 h-4" />
-            La forma más rápida de hablar {targetLanguage === 'eu' ? 'euskera' : 'inglés'}
+      <div className="relative bg-surface/70 backdrop-blur-xl border border-border rounded-[2rem] p-5 shadow-2xl space-y-4">
+        {/* Racha diaria */}
+        <div className="flex items-center justify-between">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/15 border border-accent/30 text-accent font-black text-sm tracking-wide">
+            <span aria-hidden="true">🔥</span> 14 DÍAS
           </div>
+          <span className="text-xs text-tertiary font-semibold uppercase tracking-widest">Racha diaria</span>
+        </div>
 
-          <h1 className="text-5xl sm:text-8xl lg:text-6xl font-black mb-6 sm:mb-8 lg:mb-6 tracking-tighter leading-[0.9] animate-in fade-in slide-in-from-top-8 duration-700 delay-100">
-            Hostel<span className="text-accent">English</span><br />
-            Professional <span className="text-tertiary">App</span>
-          </h1>
-
-          <p className="text-lg sm:text-2xl lg:text-xl mb-8 sm:mb-12 lg:mb-8 text-tertiary max-w-2xl mx-auto leading-relaxed animate-in fade-in slide-in-from-top-12 duration-700 delay-200">
-            Domina el vocabulario y las expresiones esenciales para destacar en el mundo de la hostelería profesional.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 animate-in fade-in slide-in-from-top-16 duration-700 delay-300">
-            <Link
-              to="/dashboard"
-              className="w-full sm:w-auto bg-accent hover:brightness-110 text-primary font-black py-4 sm:py-5 lg:py-4 px-10 sm:px-12 lg:px-10 rounded-2xl text-lg sm:text-xl lg:text-lg shadow-2xl transform active:scale-95 transition-all text-center tracking-widest"
+        {/* Roleplay */}
+        <div className="bg-surface-elevated/80 border border-border rounded-2xl p-4 space-y-3">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-tertiary font-bold">Roleplay · Recepción</p>
+          <div className="flex items-start gap-3">
+            <div className="w-9 h-9 shrink-0 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 text-slate-950 font-black flex items-center justify-center text-sm">S</div>
+            <div className="bg-background/60 border border-border rounded-2xl rounded-tl-sm px-4 py-2.5 text-sm text-primary">
+              <span className="block text-xs font-bold text-accent mb-0.5">Sarah</span>
+              “Good evening, is my room ready?”
+            </div>
+          </div>
+          <div className="flex items-center justify-end gap-3">
+            <span className="text-xs text-secondary">
+              {listening ? 'Escuchando…' : 'Tu turno: responde en voz alta'}
+            </span>
+            <button
+              type="button"
+              onClick={() => setListening((v) => !v)}
+              aria-pressed={listening}
+              aria-label="Responder con micrófono"
+              className={`w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 shadow-lg shadow-emerald-500/25 transition-transform active:scale-95 ${listening ? 'animate-pulse ring-4 ring-emerald-400/40' : ''}`}
             >
-              EMPEZAR AHORA
-            </Link>
-            <Link
-              to="/progreso"
-              className="w-full sm:w-auto bg-surface/5 hover:bg-surface/10 text-primary font-bold py-4 sm:py-5 lg:py-4 px-10 sm:px-12 lg:px-10 rounded-2xl text-lg sm:text-xl lg:text-lg border border-border/10 transition-all text-center tracking-widest"
-            >
-              MI PROGRESO
-            </Link>
+              <MicrophoneIcon className="w-6 h-6" />
+            </button>
+          </div>
+        </div>
+
+        {/* Anillo de voz */}
+        <div className="flex items-center gap-4 bg-surface-elevated/80 border border-border rounded-2xl p-4">
+          <div className="relative w-24 h-24 shrink-0" role="img" aria-label="Calificación de voz: 98% excelente">
+            <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90" aria-hidden="true">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" strokeWidth="8" className="text-border" />
+              <circle
+                cx="50" cy="50" r="42" fill="none" strokeWidth="8" strokeLinecap="round"
+                stroke="#10b981"
+                strokeDasharray={RING_LENGTH}
+                strokeDashoffset={RING_LENGTH * 0.02}
+              />
+            </svg>
+            <div className="absolute inset-0 flex items-center justify-center gap-[2px]" aria-hidden="true">
+              {WAVE.map((h, i) => (
+                <span
+                  key={i}
+                  className="w-[3px] rounded-full bg-emerald-400 animate-pulse"
+                  style={{ height: `${h}px`, animationDelay: `${i * 120}ms` }}
+                />
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="text-3xl font-black bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">98%</p>
+            <p className="text-sm font-black text-accent tracking-wide">EXCELLENT!</p>
+            <p className="text-xs text-tertiary mt-1">Pronunciación evaluada en tu dispositivo</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <div className="text-primary min-h-screen bg-background overflow-x-hidden">
+      {/* Hero */}
+      <section className="relative pt-16 sm:pt-24 lg:pt-16 pb-16 px-6 overflow-hidden">
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-emerald-500/20 blur-[120px] rounded-full" aria-hidden="true" />
+        <div className="absolute bottom-0 -right-24 w-96 h-96 bg-cyan-500/15 blur-[120px] rounded-full" aria-hidden="true" />
+
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+          <div className="text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/30 rounded-full text-xs font-black tracking-wide text-accent mb-6 shadow-lg shadow-emerald-500/10">
+              ✨ HostelEnglish 2026 Pro · On-Device AI &amp; Audio
+            </div>
+
+            <h1 className="text-4xl sm:text-6xl lg:text-5xl xl:text-6xl font-black mb-6 tracking-tight leading-[1.05]">
+              <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                HostelEnglish 2026: El inglés y euskera de hostelería con IA en tu dispositivo
+              </span>
+            </h1>
+
+            <p className="text-lg sm:text-xl mb-8 text-secondary max-w-xl mx-auto lg:mx-0 leading-relaxed">
+              Practica frases, roleplays y pronunciación con feedback instantáneo, sin servidores y sin esperas.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <Link
+                to="/dashboard"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 text-slate-950 font-black shadow-lg shadow-emerald-500/25 py-4 px-10 rounded-2xl text-lg tracking-widest transition-all active:scale-95"
+              >
+                EMPEZAR AHORA
+                <ArrowRightIcon className="w-5 h-5" aria-hidden="true" />
+              </Link>
+              <Link
+                to="/progreso"
+                className="w-full sm:w-auto bg-surface/60 hover:bg-surface-elevated text-primary font-bold py-4 px-10 rounded-2xl text-lg border border-border transition-all text-center tracking-widest"
+              >
+                MI PROGRESO
+              </Link>
+            </div>
           </div>
 
-          {/* Mockup Preview / Visual Element */}
-          <div className="mt-20 relative px-4 text-center max-w-4xl mx-auto">
-            <div className="bg-gradient-to-t from-primary-dark via-transparent to-transparent absolute inset-0 z-20"></div>
-            <img
-              src={`${import.meta.env.BASE_URL}icons/pwa-512x512.png`}
-              alt="App Interface"
-              className="w-48 h-48 sm:w-64 sm:h-64 mx-auto rounded-[3rem] shadow-2xl border-4 border-border/10 rotate-3 animate-in zoom-in duration-1000 delay-500"
-            />
-          </div>
+          <HeroShowcase />
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 sm:py-24 lg:py-16 px-6 bg-surface/[0.02]">
+      {/* Departamentos */}
+      <section className="py-16 px-6">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-12 sm:mb-20 lg:mb-12">
-            <h2 className="text-3xl sm:text-5xl lg:text-4xl font-black text-primary mb-4 sm:mb-6 lg:mb-4">
-              Diseñado para Hostelería
-            </h2>
-            <p className="text-tertiary max-w-2xl mx-auto text-base sm:text-lg">
-              Olvida los cursos genéricos. Aprende lo que realmente necesitas para trabajar en hoteles, restaurantes y eventos.
+          <div className="text-center mb-10">
+            <h2 className="text-3xl sm:text-4xl font-black text-primary mb-3">Especialidades por Departamento</h2>
+            <p className="text-tertiary max-w-2xl mx-auto">
+              Elige tu puesto y entra directo al vocabulario que usarás cada turno.
             </p>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <FeatureCard
-              icon={AcademicCapIcon}
-              title="Aprendizaje Activo"
-              description="Interactúa con frases y recibe feedback instantáneo para acelerar tu asimilación."
-            />
-            <FeatureCard
-              icon={UserGroupIcon}
-              title="Diálogos Reales"
-              description="Practica situaciones comunes entre staff y clientes con audios de alta calidad."
-            />
-            <FeatureCard
-              icon={SparklesIcon}
-              title="Voz y Pronunciación"
-              description="Ajusta la velocidad y tono de las voces para entrenar tu oído según tu nivel."
-            />
-            <FeatureCard
-              icon={MapPinIcon}
-              title="Siempre Contigo"
-              description="Instálalo como PWA y practica en cualquier lugar, incluso sin conexión."
-            />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {DEPARTMENTS.map((d) => {
+              const Icon = 'icon' in d ? d.icon : null;
+              return (
+                <Link
+                  key={d.title}
+                  to={d.to}
+                  className="group bg-surface/70 backdrop-blur-xl p-6 rounded-3xl border border-border hover:border-accent/50 hover:shadow-lg hover:shadow-emerald-500/10 hover:-translate-y-1 transition-all"
+                >
+                  <div className="bg-accent/15 w-12 h-12 rounded-2xl flex items-center justify-center text-accent text-2xl mb-4 group-hover:scale-110 transition-transform">
+                    {Icon ? <Icon className="w-6 h-6" aria-hidden="true" /> : <span aria-hidden="true">{'emoji' in d ? d.emoji : ''}</span>}
+                  </div>
+                  <h3 className="text-lg font-black text-primary mb-1">{d.title}</h3>
+                  <p className="text-sm text-tertiary mb-3">{d.desc}</p>
+                  <span className="inline-flex items-center gap-1 text-sm font-bold text-accent">
+                    Entrar <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                  </span>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Social Proof / Stats */}
-      <section className="py-16 sm:py-24 lg:py-16 px-6 relative overflow-hidden">
-        <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 text-center">
-          <div>
-            <p className="text-4xl sm:text-5xl lg:text-4xl font-black text-accent mb-2">500+</p>
-            <p className="text-[10px] sm:text-xs uppercase tracking-widest text-tertiary font-semibold">
-              Frases Útiles
-            </p>
-          </div>
-          <div>
-            <p className="text-5xl font-black text-accent mb-2">20+</p>
-            <p className="text-xs uppercase tracking-widest text-tertiary font-semibold">
-              Escenarios
-            </p>
-          </div>
-          <div>
-            <p className="text-5xl font-black text-accent mb-2">100%</p>
-            <p className="text-xs uppercase tracking-widest text-tertiary font-semibold">
-              Gratis
-            </p>
-          </div>
-          <div>
-            <p className="text-5xl font-black text-accent mb-2">PWA</p>
-            <p className="text-xs uppercase tracking-widest text-tertiary font-semibold">Native Feeling</p>
-          </div>
+      {/* Métricas 2026 */}
+      <section className="py-14 px-6">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {METRICS.map((m) => (
+            <div key={m.label} className="bg-surface/70 border border-border rounded-3xl p-6 text-center">
+              <p className="text-3xl sm:text-4xl font-black bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent mb-2">
+                {m.value}
+              </p>
+              <p className="text-xs uppercase tracking-widest text-tertiary font-semibold">{m.label}</p>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 px-6 border-t border-border/5 text-center">
-        <Link to="/" className="text-2xl font-black text-primary mb-6 block">
+      <footer className="py-12 px-6 border-t border-border text-center">
+        <Link to="/" className="text-2xl font-black text-primary mb-4 block">
           Hostel<span className="text-accent">English</span>
         </Link>
-        <p className="text-tertiary text-sm max-w-sm mx-auto mb-8">
+        <p className="text-tertiary text-sm max-w-sm mx-auto mb-6">
           Transformando la comunicación en el sector hostelero a través de la tecnología y el aprendizaje interactivo.
         </p>
         <p className="text-xs text-tertiary">
-          © {new Date().getFullYear()} HostellinglésApp. Todos los derechos reservados.
+          © {new Date().getFullYear()} HostelEnglish. Todos los derechos reservados.
         </p>
       </footer>
     </div>

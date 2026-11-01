@@ -51,7 +51,7 @@ const ROLE_LABELS: Record<string, string> = {
 };
 
 const ROLE_GRADIENTS: Record<string, string> = {
-  bar: 'from-amber-500/20 to-orange-600/20',
+  bar: 'from-emerald-500/20 to-teal-600/20',
   recepcion: 'from-blue-500/20 to-cyan-600/20',
   restaurante: 'from-rose-500/20 to-pink-600/20',
   mantenimiento: 'from-slate-500/20 to-gray-600/20',
@@ -104,8 +104,8 @@ export default function DailyChallengeCard() {
             <span className="text-sm font-bold text-primary">+{challenge.xpReward} XP</span>
           </div>
           <div className="flex items-center gap-2 bg-background/20 px-4 py-2 rounded-2xl border border-border/10">
-            <FireIcon className="w-5 h-5 text-orange-400" />
-            <span className="text-sm font-bold text-primary">+{challenge.streakReward} 🔥</span>
+            <FireIcon className="w-5 h-5 text-emerald-400" />
+            <span className="text-sm font-black text-emerald-400">+{challenge.streakReward} 🔥 DÍAS</span>
           </div>
         </div>
       </div>

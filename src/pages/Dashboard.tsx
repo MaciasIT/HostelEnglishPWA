@@ -76,7 +76,7 @@ const Dashboard: React.FC = () => {
       title: 'Progreso',
       path: '/progreso',
       icon: ChartBarIcon,
-      color: 'bg-orange-500',
+      color: 'bg-teal-500',
       desc: 'Mira tus logros'
     },
   ];
