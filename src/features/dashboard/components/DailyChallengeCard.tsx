@@ -89,7 +89,7 @@ export default function DailyChallengeCard() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 relative z-10">
         <div>
-          <p className="text-[10px] uppercase font-bold text-accent tracking-[0.2em] mb-1">
+          <p className="text-[10px] uppercase font-bold text-accent-text tracking-[0.2em] mb-1">
             Reto Diario · {ROLE_LABELS[challenge.role] ?? challenge.role}
           </p>
           <h2 id="daily-challenge-heading" className="text-xl sm:text-2xl font-black text-primary tracking-tight">
@@ -100,12 +100,12 @@ export default function DailyChallengeCard() {
         <div className="flex items-center gap-3">
           {/* Rewards */}
           <div className="flex items-center gap-2 bg-background/20 px-4 py-2 rounded-2xl border border-border/10">
-            <GiftIcon className="w-5 h-5 text-yellow-400" />
+            <GiftIcon className="w-5 h-5 text-warning-text" />
             <span className="text-sm font-bold text-primary">+{challenge.xpReward} XP</span>
           </div>
           <div className="flex items-center gap-2 bg-background/20 px-4 py-2 rounded-2xl border border-accent/30 shadow-[0_0_14px_-4px_var(--accent-glow)]">
-            <FireIcon className="w-5 h-5 text-accent animate-flame" aria-hidden="true" />
-            <span className="text-sm font-black text-accent" data-testid="daily-streak">+{challenge.streakReward} días de racha</span>
+            <FireIcon className="w-5 h-5 text-accent-text animate-flame" aria-hidden="true" />
+            <span className="text-sm font-black text-accent-text" data-testid="daily-streak">+{challenge.streakReward} días de racha</span>
           </div>
         </div>
       </div>
@@ -158,7 +158,7 @@ export default function DailyChallengeCard() {
               >
                 <span className="flex-shrink-0 mt-0.5">
                   {done ? (
-                    <CheckCircleIcon className="w-6 h-6 text-green-400" aria-hidden="true" />
+                    <CheckCircleIcon className="w-6 h-6 text-success-text" aria-hidden="true" />
                   ) : (
                     <span className="w-6 h-6 rounded-full border-2 border-border/20 flex items-center justify-center">
                       <span className="text-xs font-bold text-primary/60">{idx + 1}</span>
@@ -167,7 +167,7 @@ export default function DailyChallengeCard() {
                 </span>
                 <span
                   className={`text-sm font-medium leading-relaxed ${
-                    done ? 'text-green-300 line-through' : 'text-primary'
+                    done ? 'text-success-text line-through' : 'text-primary'
                   }`}
                 >
                   {step.description}
@@ -193,7 +193,7 @@ export default function DailyChallengeCard() {
       )}
 
       {isClaimed && (
-        <p className="text-center text-green-300 font-bold text-sm mt-4 relative z-10">
+        <p className="text-center text-success-text font-bold text-sm mt-4 relative z-10">
           ✓ Recompensa reclamada. ¡Mañana nuevo reto!
         </p>
       )}

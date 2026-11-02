@@ -46,7 +46,7 @@ export default function ConversationUI({ conversation, onBack, onConversationEnd
         </button>
         <div className="min-w-0 flex-1 text-center px-1">
           <h1 className="text-xl sm:text-2xl font-black text-primary leading-tight break-words">{conversation.title}</h1>
-          <p className="text-xs text-accent font-bold uppercase tracking-widest">{categoryLabel}</p>
+          <p className="text-xs text-accent-text font-bold uppercase tracking-widest">{categoryLabel}</p>
         </div>
         <button
           onClick={() => actions.setIsFocusMode(!state.isFocusMode)}
@@ -121,7 +121,7 @@ export default function ConversationUI({ conversation, onBack, onConversationEnd
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
               {conversation.participants.map(participant => (
                 <div key={participant} className="bg-surface/10 p-6 rounded-3xl border border-border/10 shadow-inner">
-                  <h4 className="flex items-center gap-2 font-black text-primary mb-4 uppercase text-xs tracking-widest text-accent">
+                  <h4 className="flex items-center gap-2 font-black text-primary mb-4 uppercase text-xs tracking-widest text-accent-text">
                     <UserCircleIcon className="w-5 h-5" />
                     {participant}
                   </h4>

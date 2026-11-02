@@ -22,7 +22,7 @@ export default function DashboardModule({ title, path, icon: Icon, color, desc, 
       <div className={`${color} w-14 h-14 sm:w-16 sm:h-16 rounded-2xl flex items-center justify-center text-on-accent mb-4 sm:mb-6 ring-1 ring-white/10 shadow-[0_0_18px_-4px_var(--accent-glow)] group-hover:shadow-[0_0_28px_-2px_var(--accent-glow)] group-hover:-rotate-6 transition-all`}>
         <Icon className="w-7 h-7 sm:w-8 sm:h-8" aria-hidden="true" />
       </div>
-      <h3 className="text-lg sm:text-xl font-black text-primary mb-2 tracking-tight group-hover:text-accent transition-colors">{title}</h3>
+      <h3 className="text-lg sm:text-xl font-black text-primary mb-2 tracking-tight group-hover:text-accent-text transition-colors">{title}</h3>
       <p className="text-tertiary text-xs sm:text-sm font-medium leading-relaxed">{desc}</p>
     </Link>
   );

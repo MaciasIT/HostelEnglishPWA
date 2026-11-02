@@ -1,13 +1,15 @@
 # HostelInglés PWA
 
 ![CI/CD](https://github.com/MaciasIT/HostelEnglishPWA/actions/workflows/deploy.yml/badge.svg)
-[![Version](https://img.shields.io/badge/version-2.6.0-emerald?style=for-the-badge)](https://github.com/MaciasIT/HostelEnglishPWA/releases)
+[![Version](https://img.shields.io/badge/version-2.6.4-emerald?style=for-the-badge)](https://github.com/MaciasIT/HostelEnglishPWA/releases)
+[![Accessibility](https://img.shields.io/badge/WCAG_AAA-Certified_(7:1)-blue?style=for-the-badge&logo=w3c)](https://www.w3.org/WAI/WCAG21/quickref/?currentsidebar=%23col_customize&levels=aaa)
 [![Security](https://img.shields.io/badge/Security-Audit_Passed-green?style=for-the-badge&logo=shield)](./AUDITORIA_360_HostelEnglishPWA.md)
 [![React](https://img.shields.io/badge/React-19.0.0-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-8.0.16-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
 [![Tailwind](https://img.shields.io/badge/Tailwind-4.0.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Tests](https://img.shields.io/badge/Tests-545%20Passed-success?style=for-the-badge&logo=vitest)](https://vitest.dev/)
+[![Tests](https://img.shields.io/badge/Tests-603%20Passed-success?style=for-the-badge&logo=vitest)](https://vitest.dev/)
+[![E2E Playwright](https://img.shields.io/badge/E2E-30%20Passed-success?style=for-the-badge&logo=playwright)](https://playwright.dev/)
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg?style=for-the-badge)](https://www.gnu.org/licenses/agpl-3.0)
 
 **HostelInglés** es una Progressive Web App (PWA) interactiva y offline-first de nivel profesional, diseñada específicamente para capacitar al personal de hostelería en el dominio del inglés y euskera aplicados a situaciones laborales reales. Combina diseño de vanguardia, inteligencia artificial on-device, síntesis de voz neuronal y rigor pedagógico.

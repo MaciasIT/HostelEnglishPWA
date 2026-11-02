@@ -38,7 +38,7 @@ export default function RoleplayCorrection({ feedback }: RoleplayCorrectionProps
         </p>
         <button
           onClick={() => setOpen((v) => !v)}
-          className="text-xs text-accent font-bold hover:brightness-110 px-2 py-1 rounded-lg transition-colors"
+          className="text-xs text-accent-text font-bold hover:brightness-110 px-2 py-1 rounded-lg transition-colors"
           aria-expanded={open}
         >
           {open ? 'Ocultar' : 'Ver'}

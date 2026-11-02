@@ -36,9 +36,9 @@ export function getWordLevel(score: number): WordLevel {
 }
 
 const LEVEL_STYLE: Record<WordLevel, string> = {
-  good: 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/40',
-  warning: 'bg-amber-500/15 text-amber-600 dark:text-amber-400 border-amber-500/40',
-  bad: 'bg-red-500/15 text-red-600 dark:text-red-400 border-red-500/40',
+  good: 'bg-emerald-500/15 text-success-text  border-emerald-500/40',
+  warning: 'bg-amber-500/15 text-warning-text  border-amber-500/40',
+  bad: 'bg-red-500/15 text-error-text  border-red-500/40',
 };
 
 const LEVEL_LABEL: Record<WordLevel, string> = {
@@ -139,7 +139,7 @@ export default function PhoneticFeedbackCard({
       className={`bg-surface border border-border rounded-3xl p-5 sm:p-8 flex flex-col gap-6 ${className}`}
     >
       <div>
-        <h3 className="text-[10px] uppercase font-black text-accent tracking-[0.3em] mb-3">
+        <h3 className="text-[10px] uppercase font-black text-accent-text tracking-[0.3em] mb-3">
           Mapa de pronunciación
         </h3>
         <ul className="flex flex-wrap gap-2" aria-label="Palabras de la frase">
@@ -201,7 +201,7 @@ export default function PhoneticFeedbackCard({
           type="button"
           onClick={onPlayUser}
           disabled={!onPlayUser}
-          className="flex-1 min-h-12 inline-flex items-center justify-center gap-2 rounded-2xl border border-accent text-accent font-bold px-4 py-3 disabled:opacity-50"
+          className="flex-1 min-h-12 inline-flex items-center justify-center gap-2 rounded-2xl border border-accent text-accent-text font-bold px-4 py-3 disabled:opacity-50"
         >
           <PlayIcon className="w-5 h-5" aria-hidden="true" />
           Escuchar mi grabación

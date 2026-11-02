@@ -100,7 +100,7 @@ const Progreso: React.FC = () => {
                 <h2 id="evolution-heading" className="text-xl sm:text-2xl font-black text-primary tracking-tight">Evolución Semanal</h2>
                 <p className="text-tertiary text-xs sm:text-sm font-medium">Frases practicadas por día</p>
               </div>
-              <div className="bg-accent/20 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-accent text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em]" aria-hidden="true">
+              <div className="bg-accent/20 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-accent-text text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em]" aria-hidden="true">
                 Tendencia
               </div>
             </div>
@@ -166,7 +166,7 @@ const Progreso: React.FC = () => {
             aria-labelledby="achievements-heading"
           >
             <h2 id="achievements-heading" className="text-xl sm:text-2xl font-black text-primary mb-6 sm:mb-8 flex items-center gap-3">
-              <TrophyIcon className="w-7 h-7 sm:w-8 sm:h-8 text-yellow-500 drop-shadow-lg" />
+              <TrophyIcon className="w-7 h-7 sm:w-8 sm:h-8 text-warning-text drop-shadow-lg" />
               Medallas
             </h2>
 
@@ -246,7 +246,7 @@ const Progreso: React.FC = () => {
             
             <h2 className="text-3xl font-black text-primary mb-4">¡Vas por buen camino!</h2>
             <p className="text-secondary mb-10 max-w-sm text-lg font-medium leading-relaxed">
-              Has dominado el <span className="text-accent font-black text-2xl">{state.stats.progressPercent}%</span> del curso. Sigue así y pronto serás bilingüe en el sector hostelero.
+              Has dominado el <span className="text-accent-text font-black text-2xl">{state.stats.progressPercent}%</span> del curso. Sigue así y pronto serás bilingüe en el sector hostelero.
             </p>
             
             <Link 

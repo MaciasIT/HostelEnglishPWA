@@ -25,7 +25,7 @@ export default function ExamQuestion({
         animate={{ opacity: 1, y: 0 }}
         className="bg-surface/10 p-10 rounded-[2.5rem] shadow-2xl border border-border/20 backdrop-blur-md"
       >
-        <p id="question-label" className="text-[10px] uppercase font-black text-accent tracking-[0.2em] mb-4">Traduce esta frase:</p>
+        <p id="question-label" className="text-[10px] uppercase font-black text-accent-text tracking-[0.2em] mb-4">Traduce esta frase:</p>
         <h3 id="current-question" className="text-3xl sm:text-4xl font-black text-primary mb-12 italic leading-tight">
           "{question}"
         </h3>
@@ -42,7 +42,7 @@ export default function ExamQuestion({
                 : "bg-error border-red-400 text-primary";
             } else if (isAnswered) {
               btnClass = isCorrect 
-                ? "bg-success/20 border-green-500/30 text-green-200" 
+                ? "bg-success/20 border-green-500/30 text-success-text" 
                 : "bg-surface/5 border-border/5 opacity-30";
             }
 
@@ -92,7 +92,7 @@ export default function ExamQuestion({
               }
             </div>
             <div>
-              <h3 className={`text-xl font-black ${selectedOption === correctAnswer ? 'text-green-400' : 'text-red-400'}`}>
+              <h3 className={`text-xl font-black ${selectedOption === correctAnswer ? 'text-success-text' : 'text-error-text'}`}>
                 {selectedOption === correctAnswer ? '¡Correcto!' : 'Oh, no es exacto'}
               </h3>
               {selectedOption !== correctAnswer && (

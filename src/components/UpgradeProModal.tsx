@@ -98,7 +98,7 @@ const UpgradeProModal: React.FC<UpgradeProModalProps> = ({ isOpen, onClose }) =>
         </button>
 
         <div className="flex items-center gap-3 mb-6">
-          <div className="p-3 bg-accent/20 rounded-2xl text-accent">
+          <div className="p-3 bg-accent/20 rounded-2xl text-accent-text">
             <SparklesIcon className="w-7 h-7" />
           </div>
           <h2 id={titleId} className="text-2xl font-black text-primary tracking-tight">
@@ -108,7 +108,7 @@ const UpgradeProModal: React.FC<UpgradeProModalProps> = ({ isOpen, onClose }) =>
 
         {showSuccess ? (
           <div role="status" className="text-center py-6 space-y-3">
-            <CheckCircleIcon className="w-16 h-16 mx-auto text-green-500 animate-bounce" />
+            <CheckCircleIcon className="w-16 h-16 mx-auto text-success-text animate-bounce" />
             <p className="text-lg font-black text-primary">
               {justActivated ? '¡Licencia activada!' : 'Ya eres Pro'}
             </p>
@@ -135,7 +135,7 @@ const UpgradeProModal: React.FC<UpgradeProModalProps> = ({ isOpen, onClose }) =>
             <ul className="space-y-3 mb-6">
               {BENEFITS.map(({ icon: Icon, text }) => (
                 <li key={text} className="flex items-center gap-3 text-sm text-primary">
-                  <Icon className="w-5 h-5 text-accent shrink-0" />
+                  <Icon className="w-5 h-5 text-accent-text shrink-0" />
                   {text}
                 </li>
               ))}
@@ -161,7 +161,7 @@ const UpgradeProModal: React.FC<UpgradeProModalProps> = ({ isOpen, onClose }) =>
                 className="w-full p-3 bg-surface/5 border border-border/10 rounded-2xl text-sm text-primary font-mono focus:ring-2 focus:ring-accent outline-none"
               />
               {error && (
-                <p id={`${titleId}-err`} role="alert" className="text-sm text-red-400">
+                <p id={`${titleId}-err`} role="alert" className="text-sm text-error-text">
                   {error}
                 </p>
               )}
@@ -178,7 +178,7 @@ const UpgradeProModal: React.FC<UpgradeProModalProps> = ({ isOpen, onClose }) =>
               href={PRO_PURCHASE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 block text-center text-sm font-bold text-accent hover:underline"
+              className="mt-4 block text-center text-sm font-bold text-accent-text hover:underline"
             >
               Obtener Pase Pro
             </a>

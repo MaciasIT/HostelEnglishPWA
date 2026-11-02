@@ -47,25 +47,32 @@ const FlashcardItem: React.FC<FlashcardItemProps> = ({ phrase, targetLanguage, p
 
   return (
     <div
-      className="group perspective-1000 w-full h-[400px] cursor-pointer outline-none focus-within:ring-4 focus-within:ring-accent/50 rounded-[3rem] transition-all"
+      className="group perspective-1000 w-full min-h-[400px] cursor-pointer outline-none focus-within:ring-4 focus-within:ring-accent/50 rounded-[3rem] transition-all"
       onClick={handleFlip}
-      onKeyDown={(e) => e.key === 'Enter' && handleFlip()}
+      onKeyDown={(e) => {
+        if (e.target !== e.currentTarget) return;
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+          e.preventDefault();
+          handleFlip();
+        }
+      }}
       role="button"
       tabIndex={0}
-      aria-label={`Tarjeta de estudio. Actualmente mostrando ${isFlipped ? 'Traducción en Español' : 'Original en ' + targetLangName}. Presiona Enter para girar.`}
+      aria-label={`Tarjeta de estudio. Actualmente mostrando ${isFlipped ? 'Traducción en Español' : 'Original en ' + targetLangName}. Presiona Enter o Espacio para girar.`}
     >
       <div
-        className={`relative w-full h-full transition-all duration-700 preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}
+        className={`relative w-full min-h-[400px] h-full transition-all duration-700 preserve-3d ${isFlipped ? 'rotate-y-180' : ''}`}
       >
         {/* Front Side (Target Language) */}
         <div 
           className="absolute inset-0 w-full h-full backface-hidden bg-surface/10 backdrop-blur-2xl rounded-[3rem] border border-border/20 shadow-2xl flex flex-col items-center justify-center p-8 text-center"
           aria-hidden={isFlipped}
+          inert={isFlipped}
         >
           <div className="absolute top-8 right-8 text-primary/20" aria-hidden="true">
             <ArrowPathIcon className="w-8 h-8 rotate-12" />
           </div>
-          <p className="text-xs uppercase tracking-[0.3em] font-black text-accent mb-6">Original ({targetLangName})</p>
+          <p className="text-xs uppercase tracking-[0.3em] font-black text-accent-text mb-6">Original ({targetLangName})</p>
           <div className="flex-grow flex items-center justify-center w-full px-4">
             <h2 className={`font-black text-primary leading-tight ${phrase.eu?.length && phrase.eu.length > 50 ? 'text-2xl' : 'text-3xl'}`}>
               "{targetLanguage === 'eu' ? (phrase.eu || '...') : phrase.en}"
@@ -85,8 +92,9 @@ const FlashcardItem: React.FC<FlashcardItemProps> = ({ phrase, targetLanguage, p
         <div 
           className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-surface/5 backdrop-blur-2xl rounded-[3rem] border border-border/10 shadow-2xl flex flex-col items-center justify-center p-8 text-center"
           aria-hidden={!isFlipped}
+          inert={!isFlipped}
         >
-          <p className="text-xs uppercase tracking-[0.3em] font-black text-blue-400 mb-6">Traducción (Español)</p>
+          <p className="text-xs uppercase tracking-[0.3em] font-black text-info-text mb-6">Traducción (Español)</p>
           <div className="flex-grow flex items-center justify-center w-full px-4">
             <h2 className={`font-black text-primary leading-tight ${phrase.es.length > 50 ? 'text-2xl' : 'text-3xl'}`}>
               "{phrase.es}"

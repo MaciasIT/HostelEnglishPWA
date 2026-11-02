@@ -25,7 +25,7 @@ export default function RoleplayHint({ hint, onDismiss }: RoleplayHintProps) {
         <button
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          className="flex items-center gap-2 text-accent font-bold text-sm hover:brightness-110 transition-all px-2 py-1 rounded-xl"
+          className="flex items-center gap-2 text-accent-text font-bold text-sm hover:brightness-110 transition-all px-2 py-1 rounded-xl"
         >
           <LightBulbIcon className="w-5 h-5" aria-hidden="true" />
           {open ? 'Ocultar pista' : '¿Necesitas una pista?'}
@@ -47,7 +47,7 @@ export default function RoleplayHint({ hint, onDismiss }: RoleplayHintProps) {
               {hint.keywords.map((word) => (
                 <span
                   key={word}
-                  className="bg-accent/15 text-accent text-xs font-bold px-2 py-1 rounded-full"
+                  className="bg-accent/15 text-accent-text text-xs font-bold px-2 py-1 rounded-full"
                 >
                   {word}
                 </span>

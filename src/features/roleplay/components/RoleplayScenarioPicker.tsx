@@ -91,10 +91,10 @@ export default function RoleplayScenarioPicker({
                   onClick={() => onSelect(scenario)}
                   className="text-left bg-surface/5 backdrop-blur-xl p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-border/15 hover:bg-surface/10 hover:-translate-y-1 transition-all shadow-xl group"
                 >
-                  <span className="inline-block bg-accent/20 text-accent text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-3">
+                  <span className="inline-block bg-accent/20 text-accent-text text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full mb-3">
                     {ROLEPLAY_DEPARTMENT_LABELS[scenario.department]}
                   </span>
-                  <h3 className="text-lg font-black text-primary mb-2 group-hover:text-accent transition-colors">
+                  <h3 className="text-lg font-black text-primary mb-2 group-hover:text-accent-text transition-colors">
                     {meta.title}
                   </h3>
                   <p className="text-tertiary text-sm leading-relaxed">{scenario.objective}</p>

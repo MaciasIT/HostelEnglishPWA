@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { useSmoothFocusScroll } from '@/hooks/useSmoothFocusScroll';
 import { useAppStore, useShallow } from '@/store/useAppStore';
 import PhraseCard from '@/components/PhraseCard';
 import VoiceSettings from '@/components/VoiceSettings';
@@ -36,6 +37,7 @@ export default function Frases() {
 
 
   const [searchTerm, setSearchTerm] = useState('');
+  const handleFocusScroll = useSmoothFocusScroll();
   const selectedRole = useAppStore((state) => state.prefs.selectedRole);
   const [scope, setScope] = useState<RoleScope>('role');
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -137,6 +139,7 @@ export default function Frases() {
                   <input
                     type="text"
                     placeholder="Buscar frase..."
+                    onFocus={handleFocusScroll}
                     className="w-full pl-12 pr-4 py-4 bg-surface/5 border border-border/10 rounded-2xl text-primary placeholder-gray-500 focus:ring-2 focus:ring-accent outline-none transition-all font-bold"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
@@ -173,7 +176,7 @@ export default function Frases() {
               {filteredFrases.length > 0 ? (
                 <>
                   <h3 className="text-2xl sm:text-3xl font-black text-primary mb-2">¿Listo para practicar?</h3>
-                  <p className="text-tertiary mb-6 sm:mb-10 text-sm sm:text-base">Hemos encontrado <span className="text-accent font-bold">{filteredFrases.length}</span> frases según tus filtros.</p>
+                  <p className="text-tertiary mb-6 sm:mb-10 text-sm sm:text-base">Hemos encontrado <span className="text-accent-text font-bold">{filteredFrases.length}</span> frases según tus filtros.</p>
 
                   <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
                     {[10, 25, 'all'].map(size => (
@@ -195,7 +198,7 @@ export default function Frases() {
                   <p className="text-tertiary mb-8">Prueba a cambiar la categoría o limpiar la búsqueda.</p>
                   <button
                     onClick={() => { setSelectedCategory('all'); setSearchTerm(''); }}
-                    className="text-accent font-black uppercase tracking-widest text-sm hover:underline"
+                    className="text-accent-text font-black uppercase tracking-widest text-sm hover:underline"
                   >
                     Ver todas las nuevas
                   </button>

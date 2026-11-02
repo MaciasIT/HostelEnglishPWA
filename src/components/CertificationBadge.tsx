@@ -134,7 +134,7 @@ export default function CertificationBadge({
         {/* Footer */}
         <div className="flex flex-col items-center gap-3">
           <div className="flex items-center gap-2 bg-surface/5 border border-border/10 px-4 py-2 rounded-xl">
-            <CheckBadgeIcon className="w-4 h-4 text-green-400" aria-hidden="true" />
+            <CheckBadgeIcon className="w-4 h-4 text-success-text" aria-hidden="true" />
             <span className="text-[10px] font-mono text-primary/60 tracking-widest">
               {verificationCode}
             </span>
@@ -169,7 +169,7 @@ function StatBox({ label, value, accent }: { label: string; value: string; accen
   return (
     <div className={`p-4 rounded-2xl border ${accent ? 'bg-success/10 border-green-500/20' : 'bg-surface/5 border-border/10'}`}>
       <p className="text-[9px] uppercase font-black text-primary/50 tracking-widest mb-1">{label}</p>
-      <p className={`text-xl font-black ${accent ? 'text-green-300' : 'text-primary'}`}>{value}</p>
+      <p className={`text-xl font-black ${accent ? 'text-success-text' : 'text-primary'}`}>{value}</p>
     </div>
   );
 }

@@ -193,7 +193,7 @@ function RoleplaySession({ session, accent, onExit, onRegenerate }: RoleplaySess
       </button>
       <div className="min-w-0 flex-1">
         <h2 className="text-base sm:text-lg font-black text-primary line-clamp-2 break-words leading-tight">{meta.title}</h2>
-        <p className="text-[10px] uppercase tracking-widest text-accent font-bold">
+        <p className="text-[10px] uppercase tracking-widest text-accent-text font-bold">
           {ROLEPLAY_DEPARTMENT_LABELS[scenario.department]}
           {' · '}
           <span aria-label={`Acento: ${accentDef.label}`}>
@@ -211,7 +211,7 @@ function RoleplaySession({ session, accent, onExit, onRegenerate }: RoleplaySess
         <div className="max-w-2xl mx-auto animate-fade-in text-center">
           {header}
           <div className="bg-surface/5 backdrop-blur-xl p-5 sm:p-10 rounded-2xl sm:rounded-[3rem] border border-border/15 shadow-2xl space-y-4 sm:space-y-6">
-            <CheckBadgeIcon className="w-12 h-12 sm:w-16 sm:h-16 text-accent mx-auto" aria-hidden="true" />
+            <CheckBadgeIcon className="w-12 h-12 sm:w-16 sm:h-16 text-accent-text mx-auto" aria-hidden="true" />
             <h3 className="text-xl sm:text-2xl font-black text-primary">Tu objetivo</h3>
             <p className="text-tertiary text-base sm:text-lg leading-relaxed italic">{scenario.objective}</p>
             <p className="text-xs sm:text-sm text-secondary">

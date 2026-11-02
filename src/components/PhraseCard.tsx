@@ -61,13 +61,13 @@ const PhraseCard = ({
     1: {
       label: 'Estudiada',
       btnText: 'Marcar como Aprendida',
-      btnColor: 'bg-success/20 text-green-400 border-green-500/30 hover:bg-success/30',
+      btnColor: 'bg-success/20 text-success-text border-green-500/30 hover:bg-success/30',
       icon: CheckIcon
     },
     2: {
       label: 'Aprendida',
       btnText: 'Reiniciar Progreso',
-      btnColor: 'bg-accent/20 text-accent border-accent/30 hover:bg-accent/30',
+      btnColor: 'bg-accent/20 text-accent-text border-accent/30 hover:bg-accent/30',
       icon: ArrowPathIcon
     }
   }[progressLevel] || {
@@ -93,7 +93,7 @@ const PhraseCard = ({
           "{phrase.es}"
         </h3>
 
-        <p className={`text-lg sm:text-xl font-medium mb-10 text-center ${!phrase[targetLanguage === 'eu' ? 'eu' : 'en'] ? 'text-orange-400 italic' : 'text-tertiary'}`}>
+        <p className={`text-lg sm:text-xl font-medium mb-10 text-center ${!phrase[targetLanguage === 'eu' ? 'eu' : 'en'] ? 'text-warning-text italic' : 'text-tertiary'}`}>
           {targetLanguage === 'eu' ? (phrase.eu || 'Traducción pendiente...') : phrase.en}
         </p>
 

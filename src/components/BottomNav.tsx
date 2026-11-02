@@ -53,7 +53,7 @@ const BottomNav: React.FC = () => {
       initial={false}
       animate={{ y: hidden ? '100%' : 0 }}
       transition={{ type: 'spring', stiffness: 380, damping: 36 }}
-      className="fixed bottom-0 left-0 right-0 bg-surface/80 backdrop-blur-md border-t border-border/10 z-40 md:hidden pb-[env(safe-area-inset-bottom)]"
+      className="fixed bottom-0 left-0 right-0 bg-surface/80 backdrop-blur-md border-t border-border/10 z-40 md:hidden pb-[env(safe-area-inset-bottom,0px)]"
       aria-label="Navegación principal"
     >
       <div className="flex justify-around items-center h-16 px-2">
@@ -64,7 +64,7 @@ const BottomNav: React.FC = () => {
               key={tab.to}
               to={tab.to}
               className={`relative flex flex-col items-center justify-center min-w-14 min-h-14 flex-1 max-w-24 rounded-2xl transition-colors active:scale-95 ${
-                isActive ? 'text-accent' : 'text-tertiary hover:text-secondary'
+                isActive ? 'text-accent-text' : 'text-tertiary hover:text-secondary'
               }`}
               aria-current={isActive ? 'page' : undefined}
               aria-label={tab.label}

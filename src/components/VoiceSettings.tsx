@@ -136,7 +136,7 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({
           >
             <div className="flex items-center justify-between">
               <h2 id={titleId} className="text-lg font-black text-primary flex items-center gap-2">
-                <Cog6ToothIcon className="w-5 h-5 text-accent" aria-hidden="true" />
+                <Cog6ToothIcon className="w-5 h-5 text-accent-text" aria-hidden="true" />
                 {title}
               </h2>
               <button
@@ -182,7 +182,7 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({
                   <p className="text-xs text-secondary">Tu dispositivo usará su voz inglesa por defecto.</p>
                 )
               ) : (
-                <p className="text-[11px] text-accent/80 font-medium leading-relaxed">
+                <p className="text-[11px] text-accent-text font-medium leading-relaxed">
                   ✨ Síntesis neuronal de alta fidelidad activa (con adaptación fonética automática si estás sin conexión).
                 </p>
               )}
@@ -231,7 +231,7 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({
             <button
               type="button"
               onClick={preview}
-              className="w-full min-h-12 rounded-2xl bg-accent/15 text-accent font-black border border-accent/30 hover:bg-accent/25 transition-colors inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="w-full min-h-12 rounded-2xl bg-accent/15 text-accent-text font-black border border-accent/30 hover:bg-accent/25 transition-colors inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               🔊 Probar voz
             </button>
@@ -253,7 +253,7 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({
                     <label htmlFor={`${titleId}-pitch`} className="text-[10px] uppercase font-black text-tertiary tracking-widest">
                       Tono
                     </label>
-                    <span className="text-accent font-black text-xs bg-accent/10 px-2 py-0.5 rounded-md">{settings.pitch}</span>
+                    <span className="text-accent-text font-black text-xs bg-accent/10 px-2 py-0.5 rounded-md">{settings.pitch}</span>
                   </div>
                   <input
                     id={`${titleId}-pitch`}
@@ -267,7 +267,7 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({
                   />
                   <div className="flex justify-between items-center text-[10px] text-secondary font-black uppercase">
                     <span>Grave</span>
-                    <button type="button" onClick={() => onSettingChange('pitch', 1)} className="min-h-11 px-2 text-accent">
+                    <button type="button" onClick={() => onSettingChange('pitch', 1)} className="min-h-11 px-2 text-accent-text">
                       Restablecer
                     </button>
                     <span>Agudo</span>
@@ -292,9 +292,9 @@ const VoiceSettings: React.FC<VoiceSettingsProps> = ({
         aria-expanded={open}
         className="min-h-11 px-4 rounded-xl bg-surface/5 border border-border/10 text-primary text-sm font-bold inline-flex items-center gap-2 hover:bg-surface/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       >
-        <Cog6ToothIcon className="w-5 h-5 text-accent" aria-hidden="true" />
+        <Cog6ToothIcon className="w-5 h-5 text-accent-text" aria-hidden="true" />
         Ajustes de Voz
-        <span className="text-[11px] text-accent bg-accent/10 px-2 py-0.5 rounded-md">{summary}</span>
+        <span className="text-[11px] text-accent-text bg-accent/10 px-2 py-0.5 rounded-md">{summary}</span>
       </button>
       {sheet}
     </div>

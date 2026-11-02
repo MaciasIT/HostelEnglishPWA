@@ -58,6 +58,12 @@
   --color-disabled: var(--ds-disabled);   /* Exento de contraste (WCAG: componentes deshabilitados) */
   --color-on-accent: var(--ds-on-accent); /* Texto sobre acento esmeralda: 7.5:1 AAA (blanco daba 2.6:1) */
   --color-focus-ring: var(--ds-focus-ring); /* Anillo de foco 2px ≥3:1 (WCAG 1.4.11) */
+  /* Texto semántico de estado — AAA ≥7:1 sobre superficies y chips tintados (scripts/contrast-audit.mjs) */
+  --color-success-text: var(--ds-success-text);
+  --color-warning-text: var(--ds-warning-text);
+  --color-error-text: var(--ds-error-text);
+  --color-info-text: var(--ds-info-text);
+  --color-accent-text: var(--ds-accent-text);
 
   /* ── Marca / identidad ─────────────────────────────── */
   --color-accent: #10b981;        /* Verde esmeralda / menta eléctrico — identidad 2026 */
@@ -123,6 +129,11 @@
   --ds-disabled: #475569;
   --ds-on-accent: #00140e;
   --ds-focus-ring: #10b981;
+  --ds-success-text: #6ee7b7;
+  --ds-warning-text: #fcd34d;
+  --ds-error-text: #fecaca;
+  --ds-info-text: #bfdbfe;
+  --ds-accent-text: #6ee7b7;
   --ds-border: rgba(255, 255, 255, 0.08);
   --ds-border-subtle: rgba(255, 255, 255, 0.06);
   --ds-border-focus: rgba(255, 255, 255, 0.25);
@@ -173,10 +184,15 @@
   --ds-surface-elevated: #ffffff;
   --ds-primary: #0f172a;         /* 16.6:1 sobre background */
   --ds-secondary: #334155;       /* ≥10:1 sobre background — AAA */
-  --ds-tertiary: #475569;        /* 7.1:1 sobre background — AAA */
+  --ds-tertiary: #3d4a5e;        /* ≥7:1 sobre todas las superficies claras — AAA */
   --ds-disabled: #94a3b8;
   --ds-on-accent: #00140e;
   --ds-focus-ring: #047857;      /* ≥5:1 sobre blanco (el verde de marca da 2.5:1) */
+  --ds-success-text: #064e3b;
+  --ds-warning-text: #78350f;
+  --ds-error-text: #7f1d1d;
+  --ds-info-text: #1e3a8a;
+  --ds-accent-text: #064e3b;
   --ds-border: rgba(0, 0, 0, 0.12);
   --ds-border-subtle: rgba(0, 0, 0, 0.06);
   --ds-border-focus: rgba(0, 0, 0, 0.25);
@@ -188,8 +204,8 @@
   --bg-pressed:         rgba(0, 0, 0, 0.08);
 
   --text-primary:       #0f172a;   /* AAA sobre bg-surface (#ffffff) */
-  --text-secondary:     #475569;
-  --text-tertiary:      #94a3b8;
+  --text-secondary:     var(--color-secondary);
+  --text-tertiary:      var(--color-tertiary);
   --text-disabled:      #cbd5e1;
   --text-on-accent:     #00140e;
 

@@ -81,17 +81,17 @@ export default function ExamResults({
         <div className="grid grid-cols-2 gap-4 mb-10">
           <div className="bg-surface/5 p-6 rounded-3xl border border-border/10">
             <div className="flex items-center justify-center gap-2 mb-1">
-              <FireIcon className="w-4 h-4 text-orange-500" />
-              <p className="text-[10px] uppercase font-black text-gray-500 tracking-widest">Puntuación</p>
+              <FireIcon className="w-4 h-4 text-warning-text" />
+              <p className="text-[10px] uppercase font-black text-tertiary tracking-widest">Puntuación</p>
             </div>
             <p className="text-4xl font-black text-primary">{score}<span className="text-lg text-secondary font-bold">/{total}</span></p>
           </div>
           <div className="bg-surface/5 p-6 rounded-3xl border border-border/10">
             <div className="flex items-center justify-center gap-2 mb-1">
-              <SparklesIcon className="w-4 h-4 text-accent" />
-              <p className="text-[10px] uppercase font-black text-gray-500 tracking-widest">Precisión</p>
+              <SparklesIcon className="w-4 h-4 text-accent-text" />
+              <p className="text-[10px] uppercase font-black text-tertiary tracking-widest">Precisión</p>
             </div>
-            <p className="text-4xl font-black text-accent">{precision}%</p>
+            <p className="text-4xl font-black text-accent-text">{precision}%</p>
           </div>
         </div>
 
@@ -112,7 +112,7 @@ export default function ExamResults({
           {incorrectIds.length > 0 && (
             <button
               onClick={() => setShowErrors(true)}
-              className="bg-error/20 text-red-400 font-bold py-4 rounded-2xl hover:bg-error/30 transition-all flex items-center justify-center gap-2 border border-red-500/20"
+              className="bg-error/20 text-error-text font-bold py-4 rounded-2xl hover:bg-error/30 transition-all flex items-center justify-center gap-2 border border-red-500/20"
             >
               <ShieldCheckIcon className="w-5 h-5" />
               VER ERRORES ({incorrectIds.length})
@@ -148,12 +148,12 @@ export default function ExamResults({
             >
               <div className="flex justify-between items-center mb-8">
                 <h3 id="modal-title" className="text-2xl font-black text-primary flex items-center gap-3">
-                  <ShieldCheckIcon className="w-8 h-8 text-red-500" aria-hidden="true" />
+                  <ShieldCheckIcon className="w-8 h-8 text-error-text" aria-hidden="true" />
                   Repaso Crítico
                 </h3>
                 <button 
                   onClick={() => setShowErrors(false)} 
-                  className="text-gray-500 hover:text-primary"
+                  className="text-tertiary hover:text-primary"
                   aria-label="Cerrar modal de errores"
                 >
                   <XMarkIcon className="w-8 h-8" />
@@ -166,7 +166,7 @@ export default function ExamResults({
                   if (!p) return null;
                   return (
                     <div key={id} className="p-6 bg-background/40 rounded-2xl border border-border/5">
-                      <p className="text-sm text-gray-500 italic mb-2">"{p.es}"</p>
+                      <p className="text-sm text-tertiary italic mb-2">"{p.es}"</p>
                       <p className="text-primary font-black text-lg">{getTargetText(p, targetLanguage)}</p>
                     </div>
                   );

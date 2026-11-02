@@ -4,6 +4,31 @@
 
 Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por hitos temporales para reflejar la evolución técnica del proyecto.
 
+## 🏆 Cierre Definitivo del Plan Maestro HostelEnglish 2026: Hardening Móvil, WCAG AAA y Resiliencia Total (v2.6.4 Final)
+*Fecha: 02-11-2026*
+
+- **[✅ COMPLETADO] 100% de tareas del tablero Kanban finalizadas (60/60 tareas):**
+    - Todas las épicas y tareas de Fase A (Stack), Fase B (Design System), Fase C (IA/Audio On-Device), Fase D (Contenidos & Procedural), Fase UI-2026, Fase FE (UX Quiz, Chips, Diálogos, Voces), Bugs Críticos (`BUG-01`, `BUG-02`, `BUG-03`) y Auditoría/Hardening Móvil (`UX-01` a `UX-05`) han sido completadas y verificadas por la flota de perfiles de ingeniería de Hermes (`dev`, `frontend`, `caos`, `ui-polish`, `ux`, `ia`, `producto`, `arquitectura`, `scribe`).
+- **[✅ RESUELTO] Resiliencia Extrema contra Pantalla Negra en Móvil (BUG-01, BUG-02, BUG-03):**
+    - Erradicado el fallo `TypeError: Illegal constructor` de `new Notification()` en Android Chrome / Mobile Safari mediante `ServiceWorkerRegistration.showNotification()`.
+    - Blindaje de arranque en `index.html` y `AppInitializer`: timeout de desmontaje de splash si React tarda >2.5s, interfaz de rescate con purga de Service Worker y cachés obsoletas, cajita de log de diagnóstico en pantalla para depuración sin cable USB, y tolerancia a fallos en modo incógnito cuando `IndexedDB` lanza `SecurityError`.
+- **[✅ CERTIFICADO] Accesibilidad WCAG AAA y Contraste 7:1 (UX-02):**
+    - Certificación instrumental de 114/114 combinaciones cromáticas en modo claro y oscuro con ratio ≥ 7:1 en textos principales, secundarios, terciarios, badges de racha, chips y alertas. Cero violaciones en suite axe-core `color-contrast-enhanced`.
+- **[✅ RESUELTO] Navegación por Teclado, Screen Readers y Zoom 200%/400% (UX-03):**
+    - Orden lógico de tabulación en todas las pantallas interactivas; giro de flashcards mediante `Space`/`Enter`; anuncios automáticos con `aria-live` en evaluación de Dictado y copiado de certificados; y pruebas E2E de zoom 200% y 400% sin solapes ni desbordes.
+- **[✅ RESUELTO] Safe-Areas Físicas y Teclado Virtual en Hardware Móvil (UX-04):**
+    - Viewport configurado con `interactive-widget=resizes-content` para que el teclado virtual en Android/iOS no tape los botones de acción.
+    - Implementado hook `useSmoothFocusScroll` para centrado suave del input visible dentro del `visualViewport` al abrir el teclado en Dictado, Frases y Examen.
+    - Fallback seguro `env(safe-area-inset-bottom,0px)` en navegación inferior para evitar solapes con la barra de gestos del sistema.
+- **[✅ RESUELTO] Robustecimiento de Descarga de Diplomas QR (UX-05):**
+    - Generación optimizada de diplomas en canvas e integración con Web Share API (`navigator.share({ files })`) para compartir directamente por WhatsApp o Guardar en Archivos en iOS y Android, con fallback a descarga por enlace directo.
+- **[✅ RESUELTO] Modelo de Licencias Promocionales:**
+    - Códigos `HOSTEL-PRO-2026`, `HOSTEL2026-LIFETIME` y `DEV-VIP-OVERRIDE` ajustados a 90 días exactos (3 meses) con control de huella local en el dispositivo para impedir canjes múltiples en el mismo terminal.
+- **[✅ VERIFICACIÓN RIGUROSA]:**
+    - **603/603 tests unitarios e integración pasando (92 suites)** en Vitest.
+    - **30/30 tests Playwright E2E pasando** (auditoría en Galaxy A55, iPhone SE, iPhone 16, axe-core contrast, keyboard focus y zoom 400%).
+    - Compilación estricta de TypeScript (`npx tsc -b`) limpia con 0 errores y build de producción Vite 8 / Workbox 7 generado con éxito.
+
 ## 📱 Release v2.6.4: Optimización Responsive Integral en Móvil & Alineación CSP Cloudflare Workers
 *Fecha: 02-11-2026*
 

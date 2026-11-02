@@ -58,7 +58,7 @@ const FeedbackOverlay: React.FC<FeedbackOverlayProps> = ({
               {ok ? (
                 <div className="min-w-0">
                   <p className="text-2xl font-black">✓ ¡Correcto!</p>
-                  {streak > 2 && <p className="text-sm font-bold text-amber-500">¡Racha de {streak} 🔥!</p>}
+                  {streak > 2 && <p className="text-sm font-bold text-warning-text">¡Racha de {streak} 🔥!</p>}
                   <p className="text-xs font-bold uppercase tracking-widest text-secondary mt-2">Respuesta modelo:</p>
                   <p data-testid="quiz-feedback-solution" className="text-xl font-black italic break-words">{solution}</p>
                 </div>
@@ -85,7 +85,7 @@ const FeedbackOverlay: React.FC<FeedbackOverlayProps> = ({
               autoFocus
               onClick={onContinue}
               className={`w-full min-h-14 py-4 rounded-2xl bg-white font-black uppercase tracking-widest text-lg active:scale-95 transition-transform ${
-                ok ? 'text-emerald-800' : 'text-red-800'
+                ok ? 'text-success-text' : 'text-error-text'
               }`}
             >
               {lives <= 0 ? 'Ver Resultados' : questionsHandled >= totalInLevel ? 'Ver Victoria' : 'CONTINUAR'}

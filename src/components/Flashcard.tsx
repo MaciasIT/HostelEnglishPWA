@@ -47,7 +47,7 @@ const Flashcard: React.FC<FlashcardProps> = ({ phrase }) => {
 
   return (
     <div
-      className="group perspective-1000 w-full h-[400px] cursor-pointer"
+      className="group perspective-1000 w-full min-h-[400px] cursor-pointer"
       onClick={handleFlip}
     >
       <div
@@ -60,7 +60,7 @@ const Flashcard: React.FC<FlashcardProps> = ({ phrase }) => {
           <div className="absolute top-8 right-8 text-primary/20">
             <ArrowPathIcon className="w-8 h-8 rotate-12" />
           </div>
-          <p className="text-xs uppercase tracking-[0.3em] font-black text-accent mb-6">Original ({targetLanguage === 'eu' ? 'Euskera' : 'Inglés'})</p>
+          <p className="text-xs uppercase tracking-[0.3em] font-black text-accent-text mb-6">Original ({targetLanguage === 'eu' ? 'Euskera' : 'Inglés'})</p>
           <div className="flex-grow flex items-center justify-center w-full px-4">
             <h2 className={`font-black text-primary leading-tight ${phrase.eu?.length && phrase.eu.length > 50 ? 'text-2xl' : 'text-3xl'}`}>
               "{targetLanguage === 'eu' ? (phrase.eu || '...') : phrase.en}"
@@ -77,7 +77,7 @@ const Flashcard: React.FC<FlashcardProps> = ({ phrase }) => {
 
         {/* Back Side (Spanish) */}
         <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-surface/5 backdrop-blur-2xl rounded-[3rem] border border-border/10 shadow-2xl flex flex-col items-center justify-center p-8 text-center">
-          <p className="text-xs uppercase tracking-[0.3em] font-black text-blue-400 mb-6">Traducción</p>
+          <p className="text-xs uppercase tracking-[0.3em] font-black text-info-text mb-6">Traducción</p>
           <div className="flex-grow flex items-center justify-center w-full px-4">
             <h2 className={`font-black text-primary leading-tight ${phrase.es.length > 50 ? 'text-2xl' : 'text-3xl'}`}>
               "{phrase.es}"

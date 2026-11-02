@@ -14,7 +14,8 @@
     "lint": "eslint . --ext ts,tsx --max-warnings 0 || true",
     "ci:check": "npm run test:run && npm run build",
     "pwa:clean-cache": "echo 'Abre en Chrome/Android: chrome://serviceworker-internals/?deviceId=DEVICE_ID y elimina el SW de HostelEnglishPWA; alternativamente desinstala la PWA y vuelve a instalar desde https://maciasit.github.io/HostelEnglishPWA/'",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "audit:contrast": "node scripts/contrast-audit.mjs"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -35,6 +36,7 @@
     "zustand": "^5.0.16"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@playwright/test": "^1.64.1",
     "@tailwindcss/vite": "^4.0.0",
     "@testing-library/jest-dom": "^6.4.2",

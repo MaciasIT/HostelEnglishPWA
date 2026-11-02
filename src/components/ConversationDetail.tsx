@@ -173,7 +173,7 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
         </button>
         <div className="text-center">
           <h1 className="text-2xl font-black text-primary leading-tight">{conversation.title}</h1>
-          <p className="text-xs text-accent font-bold uppercase tracking-widest">
+          <p className="text-xs text-accent-text font-bold uppercase tracking-widest">
             {(() => {
               const cat = conversation.categoria || 'Lección de Hostelería';
               if (cat === 'Jatetxea') return 'Restaurante';
@@ -254,7 +254,7 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
               {conversation.participants.map(participant => (
                 <div key={participant} className="bg-surface/5 p-6 rounded-3xl border border-border/10">
                   <h4 className="flex items-center gap-2 font-black text-primary mb-4">
-                    <UserCircleIcon className="w-5 h-5 text-accent" />
+                    <UserCircleIcon className="w-5 h-5 text-accent-text" />
                     {participant}
                   </h4>
                   <VoiceSettings
@@ -294,13 +294,13 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
                         : (isParticipant0 ? 'bg-surface/10 border-border/10' : 'bg-surface/10 border-border/10')
                         }`}>
                         <div className="flex items-center justify-center gap-4 mb-6">
-                          <span className={`text-xs font-black uppercase tracking-widest ${isMyTurn ? 'text-accent' : 'text-tertiary'}`}>
+                          <span className={`text-xs font-black uppercase tracking-widest ${isMyTurn ? 'text-accent-text' : 'text-tertiary'}`}>
                             {turn.speaker} {isMyTurn ? '(TÚ)' : ''}
                           </span>
                           {!isMyTurn && (
                             <button
                               onClick={() => handlePlayTurn(turn)}
-                              className="p-2 bg-surface/5 rounded-full text-accent hover:bg-accent hover:text-primary transition-all"
+                              className="p-2 bg-surface/5 rounded-full text-accent-text hover:bg-accent hover:text-primary transition-all"
                               aria-label="Reproducir frase"
                             >
                               <SpeakerWaveIcon className="w-5 h-5" />
@@ -368,7 +368,7 @@ const ConversationDetail = ({ conversation, onBack, onConversationEnd }: Convers
                     : (isParticipant0 ? 'bg-surface/10 rounded-bl-none' : 'bg-surface/10 rounded-br-none')
                     }`}>
                     <div className="flex items-center gap-2 mb-2">
-                      <span className={`text-[10px] font-black uppercase tracking-widest ${isMyTurn ? 'text-accent' : 'text-tertiary'}`}>
+                      <span className={`text-[10px] font-black uppercase tracking-widest ${isMyTurn ? 'text-accent-text' : 'text-tertiary'}`}>
                         {turn.speaker} {isMyTurn ? '(TÚ)' : ''}
                       </span>
                       {!isMyTurn && (

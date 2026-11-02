@@ -67,11 +67,11 @@ const ModuleIntro: React.FC<ModuleIntroProps> = ({
             </motion.button>
 
             <div className="mt-6 sm:mt-12 flex gap-8">
-                <div className="flex flex-col items-center opacity-50">
+                <div className="flex flex-col items-center text-secondary">
                     <div className="w-2 h-2 rounded-full bg-surface mb-2 pulse-slow"></div>
                     <span className="text-xs uppercase tracking-tighter">Interactivo</span>
                 </div>
-                <div className="flex flex-col items-center opacity-50">
+                <div className="flex flex-col items-center text-secondary">
                     <div className="w-2 h-2 rounded-full bg-surface mb-2 pulse-slow animation-delay-500"></div>
                     <span className="text-xs uppercase tracking-tighter">Voces Reales</span>
                 </div>

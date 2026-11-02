@@ -67,7 +67,7 @@ export default function Estudio() {
                 >
                   <div className="flex justify-between items-start mb-6 w-full">
                     <div className="p-3 bg-accent/20 rounded-xl group-hover:scale-110 transition-transform">
-                      <AcademicCapIcon className="w-6 h-6 text-accent" />
+                      <AcademicCapIcon className="w-6 h-6 text-accent-text" />
                     </div>
                     <span className="text-[10px] uppercase font-bold tracking-widest text-tertiary bg-surface/5 px-3 py-1 rounded-full">
                       {catPhrases.length} frases
@@ -77,7 +77,7 @@ export default function Estudio() {
                   <div className="mt-auto w-full">
                     <div className="flex justify-between text-xs mb-2">
                       <span className="text-tertiary">Progreso</span>
-                      <span className="text-accent font-bold">{percent}%</span>
+                      <span className="text-accent-text font-bold">{percent}%</span>
                     </div>
                     <div className="w-full h-1.5 bg-surface/5 rounded-full overflow-hidden">
                       <div className="h-full bg-accent" style={{ width: `${percent}%` }}></div>
@@ -137,7 +137,7 @@ export default function Estudio() {
         </div>
 
         <div className="mt-16 bg-gradient-to-br from-yellow-500/10 to-orange-500/10 p-8 rounded-[2rem] border border-yellow-500/20 w-full text-center">
-          <StarIcon className="w-8 h-8 text-yellow-500 mx-auto mb-4" />
+          <StarIcon className="w-8 h-8 text-warning-text mx-auto mb-4" />
           <h4 className="text-primary font-bold mb-2">Consejo de Estudio</h4>
           <p className="text-sm text-tertiary">
             Repite la frase en voz alta después de escucharla. La memoria muscular de la boca es clave para hablar con fluidez.

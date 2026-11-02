@@ -73,7 +73,7 @@ export default function Quiz() {
           <div className="space-y-4 animate-in fade-in duration-500">
             <header>
               <h1 className="text-2xl font-black text-primary tracking-tighter">
-                DESAFÍO <span className="text-accent">HOSTEL</span>
+                DESAFÍO <span className="text-accent-text">HOSTEL</span>
               </h1>
               <p className="text-tertiary text-sm">Selecciona tu especialidad y el tipo de entrenamiento que prefieres hoy.</p>
             </header>
@@ -84,7 +84,7 @@ export default function Quiz() {
               onClick={handleQuickStart}
               className="w-full flex items-center gap-3 p-4 rounded-2xl bg-gradient-to-r from-accent/30 to-accent/10 border border-accent text-left active:scale-[0.98] transition-transform"
             >
-              <BoltIcon className="w-8 h-8 text-accent shrink-0" aria-hidden="true" />
+              <BoltIcon className="w-8 h-8 text-accent-text shrink-0" aria-hidden="true" />
               <span className="min-w-0">
                 <span className="block font-black text-primary">Entrenamiento Rápido: {myRoleLabel}</span>
                 <span className="block text-xs text-tertiary">10 preguntas · modo {MODES.find((m) => m.id === selectedMode)?.label}</span>

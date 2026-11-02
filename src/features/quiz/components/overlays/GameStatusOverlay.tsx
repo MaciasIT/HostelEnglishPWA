@@ -67,7 +67,7 @@ const GameStatusOverlay: React.FC<GameStatusOverlayProps> = ({
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ delay: 0.2, type: "spring" }}
-              className="w-24 h-24 bg-error/20 text-red-500 rounded-full flex items-center justify-center mx-auto mb-6 border border-red-500/30"
+              className="w-24 h-24 bg-error/20 text-error-text rounded-full flex items-center justify-center mx-auto mb-6 border border-red-500/30"
             >
               <XMarkIcon className="w-14 h-14 drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]" />
             </motion.div>
@@ -82,7 +82,7 @@ const GameStatusOverlay: React.FC<GameStatusOverlayProps> = ({
               </div>
               <div className="bg-surface/5 p-5 rounded-[2rem] border border-border/5 shadow-inner">
                 <p className="text-[10px] text-tertiary font-black uppercase tracking-[0.2em] mb-1">Mejor Racha</p>
-                <p className="text-3xl font-black text-orange-500 drop-shadow-[0_0_8px_rgba(249,115,22,0.4)]">{streak}</p>
+                <p className="text-3xl font-black text-warning-text drop-shadow-[0_0_8px_rgba(249,115,22,0.4)]">{streak}</p>
               </div>
             </div>
 
@@ -128,7 +128,7 @@ const GameStatusOverlay: React.FC<GameStatusOverlayProps> = ({
               initial={{ scale: 0, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               transition={{ delay: 0.2, type: "spring" }}
-              className="w-24 h-24 bg-accent/20 text-accent rounded-full flex items-center justify-center mx-auto mb-6 border border-accent/30 shadow-[0_0_20px_rgba(230,126,34,0.3)]"
+              className="w-24 h-24 bg-accent/20 text-accent-text rounded-full flex items-center justify-center mx-auto mb-6 border border-accent/30 shadow-[0_0_20px_rgba(230,126,34,0.3)]"
             >
               <SparklesIcon className="w-14 h-14" />
             </motion.div>
@@ -143,7 +143,7 @@ const GameStatusOverlay: React.FC<GameStatusOverlayProps> = ({
               </div>
               <div className="bg-surface/5 p-5 rounded-[2rem] border border-border/5 shadow-inner">
                 <p className="text-[10px] text-tertiary font-black uppercase tracking-[0.2em] mb-1">Vidas</p>
-                <p className="text-3xl font-black text-red-500 drop-shadow-[0_0_8px_rgba(239,68,68,0.3)]">{lives}</p>
+                <p className="text-3xl font-black text-error-text drop-shadow-[0_0_8px_rgba(239,68,68,0.3)]">{lives}</p>
               </div>
             </div>
 

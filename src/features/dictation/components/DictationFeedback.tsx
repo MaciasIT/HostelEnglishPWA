@@ -14,21 +14,26 @@ export default function DictationFeedback({
   showTranslation,
   currentPhrase
 }: DictationFeedbackProps) {
-  if (!feedback) return null;
+  if (!feedback) {
+    return <div role="status" aria-live="polite" className="sr-only" data-testid="dictation-live" />;
+  }
 
   return (
-    <div 
+    <div
+      role="status"
+      aria-live="polite"
+      data-testid="dictation-live"
       className={`mt-10 p-8 rounded-[2rem] text-center animate-in zoom-in-95 duration-500 border-2 ${
         feedback.isCorrect ? 'bg-success/10 border-green-500/20' : 'bg-error/10 border-red-500/20'
       }`}
     >
       <div className="flex flex-col items-center">
         {feedback.isCorrect ? (
-          <CheckCircleIcon className="w-12 h-12 text-green-500 mb-3" aria-hidden="true" />
+          <CheckCircleIcon className="w-12 h-12 text-success-text mb-3" aria-hidden="true" />
         ) : (
-          <XCircleIcon className="w-12 h-12 text-red-500 mb-3" aria-hidden="true" />
+          <XCircleIcon className="w-12 h-12 text-error-text mb-3" aria-hidden="true" />
         )}
-        <p className={`text-2xl font-black ${feedback.isCorrect ? 'text-green-400' : 'text-red-400'}`}>
+        <p className={`text-2xl font-black ${feedback.isCorrect ? 'text-success-text' : 'text-error-text'}`}>
           {feedback.message}
         </p>
       </div>

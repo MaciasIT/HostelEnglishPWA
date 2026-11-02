@@ -53,13 +53,13 @@ export default function ConversationBubble({
             </div>
           )}
           <div className="flex items-center justify-center gap-4 mb-6">
-            <span className={`text-xs font-black uppercase tracking-widest ${isMyTurn ? 'text-accent' : 'text-tertiary'}`}>
+            <span className={`text-xs font-black uppercase tracking-widest ${isMyTurn ? 'text-accent-text' : 'text-tertiary'}`}>
               {turn.speaker} {isMyTurn ? '(TÚ)' : ''}
             </span>
             {!isMyTurn && (
               <button
                 onClick={onPlay}
-                className="p-2 bg-surface/5 rounded-full text-accent hover:bg-accent hover:text-primary transition-all shadow-lg"
+                className="p-2 bg-surface/5 rounded-full text-accent-text hover:bg-accent hover:text-primary transition-all shadow-lg"
                 aria-label="Reproducir audio"
               >
                 <SpeakerWaveIcon className="w-5 h-5" />
@@ -87,7 +87,7 @@ export default function ConversationBubble({
                 className="inline-flex items-center gap-2 px-4 py-3 rounded-2xl bg-surface/10 border border-border/10 text-primary font-bold min-h-[44px]"
                 aria-label="Escuchar cómo suena la frase"
               >
-                <SpeakerWaveIcon className="w-5 h-5 text-accent" /> Escuchar
+                <SpeakerWaveIcon className="w-5 h-5 text-accent-text" /> Escuchar
               </button>
               <button
                 onClick={() => setHidden(h => !h)}
@@ -128,7 +128,7 @@ export default function ConversationBubble({
           </span>
         )}
         <div className="flex items-center gap-2 mb-2">
-          <span className={`text-[10px] font-black uppercase tracking-widest ${isMyTurn ? 'text-accent' : 'text-tertiary'}`}>
+          <span className={`text-[10px] font-black uppercase tracking-widest ${isMyTurn ? 'text-accent-text' : 'text-tertiary'}`}>
             {turn.speaker} {isMyTurn ? '(TÚ)' : ''}
           </span>
           <button

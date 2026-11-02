@@ -90,7 +90,7 @@ const Conversaciones: React.FC = () => {
             {/* Filter Hub */}
             <div className="bg-surface/5 backdrop-blur-xl border border-border/10 rounded-[2.5rem] p-5 sm:p-8 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-6">
               <div className="flex items-center gap-4">
-                <div className="p-3 bg-accent/20 rounded-2xl text-accent">
+                <div className="p-3 bg-accent/20 rounded-2xl text-accent-text">
                   <FunnelIcon className="w-6 h-6" />
                 </div>
                 <div>

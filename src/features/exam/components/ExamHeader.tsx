@@ -42,7 +42,7 @@ export default function ExamHeader({ currentIndex, total, onExit }: ExamHeaderPr
       </div>
 
       <div className="flex justify-between items-center px-1">
-        <span className="text-[10px] font-black text-accent uppercase tracking-widest">
+        <span className="text-[10px] font-black text-accent-text uppercase tracking-widest">
           {Math.round(progress)}% Completado
         </span>
         <span className="text-[10px] font-black text-tertiary uppercase tracking-widest">

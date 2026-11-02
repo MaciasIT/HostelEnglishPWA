@@ -35,7 +35,7 @@ function HeroShowcase() {
       <div className="relative bg-surface/70 backdrop-blur-xl border border-border rounded-2xl sm:rounded-[2rem] p-4 sm:p-5 shadow-2xl space-y-3 sm:space-y-4">
         {/* Racha diaria */}
         <div className="flex items-center justify-between">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/15 border border-accent/30 text-accent font-black text-xs sm:text-sm tracking-wide">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/15 border border-accent/30 text-accent-text font-black text-xs sm:text-sm tracking-wide">
             <span aria-hidden="true">🔥</span> 14 DÍAS
           </div>
           <span className="text-[11px] sm:text-xs text-tertiary font-semibold uppercase tracking-widest">Racha diaria</span>
@@ -47,7 +47,7 @@ function HeroShowcase() {
           <div className="flex items-start gap-2.5 sm:gap-3">
             <div className="w-8 h-8 sm:w-9 sm:h-9 shrink-0 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 text-slate-950 font-black flex items-center justify-center text-xs sm:text-sm">S</div>
             <div className="bg-background/60 border border-border rounded-2xl rounded-tl-sm px-3.5 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm text-primary">
-              <span className="block text-[11px] sm:text-xs font-bold text-accent mb-0.5">Sarah</span>
+              <span className="block text-[11px] sm:text-xs font-bold text-accent-text mb-0.5">Sarah</span>
               “Good evening, is my room ready?”
             </div>
           </div>
@@ -91,7 +91,7 @@ function HeroShowcase() {
           </div>
           <div className="min-w-0">
             <p className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">98%</p>
-            <p className="text-xs sm:text-sm font-black text-accent tracking-wide">EXCELLENT!</p>
+            <p className="text-xs sm:text-sm font-black text-accent-text tracking-wide">EXCELLENT!</p>
             <p className="text-[11px] sm:text-xs text-tertiary mt-0.5 sm:mt-1 truncate sm:whitespace-normal">Pronunciación evaluada en tu dispositivo</p>
           </div>
         </div>
@@ -110,7 +110,7 @@ export default function Home() {
 
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10">
           <div className="text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-accent/10 border border-accent/30 rounded-full text-[11px] sm:text-xs font-black tracking-wide text-accent mb-4 sm:mb-6 shadow-lg shadow-emerald-500/10">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-accent/10 border border-accent/30 rounded-full text-[11px] sm:text-xs font-black tracking-wide text-accent-text mb-4 sm:mb-6 shadow-lg shadow-emerald-500/10">
               ✨ HostelEnglish 2026 Pro · On-Device AI &amp; Audio
             </div>
 
@@ -163,12 +163,12 @@ export default function Home() {
                   to={d.to}
                   className="group bg-surface/70 backdrop-blur-xl p-6 rounded-3xl border border-border hover:border-accent/50 hover:shadow-lg hover:shadow-emerald-500/10 hover:-translate-y-1 transition-all"
                 >
-                  <div className="bg-accent/15 w-12 h-12 rounded-2xl flex items-center justify-center text-accent text-2xl mb-4 group-hover:scale-110 transition-transform">
+                  <div className="bg-accent/15 w-12 h-12 rounded-2xl flex items-center justify-center text-accent-text text-2xl mb-4 group-hover:scale-110 transition-transform">
                     {Icon ? <Icon className="w-6 h-6" aria-hidden="true" /> : <span aria-hidden="true">{'emoji' in d ? d.emoji : ''}</span>}
                   </div>
                   <h3 className="text-lg font-black text-primary mb-1">{d.title}</h3>
                   <p className="text-sm text-tertiary mb-3">{d.desc}</p>
-                  <span className="inline-flex items-center gap-1 text-sm font-bold text-accent">
+                  <span className="inline-flex items-center gap-1 text-sm font-bold text-accent-text">
                     Entrar <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                   </span>
                 </Link>
@@ -194,7 +194,7 @@ export default function Home() {
 
       <footer className="py-12 px-6 border-t border-border text-center">
         <Link to="/" className="text-2xl font-black text-primary mb-4 block">
-          Hostel<span className="text-accent">English</span>
+          Hostel<span className="text-accent-text">English</span>
         </Link>
         <p className="text-tertiary text-sm max-w-sm mx-auto mb-6">
           Transformando la comunicación en el sector hostelero a través de la tecnología y el aprendizaje interactivo.

@@ -95,18 +95,18 @@ const Dashboard: React.FC = () => {
               ¡Hola de nuevo! 🏨
             </h1>
             <p className="text-base sm:text-xl lg:text-2xl text-secondary mb-6 sm:mb-10 max-w-2xl font-medium leading-relaxed">
-              Continúa tu formación en <span className="text-accent font-black uppercase text-base sm:text-lg">{targetLanguage === 'eu' ? 'euskera' : 'inglés'}</span> para hostelería.
+              Continúa tu formación en <span className="text-accent-text font-black uppercase text-base sm:text-lg">{targetLanguage === 'eu' ? 'euskera' : 'inglés'}</span> para hostelería.
             </p>
 
             {roleLabel && (
               <p className="mb-6 sm:mb-8 flex flex-wrap items-center gap-2 sm:gap-3 text-secondary" data-testid="dashboard-role">
-                <span className="bg-accent/20 text-accent font-black px-3 py-1 sm:px-4 rounded-full text-xs sm:text-sm">
+                <span className="bg-accent/20 text-accent-text font-black px-3 py-1 sm:px-4 rounded-full text-xs sm:text-sm">
                   Tu ruta: {roleLabel}
                 </span>
                 {roleFrasesCount > 0 && (
                   <span className="text-xs sm:text-sm">{roleFrasesCount} frases para tu puesto</span>
                 )}
-                <Link to="/configuracion" className="text-xs sm:text-sm underline hover:text-accent">Cambiar rol</Link>
+                <Link to="/configuracion" className="text-xs sm:text-sm underline hover:text-accent-text">Cambiar rol</Link>
               </p>
             )}
 
@@ -145,11 +145,11 @@ const Dashboard: React.FC = () => {
           data-testid="politeness-challenge-link"
         >
           <span>
-            <span className="block text-[10px] uppercase tracking-widest font-black text-accent">Práctica libre</span>
+            <span className="block text-[10px] uppercase tracking-widest font-black text-accent-text">Práctica libre</span>
             <span className="block text-lg sm:text-xl font-black text-primary">Reto de Cortesía del Día</span>
             <span className="block text-xs sm:text-sm text-tertiary">Una situación inesperada con un cliente exigente. ¿Mantienes la diplomacia?</span>
           </span>
-          <ArrowRightIcon className="w-5 h-5 sm:w-6 sm:h-6 text-accent group-hover:translate-x-1 transition-transform shrink-0" aria-hidden="true" />
+          <ArrowRightIcon className="w-5 h-5 sm:w-6 sm:h-6 text-accent-text group-hover:translate-x-1 transition-transform shrink-0" aria-hidden="true" />
         </Link>
 
         {/* Modules Grid */}
@@ -184,7 +184,7 @@ const Dashboard: React.FC = () => {
             </div>
 
             <div className="flex-grow max-w-2xl w-full">
-              <div className="flex justify-between text-xs font-bold uppercase text-accent mb-2 sm:mb-3 tracking-[0.2em]">
+              <div className="flex justify-between text-xs font-bold uppercase text-accent-text mb-2 sm:mb-3 tracking-[0.2em]">
                 <span>Progreso del Curso</span>
                 <span aria-hidden="true">{stats.percent}%</span>
               </div>

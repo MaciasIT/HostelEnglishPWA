@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ShieldCheckIcon } from '@heroicons/react/24/outline';
+import { useSmoothFocusScroll } from '@/hooks/useSmoothFocusScroll';
 import { useAppStore } from '@/store/useAppStore';
 import { ROLE_META } from '@/services/certificationCalculator';
 
@@ -23,6 +24,7 @@ export default function ExamSetup({ onStart, onBack, targetLanguage }: ExamSetup
   const saveStudentName = useAppStore(state => state.setStudentName);
 
   const langLabel = targetLanguage === 'eu' ? 'euskera' : 'inglés';
+  const handleFocusScroll = useSmoothFocusScroll();
   const [selectedRole, setSelectedRole] = useState(prefs.preferredRole || 'bar');
   const [studentName, setStudentName] = useState(prefs.studentName || '');
   const [isRoleCert, setIsRoleCert] = useState(true);
@@ -52,7 +54,7 @@ export default function ExamSetup({ onStart, onBack, targetLanguage }: ExamSetup
   return (
     <div className="max-w-2xl mx-auto py-6 sm:py-12 text-center">
       <div className="bg-surface/5 p-4 sm:p-10 rounded-2xl sm:rounded-[3rem] border border-border/10 shadow-2xl backdrop-blur-xl mb-6 sm:mb-8">
-        <ShieldCheckIcon className="w-16 h-16 text-accent mx-auto mb-6" />
+        <ShieldCheckIcon className="w-16 h-16 text-accent-text mx-auto mb-6" />
 
         {/* Exam type toggle */}
         <div className="flex bg-surface/5 rounded-2xl p-1 mb-8 max-w-sm mx-auto">
@@ -82,14 +84,14 @@ export default function ExamSetup({ onStart, onBack, targetLanguage }: ExamSetup
           <>
             <h2 className="text-3xl font-black text-primary mb-4">Examen Global</h2>
             <p className="text-tertiary mb-8 max-w-md mx-auto">
-              Se te presentarán 10 frases aleatorias en <span className="text-accent font-bold">{langLabel}</span>. 
+              Se te presentarán 10 frases aleatorias en <span className="text-accent-text font-bold">{langLabel}</span>. 
               Debes acertar al menos el <span className="text-primary font-bold">80%</span> para considerarlo superado.
             </p>
           </>
         ) : (
           <>
             <h2 className="text-3xl font-black text-primary mb-2">Certificación Laboral</h2>
-            <p className="text-accent font-bold text-sm mb-6">
+            <p className="text-accent-text font-bold text-sm mb-6">
               {ROLE_META[selectedRole]?.title || `Certificación: ${selectedRoleMeta?.label}`}
             </p>
 
@@ -127,6 +129,7 @@ export default function ExamSetup({ onStart, onBack, targetLanguage }: ExamSetup
                 id="studentName"
                 type="text"
                 value={studentName}
+                onFocus={handleFocusScroll}
                 onChange={e => setStudentName(e.target.value)}
                 placeholder="Tu nombre para el certificado"
                 className="w-full min-h-11 bg-surface/5 border border-border/10 rounded-2xl px-5 py-3 text-primary text-sm font-semibold placeholder-gray-600 focus:outline-none focus:border-accent transition-colors"

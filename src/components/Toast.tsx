@@ -17,9 +17,9 @@ const iconMap: Record<ToastType, React.ElementType> = {
 };
 
 const colorMap: Record<ToastType, string> = {
-  success: 'bg-success/20 border-green-500/30 text-green-400',
-  error: 'bg-error/20 border-red-500/30 text-red-400',
-  info: 'bg-info/20 border-blue-500/30 text-blue-400',
+  success: 'bg-success/20 border-green-500/30 text-success-text',
+  error: 'bg-error/20 border-red-500/30 text-error-text',
+  info: 'bg-info/20 border-blue-500/30 text-info-text',
 };
 
 const Toast: React.FC<ToastProps> = ({ message, type = 'success', duration = 3000, onClose }) => {

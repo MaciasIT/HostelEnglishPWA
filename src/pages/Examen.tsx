@@ -13,6 +13,7 @@ import { useExamLogic } from '../features/exam/hooks/useExamLogic';
 
 export default function Examen() {
   const [showWelcome, setShowWelcome] = useState(true);
+  const [copyStatus, setCopyStatus] = useState('');
   const {
     examState,
     currentQuestion,
@@ -118,13 +119,16 @@ export default function Examen() {
               certification={certification}
               onShare={() => {
                 if (certification) {
-                  navigator.clipboard?.writeText(`Certificación: ${certification.roleLabel} - ${certification.verificationCode}`);
+                  Promise.resolve(navigator.clipboard?.writeText(`Certificación: ${certification.roleLabel} - ${certification.verificationCode}`))
+                    .then(() => setCopyStatus('Certificado copiado al portapapeles'))
+                    .catch(() => setCopyStatus('No se pudo copiar el certificado'));
                 }
               }}
             />
           </motion.div>
         )}
       </AnimatePresence>
+      <div role="status" aria-live="polite" className="sr-only" data-testid="examen-live">{copyStatus}</div>
     </PageContainer>
   );
 }

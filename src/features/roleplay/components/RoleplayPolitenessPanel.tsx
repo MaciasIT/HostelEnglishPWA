@@ -11,8 +11,8 @@ interface RoleplayPolitenessPanelProps {
  */
 const LEVEL_STYLE: Record<PolitenessLevel, { icon: string; bar: string; text: string }> = {
   excelente: { icon: '✅', bar: 'bg-success', text: 'text-success' },
-  buena: { icon: '👍', bar: 'bg-accent', text: 'text-accent' },
-  mejorable: { icon: '⚠️', bar: 'bg-yellow-500', text: 'text-yellow-500' },
+  buena: { icon: '👍', bar: 'bg-accent', text: 'text-accent-text' },
+  mejorable: { icon: '⚠️', bar: 'bg-yellow-500', text: 'text-warning-text' },
   descortés: { icon: '⛔', bar: 'bg-error', text: 'text-error' },
 };
 

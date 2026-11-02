@@ -7,7 +7,7 @@ interface DictationPlayerProps {
 export default function DictationPlayer({ onPlay }: DictationPlayerProps) {
   return (
     <div className="flex flex-col items-center mb-10">
-      <p className="text-[10px] uppercase font-black text-accent tracking-[0.3em] mb-6">
+      <p className="text-[10px] uppercase font-black text-accent-text tracking-[0.3em] mb-6">
         Paso 1: Escucha la frase
       </p>
       <button

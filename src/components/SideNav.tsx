@@ -50,7 +50,7 @@ const NavItem: React.FC<NavItemProps> = ({ to, icon: Icon, label, expanded }) =>
         : 'text-tertiary hover:bg-surface/5 hover:text-primary'
         }`}
     >
-      <Icon className={`w-5 h-5 shrink-0 ${expanded ? 'mr-3' : ''} transition-transform group-hover:scale-110 ${isActive ? 'text-on-accent' : 'text-tertiary group-hover:text-accent'}`} />
+      <Icon className={`w-5 h-5 shrink-0 ${expanded ? 'mr-3' : ''} transition-transform group-hover:scale-110 ${isActive ? 'text-on-accent' : 'text-tertiary group-hover:text-accent-text'}`} />
       {expanded && <span className="text-xs uppercase tracking-widest font-semibold whitespace-nowrap">{label}</span>}
     </Link>
   );
@@ -99,7 +99,7 @@ const SideNav: React.FC = () => {
         <div className={`h-16 shrink-0 flex items-center ${expanded ? 'justify-between px-6' : 'justify-center'}`}>
           {expanded ? (
             <h2 className="text-xl font-black text-primary tracking-tighter whitespace-nowrap">
-              Hostel<span className="text-accent">English</span>
+              Hostel<span className="text-accent-text">English</span>
             </h2>
           ) : (
             <div className="w-9 h-9 bg-accent rounded-xl flex items-center justify-center text-on-accent font-black text-sm shadow-lg shadow-accent/30">H</div>

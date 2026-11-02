@@ -44,7 +44,7 @@ const TrueFalseMode: React.FC<TrueFalseModeProps> = ({
         variants={itemVariants}
         className="p-8 bg-background/30 rounded-[2rem] border border-border/10 text-center shadow-inner"
       >
-        <p className="text-[10px] text-accent font-black uppercase tracking-widest mb-3">Traducción propuesta:</p>
+        <p className="text-[10px] text-accent-text font-black uppercase tracking-widest mb-3">Traducción propuesta:</p>
         <p className="text-3xl font-black text-primary italic">"{currentQuestion.tfTranslation}"</p>
       </motion.div>
 

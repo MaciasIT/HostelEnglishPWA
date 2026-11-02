@@ -34,7 +34,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({ lives, streak, progress, onExit
               <HeartIcon 
                 className={`w-7 h-7 transition-all duration-500 ${
                   i < lives 
-                    ? 'text-red-500 fill-red-500 drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]' 
+                    ? 'text-error-text fill-red-500 drop-shadow-[0_0_8px_rgba(239,68,68,0.5)]' 
                     : 'text-secondary scale-90 opacity-40'
                 }`} 
                 aria-hidden="true"
@@ -49,7 +49,7 @@ const QuizHeader: React.FC<QuizHeaderProps> = ({ lives, streak, progress, onExit
           transition={{ repeat: Infinity, duration: 2 }}
           className={`flex items-center gap-2 px-4 py-2 rounded-2xl border transition-all duration-500 ${
             streak >= 3 
-              ? 'bg-orange-500/20 border-orange-500/30 text-orange-500 shadow-[0_0_20px_rgba(249,115,22,0.2)]' 
+              ? 'bg-orange-500/20 border-orange-500/30 text-warning-text shadow-[0_0_20px_rgba(249,115,22,0.2)]' 
               : 'bg-surface/5 border-border/5 text-tertiary'
           }`}
           aria-label={`Racha de ${streak} respuestas correctas`}

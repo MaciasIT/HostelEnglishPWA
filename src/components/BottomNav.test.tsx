@@ -32,7 +32,7 @@ describe('BottomNav', () => {
     const nav = screen.getByTestId('bottom-nav');
     expect(nav.className).toContain('bg-surface/80');
     expect(nav.className).toContain('backdrop-blur-md');
-    expect(nav.className).toContain('env(safe-area-inset-bottom)');
+    expect(nav.className).toContain('env(safe-area-inset-bottom,0px)');
     expect(nav.firstElementChild?.className).toContain('h-16');
     expect(screen.getByRole('link', { name: 'Inicio' }).className).toContain('min-h-14');
   });

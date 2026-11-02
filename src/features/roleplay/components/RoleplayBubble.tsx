@@ -22,7 +22,7 @@ export default function RoleplayBubble({ role, text, speakerLabel }: RoleplayBub
         {speakerLabel && (
           <p
             className={`text-[10px] uppercase tracking-widest font-bold mb-1 ${
-              isClient ? 'text-accent' : 'text-on-accent/80'
+              isClient ? 'text-accent-text' : 'text-on-accent/80'
             }`}
           >
             {speakerLabel}

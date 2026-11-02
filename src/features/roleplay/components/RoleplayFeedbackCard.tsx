@@ -77,7 +77,7 @@ export default function RoleplayFeedbackCard({ summary }: RoleplayFeedbackCardPr
           <ul className="space-y-1.5">
             {summary.areasToImprove.map((area, idx) => (
               <li key={idx} className="text-sm text-tertiary flex gap-2">
-                <span className="text-accent font-black shrink-0">→</span>
+                <span className="text-accent-text font-black shrink-0">→</span>
                 <span>{area}</span>
               </li>
             ))}

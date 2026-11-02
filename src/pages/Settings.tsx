@@ -79,7 +79,7 @@ const Settings = () => {
                     <div>
                         <h2 className="text-2xl font-black text-primary">Rol laboral</h2>
                         <p className="text-tertiary text-sm">
-                            Actual: <span data-testid="current-role" className="font-bold text-accent">{selectedRole ? ROLE_LABELS[selectedRole] : 'Sin elegir'}</span>
+                            Actual: <span data-testid="current-role" className="font-bold text-accent-text">{selectedRole ? ROLE_LABELS[selectedRole] : 'Sin elegir'}</span>
                         </p>
                     </div>
                     <button
@@ -110,7 +110,7 @@ const Settings = () => {
                     <div className="absolute -right-20 -top-20 w-64 h-64 bg-accent opacity-5 blur-3xl rounded-full"></div>
 
                     <div className="flex items-center gap-4 mb-8">
-                        <div className="p-3 bg-accent/20 rounded-2xl text-accent">
+                        <div className="p-3 bg-accent/20 rounded-2xl text-accent-text">
                             <BeakerIcon className="w-8 h-8" />
                         </div>
                         <div>
@@ -123,7 +123,7 @@ const Settings = () => {
                         <div className="lg:col-span-1 space-y-6">
                             <div className="bg-background/20 rounded-3xl p-6 border border-border/5">
                                 <h3 className="text-sm font-black text-primary mb-4 uppercase tracking-tighter flex items-center gap-2">
-                                    <CommandLineIcon className="w-4 h-4 text-accent" />
+                                    <CommandLineIcon className="w-4 h-4 text-accent-text" />
                                     Estado del Sistema
                                 </h3>
                                 <div className="space-y-3">
@@ -135,13 +135,13 @@ const Settings = () => {
                                         <span className="text-xs text-tertiary">
                                             {targetLanguage === 'eu' ? 'Voces de Euskera' : 'Voces de Inglés'}
                                         </span>
-                                        <span className={`text-sm font-black ${(targetLanguage === 'eu' ? basqueVoices : englishVoices).length > 0 ? 'text-green-400' : 'text-red-400'}`}>
+                                        <span className={`text-sm font-black ${(targetLanguage === 'eu' ? basqueVoices : englishVoices).length > 0 ? 'text-success-text' : 'text-error-text'}`}>
                                             {(targetLanguage === 'eu' ? basqueVoices : englishVoices).length}
                                         </span>
                                     </div>
                                     <div className="flex justify-between items-center bg-surface/5 p-3 rounded-xl">
                                         <span className="text-xs text-tertiary">Idioma Actual</span>
-                                        <span className="text-sm font-black text-accent uppercase">{targetLanguage}</span>
+                                        <span className="text-sm font-black text-accent-text uppercase">{targetLanguage}</span>
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +178,7 @@ const Settings = () => {
                             <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
                                 {recommendedVoices.length > 0 && (
                                     <div className="mb-4">
-                                        <p className="text-[10px] text-accent font-bold mb-2 uppercase tracking-widest">Recomendadas (Euskera)</p>
+                                        <p className="text-[10px] text-accent-text font-bold mb-2 uppercase tracking-widest">Recomendadas (Euskera)</p>
                                         <div className="space-y-2">
                                             {recommendedVoices.map(voice => (
                                                 <VoiceCard
@@ -237,7 +237,7 @@ const Settings = () => {
 const VoiceCard = ({ voice, onTest, isTesting }: { voice: SpeechSynthesisVoice, onTest: (uri: string) => void, isTesting: boolean }) => (
     <div className="flex items-center justify-between p-4 bg-surface/5 border border-border/5 rounded-2xl hover:bg-surface/10 transition-all group">
         <div className="flex flex-col">
-            <span className="text-sm font-bold text-primary group-hover:text-accent transition-colors">{voice.name}</span>
+            <span className="text-sm font-bold text-primary group-hover:text-accent-text transition-colors">{voice.name}</span>
             <span className="text-[10px] text-tertiary font-mono">{voice.lang} {voice.localService ? '(Local)' : '(Network)'}</span>
         </div>
         <button

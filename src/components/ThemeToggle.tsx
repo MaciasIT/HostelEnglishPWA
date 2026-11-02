@@ -23,7 +23,7 @@ const ThemeToggle: React.FC = () => {
         onClick={() => setTheme(isDark ? 'light' : 'dark')}
         className="sm:hidden min-w-11 min-h-11 p-2 rounded-full border border-border/10 bg-surface/5 text-primary hover:bg-surface/10 transition-colors active:scale-95 flex items-center justify-center shrink-0"
       >
-        {isDark ? <SunIcon className="w-4 h-4 text-amber-400" /> : <MoonIcon className="w-4 h-4 text-cyan-400" />}
+        {isDark ? <SunIcon className="w-4 h-4 text-warning-text" /> : <MoonIcon className="w-4 h-4 text-info-text" />}
       </button>
 
       {/* Selector de 3 opciones completo para tablets y escritorio (≥ sm) */}

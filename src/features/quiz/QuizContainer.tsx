@@ -84,7 +84,7 @@ const QuizContainer: React.FC<QuizContainerProps> = ({ category, mode, role, onE
             className="absolute -top-24 -right-24 w-64 h-64 bg-accent rounded-full blur-[80px] pointer-events-none"
           />
 
-          <motion.h2 layout className="text-[10px] uppercase tracking-[0.2em] text-accent font-black mb-4 flex items-center gap-2">
+          <motion.h2 layout className="text-[10px] uppercase tracking-[0.2em] text-accent-text font-black mb-4 flex items-center gap-2">
             <span className="w-6 h-[1px] bg-accent"></span>
             {mode === 'truefalse' ? 'Identifica si es correcto' : `Traduce al ${state.targetLanguage === 'eu' ? 'euskera' : 'inglés'}`}
           </motion.h2>

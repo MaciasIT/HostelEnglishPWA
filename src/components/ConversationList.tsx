@@ -33,10 +33,10 @@ const ConversationList = ({ conversations, onSelectConversation }: ConversationL
             <div className="absolute -right-8 -top-8 w-24 h-24 bg-accent opacity-5 rounded-full group-hover:scale-150 transition-transform"></div>
 
             <div className="flex justify-between items-start mb-4">
-              <div className="p-3 bg-accent/20 rounded-xl text-accent">
+              <div className="p-3 bg-accent/20 rounded-xl text-accent-text">
                 <ChatBubbleLeftRightIcon className="w-6 h-6" />
               </div>
-              <div className="p-2 bg-surface/5 rounded-full text-primary/40 group-hover:text-accent transition-colors">
+              <div className="p-2 bg-surface/5 rounded-full text-primary/40 group-hover:text-accent-text transition-colors">
                 <ChevronRightIcon className="w-5 h-5" />
               </div>
             </div>
@@ -45,7 +45,7 @@ const ConversationList = ({ conversations, onSelectConversation }: ConversationL
             <p className="text-tertiary text-sm leading-relaxed mb-4 flex-grow">{conv.description}</p>
 
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-accent bg-accent/10 px-3 py-1 rounded-full border border-accent/20">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-accent-text bg-accent/10 px-3 py-1 rounded-full border border-accent/20">
                 {(() => {
                   const cat = conv.categoria || 'General';
                   if (cat === 'Jatetxea') return 'Restaurante';

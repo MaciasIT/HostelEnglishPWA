@@ -26,7 +26,7 @@ const TopNav: React.FC = () => {
           <Bars3Icon className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
         <h1 className="text-lg sm:text-xl font-black text-primary tracking-tight truncate">
-          Hostel<span className="text-accent">English</span>
+          Hostel<span className="text-accent-text">English</span>
         </h1>
       </div>
 
@@ -36,7 +36,7 @@ const TopNav: React.FC = () => {
           aria-label={online ? 'En línea' : 'Sin conexión'}
           title={online ? 'En línea' : 'Sin conexión'}
           className={`flex items-center gap-1.5 p-2 sm:px-2.5 sm:py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest border shrink-0 ${
-            online ? 'text-green-500 border-green-500/30' : 'text-amber-500 border-amber-500/30'
+            online ? 'text-success-text border-green-500/30' : 'text-warning-text border-amber-500/30'
           }`}
         >
           {online ? <WifiIcon className="w-4 h-4" /> : <SignalSlashIcon className="w-4 h-4" />}
@@ -47,7 +47,7 @@ const TopNav: React.FC = () => {
         <Link
           to="/configuracion"
           aria-label="Perfil y ajustes"
-          className="min-w-11 min-h-11 p-2 rounded-full text-primary hover:text-accent hover:bg-surface/5 transition-colors shrink-0 inline-flex items-center justify-center"
+          className="min-w-11 min-h-11 p-2 rounded-full text-primary hover:text-accent-text hover:bg-surface/5 transition-colors shrink-0 inline-flex items-center justify-center"
         >
           <UserCircleIcon className="w-7 h-7 sm:w-8 sm:h-8" />
         </Link>
