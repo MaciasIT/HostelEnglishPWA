@@ -39,6 +39,7 @@ import { evaluateHospitality } from '@/services/ai';
 import type { PolitenessEvaluation } from '@/services/ai';
 import { getClientAccent } from './accents';
 import type { ClientAccent } from './accents';
+import { generateCustomerReply } from './fallbackResponder';
 
 /** Opciones de sesión (FD-04): escenario procedural y acento del cliente. */
 export interface RoleplayControllerOptions {
@@ -175,9 +176,10 @@ export function useRoleplayController(
     try {
       await load();
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'No se pudo cargar el modelo local.');
-      setPhase('error');
-      return;
+      console.warn(
+        'Carga del modelo local no disponible, activando respondedor procedural offline:',
+        err,
+      );
     }
 
     setTurns([{ role: 'client', text: scenarioRef.current.openingLine }]);
@@ -234,21 +236,26 @@ export function useRoleplayController(
         return;
       }
 
+      let reply: string;
       try {
         const replyResult = await generate(
           messagesRef.current,
           {},
           { maxTokens: 256, temperature: 0.7 },
         );
-        const reply = replyResult.fullText.trim();
-        setTurns((prev) => [...prev, { role: 'client', text: reply }]);
-        messagesRef.current.push({ role: 'assistant', content: reply });
-        setPhase('prompting');
-        void speak(reply, speakOptions());
+        reply = replyResult.fullText.trim();
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'La IA no pudo responder.');
-        setPhase('error');
+        console.warn(
+          'Inferencia LLM fallida, recurriendo al respondedor procedural del cliente:',
+          err,
+        );
+        reply = generateCustomerReply(scenarioData, trimmed, userTurnCountRef.current);
       }
+
+      setTurns((prev) => [...prev, { role: 'client', text: reply }]);
+      messagesRef.current.push({ role: 'assistant', content: reply });
+      setPhase('prompting');
+      void speak(reply, speakOptions());
     },
     [phase, generate, speak, speakOptions],
   );

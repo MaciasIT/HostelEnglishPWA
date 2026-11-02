@@ -173,6 +173,38 @@ describe('useRoleplayController', () => {
     act(() => result.current.actions.toggleListening());
     expect(mockStopListening).toHaveBeenCalledTimes(1);
   });
+
+  it('si load falla (sin WebGPU/offline), inicia igualmente en fase prompting sin bloquearse', async () => {
+    mockLoad.mockRejectedValueOnce(new Error('WebGPU unsupported'));
+    const { result } = renderHook(() => useRoleplayController(ownScenario));
+
+    await act(async () => {
+      await result.current.actions.start();
+    });
+
+    expect(result.current.phase).toBe('prompting');
+    expect(result.current.turns[0]).toEqual({ role: 'client', text: ownScenario.openingLine });
+    expect(result.current.error).toBeNull();
+  });
+
+  it('si generate falla, recurre a la respuesta procedural sin arrojar error al usuario', async () => {
+    mockGenerate.mockRejectedValueOnce(new Error('Inference failure'));
+    const { result } = renderHook(() => useRoleplayController(ownScenario));
+
+    await act(async () => {
+      await result.current.actions.start();
+    });
+
+    await act(async () => {
+      result.current.actions.submitText('May I see your booking confirmation?');
+    });
+
+    expect(result.current.phase).toBe('prompting');
+    expect(result.current.error).toBeNull();
+    const lastTurn = result.current.turns[result.current.turns.length - 1];
+    expect(lastTurn.role).toBe('client');
+    expect(lastTurn.text.length).toBeGreaterThan(5);
+  });
 });
 
 describe('useRoleplayController — asistencia (FC-04)', () => {

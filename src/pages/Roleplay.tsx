@@ -191,8 +191,8 @@ function RoleplaySession({ session, accent, onExit, onRegenerate }: RoleplaySess
       >
         <ArrowLeftIcon className="w-6 h-6" aria-hidden="true" />
       </button>
-      <div className="min-w-0">
-        <h2 className="text-lg font-black text-primary truncate">{meta.title}</h2>
+      <div className="min-w-0 flex-1">
+        <h2 className="text-base sm:text-lg font-black text-primary line-clamp-2 break-words leading-tight">{meta.title}</h2>
         <p className="text-[10px] uppercase tracking-widest text-accent font-bold">
           {ROLEPLAY_DEPARTMENT_LABELS[scenario.department]}
           {' · '}
@@ -210,17 +210,17 @@ function RoleplaySession({ session, accent, onExit, onRegenerate }: RoleplaySess
       <PageContainer title="Roleplay Conversacional">
         <div className="max-w-2xl mx-auto animate-fade-in text-center">
           {header}
-          <div className="bg-surface/5 backdrop-blur-xl p-10 rounded-[3rem] border border-border/15 shadow-2xl space-y-6">
-            <CheckBadgeIcon className="w-16 h-16 text-accent mx-auto" aria-hidden="true" />
-            <h3 className="text-2xl font-black text-primary">Tu objetivo</h3>
-            <p className="text-tertiary text-lg leading-relaxed italic">{scenario.objective}</p>
-            <p className="text-sm text-secondary">
+          <div className="bg-surface/5 backdrop-blur-xl p-6 sm:p-10 rounded-3xl sm:rounded-[3rem] border border-border/15 shadow-2xl space-y-5 sm:space-y-6">
+            <CheckBadgeIcon className="w-12 h-12 sm:w-16 sm:h-16 text-accent mx-auto" aria-hidden="true" />
+            <h3 className="text-xl sm:text-2xl font-black text-primary">Tu objetivo</h3>
+            <p className="text-tertiary text-base sm:text-lg leading-relaxed italic">{scenario.objective}</p>
+            <p className="text-xs sm:text-sm text-secondary">
               El cliente va a hablarte por voz. Responde en inglés con naturalidad
               ({scenario.targetTurns.min}–{scenario.targetTurns.max} turnos).
             </p>
             <button
               onClick={() => void ctrl.actions.start()}
-              className="bg-accent hover:brightness-110 text-on-accent font-black py-4 px-12 rounded-2xl shadow-xl transition-all active:scale-95"
+              className="w-full sm:w-auto bg-accent hover:brightness-110 text-on-accent font-black py-3.5 sm:py-4 px-6 sm:px-12 rounded-2xl shadow-xl transition-all active:scale-95 text-sm sm:text-base cursor-pointer"
             >
               COMENZAR CONVERSACIÓN
             </button>
@@ -266,15 +266,15 @@ function RoleplaySession({ session, accent, onExit, onRegenerate }: RoleplaySess
       <PageContainer title="Roleplay Conversacional">
         <div className="max-w-2xl mx-auto animate-fade-in text-center">
           {header}
-          <div className="bg-surface/5 backdrop-blur-xl p-10 rounded-[3rem] border border-border/15 shadow-2xl space-y-6">
+          <div className="bg-surface/5 backdrop-blur-xl p-6 sm:p-10 rounded-3xl sm:rounded-[3rem] border border-border/15 shadow-2xl space-y-5 sm:space-y-6">
             <CheckBadgeIcon
-              className={`w-16 h-16 mx-auto ${r?.objectiveMet ? 'text-success' : 'text-tertiary'}`}
+              className={`w-12 h-12 sm:w-16 sm:h-16 mx-auto ${r?.objectiveMet ? 'text-success' : 'text-tertiary'}`}
               aria-hidden="true"
             />
-            <h3 className="text-2xl font-black text-primary">
+            <h3 className="text-xl sm:text-2xl font-black text-primary">
               {r?.objectiveMet ? '¡Situación resuelta!' : 'Sesión completada'}
             </h3>
-            <p className="text-tertiary">
+            <p className="text-tertiary text-sm sm:text-base">
               {r?.objectiveMet
                 ? 'Conseguiste los términos clave y resolviste la situación.'
                 : 'Se alcanzó el número máximo de turnos. Repasa el vocabulario e inténtalo de nuevo.'}
@@ -286,24 +286,24 @@ function RoleplaySession({ session, accent, onExit, onRegenerate }: RoleplaySess
             <p className="text-sm text-secondary" role="status">
               {r?.turnsUsed ?? 0} / {r?.maxTurns ?? scenario.targetTurns.max} turnos
             </p>
-            <div className="flex justify-center gap-4 pt-2">
+            <div className="flex flex-col sm:flex-row justify-center gap-3 pt-2">
               <button
                 onClick={() => void ctrl.actions.reset()}
-                className="bg-accent hover:brightness-110 text-on-accent font-black py-3 px-8 rounded-2xl transition-all active:scale-95 flex items-center gap-2"
+                className="w-full sm:w-auto bg-accent hover:brightness-110 text-on-accent font-black py-3 px-6 rounded-2xl transition-all active:scale-95 flex items-center justify-center gap-2 text-sm sm:text-base cursor-pointer"
               >
                 <ArrowPathIcon className="w-5 h-5" aria-hidden="true" />
                 REINTENTAR
               </button>
               <button
                 onClick={onExit}
-                className="bg-surface/5 hover:bg-surface/10 text-primary font-bold py-3 px-8 rounded-2xl border border-border/15 transition-all active:scale-95"
+                className="w-full sm:w-auto bg-surface/5 hover:bg-surface/10 text-primary font-bold py-3 px-6 rounded-2xl border border-border/15 transition-all active:scale-95 text-sm sm:text-base cursor-pointer"
               >
                 OTRO ESCENARIO
               </button>
               {onRegenerate && (
                 <button
                   onClick={onRegenerate}
-                  className="bg-surface/5 hover:bg-surface/10 text-primary font-bold py-3 px-8 rounded-2xl border border-border/15 transition-all active:scale-95 flex items-center gap-2"
+                  className="w-full sm:w-auto bg-surface/5 hover:bg-surface/10 text-primary font-bold py-3 px-6 rounded-2xl border border-border/15 transition-all active:scale-95 flex items-center justify-center gap-2 text-sm sm:text-base cursor-pointer"
                 >
                   <BoltIcon className="w-5 h-5" aria-hidden="true" />
                   NUEVA SITUACIÓN
@@ -337,7 +337,7 @@ function RoleplaySession({ session, accent, onExit, onRegenerate }: RoleplaySess
           </div>
         )}
 
-        <div className="bg-surface/5 backdrop-blur-xl rounded-[2.5rem] border border-border/15 shadow-2xl p-6 flex flex-col">
+        <div className="bg-surface/5 backdrop-blur-xl rounded-3xl sm:rounded-[2.5rem] border border-border/15 shadow-2xl p-4 sm:p-6 flex flex-col">
           <RoleplayChat
             turns={ctrl.turns}
             clientLabel="Cliente"

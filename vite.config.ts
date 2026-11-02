@@ -52,6 +52,9 @@ export default defineConfig({
         ],
       },
       workbox: {
+        skipWaiting: true,
+        clientsClaim: true,
+        cleanupOutdatedCaches: true,
         globPatterns: ["**/*.{js,css,html,ico,png,svg,json,webmanifest}"],
         // Los workers on-device (Whisper/Transformers.js y WebLLM) embeben sus
         // runtimes y superan el límite por defecto de 2 MiB. Se amplía para
