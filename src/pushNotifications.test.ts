@@ -50,4 +50,31 @@ describe('Notificaciones Push', () => {
       expect.objectContaining({ body: expect.any(String) })
     );
   });
+
+  it('en móvil usa showNotification del Service Worker sin new Notification', async () => {
+    permissionMock = 'granted';
+    NotificationMock.permission = permissionMock;
+    NotificationMock.mockImplementation(function () {
+      throw new TypeError('Illegal constructor');
+    });
+    const showNotification = vi.fn(() => Promise.resolve());
+    vi.stubGlobal('navigator', {
+      serviceWorker: { getRegistration: vi.fn(() => Promise.resolve({ showNotification })) },
+    });
+    expect(() => initNotifications()).not.toThrow();
+    await new Promise((r) => setTimeout(r, 0));
+    expect(showNotification).toHaveBeenCalled();
+    expect(NotificationMock).not.toHaveBeenCalled();
+    vi.unstubAllGlobals();
+  });
+
+  it('no lanza aunque new Notification falle', async () => {
+    permissionMock = 'granted';
+    NotificationMock.permission = permissionMock;
+    NotificationMock.mockImplementation(function () {
+      throw new TypeError('Illegal constructor');
+    });
+    expect(() => initNotifications()).not.toThrow();
+    await new Promise((r) => setTimeout(r, 0));
+  });
 });

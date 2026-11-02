@@ -1,32 +1,63 @@
 /**
  * Service to handle browser push notifications.
  * Encapsulates permission requests and notification triggering.
+ * Fully resilient on mobile browsers (Android / iOS) where `new Notification()` throws.
  */
 
-export const initNotifications = () => {
-    if (typeof window === 'undefined' || !('Notification' in window)) return;
+export const initNotifications = (): void => {
+    try {
+        if (typeof window === 'undefined' || !('Notification' in window)) return;
 
-    const showWelcome = () => {
-        new Notification('¡Bienvenido a HostelEnglish!', {
-            body: 'Recibe novedades y recordatorios para mejorar tu inglés.',
-            icon: '/favicon.ico' // Adding icon for better UX
-        });
-    };
+        const showWelcome = async () => {
+            try {
+                const title = '¡Bienvenido a HostelEnglish!';
+                const options: NotificationOptions = {
+                    body: 'Recibe novedades y recordatorios para mejorar tu inglés.',
+                    icon: '/favicon.ico'
+                };
 
-    if (Notification.permission === 'default') {
-        Notification.requestPermission().then(permission => {
-            if (permission === 'granted') {
-                showWelcome();
+                // En móviles Android/iOS, 'new Notification()' lanza TypeError: Illegal constructor.
+                // La vía estándar y segura es ServiceWorkerRegistration.showNotification().
+                if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
+                    try {
+                        const reg = await navigator.serviceWorker.getRegistration();
+                        if (reg && reg.showNotification) {
+                            await reg.showNotification(title, options);
+                            return;
+                        }
+                    } catch {}
+                }
+
+                // Fallback para entornos donde el constructor de Notification sí es legal (desktop/tests)
+                try {
+                    new Notification(title, options);
+                } catch {
+                    // Silencioso en navegadores móviles que rechazan new Notification()
+                }
+            } catch (err) {
+                console.warn('[pushNotifications] No se pudo mostrar la notificación:', err);
             }
-        });
-    } else if (Notification.permission === 'granted') {
-        // Optional: Avoid re-showing on every reload if already granted
-        // For now we keep it as requested to see it works, 
-        // but normally we'd check a flag in localStorage
-        const hasShown = sessionStorage.getItem('welcome_notification_shown');
-        if (!hasShown) {
-            showWelcome();
-            sessionStorage.setItem('welcome_notification_shown', 'true');
+        };
+
+        if (Notification.permission === 'default') {
+            Notification.requestPermission().then(permission => {
+                if (permission === 'granted') {
+                    void showWelcome();
+                }
+            }).catch(() => {});
+        } else if (Notification.permission === 'granted') {
+            try {
+                const hasShown = sessionStorage.getItem('welcome_notification_shown');
+                if (!hasShown) {
+                    sessionStorage.setItem('welcome_notification_shown', 'true');
+                    void showWelcome();
+                }
+            } catch {
+                void showWelcome();
+            }
         }
+    } catch (err) {
+        console.warn('[pushNotifications] Error inicializando notificaciones:', err);
     }
 };
+
