@@ -11,12 +11,14 @@ import {
     CommandLineIcon
 } from '@heroicons/react/24/outline';
 import { playAudio } from '@/utils/audio';
+import DeviceTransferModal, { type TransferMode } from '@/components/sync/DeviceTransferModal';
 
 const Settings = () => {
     const { prefs, isPremium, licenseInfo } = useAppStore();
     const targetLanguage = prefs.targetLanguage;
     const selectedRole = prefs.selectedRole;
     const [roleModalOpen, setRoleModalOpen] = useState(false);
+    const [transferMode, setTransferMode] = useState<TransferMode | null>(null);
 
     const [allVoices, setAllVoices] = useState<SpeechSynthesisVoice[]>([]);
     const [testText, setTestText] = useState(
@@ -212,6 +214,17 @@ const Settings = () => {
                         </div>
                     </div>
                 </div>
+
+                {/* Transferencia P2P (PM-05) */}
+                <section aria-labelledby="transfer-title" className="bg-surface/5 border border-border/10 rounded-[2rem] p-8">
+                    <h4 id="transfer-title" className="text-xl font-black text-primary mb-2">Cambiar de dispositivo</h4>
+                    <p className="text-tertiary text-sm mb-4">Lleva tu racha, licencia y progreso a otro móvil u ordenador sin cuentas ni servidores.</p>
+                    <div className="flex flex-col sm:flex-row gap-3">
+                        <button onClick={() => setTransferMode('send')} className="px-5 py-3 rounded-xl bg-accent text-primary font-black">Pasar a otro dispositivo</button>
+                        <button onClick={() => setTransferMode('receive')} className="px-5 py-3 rounded-xl bg-surface/10 text-primary font-black">Recibir desde otro dispositivo</button>
+                    </div>
+                </section>
+                {transferMode && <DeviceTransferModal mode={transferMode} onClose={() => setTransferMode(null)} />}
 
                 {/* Info Card */}
                 <div className="bg-accent/10 border border-accent/20 rounded-[2rem] p-8 flex items-start gap-6">
