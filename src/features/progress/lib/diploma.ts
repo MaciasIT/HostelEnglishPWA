@@ -36,7 +36,12 @@ const payloadBytes = (d: DiplomaData) =>
 
 /** Par de claves Ed25519 del dispositivo, persistido como JWK en localStorage. */
 export async function getDeviceKeyPair(): Promise<{ privateKey: CryptoKey; publicRaw: Uint8Array }> {
-  const stored = typeof localStorage !== 'undefined' ? localStorage.getItem(KEY_STORAGE) : null;
+  let stored: string | null = null;
+  try {
+    stored = typeof localStorage !== 'undefined' ? localStorage.getItem(KEY_STORAGE) : null;
+  } catch {
+    /* localStorage bloqueado (incógnito/WebView): clave efímera */
+  }
   if (stored) {
     const { priv, pub } = JSON.parse(stored) as { priv: JsonWebKey; pub: string };
     const privateKey = await crypto.subtle.importKey('jwk', priv, { name: 'Ed25519' }, false, ['sign']);
@@ -171,22 +176,83 @@ export async function diplomaToPngBlob(svg: string, scale = 2): Promise<Blob> {
   }
 }
 
+/** Cede el hilo principal para que el navegador pinte (spinner) antes de trabajo pesado. */
+export function yieldToMain(): Promise<void> {
+  return new Promise((res) => {
+    if (typeof requestAnimationFrame === 'function') requestAnimationFrame(() => setTimeout(res, 0));
+    else setTimeout(res, 0);
+  });
+}
+
+export function canShareFile(file: File): boolean {
+  try {
+    return (
+      typeof navigator !== 'undefined' &&
+      typeof navigator.share === 'function' &&
+      typeof navigator.canShare === 'function' &&
+      navigator.canShare({ files: [file] })
+    );
+  } catch {
+    return false;
+  }
+}
+
+/** Descarga vía <a download> insertado en el DOM (necesario en WebKit/Firefox móvil). */
 export function downloadBlob(blob: Blob, filename: string): void {
+  const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
+  a.href = url;
   a.download = filename;
+  a.rel = 'noopener';
+  a.style.display = 'none';
+  document.body.appendChild(a);
   a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  setTimeout(() => {
+    a.remove();
+    URL.revokeObjectURL(url);
+  }, 4000);
+}
+
+export type DeliveryResult = 'shared' | 'downloaded' | 'cancelled';
+
+/** Web Share API con archivos si existe; si no (o falla), enlace de descarga. */
+export async function shareOrDownloadBlob(
+  blob: Blob,
+  filename: string,
+  title = 'Diploma Hostel English'
+): Promise<DeliveryResult> {
+  const file = new File([blob], filename, { type: blob.type || 'image/png' });
+  if (canShareFile(file)) {
+    try {
+      await navigator.share({ files: [file], title });
+      return 'shared';
+    } catch (e) {
+      if (e instanceof DOMException && e.name === 'AbortError') return 'cancelled';
+      /* NotAllowedError u otro: caer a descarga */
+    }
+  }
+  downloadBlob(blob, filename);
+  return 'downloaded';
+}
+
+/** Abre la ventana de impresión (debe invocarse dentro del gesto del usuario). */
+export function openPrintWindow(): Window | null {
+  try {
+    return window.open('', '_blank');
+  } catch {
+    return null;
+  }
 }
 
 /** PDF (para impresión) vía ventana de impresión del navegador, sin dependencias. */
-export function printDiplomaAsPdf(svg: string): void {
-  const w = window.open('', '_blank');
-  if (!w) return;
+export function printDiplomaAsPdf(svg: string, target?: Window | null): boolean {
+  const w = target ?? openPrintWindow();
+  if (!w) return false;
   w.document.write(
     `<!doctype html><title>Diploma</title><style>@page{size:A4 landscape;margin:0}body{margin:0}svg{width:100vw;height:auto}</style>${svg}`
   );
   w.document.close();
   w.focus();
-  w.print();
+  setTimeout(() => w.print(), 250);
+  return true;
 }

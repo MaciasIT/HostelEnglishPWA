@@ -74,7 +74,7 @@ export default function PostSessionSummaryModal({
           <div className="text-5xl font-extrabold text-indigo-600" data-testid="fluency-score">
             {fluency.score}
           </div>
-          <div className="text-sm text-gray-500">Fluidez laboral · nivel {fluency.level}</div>
+          <div className="text-sm text-tertiary">Fluidez laboral · nivel {fluency.level}</div>
         </div>
 
         <div className="space-y-3">
@@ -86,18 +86,18 @@ export default function PostSessionSummaryModal({
         <div className="grid grid-cols-2 gap-3 text-center">
           <div className="rounded-xl bg-amber-500/10 p-3">
             <div className="text-2xl font-bold" data-testid="xp-earned">+{xpEarned} XP</div>
-            <div className="text-xs text-gray-500">XP ganada</div>
+            <div className="text-xs text-tertiary">XP ganada</div>
           </div>
           <div className="rounded-xl bg-orange-500/10 p-3">
             <div className="text-2xl font-bold" data-testid="streak">🔥 {streak}</div>
-            <div className="text-xs text-gray-500">Racha (días)</div>
+            <div className="text-xs text-tertiary">Racha (días)</div>
           </div>
         </div>
 
         <section aria-label="Frases para reforzar">
           <h3 className="font-semibold mb-2">Frases para reforzar</h3>
           {weakPhrases.length === 0 ? (
-            <p className="text-sm text-gray-500">¡Nada que reforzar hoy!</p>
+            <p className="text-sm text-tertiary">¡Nada que reforzar hoy!</p>
           ) : (
             <ul className="list-disc pl-5 text-sm space-y-1">
               {weakPhrases.map((p) => (

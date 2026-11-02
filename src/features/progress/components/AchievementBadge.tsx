@@ -33,7 +33,7 @@ export default function AchievementBadge({ title, desc, icon: Icon, color, isUnl
       </div>
       {isUnlocked && (
         <div className="ml-auto">
-          <StarIcon className="w-4 h-4 text-yellow-500 fill-yellow-500" aria-hidden="true" />
+          <StarIcon className="w-4 h-4 text-warning-text fill-yellow-500" aria-hidden="true" />
         </div>
       )}
     </div>
