@@ -6,7 +6,7 @@ import { initNotifications } from '@/pushNotifications';
 import { initSentry } from '@/monitoring/sentry';
 import { initSync } from '@/services/syncService';
 
-const HYDRATION_TIMEOUT_MS = 4000;
+const HYDRATION_TIMEOUT_MS = 2500;
 
 const AppInitializer = ({ children }: { children: ReactNode }) => {
     const [hasHydrated, setHasHydrated] = useState(false);
@@ -42,9 +42,14 @@ const AppInitializer = ({ children }: { children: ReactNode }) => {
             }
         }, HYDRATION_TIMEOUT_MS);
 
-        initNotifications();
-        initSentry();
-        initSync();
+        // Los servicios auxiliares nunca deben impedir el arranque.
+        for (const init of [initNotifications, initSentry, initSync]) {
+            try {
+                init();
+            } catch (err) {
+                console.warn('[AppInitializer] Fallo en inicialización auxiliar:', err);
+            }
+        }
 
         return () => {
             unsub();

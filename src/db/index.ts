@@ -25,9 +25,26 @@ interface MyDB extends IDBPDatabase {
   };
 }
 
+/** Rechaza si la promesa no se resuelve en `ms` (IndexedDB puede quedarse colgada). */
+export const withTimeout = <T>(promise: Promise<T>, ms: number, label = 'operación'): Promise<T> =>
+  new Promise<T>((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error(`Timeout (${ms}ms) en ${label}`)), ms);
+    promise.then(
+      (v) => { clearTimeout(timer); resolve(v); },
+      (e) => { clearTimeout(timer); reject(e); },
+    );
+  });
+
 export const initDB = async (): Promise<IDBPDatabase<MyDB>> => {
   return openDB<MyDB>(DB_NAME, DB_VERSION, {
     upgrade: upgradeHostelDB,
+    // Una pestaña/SW antiguo con la BD abierta bloquearía el upgrade para siempre.
+    blocking() {
+      console.warn('[db] Otra versión solicita upgrade; conexión antigua en uso.');
+    },
+    blocked() {
+      console.warn('[db] Upgrade bloqueado por otra pestaña con versión anterior.');
+    },
   });
 };
 

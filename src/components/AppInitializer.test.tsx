@@ -101,7 +101,7 @@ describe('<AppInitializer />', () => {
     expect(screen.getByTestId('app-shell')).toBeInTheDocument();
 
     await act(async () => {
-      vi.advanceTimersByTime(4000);
+      vi.advanceTimersByTime(2500);
     });
 
     expect(screen.getByTestId('app-shell')).toBeInTheDocument();

@@ -70,6 +70,27 @@
       margin-top: 8px;
       animation: splash-pulse 1.5s ease-in-out infinite;
     }
+    #splash-recovery {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 24px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    #splash-recovery.visible { display: flex; }
+    #splash-recovery button {
+      background: #f39c12;
+      color: #1a252f;
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 20px;
+      font: inherit;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      min-height: 44px;
+    }
     @keyframes splash-spin {
       to { transform: rotate(360deg); }
     }
@@ -95,9 +116,56 @@
     <div id="splash-spinner"></div>
     <div id="splash-title">HostelEnglish</div>
     <div id="splash-sub">Cargando...</div>
+    <div id="splash-recovery" role="alert">
+      <button id="splash-recovery-btn" type="button">¿Tarda demasiado? Pulsa aquí para limpiar caché y recargar</button>
+    </div>
   </div>
 
   <div id="root"></div>
+  <script id="splash-recovery-script">
+    /* Recuperación del splash (BUG-01): si el bundle no arranca en 3 s, o hay un
+       error global / fallo de chunk antes de montar, ofrece limpiar SW + cachés y recargar. */
+    (function () {
+      var splash = document.getElementById("splash");
+      var box = document.getElementById("splash-recovery");
+      var btn = document.getElementById("splash-recovery-btn");
+      if (!splash || !box || !btn) return;
+      function show() {
+        if (document.getElementById("splash")) box.classList.add("visible");
+      }
+      function clean() {
+        btn.disabled = true;
+        var jobs = [];
+        try {
+          if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations) {
+            jobs.push(navigator.serviceWorker.getRegistrations().then(function (rs) {
+              return Promise.all(rs.map(function (r) { return r.unregister(); }));
+            }));
+          }
+        } catch (e) {}
+        try {
+          if (window.caches && caches.keys) {
+            jobs.push(caches.keys().then(function (ks) {
+              return Promise.all(ks.map(function (k) { return caches.delete(k); }));
+            }));
+          }
+        } catch (e) {}
+        var done = false;
+        function reload() {
+          if (done) return;
+          done = true;
+          location.replace(location.pathname + "?r=" + Date.now() + location.hash);
+        }
+        Promise.all(jobs).then(reload, reload);
+        setTimeout(reload, 2000);
+      }
+      btn.addEventListener("click", clean);
+      setTimeout(show, 3000);
+      window.addEventListener("error", show);
+      window.addEventListener("unhandledrejection", show);
+      window.addEventListener("vite:preloadError", show);
+    })();
+  </script>
   <script type="module" src="./src/main.tsx"></script>
 </body>
 
