@@ -4,6 +4,25 @@
 
 Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por hitos temporales para reflejar la evolución técnica del proyecto.
 
+## 📱 Release v2.6.4: Optimización Responsive Integral en Móvil & Alineación CSP Cloudflare Workers
+*Fecha: 02-11-2026*
+
+- **[✅ RESUELTO] Desbordamiento horizontal en TopNav en pantallas móviles (<640px):**
+    - **Diagnóstico:** En dispositivos móviles con anchos de 360px a 393px (Samsung Galaxy A55, iPhone 16, iPhone SE), los elementos acumulados en la barra superior (`TopNav`) sumaban ~499px de ancho mínimo (Hamburguesa + Título + Pill Online + Botón Pro "UPGRADE" + Radiogroup de 3 temas + Icono usuario), desplazando el selector de tema y el avatar fuera de la pantalla a la derecha y provocando desplazamiento horizontal en toda la web.
+    - **Solución implementada:**
+        1. `ThemeToggle.tsx`: En pantallas pequeñas (`< sm`), renderizado de un botón único compacto de 32px que alterna directamente entre tema oscuro y claro; mantenimiento del radiogroup completo de 3 botones en pantallas de escritorio (`≥ sm`).
+        2. `UpgradeProButton.tsx`: Ocultación del texto "Upgrade"/"Pro" en navbar móvil (`hidden sm:inline`), dejando un icono de insignia compacto de 32px.
+        3. `TopNav.tsx`: Adición de `min-w-0` y `truncate` al título, espaciados reducidos a `gap-1.5 sm:gap-3` y `shrink-0` en los elementos clave. Ancho total resultante en móvil: ~324px (encaja perfectamente sin desbordar en pantallas de 360px).
+- **[✅ RESUELTO] Hero de la Home con escala ergonómica en móviles:**
+    - Ajustado el doble padding superior en móvil (`pt-4 sm:pt-10 lg:pt-14`), escala tipográfica del titular a `text-2xl sm:text-4xl lg:text-5xl xl:text-6xl` con interlineado ceñido, y escalado de botones y tarjeta `HeroShowcase` para que el simulador interactivo sea visible sin scroll excesivo.
+- **[✅ RESUELTO] Ajuste Responsive de Secciones en Dashboard, Frases, Progreso y Roleplay:**
+    - Reemplazados los paddings fijos de `p-8`/`p-10` y esquinas gigantes `rounded-[3rem]` por escalas responsivas `p-4 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl` para maximizar el ancho útil utilizable en smartphones.
+- **[✅ RESUELTO] CSP y Viewport en `index.html`:**
+    - Incorporado `viewport-fit=cover` para compatibilidad completa con safe-areas en iOS/Android.
+    - Añadido `https://*.workers.dev` a `connect-src` en la política CSP de `index.html` y actualizado `src/security.test.ts` para permitir el streaming de completions de Cloudflare Workers.
+- **[✅ COMPLETADO] Cobertura & Calidad:**
+    - 555 tests verdes (84 suites), compilación estricta de TypeScript (`npx tsc -b` sin errores) y build PWA verificado.
+
 ## ⚡ Release v2.6.3: Integración Cloudflare Workers + Nous API LLaMA 3.3 (Inferencia LLM Edge)
 *Fecha: 02-11-2026*
 

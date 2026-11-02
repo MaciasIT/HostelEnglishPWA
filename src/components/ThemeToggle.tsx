@@ -10,26 +10,46 @@ const OPTIONS: { value: ThemePreference; label: string; Icon: typeof SunIcon }[]
 ];
 
 const ThemeToggle: React.FC = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme, resolvedTheme, setTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
+
   return (
-    <div role="radiogroup" aria-label="Tema" className="flex items-center gap-0.5 p-1 bg-surface/5 border border-border/10 rounded-full">
-      {OPTIONS.map(({ value, label, Icon }) => (
-        <button
-          key={value}
-          type="button"
-          role="radio"
-          aria-checked={theme === value}
-          aria-label={label}
-          title={label}
-          onClick={() => setTheme(value)}
-          className={`p-1.5 rounded-full transition-colors active:scale-95 ${
-            theme === value ? 'bg-accent text-white' : 'text-primary hover:bg-surface/10'
-          }`}
-        >
-          <Icon className="w-4 h-4" />
-        </button>
-      ))}
-    </div>
+    <>
+      {/* Botón único para móvil (< sm): ahorra espacio horizontal evitando desbordamientos */}
+      <button
+        type="button"
+        aria-label={isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
+        title={isDark ? 'Modo claro' : 'Modo oscuro'}
+        onClick={() => setTheme(isDark ? 'light' : 'dark')}
+        className="sm:hidden p-2 rounded-full border border-border/10 bg-surface/5 text-primary hover:bg-surface/10 transition-colors active:scale-95 flex items-center justify-center shrink-0"
+      >
+        {isDark ? <SunIcon className="w-4 h-4 text-amber-400" /> : <MoonIcon className="w-4 h-4 text-cyan-400" />}
+      </button>
+
+      {/* Selector de 3 opciones completo para tablets y escritorio (≥ sm) */}
+      <div
+        role="radiogroup"
+        aria-label="Tema"
+        className="hidden sm:flex items-center gap-0.5 p-1 bg-surface/5 border border-border/10 rounded-full shrink-0"
+      >
+        {OPTIONS.map(({ value, label, Icon }) => (
+          <button
+            key={value}
+            type="button"
+            role="radio"
+            aria-checked={theme === value}
+            aria-label={label}
+            title={label}
+            onClick={() => setTheme(value)}
+            className={`p-1.5 rounded-full transition-colors active:scale-95 ${
+              theme === value ? 'bg-accent text-white' : 'text-primary hover:bg-surface/10'
+            }`}
+          >
+            <Icon className="w-4 h-4" />
+          </button>
+        ))}
+      </div>
+    </>
   );
 };
 

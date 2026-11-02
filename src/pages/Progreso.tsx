@@ -87,20 +87,20 @@ const Progreso: React.FC = () => {
           />
         </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
           {/* Daily Evolution Chart */}
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="lg:col-span-2 bg-surface/5 p-8 rounded-[3rem] border border-border/10 backdrop-blur-md shadow-2xl relative overflow-hidden"
+            className="lg:col-span-2 bg-surface/5 p-4 sm:p-8 rounded-2xl sm:rounded-[3rem] border border-border/10 backdrop-blur-md shadow-2xl relative overflow-hidden"
             aria-labelledby="evolution-heading"
           >
-            <div className="flex justify-between items-center mb-10">
+            <div className="flex justify-between items-center mb-6 sm:mb-10">
               <div>
-                <h2 id="evolution-heading" className="text-2xl font-black text-primary tracking-tight">Evolución Semanal</h2>
-                <p className="text-tertiary text-sm font-medium">Frases practicadas por día</p>
+                <h2 id="evolution-heading" className="text-xl sm:text-2xl font-black text-primary tracking-tight">Evolución Semanal</h2>
+                <p className="text-tertiary text-xs sm:text-sm font-medium">Frases practicadas por día</p>
               </div>
-              <div className="bg-accent/20 px-6 py-2 rounded-full text-accent text-xs font-bold uppercase tracking-[0.2em]" aria-hidden="true">
+              <div className="bg-accent/20 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-accent text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em]" aria-hidden="true">
                 Tendencia
               </div>
             </div>
@@ -162,15 +162,15 @@ const Progreso: React.FC = () => {
           <motion.section
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="bg-surface/5 p-8 rounded-[3rem] border border-border/10 backdrop-blur-md shadow-xl"
+            className="bg-surface/5 p-4 sm:p-8 rounded-2xl sm:rounded-[3rem] border border-border/10 backdrop-blur-md shadow-xl"
             aria-labelledby="achievements-heading"
           >
-            <h2 id="achievements-heading" className="text-2xl font-black text-primary mb-8 flex items-center gap-3">
-              <TrophyIcon className="w-8 h-8 text-yellow-500 drop-shadow-lg" />
+            <h2 id="achievements-heading" className="text-xl sm:text-2xl font-black text-primary mb-6 sm:mb-8 flex items-center gap-3">
+              <TrophyIcon className="w-7 h-7 sm:w-8 sm:h-8 text-yellow-500 drop-shadow-lg" />
               Medallas
             </h2>
 
-            <div className="space-y-5" role="list">
+            <div className="space-y-4 sm:space-y-5" role="list">
               {Object.entries(ACHIEVEMENT_METADATA).map(([key, meta]) => (
                 <AchievementBadge
                   key={key}
@@ -180,8 +180,8 @@ const Progreso: React.FC = () => {
               ))}
 
               {state.achievements.length === 0 && (
-                <div className="py-12 text-center bg-surface/5 rounded-3xl border border-dashed border-border/5 shadow-inner" role="status">
-                  <p className="text-sm text-tertiary font-semibold uppercase tracking-widest px-4">
+                <div className="py-8 sm:py-12 text-center bg-surface/5 rounded-2xl sm:rounded-3xl border border-dashed border-border/5 shadow-inner" role="status">
+                  <p className="text-xs sm:text-sm text-tertiary font-semibold uppercase tracking-widest px-4">
                     Completa exámenes para ganar medallas
                   </p>
                 </div>
@@ -191,16 +191,16 @@ const Progreso: React.FC = () => {
         </div>
 
         {/* Category Breakdown */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-surface/5 p-10 rounded-[3rem] border border-border/10 shadow-2xl"
+            className="bg-surface/5 p-4 sm:p-10 rounded-2xl sm:rounded-[3rem] border border-border/10 shadow-2xl"
             aria-labelledby="categories-heading"
           >
-            <div className="flex items-center gap-3 mb-10">
-              <span className="w-3 h-8 bg-accent rounded-full" aria-hidden="true"></span>
-              <h2 id="categories-heading" className="text-2xl font-black text-primary tracking-tight">Dominio por Categoría</h2>
+            <div className="flex items-center gap-3 mb-6 sm:mb-10">
+              <span className="w-2.5 sm:w-3 h-6 sm:h-8 bg-accent rounded-full" aria-hidden="true"></span>
+              <h2 id="categories-heading" className="text-xl sm:text-2xl font-black text-primary tracking-tight">Dominio por Categoría</h2>
             </div>
 
             <div className="h-[280px]" role="img" aria-label="Gráfico de barras mostrando el porcentaje de aprendizaje por categoría.">
@@ -263,16 +263,16 @@ const Progreso: React.FC = () => {
           <motion.section
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-surface/5 p-10 rounded-[3rem] border border-border/10 shadow-2xl"
+            className="bg-surface/5 p-4 sm:p-10 rounded-2xl sm:rounded-[3rem] border border-border/10 shadow-2xl"
             aria-labelledby="certifications-heading"
           >
-            <div className="flex items-center gap-3 mb-8">
-              <span className="w-3 h-8 bg-yellow-500 rounded-full" aria-hidden="true"></span>
-              <h2 id="certifications-heading" className="text-2xl font-black text-primary tracking-tight">
+            <div className="flex items-center gap-3 mb-6 sm:mb-8">
+              <span className="w-2.5 sm:w-3 h-6 sm:h-8 bg-yellow-500 rounded-full" aria-hidden="true"></span>
+              <h2 id="certifications-heading" className="text-xl sm:text-2xl font-black text-primary tracking-tight">
                 Certificaciones Laborales
               </h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {state.certifications.slice().reverse().map(cert => (
                 <CertificationBadge key={cert.id} certification={cert} compact />
               ))}
@@ -292,13 +292,13 @@ function StatCard({ icon: Icon, label, value, color, delay }: any) {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay }}
-      className="bg-surface/5 p-8 rounded-[2.5rem] border border-border/10 backdrop-blur-sm hover:bg-surface/10 transition-all group flex flex-col items-center text-center shadow-lg"
+      className="bg-surface/5 p-4 sm:p-8 rounded-2xl sm:rounded-[2.5rem] border border-border/10 backdrop-blur-sm hover:bg-surface/10 transition-all group flex flex-col items-center text-center shadow-lg"
     >
-      <div className={`${color} w-16 h-16 rounded-[1.5rem] flex items-center justify-center text-primary mb-6 shadow-xl group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500`}>
-        <Icon className="w-8 h-8" />
+      <div className={`${color} w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-[1.5rem] flex items-center justify-center text-primary mb-3 sm:mb-6 shadow-xl group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-500`}>
+        <Icon className="w-6 h-6 sm:w-8 sm:h-8" />
       </div>
-      <p className="text-[11px] uppercase tracking-[0.25em] text-tertiary font-semibold mb-2">{label}</p>
-      <p className="text-4xl font-black text-primary tracking-tighter">{value}</p>
+      <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] sm:tracking-[0.25em] text-tertiary font-semibold mb-1 sm:mb-2">{label}</p>
+      <p className="text-3xl sm:text-4xl font-black text-primary tracking-tight">{value}</p>
     </motion.div>
   );
 }

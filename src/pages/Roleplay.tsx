@@ -129,7 +129,7 @@ const Roleplay: React.FC = () => {
             <button
               type="button"
               onClick={() => void launchProcedural()}
-              className="inline-flex items-center gap-2 bg-accent hover:brightness-110 text-on-accent font-black py-4 px-8 rounded-2xl shadow-xl transition-all active:scale-95"
+              className="inline-flex items-center gap-2 bg-accent hover:brightness-110 text-on-accent font-black py-3 sm:py-4 px-6 sm:px-8 rounded-2xl shadow-xl transition-all active:scale-95 text-sm sm:text-base"
             >
               <BoltIcon className="w-5 h-5" aria-hidden="true" />
               Generar Situación Inesperada
@@ -210,7 +210,7 @@ function RoleplaySession({ session, accent, onExit, onRegenerate }: RoleplaySess
       <PageContainer title="Roleplay Conversacional">
         <div className="max-w-2xl mx-auto animate-fade-in text-center">
           {header}
-          <div className="bg-surface/5 backdrop-blur-xl p-6 sm:p-10 rounded-3xl sm:rounded-[3rem] border border-border/15 shadow-2xl space-y-5 sm:space-y-6">
+          <div className="bg-surface/5 backdrop-blur-xl p-5 sm:p-10 rounded-2xl sm:rounded-[3rem] border border-border/15 shadow-2xl space-y-4 sm:space-y-6">
             <CheckBadgeIcon className="w-12 h-12 sm:w-16 sm:h-16 text-accent mx-auto" aria-hidden="true" />
             <h3 className="text-xl sm:text-2xl font-black text-primary">Tu objetivo</h3>
             <p className="text-tertiary text-base sm:text-lg leading-relaxed italic">{scenario.objective}</p>
@@ -266,7 +266,7 @@ function RoleplaySession({ session, accent, onExit, onRegenerate }: RoleplaySess
       <PageContainer title="Roleplay Conversacional">
         <div className="max-w-2xl mx-auto animate-fade-in text-center">
           {header}
-          <div className="bg-surface/5 backdrop-blur-xl p-6 sm:p-10 rounded-3xl sm:rounded-[3rem] border border-border/15 shadow-2xl space-y-5 sm:space-y-6">
+          <div className="bg-surface/5 backdrop-blur-xl p-5 sm:p-10 rounded-2xl sm:rounded-[3rem] border border-border/15 shadow-2xl space-y-4 sm:space-y-6">
             <CheckBadgeIcon
               className={`w-12 h-12 sm:w-16 sm:h-16 mx-auto ${r?.objectiveMet ? 'text-success' : 'text-tertiary'}`}
               aria-hidden="true"

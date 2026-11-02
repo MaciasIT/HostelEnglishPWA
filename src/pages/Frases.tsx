@@ -180,18 +180,18 @@ export default function Frases() {
             </div>
 
             {/* Selection/Session Builder */}
-            <div className="bg-surface/10 p-10 rounded-[3rem] border border-border/20 shadow-2xl text-center relative overflow-hidden">
+            <div className="bg-surface/10 p-5 sm:p-10 rounded-2xl sm:rounded-[3rem] border border-border/20 shadow-2xl text-center relative overflow-hidden">
               {filteredFrases.length > 0 ? (
                 <>
-                  <h3 className="text-3xl font-black text-primary mb-2">¿Listo para practicar?</h3>
-                  <p className="text-tertiary mb-10">Hemos encontrado <span className="text-accent font-bold">{filteredFrases.length}</span> frases según tus filtros.</p>
+                  <h3 className="text-2xl sm:text-3xl font-black text-primary mb-2">¿Listo para practicar?</h3>
+                  <p className="text-tertiary mb-6 sm:mb-10 text-sm sm:text-base">Hemos encontrado <span className="text-accent font-bold">{filteredFrases.length}</span> frases según tus filtros.</p>
 
-                  <div className="flex flex-wrap justify-center gap-4">
+                  <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
                     {[10, 25, 'all'].map(size => (
                       <button
                         key={size}
                         onClick={() => startStudySession(size as any)}
-                        className={`px-8 py-4 rounded-2xl font-black uppercase tracking-widest transition-all active:scale-95 shadow-xl flex items-center gap-2 ${size === 'all' ? 'bg-accent text-primary' : 'bg-surface/10 text-primary hover:bg-surface/20'}`}
+                        className={`px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl sm:rounded-2xl font-black uppercase tracking-wider sm:tracking-widest transition-all active:scale-95 shadow-xl flex items-center gap-2 text-sm sm:text-base ${size === 'all' ? 'bg-accent text-primary' : 'bg-surface/10 text-primary hover:bg-surface/20'}`}
                       >
                         <PlayIcon className="w-5 h-5" />
                         {size === 'all' ? 'Todas' : size}
