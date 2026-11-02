@@ -1,4 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
+import { useSearchParams } from 'react-router';
+import { countDueReviews } from '@/services/badgeService';
 import { useSmoothFocusScroll } from '@/hooks/useSmoothFocusScroll';
 import { useAppStore, useShallow } from '@/store/useAppStore';
 import PhraseCard from '@/components/PhraseCard';
@@ -36,6 +38,9 @@ export default function Frases() {
   );
 
 
+  const [searchParams] = useSearchParams();
+  const dueOnly = searchParams.get('tab') === 'due';
+  const reviewItems = useAppStore((s) => s.reviewItems);
   const [searchTerm, setSearchTerm] = useState('');
   const handleFocusScroll = useSmoothFocusScroll();
   const selectedRole = useAppStore((state) => state.prefs.selectedRole);
@@ -83,11 +88,16 @@ export default function Frases() {
           break;
       }
 
-      const matchesRole = scope === 'all' || roleMatchesCategory(selectedRole, phrase.categoria);
+      if (dueOnly) {
+        const ri = reviewItems?.[String(phrase.id)];
+        if (!ri || countDueReviews({ x: ri }) === 0) return false;
+      }
+
+      const matchesRole = dueOnly || scope === 'all' || roleMatchesCategory(selectedRole, phrase.categoria);
 
       return matchesCategory && matchesSearch && matchesRole;
     });
-  }, [frases, searchTerm, selectedCategory, progress, scope, selectedRole]);
+  }, [frases, searchTerm, selectedCategory, progress, scope, selectedRole, dueOnly, reviewItems]);
 
   const startStudySession = (size: number | 'all') => {
     const phrasesToStudy = shuffle([...filteredFrases]);

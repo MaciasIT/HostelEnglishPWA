@@ -5,6 +5,7 @@ import { HydrationProvider } from '@/contexts/HydrationContext';
 import { initNotifications } from '@/pushNotifications';
 import { initSentry } from '@/monitoring/sentry';
 import { initSync } from '@/services/syncService';
+import { initBadgeService } from '@/services/badgeService';
 
 const HYDRATION_TIMEOUT_MS = 2500;
 
@@ -56,6 +57,16 @@ const AppInitializer = ({ children }: { children: ReactNode }) => {
             clearTimeout(timeout);
         };
     }, [finish, hasHydrated]);
+
+    useEffect(() => {
+        if (!hasHydrated) return undefined;
+        try {
+            return initBadgeService();
+        } catch (err) {
+            console.warn('[AppInitializer] Badge API no disponible:', err);
+            return undefined;
+        }
+    }, [hasHydrated]);
 
     useEffect(() => {
         if (!hasHydrated) return;

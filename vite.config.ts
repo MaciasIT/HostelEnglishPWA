@@ -32,6 +32,29 @@ export default defineConfig({
         orientation: "portrait",
         scope: "/HostelEnglishPWA/",
         start_url: "/HostelEnglishPWA/",
+        shortcuts: [
+          {
+            name: "Roleplay Rápido",
+            short_name: "Roleplay",
+            description: "Practica una conversación de hostelería al instante",
+            url: "/HostelEnglishPWA/#/roleplay",
+            icons: [{ src: "icons/pwa-192x192.png", sizes: "192x192", type: "image/png" }],
+          },
+          {
+            name: "Repaso Vencido",
+            short_name: "Repaso",
+            description: "Repasa las frases que tocan hoy",
+            url: "/HostelEnglishPWA/#/frases?tab=due",
+            icons: [{ src: "icons/pwa-192x192.png", sizes: "192x192", type: "image/png" }],
+          },
+          {
+            name: "Reto de Hoy",
+            short_name: "Reto",
+            description: "Completa el reto diario de cortesía",
+            url: "/HostelEnglishPWA/#/roleplay?reto=cortesia",
+            icons: [{ src: "icons/pwa-192x192.png", sizes: "192x192", type: "image/png" }],
+          },
+        ],
         icons: [
           {
             src: "icons/pwa-192x192.png",
