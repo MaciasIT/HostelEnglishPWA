@@ -526,5 +526,225 @@
       "max": 5
     },
     "level": "B1-B2"
+  },
+  {
+    "key": "pm03_wine_pairing",
+    "department": "restaurante",
+    "objective": "Recomienda maridajes de vino para un menú de varios pases, pregunta por las preferencias del cliente y ajusta la selección a cada plato.",
+    "expectedVocabulary": [
+      "pairing",
+      "full-bodied",
+      "crisp",
+      "red wine",
+      "white wine",
+      "dessert wine",
+      "prefer",
+      "match"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "We have a five-course tasting menu. Could you recommend a wine for each course?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B2"
+  },
+  {
+    "key": "pm03_vintage_decanting",
+    "department": "restaurante",
+    "objective": "A partir de la añada y el estado de la botella, explica si conviene decantar, describe el procedimiento y confirma el servicio sin inventar datos de la bodega.",
+    "expectedVocabulary": [
+      "vintage",
+      "decant",
+      "sediment",
+      "breathe",
+      "young",
+      "aerate",
+      "pour",
+      "bottle"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "This bottle is from 2018. Should we decant it before serving?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B2"
+  },
+  {
+    "key": "pm03_tasting_notes",
+    "department": "restaurante",
+    "objective": "Explica las notas de cata del vino elegido y adapta la descripción a las preguntas del comensal sobre cuerpo, taninos y final.",
+    "expectedVocabulary": [
+      "tannic",
+      "full-bodied",
+      "finish",
+      "aroma",
+      "fruity",
+      "oaky",
+      "notes",
+      "palate"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "How would you describe this wine? I can taste something fruity, but not much else.",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "pm03_signature_cocktail",
+    "department": "bar",
+    "objective": "Recomienda el cóctel de autor, describe su técnica (dry shake, double strain) y confirma que todos los ingredientes están disponibles antes de servir.",
+    "expectedVocabulary": [
+      "cocktail",
+      "dry shake",
+      "double strain",
+      "egg white",
+      "garnish",
+      "signature",
+      "ingredients",
+      "serve"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "What's your signature cocktail? Is there anything special about how you make it?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "pm03_premium_spirit",
+    "department": "bar",
+    "objective": "Pregunta por las preferencias del cliente y recomienda un destilado premium de la carta, sin inventar marcas ni existencias.",
+    "expectedVocabulary": [
+      "premium",
+      "spirit",
+      "gin",
+      "whisky",
+      "smooth",
+      "recommend",
+      "bottle",
+      "taste"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "I'd like something special tonight. Do you have any premium spirits worth trying?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B2"
+  },
+  {
+    "key": "pm03_classic_twist",
+    "department": "bar",
+    "objective": "Propone una variación de un cóctel clásico (muddled, smoked o rimmed glass) y confirma ingredientes y precio antes de prepararlo.",
+    "expectedVocabulary": [
+      "twist",
+      "muddled",
+      "smoked",
+      "rimmed glass",
+      "classic",
+      "ingredients",
+      "price",
+      "prepare"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "I usually have an old fashioned. Do you do your own twist on the classics?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "pm03_nut_allergy",
+    "department": "restaurante",
+    "objective": "Ante una alergia grave a frutos secos, consulta con cocina y no garantiza seguridad sin verificarla; detiene la recomendación si no se confirma.",
+    "expectedVocabulary": [
+      "nut allergy",
+      "kitchen",
+      "confirm",
+      "ingredients",
+      "cross-contamination",
+      "avoid",
+      "safe",
+      "guarantee"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "I have a severe nut allergy. Is this dish safe for me to eat?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "pm03_coeliac",
+    "department": "restaurante",
+    "objective": "Atiende una celiaquía estricta, advierte del posible contacto cruzado y no recomienda ni sirve si el protocolo no confirma que el plato es apto.",
+    "expectedVocabulary": [
+      "coeliac",
+      "gluten-free",
+      "cross-contamination",
+      "kitchen",
+      "confirm",
+      "separate",
+      "contain",
+      "unsafe"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "I'm strictly coeliac. Can you tell me what on the menu is truly gluten-free?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B1-B2"
+  },
+  {
+    "key": "pm03_shellfish_cross_contact",
+    "department": "restaurante",
+    "objective": "Ante la sospecha de contacto con marisco, detiene el servicio, escala a cocina y al responsable y activa el protocolo de emergencia si hay reacción.",
+    "expectedVocabulary": [
+      "shellfish",
+      "cross-contact",
+      "kitchen",
+      "manager",
+      "stop",
+      "reaction",
+      "emergency",
+      "allergic"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "My partner is allergic to shellfish and I think their plate touched prawns. What do we do?",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B2"
+  },
+  {
+    "key": "pm03_anaphylaxis_112",
+    "department": "restaurante",
+    "objective": "En una reacción grave simulada, avisa al responsable y sigue el protocolo para llamar a emergencias 112, sin diagnosticar ni administrar tratamiento.",
+    "expectedVocabulary": [
+      "anaphylaxis",
+      "112",
+      "emergency",
+      "manager",
+      "help",
+      "call",
+      "allergic reaction",
+      "stay"
+    ],
+    "minVocabularyHits": 3,
+    "openingLine": "I took one bite and my throat feels tight. I think I'm having a serious reaction!",
+    "targetTurns": {
+      "min": 3,
+      "max": 5
+    },
+    "level": "B2"
   }
 ]

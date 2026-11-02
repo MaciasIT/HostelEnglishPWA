@@ -33,7 +33,17 @@ export type RoleplayScenarioKey =
   | 'elevator_breakdown'
   | 'bathroom_leak'
   | 'power_outage'
-  | 'keycard_lock';
+  | 'keycard_lock'
+  | 'pm03_wine_pairing'
+  | 'pm03_vintage_decanting'
+  | 'pm03_tasting_notes'
+  | 'pm03_signature_cocktail'
+  | 'pm03_premium_spirit'
+  | 'pm03_classic_twist'
+  | 'pm03_nut_allergy'
+  | 'pm03_coeliac'
+  | 'pm03_shellfish_cross_contact'
+  | 'pm03_anaphylaxis_112';
 
 export interface RoleplayScenario {
   key: RoleplayScenarioKey;
@@ -228,6 +238,98 @@ export const ROLEPLAY_SCENARIOS: Record<RoleplayScenarioKey, RoleplayScenario> =
     persona: 'Cliente cansado cuya tarjeta no abre la puerta.',
     situation:
       'La tarjeta no abre la cerradura electrónica. El alumno debe verificar la identidad, reprogramar la tarjeta o cambiar la cerradura.',
+  },
+  /* ── PM-03: sumillería, coctelería y alérgenos ─────────────────────── */
+  pm03_wine_pairing: {
+    key: 'pm03_wine_pairing',
+    title: 'Maridaje para menú degustación',
+    persona: 'Cliente aficionado al vino que celebra una cena con menú de cinco pases.',
+    situation:
+      'El cliente pide un vino para cada pase del menú y da sus preferencias poco a poco. ' +
+      'El alumno debe preguntar por gustos, recomendar maridajes y adaptarlos a cada plato.',
+  },
+  pm03_vintage_decanting: {
+    key: 'pm03_vintage_decanting',
+    title: 'Añada y decantación',
+    persona: 'Cliente curioso que ha elegido una botella de la carta y duda si decantarla.',
+    situation:
+      'El cliente pregunta si conviene decantar una botella de 2018. El alumno debe explicar ' +
+      'qué es decantar y cómo se sirve, sin inventar datos de la bodega que no conozca.',
+  },
+  pm03_tasting_notes: {
+    key: 'pm03_tasting_notes',
+    title: 'Notas de cata',
+    persona: 'Comensal interesado que hace preguntas sobre cuerpo, taninos y final del vino.',
+    situation:
+      'El cliente quiere saber cómo es el vino elegido. El alumno debe describir sus notas de ' +
+      'cata y adaptar la explicación a cada pregunta.',
+  },
+  pm03_signature_cocktail: {
+    key: 'pm03_signature_cocktail',
+    title: 'Cóctel de autor',
+    persona: 'Cliente que quiere probar algo especial de la carta de coctelería.',
+    situation:
+      'El cliente pregunta por el cóctel de autor y su técnica (dry shake, double strain). ' +
+      'El alumno debe describirlo y confirmar que los ingredientes están disponibles antes de servir.',
+  },
+  pm03_premium_spirit: {
+    key: 'pm03_premium_spirit',
+    title: 'Destilado premium',
+    persona: 'Cliente que quiere un destilado de calidad para tomar solo o con hielo.',
+    situation:
+      'El cliente pide una recomendación de destilado premium. El alumno debe preguntar sus ' +
+      'preferencias y recomendar de la carta, sin inventar marcas ni existencias.',
+  },
+  pm03_classic_twist: {
+    key: 'pm03_classic_twist',
+    title: 'Variación de un clásico',
+    persona: 'Cliente que conoce los cócteles clásicos y busca una versión distinta.',
+    situation:
+      'El cliente quiere un clásico con un toque nuevo (muddled, smoked o rimmed glass). ' +
+      'El alumno debe proponer la variación y confirmar ingredientes y precio antes de prepararla.',
+  },
+  pm03_nut_allergy: {
+    key: 'pm03_nut_allergy',
+    title: 'Alergia grave a frutos secos',
+    persona: 'Cliente con alergia grave a los frutos secos, preocupado y muy atento.',
+    situation:
+      'El cliente pregunta si un plato es seguro para él. El alumno debe consultar con cocina. ' +
+      'RESTRICCIÓN DE SEGURIDAD: no afirmes que un plato es seguro, apto o sin trazas sin la ' +
+      'confirmación de cocina sobre ingredientes y manipulación; si no se confirma, di que no ' +
+      'se puede garantizar y detén la recomendación y el servicio. Si el cliente describe una ' +
+      'reacción grave, escala al protocolo local y al 112, sin diagnosticar ni dar tratamiento.',
+  },
+  pm03_coeliac: {
+    key: 'pm03_coeliac',
+    title: 'Celiaquía estricta y contacto cruzado',
+    persona: 'Cliente celíaco estricto que pregunta por contaminación cruzada.',
+    situation:
+      'El cliente quiere comer sin gluten. El alumno debe verificar con cocina y advertir del ' +
+      'posible contacto cruzado. RESTRICCIÓN DE SEGURIDAD: no afirmes que un plato es seguro, ' +
+      'apto o sin trazas sin confirmación de cocina conforme al protocolo; si no se confirma, ' +
+      'di que no se puede garantizar y detén la recomendación y el servicio. Ante una reacción ' +
+      'grave, escala al protocolo local y al 112, sin diagnosticar ni dar tratamiento.',
+  },
+  pm03_shellfish_cross_contact: {
+    key: 'pm03_shellfish_cross_contact',
+    title: 'Sospecha de contacto con marisco',
+    persona: 'Cliente alérgico al marisco que sospecha que su plato ha tocado marisco.',
+    situation:
+      'El cliente cree que su plato ha estado en contacto con marisco. El alumno debe detener ' +
+      'el servicio, avisar a cocina y al responsable. RESTRICCIÓN DE SEGURIDAD: no afirmes que ' +
+      'el plato es seguro sin confirmación de cocina; si no se confirma, no se puede garantizar ' +
+      'y se detiene el servicio. Si hay una reacción grave, escala al protocolo local y al 112, ' +
+      'sin diagnosticar ni dar tratamiento.',
+  },
+  pm03_anaphylaxis_112: {
+    key: 'pm03_anaphylaxis_112',
+    title: 'Reacción alérgica grave (simulacro)',
+    persona: 'Comensal que se encuentra muy mal tras comer y pide ayuda (simulacro).',
+    situation:
+      'Un cliente sufre una posible reacción alérgica grave. El alumno debe pedir ayuda, avisar ' +
+      'al responsable y llamar al 112 según el protocolo local. RESTRICCIÓN DE SEGURIDAD: no ' +
+      'diagnostiques ni indiques tratamientos médicos, y no afirmes que el plato fuera seguro; ' +
+      'la prioridad es activar el protocolo local y el 112.',
   },
 };
 

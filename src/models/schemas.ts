@@ -139,13 +139,26 @@ const IPA_PATTERN = /^[a-zæɑɒɔəɜɛɪʊʌθðʃʒŋɹɡʧʤːˈˌ ]+$/;
 
 export const IpaSchema = z.string().min(1).regex(IPA_PATTERN);
 
-/** Una frase trilingüe (es/en/eu) con transcripción IPA opcional. */
+/** Dominios temáticos PM-03 (distinto del departamento legado `categoria`). */
+export const PhraseCategorySchema = z.enum(['Sumillería', 'Coctelería', 'Alérgenos']);
+export type PhraseCategory = z.infer<typeof PhraseCategorySchema>;
+
+/** Dificultad pedagógica de una frase: 1 (básica) a 3 (avanzada). */
+export const PhraseDifficultySchema = z.number().int().min(1).max(3);
+
+/**
+ * Una frase trilingüe (es/en/eu) con transcripción IPA opcional.
+ * `category` y `difficulty` son opcionales para no invalidar el dataset
+ * histórico; los tests exigen ambos en las filas `source === 'PM-03'`.
+ */
 export const PhraseSchema = z.object({
   id: z.union([z.number().int().nonnegative(), z.string().min(1)]),
   es: z.string().min(1),
   en: z.string().min(1),
   eu: z.string().nullable().optional(),
   categoria: z.string().optional(),
+  category: PhraseCategorySchema.optional(),
+  difficulty: PhraseDifficultySchema.optional(),
   ipa: IpaSchema.optional(),
   source: z.string().optional(),
 });

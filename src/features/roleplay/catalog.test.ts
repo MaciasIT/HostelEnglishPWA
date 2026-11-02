@@ -61,6 +61,78 @@ describe('public/data/roleplays.json (integridad)', () => {
   });
 });
 
+describe('PM-03: roleplays de sumillería, coctelería y alérgenos', () => {
+  const PM03_KEYS = {
+    sumilleria: ['pm03_wine_pairing', 'pm03_vintage_decanting', 'pm03_tasting_notes'],
+    cocteleria: ['pm03_signature_cocktail', 'pm03_premium_spirit', 'pm03_classic_twist'],
+    alergenos: [
+      'pm03_nut_allergy',
+      'pm03_coeliac',
+      'pm03_shellfish_cross_contact',
+      'pm03_anaphylaxis_112',
+    ],
+  };
+  const allKeys = Object.values(PM03_KEYS).flat();
+  const pm03 = catalog.filter((s) => s.key.startsWith('pm03_'));
+  const scenarioOf = (key: string) => ROLEPLAY_SCENARIOS[key as keyof typeof ROLEPLAY_SCENARIOS];
+
+  it('hay exactamente diez, únicos y con las claves del entregable', () => {
+    expect(pm03).toHaveLength(10);
+    expect(new Set(pm03.map((s) => s.key)).size).toBe(10);
+    expect(pm03.map((s) => s.key).sort()).toEqual([...allKeys].sort());
+  });
+
+  it('reparto 3/3/4 con departamento restaurante / bar / restaurante', () => {
+    const dept = (keys: string[]) => keys.map((k) => pm03.find((s) => s.key === k)?.department);
+    expect(dept(PM03_KEYS.sumilleria)).toEqual(Array(3).fill('restaurante'));
+    expect(dept(PM03_KEYS.cocteleria)).toEqual(Array(3).fill('bar'));
+    expect(dept(PM03_KEYS.alergenos)).toEqual(Array(4).fill('restaurante'));
+  });
+
+  it('cada clave existe en ROLEPLAY_SCENARIOS con persona y situación', () => {
+    for (const key of allKeys) {
+      const sc = scenarioOf(key);
+      expect(sc, key).toBeDefined();
+      expect(sc.key).toBe(key);
+      expect(sc.persona.length, key).toBeGreaterThan(10);
+      expect(sc.situation.length, key).toBeGreaterThan(20);
+    }
+  });
+
+  it('son jugables: vocabulario, turnos 3-5 y aperturas únicas en todo el catálogo', () => {
+    const otherOpenings = new Set(
+      catalog.filter((s) => !s.key.startsWith('pm03_')).map((s) => s.openingLine),
+    );
+    for (const s of pm03) {
+      expect(s.expectedVocabulary.length, s.key).toBeGreaterThanOrEqual(s.minVocabularyHits + 2);
+      expect(s.targetTurns.min, s.key).toBeGreaterThanOrEqual(3);
+      expect(s.targetTurns.max, s.key).toBeLessThanOrEqual(5);
+      expect(/[.?!]$/.test(s.openingLine), s.key).toBe(true);
+      expect(otherOpenings.has(s.openingLine), s.key).toBe(false);
+    }
+    expect(new Set(pm03.map((s) => s.openingLine)).size).toBe(10);
+  });
+
+  it('las situaciones alimentarias prohíben afirmar seguridad sin verificar y escalan al 112', () => {
+    for (const key of PM03_KEYS.alergenos) {
+      const sit = scenarioOf(key).situation;
+      expect(sit, key).toMatch(/no afirmes/i);
+      expect(sit, key).toMatch(/112/);
+      expect(sit, key).toMatch(/sin diagnosticar|no diagnostiques/i);
+    }
+    for (const key of ['pm03_nut_allergy', 'pm03_coeliac', 'pm03_shellfish_cross_contact']) {
+      const sit = scenarioOf(key).situation;
+      expect(sit, key).toMatch(/cocina/i);
+      expect(sit, key).toMatch(/no se puede garantizar/i);
+    }
+  });
+
+  it('los escenarios previos siguen presentes', () => {
+    expect(catalog.length - pm03.length).toBeGreaterThanOrEqual(24);
+    expect(ROLEPLAY_SCENARIOS.restaurant.title).toBe('Cliente con alergias y restricciones');
+  });
+});
+
 describe('catálogo: agrupación, filtro y carga', () => {
   it('filtra por departamento y por texto', () => {
     expect(filterScenarios(catalog, 'bar', '').every((s) => s.department === 'bar')).toBe(true);
