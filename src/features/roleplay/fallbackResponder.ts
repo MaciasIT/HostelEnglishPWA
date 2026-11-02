@@ -1,4 +1,5 @@
 import type { RoleplayScenario } from './schema';
+import { generateAllergenReply, isAllergenScenario } from './allergenSafety';
 
 /**
  * Generador procedural de respuestas del cliente para el modo de inferencia
@@ -13,6 +14,12 @@ export function generateCustomerReply(
   userMessage: string,
   turnCount: number,
 ): string {
+  // Seguridad alimentaria: los escenarios PM-03 se resuelven antes de cualquier
+  // heurística genérica y nunca afirman seguridad sin confirmación de cocina.
+  if (isAllergenScenario(scenario.key)) {
+    return generateAllergenReply(scenario.key, userMessage);
+  }
+
   const lower = userMessage.toLowerCase();
   const dept = scenario.department;
 
@@ -77,7 +84,7 @@ export function generateCustomerReply(
         lower.includes('menu') ||
         lower.includes('dish')
       ) {
-        return 'That sounds wonderful and safe for my diet. Could you also please ask the chef to avoid cross-contamination in the kitchen?';
+        return 'Thank you. Could you please check with the chef to confirm the ingredients and avoid cross-contamination in the kitchen?';
       }
       if (isOfferingSolution || isApology) {
         return 'Thank you for your prompt response. Could we also have a bottle of sparkling water while we wait?';

@@ -8,6 +8,7 @@
 
 import { normalizeText } from '@/utils/normalize';
 import type { RoleplayScenario } from './schema';
+import { assertsUnverifiedSafety, isAllergenScenario } from './allergenSafety';
 
 export interface GoalCheckResult {
   /** `true` cuando se alcanzan al menos `minVocabularyHits` términos clave. */
@@ -20,6 +21,8 @@ export interface GoalCheckResult {
   foundVocabulary: string[];
   /** Vocabulario esperado no detectado aún. */
   missingVocabulary: string[];
+  /** `true` si en un escenario de alérgenos el alumno afirmó seguridad sin verificar. */
+  unsafeClaim?: boolean;
 }
 
 /**
@@ -50,7 +53,11 @@ export function checkObjective(
   }
 
   const hits = foundVocabulary.length;
-  const met = hits >= scenario.minVocabularyHits;
+  // Gate mínimo de seguridad (PM-03): "safe"/"guarantee" suman por subcadena, pero
+  // afirmar seguridad sin confirmación de cocina anula el objetivo. Limitación: la
+  // heurística es léxica y no comprende la semántica completa de la frase.
+  const unsafeClaim = isAllergenScenario(scenario.key) && assertsUnverifiedSafety(transcript || '');
+  const met = hits >= scenario.minVocabularyHits && !unsafeClaim;
 
   return {
     met,
@@ -58,6 +65,7 @@ export function checkObjective(
     requiredHits: scenario.minVocabularyHits,
     foundVocabulary,
     missingVocabulary,
+    ...(unsafeClaim ? { unsafeClaim } : {}),
   };
 }
 
