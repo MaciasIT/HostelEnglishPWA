@@ -78,7 +78,7 @@ export default function RoleplayControls({
             onClick={submit}
             disabled={disabled || !draft.trim()}
             aria-label="Enviar respuesta"
-            className="p-2 rounded-xl text-accent hover:bg-surface/10 disabled:opacity-40 transition-colors"
+            className="min-w-11 min-h-11 p-2 rounded-xl text-accent hover:bg-surface/10 disabled:opacity-40 transition-colors inline-flex items-center justify-center"
           >
             <PaperAirplaneIcon className="w-5 h-5" aria-hidden="true" />
           </button>

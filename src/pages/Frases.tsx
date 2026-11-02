@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from 'react';
 import { useAppStore, useShallow } from '@/store/useAppStore';
 import PhraseCard from '@/components/PhraseCard';
 import VoiceSettings from '@/components/VoiceSettings';
-import CollapsibleSection from '@/components/CollapsibleSection';
 import {
   ArrowLeftIcon,
   ArrowRightIcon,
@@ -165,9 +164,7 @@ export default function Frases() {
               />
 
               <div className="mt-6">
-                <CollapsibleSection title="Ajustes de Voz">
-                  <VoiceSettings settings={phraseSettings} onSettingChange={setPhraseSetting} showTitle={false} />
-                </CollapsibleSection>
+                <VoiceSettings settings={phraseSettings} onSettingChange={setPhraseSetting} showTitle={false} />
               </div>
             </div>
 

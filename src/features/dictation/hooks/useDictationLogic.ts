@@ -2,16 +2,16 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import { normalizeText, levenshteinDistance } from '@/utils/normalize';
 import useSpeechRecognition from '@/hooks/useSpeechRecognition';
 import useAudioControl from '@/hooks/useAudioControl';
-import { useAppStore, Phrase } from '@/store/useAppStore';
+import { useAppStore, useShallow, Phrase } from '@/store/useAppStore';
 import { playAudio } from '@/utils/audio';
 
 export function useDictationLogic() {
-  const { frases, progress, advancePhraseProgress, setPhraseSetting } = useAppStore(state => ({
+  const { frases, progress, advancePhraseProgress, setPhraseSetting } = useAppStore(useShallow((state) => ({
     frases: state.frases,
     progress: state.progress,
     advancePhraseProgress: state.advancePhraseProgress,
     setPhraseSetting: state.setPhraseSetting,
-  }));
+  })));
   
   const phraseSettings = useAppStore((state) => state.prefs.phraseSettings);
   const targetLanguage = useAppStore((state) => state.prefs.targetLanguage);

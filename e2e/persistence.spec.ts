@@ -11,8 +11,9 @@ test.describe('Persistencia de estado tras recarga', () => {
     await page.goto(baseURL);
     await skipRoleOnboarding(page);
 
-    const themeGroup = page.getByRole('radiogroup', { name: 'Tema' });
-    await themeGroup.getByRole('radio', { name: 'Modo claro' }).click();
+    const mobileThemeButton = page.getByRole('button', { name: 'Cambiar a modo claro' });
+    await expect(mobileThemeButton).toBeVisible();
+    await mobileThemeButton.click();
     await expect(page.locator('html')).toHaveClass(/light/);
 
     // Espera a que zustand escriba en IndexedDB (appState).
@@ -39,9 +40,7 @@ test.describe('Persistencia de estado tras recarga', () => {
 
     await expect(page.locator('html')).toHaveClass(/light/);
     await expect(page.getByRole('dialog', { name: /puesto de trabajo/i })).toHaveCount(0);
-    await expect(
-      page.getByRole('radiogroup', { name: 'Tema' }).getByRole('radio', { name: 'Modo claro' }),
-    ).toBeChecked();
+    await expect(page.getByRole('button', { name: 'Cambiar a modo oscuro' })).toBeVisible();
     expect(errors).toEqual([]);
   });
 });

@@ -1,7 +1,7 @@
 /**
  * @vitest-environment jsdom
  */
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import QuizContainer from './QuizContainer';
 
@@ -50,5 +50,16 @@ describe('QuizContainer', () => {
         expect(screen.getByText('B')).toBeDefined();
         expect(screen.getByText('C')).toBeDefined();
         expect(screen.getByText('D')).toBeDefined();
+    });
+
+    it('muestra el feedback como bottom-sheet sin ocultar la pregunta', () => {
+        render(<QuizContainer category="General" mode="truefalse" onExit={vi.fn()} />);
+        fireEvent.click(screen.getByText('SÍ'));
+
+        const sheet = screen.getByTestId('feedback-sheet');
+        expect(sheet.className).toContain('fixed bottom-0 left-0 right-0');
+        expect(screen.getByText('CONTINUAR')).toBeDefined();
+        // La frase original sigue en el DOM
+        expect(screen.getByTestId('quiz-question')).toBeDefined();
     });
 });

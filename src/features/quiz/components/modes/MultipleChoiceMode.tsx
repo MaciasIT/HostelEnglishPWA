@@ -46,6 +46,7 @@ const MultipleChoiceMode: React.FC<MultipleChoiceModeProps> = ({
     >
       {currentQuestion.options.map((option, idx) => (
         <motion.button
+          data-testid="quiz-answer-option"
           key={idx + currentQuestion.id}
           variants={itemVariants}
           layout

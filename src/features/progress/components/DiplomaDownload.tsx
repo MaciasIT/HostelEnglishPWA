@@ -29,10 +29,10 @@ export default function DiplomaDownload({ data }: { data: DiplomaData }) {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex gap-2">
-        <button type="button" disabled={busy} onClick={() => run('png')} className="rounded-xl bg-indigo-600 text-white px-4 py-2">
+        <button type="button" disabled={busy} onClick={() => run('png')} className="min-h-11 px-4 py-3 rounded-xl bg-indigo-600 text-white inline-flex items-center justify-center">
           Descargar PNG
         </button>
-        <button type="button" disabled={busy} onClick={() => run('pdf')} className="rounded-xl border border-indigo-500 px-4 py-2">
+        <button type="button" disabled={busy} onClick={() => run('pdf')} className="min-h-11 px-4 py-3 rounded-xl border border-indigo-500 inline-flex items-center justify-center">
           Imprimir / PDF
         </button>
       </div>

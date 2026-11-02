@@ -23,7 +23,7 @@ const AppContent: React.FC = () => {
       <SideNav />
 
       {/* Main Content Area */}
-      <main id="main-content" tabIndex={-1} className={`flex-grow w-full max-w-full transition-[padding] duration-300 ease-in-out pt-16 ${isSideNavCollapsed ? 'md:pl-20' : 'md:pl-20 xl:pl-72'}`}>
+      <main id="main-content" tabIndex={-1} className={`flex-grow w-full max-w-full transition-[padding] duration-300 ease-in-out pt-[calc(4rem+env(safe-area-inset-top,0px))] ${isSideNavCollapsed ? 'md:pl-20' : 'md:pl-20 xl:pl-72'}`}>
         <div className="max-w-7xl mx-auto w-full h-full flex flex-col">
           {isHydrating ? (
             <PageSkeleton />
@@ -34,7 +34,7 @@ const AppContent: React.FC = () => {
       </main>
 
       {/* Bottom Padding: accounts for BottomNav on mobile, none on desktop */}
-      <div className="h-20 md:h-0"></div>
+      <div className="h-[calc(4rem+env(safe-area-inset-bottom,0px))] md:h-0"></div>
 
       {/* Mobile Bottom Tab Navigation */}
       <BottomNav />

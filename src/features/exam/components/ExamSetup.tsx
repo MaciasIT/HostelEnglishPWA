@@ -50,23 +50,27 @@ export default function ExamSetup({ onStart, onBack, targetLanguage }: ExamSetup
   const selectedRoleMeta = ROLES.find(r => r.value === selectedRole);
 
   return (
-    <div className="max-w-2xl mx-auto py-12 text-center">
-      <div className="bg-surface/5 p-10 rounded-[3rem] border border-border/10 shadow-2xl backdrop-blur-xl mb-8">
+    <div className="max-w-2xl mx-auto py-6 sm:py-12 text-center">
+      <div className="bg-surface/5 p-4 sm:p-10 rounded-2xl sm:rounded-[3rem] border border-border/10 shadow-2xl backdrop-blur-xl mb-6 sm:mb-8">
         <ShieldCheckIcon className="w-16 h-16 text-accent mx-auto mb-6" />
 
         {/* Exam type toggle */}
         <div className="flex bg-surface/5 rounded-2xl p-1 mb-8 max-w-sm mx-auto">
           <button
+            type="button"
+            aria-pressed={!isRoleCert}
             onClick={() => setIsRoleCert(false)}
-            className={`flex-1 py-3 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${
+            className={`min-h-11 flex-1 py-3 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${
               !isRoleCert ? 'bg-surface/10 text-primary shadow-lg' : 'text-tertiary hover:text-primary'
             }`}
           >
             Examen Global
           </button>
           <button
+            type="button"
+            aria-pressed={isRoleCert}
             onClick={() => setIsRoleCert(true)}
-            className={`flex-1 py-3 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${
+            className={`min-h-11 flex-1 py-3 rounded-xl text-sm font-black uppercase tracking-widest transition-all ${
               isRoleCert ? 'bg-accent text-primary shadow-lg' : 'text-tertiary hover:text-primary'
             }`}
           >
@@ -98,8 +102,10 @@ export default function ExamSetup({ onStart, onBack, targetLanguage }: ExamSetup
                 {ROLES.map(role => (
                   <button
                     key={role.value}
+                    type="button"
+                    aria-pressed={selectedRole === role.value}
                     onClick={() => setSelectedRole(role.value)}
-                    className={`p-4 rounded-2xl border-2 transition-all text-center ${
+                    className={`min-h-20 p-3 sm:p-4 rounded-2xl border-2 transition-all text-center ${
                       selectedRole === role.value
                         ? 'bg-accent/20 border-accent text-primary'
                         : 'bg-surface/5 border-border/10 text-tertiary hover:border-border/30 hover:text-primary'
@@ -123,7 +129,7 @@ export default function ExamSetup({ onStart, onBack, targetLanguage }: ExamSetup
                 value={studentName}
                 onChange={e => setStudentName(e.target.value)}
                 placeholder="Tu nombre para el certificado"
-                className="w-full bg-surface/5 border border-border/10 rounded-2xl px-5 py-3 text-primary text-sm font-semibold placeholder-gray-600 focus:outline-none focus:border-accent transition-colors"
+                className="w-full min-h-11 bg-surface/5 border border-border/10 rounded-2xl px-5 py-3 text-primary text-sm font-semibold placeholder-gray-600 focus:outline-none focus:border-accent transition-colors"
               />
             </div>
           </>
@@ -132,13 +138,13 @@ export default function ExamSetup({ onStart, onBack, targetLanguage }: ExamSetup
         <div className="space-y-4">
           <button
             onClick={handleStart}
-            className="w-full bg-accent hover:brightness-110 text-primary font-black py-4 rounded-2xl text-xl shadow-lg transition-all active:scale-95"
+            className="w-full min-h-14 bg-accent hover:brightness-110 text-primary font-black py-4 rounded-2xl text-xl shadow-lg transition-all active:scale-95"
           >
             {isRoleCert ? 'Iniciar Certificación' : 'Comenzar Examen'}
           </button>
           <button
             onClick={onBack}
-            className="w-full bg-surface/5 hover:bg-surface/10 text-primary font-bold py-3 rounded-2xl transition-all text-sm uppercase tracking-widest"
+            className="w-full min-h-11 bg-surface/5 hover:bg-surface/10 text-primary font-bold py-3 rounded-2xl transition-all text-sm uppercase tracking-widest"
           >
             Volver
           </button>

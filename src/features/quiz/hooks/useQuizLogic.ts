@@ -3,11 +3,13 @@ import { useAppStore } from '@/store/useAppStore';
 import { Question, QuizMode, ScrambledWord, Feedback } from '../types';
 import { getTargetText } from '@/utils/language';
 import { haptics } from '@/utils/haptics';
+import { filterByRole } from '@/utils/roleFilter';
+import type { JobRole } from '@/store/types';
 
 /** Racha que dispara el patrón STREAK (y cada múltiplo posterior). */
 const STREAK_MILESTONE = 7;
 
-export const useQuizLogic = (category: string | null, mode: QuizMode) => {
+export const useQuizLogic = (category: string | null, mode: QuizMode, role?: JobRole | null) => {
   const { frases, progress, advancePhraseProgress, prefs } = useAppStore();
   const { targetLanguage } = prefs;
 
@@ -25,8 +27,11 @@ export const useQuizLogic = (category: string | null, mode: QuizMode) => {
   const QUESTIONS_PER_LEVEL = 10;
 
   const filteredFrases = useMemo(() => {
-    return category ? frases.filter(f => f.categoria === category) : frases;
-  }, [frases, category]);
+    const base = category ? frases.filter(f => f.categoria === category) : frases;
+    const byRole = filterByRole(base, role);
+    // Si el filtro de rol deja muy pocas frases, no bloquear el quiz.
+    return byRole.length >= 4 ? byRole : base;
+  }, [frases, category, role]);
 
   const generateQuestion = useCallback(() => {
     if (filteredFrases.length < 4) return;

@@ -73,7 +73,7 @@ const FlashcardItem: React.FC<FlashcardItemProps> = ({ phrase, targetLanguage, p
           </div>
           <button
             onClick={(e) => handlePlayAudio('target', e)}
-            className="p-5 bg-accent text-primary rounded-2xl shadow-xl hover:scale-110 active:scale-95 transition-all mb-8 z-10"
+            className="p-4 bg-accent text-primary rounded-2xl shadow-xl hover:scale-110 active:scale-95 transition-all mb-8 z-10 min-w-14 min-h-14 inline-flex items-center justify-center"
             aria-label={`Reproducir audio en ${targetLangName}`}
           >
             <SpeakerWaveIcon className="w-8 h-8" aria-hidden="true" />
@@ -94,7 +94,7 @@ const FlashcardItem: React.FC<FlashcardItemProps> = ({ phrase, targetLanguage, p
           </div>
           <button
             onClick={(e) => handlePlayAudio('es', e)}
-            className="p-5 bg-surface/10 text-primary rounded-2xl shadow-xl hover:bg-surface/20 active:scale-110 transition-all border border-border/10 mb-8 z-10"
+            className="p-4 bg-surface/10 text-primary rounded-2xl shadow-xl hover:bg-surface/20 active:scale-110 transition-all border border-border/10 mb-8 z-10 min-w-14 min-h-14 inline-flex items-center justify-center"
             aria-label="Reproducir audio en Español"
           >
             <SpeakerWaveIcon className="w-8 h-8 opacity-70" aria-hidden="true" />

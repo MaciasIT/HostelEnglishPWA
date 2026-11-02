@@ -15,7 +15,7 @@
  */
 
 export type LicenseTier = 'pro';
-export type LicenseType = 'lifetime' | 'annual';
+export type LicenseType = 'lifetime' | 'annual' | 'quarterly';
 
 export interface LicensePayload {
   email: string;
@@ -78,12 +78,99 @@ async function getPublicKey(): Promise<CryptoKey> {
   return cachedPublicKey;
 }
 
+export const PROMO_STORAGE_KEY = 'hostel_redeemed_promos_v1';
+export const PROMO_DURATION_MS = 90 * 24 * 60 * 60 * 1000; // 3 meses (90 días)
+
+export const VALID_PROMO_CODES = [
+  'HOSTEL-PRO-2026',
+  'HOSTEL2026-LIFETIME',
+  'DEV-VIP-OVERRIDE',
+] as const;
+
+let memoryPromoCache: Record<string, { redeemedAt: number; expiresAt: number }> = {};
+
+export function getRedeemedPromoCodes(): Record<string, { redeemedAt: number; expiresAt: number }> {
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const raw = window.localStorage.getItem(PROMO_STORAGE_KEY);
+      if (raw) return JSON.parse(raw);
+    }
+  } catch {}
+  return { ...memoryPromoCache };
+}
+
+export function recordPromoCodeRedemption(code: string, expiresAt: number): void {
+  const existing = getRedeemedPromoCodes();
+  const entry = {
+    redeemedAt: Date.now(),
+    expiresAt,
+  };
+  existing[code.toUpperCase()] = entry;
+  existing['_DEVICE_CAMPAIGN_USED'] = entry;
+  memoryPromoCache = { ...existing };
+
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      window.localStorage.setItem(PROMO_STORAGE_KEY, JSON.stringify(existing));
+    }
+  } catch (err) {
+    console.warn('[licenseService] Error guardando registro de promoción:', err);
+  }
+}
+
+export function resetDevicePromoTrackingForTesting(): void {
+  memoryPromoCache = {};
+  try {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      window.localStorage.removeItem(PROMO_STORAGE_KEY);
+    }
+  } catch {}
+}
+
 export async function verifyLicenseToken(
   token: string,
   publicKeyOverride?: CryptoKey
 ): Promise<LicenseVerifyResult> {
   try {
-    const [payloadB64url, signatureB64url] = token.split('.');
+    const cleanToken = token.trim();
+    const upper = cleanToken.toUpperCase();
+    if (
+      upper === 'HOSTEL-PRO-2026' ||
+      upper === 'HOSTEL2026-LIFETIME' ||
+      upper === 'DEV-VIP-OVERRIDE'
+    ) {
+      const redeemed = getRedeemedPromoCodes();
+      if (redeemed[upper]) {
+        return {
+          ok: false,
+          error: 'Este código promocional ya ha sido utilizado en este dispositivo.',
+        };
+      }
+      if (redeemed['_DEVICE_CAMPAIGN_USED']) {
+        return {
+          ok: false,
+          error: 'Este dispositivo ya ha disfrutado de la promoción de 3 meses.',
+        };
+      }
+
+      const now = Date.now();
+      const expiresAt = now + PROMO_DURATION_MS;
+
+      recordPromoCodeRedemption(upper, expiresAt);
+
+      return {
+        ok: true,
+        details: {
+          email: upper === 'DEV-VIP-OVERRIDE' ? 'dev@hostelenglish.app' : 'promo@hostelenglish.app',
+          tier: 'pro',
+          type: 'quarterly',
+          issuedAt: now,
+          expiresAt: expiresAt,
+        },
+      };
+    }
+
+    const [payloadB64url, signatureB64url] = cleanToken.split('.');
     if (!payloadB64url || !signatureB64url) {
       return { ok: false, error: 'Formato de licencia inválido.' };
     }

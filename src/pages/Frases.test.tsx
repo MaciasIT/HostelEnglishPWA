@@ -113,17 +113,18 @@ describe('Frases Page', () => {
     renderFrasesComponent(initialStateWithoutActiveSession);
     fireEvent.click(screen.getByText(/Empezar Ahora/i));
 
-    const voiceSettingsTitle = screen.getByText('Ajustes de Voz');
-    // Inicialmente, los controles no son visibles
-    expect(screen.queryByText(/Velocidad/i)).not.toBeInTheDocument();
+    const voiceSettingsButton = screen.getByRole('button', { name: /Ajustes de Voz/i });
+    // Inicialmente, el sheet no es visible
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
 
-    // Al hacer clic, se expande
-    fireEvent.click(voiceSettingsTitle);
-    expect(screen.getByText(/Velocidad/i)).toBeInTheDocument();
-    expect(screen.getByText(/Tono/i)).toBeInTheDocument();
+    // Al hacer clic, se abre el bottom sheet
+    fireEvent.click(voiceSettingsButton);
+    expect(screen.getByRole('dialog')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /1\.0x/i })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /Probar voz/i })).toBeInTheDocument();
 
-    // Al volver a hacer clic, se colapsa
-    fireEvent.click(voiceSettingsTitle);
-    expect(screen.queryByText(/Velocidad/i)).not.toBeInTheDocument();
+    // Al cerrar, desaparece
+    fireEvent.click(screen.getByRole('button', { name: /Cerrar ajustes de voz/i }));
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 });

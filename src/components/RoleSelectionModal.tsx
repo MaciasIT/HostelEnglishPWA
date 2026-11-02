@@ -32,12 +32,12 @@ const RoleSelectionModal: React.FC<RoleSelectionModalProps> = ({ open, onClose }
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+    <div className="safe-area-modal-backdrop fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="role-modal-title"
-        className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-surface border border-border/10 rounded-[2rem] p-6 sm:p-8 shadow-2xl"
+        className="safe-area-modal-panel w-full max-w-2xl overflow-y-auto bg-surface border border-border/10 rounded-[2rem] p-6 sm:p-8 shadow-2xl"
       >
         <h2 id="role-modal-title" className="text-2xl sm:text-3xl font-black text-primary mb-2">
           ¿Cuál es tu puesto de trabajo?

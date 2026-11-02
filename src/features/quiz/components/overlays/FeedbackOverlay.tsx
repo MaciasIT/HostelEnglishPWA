@@ -1,6 +1,7 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircleIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { SpeakerWaveIcon } from '@heroicons/react/24/outline';
 import { Feedback, Question } from '../../types';
 
 interface FeedbackOverlayProps {
@@ -12,8 +13,14 @@ interface FeedbackOverlayProps {
   questionsHandled: number;
   totalInLevel: number;
   onContinue: () => void;
+  onSpeak?: () => void;
 }
 
+/**
+ * Bottom-sheet no invasivo: sin backdrop, la frase y las opciones
+ * permanecen visibles. Se renderiza en un portal para que los transforms
+ * de framer-motion de los ancestros no rompan `position: fixed`.
+ */
 const FeedbackOverlay: React.FC<FeedbackOverlayProps> = ({
   feedback,
   currentQuestion,
@@ -22,97 +29,74 @@ const FeedbackOverlay: React.FC<FeedbackOverlayProps> = ({
   lives,
   questionsHandled,
   totalInLevel,
-  onContinue
+  onContinue,
+  onSpeak,
 }) => {
-  return (
+  const ok = feedback?.isCorrect;
+  const solution = currentQuestion
+    ? (targetLanguage === 'eu' ? currentQuestion.target.eu : currentQuestion.target.en) || currentQuestion.target.en
+    : '';
+
+  const sheet = (
     <AnimatePresence>
       {feedback && currentQuestion && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-background/80 backdrop-blur-md overflow-hidden"
+          key="feedback-sheet"
+          role="status"
+          aria-live="polite"
+          data-testid="feedback-sheet"
+          initial={{ y: '100%' }}
+          animate={{ y: 0 }}
+          exit={{ y: '100%' }}
+          transition={{ type: 'spring', stiffness: 320, damping: 32 }}
+          className={`fixed bottom-0 left-0 right-0 z-50 px-5 pt-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] max-h-[min(40dvh,20rem)] overflow-y-auto overscroll-contain rounded-t-3xl border-t-4 shadow-[0_-12px_40px_rgba(0,0,0,0.35)] text-primary ${
+            ok ? 'bg-surface-elevated border-success' : 'bg-surface-elevated border-error'
+          }`}
         >
-          {/* Background Aura */}
-          <motion.div 
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 2, opacity: 0.6 }}
-            className={`absolute w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none ${
-              feedback.isCorrect ? 'bg-success/30' : 'bg-error/30'
-            }`}
-          />
-
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0, y: 50 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.8, opacity: 0, y: 50 }}
-            transition={{ type: "spring", stiffness: 300, damping: 25 }}
-            className={`max-w-md w-full p-10 rounded-[3rem] text-center shadow-2xl border-2 relative z-10 
-              ${feedback.isCorrect 
-                ? 'bg-gradient-to-br from-green-600 to-green-800 border-green-400' 
-                : 'bg-gradient-to-br from-red-600 to-red-800 border-red-400'}`}
-          >
-            <motion.div 
-              initial={{ scale: 0, rotate: -45 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{ delay: 0.1, type: "spring" }}
-              className="mb-6 flex justify-center"
-            >
-              {feedback.isCorrect ? (
-                <div className="p-4 bg-surface/20 rounded-full" aria-hidden="true">
-                  <CheckCircleIcon className="w-20 h-20 text-primary drop-shadow-lg" />
+          <div className="max-w-xl mx-auto space-y-4">
+            <div className="flex items-start justify-between gap-3">
+              {ok ? (
+                <div className="min-w-0">
+                  <p className="text-2xl font-black">✓ ¡Correcto!</p>
+                  {streak > 2 && <p className="text-sm font-bold text-amber-500">¡Racha de {streak} 🔥!</p>}
+                  <p className="text-xs font-bold uppercase tracking-widest text-secondary mt-2">Respuesta modelo:</p>
+                  <p data-testid="quiz-feedback-solution" className="text-xl font-black italic break-words">{solution}</p>
                 </div>
               ) : (
-                <div className="p-4 bg-surface/20 rounded-full" aria-hidden="true">
-                  <XMarkIcon className="w-20 h-20 text-primary drop-shadow-lg" />
+                <div className="min-w-0">
+                  <p className="text-xs font-black uppercase tracking-widest text-secondary">✕ Solución correcta:</p>
+                  <p data-testid="quiz-feedback-solution" className="text-xl font-black italic break-words">{solution}</p>
                 </div>
               )}
-            </motion.div>
-
-            <h3 className="text-4xl font-black mb-2 text-primary tracking-tighter">
-              {feedback.isCorrect ? '¡CORRECTO!' : '¡UPS!'}
-            </h3>
-
-            <div className="mb-10 min-h-[60px] flex flex-col justify-center">
-              {feedback.isCorrect ? (
-                <motion.p 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="text-xl text-primary/90 font-bold"
+              {onSpeak && (
+                <button
+                  type="button"
+                  onClick={onSpeak}
+                  aria-label="Escuchar pronunciación"
+                  className="shrink-0 w-12 h-12 rounded-full bg-surface border border-border/15 hover:bg-surface-hover flex items-center justify-center"
                 >
-                  {streak > 2 ? (
-                    <motion.span 
-                      animate={{ scale: [1, 1.1, 1] }}
-                      transition={{ repeat: Infinity, duration: 1 }}
-                      className="flex items-center justify-center gap-2 text-orange-300 font-black drop-shadow-[0_0_10px_rgba(253,186,116,0.3)]"
-                    >
-                      ¡Racha de {streak} 🔥!
-                    </motion.span>
-                  ) : '¡Buen trabajo!'}
-                </motion.p>
-              ) : (
-                <div className="space-y-1">
-                  <p className="text-sm text-primary/60 uppercase tracking-widest font-black">Era:</p>
-                  <p className="text-2xl text-primary font-black italic">
-                    {targetLanguage === 'eu' ? currentQuestion.target.eu : currentQuestion.target.en}
-                  </p>
-                </div>
+                  <SpeakerWaveIcon className="w-6 h-6" aria-hidden="true" />
+                </button>
               )}
             </div>
 
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <button
+              type="button"
+              autoFocus
               onClick={onContinue}
-              className="bg-surface text-primary font-black py-5 px-12 rounded-2xl hover:shadow-[0_0_30px_rgba(255,255,255,0.4)] transition-all shadow-2xl w-full uppercase tracking-widest text-lg"
+              className={`w-full min-h-14 py-4 rounded-2xl bg-white font-black uppercase tracking-widest text-lg active:scale-95 transition-transform ${
+                ok ? 'text-emerald-800' : 'text-red-800'
+              }`}
             >
-              {lives <= 0 ? 'Ver Resultados' : (questionsHandled >= totalInLevel ? 'Ver Victoria' : 'Siguiente')}
-            </motion.button>
-          </motion.div>
+              {lives <= 0 ? 'Ver Resultados' : questionsHandled >= totalInLevel ? 'Ver Victoria' : 'CONTINUAR'}
+            </button>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
   );
+
+  return typeof document === 'undefined' ? sheet : createPortal(sheet, document.body);
 };
 
 export default FeedbackOverlay;

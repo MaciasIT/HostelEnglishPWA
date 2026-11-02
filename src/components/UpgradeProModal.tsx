@@ -1,6 +1,7 @@
 import React, { useEffect, useId, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useAppStore } from '@/store/useAppStore';
+import { useIsPremium } from '@/hooks/useIsPremium';
 import {
   CheckCircleIcon,
   XMarkIcon,
@@ -27,7 +28,7 @@ interface UpgradeProModalProps {
 }
 
 const UpgradeProModal: React.FC<UpgradeProModalProps> = ({ isOpen, onClose }) => {
-  const isPremium = useAppStore((s) => s.isPremium);
+  const isPremium = useIsPremium();
   const licenseInfo = useAppStore((s) => s.licenseInfo);
   const activateLicense = useAppStore((s) => s.activateLicense);
   const [key, setKey] = useState('');
@@ -78,20 +79,20 @@ const UpgradeProModal: React.FC<UpgradeProModalProps> = ({ isOpen, onClose }) =>
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      className="safe-area-modal-backdrop fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
       onMouseDown={(e) => e.target === e.currentTarget && onClose()}
     >
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="relative w-full max-w-md bg-background border border-border/10 rounded-[2rem] p-8 shadow-2xl animate-fade-in"
+        className="safe-area-modal-panel relative w-full max-w-md bg-background border border-border/10 rounded-[2rem] p-6 sm:p-8 shadow-2xl animate-fade-in"
       >
         <button
           type="button"
           onClick={onClose}
           aria-label="Cerrar"
-          className="absolute top-4 right-4 p-2 rounded-xl text-tertiary hover:text-primary hover:bg-surface/5 transition-colors"
+          className="absolute top-4 right-4 min-w-11 min-h-11 p-2 rounded-xl text-tertiary hover:text-primary hover:bg-surface/5 transition-colors inline-flex items-center justify-center"
         >
           <XMarkIcon className="w-5 h-5" />
         </button>
@@ -113,7 +114,12 @@ const UpgradeProModal: React.FC<UpgradeProModalProps> = ({ isOpen, onClose }) =>
             </p>
             {licenseInfo && (
               <p className="text-xs text-tertiary">
-                {licenseInfo.email} · {licenseInfo.type === 'lifetime' ? 'De por vida' : 'Anual'}
+                {licenseInfo.email} ·{' '}
+                {licenseInfo.type === 'lifetime'
+                  ? 'De por vida'
+                  : licenseInfo.type === 'quarterly'
+                  ? `Promoción 3 Meses (hasta ${new Date(licenseInfo.expiresAt).toLocaleDateString('es-ES')})`
+                  : 'Anual'}
               </p>
             )}
             <button

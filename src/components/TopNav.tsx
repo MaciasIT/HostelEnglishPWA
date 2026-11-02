@@ -15,13 +15,13 @@ const TopNav: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 ${offset} bg-background/80 backdrop-blur-xl border-b border-border/5 shadow-2xl flex items-center justify-between px-3 sm:px-6 h-16 z-[45] transition-[left] duration-300 ease-in-out`}
+      className={`fixed top-0 left-0 right-0 ${offset} bg-background/80 backdrop-blur-xl border-b border-border/5 shadow-2xl flex items-center justify-between px-3 sm:px-6 h-[calc(4rem+env(safe-area-inset-top,0px))] pt-[env(safe-area-inset-top,0px)] z-[45] transition-[left] duration-300 ease-in-out`}
     >
       <div className="flex items-center gap-2 sm:gap-3 min-w-0">
         <button
           onClick={toggleSideNav}
           aria-label="Abrir menú"
-          className="xl:hidden p-1.5 sm:p-2 bg-surface/5 border border-border/10 rounded-xl text-primary hover:bg-accent transition-colors active:scale-95 shrink-0"
+          className="xl:hidden min-w-11 min-h-11 p-2 bg-surface/5 border border-border/10 rounded-xl text-primary hover:bg-accent transition-colors active:scale-95 shrink-0 inline-flex items-center justify-center"
         >
           <Bars3Icon className="w-5 h-5 sm:w-6 sm:h-6" />
         </button>
@@ -47,7 +47,7 @@ const TopNav: React.FC = () => {
         <Link
           to="/configuracion"
           aria-label="Perfil y ajustes"
-          className="p-1 sm:p-1.5 rounded-full text-primary hover:text-accent hover:bg-surface/5 transition-colors shrink-0"
+          className="min-w-11 min-h-11 p-2 rounded-full text-primary hover:text-accent hover:bg-surface/5 transition-colors shrink-0 inline-flex items-center justify-center"
         >
           <UserCircleIcon className="w-7 h-7 sm:w-8 sm:h-8" />
         </Link>

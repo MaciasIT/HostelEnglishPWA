@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { useAppStore, Phrase } from '@/store/useAppStore';
+import { useAppStore, useShallow, Phrase } from '@/store/useAppStore';
 import { getTargetText } from '@/utils/language';
 import { shuffle } from '@/utils/shuffle';
 import { haptics } from '@/utils/haptics';
@@ -30,7 +30,7 @@ export function useExamLogic() {
     frasesLoaded,
     loadFrases,
     targetLanguage,
-  } = useAppStore(state => ({
+  } = useAppStore(useShallow((state) => ({
     frases: state.frases,
     progress: state.progress,
     advancePhraseProgress: state.advancePhraseProgress,
@@ -39,7 +39,7 @@ export function useExamLogic() {
     frasesLoaded: state.frasesLoaded,
     loadFrases: state.loadFrases,
     targetLanguage: state.prefs.targetLanguage,
-  }));
+  })));
 
   const [examState, setExamState] = useState<ExamState>('setup');
   const [examPhrases, setExamPhrases] = useState<Phrase[]>([]);

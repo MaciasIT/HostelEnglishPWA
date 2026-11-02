@@ -60,8 +60,8 @@ describe('Quiz Page', () => {
         renderQuizComponent();
         await user.click(screen.getByText(/Empezar Ahora/i));
         expect(await screen.findByText('Selecciona tu especialidad y el tipo de entrenamiento que prefieres hoy.')).toBeInTheDocument();
-        expect(screen.getByText('Opción Múltiple')).toBeInTheDocument();
-        expect(screen.getByText('Verdadero / Falso')).toBeInTheDocument();
+        expect(screen.getByText('Múltiple')).toBeInTheDocument();
+        expect(screen.getByText('V/F')).toBeInTheDocument();
     });
 
     it('debería comenzar el modo Opción Múltiple y mostrar opciones', async () => {
@@ -69,7 +69,7 @@ describe('Quiz Page', () => {
         renderQuizComponent();
         await user.click(screen.getByText(/Empezar Ahora/i));
 
-        const modeBtn = await screen.findByText('Opción Múltiple');
+        const modeBtn = await screen.findByText('Múltiple');
         await user.click(modeBtn);
         await user.click(screen.getByText('¡EMPEZAR ENTRENAMIENTO!'));
 
@@ -84,7 +84,7 @@ describe('Quiz Page', () => {
         renderQuizComponent();
         await user.click(screen.getByText(/Empezar Ahora/i));
 
-        const modeBtn = await screen.findByText('Verdadero / Falso');
+        const modeBtn = await screen.findByText('V/F');
         await user.click(modeBtn);
         await user.click(screen.getByText('¡EMPEZAR ENTRENAMIENTO!'));
 
@@ -93,5 +93,21 @@ describe('Quiz Page', () => {
         const falseBtn = screen.getByText('NO');
         expect(trueBtn).toBeInTheDocument();
         expect(falseBtn).toBeInTheDocument();
+    });
+
+    it('muestra el entrenamiento rápido y lo arranca con un solo tap', async () => {
+        const user = userEvent.setup();
+        renderQuizComponent();
+        await user.click(screen.getByText(/Empezar Ahora/i));
+        await user.click(await screen.findByText(/Entrenamiento Rápido: General/i));
+        expect(await screen.findByTestId('quiz-container')).toBeInTheDocument();
+    });
+
+    it('muestra los 3 modos en un segmented control y el botón de empezar', async () => {
+        const user = userEvent.setup();
+        renderQuizComponent();
+        await user.click(screen.getByText(/Empezar Ahora/i));
+        expect(await screen.findAllByRole('radio')).toHaveLength(3);
+        expect(screen.getByText('¡EMPEZAR ENTRENAMIENTO!')).toBeInTheDocument();
     });
 });

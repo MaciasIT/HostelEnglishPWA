@@ -7,6 +7,7 @@ import { HashRouter } from 'react-router';
 // Mock the store
 vi.mock('@/store/useAppStore', () => ({
     useAppStore: vi.fn(),
+    useShallow: (fn: any) => fn,
 }));
 
 const mockFrases = [

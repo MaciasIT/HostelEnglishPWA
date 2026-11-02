@@ -140,7 +140,7 @@ export default function CertificationBadge({
             </span>
             <button
               onClick={onShare}
-              className="ml-2 text-primary/40 hover:text-primary transition-colors"
+              className="ml-2 min-w-11 min-h-11 text-primary/40 hover:text-primary transition-colors inline-flex items-center justify-center rounded-xl"
               aria-label="Copiar código de verificación"
               title="Copiar código"
             >

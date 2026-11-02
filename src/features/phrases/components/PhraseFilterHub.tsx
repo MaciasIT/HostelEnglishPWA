@@ -1,6 +1,5 @@
 import { MagnifyingGlassIcon, FunnelIcon } from '@heroicons/react/24/outline';
 import VoiceSettings from '@/components/VoiceSettings';
-import CollapsibleSection from '@/components/CollapsibleSection';
 
 interface PhraseFilterHubProps {
   searchTerm: string;
@@ -73,15 +72,11 @@ export default function PhraseFilterHub({
       </div>
 
       <div className="mt-6">
-        <CollapsibleSection title="Ajustes de Voz">
-          <div className="pt-4">
-            <VoiceSettings 
-              settings={phraseSettings} 
-              onSettingChange={onPhraseSettingChange} 
-              showTitle={false} 
-            />
-          </div>
-        </CollapsibleSection>
+        <VoiceSettings
+          settings={phraseSettings}
+          onSettingChange={onPhraseSettingChange}
+          showTitle={false}
+        />
       </div>
     </div>
   );

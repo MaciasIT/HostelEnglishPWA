@@ -21,7 +21,7 @@ const ThemeToggle: React.FC = () => {
         aria-label={isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}
         title={isDark ? 'Modo claro' : 'Modo oscuro'}
         onClick={() => setTheme(isDark ? 'light' : 'dark')}
-        className="sm:hidden p-2 rounded-full border border-border/10 bg-surface/5 text-primary hover:bg-surface/10 transition-colors active:scale-95 flex items-center justify-center shrink-0"
+        className="sm:hidden min-w-11 min-h-11 p-2 rounded-full border border-border/10 bg-surface/5 text-primary hover:bg-surface/10 transition-colors active:scale-95 flex items-center justify-center shrink-0"
       >
         {isDark ? <SunIcon className="w-4 h-4 text-amber-400" /> : <MoonIcon className="w-4 h-4 text-cyan-400" />}
       </button>

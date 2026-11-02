@@ -164,7 +164,7 @@ describe('<Conversaciones />', () => {
 		expect(screen.getByText('Ordering a drink')).toBeInTheDocument();
 	});
 
-	it('should hide user text when a role is selected in detail view', async () => {
+	it('should keep user text visible with a TU TURNO badge when a role is selected', async () => {
 		const user = userEvent.setup();
 		renderComponentAndStart();
 
@@ -177,9 +177,9 @@ describe('<Conversaciones />', () => {
         // Switch to list view so all turns are rendered
         await user.click(screen.getByText(/Lista/i));
 
-		// El texto del Guest debería estar oculto y reemplazado
+		// El texto del Guest sigue visible, con badge de turno
 		expect(screen.getAllByText(/TU TURNO/i).length).toBeGreaterThan(0);
-		expect(screen.queryByText('I have a reservation.')).not.toBeInTheDocument();
+		expect(screen.getByText('I have a reservation.')).toBeInTheDocument();
 		// El texto del Staff debería seguir visible
 		expect(screen.getByText('Welcome! How can I help?')).toBeInTheDocument();
 	});

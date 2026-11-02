@@ -101,15 +101,15 @@ const PhraseCard = ({
           <div className="flex gap-2">
             <button
               onClick={() => handlePlayAudio('es')}
-              className="p-4 bg-surface/5 border border-border/10 rounded-2xl text-primary hover:bg-surface/10 active:scale-90 transition-all shadow-lg"
-              title="Escuchar en Español"
+              aria-label="Escuchar frase en español"
+              className="min-w-14 min-h-14 p-4 bg-surface/5 border border-border/10 rounded-2xl text-primary hover:bg-surface/10 active:scale-90 transition-all shadow-lg inline-flex items-center justify-center"
             >
               <SpeakerWaveIcon className="w-6 h-6 opacity-70" />
             </button>
             <button
               onClick={() => handlePlayAudio('target')}
-              className="p-4 bg-accent text-primary rounded-2xl hover:brightness-110 active:scale-90 transition-all shadow-lg flex items-center gap-2"
-              title={`Escuchar en ${targetLabel}`}
+              aria-label={`Escuchar frase en ${targetLabel.toLowerCase()}`}
+              className="min-w-14 min-h-14 p-4 bg-accent text-primary rounded-2xl hover:brightness-110 active:scale-90 transition-all shadow-lg flex items-center justify-center gap-2"
             >
               <SpeakerWaveIcon className="w-6 h-6" />
               <span className="font-bold text-sm hidden sm:inline">{targetLabel}</span>

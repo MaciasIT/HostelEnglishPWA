@@ -34,23 +34,23 @@ export default function ConversationUI({ conversation, onBack, onConversationEnd
   })();
 
   return (
-    <div className="flex flex-col min-h-[85vh] animate-fade-in pb-20">
+    <div className="flex flex-col min-h-[85vh] animate-fade-in pb-0">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between gap-2 mb-8">
         <button
           onClick={() => { actions.handleStop(); onBack(); }}
-          className="p-3 bg-surface/5 border border-border/10 rounded-2xl text-primary hover:bg-surface/10 transition-all active:scale-90"
+          className="min-w-11 min-h-11 p-2 bg-surface/5 border border-border/10 rounded-2xl text-primary hover:bg-surface/10 transition-all active:scale-90 inline-flex items-center justify-center"
           aria-label="Volver al listado de diálogos"
         >
           <ArrowLeftIcon className="w-6 h-6" />
         </button>
-        <div className="text-center">
-          <h1 className="text-2xl font-black text-primary leading-tight">{conversation.title}</h1>
+        <div className="min-w-0 flex-1 text-center px-1">
+          <h1 className="text-xl sm:text-2xl font-black text-primary leading-tight break-words">{conversation.title}</h1>
           <p className="text-xs text-accent font-bold uppercase tracking-widest">{categoryLabel}</p>
         </div>
         <button
           onClick={() => actions.setIsFocusMode(!state.isFocusMode)}
-          className={`p-3 border rounded-2xl transition-all active:scale-90 flex items-center gap-2 ${state.isFocusMode ? 'bg-accent border-accent text-primary shadow-lg' : 'bg-surface/5 border-border/10 text-tertiary'}`}
+          className={`min-w-11 min-h-11 p-2 border rounded-2xl transition-all active:scale-90 flex items-center justify-center gap-2 ${state.isFocusMode ? 'bg-accent border-accent text-primary shadow-lg' : 'bg-surface/5 border-border/10 text-tertiary'}`}
           aria-pressed={state.isFocusMode}
           aria-label={state.isFocusMode ? "Cambiar a vista de lista completa" : "Cambiar a vista de enfoque interactivo"}
         >
@@ -158,6 +158,8 @@ export default function ConversationUI({ conversation, onBack, onConversationEnd
                   onPlay={() => actions.handlePlayTurn(conversation.dialogue[state.currentTurnIndex])}
                   index={state.currentTurnIndex}
                   isFocusMode={true}
+                  onContinue={actions.goToNextTurn}
+                  canContinue={state.currentTurnIndex < conversation.dialogue.length - 1}
                 />
 
                 <div className="flex items-center gap-8 mt-12 bg-surface/5 p-4 rounded-3xl border border-border/5 backdrop-blur-sm shadow-xl">

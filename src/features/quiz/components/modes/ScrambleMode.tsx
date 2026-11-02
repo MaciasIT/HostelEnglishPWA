@@ -22,15 +22,6 @@ const containerVariants = {
   },
 } as const;
 
-const itemVariants = {
-  hidden: { opacity: 0, scale: 0.5 },
-  visible: { 
-    opacity: 1, 
-    scale: 1,
-    transition: { type: "spring", stiffness: 400, damping: 25 }
-  },
-} as const;
-
 const ScrambleMode: React.FC<ScrambleModeProps> = ({
   currentQuestion,
   feedback,
@@ -49,15 +40,16 @@ const ScrambleMode: React.FC<ScrambleModeProps> = ({
       >
         <AnimatePresence>
           {scrambleAnswers.map((word) => (
-            <motion.button
-              layoutId={`word-${word.id}`}
+            <button
+              type="button"
               key={word.id}
               onClick={() => onRemoveWord(word)}
+              aria-label={`Quitar palabra ${word.text} de la respuesta`}
               className="px-5 py-3 bg-accent rounded-xl font-black text-primary shadow-xl hover:bg-error transition-colors z-10"
               disabled={!!feedback}
             >
               {word.text}
-            </motion.button>
+            </button>
           ))}
         </AnimatePresence>
         {scrambleAnswers.length === 0 && (
@@ -83,16 +75,16 @@ const ScrambleMode: React.FC<ScrambleModeProps> = ({
             const isUsed = scrambleAnswers.some(w => w.id === word.id);
 
             return !isUsed && (
-              <motion.button
-                layoutId={`word-${word.id}`}
+              <button
+                type="button"
+                data-testid="quiz-word-option"
                 key={word.id}
-                variants={itemVariants}
                 onClick={() => onSelectWord(word)}
                 className="px-5 py-3 bg-surface/10 border border-border/10 rounded-xl font-black text-primary hover:bg-surface/20 active:scale-90 transition-all shadow-md"
                 disabled={!!feedback}
               >
                 {word.text}
-              </motion.button>
+              </button>
             );
           })}
         </AnimatePresence>
@@ -100,6 +92,7 @@ const ScrambleMode: React.FC<ScrambleModeProps> = ({
 
       <div className="pt-8 flex flex-col items-center gap-4">
         <motion.button
+          data-testid="quiz-submit-answer"
           layout
           onClick={() => onAnswer(scrambleAnswers.map(w => w.text).join(' '))}
           className={`px-12 py-4 bg-accent rounded-2xl font-black uppercase tracking-widest shadow-2xl transition-all hover:scale-105 active:scale-95 ${scrambleAnswers.length === 0 || !!feedback ? 'opacity-50 pointer-events-none' : ''}`}

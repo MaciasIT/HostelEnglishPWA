@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
+import type { JobRole } from '@/store/types';
 import { QuizMode, ScrambledWord } from './types';
 import { useQuizLogic } from './hooks/useQuizLogic';
 import { useSpeech } from './hooks/useSpeech';
@@ -13,11 +14,12 @@ import GameStatusOverlay from './components/overlays/GameStatusOverlay';
 interface QuizContainerProps {
   category: string | null;
   mode: QuizMode;
+  role?: JobRole | null;
   onExit: () => void;
 }
 
-const QuizContainer: React.FC<QuizContainerProps> = ({ category, mode, onExit }) => {
-  const { state, actions } = useQuizLogic(category, mode);
+const QuizContainer: React.FC<QuizContainerProps> = ({ category, mode, role, onExit }) => {
+  const { state, actions } = useQuizLogic(category, mode, role);
   const { speak } = useSpeech();
 
   useEffect(() => {
@@ -55,7 +57,7 @@ const QuizContainer: React.FC<QuizContainerProps> = ({ category, mode, onExit })
 
   return (
     <LayoutGroup>
-      <motion.div layout className="max-w-xl mx-auto px-4" data-testid="quiz-container">
+      <motion.div layout className={`max-w-xl mx-auto px-0 sm:px-4 ${state.feedback ? 'pb-64' : ''}`} data-testid="quiz-container">
         <QuizHeader 
           lives={state.lives}
           streak={state.streak}
@@ -65,7 +67,7 @@ const QuizContainer: React.FC<QuizContainerProps> = ({ category, mode, onExit })
 
         <motion.div 
           layout
-          className="bg-surface/10 p-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] backdrop-blur-2xl border border-border/20 relative overflow-hidden"
+          className="bg-surface/10 p-4 sm:p-8 rounded-2xl sm:rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] backdrop-blur-2xl border border-border/20 relative overflow-hidden"
         >
           {/* Animated background element */}
           <motion.div 
@@ -146,6 +148,13 @@ const QuizContainer: React.FC<QuizContainerProps> = ({ category, mode, onExit })
             questionsHandled={state.questionsHandledInLevel}
             totalInLevel={state.QUESTIONS_PER_LEVEL}
             onContinue={actions.handleNextQuestion}
+            onSpeak={() => {
+              if (!state.currentQuestion) return;
+              const t = (state.targetLanguage === 'eu'
+                ? state.currentQuestion.target.eu
+                : state.currentQuestion.target.en) || state.currentQuestion.target.en;
+              speak(t);
+            }}
           />
 
           <GameStatusOverlay 

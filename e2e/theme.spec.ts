@@ -6,16 +6,14 @@ test.describe('Theme Engine E2E', () => {
     await page.goto(baseURL);
     await skipRoleOnboarding(page);
 
-    const themeGroup = page.getByRole('radiogroup', { name: 'Tema' });
-
-    // Por defecto el tema es oscuro (prefs.theme === 'dark').
-    await expect(themeGroup.getByRole('radio', { name: 'Modo oscuro' })).toBeChecked();
+    const mobileThemeButton = page.getByRole('button', { name: 'Cambiar a modo claro' });
+    await expect(mobileThemeButton).toBeVisible();
     await expect(page.locator('html')).not.toHaveClass(/light/);
 
-    // Cambio a claro: aplica `.light` en <html>, marca el radio y persiste la preferencia.
-    await themeGroup.getByRole('radio', { name: 'Modo claro' }).click();
+    // En móvil el selector reducido alterna entre claro y oscuro.
+    await mobileThemeButton.click();
     await expect(page.locator('html')).toHaveClass(/light/);
-    await expect(themeGroup.getByRole('radio', { name: 'Modo claro' })).toBeChecked();
+    await expect(page.getByRole('button', { name: 'Cambiar a modo oscuro' })).toBeVisible();
     await expect
       .poll(() => page.evaluate(() => localStorage.getItem('he-theme')))
       .toBe('light');
@@ -25,7 +23,9 @@ test.describe('Theme Engine E2E', () => {
     await page.goto(baseURL);
     await skipRoleOnboarding(page);
 
+    await page.setViewportSize({ width: 768, height: 800 });
     const themeGroup = page.getByRole('radiogroup', { name: 'Tema' });
+    await expect(themeGroup.getByRole('radio', { name: 'Modo oscuro' })).toBeChecked();
 
     await themeGroup.getByRole('radio', { name: 'Modo claro' }).click();
     await expect(page.locator('html')).toHaveClass(/light/);

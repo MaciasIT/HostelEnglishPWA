@@ -50,6 +50,7 @@ const TrueFalseMode: React.FC<TrueFalseModeProps> = ({
 
       <div className="grid grid-cols-2 gap-6">
         <motion.button
+          data-testid="quiz-answer-option"
           variants={itemVariants}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -63,6 +64,7 @@ const TrueFalseMode: React.FC<TrueFalseModeProps> = ({
           SÍ
         </motion.button>
         <motion.button
+          data-testid="quiz-answer-option"
           variants={itemVariants}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}

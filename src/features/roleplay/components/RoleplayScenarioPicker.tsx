@@ -31,7 +31,7 @@ export default function RoleplayScenarioPicker({
   const departments = useMemo(() => [...groupByDepartment(scenarios).keys()], [scenarios]);
 
   const chipClass = (active: boolean) =>
-    `px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-widest border transition-colors ${
+    `min-h-11 inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest border transition-colors ${
       active
         ? 'bg-accent text-on-accent border-accent'
         : 'bg-surface/5 text-tertiary border-border/15 hover:bg-surface/10'
