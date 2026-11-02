@@ -17,6 +17,7 @@ import {
   FaceSmileIcon,
   XMarkIcon,
   Cog6ToothIcon,
+  BuildingOffice2Icon,
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon
 } from '@heroicons/react/24/outline';
@@ -130,6 +131,9 @@ const SideNav: React.FC = () => {
           <NavItem to="/estudio" icon={BookOpenIcon} label="Estudio" expanded={expanded} />
           <NavItem to="/examen" icon={PencilSquareIcon} label="Examen" expanded={expanded} />
           <NavItem to="/progreso" icon={ChartBarIcon} label="Mi Progreso" expanded={expanded} />
+
+          <Section title="Encargados" expanded={expanded} />
+          <NavItem to="/equipo" icon={BuildingOffice2Icon} label="Equipo" expanded={expanded} />
 
           <Section title="Preferencias" expanded={expanded} />
           <NavItem to="/configuracion" icon={Cog6ToothIcon} label="Ajustes" expanded={expanded} />

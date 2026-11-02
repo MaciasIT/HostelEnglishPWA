@@ -12,7 +12,9 @@ import Examen from '@/pages/Examen';
 import Dashboard from '@/pages/Dashboard';
 import Dictation from '@/pages/Dictation';
 import Roleplay from '@/pages/Roleplay';
+import RushHour from '@/pages/RushHour';
 import Settings from '@/pages/Settings';
+import Equipo from '@/pages/Equipo';
 import { PageSkeleton } from '@/components/Skeleton';
 
 // Lazy load heavy page (recharts ~200KB)
@@ -44,6 +46,7 @@ const AppRouter: React.FC = () => {
         <Route path="/conversaciones" element={<AnimatedPage><Conversaciones /></AnimatedPage>} />
         <Route path="/dictado" element={<AnimatedPage><Dictation /></AnimatedPage>} />
         <Route path="/roleplay" element={<AnimatedPage><Roleplay /></AnimatedPage>} />
+        <Route path="/rush-hour" element={<AnimatedPage><RushHour /></AnimatedPage>} />
         <Route path="/progreso" element={
           <AnimatedPage>
             <Suspense fallback={<PageSkeleton />}>
@@ -56,6 +59,7 @@ const AppRouter: React.FC = () => {
         <Route path="/estudio" element={<AnimatedPage><Estudio /></AnimatedPage>} />
         <Route path="/examen" element={<AnimatedPage><Examen /></AnimatedPage>} />
         <Route path="/dashboard" element={<AnimatedPage><Dashboard /></AnimatedPage>} />
+        <Route path="/equipo" element={<AnimatedPage><Equipo /></AnimatedPage>} />
         <Route path="/configuracion" element={<AnimatedPage><Settings /></AnimatedPage>} />
       </Routes>
     </AnimatePresence>

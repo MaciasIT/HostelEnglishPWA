@@ -1,6 +1,8 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render as rtlRender, screen, fireEvent } from '@testing-library/react';
 import { useState } from 'react';
+import { MemoryRouter } from 'react-router';
+const render = (ui: React.ReactElement) => rtlRender(<MemoryRouter>{ui}</MemoryRouter>);
 import RoleSelectionModal from './RoleSelectionModal';
 import RoleScopeTabs, { type RoleScope } from './RoleScopeTabs';
 import { useAppStore } from '@/store/useAppStore';

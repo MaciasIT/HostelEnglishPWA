@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router';
 import { useAppStore } from '@/store/useAppStore';
 import { JOB_ROLES } from '@/utils/roleFilter';
 import type { JobRole } from '@/store/types';
@@ -63,6 +64,17 @@ const RoleSelectionModal: React.FC<RoleSelectionModalProps> = ({ open, onClose }
             </button>
           ))}
         </div>
+        <Link
+          to="/equipo"
+          onClick={() => {
+            if (!selectedRole) setSelectedRole('general');
+            onClose?.();
+          }}
+          className="mt-4 block p-4 rounded-2xl border border-dashed border-accent text-primary font-black focus:ring-2 focus:ring-accent outline-none"
+        >
+          <span aria-hidden="true">📋 </span>Soy encargado: auditar a mi equipo
+          <span className="block text-xs font-normal text-tertiary mt-1">Importa los códigos QR de certificación de tu plantilla</span>
+        </Link>
         {dismissible && (
           <button
             type="button"
