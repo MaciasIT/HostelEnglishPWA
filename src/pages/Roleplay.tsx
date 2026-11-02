@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useSearchParams } from 'react-router';
+import { Link, useSearchParams } from 'react-router';
 import PageContainer from '@/components/layout/PageContainer';
 import ModuleIntro from '@/components/ModuleIntro';
 import AudioWaveform, { type WaveformState } from '@/components/AudioWaveform';
-import { ArrowLeftIcon, ArrowPathIcon, BoltIcon, FaceSmileIcon, CheckBadgeIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftIcon, ArrowPathIcon, ArrowRightIcon, BoltIcon, FaceSmileIcon, CheckBadgeIcon } from '@heroicons/react/24/outline';
 import { DEFAULT_CLIENT_ACCENT, getClientAccent } from '@/features/roleplay/accents';
 import type { ClientAccent } from '@/features/roleplay/accents';
 import { createProceduralSession, dailyPolitenessSeed } from '@/features/roleplay/proceduralSession';
@@ -119,6 +119,23 @@ const Roleplay: React.FC = () => {
           <p className="text-tertiary text-center mb-6 max-w-xl mx-auto">
             Elige una situación. La IA adoptará el rol de cliente y evaluará tu capacidad de resolución.
           </p>
+          <div className="mb-8 max-w-xl mx-auto">
+            <Link
+              to="/rush-hour"
+              className="group flex items-center justify-between gap-3 bg-gradient-to-r from-accent/10 to-cyan-500/5 hover:from-accent/15 border border-accent/30 rounded-2xl p-4 shadow-xl transition-all"
+              data-testid="rush-hour-link"
+            >
+              <span>
+                <span className="block text-[10px] uppercase tracking-widest font-black text-accent-text">Modo contrarreloj</span>
+                <span className="block text-base font-black text-primary flex items-center gap-2">
+                  <BoltIcon className="w-5 h-5 text-accent-text" aria-hidden="true" />
+                  Rush Hour
+                </span>
+                <span className="block text-xs text-tertiary">5 comandas en 2 minutos con ruido de sala real.</span>
+              </span>
+              <ArrowRightIcon className="w-5 h-5 text-accent-text group-hover:translate-x-1 transition-transform shrink-0" aria-hidden="true" />
+            </Link>
+          </div>
           <div className="mb-6 space-y-2">
             <p className="text-center text-[10px] uppercase tracking-widest font-black text-tertiary">
               Tipo de cliente / acento

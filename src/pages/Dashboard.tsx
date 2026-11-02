@@ -15,6 +15,7 @@ import {
   Square2StackIcon,
   ChartBarIcon,
   BookmarkIcon,
+  BoltIcon,
   ArrowRightIcon
 } from '@heroicons/react/24/outline';
 
@@ -148,6 +149,23 @@ const Dashboard: React.FC = () => {
             <span className="block text-[10px] uppercase tracking-widest font-black text-accent-text">Práctica libre</span>
             <span className="block text-lg sm:text-xl font-black text-primary">Reto de Cortesía del Día</span>
             <span className="block text-xs sm:text-sm text-tertiary">Una situación inesperada con un cliente exigente. ¿Mantienes la diplomacia?</span>
+          </span>
+          <ArrowRightIcon className="w-5 h-5 sm:w-6 sm:h-6 text-accent-text group-hover:translate-x-1 transition-transform shrink-0" aria-hidden="true" />
+        </Link>
+
+        {/* Modo Rush Hour (PM-02) */}
+        <Link
+          to="/rush-hour"
+          className="group flex items-center justify-between gap-3 sm:gap-4 bg-gradient-to-r from-accent/10 to-cyan-500/5 hover:from-accent/15 hover:to-cyan-500/10 border border-accent/30 rounded-2xl sm:rounded-[2rem] p-4 sm:p-6 shadow-xl transition-all"
+          data-testid="rush-hour-link"
+        >
+          <span>
+            <span className="block text-[10px] uppercase tracking-widest font-black text-accent-text">Modo contrarreloj</span>
+            <span className="block text-lg sm:text-xl font-black text-primary flex items-center gap-2">
+              <BoltIcon className="w-5 h-5 sm:w-6 sm:h-6 text-accent-text" aria-hidden="true" />
+              Rush Hour
+            </span>
+            <span className="block text-xs sm:text-sm text-tertiary">5 comandas en 2 minutos con ruido de sala real. ¿Aguantas la presión?</span>
           </span>
           <ArrowRightIcon className="w-5 h-5 sm:w-6 sm:h-6 text-accent-text group-hover:translate-x-1 transition-transform shrink-0" aria-hidden="true" />
         </Link>
