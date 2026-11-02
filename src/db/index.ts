@@ -48,18 +48,77 @@ export const initDB = async (): Promise<IDBPDatabase<MyDB>> => {
   });
 };
 
+/** Tiempo máximo para abrir IndexedDB antes de pasar a memoria. */
+export const IDB_OPEN_TIMEOUT_MS = 1500;
+
+/**
+ * Fallback en memoria (BUG-03): en incógnito/WebViews restringidos `indexedDB.open`
+ * puede lanzar SecurityError o colgarse. Tras el primer fallo todo el almacenamiento
+ * pasa a este Map de forma instantánea, sin bloquear el arranque.
+ */
+const memoryStore = new Map<string, unknown>();
+let idbUnavailable = false;
+
+export const isIdbUnavailable = (): boolean => idbUnavailable;
+
+/** Solo para tests. */
+export const __resetIdbFallback = (): void => {
+  idbUnavailable = false;
+  memoryStore.clear();
+};
+
+const markUnavailable = (err: unknown): void => {
+  if (!idbUnavailable) {
+    console.warn('[db] IndexedDB no disponible; usando almacenamiento en memoria:', err);
+  }
+  idbUnavailable = true;
+};
+
+const openSafe = async (): Promise<IDBPDatabase<MyDB> | null> => {
+  if (idbUnavailable) return null;
+  try {
+    return await withTimeout(initDB(), IDB_OPEN_TIMEOUT_MS, 'apertura de IndexedDB');
+  } catch (err) {
+    markUnavailable(err);
+    return null;
+  }
+};
+
 export const set = async <T>(key: string, value: T): Promise<string> => {
-  const db = await initDB();
-  await db.put(STORE_NAME, value, key);
+  const db = await openSafe();
+  if (db) {
+    try {
+      await db.put(STORE_NAME, value, key);
+      return key;
+    } catch (err) {
+      markUnavailable(err);
+    }
+  }
+  memoryStore.set(key, value);
   return key;
 };
 
 export const get = async <T>(key: string): Promise<T | undefined> => {
-  const db = await initDB();
-  return db.get(STORE_NAME, key);
+  const db = await openSafe();
+  if (db) {
+    try {
+      return await db.get(STORE_NAME, key);
+    } catch (err) {
+      markUnavailable(err);
+    }
+  }
+  return memoryStore.get(key) as T | undefined;
 };
 
 export const del = async (key: string): Promise<void> => {
-  const db = await initDB();
-  await db.delete(STORE_NAME, key);
+  const db = await openSafe();
+  if (db) {
+    try {
+      await db.delete(STORE_NAME, key);
+      return;
+    } catch (err) {
+      markUnavailable(err);
+    }
+  }
+  memoryStore.delete(key);
 };

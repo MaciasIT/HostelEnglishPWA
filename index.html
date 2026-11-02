@@ -91,6 +91,34 @@
       cursor: pointer;
       min-height: 44px;
     }
+    #splash-recovery p { margin: 0 0 16px; color: #e5e7eb; font-size: 0.95rem; max-width: 22rem; }
+    .he-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    #splash-recovery button.he-secondary, #he-panel button.he-secondary {
+      background: transparent; color: #f39c12; border: 2px solid #f39c12;
+    }
+    .he-diag { margin-top: 16px; width: 100%; max-width: 28rem; text-align: left; font-size: 0.8rem; color: #d1d5db; }
+    .he-diag summary { cursor: pointer; padding: 10px 0; min-height: 44px; text-align: center; color: #9ca3af; }
+    .he-diag pre {
+      white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow: auto;
+      background: rgba(0,0,0,0.35); border-radius: 8px; padding: 10px; margin: 0 0 10px;
+      font: 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+    /* Panel de diagnóstico tras el montaje de React (errores post-arranque) */
+    #he-fab {
+      position: fixed; left: 8px; bottom: 8px; z-index: 99998; display: none;
+      background: #b45309; color: #fff; border: 0; border-radius: 999px;
+      padding: 0 14px; min-height: 44px; font: 600 0.8rem system-ui, sans-serif;
+    }
+    #he-panel {
+      position: fixed; left: 8px; right: 8px; bottom: 60px; z-index: 99998; display: none;
+      background: #111827; color: #e5e7eb; border-radius: 12px; padding: 12px;
+      font-family: system-ui, sans-serif; box-shadow: 0 8px 30px rgba(0,0,0,.5);
+    }
+    #he-panel button { background: #f39c12; color: #1a252f; border: 0; border-radius: 10px; min-height: 44px; padding: 0 14px; font-weight: 700; cursor: pointer; }
+    #he-panel pre {
+      white-space: pre-wrap; word-break: break-word; max-height: 40vh; overflow: auto;
+      font: 11px/1.4 ui-monospace, monospace; background: rgba(0,0,0,.4); padding: 8px; border-radius: 8px;
+    }
     @keyframes splash-spin {
       to { transform: rotate(360deg); }
     }
@@ -117,29 +145,121 @@
     <div id="splash-title">HostelEnglish</div>
     <div id="splash-sub">Cargando...</div>
     <div id="splash-recovery" role="alert">
-      <button id="splash-recovery-btn" type="button">¿Tarda demasiado? Pulsa aquí para limpiar caché y recargar</button>
+      <p id="splash-recovery-msg">La app está tardando más de lo normal en arrancar.</p>
+      <div class="he-actions">
+        <button id="splash-retry-btn" type="button">Reintentar</button>
+        <button id="splash-recovery-btn" type="button" class="he-secondary">Limpiar y reiniciar</button>
+      </div>
+      <details id="he-diag" class="he-diag">
+        <summary>Ver diagnóstico</summary>
+        <pre id="he-diag-log" aria-live="polite">Sin errores registrados todavía.</pre>
+        <button id="he-diag-copy" type="button" class="he-secondary">Copiar diagnóstico</button>
+      </details>
     </div>
   </div>
 
   <div id="root"></div>
   <script id="splash-recovery-script">
-    /* Recuperación del splash (BUG-01): si el bundle no arranca en 3 s, o hay un
-       error global / fallo de chunk antes de montar, ofrece limpiar SW + cachés y recargar. */
+    /* Guardián de arranque (BUG-01/BUG-03): sin dependencias, se ejecuta antes del bundle.
+       - Captura error / unhandledrejection / vite:preloadError / CSP en un log visible en pantalla.
+       - Si React no monta en 3 s (el splash sigue en el DOM) sustituye el spinner por un mensaje,
+         botones "Reintentar" / "Limpiar y reiniciar" y el diagnóstico.
+       - Tras el montaje, un error muestra un botón flotante con el diagnóstico. */
     (function () {
+      var MAX = 40;
+      var entries = [];
       var splash = document.getElementById("splash");
       var box = document.getElementById("splash-recovery");
-      var btn = document.getElementById("splash-recovery-btn");
-      if (!splash || !box || !btn) return;
-      function show() {
-        if (document.getElementById("splash")) box.classList.add("visible");
+      var msg = document.getElementById("splash-recovery-msg");
+      var logEl = document.getElementById("he-diag-log");
+      var fab = null, panel = null, panelLog = null;
+
+      function mounted() { return !document.getElementById("splash"); }
+      function text() {
+        var head = "HostelEnglish diag | " + new Date().toISOString() + "\nUA: " + navigator.userAgent +
+          "\nURL: " + location.href + "\nSW: " + (navigator.serviceWorker ? (navigator.serviceWorker.controller ? "controlado" : "sin controlar") : "no soportado") + "\n";
+        return head + (entries.length ? "\n" + entries.join("\n\n") : "\n(sin errores registrados)");
       }
-      function clean() {
-        btn.disabled = true;
-        var jobs = [];
+      function render() {
+        var t = text();
+        if (logEl) logEl.textContent = t;
+        if (panelLog) panelLog.textContent = t;
+      }
+      function describe(e) {
+        try {
+          if (!e) return "desconocido";
+          if (e.reason !== undefined) e = e.reason;
+          if (e && e.payload) e = e.payload; // vite:preloadError
+          if (e instanceof Error) return e.name + ": " + e.message + (e.stack ? "\n" + e.stack : "");
+          if (e && e.message) {
+            return e.message + (e.filename ? "\n  en " + e.filename + ":" + e.lineno + ":" + e.colno : "") +
+              (e.error && e.error.stack ? "\n" + e.error.stack : "");
+          }
+          return typeof e === "string" ? e : JSON.stringify(e);
+        } catch (x) { return String(e); }
+      }
+      function ensurePanel() {
+        if (panel || !document.body) return;
+        fab = document.createElement("button");
+        fab.id = "he-fab"; fab.type = "button";
+        fab.addEventListener("click", function () {
+          panel.style.display = panel.style.display === "block" ? "none" : "block";
+        });
+        panel = document.createElement("div");
+        panel.id = "he-panel"; panel.setAttribute("role", "alert");
+        var title = document.createElement("strong");
+        title.textContent = "Diagnóstico de errores";
+        panelLog = document.createElement("pre");
+        var row = document.createElement("div");
+        row.style.cssText = "display:flex;gap:8px;flex-wrap:wrap";
+        [["Reintentar", reload, ""], ["Limpiar y reiniciar", cleanAndReload, ""], ["Copiar", copy, "he-secondary"]].forEach(function (b) {
+          var el = document.createElement("button");
+          el.type = "button"; el.textContent = b[0]; if (b[2]) el.className = b[2];
+          el.addEventListener("click", b[1]);
+          row.appendChild(el);
+        });
+        panel.appendChild(title); panel.appendChild(panelLog); panel.appendChild(row);
+        document.body.appendChild(fab); document.body.appendChild(panel);
+      }
+      function log(label, e) {
+        var s = "[" + new Date().toISOString().slice(11, 19) + "] " + label + ": " + describe(e);
+        if (/ResizeObserver loop/.test(s)) return;
+        entries.push(s);
+        if (entries.length > MAX) entries.shift();
+        if (!mounted()) { showRecovery("Se ha producido un error al arrancar."); }
+        else { ensurePanel(); if (fab) { fab.style.display = "block"; fab.textContent = "⚠ Diagnóstico (" + entries.length + ")"; } }
+        render();
+      }
+      function showRecovery(m) {
+        if (!document.getElementById("splash") || !box) return;
+        if (msg && m) msg.textContent = m;
+        box.classList.add("visible");
+        var sp = document.getElementById("splash-spinner"); if (sp) sp.style.display = "none";
+        var sub = document.getElementById("splash-sub"); if (sub) sub.style.display = "none";
+        var d = document.getElementById("he-diag");
+        if (d && entries.length) d.open = true;
+        render();
+      }
+      function copy() {
+        var t = text();
+        try { navigator.clipboard.writeText(t); } catch (e) {
+          try {
+            var ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta);
+            ta.select(); document.execCommand("copy"); ta.remove();
+          } catch (e2) {}
+        }
+      }
+      function reload() { location.replace(location.pathname + "?r=" + Date.now() + location.hash); }
+      /* Purga SW + cachés, activa cualquier SW en espera (skipWaiting) y recarga. */
+      function cleanAndReload() {
+        var jobs = [], done = false;
         try {
           if (navigator.serviceWorker && navigator.serviceWorker.getRegistrations) {
             jobs.push(navigator.serviceWorker.getRegistrations().then(function (rs) {
-              return Promise.all(rs.map(function (r) { return r.unregister(); }));
+              return Promise.all(rs.map(function (r) {
+                try { if (r.waiting) r.waiting.postMessage({ type: "SKIP_WAITING" }); } catch (e) {}
+                return r.unregister();
+              }));
             }));
           }
         } catch (e) {}
@@ -150,20 +270,29 @@
             }));
           }
         } catch (e) {}
-        var done = false;
-        function reload() {
-          if (done) return;
-          done = true;
-          location.replace(location.pathname + "?r=" + Date.now() + location.hash);
-        }
-        Promise.all(jobs).then(reload, reload);
-        setTimeout(reload, 2000);
+        function go() { if (done) return; done = true; reload(); }
+        Promise.all(jobs).then(go, go);
+        setTimeout(go, 2000);
       }
-      btn.addEventListener("click", clean);
-      setTimeout(show, 3000);
-      window.addEventListener("error", show);
-      window.addEventListener("unhandledrejection", show);
-      window.addEventListener("vite:preloadError", show);
+      function on(id, fn) { var el = document.getElementById(id); if (el) el.addEventListener("click", fn); }
+      on("splash-retry-btn", reload);
+      on("splash-recovery-btn", function () { this.disabled = true; cleanAndReload(); });
+      on("he-diag-copy", copy);
+
+      window.addEventListener("error", function (e) { log("error", e); });
+      window.addEventListener("unhandledrejection", function (e) { log("unhandledrejection", e); });
+      window.addEventListener("vite:preloadError", function (e) { log("vite:preloadError", e); });
+      document.addEventListener("securitypolicyviolation", function (e) {
+        log("CSP", { message: "Bloqueado " + e.violatedDirective + ": " + e.blockedURI });
+      });
+      setTimeout(function () {
+        if (document.getElementById("splash")) {
+          if (!entries.length) entries.push("[boot] React no montó en 3 s (bundle lento, caché antigua o módulo sin evaluar).");
+          showRecovery("La app no ha arrancado. Puedes reintentar o limpiar la caché y reiniciar.");
+        }
+      }, 3000);
+      /* API para el resto de la app (AppErrorBoundary, etc.) */
+      window.__heDiag = { log: log, show: showRecovery, cleanAndReload: cleanAndReload, entries: entries };
     })();
   </script>
   <script type="module" src="./src/main.tsx"></script>
