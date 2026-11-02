@@ -4,6 +4,7 @@ import { useProgressLogic } from '@/features/progress/hooks/useProgressLogic';
 import AchievementBadge from '@/features/progress/components/AchievementBadge';
 import PageContainer from '@/components/layout/PageContainer';
 import CertificationBadge from '@/components/CertificationBadge';
+import VoicePortfolio from '@/features/progress/components/VoicePortfolio';
 import {
   ChartBarIcon,
   CheckBadgeIcon,
@@ -280,6 +281,7 @@ const Progreso: React.FC = () => {
           </motion.section>
         )}
 
+        <VoicePortfolio />
 
       </div>
     </PageContainer>
