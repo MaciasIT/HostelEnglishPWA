@@ -7,6 +7,7 @@ import CollapsibleSection from '@/components/CollapsibleSection';
 import VoiceSettings from '@/components/VoiceSettings';
 import ModuleIntro from '@/components/ModuleIntro';
 import RoleScopeTabs from '@/components/RoleScopeTabs';
+import CategoryChips, { emojiForCategory } from '@/components/CategoryChips';
 import { Square2StackIcon } from '@heroicons/react/24/outline';
 
 const Flashcards: React.FC = () => {
@@ -71,25 +72,18 @@ const Flashcards: React.FC = () => {
           <RoleScopeTabs role={state.selectedRole} scope={state.scope} onChange={actions.setScope} />
         </div>
         <div className="w-full mb-8">
-          <label 
-            htmlFor="category-select"
-            className="block text-xs uppercase tracking-widest text-tertiary mb-2 font-bold"
-          >
+          <span className="block text-xs uppercase tracking-widest text-tertiary mb-1 font-bold">
             Categoría
-          </label>
-          <select
-            id="category-select"
-            className="w-full p-4 bg-surface/5 border border-border/10 rounded-2xl text-primary font-bold appearance-none shadow-xl focus:ring-2 focus:ring-accent outline-none transition-all cursor-pointer"
+          </span>
+          <CategoryChips
+            ariaLabel="Filtrar por categoría"
             value={state.selectedCategory}
-            onChange={(e) => actions.setSelectedCategory(e.target.value)}
-          >
-            <option value="all" className="bg-surface text-primary">Todas las categorías</option>
-            {state.categories.map(category => (
-              <option key={category} value={category} className="bg-surface text-primary">
-                {category}
-              </option>
-            ))}
-          </select>
+            onChange={actions.setSelectedCategory}
+            options={[
+              { value: 'all', label: 'Todas', emoji: '🌐' },
+              ...state.categories.map((c) => ({ value: c, label: c, emoji: emojiForCategory(c) })),
+            ]}
+          />
         </div>
 
         <div className="w-full mb-10 relative perspective-1000">

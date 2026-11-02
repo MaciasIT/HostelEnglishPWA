@@ -135,14 +135,14 @@ describe('<Conversaciones />', () => {
 		renderComponentAndStart();
 		expect(screen.getByText('Check-in')).toBeInTheDocument();
 		expect(screen.getByText('Ordering a drink')).toBeInTheDocument();
-		expect(screen.getByLabelText(/filtrar por categoría/i)).toBeInTheDocument();
+		expect(screen.getByRole('group', { name: /filtrar por categoría/i })).toBeInTheDocument();
 	});
 
 	it('should filter conversations when a category is selected', async () => {
 		const user = userEvent.setup();
 		renderComponentAndStart();
 
-		await user.selectOptions(screen.getByLabelText(/filtrar por categoría/i), 'Bar');
+		await user.click(screen.getByRole('button', { name: /^🍸 Bar$/ }));
 
 		expect(screen.queryByText('Check-in')).not.toBeInTheDocument();
 		expect(screen.getByText('Ordering a drink')).toBeInTheDocument();

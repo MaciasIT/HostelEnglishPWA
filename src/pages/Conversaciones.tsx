@@ -4,7 +4,8 @@ import ConversationUI from '@/features/conversations/components/ConversationUI';
 import { useAppStore, useShallow, Conversation } from '@/store/useAppStore';
 import PageContainer from '@/components/layout/PageContainer';
 import ModuleIntro from '@/components/ModuleIntro';
-import { ChatBubbleLeftRightIcon, FunnelIcon, TrophyIcon, ArrowRightIcon } from '@heroicons/react/24/outline';
+import { ChatBubbleLeftRightIcon, FunnelIcon, TrophyIcon } from '@heroicons/react/24/outline';
+import CategoryChips, { emojiForCategory } from '@/components/CategoryChips';
 
 const Conversaciones: React.FC = () => {
   const { conversations, categories, conversationsLoaded, loadConversations } = useAppStore(
@@ -87,7 +88,7 @@ const Conversaciones: React.FC = () => {
         ) : (
           <div className="space-y-10">
             {/* Filter Hub */}
-            <div className="bg-surface/5 backdrop-blur-xl border border-border/10 rounded-[2.5rem] p-8 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="bg-surface/5 backdrop-blur-xl border border-border/10 rounded-[2.5rem] p-5 sm:p-8 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-6">
               <div className="flex items-center gap-4">
                 <div className="p-3 bg-accent/20 rounded-2xl text-accent">
                   <FunnelIcon className="w-6 h-6" />
@@ -98,25 +99,16 @@ const Conversaciones: React.FC = () => {
                 </div>
               </div>
 
-              <div className="relative w-full md:w-80 group">
-                <select
-                  id="category-filter"
-                  className="w-full pl-6 pr-10 py-4 bg-surface/5 border border-border/10 rounded-2xl text-primary font-bold appearance-none focus:ring-2 focus:ring-accent outline-none transition-all group-hover:bg-surface/10 cursor-pointer"
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
-                  aria-label="Filtrar por categoría"
-                >
-                  <option value="all" className="bg-surface">Todas las situaciones</option>
-                  {categories.map(category => (
-                    <option key={category} value={category} className="bg-surface">
-                      {category}
-                    </option>
-                  ))}
-                </select>
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-tertiary pointer-events-none group-hover:text-accent transition-colors" aria-hidden="true">
-                  <ArrowRightIcon className="w-full h-full rotate-90" />
-                </div>
-              </div>
+              <CategoryChips
+                ariaLabel="Filtrar por categoría"
+                className="w-full md:flex-1 md:justify-end"
+                value={selectedCategory}
+                onChange={setSelectedCategory}
+                options={[
+                  { value: 'all', label: 'Todas', emoji: '🌐' },
+                  ...categories.map((c) => ({ value: c, label: c, emoji: emojiForCategory(c) })),
+                ]}
+              />
             </div>
 
             <ConversationList

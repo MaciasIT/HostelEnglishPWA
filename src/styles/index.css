@@ -360,3 +360,7 @@ input, select, textarea { cursor: text; }
 
 /* Safe area bottom */
 .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 8px); }
+
+/* Utilidad: oculta la barra de scroll en carruseles táctiles (chips). */
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }

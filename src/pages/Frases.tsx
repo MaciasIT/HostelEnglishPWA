@@ -8,7 +8,6 @@ import {
   ArrowRightIcon,
   XMarkIcon,
   MagnifyingGlassIcon,
-  FunnelIcon,
   AcademicCapIcon,
   PlayIcon
 } from '@heroicons/react/24/outline';
@@ -16,6 +15,7 @@ import { shuffle } from '@/utils/shuffle';
 import PageContainer from '@/components/layout/PageContainer';
 import ModuleIntro from '@/components/ModuleIntro';
 import RoleScopeTabs, { type RoleScope } from '@/components/RoleScopeTabs';
+import CategoryChips, { emojiForCategory } from '@/components/CategoryChips';
 import { roleMatchesCategory } from '@/utils/roleFilter';
 
 export default function Frases() {
@@ -132,7 +132,7 @@ export default function Frases() {
               <div className="absolute -right-10 -top-10 w-32 h-32 bg-accent opacity-5 blur-2xl rounded-full"></div>
               <RoleScopeTabs role={selectedRole} scope={scope} onChange={setScope} />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-6">
                 <div className="relative">
                   <MagnifyingGlassIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-tertiary" />
                   <input
@@ -143,34 +143,26 @@ export default function Frases() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
-                <div className="relative">
-                  <FunnelIcon className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-tertiary" />
-                  <select
-                    className="w-full pl-12 pr-10 py-4 bg-surface/5 border border-border/10 rounded-2xl text-primary appearance-none focus:ring-2 focus:ring-accent outline-none transition-all font-bold"
-                    value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
-                  >
-                    <option value="all" className="bg-surface">
-                      Todas las frases
-                    </option>
-                    <option value="Nuevas" className="bg-surface">
-                      Nuevas (Sin estudiar)
-                    </option>
-                    {categories.map(category => {
-                      let label = category;
-                      if (category === 'Jatetxea') label = 'Restaurante';
-                      if (category === 'Harrera') label = 'Recepción';
-                      if (category === 'Kexak') label = 'Quejas';
-                      if (category === 'Kexak eta erreklamazioak') label = 'Quejas y Reclamaciones';
-                      return (
-                        <option key={category} value={category} className="bg-surface">
-                          {label}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </div>
               </div>
+              <CategoryChips
+                ariaLabel="Filtrar por categoría"
+                className="mt-2"
+                value={selectedCategory}
+                onChange={setSelectedCategory}
+                options={[
+                  { value: 'all', label: 'Todas las frases', emoji: '🌐' },
+                  { value: 'Nuevas', label: 'Nuevas', emoji: '✨' },
+                  ...categories.map((category) => {
+                    const labels: Record<string, string> = {
+                      Jatetxea: 'Restaurante',
+                      Harrera: 'Recepción',
+                      Kexak: 'Quejas',
+                      'Kexak eta erreklamazioak': 'Quejas y Reclamaciones',
+                    };
+                    return { value: category, label: labels[category] ?? category, emoji: emojiForCategory(category) };
+                  }),
+                ]}
+              />
 
               <div className="mt-6">
                 <CollapsibleSection title="Ajustes de Voz">
