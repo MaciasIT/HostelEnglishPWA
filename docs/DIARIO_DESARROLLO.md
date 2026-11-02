@@ -4,6 +4,22 @@
 
 Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por hitos temporales para reflejar la evolución técnica del proyecto.
 
+## 📱 Release v2.6.2: Fallback Offline Conversacional, Responsive Mobile & SW Hotfix
+*Fecha: 02-11-2026*
+
+- **[✅ RESUELTO] Fallback Conversacional Offline en Roleplay (`fallbackResponder.ts`):**
+    - **Diagnóstico:** `useRoleplayController` dependía estrictamente de WebGPU y la descarga de 880 MB de `Llama-3.2-1B-Instruct-q4f16_1-MLC`. En móviles o navegadores sin WebGPU (`WEBGPU_UNSUPPORTED`), abortaba a estado de error y la conversación no iniciaba.
+    - **Solución:** Implementado motor procedural contextual `generateCustomerReply` que simula al cliente con réplicas naturales en inglés para todos los departamentos. Si la carga o inferencia LLM falla, degrada de forma transparente y sin error para el usuario, permitiendo practicar por voz/texto de forma 100% offline.
+- **[✅ RESUELTO] Responsive Mobile & Usabilidad PWA:**
+    - `PageContainer.tsx`: Ampliado padding inferior a `pb-24 sm:pb-12` para que la barra inferior (`BottomNav`) no oculte contenido ni botones.
+    - `InstallPWAButton.tsx`: Botón flotante rediseñado con opción de descarte (`X`) y z-index optimizado para no solapar el botón de inicio de conversación.
+    - `Roleplay.tsx`: Títulos largos con `line-clamp-2`, paddings adaptativos `p-6 sm:p-10` y botones fluidos `w-full sm:w-auto`.
+- **[✅ RESUELTO] Activación Inmediata de Service Worker & Caché:**
+    - Configurado `skipWaiting: true`, `clientsClaim: true` y `cleanupOutdatedCaches: true` en Workbox (`vite.config.ts`), eliminando instancias bloqueadas de Service Worker antiguo.
+    - Retirada la doble registración manual en `index.html`, dejando el control a `registerSW.js` de VitePWA.
+
+---
+
 ## 🔊 Release v2.6.1: Hotfix de Audio TTS (Euskera en Chrome & PWA Offline)
 *Fecha: 02-11-2026*
 
