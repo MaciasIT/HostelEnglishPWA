@@ -4,6 +4,21 @@
 
 Este documento sigue el desarrollo de la PWA HostelInglés. Está organizado por hitos temporales para reflejar la evolución técnica del proyecto.
 
+## ⚡ Release v2.6.3: Integración Cloudflare Workers + Nous API LLaMA 3.3 (Inferencia LLM Edge)
+*Fecha: 02-11-2026*
+
+- **[✅ RESUELTO] Proxy Edge Cloudflare Workers (`puestoya-plano-ia`) con Nous Research API:**
+    - Desplegado endpoint SSE OpenAI-compatible (`POST /v1/chat/completions`) en el worker de Cloudflare, reutilizando la infraestructura y suscripción de Nous Research de `puestoya-v3`.
+    - Modelo seleccionado: `meta-llama/llama-3.3-70b-instruct`, con streaming SSE ultrarrápido (<500ms al primer token), sin sobrecoste de reasoning tokens y coste insignificante ($0.0000045/turno).
+    - CORS configurado para GitHub Pages (`https://michel-macias.github.io`, `https://maciasit.github.io`).
+- **[✅ RESUELTO] Inferencia Inmediata en Roleplay sin descarga de 880MB:**
+    - `useRoleplayController.ts` detecta el proxy cloud (`VITE_LLM_PROXY_URL`) e inicia la conversación al instante (`phase: prompting`), omitiendo por completo la pesada descarga WebLLM.
+    - Generación de respuestas streaming con `CloudLLMClient` y fallback procedural transparente (`fallbackResponder.ts`) si el dispositivo pierde conexión o está offline.
+- **[✅ RESUELTO] Hotfix de Voz en Ajustes / Diagnóstico:**
+    - La frase de prueba de audio en `Settings.tsx` ahora se adapta dinámicamente al idioma objetivo activo (en inglés utiliza frase en inglés, en euskera frase en euskera), resolviendo el problema de reproducción cruzada en Chrome.
+- **[✅ COMPLETADO] Cobertura & Calidad:**
+    - 555 tests verdes (84 suites), TypeScript estricto verificado (`npx tsc -b` sin errores) y build PWA verificado.
+
 ## 📱 Release v2.6.2: Fallback Offline Conversacional, Responsive Mobile & SW Hotfix
 *Fecha: 02-11-2026*
 

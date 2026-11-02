@@ -31,8 +31,8 @@ import type {
 } from './llmTypes';
 import type { CloudMetricsStore, LLMMetricRoute } from './cloudMetrics';
 
-/** Modelo remoto por defecto (Workers AI, ~3B, cheap para turnos cortos). */
-export const DEFAULT_CLOUD_MODEL = '@cf/meta/llama-3.2-3b-instruct';
+/** Modelo remoto por defecto (Nous API LLaMA 3.3 70B, rapidísimo y sin sobrecarga de razonamiento). */
+export const DEFAULT_CLOUD_MODEL = 'meta-llama/llama-3.3-70b-instruct';
 
 /** Firma fetch inyectable (permite mockear en tests). */
 export type CloudFetcher = (input: string | URL, init?: RequestInit) => Promise<Response>;
@@ -139,8 +139,18 @@ function makeError(
 /** Lee el endpoint desde `VITE_LLM_PROXY_URL` (compilado por Vite, nunca en el bundle). */
 function endpointFromEnv(): string {
   const meta = import.meta as unknown as { env?: Record<string, string | undefined> };
+  if (meta.env?.MODE === 'test') {
+    return '';
+  }
   const value = meta.env?.VITE_LLM_PROXY_URL;
-  return typeof value === 'string' ? value.trim() : '';
+  if (typeof value === 'string' && value.trim()) {
+    return value.trim();
+  }
+  // En producción (GitHub Pages) si no se inyectó la variable, usa por defecto el proxy de Cloudflare Workers
+  if (meta.env?.PROD) {
+    return 'https://puestoya-plano-ia.mamcom2010.workers.dev/v1/chat/completions';
+  }
+  return '';
 }
 
 /**

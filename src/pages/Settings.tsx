@@ -19,8 +19,20 @@ const Settings = () => {
     const [roleModalOpen, setRoleModalOpen] = useState(false);
 
     const [allVoices, setAllVoices] = useState<SpeechSynthesisVoice[]>([]);
-    const [testText, setTestText] = useState('Kaixo, hau euskera ahotsaren testa da. Ondo entzuten al da?');
+    const [testText, setTestText] = useState(
+        targetLanguage === 'eu'
+            ? 'Kaixo, hau euskera ahotsaren testa da. Ondo entzuten al da?'
+            : 'Good evening! Welcome to our hotel. How can I help you today?'
+    );
     const [isTesting, setIsTesting] = useState(false);
+
+    useEffect(() => {
+        setTestText(
+            targetLanguage === 'eu'
+                ? 'Kaixo, hau euskera ahotsaren testa da. Ondo entzuten al da?'
+                : 'Good evening! Welcome to our hotel. How can I help you today?'
+        );
+    }, [targetLanguage]);
 
     useEffect(() => {
         const loadVoices = () => {
@@ -48,11 +60,14 @@ const Settings = () => {
         window.speechSynthesis.speak(utterance);
     };
 
+    const englishVoices = allVoices.filter(v => v.lang.startsWith('en'));
     const basqueVoices = allVoices.filter(v => v.lang.startsWith('eu'));
     const recommendedVoices = allVoices.filter(v =>
-        v.lang.startsWith('eu') ||
-        v.name.toLowerCase().includes('basque') ||
-        v.name.toLowerCase().includes('euskara')
+        targetLanguage === 'eu'
+            ? (v.lang.startsWith('eu') ||
+               v.name.toLowerCase().includes('basque') ||
+               v.name.toLowerCase().includes('euskara'))
+            : v.lang.startsWith('en')
     );
 
     return (
@@ -117,9 +132,11 @@ const Settings = () => {
                                         <span className="text-sm font-black text-primary">{allVoices.length}</span>
                                     </div>
                                     <div className="flex justify-between items-center bg-surface/5 p-3 rounded-xl">
-                                        <span className="text-xs text-tertiary">Voces de Euskera</span>
-                                        <span className={`text-sm font-black ${basqueVoices.length > 0 ? 'text-green-400' : 'text-red-400'}`}>
-                                            {basqueVoices.length}
+                                        <span className="text-xs text-tertiary">
+                                            {targetLanguage === 'eu' ? 'Voces de Euskera' : 'Voces de Inglés'}
+                                        </span>
+                                        <span className={`text-sm font-black ${(targetLanguage === 'eu' ? basqueVoices : englishVoices).length > 0 ? 'text-green-400' : 'text-red-400'}`}>
+                                            {(targetLanguage === 'eu' ? basqueVoices : englishVoices).length}
                                         </span>
                                     </div>
                                     <div className="flex justify-between items-center bg-surface/5 p-3 rounded-xl">

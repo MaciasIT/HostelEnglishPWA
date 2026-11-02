@@ -5,6 +5,13 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.3] - 2026-11-02
+### Added
+- **Edge LLM Proxy**: Integration with Cloudflare Workers proxy (`puestoya-plano-ia`) forwarding to Nous Research API (`meta-llama/llama-3.3-70b-instruct`) with streaming SSE.
+- **Instant Roleplay Start**: Bypasses the 880MB WebLLM download on mobile/desktop when edge proxy is active, providing instantaneous start with fallback to procedural offline responder.
+### Fixed
+- **Voice Test Language**: Audio test in Settings now adapts text and voice filtering to the active target language (English/Basque), eliminating cross-language TTS distortions.
+
 ## [2.5.1] - 2026-07-27
 ### Added
 - Deploy hardening for GitHub Pages: `public/_headers`, `robots.txt`, `sitemap.xml`, and `404.html` fallback to improve public exposure control and offline behavior.

@@ -7,6 +7,7 @@ import useSpeechRecognition from '@/hooks/useSpeechRecognition';
 
 import { useRoleplayController } from './useRoleplayController';
 import { getScenario } from './scenarios';
+import { getCloudLLMClient } from '@/services/llm/cloudLLMClient';
 
 vi.mock('@/hooks/useLocalLLM');
 vi.mock('@/hooks/useAudioManager');
@@ -343,5 +344,67 @@ describe('useRoleplayController — asistencia (FC-04)', () => {
     expect(result.current.feedbackSummary?.technicalVocabularyUsed).toEqual(
       expect.arrayContaining(['room', 'apologise', 'confirmation', 'reservation', 'passport']),
     );
+  });
+
+  describe('con proxy cloud configurado (Cloudflare + Nous API)', () => {
+    it('inicia inmediatamente sin descargar el modelo local (sin llamar a load)', async () => {
+      const client = getCloudLLMClient();
+      vi.spyOn(client, 'isConfigured', 'get').mockReturnValue(true);
+
+      const { result } = renderHook(() => useRoleplayController(ownScenario));
+      await act(async () => {
+        await result.current.actions.start();
+      });
+
+      expect(mockLoad).not.toHaveBeenCalled();
+      expect(result.current.phase).toBe('prompting');
+      expect(result.current.llmStatus).toBe('ready');
+      expect(result.current.loadProgress).toBeNull();
+    });
+
+    it('enruta los turnos a través del cliente cloud y sintetiza la respuesta', async () => {
+      const client = getCloudLLMClient();
+      vi.spyOn(client, 'isConfigured', 'get').mockReturnValue(true);
+      const cloudGenerateSpy = vi.spyOn(client, 'generate').mockResolvedValue({
+        id: 'cloud-1',
+        fullText: 'Yes, here is my passport.',
+        elapsedMs: 200,
+      });
+
+      const { result } = renderHook(() => useRoleplayController(ownScenario));
+      await act(async () => {
+        await result.current.actions.start();
+      });
+
+      await act(async () => {
+        result.current.actions.submitText('May I have your ID, please?');
+      });
+
+      expect(cloudGenerateSpy).toHaveBeenCalledTimes(1);
+      expect(result.current.turns[result.current.turns.length - 1]).toEqual({
+        role: 'client',
+        text: 'Yes, here is my passport.',
+      });
+      expect(mockSpeak).toHaveBeenCalledWith('Yes, here is my passport.', expect.anything());
+    });
+
+    it('si el cliente cloud falla o no hay conexión, degrada limpiamente al respondedor procedural', async () => {
+      const client = getCloudLLMClient();
+      vi.spyOn(client, 'isConfigured', 'get').mockReturnValue(true);
+      vi.spyOn(client, 'generate').mockRejectedValue(new Error('Network offline'));
+
+      const { result } = renderHook(() => useRoleplayController(ownScenario));
+      await act(async () => {
+        await result.current.actions.start();
+      });
+
+      await act(async () => {
+        result.current.actions.submitText('Could I see your reservation?');
+      });
+
+      expect(result.current.turns[result.current.turns.length - 1].role).toBe('client');
+      expect(result.current.turns[result.current.turns.length - 1].text.length).toBeGreaterThan(0);
+      expect(result.current.phase).toBe('prompting');
+    });
   });
 });

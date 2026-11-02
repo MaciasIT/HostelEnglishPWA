@@ -40,6 +40,7 @@ import type { PolitenessEvaluation } from '@/services/ai';
 import { getClientAccent } from './accents';
 import type { ClientAccent } from './accents';
 import { generateCustomerReply } from './fallbackResponder';
+import { getCloudLLMClient } from '@/services/llm/cloudLLMClient';
 
 /** Opciones de sesión (FD-04): escenario procedural y acento del cliente. */
 export interface RoleplayControllerOptions {
@@ -171,15 +172,18 @@ export function useRoleplayController(
     userTurnCountRef.current = 0;
     userTurnsRef.current = [];
     messagesRef.current = buildInitialMessages(scenarioRef.current, optionsRef.current);
-    setPhase('loading');
 
-    try {
-      await load();
-    } catch (err) {
-      console.warn(
-        'Carga del modelo local no disponible, activando respondedor procedural offline:',
-        err,
-      );
+    const isCloud = getCloudLLMClient().isConfigured;
+    if (!isCloud) {
+      setPhase('loading');
+      try {
+        await load();
+      } catch (err) {
+        console.warn(
+          'Carga del modelo local no disponible, activando respondedor procedural offline:',
+          err,
+        );
+      }
     }
 
     setTurns([{ role: 'client', text: scenarioRef.current.openingLine }]);
@@ -236,19 +240,33 @@ export function useRoleplayController(
         return;
       }
 
-      let reply: string;
+      let reply = '';
       try {
-        const replyResult = await generate(
-          messagesRef.current,
-          {},
-          { maxTokens: 256, temperature: 0.7 },
-        );
-        reply = replyResult.fullText.trim();
+        const cloudClient = getCloudLLMClient();
+        if (cloudClient.isConfigured) {
+          const replyResult = await cloudClient.generate(
+            messagesRef.current,
+            {},
+            { maxTokens: 160, temperature: 0.7 },
+            scenarioData.key,
+          );
+          reply = replyResult.fullText.trim();
+        } else {
+          const replyResult = await generate(
+            messagesRef.current,
+            {},
+            { maxTokens: 256, temperature: 0.7 },
+          );
+          reply = replyResult.fullText.trim();
+        }
       } catch (err) {
         console.warn(
           'Inferencia LLM fallida, recurriendo al respondedor procedural del cliente:',
           err,
         );
+      }
+
+      if (!reply) {
         reply = generateCustomerReply(scenarioData, trimmed, userTurnCountRef.current);
       }
 
@@ -311,6 +329,9 @@ export function useRoleplayController(
 
   const reset = useCallback(async () => {
     cancel();
+    if (getCloudLLMClient().isConfigured) {
+      getCloudLLMClient().abort();
+    }
     await resetLLM();
     messagesRef.current = [];
     userTurnCountRef.current = 0;
@@ -328,13 +349,18 @@ export function useRoleplayController(
     setPhase('idle');
   }, [cancel, resetLLM]);
 
+  const isCloud = getCloudLLMClient().isConfigured;
+  const effectiveLLMStatus: LLMStatus = isCloud
+    ? (phase === 'thinking' ? 'generating' : 'ready')
+    : llmStatus;
+
   return {
     phase,
     turns,
     result,
     error,
-    llmStatus,
-    loadProgress,
+    llmStatus: effectiveLLMStatus,
+    loadProgress: isCloud ? null : loadProgress,
     playbackWaveform,
     transcript: asr.transcript,
     isListening: asr.isListening,
